@@ -6,6 +6,12 @@
 #    - julia --project="." make.jl preview
 #    - push!(ARGS,"preview"); include("make.jl")
 
+# !!! note "An optional title"
+#    4 spaces idented
+# note, tip, warning, danger, compat
+
+
+
 # Format notes:
 
 
@@ -67,9 +73,30 @@ function include_sandbox(filename)
     return Base.include(mod, filename)
 end
 
+function makeList(rootDir,subDirList)
+    outArray = []
+    for l in sort(collect(subDirList), by=x->x[2])
+      println(l)
+      lessonName = l[1]
+      lessonDir  = l[2]
+      dirArray =[]
+      for file in filter(file -> endswith(file, ".md"), sort(readdir(joinpath(rootDir,lessonDir))))
+        displayFilename = replace(file,".md"=>"")
+        push!(dirArray,displayFilename=>joinpath(lessonDir,file))
+      end
+      push!(outArray,lessonName=>dirArray)
+    end
+    return outArray
+end
+
 function literate_directory(dir)
-    rm.(file_list(dir, ".md"))
-    for filename in file_list(dir, ".jl")
+    # Removing old compiled md files...
+    for filename in filter(file -> endswith(file, ".md"), readdir(dir))
+        rm(joinpath(dir,filename))
+    end
+
+    for filename in filter(file -> endswith(file, ".jl"), readdir(dir))
+        filename = joinpath(dir,filename)
         # `include` the file to test it before `#src` lines are removed. It is
         # in a testset to isolate local variables between files.
         if ! ("preview" in ARGS)
@@ -96,23 +123,6 @@ function literate_directory(dir)
     return nothing
 end
 
-function makeList(rootDir,subDirList)
-    outArray = []
-    for l in sort(collect(subDirList), by=x->x[2])
-      println(l)
-      lessonName = l[1]
-      lessonDir  = l[2]
-      dirArray =[]
-      for file in filter(file -> endswith(file, ".md"), sort(readdir(joinpath(rootDir,lessonDir))))
-        displayFilename = replace(file,".md"=>"")
-        push!(dirArray,displayFilename=>joinpath(lessonDir,file))
-      end
-      push!(outArray,lessonName=>dirArray)
-    end
-    return outArray
-end
-
-
 println("Starting literating tutorials (.jl --> .md)...")
 literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR ,lsubdir),values(LESSONS_SUBDIR)))
 
@@ -135,5 +145,5 @@ makedocs(sitename="Introduction to Scientific Programming and Machine Learning w
 
 println("Starting deploying the documentation...")
 deploydocs(
-    repo = "github.com/sylvaticus/BetaML.jl.git",
+    repo = "github.com/sylvaticus/IntroSPMLJuliaCourse",
 )

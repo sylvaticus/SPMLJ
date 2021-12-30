@@ -1,9 +1,25 @@
-cd(@__DIR__)                    #src
-using Pkg                       #src
-Pkg.activate("../..")           #src
+################################################################################
+###  Introduction to Scientific Programming and Machine Learning with Julia  ###
+###                                                                          ###
+### Run each script on a new clean Julia session                             ###
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
+### Licence (apply to all material of the course: scripts, videos, quizes,..)###
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
+################################################################################
 
+# # 0101 - Basic Syntax Elements
 
-# # 0101 - Basic Syntax
+# ## Some stuff to set-up the environment..
+
+cd(@__DIR__)         
+using Pkg             
+Pkg.activate(".")     
+# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# Pkg.resolve()   
+Pkg.instantiate()
+using Random
+Random.seed!(123)
+
 
 # ## Comments
 
@@ -22,10 +38,10 @@ one
 a = 1
 a = 1;
 for i in 1:3
-    println("i is $i")
+   println("i is $i")
 end # Keyword `end` to finish a block
 println("Hello world!")
-## println ("This would error!")
+## println("This would error!")
 
 
 # ## Types
@@ -43,36 +59,36 @@ typeof(b)
 # Type hierarchy in Julia:
 # 
 # - Any
-#  - AbstractString     # We'll see what all these "abstract" mean....
-#    - String
-#    - ...
-#  - AbstractArray
-#    - Array
-#    - ....
-#  - Number
-#    - Complex
-#    - Real
-#      - Rational
-#      - Integer
-#        - Unsigned
-#          - UInt64
-#          - ...
-#        - Signed
-#          - Int32
-#          - Int64
-#          - BigInt
-#          - ...
-#        - Bool
-#      - FixedPoints
-#        - ...
-#      - AbstractIrrational
-#        - Irrational
-#      - AbstractFloat
-#        - Float32
-#        - Float64
-#        - BigFloat
-#        - ...
-#  - ...
+#   - AbstractString     # We'll see what all these "abstract" mean....
+#     - String
+#     - ...
+#   - AbstractArray
+#     - Array
+#     - ....
+#   - Number
+#     - Complex
+#     - Real
+#       - Rational
+#       - Integer
+#         - Unsigned
+#           - UInt64
+#           - ...
+#         - Signed
+#           - Int32
+#           - Int64
+#           - BigInt
+#           - ...
+#         - Bool
+#       - FixedPoints
+#         - ...
+#       - AbstractIrrational
+#         - Irrational
+#       - AbstractFloat
+#         - Float32
+#         - Float64
+#         - BigFloat
+#         - ...
+#   - ...
 # Complete Number hierarchy: https://upload.wikimedia.org/wikipedia/commons/d/d9/Julia-number-type-hierarchy.svg
 
 ## Everythong is an object, i.e. of some "type"
@@ -85,6 +101,17 @@ typeof(+) <: Function
 ## Operators are just functions:
 1 + 2
 +(1,2) # this call the function "+"
+import Base.+
+## +(a,b,c) = a*b*c  # Defining my new crazy addition operation with 3 arguments
+10+20+30            # This call it
+10+20               # The addition with two parameters remains the same
+10+20+30+40         # Also this one remains with the standard addition..
+
+# !!! warning
+#     After you tested this crazy addition, please restart julia or norhing will work.
+#     With great power come great responsability.. (..if you change the meaning of addition it is difficult you will not run into problems...)
+
+
 
 # ## Unicode support
 # Actually you can use any fancy unicode character and modifiers in the names of variable, type, funcion..
@@ -93,16 +120,19 @@ using Statistics # for the `mean` function, in the Standard Library
 σ²([1,2,3])
 x̄ₙ = 10
 
+
 # ## Broadcasting
 10 .+ [1,2,3] 
 add2(x) = x + 2
+add2(10)
 ## add2([1,2,3]) # would return an error
 add2.([1,2,3])  # any, including user defined functions, can be broadcasted. No need for map, for loops, etc..
 
 # 1 based arrays
 a = [1,2,3]
 a[1]
-# Should array indices start at 0 or 1?  My compromise of 0.5 was rejected without, I thought, proper consideration.
+# !!! joke "0 or 1 ?"
+#     Should array indices start at 0 or 1?  My compromise of 0.5 was rejected without, I thought, proper consideration. --Stan Kelly-Bootle
 
 # ## Memory issues in assignments/copying
 
@@ -131,7 +161,8 @@ a = 5            # rebinds a:
 b
 c
 d
-# !!! note: Consider these memory isues when we'll discuss calling a function by reference/value !
+# !!! note
+#     Consider these memory isues when we'll discuss calling a function by reference/value !
 
 
 # ## Missingness implementations
@@ -142,7 +173,7 @@ typeof(a)
 typeof(b)
 typeof(c)
 d = 0/0
-##a2 = mean([1,a,3]) # would error
+## a2 = mean([1,a,3]) # would error
 b2 = mean([1,b,3])
 c2 = mean([1,c,3])
 b3 = mean(skipmissing([1,b,3]))
@@ -160,6 +191,7 @@ rand(30:0.01:40) # [30,40] with precision to the second digit
 using Distributions
 rand(Exponential(10)) # We'll see Distributions more in detail in the Scientific Programming lesson
 rand(30:40,10) # A vector of 10 random numbers.
+rand(Exponential(10),10,23)
 using Random
 myRNG = MersenneTwister(123) # use StableRNG for a RNG guaranteed to remain stable between Julia-versions
 a1 = rand(myRNG,10:1000,5)
@@ -171,3 +203,5 @@ b2 = rand(myRNG,10:1000,5)
 b1 == b2
 a1 == b1
 a2 == b2
+
+a = rand(myRNG,Exponential(10),5)
