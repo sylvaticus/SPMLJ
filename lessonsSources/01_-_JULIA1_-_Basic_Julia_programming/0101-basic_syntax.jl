@@ -7,7 +7,9 @@
 ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
 ################################################################################
 
+
 # # 0101 - Basic Syntax Elements
+
 
 # ## Some stuff to set-up the environment..
 
@@ -44,76 +46,8 @@ println("Hello world!")
 ## println("This would error!")
 
 
-# ## Types
-
-## 1 in not 1.0:
-a = 1
-b = 1.0
-typeof(a) # type is inferred !
-typeof(b)
-## Convert type (cast)
-a = 1
-b = convert(Float64,a)
-typeof(b)
-
-# Type hierarchy in Julia:
-# 
-# - Any
-#   - AbstractString     # We'll see what all these "abstract" mean....
-#     - String
-#     - ...
-#   - AbstractArray
-#     - Array
-#     - ....
-#   - Number
-#     - Complex
-#     - Real
-#       - Rational
-#       - Integer
-#         - Unsigned
-#           - UInt64
-#           - ...
-#         - Signed
-#           - Int32
-#           - Int64
-#           - BigInt
-#           - ...
-#         - Bool
-#       - FixedPoints
-#         - ...
-#       - AbstractIrrational
-#         - Irrational
-#       - AbstractFloat
-#         - Float32
-#         - Float64
-#         - BigFloat
-#         - ...
-#   - ...
-# Complete Number hierarchy: https://upload.wikimedia.org/wikipedia/commons/d/d9/Julia-number-type-hierarchy.svg
-
-## Everythong is an object, i.e. of some "type"
-c = typeof(a)
-typeof(c)
-d = sin
-typeof(d) <: Function
-typeof(+) <: Function
-
-## Operators are just functions:
-1 + 2
-+(1,2) # this call the function "+"
-import Base.+
-## +(a,b,c) = a*b*c  # Defining my new crazy addition operation with 3 arguments
-10+20+30            # This call it
-10+20               # The addition with two parameters remains the same
-10+20+30+40         # Also this one remains with the standard addition..
-
-# !!! warning
-#     After you tested this crazy addition, please restart julia or norhing will work.
-#     With great power come great responsability.. (..if you change the meaning of addition it is difficult you will not run into problems...)
-
-
-
 # ## Unicode support
+
 # Actually you can use any fancy unicode character and modifiers in the names of variable, type, funcion..
 using Statistics # for the `mean` function, in the Standard Library
 σ²(x) = sum( (x .- mean(x)).^2 )/length(x) 
@@ -122,50 +56,42 @@ x̄ₙ = 10
 
 
 # ## Broadcasting
+
 10 .+ [1,2,3] 
 add2(x) = x + 2
 add2(10)
 ## add2([1,2,3]) # would return an error
 add2.([1,2,3])  # any, including user defined functions, can be broadcasted. No need for map, for loops, etc..
 
-# 1 based arrays
+
+# ## 1 based arrays
+
 a = [1,2,3]
 a[1]
 # !!! joke "0 or 1 ?"
 #     Should array indices start at 0 or 1?  My compromise of 0.5 was rejected without, I thought, proper consideration. --Stan Kelly-Bootle
 
-# ## Memory issues in assignments/copying
 
-a = [[[1,2],3],4] # First element of a is said to be "mutable", second one is not:
-isimmutable(a[1])
-isimmutable(a[2])
-## mutable objects are stored in memory directly, while for mutable objects it is its memory address to be stored
-b = a            # name binding: it binds (assign) the entity (object) referenced by a to the b identifier (the variable name)
-c = copy(a)      # create a new copy of a and binds it to c
-d = deepcopy(a)  # copy all the references recursively and assign this new object to d
-c == a           # are the two objects equal ?
-c === a          # are the two identifiers binding the same identical object in memory ?
-a[2] = 40        # rebinds a[2] to an other objects and at the same time mutates object a:
-b
-c
-d
-a[1][2] = 30     # rebinds a[1][2] and at the same time mutates both a and a[1]
-b
-c
-d
-a[1][1][2] = 20
-b
-c
-d
-a = 5            # rebinds a:
-b
-c
-d
-# !!! note
-#     Consider these memory isues when we'll discuss calling a function by reference/value !
+# ## Quotation
+
+a = 'k'              # single quotation mark: a single Char
+b = "k"              # double quotation mark: a (Unicode) String
+#c = 'hello'         # error !
+c = "hello"
+d = `echo hello`     # backtick: define a command to (later) run (e.g. on the OS)
+e = """a
+multiline
+string"""
+println(c)
+println(e)
+using Markdown
+f = md"""a
+**markdown**
+_string_"""
 
 
 # ## Missingness implementations
+
 a = nothing # C-style, "software engineer's null → run-time error
 b = missing # Data scientist's null → silent propagation
 c = NaN     # Not a number → silent propagation
@@ -184,7 +110,9 @@ typeof(b4)
 eltype(b4)
 nonmissingtype(eltype(b4))
 
+
 # ## Random values
+
 rand()       # [0,1] continuous
 rand(30:40)  # [30,40] integer
 rand(30:0.01:40) # [30,40] with precision to the second digit
@@ -205,3 +133,4 @@ a1 == b1
 a2 == b2
 
 a = rand(myRNG,Exponential(10),5)
+
