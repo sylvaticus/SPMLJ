@@ -44,10 +44,11 @@ LESSONS_SUBDIR = Dict(
   "KOM - Kick off meeting"                     => "00_-_KOM_-_Kickoff_meeting",
   "JULIA1 - Basic Julia Programming"           => "01_-_JULIA1_-_Basic_Julia_programming",
   "JULIA2_-_Scientific_programming_with_Julia" => "02_-_JULIA2_-_Scientific_programming_with_Julia",
-  "ML1 - Introduction to Machine Learning_1"   => "03_-_ML1_-_Introduction_to_Machine_Learning_1",
-  "ML2_-_Introduction_to_Machine_Learning_2"   => "04_-_ML2_-_Introduction_to_Machine_Learning_2",
-  "NN_-_Neural_Networks"                       => "05_-_NN_-_Neural_Networks",
-  "RF&CL_-_Random_Forests_and_Clustering"      => "06_-_RF&CL_-_Random_Forests_and_Clustering")
+  #"ML1 - Introduction to Machine Learning_1"   => "03_-_ML1_-_Introduction_to_Machine_Learning_1",
+  #"ML2_-_Introduction_to_Machine_Learning_2"   => "04_-_ML2_-_Introduction_to_Machine_Learning_2",
+  #"NN_-_Neural_Networks"                       => "05_-_NN_-_Neural_Networks",
+  #"RF&CL_-_Random_Forests_and_Clustering"      => "06_-_RF&CL_-_Random_Forests_and_Clustering"
+  )
 
 
 
