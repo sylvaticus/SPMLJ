@@ -52,10 +52,7 @@ jobs:
         with:
           version: '1.7'
       - run: |
-          julia -t 4 -e '
-            using Pkg
-            
-            Pkg.instantiate()'
+          julia -t 4 -e 'using Pkg; Pkg.instantiate()'
       # Pkg.develop(PackageSpec(path=pwd()))
       # Test the documentation itself
       # The problem is that in the test I should call stuff like
