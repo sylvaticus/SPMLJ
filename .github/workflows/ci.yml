@@ -52,7 +52,7 @@ jobs:
         with:
           version: '1.7'
       - run: |
-          julia -t 4 -e 'using Pkg; Pkg.instantiate()'
+          julia -t 4 --project=. -e 'using Pkg; Pkg.instantiate()'
       # Pkg.develop(PackageSpec(path=pwd()))
       # Test the documentation itself
       # The problem is that in the test I should call stuff like
@@ -63,10 +63,10 @@ jobs:
       #      using Documenter: doctest
       #      using BetaML.Perceptron, BetaML.Nn, BetaML.Clustering, BetaML.Trees
       #      doctest(BetaML)' #this can't be changed to doctest(BetaML.Perceptron)
-      - run: julia -t 4 makedoc.jl
+      - run: julia -t 4 --project=. makedoc.jl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
           GKSwstype: "100" # https://discourse.julialang.org/t/generation-of-documentation-fails-qt-qpa-xcb-could-not-connect-to-display/60988
-      - uses: julia-actions/julia-processcoverage@v1
-      - uses: codecov/codecov-action@v1
+      #- uses: julia-actions/julia-processcoverage@v1
+      #- uses: codecov/codecov-action@v1
