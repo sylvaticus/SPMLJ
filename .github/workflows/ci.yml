@@ -1,11 +1,11 @@
-name: CI
+name: MakeDocPages
 on:
   pull_request:
     branches:
-      - master
+      - main
   push:
     branches:
-      - master
+      - main
     tags: '*'
 jobs:
   test:
