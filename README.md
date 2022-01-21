@@ -15,6 +15,8 @@ Objectives:
 Resources provided:
 - julia scripts
 - the same script with the output
+  - [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://sylvaticus.github.io/IntroSPMLJuliaCourse/stable)
+  - [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://sylvaticus.github.io/IntroSPMLJuliaCourse/dev)
 - videos divided in "small" segments and parts
 - interactive quizzes between each segment or part (at time of writing quizzes are available only for students with access to the specific elearning platform used for the course, I am looking for a way to provide them to the general public)
 

@@ -148,5 +148,6 @@ makedocs(sitename="Introduction to Scientific Programming and Machine Learning w
 
 println("Starting deploying the documentation...")
 deploydocs(
-    repo = "github.com/sylvaticus/IntroSPMLJuliaCourse",
+    repo = "github.com/sylvaticus/IntroSPMLJuliaCourse.git",
+    devbranch = "main"
 )
