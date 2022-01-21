@@ -76,12 +76,13 @@ end
 function makeList(rootDir,subDirList)
     outArray = []
     for l in sort(collect(subDirList), by=x->x[2])
-      println(l)
+      #println(l)
       lessonName = l[1]
       lessonDir  = l[2]
+      lessonName  = replace(lessonName,"_"=>" ")
       dirArray =[]
       for file in filter(file -> endswith(file, ".md"), sort(readdir(joinpath(rootDir,lessonDir))))
-        displayFilename = replace(file,".md"=>"")
+        displayFilename = replace(file,".md"=>"","_"=>" ")
         push!(dirArray,displayFilename=>joinpath(lessonDir,file))
       end
       push!(outArray,lessonName=>dirArray)
@@ -96,6 +97,7 @@ function literate_directory(dir)
     end
 
     for filename in filter(file -> endswith(file, ".jl"), readdir(dir))
+        filenameNoPath = filename
         filename = joinpath(dir,filename)
         # `include` the file to test it before `#src` lines are removed. It is
         # in a testset to isolate local variables between files.
@@ -108,7 +110,9 @@ function literate_directory(dir)
                  filename,
                  dir;
                  documenter = true,
-                 postprocess = link_example
+                 postprocess = link_example,
+                 # default is @example -> evaluated by documenter at the end of the block
+                 codefence =  "```@repl $filenameNoPath" => "```" 
              )
         else
             Literate.markdown(
@@ -125,7 +129,6 @@ end
 
 println("Starting literating tutorials (.jl --> .md)...")
 literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR ,lsubdir),values(LESSONS_SUBDIR)))
-
 
 println("Starting making the documentation...")
 makedocs(sitename="Introduction to Scientific Programming and Machine Learning with Julia",

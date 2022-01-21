@@ -53,7 +53,7 @@ using Statistics # for the `mean` function, in the Standard Library
 σ²(x) = sum( (x .- mean(x)).^2 )/length(x) 
 σ²([1,2,3])
 x̄ₙ = 10
-
+vàlidVarNαme! = 2
 
 # ## Broadcasting
 
@@ -71,6 +71,21 @@ a[1]
 # !!! joke "0 or 1 ?"
 #     Should array indices start at 0 or 1?  My compromise of 0.5 was rejected without, I thought, proper consideration. --Stan Kelly-Bootle
 
+
+# ## Basic Mathematic operations
+
+# ## All standard mathepatical arithmetic operators (`+`,`-`,`*`,`/`) are supported in the obvious way. 
+a = 2^4         # rise to power
+b = ℯ^2; #= or =# b = exp(2) # Exponential with base ℯ 
+d = log(7.3890) # base ℯ
+e = log(10,100) # custom base
+f = 5 ÷ 2       # integer division
+e = 5 % 2       # reminder (modulo operator)
+a = 2//3 + 1//3     # rational numbers
+typeof(a)
+π == pi         # some irrational constants
+typeof(ℯ)
+convert(Float64,a)
 
 # ## Quotation
 
