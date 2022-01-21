@@ -1,3 +1,8 @@
+name = " IntroSPMLJuliaCourse"
+uuid = "fca80b66-7ae6-11ec-1a7e-43a2532b2fa8"
+authors = ["Antonello Lobianco <antonello@lobianco.org>"]
+version = "0.0.1"
+
 [deps]
 BetaML = "024491cd-cc6b-443e-8034-08ea7eb7db2b"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
