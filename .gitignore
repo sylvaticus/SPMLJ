@@ -27,6 +27,12 @@ docs/site/
 buildedDoc/
 
 # Markdown built from sourse by Literate
-lessonSources/*.md
-lessonSources/*/*.md
-!lessonSources/index.md 
+#*.md
+/lessonsSources/**/*.md
+!/lessonsSources/index.md 
+!README.md 
+
+# Inner git repository
+lessonsMaterial/00_KOM/scripts/testGit/
+lessonsMaterial/00_KOM/scripts/testGit/*
+
