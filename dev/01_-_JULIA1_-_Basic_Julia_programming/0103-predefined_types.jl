@@ -7,7 +7,7 @@
 ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
 ################################################################################
 
-# ## 0103 Predefined types
+# # 0103 Predefined types
 
 
 # ## Some stuff to set-up the environment..
@@ -27,7 +27,7 @@ using InteractiveUtils # loaded automatically when working... interactively
 # Primitive types have a fixed number of bits associated to them. Examples of them are `Int64`, `Float64`, `Char`, `UInt64`, `UFloat64`, `Int32`, `Float32`,...
 # Even primitive types can be custom defined. See the "custom types" segment !
 
-# ## Char and Strings - `Char`, `String`
+# ### Char and Strings - `Char`, `String`
 
 a = "Hello World "
 b = a[2]
@@ -69,7 +69,6 @@ b = string(2019)
 
 # !!! warning
 #     Attention not to confuse the `string` function with the `String` type and the `String()` constructor!
-
 
 ## to know more...
 methodswith(String,supertypes=true); # where any argument is a String or any parent type (such e.g. AbstractString)
@@ -239,6 +238,9 @@ a = reshape(1:24, 3,4,2)
 for slice in eachslice(a,dims=1)
     println(slice)
 end
+a = [1 2;3 4; 5 6]
+selectdim(a,1,3) # Select an hyperplane on dimension 1 (rows) at position 3. Returns a view
+
 
 # #### Flat to vector..
 a = [1 2; 3 4]
