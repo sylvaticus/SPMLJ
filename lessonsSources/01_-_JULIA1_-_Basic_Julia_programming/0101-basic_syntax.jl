@@ -15,7 +15,8 @@
 
 cd(@__DIR__)         
 using Pkg             
-Pkg.activate(".")     
+Pkg.activate(".")   
+ENV["PYTHON"] = ""  # This will be needed in a further segment  
 # If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 # Pkg.resolve()   
 Pkg.instantiate()
