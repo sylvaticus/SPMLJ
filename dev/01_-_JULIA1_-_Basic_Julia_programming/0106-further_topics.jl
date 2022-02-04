@@ -183,7 +183,7 @@ compilationCommand2 = `gcc -shared -o libmyclib.so myclib.o -lm -fPIC` # the lin
 run(compilationCommand1)
 run(compilationCommand2)
 
-# This should have created the C library `libmyclib.so` on disk. Let's gonan use it:
+# This should have created the C library `libmyclib.so` on disk. Let's gonna use it:
 const myclib = joinpath(@__DIR__, "libmyclib.so")  # we need the full path
 # ccall arguments:
 # 1. A tuple with the funcion name to call and the library path. For both, if embedded in a variable, the variable must be set constant.  
@@ -200,8 +200,116 @@ b = ccall((:mySum,myclib), Float64, (Float32,Float32), 2.5, 1.5)
 
 # ### Using Python in Julia 
 
+# The "default" way to use Python code in Julia is trough the [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) package. It automatically take care of convert between Python types (including numpy arrays) and Julia types (types that can not be converted automatically are converted to the generic `PyObject` type).
+ENV["PYTHON"] = "" # will force PyCall to download and use a "private to Julia" (conda based) version of Python. use "/path/to/python" if you want to reuse a version already installed on your system
+using Pkg
+#Pkg.add("PyCall")
+#Pkg.build("PyCall")
+using PyCall
+
+# #### Embed short python snippets in Julia
+py"""
+def sumMyArgs (i, j):
+  return i+j
+def getNthElement (vec,n):
+  return vec[n]
+"""
+a = py"sumMyArgs"(3,4)             # 7 - here we call the Python object (a function) with Julia parameters
+b = py"getNthElement"([1,2,3],1)   # 2 - attention to the diffferent convention for starting arrays!. Note the Julia Array ahas been converted automatically to a Python list
+d = py"getNthElement([1,$a,3],1)"  # 7 - here we interpolate the Python call
+
+# Alternativly, use `@pyinclude("pythonScript.py")`
+pythonCode = """
+def sumMyArgs (i, j, z):
+  return i+j+z
+"""
+open(f->write(f,pythonCode),"pythonScript.py","w")
+@pyinclude("pythonScript.py")
+a = py"sumMyArgs"(3,4,5)
+
+# !!! tip
+#     Note thaat the 3 arguments definition of `sumMyArgs` has _replaced_ the 3-arguments one. This would now error `py"sumMyArgs"(3,4)` 
+
+
+# #### Use Python libraries
+
+# Add a package to the local Python installation using Conda:
+pyimport_conda("ezodf", "ezodf", "conda-forge") # pyimport_conda(module, package, channel)
+
+const ez = pyimport("ezodf")  # Equiv. of Python `import ezodf as ez`
+destDoc  = ez.newdoc(doctype="ods", filename="anOdsSheet.ods")
+# Both `ez` and `destDoc` are `PyObjects` for which we can access attributes and call the methods using the usual `obj.method()` syntax as we would do in Python
+sheet    = ez.Sheet("Sheet1", size=(10, 10))
+destDoc.sheets.append(sheet)
+## dcell1 = sheet[(2,3)] # This would error because the index is a tuple. Let's use directly the `get(obj,key)` function instead:
+dcell1   = get(sheet,(2,3)) # Equiv. of Python `dcell1 = sheet[(2,3)]`. Attention again to Python indexing from zero: this is cell "D3", not "B3" !
+dcell1.set_value("Hello")
+get(sheet,"A9").set_value(10.5) # Equiv. of Python `sheet['A9'].set_value(10.5)`
+destDoc.backup = false
+destDoc.save()
 
 # ### Using Julia in Python
+
+# #### Installation of the Python package `PyJulia`
+
+# [PyJulia](https://github.com/JuliaPy/pyjulia) can be installed using `pip`, taking note that its name using `pip` is `julia` not `PyJulia`:
+# ```$ python3 -m pip install --user julia```
+ 
+# We can now open a Python terminal and initialise PyJulia to work with our Julia version:
+# ```python
+# >>> import julia
+# >>> julia.install() # Only once to set-up in julia the julia packages required by PyJulia
+# ```
+ 
+# If we have multiple Julia versions, we can specify the one to use in Python passing julia="/path/to/julia/binary/executable" (e.g. julia = "/home/myUser/lib/julia-1.1.0/bin/julia") to the install() function.
+
+# #### Running Julia libraries and code in Python
+
+# On each Python session we need to run the following code: 
+# ```python
+# from julia import Julia
+# Julia(compiled_modules=False)
+# ```
+
+# This is a workaround to the common situation when the Python interpreter is statically linked to libpython, but it will slow down the interactive experience, as it will disable Julia packages pre-compilation, and every time we will use a module for the first time, this will need to be compiled first. Other, more efficient but also more complicate, workarounds are given in the package documentation, under the [Troubleshooting section](https://pyjulia.readthedocs.io/en/stable/troubleshooting.html).
+
+# We can now direcltly load a Julia module, including `Main`, the global namespace of Julia’s interpreter, with `from julia import ModuleToLoad` and access the module objects directly or using the `Module.evel()` interface.
+
+# Add a Julia package...
+# ```python
+# >>> from julia import Pkg
+# >>> Pkg.add("BetaML")
+# ````
+# Of course we can add a apckage alternatively from within Julia
+
+# "Direct" access of Julia objects...
+# ```python
+# >>> from julia import BetaML
+# >>> import numpy as np
+# >>> model = BetaML.buildForest([[1,10],[2,12],[12,1]],["a","a","b"])
+# >>> predictions = BetaML.predict(model,np.array([[2,9],[13,0]]))
+# >>> predictions
+# [{'b': 0.36666666666666664, 'a': 0.6333333333333333}, {'b': 0.7333333333333333, 'a': 0.26666666666666666}]
+# ```
+
+# Access using the `eval()` interface...
+# If we are using the jl.eval() interface, the objects we use must be already known to julia. To pass objects from Python to Julia, we can import the julia Main module (the root module in julia) and assign the needed variables, e.g.
+
+# ```
+# >>> X_python = [1,2,3,2,4]
+# >>> from julia import Main
+# >>> Main.X_julia = X_python
+# >>> Main.eval('BetaML.gini(X_julia)')
+# 0.7199999999999999
+# >>> Main.eval("""
+# ...   function makeProd(x,y)
+# ...       return x*y
+# ...   end
+# ...   """
+# ... )
+# >>> Main.eval("makeProd(2,3)") # or Main.makeProd(2,3)
+# ```
+# For large scripts instead of using `eval()` we can equivalently use `Main.include("aJuliaScript.jl")`
 
 # ### Using R in Julia 
 
