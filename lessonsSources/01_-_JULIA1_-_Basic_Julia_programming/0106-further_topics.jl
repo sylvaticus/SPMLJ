@@ -471,8 +471,8 @@ typeof(c)
 typeof(d)
 
 using BenchmarkTools
-@btime f1(0)
-@btime f2(0)
+@btime f1(0) # 661 ns 6 allocations
+@btime f2(0) #  55 ns 1 allocations
 
 @code_warntype f1(0) # Body::Any 
 @code_warntype f2(0) # Body::Int64 
@@ -490,14 +490,14 @@ function f1(o::Goo)
     return o.x +2
 end
 
-f = Foo(1)
-b = Boo(1)
-@btime f1(f)
-@btime f1(b)
+fobj = Foo(1)
+bobj = Boo(1)
+@btime f1($fobj) # 17.1 ns 0 allocations
+@btime f1($bobj) #  2.8 ns 0 allocations
 
 # Here the same function under some argument types is type stable, under other argument types is not
-@code_warntype f1(f)
-@code_warntype f1(b) 
+@code_warntype f1(fobj)
+@code_warntype f1(bobj) 
 
 # # #### Avoid (non-constant) global variables
 
@@ -539,12 +539,13 @@ function f2(x)
     end
     return cum
 end
-@btime f1(a)
-@btime f2(a)
+@btime f1($a) # 2.3 ms 0 allocations
+@btime f2($a) # 1.3 ms 0 allocations
 
 # ## Profiling the code to discover bootlenecks
 
 # We already see `@btime` and `@benchmark` from the package [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl)
+# Remember to quote the global variables used as parameter of your function with the dollar sign to have accurate benchmarking of the function execution.
 # Julia provide the macro `@time` but we should run on a second call to a given function (with a certain parameter types) or it will include compilation time in its output:
 
 function fb(x)
@@ -578,18 +579,24 @@ end
 Profile.print() # on my pc: 243 rand, 174 the sum, 439 the matrix product
 Profile.clear()
 
-a = foo(20)
-
 # ## Introspection and debugging
 
-# To discover problems on the code more in general we can use several introspection functions that Julia provide us:
-
+# To discover problems on the code more in general we can use several introspection functions that Julia provide us (some of which we have already saw):
 
 ## @less foo(3)  # Show the source code of the specific method invoked - use `q` to quit
 ## @edit foo(3)  # Like @loss but it opens the source code in an editor
-
+methods(foo)
+@which foo(2)          # which method am I using when I call foo with an integer?
+typeof(a)
+eltype(a)
+fieldnames(Foo)
+dump(fobj)
+names(Main, all=false) # available (e.g. exported) identifiers of a given module
+sizeof(2)              # bytes
+typemin(Int64)
+typemax(Int64)
+bitstring(2)
 # Various low-level interpretation of an expression
-
 @code_native foo(3)
 @code_llvm foo(3)
 @code_typed foo(3)
@@ -599,15 +606,45 @@ a = foo(20)
 # Graphical debuggers allow to put a _breakpoint_ on some specific line of code, run the code in debug mode (yes, it will be slower), let the program arrive to the breakpoint and inspect the state of the system at that point of the code, including local variables. In Julia we can also _change_ the program interactively !
 # Other typycal functions are running a single line, running inside a function, running until the current function return, ecc..
 
+# ## Runtime exceptions
+
+# As many (all?) languages, Julia when "finds" an error issues an exception, that if it is not caugth at higher level in the call stack (i.e. recognised and handled) lead to an error and return to the prompt or termination of the script (and rarely with the Julia process crashing altogether).
+
+# The idea is that we _try_ some potentially dangerous code and if some error is raised in this code we _catch_ it and handle it.
+
+function customIndex(vect,idx;toReturn=0)
+    try
+        vect[idx]
+    catch e  
+        if isa(e,BoundsError)
+            return toReturn
+        end
+        rethrow(e)
+    end
+end
+
+a = [1,2,3]
+## a[4] # Error ("BoundsError" to be precise)
+customIndex(a,4)
+
+# Note that handling exceptions is computationally expensive, so do not use exceptions in place of conditional statements
+
 # ## Distributed computation
 
-# Finally one note on distributed computation. We see only a basic usage of multithreading in this course, but with Julia it is relativelly easy to parallelise the code either using multiple threads or multiple processes. What's the difference ?
+# Finally one note on distributed computation. We see only some basic usage of multithreading and multiprocesses in this course, but with Julia it is relativelly easy to parallelise the code either using multiple threads or multiple processes. What's the difference ?
 # - **multithread**
 #   - advantages: computationally "cheap" to create (the memory is shared)
 #   - disadvantages: limited to the number of cores within a CPU, require attention in not overwriting the same memory or doing it at the intended order ("data race"), we can't add threads dynamically (within a script)
 # - **multiprocesses**
 #   - advantages: unlimited number, can be run in different CPUs of the same machine or differnet nodes of a cluster, even using SSH on different networks, we can add processes from withi nour code with `addprocs(nToAdd)`
 #   - disadvantages: the memory being copied (each process wil lhave its own memory) are computationally expensive (you need to have a gain higher than the cost on setting a new process) and require attention to select which memory a given process will need to "bring with it" for its functionality
+
+# Note that if you are reading this document on the github pages, this script is compiled using GitHub actions where a single thread and process are available, so you will not see performance gains.
+
+# ### Multithreading
+
+# !!! warning
+#     It is not possible to add threads dinamically, either we have to start Julia with the parameter `-t` (e.g. `-t 8` or `-t auto`) in the command line or use the VSCode Julia externsion setting `Julia: Num Threads`
 
 function inner(x)
     s = 0.0
@@ -648,8 +685,70 @@ str = parentSingleThread(x,y)
 mtr = parentThreaded(x,y)   
 
 str == mtr # true
-Threads.nthreads() # 4 in my case - in VSCode require change the setting on Julia: Num Threads
+Threads.nthreads() # 4 in my case 
 Threads.threadid()
 @btime parentSingleThread(100,20) # 140 μs on my machine
-@btime parentThreaded(100,20)     #  47 μs - note that if you are reading this on the site, this script is compiled using GitHub action where a single thread is used
+@btime parentThreaded(100,20)     #  47 μs 
 
+# ### Multiprocessing
+
+using Distributed     # from the Standard Library
+addprocs(3)           # 2,3,4
+# The first process is considered a sort of "master" process, the other one are the "workers"
+# We can add processes on other machines by providing the SSH connection details directly in the `addprocs()` call (Julia must be installed on that machines as well)
+# We can alternativly start Julia directly with _n_ worker processes using the armument `-p n` in the command line.
+println("Worker pids: ")
+for pid in workers()  # return a vector to the pids
+    println(pid)      # 2,3,4
+end
+rmprocs(workers()[2])    #  remove process pid 3
+println("Worker pids: ")
+for pid in workers() 
+    println(pid) # 2,4 are left
+end
+@everywhere println(myid()) # 2,4
+
+
+# #### Run heavy tasks in parallel
+
+using Distributed, BenchmarkTools
+a = rand(1:35,100)
+@everywhere function fib(n)
+    if n == 0 return 0 end
+    if n == 1 return 1 end
+    return fib(n-1) + fib(n-2)
+end
+# The macro `@everywhere` make available the given function (or functions with `@everywhere begin [shared function definitions] end` or `@everywhere include("sharedCode.jl")`) to all the current workers.
+result  = pmap(fib,a)
+# The pmap function ("parallel" map) automatically pick up the free processes, assign them the job prom the "input" array and merge the results in the returned array. Note that the order is preserved:
+result2 = pmap(fib,a)
+result == result2
+@btime map(fib,$a)  # serialised:   median time: 514 ms    1 allocations
+@btime pmap(fib,$a) # parallelised: median time: 265 ms 4220 allocations # the memory of `a` need to be copied to all processes
+
+
+# #### Divide and Conquer
+
+# Rather than having a "heavy operation" and being interested in the individual results, here we have a "light" operation and we want to aggregate the results of the various computations using some aggreagation function.
+# We can then use `@distributed (aggregationfunction) for [forConditions]` macro:
+
+using Distributed, BenchmarkTools
+function f(n)   # our single-process benchmark
+  s = 0.0
+  for i = 1:n
+    s += i/2
+  end
+    return s
+end
+function pf(n)
+  s = @distributed (+) for i = 1:n # aggregate using sum on variable s
+        i/2                        # the last element of the for cycle is used by the aggregator
+  end
+  return s
+end
+@btime  f(10000000) # median time: 11.1 ms   0 allocations
+@btime pf(10000000) # median time:  5.7 ms 145 allocations
+
+# Note that also in this case the improvement is less than proportional with the number of processes we add
+
+# Details on parallel comutation can be found [on the official documentation](https://docs.julialang.org/en/v1/manual/parallel-computing/), including information to run nativelly Julia on GPUs or TPUs.
