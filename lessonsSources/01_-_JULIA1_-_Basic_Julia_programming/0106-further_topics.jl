@@ -701,13 +701,13 @@ println("Worker pids: ")
 for pid in workers()  # return a vector to the pids
     println(pid)      # 2,3,4
 end
-rmprocs(workers()[2])    #  remove process pid 3
+rmprocs(workers()[1])    #  remove process pid 2
 println("Worker pids: ")
 for pid in workers() 
-    println(pid) # 2,4 are left
+    println(pid) # 3,4 are left
 end
 @everywhere begin using Distributed end # this is needed only in GitHub action
-@everywhere println(myid()) # 2,4
+@everywhere println(myid()) # 4,3
 
 
 # #### Run heavy tasks in parallel
@@ -719,13 +719,17 @@ a = rand(1:35,100)
     if n == 1 return 1 end
     return fib(n-1) + fib(n-2)
 end
+
+# **NOTE**
+# The following code on running the fib function is commented out as GitHub actions seem to have some problems with multiprocess functions:
+
 # The macro `@everywhere` make available the given function (or functions with `@everywhere begin [shared function definitions] end` or `@everywhere include("sharedCode.jl")`) to all the current workers.
-result  = pmap(fib,a)
+# result  = pmap(fib,a)
 # The pmap function ("parallel" map) automatically pick up the free processes, assign them the job prom the "input" array and merge the results in the returned array. Note that the order is preserved:
-result2 = pmap(fib,a)
-result == result2
-@btime map(fib,$a)  # serialised:   median time: 514 ms    1 allocations
-@btime pmap(fib,$a) # parallelised: median time: 265 ms 4220 allocations # the memory of `a` need to be copied to all processes
+# result2 = pmap(fib,a)
+# result == result2
+# @btime map(fib,$a)  # serialised:   median time: 514 ms    1 allocations
+# @btime pmap(fib,$a) # parallelised: median time: 265 ms 4220 allocations # the memory of `a` need to be copied to all processes
 
 
 # #### Divide and Conquer
