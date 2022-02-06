@@ -709,6 +709,8 @@ end
 @everywhere begin using Distributed end # this is needed only in GitHub action
 @everywhere println(myid()) # 4,3
 
+# _**NOTE**_
+# _The code on calling the multiprocess functions is commented out as GitHub actions (that are used to run this code and produce the web page you are reading) have problems with multiprocess functions:_
 
 # #### Run heavy tasks in parallel
 
@@ -720,8 +722,6 @@ a = rand(1:35,100)
     return fib(n-1) + fib(n-2)
 end
 
-# **NOTE**
-# The following code on running the fib function is commented out as GitHub actions seem to have some problems with multiprocess functions:
 
 # The macro `@everywhere` make available the given function (or functions with `@everywhere begin [shared function definitions] end` or `@everywhere include("sharedCode.jl")`) to all the current workers.
 # result  = pmap(fib,a)
@@ -751,8 +751,8 @@ function pf(n)
   end
   return s
 end
-@btime  f(10000000) # median time: 11.1 ms   0 allocations
-@btime pf(10000000) # median time:  5.7 ms 145 allocations
+# @btime  f(10000000) # median time: 11.1 ms   0 allocations
+# @btime pf(10000000) # median time:  5.7 ms 145 allocations
 
 # Note that also in this case the improvement is less than proportional with the number of processes we add
 
