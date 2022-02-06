@@ -706,6 +706,7 @@ println("Worker pids: ")
 for pid in workers() 
     println(pid) # 2,4 are left
 end
+@everywhere begin using Distributed end # this is needed only in GitHub action
 @everywhere println(myid()) # 2,4
 
 
