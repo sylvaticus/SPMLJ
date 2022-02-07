@@ -434,7 +434,7 @@ a = rcopy(R"sumMyArgs"(3,4,5))  # 12
 
 # ## Some performance tips
 
-# # ### Type stability
+# ### Type stability
 
 # "Type stable" functions guarantee to the compiler that given a certain method (i.e. with the arguments being of a given type) the object returned by the function is also of a certain fixed type. Type stability is fundamental to allow type inference continue across the function call stack.
 
@@ -499,11 +499,11 @@ bobj = Boo(1)
 @code_warntype f1(fobj)
 @code_warntype f1(bobj) 
 
-# # #### Avoid (non-constant) global variables
+# #### Avoid (non-constant) global variables
 
 g        = 2
-const cg = 1   # you can't change the _type_ of the object binded to a constant variable 
-cg       = 2   # you can rebind to an other object of the same type
+const cg = 1   # we can't change the _type_ of the object binded to a constant variable 
+cg       = 2   # we can rebind to an other object of the same type, but we get a warning
 ## cg    = 2.5 # this would error !
 f1(x,y) = x+y
 f2(x)   = x + g
@@ -629,9 +629,9 @@ customIndex(a,4)
 
 # Note that handling exceptions is computationally expensive, so do not use exceptions in place of conditional statements
 
-# ## Distributed computation
+# ## Parallel computation
 
-# Finally one note on distributed computation. We see only some basic usage of multithreading and multiprocesses in this course, but with Julia it is relativelly easy to parallelise the code either using multiple threads or multiple processes. What's the difference ?
+# Finally one note on parallel computation. We see only some basic usage of multithreading and multiprocesses in this course, but with Julia it is relativelly easy to parallelise the code either using multiple threads or multiple processes. What's the difference ?
 # - **multithread**
 #   - advantages: computationally "cheap" to create (the memory is shared)
 #   - disadvantages: limited to the number of cores within a CPU, require attention in not overwriting the same memory or doing it at the intended order ("data race"), we can't add threads dynamically (within a script)
@@ -692,67 +692,80 @@ Threads.threadid()
 
 # ### Multiprocessing
 
-using Distributed     # from the Standard Library
-addprocs(3)           # 2,3,4
+# _**NOTE**_
+# _The code on multiprocessing functions is commented out as GitHub actions (that are used to run this code and produce the web page you are reading) have problems with multiprocess functions:_
+
+# ```julia
+# using Distributed     # from the Standard Library
+# addprocs(3)           # 2,3,4
+# ```
 # The first process is considered a sort of "master" process, the other one are the "workers"
 # We can add processes on other machines by providing the SSH connection details directly in the `addprocs()` call (Julia must be installed on that machines as well)
 # We can alternativly start Julia directly with _n_ worker processes using the armument `-p n` in the command line.
-println("Worker pids: ")
-for pid in workers()  # return a vector to the pids
-    println(pid)      # 2,3,4
-end
-rmprocs(workers()[1])    #  remove process pid 2
-println("Worker pids: ")
-for pid in workers() 
-    println(pid) # 3,4 are left
-end
-@everywhere begin using Distributed end # this is needed only in GitHub action
-@everywhere println(myid()) # 4,3
 
-# _**NOTE**_
-# _The code on calling the multiprocess functions is commented out as GitHub actions (that are used to run this code and produce the web page you are reading) have problems with multiprocess functions:_
+# ```julia
+# println("Worker pids: ")
+# for pid in workers()  # return a vector to the pids
+#     println(pid)      # 2,3,4
+# end
+# rmprocs(workers()[1])    #  remove process pid 2
+# println("Worker pids: ")
+# for pid in workers() 
+#     println(pid) # 3,4 are left
+# end
+# @everywhere begin using Distributed end # this is needed only in GitHub action
+# @everywhere println(myid()) # 4,3
+# ```
+
 
 # #### Run heavy tasks in parallel
 
-using Distributed, BenchmarkTools
-a = rand(1:35,100)
-@everywhere function fib(n)
-    if n == 0 return 0 end
-    if n == 1 return 1 end
-    return fib(n-1) + fib(n-2)
-end
-
+# ```
+# using Distributed, BenchmarkTools
+# a = rand(1:35,100)
+# @everywhere function fib(n)
+#     if n == 0 return 0 end
+#     if n == 1 return 1 end
+#     return fib(n-1) + fib(n-2)
+# end
+# ```
 
 # The macro `@everywhere` make available the given function (or functions with `@everywhere begin [shared function definitions] end` or `@everywhere include("sharedCode.jl")`) to all the current workers.
-# result  = pmap(fib,a)
+
+## result  = pmap(fib,a)
+
 # The pmap function ("parallel" map) automatically pick up the free processes, assign them the job prom the "input" array and merge the results in the returned array. Note that the order is preserved:
+
+# ```
 # result2 = pmap(fib,a)
 # result == result2
 # @btime map(fib,$a)  # serialised:   median time: 514 ms    1 allocations
 # @btime pmap(fib,$a) # parallelised: median time: 265 ms 4220 allocations # the memory of `a` need to be copied to all processes
-
+# ```
 
 # #### Divide and Conquer
 
 # Rather than having a "heavy operation" and being interested in the individual results, here we have a "light" operation and we want to aggregate the results of the various computations using some aggreagation function.
 # We can then use `@distributed (aggregationfunction) for [forConditions]` macro:
 
-using Distributed, BenchmarkTools
-function f(n)   # our single-process benchmark
-  s = 0.0
-  for i = 1:n
-    s += i/2
-  end
-    return s
-end
-function pf(n)
-  s = @distributed (+) for i = 1:n # aggregate using sum on variable s
-        i/2                        # the last element of the for cycle is used by the aggregator
-  end
-  return s
-end
+# ```
+# using Distributed, BenchmarkTools
+# function f(n)   # our single-process benchmark
+#   s = 0.0
+#   for i = 1:n
+#     s += i/2
+#   end
+#     return s
+# end
+# function pf(n)
+#   s = @distributed (+) for i = 1:n # aggregate using sum on variable s
+#         i/2                        # the last element of the for cycle is used by the aggregator
+#   end
+#   return s
+# end
 # @btime  f(10000000) # median time: 11.1 ms   0 allocations
 # @btime pf(10000000) # median time:  5.7 ms 145 allocations
+# ```
 
 # Note that also in this case the improvement is less than proportional with the number of processes we add
 
