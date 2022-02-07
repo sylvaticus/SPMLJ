@@ -202,9 +202,9 @@ b = ccall((:mySum,myclib), Float64, (Float32,Float32), 2.5, 1.5)
 
 # The "default" way to use Python code in Julia is trough the [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) package. It automatically take care of convert between Python types (including numpy arrays) and Julia types (types that can not be converted automatically are converted to the generic `PyObject` type).
 ENV["PYTHON"] = "" # will force PyCall to download and use a "private to Julia" (conda based) version of Python. use "/path/to/python" if you want to reuse a version already installed on your system
-using Pkg
-#Pkg.add("PyCall")
-#Pkg.build("PyCall")
+## using Pkg
+## Pkg.add("PyCall")
+## Pkg.build("PyCall")
 using PyCall
 
 # #### Embed short python snippets in Julia
@@ -275,14 +275,14 @@ destDoc.save()
 
 # We can now direcltly load a Julia module, including `Main`, the global namespace of Julia’s interpreter, with `from julia import ModuleToLoad` and access the module objects directly or using the `Module.evel()` interface.
 
-# Add a Julia package...
+# ##### Add a Julia package...
 # ```python
 # >>> from julia import Pkg
 # >>> Pkg.add("BetaML")
-# ````
-# Of course we can add a apckage alternatively from within Julia
+# ```
+# Of course we can add a package alternatively from within Julia
 
-# "Direct" access of Julia objects...
+# ##### "Direct" calling of Julia functions...
 # ```python
 # >>> from julia import BetaML
 # >>> import numpy as np
@@ -292,10 +292,10 @@ destDoc.save()
 # [{'b': 0.36666666666666664, 'a': 0.6333333333333333}, {'b': 0.7333333333333333, 'a': 0.26666666666666666}]
 # ```
 
-# Access using the `eval()` interface...
+# ##### Access using the `eval()` interface...
 # If we are using the jl.eval() interface, the objects we use must be already known to julia. To pass objects from Python to Julia, we can import the julia Main module (the root module in julia) and assign the needed variables, e.g.
 
-# ```
+# ```python
 # >>> X_python = [1,2,3,2,4]
 # >>> from julia import Main
 # >>> Main.X_julia = X_python
@@ -313,9 +313,460 @@ destDoc.save()
 
 # ### Using R in Julia 
 
+# To use R from within Julia we use the [RCall](https://github.com/JuliaInterop/RCall.jl) package. 
+ENV["R_HOME"] = "*" #  # will force RCall to download and use a "private to Julia" (conda based) version of R. use "/path/to/R/directory" (e.g. `/usr/lib/R`) if you want to reuse a version already installed on your system
+## using Pkg
+## Pkg.add("RCall")
+## Pkg.build("RCall")
+using RCall
+
+
+R"""
+sumMyArgs <- function(i,j) i+j
+getNthElement <- function(vec,n) {
+  return(vec[n])
+}
+"""
+a = rcopy(R"sumMyArgs"(3,4))             # 7 - here we call the R object (a function) with Julia parameters
+b = rcopy(R"getNthElement"([1,2,3],1))   # 1 - no differences in array indexing here
+d = rcopy(R"as.integer(getNthElement(c(1,$a,3),2))")  # 7 - here we interpolate the R call
+d = convert(Int64,R"getNthElement(c(1,$a,3),2)")  
+
+# While we don't have here the problem of different array indexing convention (both Julia and R start indexing arrays at 1), we have the "problem" that the output returned by using `R"..."` is not yet an exploitable Julia object but it remains as an `RObject` that we can convert with `rcopy()` or explicitly with `convert(T,obj)`. Also, R elements are all floats by default, so if we need an integer in Julia we need to explicitly convert it, either in R or in Julia.
+
+# If the R code is on a script, we don't have here a sort of @Rinclude macro, so let's implement it ourselves by loading the file content as a file and evaluating it using the function `reval` provided by `RCall`:
+
+macro Rinclude(fname)
+    quote
+        rCodeString = read($fname,String)
+        reval(rCodeString)
+        nothing
+    end
+end
+
+RCode = """
+sumMyArgs <- function(i, j, z) i+j+z
+"""
+open(f->write(f,RCode),"RScript.R","w")
+@Rinclude("RScript.R")
+a = rcopy(R"sumMyArgs"(3,4,5))  # 12
+## a = rcopy(R"sumMyArgs"(3,4)) # error !  The 3-arguments version of `sumMyArgs` has _replaced_ the 2-arguments one
 
 # ### Using Julia in R
 
+# #### Installation of the R package `JuliaCall`
+
+# [JuliaCall](https://github.com/Non-Contradiction/JuliaCall) can be installed from CRAN:
+
+# ```{r}
+# > install.packages("JuliaCall")
+# > library(JuliaCall)
+# install_julia()
+# ```
+
+# `install_julia()`` will force R download and install a private copy of julia. If you prefer to use instead an existing version of julia and having R default to download a private version only if it can't find a version already installed, use `julia_setup(installJulia = TRUE)` instead of `install_julia()`, eventually passing the `JULIA_HOME = "/path/to/julia/binary/executable/directory"` (e.g. `JULIA_HOME = "/home/myUser/lib/julia-1.7.0/bin"`) parameter to the `julia_setup` call
+
+# `JuliaCall` depends for some things (like object conversion between Julia and R) from the Julia `RCall` package. If we don't already have it installed in Julia, it will try to install it automatically.
+
+# #### Running Julia libraries and code in R
+
+# On each R session we need to run the `julia_setup` function:
+# ```R
+# library(JuliaCall)
+# julia_setup() # If we have already downloaded a private version of Julia for R it will be retrieved automatically
+# ```
+
+# We can now load a Julia module and access the module objects directly or using the `Module.evel()` interface.
+
+# ##### Add a Julia package...
+
+# ```{r}
+# > julia_eval('using Pkg; Pkg.add("BetaML")')
+# ```
+# Of course we can add a package alternatively from within Julia
+
+
+# Let's load some data from R and do some work with this data in Julia:
+
+# ```{r}
+# > library(datasets)
+# > X <- as.matrix(sapply(iris[,1:4], as.numeric))
+# > y <- sapply(iris[,5], as.integer)
+# ```
+
+# ##### Calling of Julia functions with `julia_call`...
+
+# With `JuliaCall`, differently than `PyJulia`, we can't call direclty the julia functions but we need to employ the R function `julia_call("juliaFunction",args)`:
+
+# ```{r}
+# > julia_eval("using BetaML")
+# > yencoded <- julia_call("integerEncoder",y)
+# > ids      <- julia_call("shuffle",1:length(y))
+# > Xs       <- X[ids,]
+# > ys       <- yencoded[ids]
+# > cOut     <- julia_call("kmeans",Xs,3L)    # kmeans expects K to be an integer
+# > y_hat    <- sapply(cOut[1],as.integer)[,] # We need a vector, not a matrix
+# > acc      <- julia_call("accuracy",y_hat,ys)
+# > acc
+# [1] 0.8933333
+# ```
+# ##### Access using the `eval()` interface...
+
+# As alternative, we can embed Julia code directly in R using the `julia_eval()` function:
+
+# ```{r}
+# > kMeansR  <- julia_eval('
+# +      function accFromKmeans(x,k,y_true)
+# +        cOut = kmeans(x,Int(k))
+# +        acc = accuracy(cOut[1],y_true)
+# +        return acc
+# +      end
+# + ')
+# ```
+
+# We can then call the above function in R in one of the following three ways:
+# 1. `kMeansR(Xs,3,ys)`
+# 2. `julia_assign("Xs_julia", Xs); julia_assign("ys_julia", ys); julia_eval("accFromKmeans(Xs_julia,3,ys_julia)")`
+# 3. `julia_call("accFromKmeans",Xs,3,ys)`.
+
+# While other "convenience" functions are provided by the package, using  `julia_call` or `julia_assign` followed by `julia_eval` should suffix to accomplish most of the task we may need in Julia.
 
 
 # ## Some performance tips
+
+# ### Type stability
+
+# "Type stable" functions guarantee to the compiler that given a certain method (i.e. with the arguments being of a given type) the object returned by the function is also of a certain fixed type. Type stability is fundamental to allow type inference continue across the function call stack.
+
+function f1(x)    # Type unstable
+    outVector = [1,2.0,"2"]
+    if x < 0
+        return outVector[1]
+    elseif x == 0
+        return outVector[2]
+    else
+        return outVector[3]
+    end
+end
+
+function f2(x)   # Type stable
+    outVector = [1,convert(Int64,2.0),parse(Int64,"2")]
+    if x < 0
+        return outVector[1]
+    elseif x == 0
+        return outVector[2]
+    else
+        return outVector[3]
+    end
+end
+
+a = f1(0)
+b = f1(1)
+typeof(a)
+typeof(b)
+
+c = f2(0)
+d = f2(1)
+typeof(c)
+typeof(d)
+
+using BenchmarkTools
+@btime f1(0) # 661 ns 6 allocations
+@btime f2(0) #  55 ns 1 allocations
+
+@code_warntype f1(0) # Body::Any 
+@code_warntype f2(0) # Body::Int64 
+
+# While in general is NOT important to annotate function parameters for performance, it is important to annotate struct fields with concrete types 
+abstract type Goo end
+struct Foo <: Goo
+    x::Number
+end
+struct Boo <: Goo
+    x::Int64
+end
+
+function f1(o::Goo)
+    return o.x +2
+end
+
+fobj = Foo(1)
+bobj = Boo(1)
+@btime f1($fobj) # 17.1 ns 0 allocations
+@btime f1($bobj) #  2.8 ns 0 allocations
+
+# Here the same function under some argument types is type stable, under other argument types is not
+@code_warntype f1(fobj)
+@code_warntype f1(bobj) 
+
+# #### Avoid (non-constant) global variables
+
+g        = 2
+const cg = 1   # we can't change the _type_ of the object binded to a constant variable 
+cg       = 2   # we can rebind to an other object of the same type, but we get a warning
+## cg    = 2.5 # this would error !
+f1(x,y) = x+y
+f2(x)   = x + g
+f3(x)   = x + cg
+
+@btime f1(3,2)  
+@btime f2(3)    # 22 times slower !!!
+@btime f3(3)    # as f1
+
+# #### Loop arrays with the inner loop by rows
+
+# Julia is column mayor (differently than Python) so arrays of bits types are contiguous in memory across the different rows of the same column
+
+a = rand(1000,1000)
+
+function f1(x)
+    (R,C) = size(x)
+    cum = 0.0
+    for r in 1:R
+        for c in 1:C
+            cum += x[r,c]
+        end
+    end
+    return cum
+end
+function f2(x)
+    (R,C) = size(x)
+    cum = 0.0
+    for c in 1:C
+        for r in 1:R
+            cum += x[r,c]
+        end
+    end
+    return cum
+end
+@btime f1($a) # 2.3 ms 0 allocations
+@btime f2($a) # 1.3 ms 0 allocations
+
+# ## Profiling the code to discover bootlenecks
+
+# We already see `@btime` and `@benchmark` from the package [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl)
+# Remember to quote the global variables used as parameter of your function with the dollar sign to have accurate benchmarking of the function execution.
+# Julia provide the macro `@time` but we should run on a second call to a given function (with a certain parameter types) or it will include compilation time in its output:
+
+function fb(x)
+    out = Union{Int64,Float64}[1,2.0,3]
+    push!(out,4)
+    if x > 10
+        if ( x > 100)
+            return [out[1],out[2]] |>  sum
+        else
+            return [out[2],out[3]] |>  sum
+        end
+    else
+        return [out[1],out[3]] |>  sum
+    end
+end
+
+
+@time fb(3)
+@time fb(3)
+
+# We can use `@profile function(x,y)` to use a sample-based profiling
+
+using Profile # in the stdlib
+function foo(n)
+    a = rand(n,n)
+    b = a + a
+    c = b * b
+    return c
+end
+@profile (for i = 1:100; foo(1000); end) # too fast otherwise
+Profile.print() # on my pc: 243 rand, 174 the sum, 439 the matrix product
+Profile.clear()
+
+# ## Introspection and debugging
+
+# To discover problems on the code more in general we can use several introspection functions that Julia provide us (some of which we have already saw):
+
+## @less foo(3)  # Show the source code of the specific method invoked - use `q` to quit
+## @edit foo(3)  # Like @loss but it opens the source code in an editor
+methods(foo)
+@which foo(2)          # which method am I using when I call foo with an integer?
+typeof(a)
+eltype(a)
+fieldnames(Foo)
+dump(fobj)
+names(Main, all=false) # available (e.g. exported) identifiers of a given module
+sizeof(2)              # bytes
+typemin(Int64)
+typemax(Int64)
+bitstring(2)
+# Various low-level interpretation of an expression
+@code_native foo(3)
+@code_llvm foo(3)
+@code_typed foo(3)
+@code_lowered foo(3)
+
+# We can use a debugger, like e.g. the one integrated in Juno or VSCode.
+# Graphical debuggers allow to put a _breakpoint_ on some specific line of code, run the code in debug mode (yes, it will be slower), let the program arrive to the breakpoint and inspect the state of the system at that point of the code, including local variables. In Julia we can also _change_ the program interactively !
+# Other typycal functions are running a single line, running inside a function, running until the current function return, ecc..
+
+# ## Runtime exceptions
+
+# As many (all?) languages, Julia when "finds" an error issues an exception, that if it is not caugth at higher level in the call stack (i.e. recognised and handled) lead to an error and return to the prompt or termination of the script (and rarely with the Julia process crashing altogether).
+
+# The idea is that we _try_ some potentially dangerous code and if some error is raised in this code we _catch_ it and handle it.
+
+function customIndex(vect,idx;toReturn=0)
+    try
+        vect[idx]
+    catch e  
+        if isa(e,BoundsError)
+            return toReturn
+        end
+        rethrow(e)
+    end
+end
+
+a = [1,2,3]
+## a[4] # Error ("BoundsError" to be precise)
+customIndex(a,4)
+
+# Note that handling exceptions is computationally expensive, so do not use exceptions in place of conditional statements
+
+# ## Parallel computation
+
+# Finally one note on parallel computation. We see only some basic usage of multithreading and multiprocesses in this course, but with Julia it is relativelly easy to parallelise the code either using multiple threads or multiple processes. What's the difference ?
+# - **multithread**
+#   - advantages: computationally "cheap" to create (the memory is shared)
+#   - disadvantages: limited to the number of cores within a CPU, require attention in not overwriting the same memory or doing it at the intended order ("data race"), we can't add threads dynamically (within a script)
+# - **multiprocesses**
+#   - advantages: unlimited number, can be run in different CPUs of the same machine or differnet nodes of a cluster, even using SSH on different networks, we can add processes from withi nour code with `addprocs(nToAdd)`
+#   - disadvantages: the memory being copied (each process wil lhave its own memory) are computationally expensive (you need to have a gain higher than the cost on setting a new process) and require attention to select which memory a given process will need to "bring with it" for its functionality
+
+# Note that if you are reading this document on the github pages, this script is compiled using GitHub actions where a single thread and process are available, so you will not see performance gains.
+
+# ### Multithreading
+
+# !!! warning
+#     It is not possible to add threads dinamically, either we have to start Julia with the parameter `-t` (e.g. `-t 8` or `-t auto`) in the command line or use the VSCode Julia externsion setting `Julia: Num Threads`
+
+function inner(x)
+    s = 0.0
+    for i in 1:x
+        for j in 1:i
+            if j%2 == 0
+                s += j
+            else
+                s -= j
+            end
+        end
+    end
+    return s
+end
+
+function parentSingleThread(x,y)
+    toTest = x .+ (1:y)
+    out = zeros(length(toTest))
+    for i in 1:length(toTest)
+        out[i] = inner(toTest[i])
+    end
+    return out
+end
+function parentThreaded(x,y)
+    toTest = x .+ (1:y)
+    out = zeros(length(toTest))
+    Threads.@threads for i in 1:length(toTest)
+        out[i] = inner(toTest[i])
+    end
+    return out
+end
+
+
+x = 100
+y = 20
+
+str = parentSingleThread(x,y)
+mtr = parentThreaded(x,y)   
+
+str == mtr # true
+Threads.nthreads() # 4 in my case 
+Threads.threadid()
+@btime parentSingleThread(100,20) # 140 μs on my machine
+@btime parentThreaded(100,20)     #  47 μs 
+
+# ### Multiprocessing
+
+# _**NOTE**_
+# _The code on multiprocessing functions is commented out as GitHub actions (that are used to run this code and produce the web page you are reading) have problems with multiprocess functions:_
+
+# ```julia
+# using Distributed     # from the Standard Library
+# addprocs(3)           # 2,3,4
+# ```
+# The first process is considered a sort of "master" process, the other one are the "workers"
+# We can add processes on other machines by providing the SSH connection details directly in the `addprocs()` call (Julia must be installed on that machines as well)
+# We can alternativly start Julia directly with _n_ worker processes using the armument `-p n` in the command line.
+
+# ```julia
+# println("Worker pids: ")
+# for pid in workers()  # return a vector to the pids
+#     println(pid)      # 2,3,4
+# end
+# rmprocs(workers()[1])    #  remove process pid 2
+# println("Worker pids: ")
+# for pid in workers() 
+#     println(pid) # 3,4 are left
+# end
+# @everywhere begin using Distributed end # this is needed only in GitHub action
+# @everywhere println(myid()) # 4,3
+# ```
+
+
+# #### Run heavy tasks in parallel
+
+# ```julia
+# using Distributed, BenchmarkTools
+# a = rand(1:35,100)
+# @everywhere function fib(n)
+#     if n == 0 return 0 end
+#     if n == 1 return 1 end
+#     return fib(n-1) + fib(n-2)
+# end
+# ```
+
+# The macro `@everywhere` make available the given function (or functions with `@everywhere begin [shared function definitions] end` or `@everywhere include("sharedCode.jl")`) to all the current workers.
+
+## result  = pmap(fib,a)
+
+# The pmap function ("parallel" map) automatically pick up the free processes, assign them the job prom the "input" array and merge the results in the returned array. Note that the order is preserved:
+
+# ```julia
+# result2 = pmap(fib,a)
+# result == result2
+# @btime map(fib,$a)  # serialised:   median time: 514 ms    1 allocations
+# @btime pmap(fib,$a) # parallelised: median time: 265 ms 4220 allocations # the memory of `a` need to be copied to all processes
+# ```
+
+# #### Divide and Conquer
+
+# Rather than having a "heavy operation" and being interested in the individual results, here we have a "light" operation and we want to aggregate the results of the various computations using some aggreagation function.
+# We can then use `@distributed (aggregationfunction) for [forConditions]` macro:
+
+# ```julia
+# using Distributed, BenchmarkTools
+# function f(n)   # our single-process benchmark
+#   s = 0.0
+#   for i = 1:n
+#     s += i/2
+#   end
+#     return s
+# end
+# function pf(n)
+#   s = @distributed (+) for i = 1:n # aggregate using sum on variable s
+#         i/2                        # the last element of the for cycle is used by the aggregator
+#   end
+#   return s
+# end
+# @btime  f(10000000) # median time: 11.1 ms   0 allocations
+# @btime pf(10000000) # median time:  5.7 ms 145 allocations
+# ```
+
+# Note that also in this case the improvement is less than proportional with the number of processes we add
+
+# Details on parallel comutation can be found [on the official documentation](https://docs.julialang.org/en/v1/manual/parallel-computing/), including information to run nativelly Julia on GPUs or TPUs.
