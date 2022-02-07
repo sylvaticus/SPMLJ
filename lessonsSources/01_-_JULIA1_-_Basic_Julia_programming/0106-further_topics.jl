@@ -720,7 +720,7 @@ Threads.threadid()
 
 # #### Run heavy tasks in parallel
 
-# ```
+# ```julia
 # using Distributed, BenchmarkTools
 # a = rand(1:35,100)
 # @everywhere function fib(n)
@@ -736,7 +736,7 @@ Threads.threadid()
 
 # The pmap function ("parallel" map) automatically pick up the free processes, assign them the job prom the "input" array and merge the results in the returned array. Note that the order is preserved:
 
-# ```
+# ```julia
 # result2 = pmap(fib,a)
 # result == result2
 # @btime map(fib,$a)  # serialised:   median time: 514 ms    1 allocations
@@ -748,7 +748,7 @@ Threads.threadid()
 # Rather than having a "heavy operation" and being interested in the individual results, here we have a "light" operation and we want to aggregate the results of the various computations using some aggreagation function.
 # We can then use `@distributed (aggregationfunction) for [forConditions]` macro:
 
-# ```
+# ```julia
 # using Distributed, BenchmarkTools
 # function f(n)   # our single-process benchmark
 #   s = 0.0
