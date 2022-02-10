@@ -519,7 +519,6 @@ f3(x)   = x + cg
 # Julia is column mayor (differently than Python) so arrays of bits types are contiguous in memory across the different rows of the same column
 
 a = rand(1000,1000)
-
 function f1(x)
     (R,C) = size(x)
     cum = 0.0
