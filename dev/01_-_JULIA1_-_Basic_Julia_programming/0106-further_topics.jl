@@ -33,6 +33,7 @@ using InteractiveUtils # loaded automatically when working... interactively
 
 # The AST is organised in a hierarchical tree of _expressions_ where each element (including the operators) is a _symbol_
 # For variables, you can use symbols to refer to the actual identifiers instad to the variable's value
+
 # Expressions themselves are objects representing unevaluated computer expressions
 
 # ### Expressions and symbols
@@ -178,7 +179,7 @@ open(f->write(f,csource),"myclib.c","w")
 # Now let's run the command to compile the C code we saved as shared library using gcc, a C compiler.
 # The following example assume that GCC is installed in the machine where this example is run and available as `gcc`.
 
-compilationCommand1 = `gcc -o myclib.o -c myclib.c` # the actua lcompilation, note the backticks used to define a command
+compilationCommand1 = `gcc -o myclib.o -c myclib.c` # the actual compilation, note the backticks used to define a command
 compilationCommand2 = `gcc -shared -o libmyclib.so myclib.o -lm -fPIC` # the linking into a shared library
 run(compilationCommand1)
 run(compilationCommand2)
@@ -583,8 +584,8 @@ Profile.clear()
 
 # To discover problems on the code more in general we can use several introspection functions that Julia provide us (some of which we have already saw):
 
-## @less foo(3)  # Show the source code of the specific method invoked - use `q` to quit
-## @edit foo(3)  # Like @loss but it opens the source code in an editor
+## @less rand(3)  # Show the source code of the specific method invoked - use `q` to quit
+## @edit rand(3)  # Like @loss but it opens the source code in an editor
 methods(foo)
 @which foo(2)          # which method am I using when I call foo with an integer?
 typeof(a)
@@ -634,10 +635,10 @@ customIndex(a,4)
 # Finally one note on parallel computation. We see only some basic usage of multithreading and multiprocesses in this course, but with Julia it is relativelly easy to parallelise the code either using multiple threads or multiple processes. What's the difference ?
 # - **multithread**
 #   - advantages: computationally "cheap" to create (the memory is shared)
-#   - disadvantages: limited to the number of cores within a CPU, require attention in not overwriting the same memory or doing it at the intended order ("data race"), we can't add threads dynamically (within a script)
+#   - disadvantages: limited to the number of cores within a CPU, require attention in not overwriting the same memory or doing it at the intended order ("data race"), we can't add threads dynamically (within a script) 
 # - **multiprocesses**
-#   - advantages: unlimited number, can be run in different CPUs of the same machine or differnet nodes of a cluster, even using SSH on different networks, we can add processes from withi nour code with `addprocs(nToAdd)`
-#   - disadvantages: the memory being copied (each process wil lhave its own memory) are computationally expensive (you need to have a gain higher than the cost on setting a new process) and require attention to select which memory a given process will need to "bring with it" for its functionality
+#   - advantages: unlimited number, can be run in different CPUs of the same machine or differnet nodes of a cluster, even using SSH on different networks, we can add processes from within our code with `addprocs(nToAdd)`
+#   - disadvantages: the memory being copied (each process will have its own memory) are computationally expensive (you need to have a gain higher than the cost on setting a new process) and require attention to select which memory a given process will need to "bring with it" for its functionality
 
 # Note that if you are reading this document on the github pages, this script is compiled using GitHub actions where a single thread and process are available, so you will not see performance gains.
 
@@ -693,7 +694,7 @@ Threads.threadid()
 # ### Multiprocessing
 
 # _**NOTE**_
-# _The code on multiprocessing functions is commented out as GitHub actions (that are used to run this code and produce the web page you are reading) have problems with multiprocess functions:_
+# _The code on multiprocessing is commented out (not executed, so you don't see the output) as GitHub actions (that are used to run this code and render the web pages you are reading) have problems running multi-process functions:_
 
 # ```julia
 # using Distributed     # from the Standard Library
@@ -732,7 +733,7 @@ Threads.threadid()
 
 # The macro `@everywhere` make available the given function (or functions with `@everywhere begin [shared function definitions] end` or `@everywhere include("sharedCode.jl")`) to all the current workers.
 
-## result  = pmap(fib,a)
+## result  = map(fib,a)
 
 # The pmap function ("parallel" map) automatically pick up the free processes, assign them the job prom the "input" array and merge the results in the returned array. Note that the order is preserved:
 
