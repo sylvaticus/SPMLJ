@@ -138,10 +138,9 @@ makedocs(sitename="Introduction to Scientific Programming and Machine Learning w
             "Index" => "index.md",
             "Lessons" => makeList(LESSONS_ROOTDIR,LESSONS_SUBDIR),
          ],
-         format = Documenter.HTML(prettyurls = false),
+         format = Documenter.HTML(prettyurls = false, analytics = "G-JYKX8QY5JW" ),
          #strict = true,
          #doctest = false
-         analytics = "G-JYKX8QY5JW",
          source  = "lessonsSources",
          build   = "buildedDoc",
 )

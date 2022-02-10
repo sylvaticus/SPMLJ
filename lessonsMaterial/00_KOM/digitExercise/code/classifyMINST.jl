@@ -8,6 +8,8 @@ Pkg.activate(".")
 #Pkg.add("FileIO")
 #Pkg.add("ImageTransformations")
 #Pkg.add("MLDatasets")
+#Pkg.instantiate()
+#Pkg.update()
 using Random
 Random.seed!(123);
 using DelimitedFiles
@@ -55,7 +57,7 @@ x_train, y_train = MLDatasets.MNIST.traindata()
 x_train          = permutedims(x_train,(2,1,3)) # For correct img axis
 x_train          = convert(Array{Float32,3},x_train)
 y_train_add      = convert(Array{Int64,1},dropdims(readdlm("./data/additionalTestingImgs/img_labels.txt"),dims=2))
-x_train_add_path = ["./data/additionalTestingImgs/test$(i).png" for i in 1:44]
+x_train_add_path = ["./data/additionalTestingImgs/test$(i).png" for i in 1:64]
 x_train_add_imgs = load.(x_train_add_path)
 x_train_add_imgs = [Gray.(i) for i in x_train_add_imgs]
 x_train_add_imgs = [imresize(i, (28,28)) for i in x_train_add_imgs]
@@ -63,21 +65,21 @@ x_train_add_imgs = [1.0 .- i for i in x_train_add_imgs]
 x_train_add_imgs = cleanImg!.(x_train_add_imgs, 0.3,1)
 x_train_add_imgs = convert.(Array{Float32,2},x_train_add_imgs)
 
-resample = 15
+resample = 30 # 15
 x_train_add_imgs2 = Array{Float32,2}[]
 [append!(x_train_add_imgs2,x_train_add_imgs) for i in 1:resample]
-x_train = cat(x_train,x_train_add_imgs2...,dims=3)
+x_train = cat(x_train, reshape(reduce(hcat, x_train_add_imgs2), 28, 28, :), dims=3)
+
 
 y_train_add2 = Int64[]
 [append!(y_train_add2,y_train_add) for i in 1:resample]
 append!(y_train,y_train_add2)
 
 #x_train_imgs     = convert(Array{Gray{N0f8},3},deepcopy(x_train))
-x_train          = reshape(x_train,(28,28,1,60000+44*resample))
+x_train          = reshape(x_train,(28,28,1,60000+64*resample))
 
 y_train          = onehotbatch(y_train, 0:9)
 train_data       = DataLoader((x_train, y_train), batchsize=128)
-
 x_test, y_test   = MLDatasets.MNIST.testdata()
 x_test           = permutedims(x_test,(2,1,3)) # For correct img axis
 x_test           = convert(Array{Float32,3},x_test)
@@ -124,9 +126,10 @@ accuracy(model(x_test), y_test) # 0.95
 ################################################################################
 # Loading imgs
 
-# Imgs obtained with photo -> Gimp: Colour -> Levels -> Input levels -> Reduce the value on the left
-imgs_y = convert(Array{Int64,1},dropdims(readdlm("./data/img_labels.txt"),dims=2))
-imgs_path = ["./data/img$(i).png" for i in 1:20]
+# Imgs obtained with photo -> Gimp: Colour -> auto white levels then: Levels -> Input levels -> Reduce the value on the left
+folder = "class"
+imgs_y = convert(Array{Int64,1},dropdims(readdlm("./data/$(folder)/img_labels.txt"),dims=2))
+imgs_path = ["./data/$(folder)/img$(i).png" for i in 1:20]
 imgs = load.(imgs_path)
 imgs = [Gray.(i) for i in imgs]
 imgs = [imresize(i, (28,28)) for i in imgs]
@@ -149,7 +152,7 @@ nImgs = length(imgs_y)
 println("*** Classification report")
 println("Overall accuracy: $(mean(imgs_ŷ .== imgs_y))")
 println("")
-println("#id \t true  \t est \t prob")
+println("#id \t succ  \t true \t est \t prob")
 for i in 1:nImgs
    resultSymbol = imgs_ŷ[i] == imgs_y[i] ? "✔" : "❌"
    println("$i \t $(resultSymbol) \t $(imgs_y[i])    \t $(imgs_ŷ[i])   \t $(probs[i])" )

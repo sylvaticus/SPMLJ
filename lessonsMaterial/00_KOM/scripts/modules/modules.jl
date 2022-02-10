@@ -27,4 +27,4 @@ using foo # error: looking up for a package and of course can't find it
 using .foo
 x
 foo.z()
-foo.r()
+foo.c()
