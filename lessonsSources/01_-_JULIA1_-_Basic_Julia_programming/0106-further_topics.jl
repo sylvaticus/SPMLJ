@@ -98,7 +98,7 @@ eval(expr) # here it change, as it is at eval time that the identifier `b` is "r
 
 # Defining a macro...
 
-# Like functions, but both the arguments and the retuned output are expressions
+# Like functions, but both the arguments and the returned output are expressions
 macro customLoop(controlExpr,workExpr) 
     return quote
       for i in $controlExpr
