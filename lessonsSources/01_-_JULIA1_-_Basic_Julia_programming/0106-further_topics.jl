@@ -542,6 +542,121 @@ end
 @btime f1($a) # 2.3 ms 0 allocations
 @btime f2($a) # 1.3 ms 0 allocations
 
+# #### Use low-level optimisation when possible
+
+function f1(x)
+    s = 0.0
+    for i in 1:length(x)
+        s += i * x[i] 
+    end
+    return s
+end
+
+function f2(x)
+    s = 0.0
+    for i in 1:length(x)
+        @inbounds s += i * x[i] # remove bound checks
+    end
+    return s
+end
+
+function f3(x)
+    s = 0.0
+    @simd for i in 1:length(x) # tell compiler it is allowed to run the loop in whatever order, allowing in-thread paralllelism of modern CPUs
+        s += i * x[i] 
+    end
+    return s
+end
+
+x = rand(10000)
+@btime f1($x)
+@btime f2($x)
+@btime f3($x)
+
+X = rand(100,20)
+function f1(x)
+    s = 0.0
+    for i in 1:size(x,1)
+        s += sum(x[i,:])
+    end
+    return s
+end
+function f2(x)
+    s = 0.0
+    @views for i in 1:size(x,1)
+        s += sum(x[i,:])   # the slice operator copy the data.. the views macro force to have instead to have a view (reference) 
+    end
+    return s
+end
+
+@btime f1($X)
+@btime f2($X)
+
+# !!! warning
+#     Attention that while the `@views` macro "save time" by not copying the data, the resulting array has a pretty messy layout. If you need to use it for many subsequent operations it may be more efficient to "pay" the copy cost once and then have an array with a nicelly continuous block of memory..
+
+
+function f1(x,y)
+    if x+y > 100
+        return x + y + 2
+    else
+        return x + 1
+    end
+end
+
+@inline function f2(x,y)   # the function is "inlined", its whole definition copied at each calling place rather than being called
+    if x+y > 100
+        return x + y + 2
+    else
+        return x + 1
+    end
+end
+
+function f3(y)
+    s = 0.0
+    for i in 2:y
+       s += f1(i,i-1)
+       s += f1(i,i)
+    end
+    return s
+ end
+ 
+function f4(y)
+    s = 0.0
+    for i in 2:y
+       s += f2(i,i-1)
+       s += f2(i,i)
+    end
+    return s
+end
+ 
+x = 1000
+@btime f3($x)
+@btime f4($x)
+
+# But attention! Not always a ggood idea:
+function f3(y)
+    s = 0.0
+    for i in 2:y
+       s += sum(f1(a,a-1) for a in 2:i)
+    end
+    return s
+ end
+ 
+function f4(y)
+    s = 0.0
+    for i in 2:y
+       s += sum(f2(a,a-1) for a in 2:i)
+    end
+    return s
+end
+
+x = 1000
+@btime f3($x)
+@btime f4($x)
+
+# Note that the Julia compiles already inline small functions automatically when it thinks it will improve performances
+
 # ## Profiling the code to discover bootlenecks
 
 # We already see `@btime` and `@benchmark` from the package [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl)

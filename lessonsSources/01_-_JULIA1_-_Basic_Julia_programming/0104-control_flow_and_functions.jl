@@ -112,6 +112,10 @@ map((name,year) -> println("$name is $year year old"), ["Marc","Anna"], [25,22])
 # !!! warninng
 #     Don't confuse the single-line arrows used in anonymous functions (`->`) with the double-line arrow used to define a Pair (`=>`)
 
+# We can use maps to substitute values of an array based on a dictionary:
+countries = ["US","UK","IT","UK","UK"]
+countryNames = Dict("IT" => "Italy", "UK" => "United Kngdom",  "US"=>"United States")
+countryLongNames = map(cShortName -> countryNames[cShortName], countries)
 
 # ## Conditional statements: if blocks and ternary operators
 

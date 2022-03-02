@@ -48,7 +48,7 @@ LESSONS_SUBDIR = Dict(
   #"ML2_-_Introduction_to_Machine_Learning_2"   => "04_-_ML2_-_Introduction_to_Machine_Learning_2",
   #"NN_-_Neural_Networks"                       => "05_-_NN_-_Neural_Networks",
   #"RF&CL_-_Random_Forests_and_Clustering"      => "06_-_RF&CL_-_Random_Forests_and_Clustering"
-  )
+)
 
 
 
