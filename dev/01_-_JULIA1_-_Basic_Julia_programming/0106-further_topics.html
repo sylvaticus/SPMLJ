@@ -3,7 +3,7 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-Q39LHCRBB6', {'page_path': location.pathname + location.search + location.hash});
-</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">Introduction to Scientific Programming and Machine Learning with Julia</a></span></div><form class="docs-search" action="../search.html"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">KOM - Kick off meeting</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_KOM_-_Kickoff_meeting/0000-KOMeeting.html">0000-KOMeeting</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-2" type="checkbox" checked/><label class="tocitem" for="menuitem-2-2"><span class="docs-label">JULIA1 - Basic Julia Programming</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="0101-basic_syntax.html">0101-basic syntax</a></li><li><a class="tocitem" href="0102-types_and_objects.html">0102-types and objects</a></li><li><a class="tocitem" href="0103-predefined_types.html">0103-predefined types</a></li><li><a class="tocitem" href="0104-control_flow_and_functions.html">0104-control flow and functions</a></li><li><a class="tocitem" href="0105-custom_types.html">0105-custom types</a></li><li class="is-active"><a class="tocitem" href="0106-further_topics.html">0106-further topics</a><ul class="internal"><li><a class="tocitem" href="#Some-stuff-to-set-up-the-environment.."><span>Some stuff to set-up the environment..</span></a></li><li><a class="tocitem" href="#Metaprogramming-and-macros"><span>Metaprogramming and macros</span></a></li><li><a class="tocitem" href="#Interfacing-with-other-languages"><span>Interfacing with other languages</span></a></li><li><a class="tocitem" href="#Some-performance-tips"><span>Some performance tips</span></a></li><li><a class="tocitem" href="#Profiling-the-code-to-discover-bootlenecks"><span>Profiling the code to discover bootlenecks</span></a></li><li><a class="tocitem" href="#Introspection-and-debugging"><span>Introspection and debugging</span></a></li><li><a class="tocitem" href="#Runtime-exceptions"><span>Runtime exceptions</span></a></li><li><a class="tocitem" href="#Parallel-computation"><span>Parallel computation</span></a></li></ul></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-3" type="checkbox"/><label class="tocitem" for="menuitem-2-3"><span class="docs-label">JULIA2 - Scientific programming with Julia</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201-WranglingData.html">0201-WranglingData</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Lessons</a></li><li><a class="is-disabled">JULIA1 - Basic Julia Programming</a></li><li class="is-active"><a href="0106-further_topics.html">0106-further topics</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0106-further_topics.html">0106-further topics</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/master/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0106-further_topics.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><pre></pre><h1 id="Further-Topics"><a class="docs-heading-anchor" href="#Further-Topics">0106 Further Topics</a><a id="Further-Topics-1"></a><a class="docs-heading-anchor-permalink" href="#Further-Topics" title="Permalink"></a></h1><h2 id="Some-stuff-to-set-up-the-environment.."><a class="docs-heading-anchor" href="#Some-stuff-to-set-up-the-environment..">Some stuff to set-up the environment..</a><a id="Some-stuff-to-set-up-the-environment..-1"></a><a class="docs-heading-anchor-permalink" href="#Some-stuff-to-set-up-the-environment.." title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; cd(@__DIR__)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pkg</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.activate(&quot;.&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">  Activating project at `~/work/IntroSPMLJuliaCourse/IntroSPMLJuliaCourse/buildedDoc/01_-_JULIA1_-_Basic_Julia_programming`</code></pre><p>If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will however be lost) Pkg.resolve() Pkg.instantiate()</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Random</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Random.seed!(123)</code><code class="nohighlight hljs ansi" style="display:block;">Random.TaskLocalRNG()</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using InteractiveUtils # loaded automatically when working... interactively</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h2 id="Metaprogramming-and-macros"><a class="docs-heading-anchor" href="#Metaprogramming-and-macros">Metaprogramming and macros</a><a id="Metaprogramming-and-macros-1"></a><a class="docs-heading-anchor-permalink" href="#Metaprogramming-and-macros" title="Permalink"></a></h2><p>&quot;running&quot; some code include the following passages (roughly):</p><ul><li>parsing of the text defining the code and its translation in hierarchical expressions to the Abstract syntax Tree (AST) (syntax errors are caugth at this time)</li><li>on the first instance required (&quot;just in time&quot;) compilation of the AST expressions into object code (using the LLVM compiler)</li><li>execution of the compiled object code</li></ul><p>&quot;Macros&quot; in many other language (e.g. C or C++) refer to the possibility to &quot;pre-process&quot; the textual representation of the code statements before it is parsed. In julia instead it refers to the possibility to alter the expression once has already being parsed in the AST, allowing a greater expressivity as we are no longer limited by the parsing syntax</p><p>The AST is organised in a hierarchical tree of <em>expressions</em> where each element (including the operators) is a <em>symbol</em> For variables, you can use symbols to refer to the actual identifiers instad to the variable&#39;s value</p><p>Expressions themselves are objects representing unevaluated computer expressions</p><h3 id="Expressions-and-symbols"><a class="docs-heading-anchor" href="#Expressions-and-symbols">Expressions and symbols</a><a id="Expressions-and-symbols-1"></a><a class="docs-heading-anchor-permalink" href="#Expressions-and-symbols" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; expr1 = Meta.parse(&quot;a = b + 2&quot;) # What the parser do when reading the source code. b doesn&#39;t need to actually been defined, it&#39;s just a namebinding without the reference to any object, not even `nothing`</code><code class="nohighlight hljs ansi" style="display:block;">:(a = b + 2)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(expr1) # expressions are first class objects</code><code class="nohighlight hljs ansi" style="display:block;">Expr</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; expr2 = :(a = b + 1)</code><code class="nohighlight hljs ansi" style="display:block;">:(a = b + 1)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; expr3 = quote a = b + 1 end</code><code class="nohighlight hljs ansi" style="display:block;">quote
+</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">Introduction to Scientific Programming and Machine Learning with Julia</a></span></div><form class="docs-search" action="../search.html"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">KOM - Kick off meeting</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_KOM_-_Kickoff_meeting/0000-KOMeeting.html">0000-KOMeeting</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-2" type="checkbox" checked/><label class="tocitem" for="menuitem-2-2"><span class="docs-label">JULIA1 - Basic Julia Programming</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="0101-basic_syntax.html">0101-basic syntax</a></li><li><a class="tocitem" href="0102-types_and_objects.html">0102-types and objects</a></li><li><a class="tocitem" href="0103-predefined_types.html">0103-predefined types</a></li><li><a class="tocitem" href="0104-control_flow_and_functions.html">0104-control flow and functions</a></li><li><a class="tocitem" href="0105-custom_types.html">0105-custom types</a></li><li class="is-active"><a class="tocitem" href="0106-further_topics.html">0106-further topics</a><ul class="internal"><li><a class="tocitem" href="#Some-stuff-to-set-up-the-environment.."><span>Some stuff to set-up the environment..</span></a></li><li><a class="tocitem" href="#Metaprogramming-and-macros"><span>Metaprogramming and macros</span></a></li><li><a class="tocitem" href="#Interfacing-with-other-languages"><span>Interfacing with other languages</span></a></li><li><a class="tocitem" href="#Some-performance-tips"><span>Some performance tips</span></a></li><li><a class="tocitem" href="#Profiling-the-code-to-discover-bootlenecks"><span>Profiling the code to discover bootlenecks</span></a></li><li><a class="tocitem" href="#Introspection-and-debugging"><span>Introspection and debugging</span></a></li><li><a class="tocitem" href="#Runtime-exceptions"><span>Runtime exceptions</span></a></li><li><a class="tocitem" href="#Parallel-computation"><span>Parallel computation</span></a></li></ul></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-3" type="checkbox"/><label class="tocitem" for="menuitem-2-3"><span class="docs-label">JULIA2 - Scientific programming with Julia</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201-wrangling_data.html">0201-wrangling data</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202-further_topics.html">0202-further topics</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Lessons</a></li><li><a class="is-disabled">JULIA1 - Basic Julia Programming</a></li><li class="is-active"><a href="0106-further_topics.html">0106-further topics</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0106-further_topics.html">0106-further topics</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0106-further_topics.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><pre></pre><h1 id="Further-Topics"><a class="docs-heading-anchor" href="#Further-Topics">0106 Further Topics</a><a id="Further-Topics-1"></a><a class="docs-heading-anchor-permalink" href="#Further-Topics" title="Permalink"></a></h1><h2 id="Some-stuff-to-set-up-the-environment.."><a class="docs-heading-anchor" href="#Some-stuff-to-set-up-the-environment..">Some stuff to set-up the environment..</a><a id="Some-stuff-to-set-up-the-environment..-1"></a><a class="docs-heading-anchor-permalink" href="#Some-stuff-to-set-up-the-environment.." title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; cd(@__DIR__)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pkg</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.activate(&quot;.&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">  Activating project at `~/work/IntroSPMLJuliaCourse/IntroSPMLJuliaCourse/buildedDoc/01_-_JULIA1_-_Basic_Julia_programming`</code></pre><p>If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will however be lost) Pkg.resolve() Pkg.instantiate()</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Random</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Random.seed!(123)</code><code class="nohighlight hljs ansi" style="display:block;">Random.TaskLocalRNG()</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using InteractiveUtils # loaded automatically when working... interactively</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h2 id="Metaprogramming-and-macros"><a class="docs-heading-anchor" href="#Metaprogramming-and-macros">Metaprogramming and macros</a><a id="Metaprogramming-and-macros-1"></a><a class="docs-heading-anchor-permalink" href="#Metaprogramming-and-macros" title="Permalink"></a></h2><p>&quot;running&quot; some code include the following passages (roughly):</p><ul><li>parsing of the text defining the code and its translation in hierarchical expressions to the Abstract syntax Tree (AST) (syntax errors are caugth at this time)</li><li>on the first instance required (&quot;just in time&quot;) compilation of the AST expressions into object code (using the LLVM compiler)</li><li>execution of the compiled object code</li></ul><p>&quot;Macros&quot; in many other language (e.g. C or C++) refer to the possibility to &quot;pre-process&quot; the textual representation of the code statements before it is parsed. In julia instead it refers to the possibility to alter the expression once has already being parsed in the AST, allowing a greater expressivity as we are no longer limited by the parsing syntax</p><p>The AST is organised in a hierarchical tree of <em>expressions</em> where each element (including the operators) is a <em>symbol</em> For variables, you can use symbols to refer to the actual identifiers instad to the variable&#39;s value</p><p>Expressions themselves are objects representing unevaluated computer expressions</p><h3 id="Expressions-and-symbols"><a class="docs-heading-anchor" href="#Expressions-and-symbols">Expressions and symbols</a><a id="Expressions-and-symbols-1"></a><a class="docs-heading-anchor-permalink" href="#Expressions-and-symbols" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; expr1 = Meta.parse(&quot;a = b + 2&quot;) # What the parser do when reading the source code. b doesn&#39;t need to actually been defined, it&#39;s just a namebinding without the reference to any object, not even `nothing`</code><code class="nohighlight hljs ansi" style="display:block;">:(a = b + 2)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(expr1) # expressions are first class objects</code><code class="nohighlight hljs ansi" style="display:block;">Expr</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; expr2 = :(a = b + 1)</code><code class="nohighlight hljs ansi" style="display:block;">:(a = b + 1)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; expr3 = quote a = b + 1 end</code><code class="nohighlight hljs ansi" style="display:block;">quote
     #= REPL[4]:1 =#
     a = b + 1
 end</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; expr3</code><code class="nohighlight hljs ansi" style="display:block;">quote
@@ -28,7 +28,7 @@ end</code><br/><code class="language-julia-repl hljs" style="display:block;">jul
   args: Array{Any}((3,))
     1: Symbol +
     2: Int64 4
-    3: Symbol b</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; eval(expr)</code><code class="nohighlight hljs ansi" style="display:block;">6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = 10</code><code class="nohighlight hljs ansi" style="display:block;">10</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; eval(expr) # no changes</code><code class="nohighlight hljs ansi" style="display:block;">6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = 100</code><code class="nohighlight hljs ansi" style="display:block;">100</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; eval(expr) # here it change, as it is at eval time that the identifier `b` is &quot;replaced&quot; with its value</code><code class="nohighlight hljs ansi" style="display:block;">104</code></pre><h3 id="Macros"><a class="docs-heading-anchor" href="#Macros">Macros</a><a id="Macros-1"></a><a class="docs-heading-anchor-permalink" href="#Macros" title="Permalink"></a></h3><p>One of the best usage of macros is they allow package developers to provide a very flexible API to their package, suited for the specific needs of the package, making life easier for the users. Compare for example <a href="https://jump.dev/JuMP.jl/stable/manual/constraints/">the API of JuMP</a> with <a href="https://pyomo.readthedocs.io/en/stable/pyomo_modeling_components/Constraints.html">those of Pyomo</a> to define model constraints !</p><p>Some examples of macros: <a href="https://github.com/sylvaticus/MultiDimEquations.jl">MultiDimEquations.jl</a></p><ul><li>from: <code>@meq par1[d1 in DIM1, d2 in DIM2, dfix3] =  par2[d1,d2]+par3[d1,d2]</code></li><li>to:   <code>[par1[d1,d2,dfix3] =  par2[d1,d2]+par3[d1,d2] for d1 in DIM1, d2 in DIM2]</code></li></ul><p><a href="https://github.com/oxinabox/Pipe.jl">Pipe.jl:</a></p><ul><li>from: <code>@pipe  10 |&gt; foo(_,a) |&gt; foo2(b,_,c) |&gt; foo3(_)</code></li><li>to:   <code>foo3(foo2(b,foo(10,a),c))</code></li></ul><p>Brodcasting (Base):</p><ul><li>from: <code>@. a + b * D^2</code></li><li>to:   <code>a .+ b .* D.^2</code></li></ul><p>Defining a macro...</p><p>Like functions, but both the arguments and the retuned output are expressions</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; macro customLoop(controlExpr,workExpr)
+    3: Symbol b</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; eval(expr)</code><code class="nohighlight hljs ansi" style="display:block;">6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = 10</code><code class="nohighlight hljs ansi" style="display:block;">10</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; eval(expr) # no changes</code><code class="nohighlight hljs ansi" style="display:block;">6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = 100</code><code class="nohighlight hljs ansi" style="display:block;">100</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; eval(expr) # here it change, as it is at eval time that the identifier `b` is &quot;replaced&quot; with its value</code><code class="nohighlight hljs ansi" style="display:block;">104</code></pre><h3 id="Macros"><a class="docs-heading-anchor" href="#Macros">Macros</a><a id="Macros-1"></a><a class="docs-heading-anchor-permalink" href="#Macros" title="Permalink"></a></h3><p>One of the best usage of macros is they allow package developers to provide a very flexible API to their package, suited for the specific needs of the package, making life easier for the users. Compare for example <a href="https://jump.dev/JuMP.jl/stable/manual/constraints/">the API of JuMP</a> with <a href="https://pyomo.readthedocs.io/en/stable/pyomo_modeling_components/Constraints.html">those of Pyomo</a> to define model constraints !</p><p>Some examples of macros: <a href="https://github.com/sylvaticus/MultiDimEquations.jl">MultiDimEquations.jl</a></p><ul><li>from: <code>@meq par1[d1 in DIM1, d2 in DIM2, dfix3] =  par2[d1,d2]+par3[d1,d2]</code></li><li>to:   <code>[par1[d1,d2,dfix3] =  par2[d1,d2]+par3[d1,d2] for d1 in DIM1, d2 in DIM2]</code></li></ul><p><a href="https://github.com/oxinabox/Pipe.jl">Pipe.jl:</a></p><ul><li>from: <code>@pipe  10 |&gt; foo(_,a) |&gt; foo2(b,_,c) |&gt; foo3(_)</code></li><li>to:   <code>foo3(foo2(b,foo(10,a),c))</code></li></ul><p>Brodcasting (Base):</p><ul><li>from: <code>@. a + b * D^2</code></li><li>to:   <code>a .+ b .* D.^2</code></li></ul><p>Defining a macro...</p><p>Like functions, but both the arguments and the returned output are expressions</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; macro customLoop(controlExpr,workExpr)
            return quote
              for i in $controlExpr
                $workExpr
@@ -48,9 +48,9 @@ banana</code><br/><code class="language-julia-repl hljs" style="display:block;">
 i: orange
 i: banana</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @macroexpand @customLoop 1:4 println(i) # print what the macro does with the specific expressions provided</code><code class="nohighlight hljs ansi" style="display:block;">quote
     #= REPL[1]:3 =#
-    for var&quot;#170#i&quot; = 1:4
+    for var&quot;#173#i&quot; = 1:4
         #= REPL[1]:4 =#
-        Main.println(var&quot;#170#i&quot;)
+        Main.println(var&quot;#173#i&quot;)
     end
 end</code></pre><p>String macros (aka &quot;non-standard string literals&quot;) Invoked with the syntax <code>xxx&quot; ...text...&quot;</code> or <code>xxx&quot;&quot;&quot; ...multi-line text...&quot;&quot;&quot;</code> where <code>xxx</code> is the name of the macro and the macro must be defined as <code>macro  xxx_str</code>. Used to perform textual modification o nthe given text, for example this print the given text on a 8 characters</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; macro print8_str(mystr)                                 # input here is a string, not an expression
            limits = collect(1:8:length(mystr))
@@ -112,8 +112,8 @@ emploied
        &quot;&quot;&quot;</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = py&quot;sumMyArgs&quot;(3,4)             # 7 - here we call the Python object (a function) with Julia parameters</code><code class="nohighlight hljs ansi" style="display:block;">7</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = py&quot;getNthElement&quot;([1,2,3],1)   # 2 - attention to the diffferent convention for starting arrays!. Note the Julia Array ahas been converted automatically to a Python list</code><code class="nohighlight hljs ansi" style="display:block;">2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; d = py&quot;getNthElement([1,$a,3],1)&quot;  # 7 - here we interpolate the Python call</code><code class="nohighlight hljs ansi" style="display:block;">7</code></pre><p>Alternativly, use <code>@pyinclude(&quot;pythonScript.py&quot;)</code></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; pythonCode = &quot;&quot;&quot;
        def sumMyArgs (i, j, z):
          return i+j+z
-       &quot;&quot;&quot;</code><code class="nohighlight hljs ansi" style="display:block;">&quot;def sumMyArgs (i, j, z):\n  return i+j+z\n&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; open(f-&gt;write(f,pythonCode),&quot;pythonScript.py&quot;,&quot;w&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">40</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @pyinclude(&quot;pythonScript.py&quot;)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = py&quot;sumMyArgs&quot;(3,4,5)</code><code class="nohighlight hljs ansi" style="display:block;">12</code></pre><div class="admonition is-success"><header class="admonition-header">Tip</header><div class="admonition-body"><p>Note thaat the 3 arguments definition of <code>sumMyArgs</code> has <em>replaced</em> the 3-arguments one. This would now error <code>py&quot;sumMyArgs&quot;(3,4)</code></p></div></div><h4 id="Use-Python-libraries"><a class="docs-heading-anchor" href="#Use-Python-libraries">Use Python libraries</a><a id="Use-Python-libraries-1"></a><a class="docs-heading-anchor-permalink" href="#Use-Python-libraries" title="Permalink"></a></h4><p>Add a package to the local Python installation using Conda:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; pyimport_conda(&quot;ezodf&quot;, &quot;ezodf&quot;, &quot;conda-forge&quot;) # pyimport_conda(module, package, channel)</code><code class="nohighlight hljs ansi" style="display:block;">PyObject &lt;module &#39;ezodf&#39; from &#39;/home/runner/.julia/conda/3/lib/python3.9/site-packages/ezodf/__init__.py&#39;&gt;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; const ez = pyimport(&quot;ezodf&quot;)  # Equiv. of Python `import ezodf as ez`</code><code class="nohighlight hljs ansi" style="display:block;">PyObject &lt;module &#39;ezodf&#39; from &#39;/home/runner/.julia/conda/3/lib/python3.9/site-packages/ezodf/__init__.py&#39;&gt;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; destDoc  = ez.newdoc(doctype=&quot;ods&quot;, filename=&quot;anOdsSheet.ods&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">PyObject &lt;ezodf.document.PackagedDocument object at 0x7fa80059bf70&gt;</code></pre><p>Both <code>ez</code> and <code>destDoc</code> are <code>PyObjects</code> for which we can access attributes and call the methods using the usual <code>obj.method()</code> syntax as we would do in Python</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; sheet    = ez.Sheet(&quot;Sheet1&quot;, size=(10, 10))</code><code class="nohighlight hljs ansi" style="display:block;">PyObject &lt;ezodf.table.Table object at 0x7fa80052d370&gt;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; destDoc.sheets.append(sheet)</code><code class="nohighlight hljs ansi" style="display:block;">PyObject &lt;ezodf.table.Table object at 0x7fa80052d370&gt;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # dcell1 = sheet[(2,3)] # This would error because the index is a tuple. Let&#39;s use directly the `get(obj,key)` function instead:
-       dcell1   = get(sheet,(2,3)) # Equiv. of Python `dcell1 = sheet[(2,3)]`. Attention again to Python indexing from zero: this is cell &quot;D3&quot;, not &quot;B3&quot; !</code><code class="nohighlight hljs ansi" style="display:block;">PyObject &lt;ezodf.cells.Cell object at 0x7fa80052d400&gt;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; dcell1.set_value(&quot;Hello&quot;)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; get(sheet,&quot;A9&quot;).set_value(10.5) # Equiv. of Python `sheet[&#39;A9&#39;].set_value(10.5)`</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; destDoc.backup = false</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; destDoc.save()</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h3 id="Using-Julia-in-Python"><a class="docs-heading-anchor" href="#Using-Julia-in-Python">Using Julia in Python</a><a id="Using-Julia-in-Python-1"></a><a class="docs-heading-anchor-permalink" href="#Using-Julia-in-Python" title="Permalink"></a></h3><h4 id="Installation-of-the-Python-package-PyJulia"><a class="docs-heading-anchor" href="#Installation-of-the-Python-package-PyJulia">Installation of the Python package <code>PyJulia</code></a><a id="Installation-of-the-Python-package-PyJulia-1"></a><a class="docs-heading-anchor-permalink" href="#Installation-of-the-Python-package-PyJulia" title="Permalink"></a></h4><p><a href="https://github.com/JuliaPy/pyjulia">PyJulia</a> can be installed using <code>pip</code>, taking note that its name using <code>pip</code> is <code>julia</code> not <code>PyJulia</code>: <code>$ python3 -m pip install --user julia</code></p><p>We can now open a Python terminal and initialise PyJulia to work with our Julia version:</p><pre><code class="language-python hljs">&gt;&gt;&gt; import julia
+       &quot;&quot;&quot;</code><code class="nohighlight hljs ansi" style="display:block;">&quot;def sumMyArgs (i, j, z):\n  return i+j+z\n&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; open(f-&gt;write(f,pythonCode),&quot;pythonScript.py&quot;,&quot;w&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">40</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @pyinclude(&quot;pythonScript.py&quot;)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = py&quot;sumMyArgs&quot;(3,4,5)</code><code class="nohighlight hljs ansi" style="display:block;">12</code></pre><div class="admonition is-success"><header class="admonition-header">Tip</header><div class="admonition-body"><p>Note thaat the 3 arguments definition of <code>sumMyArgs</code> has <em>replaced</em> the 3-arguments one. This would now error <code>py&quot;sumMyArgs&quot;(3,4)</code></p></div></div><h4 id="Use-Python-libraries"><a class="docs-heading-anchor" href="#Use-Python-libraries">Use Python libraries</a><a id="Use-Python-libraries-1"></a><a class="docs-heading-anchor-permalink" href="#Use-Python-libraries" title="Permalink"></a></h4><p>Add a package to the local Python installation using Conda:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; pyimport_conda(&quot;ezodf&quot;, &quot;ezodf&quot;, &quot;conda-forge&quot;) # pyimport_conda(module, package, channel)</code><code class="nohighlight hljs ansi" style="display:block;">PyObject &lt;module &#39;ezodf&#39; from &#39;/home/runner/.julia/conda/3/lib/python3.9/site-packages/ezodf/__init__.py&#39;&gt;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; const ez = pyimport(&quot;ezodf&quot;)  # Equiv. of Python `import ezodf as ez`</code><code class="nohighlight hljs ansi" style="display:block;">PyObject &lt;module &#39;ezodf&#39; from &#39;/home/runner/.julia/conda/3/lib/python3.9/site-packages/ezodf/__init__.py&#39;&gt;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; destDoc  = ez.newdoc(doctype=&quot;ods&quot;, filename=&quot;anOdsSheet.ods&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">PyObject &lt;ezodf.document.PackagedDocument object at 0x7f8d6cf32c10&gt;</code></pre><p>Both <code>ez</code> and <code>destDoc</code> are <code>PyObjects</code> for which we can access attributes and call the methods using the usual <code>obj.method()</code> syntax as we would do in Python</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; sheet    = ez.Sheet(&quot;Sheet1&quot;, size=(10, 10))</code><code class="nohighlight hljs ansi" style="display:block;">PyObject &lt;ezodf.table.Table object at 0x7f8d6cf447c0&gt;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; destDoc.sheets.append(sheet)</code><code class="nohighlight hljs ansi" style="display:block;">PyObject &lt;ezodf.table.Table object at 0x7f8d6cf447c0&gt;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # dcell1 = sheet[(2,3)] # This would error because the index is a tuple. Let&#39;s use directly the `get(obj,key)` function instead:
+       dcell1   = get(sheet,(2,3)) # Equiv. of Python `dcell1 = sheet[(2,3)]`. Attention again to Python indexing from zero: this is cell &quot;D3&quot;, not &quot;B3&quot; !</code><code class="nohighlight hljs ansi" style="display:block;">PyObject &lt;ezodf.cells.Cell object at 0x7f8d6cf44700&gt;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; dcell1.set_value(&quot;Hello&quot;)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; get(sheet,&quot;A9&quot;).set_value(10.5) # Equiv. of Python `sheet[&#39;A9&#39;].set_value(10.5)`</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; destDoc.backup = false</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; destDoc.save()</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h3 id="Using-Julia-in-Python"><a class="docs-heading-anchor" href="#Using-Julia-in-Python">Using Julia in Python</a><a id="Using-Julia-in-Python-1"></a><a class="docs-heading-anchor-permalink" href="#Using-Julia-in-Python" title="Permalink"></a></h3><h4 id="Installation-of-the-Python-package-PyJulia"><a class="docs-heading-anchor" href="#Installation-of-the-Python-package-PyJulia">Installation of the Python package <code>PyJulia</code></a><a id="Installation-of-the-Python-package-PyJulia-1"></a><a class="docs-heading-anchor-permalink" href="#Installation-of-the-Python-package-PyJulia" title="Permalink"></a></h4><p><a href="https://github.com/JuliaPy/pyjulia">PyJulia</a> can be installed using <code>pip</code>, taking note that its name using <code>pip</code> is <code>julia</code> not <code>PyJulia</code>: <code>$ python3 -m pip install --user julia</code></p><p>We can now open a Python terminal and initialise PyJulia to work with our Julia version:</p><pre><code class="language-python hljs">&gt;&gt;&gt; import julia
 &gt;&gt;&gt; julia.install() # Only once to set-up in julia the julia packages required by PyJulia</code></pre><p>If we have multiple Julia versions, we can specify the one to use in Python passing julia=&quot;/path/to/julia/binary/executable&quot; (e.g. julia = &quot;/home/myUser/lib/julia-1.1.0/bin/julia&quot;) to the install() function.</p><h4 id="Running-Julia-libraries-and-code-in-Python"><a class="docs-heading-anchor" href="#Running-Julia-libraries-and-code-in-Python">Running Julia libraries and code in Python</a><a id="Running-Julia-libraries-and-code-in-Python-1"></a><a class="docs-heading-anchor-permalink" href="#Running-Julia-libraries-and-code-in-Python" title="Permalink"></a></h4><p>On each Python session we need to run the following code:</p><pre><code class="language-python hljs">from julia import Julia
 Julia(compiled_modules=False)</code></pre><p>This is a workaround to the common situation when the Python interpreter is statically linked to libpython, but it will slow down the interactive experience, as it will disable Julia packages pre-compilation, and every time we will use a module for the first time, this will need to be compiled first. Other, more efficient but also more complicate, workarounds are given in the package documentation, under the <a href="https://pyjulia.readthedocs.io/en/stable/troubleshooting.html">Troubleshooting section</a>.</p><p>We can now direcltly load a Julia module, including <code>Main</code>, the global namespace of Julia’s interpreter, with <code>from julia import ModuleToLoad</code> and access the module objects directly or using the <code>Module.evel()</code> interface.</p><h5 id="Add-a-Julia-package..."><a class="docs-heading-anchor" href="#Add-a-Julia-package...">Add a Julia package...</a><a id="Add-a-Julia-package...-1"></a><a class="docs-heading-anchor-permalink" href="#Add-a-Julia-package..." title="Permalink"></a></h5><pre><code class="language-python hljs">&gt;&gt;&gt; from julia import Pkg
 &gt;&gt;&gt; Pkg.add(&quot;BetaML&quot;)</code></pre><p>Of course we can add a package alternatively from within Julia</p><h5 id="&quot;Direct&quot;-calling-of-Julia-functions..."><a class="docs-heading-anchor" href="#&quot;Direct&quot;-calling-of-Julia-functions...">&quot;Direct&quot; calling of Julia functions...</a><a id="&quot;Direct&quot;-calling-of-Julia-functions...-1"></a><a class="docs-heading-anchor-permalink" href="#&quot;Direct&quot;-calling-of-Julia-functions..." title="Permalink"></a></h5><pre><code class="language-python hljs">&gt;&gt;&gt; from julia import BetaML
@@ -190,7 +190,7 @@ julia_setup() # If we have already downloaded a private version of Julia for R i
            else
                return outVector[3]
            end
-       end</code><code class="nohighlight hljs ansi" style="display:block;">f2 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = f1(0)</code><code class="nohighlight hljs ansi" style="display:block;">2.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = f1(1)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;2&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(a)</code><code class="nohighlight hljs ansi" style="display:block;">Float64</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(b)</code><code class="nohighlight hljs ansi" style="display:block;">String</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; c = f2(0)</code><code class="nohighlight hljs ansi" style="display:block;">2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; d = f2(1)</code><code class="nohighlight hljs ansi" style="display:block;">2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(c)</code><code class="nohighlight hljs ansi" style="display:block;">Int64</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(d)</code><code class="nohighlight hljs ansi" style="display:block;">Int64</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using BenchmarkTools</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f1(0) # 661 ns 6 allocations</code><code class="nohighlight hljs ansi" style="display:block;">  772.559 ns (6 allocations: 208 bytes)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f2 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = f1(0)</code><code class="nohighlight hljs ansi" style="display:block;">2.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = f1(1)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;2&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(a)</code><code class="nohighlight hljs ansi" style="display:block;">Float64</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(b)</code><code class="nohighlight hljs ansi" style="display:block;">String</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; c = f2(0)</code><code class="nohighlight hljs ansi" style="display:block;">2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; d = f2(1)</code><code class="nohighlight hljs ansi" style="display:block;">2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(c)</code><code class="nohighlight hljs ansi" style="display:block;">Int64</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(d)</code><code class="nohighlight hljs ansi" style="display:block;">Int64</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using BenchmarkTools</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f1(0) # 661 ns 6 allocations</code><code class="nohighlight hljs ansi" style="display:block;">  827.286 ns (6 allocations: 208 bytes)
 2.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f2(0) #  55 ns 1 allocations</code><code class="nohighlight hljs ansi" style="display:block;">  54.620 ns (1 allocation: 80 bytes)
 2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @code_warntype f1(0) # Body::Any</code><code class="nohighlight hljs ansi" style="display:block;">MethodInstance for Main.f1(::Int64)
   from f1(x) in Main at REPL[1]:1
@@ -236,7 +236,7 @@ Body::Int64
            x::Int64
        end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function f1(o::Goo)
            return o.x +2
-       end</code><code class="nohighlight hljs ansi" style="display:block;">f1 (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fobj = Foo(1)</code><code class="nohighlight hljs ansi" style="display:block;">Main.Foo(1)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bobj = Boo(1)</code><code class="nohighlight hljs ansi" style="display:block;">Main.Boo(1)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f1($fobj) # 17.1 ns 0 allocations</code><code class="nohighlight hljs ansi" style="display:block;">  18.337 ns (0 allocations: 0 bytes)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f1 (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fobj = Foo(1)</code><code class="nohighlight hljs ansi" style="display:block;">Main.Foo(1)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bobj = Boo(1)</code><code class="nohighlight hljs ansi" style="display:block;">Main.Boo(1)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f1($fobj) # 17.1 ns 0 allocations</code><code class="nohighlight hljs ansi" style="display:block;">  18.737 ns (0 allocations: 0 bytes)
 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f1($bobj) #  2.8 ns 0 allocations</code><code class="nohighlight hljs ansi" style="display:block;">  1.700 ns (0 allocations: 0 bytes)
 3</code></pre><p>Here the same function under some argument types is type stable, under other argument types is not</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; @code_warntype f1(fobj)</code><code class="nohighlight hljs ansi" style="display:block;">MethodInstance for Main.f1(::Main.Foo)
   from f1(o::Main.Goo) in Main at REPL[4]:1
@@ -297,9 +297,126 @@ Body::Int64
                end
            end
            return cum
-       end</code><code class="nohighlight hljs ansi" style="display:block;">f2 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f1($a) # 2.3 ms 0 allocations</code><code class="nohighlight hljs ansi" style="display:block;">  1.473 ms (0 allocations: 0 bytes)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f2 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f1($a) # 2.3 ms 0 allocations</code><code class="nohighlight hljs ansi" style="display:block;">  1.477 ms (0 allocations: 0 bytes)
 500220.6882968228</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f2($a) # 1.3 ms 0 allocations</code><code class="nohighlight hljs ansi" style="display:block;">  1.337 ms (0 allocations: 0 bytes)
-500220.6882968189</code></pre><h2 id="Profiling-the-code-to-discover-bootlenecks"><a class="docs-heading-anchor" href="#Profiling-the-code-to-discover-bootlenecks">Profiling the code to discover bootlenecks</a><a id="Profiling-the-code-to-discover-bootlenecks-1"></a><a class="docs-heading-anchor-permalink" href="#Profiling-the-code-to-discover-bootlenecks" title="Permalink"></a></h2><p>We already see <code>@btime</code> and <code>@benchmark</code> from the package <a href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a> Remember to quote the global variables used as parameter of your function with the dollar sign to have accurate benchmarking of the function execution. Julia provide the macro <code>@time</code> but we should run on a second call to a given function (with a certain parameter types) or it will include compilation time in its output:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; function fb(x)
+500220.6882968189</code></pre><h4 id="Use-low-level-optimisation-when-possible"><a class="docs-heading-anchor" href="#Use-low-level-optimisation-when-possible">Use low-level optimisation when possible</a><a id="Use-low-level-optimisation-when-possible-1"></a><a class="docs-heading-anchor-permalink" href="#Use-low-level-optimisation-when-possible" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; function f1(x)
+           s = 0.0
+           for i in 1:length(x)
+               s += i * x[i]
+           end
+           return s
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f1 (generic function with 3 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function f2(x)
+           s = 0.0
+           for i in 1:length(x)
+               @inbounds s += i * x[i] # remove bound checks
+           end
+           return s
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f2 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function f3(x)
+           s = 0.0
+           @simd for i in 1:length(x) # tell compiler it is allowed to run the loop in whatever order, allowing in-thread paralllelism of modern CPUs
+               s += i * x[i]
+           end
+           return s
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f3 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x = rand(10000)</code><code class="nohighlight hljs ansi" style="display:block;">10000-element Vector{Float64}:
+ 0.9191811597933967
+ 0.42601923740838954
+ 0.7465863168484385
+ 0.8192008435733007
+ 0.9541592624784624
+ 0.8458950823510601
+ 0.586748700554989
+ 0.12181263792534469
+ 0.7894931647499924
+ 0.6192588014774537
+ ⋮
+ 0.7658628854007791
+ 0.28490307343675825
+ 0.9939824036261106
+ 0.5463528558312817
+ 0.04912911251200014
+ 0.19435254100366972
+ 0.0526683654186223
+ 0.3327510504008291
+ 0.1725561039119332</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f1($x)</code><code class="nohighlight hljs ansi" style="display:block;">  13.400 μs (0 allocations: 0 bytes)
+2.5231610262164485e7</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f2($x)</code><code class="nohighlight hljs ansi" style="display:block;">  13.400 μs (0 allocations: 0 bytes)
+2.5231610262164485e7</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f3($x)</code><code class="nohighlight hljs ansi" style="display:block;">  1.240 μs (0 allocations: 0 bytes)
+2.5231610262164526e7</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X = rand(100,20)</code><code class="nohighlight hljs ansi" style="display:block;">100×20 Matrix{Float64}:
+ 0.675195   0.383952   0.395595   …  0.124895   0.747782   0.392127
+ 0.0333106  0.533684   0.223958      0.248511   0.353061   0.290164
+ 0.52849    0.500992   0.736335      0.476598   0.323541   0.734017
+ 0.70366    0.446342   0.0292811     0.989149   0.410968   0.733662
+ 0.68316    0.0940873  0.249255      0.976759   0.45393    0.655062
+ 0.758203   0.798499   0.265687   …  0.688289   0.0476388  0.708955
+ 0.571821   0.367501   0.631536      0.748099   0.46249    0.953881
+ 0.539028   0.558698   0.681403      0.351872   0.266987   0.700282
+ 0.579392   0.491306   0.579781      0.0653325  0.465416   0.384042
+ 0.973154   0.602667   0.975242      0.0685385  0.017708   0.683268
+ ⋮                                ⋱
+ 0.838322   0.903461   0.34834       0.356471   0.814956   0.300837
+ 0.729303   0.973482   0.492025      0.330467   0.546824   0.422324
+ 0.0345561  0.879724   0.978441      0.0506276  0.0591848  0.291289
+ 0.277568   0.716467   0.223272      0.809833   0.464749   0.67687
+ 0.453906   0.220044   0.638407   …  0.190569   0.499705   0.361084
+ 0.654209   0.36123    0.417937      0.497577   0.336484   0.75848
+ 0.89421    0.461895   0.652697      0.239749   0.108345   0.143675
+ 0.744203   0.127944   0.399166      0.124002   0.586077   0.0342236
+ 0.59737    0.662054   0.886479      0.607238   0.925158   0.568458</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function f1(x)
+           s = 0.0
+           for i in 1:size(x,1)
+               s += sum(x[i,:])
+           end
+           return s
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f1 (generic function with 3 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function f2(x)
+           s = 0.0
+           @views for i in 1:size(x,1)
+               s += sum(x[i,:])   # the slice operator copy the data.. the views macro force to have instead to have a view (reference)
+           end
+           return s
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f2 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f1($X)</code><code class="nohighlight hljs ansi" style="display:block;">  6.340 μs (100 allocations: 21.88 KiB)
+1013.9993057955776</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f2($X)</code><code class="nohighlight hljs ansi" style="display:block;">  1.820 μs (0 allocations: 0 bytes)
+1013.9993057955776</code></pre><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>Attention that while the <code>@views</code> macro &quot;save time&quot; by not copying the data, the resulting array has a pretty messy layout. If you need to use it for many subsequent operations it may be more efficient to &quot;pay&quot; the copy cost once and then have an array with a nicelly continuous block of memory..</p></div></div><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; function f1(x,y)
+           if x+y &gt; 100
+               return x + y + 2
+           else
+               return x + 1
+           end
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f1 (generic function with 3 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @inline function f2(x,y)   # the function is &quot;inlined&quot;, its whole definition copied at each calling place rather than being called
+           if x+y &gt; 100
+               return x + y + 2
+           else
+               return x + 1
+           end
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f2 (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function f3(y)
+           s = 0.0
+           for i in 2:y
+              s += f1(i,i-1)
+              s += f1(i,i)
+           end
+           return s
+        end</code><code class="nohighlight hljs ansi" style="display:block;">f3 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function f4(y)
+           s = 0.0
+           for i in 2:y
+              s += f2(i,i-1)
+              s += f2(i,i)
+           end
+           return s
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f4 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x = 1000</code><code class="nohighlight hljs ansi" style="display:block;">1000</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f3($x)</code><code class="nohighlight hljs ansi" style="display:block;">  2.656 μs (0 allocations: 0 bytes)
+2.002396e6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f4($x)</code><code class="nohighlight hljs ansi" style="display:block;">  2.656 μs (0 allocations: 0 bytes)
+2.002396e6</code></pre><p>But attention! Not always a ggood idea:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; function f3(y)
+           s = 0.0
+           for i in 2:y
+              s += sum(f1(a,a-1) for a in 2:i)
+           end
+           return s
+        end</code><code class="nohighlight hljs ansi" style="display:block;">f3 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function f4(y)
+           s = 0.0
+           for i in 2:y
+              s += sum(f2(a,a-1) for a in 2:i)
+           end
+           return s
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f4 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x = 1000</code><code class="nohighlight hljs ansi" style="display:block;">1000</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f3($x)</code><code class="nohighlight hljs ansi" style="display:block;">  105.201 μs (0 allocations: 0 bytes)
+3.3359915e8</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime f4($x)</code><code class="nohighlight hljs ansi" style="display:block;">  104.501 μs (0 allocations: 0 bytes)
+3.3359915e8</code></pre><p>Note that the Julia compiles already inline small functions automatically when it thinks it will improve performances</p><h2 id="Profiling-the-code-to-discover-bootlenecks"><a class="docs-heading-anchor" href="#Profiling-the-code-to-discover-bootlenecks">Profiling the code to discover bootlenecks</a><a id="Profiling-the-code-to-discover-bootlenecks-1"></a><a class="docs-heading-anchor-permalink" href="#Profiling-the-code-to-discover-bootlenecks" title="Permalink"></a></h2><p>We already see <code>@btime</code> and <code>@benchmark</code> from the package <a href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a> Remember to quote the global variables used as parameter of your function with the dollar sign to have accurate benchmarking of the function execution. Julia provide the macro <code>@time</code> but we should run on a second call to a given function (with a certain parameter types) or it will include compilation time in its output:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; function fb(x)
            out = Union{Int64,Float64}[1,2.0,3]
            push!(out,4)
            if x &gt; 10
@@ -320,96 +437,88 @@ Body::Int64
            return c
        end</code><code class="nohighlight hljs ansi" style="display:block;">foo (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @profile (for i = 1:100; foo(1000); end) # too fast otherwise</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Profile.print() # on my pc: 243 rand, 174 the sum, 439 the matrix product</code><code class="nohighlight hljs ansi" style="display:block;">Overhead ╎ [+additional indent] Count File:Line; Function
 =========================================================
-    ╎1731  @Base/client.jl:495; _start()
-    ╎ 1731  @Base/client.jl:292; exec_options(opts::Base.JLOpti...
-    ╎  1731  @Base/Base.jl:418; include(mod::Module, _path::S...
-    ╎   1731  @Base/loading.jl:1253; _include(mapexpr::Function, ...
-    ╎    1731  @Base/loading.jl:1196; include_string(mapexpr::typ...
-    ╎     1731  @Base/boot.jl:373; eval
-    ╎    ╎ 1731  ...src/Documenter.jl:260; (::Documenter.var&quot;#makedocs...
-    ╎    ╎  1731  ...rc/Documenter.jl:265; #makedocs#1
-    ╎    ╎   1731  @Base/file.jl:110; cd(f::Documenter.var&quot;#2#3...
-    ╎    ╎    1731  ...c/Documenter.jl:266; #2
-    ╎    ╎     1731  ...es/Selectors.jl:170; dispatch(#unused#::Type{...
-    ╎    ╎    ╎ 1731  .../src/Builder.jl:226; runner(#unused#::Type{Do...
-    ╎    ╎    ╎  1731  ...rc/Expanders.jl:42; expand(doc::Documenter.D...
-    ╎    ╎    ╎   1731  ...s/Selectors.jl:170; dispatch(::Type{Docume...
-    ╎    ╎    ╎    1731  .../Expanders.jl:665; runner(#unused#::Type{...
-    ╎    ╎    ╎     1731  .../IOCapture.jl:75; (::IOCapture.var&quot;#capt...
-    ╎    ╎    ╎    ╎ 1731  .../IOCapture.jl:116; capture(f::Documenter...
-    ╎    ╎    ╎    ╎  1731  ...e/logging.jl:623; with_logger
-    ╎    ╎    ╎    ╎   1731  ...e/logging.jl:511; with_logstate(f::Fu...
-    ╎    ╎    ╎    ╎    1731  ...OCapture.jl:118; (::IOCapture.var&quot;#3...
-    ╎    ╎    ╎    ╎     1731  ...xpanders.jl:666; (::Documenter.Expa...
-    ╎    ╎    ╎    ╎    ╎ 1731  @Base/file.jl:110; cd(f::Documenter.E...
-    ╎    ╎    ╎    ╎    ╎  1731  ...panders.jl:667; #20
-    ╎    ╎    ╎    ╎    ╎   1731  @Base/boot.jl:373; eval
-    ╎    ╎    ╎    ╎    ╎    1731  ...Profile.jl:28; top-level scope
-    ╎    ╎    ╎    ╎    ╎     1731  REPL[3]:1; macro expansion
-    ╎    ╎    ╎    ╎    ╎    ╎ 137   REPL[2]:2; foo(n::Int64)
-    ╎    ╎    ╎    ╎    ╎    ╎  137   ...Random.jl:278; rand
-    ╎    ╎    ╎    ╎    ╎    ╎   137   ...Random.jl:290; rand
-    ╎    ╎    ╎    ╎    ╎    ╎    137   ...Random.jl:289; rand
-    ╎    ╎    ╎    ╎    ╎    ╎     39    ...e/boot.jl:474; Array
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 39    ...e/boot.jl:467; Array
-  39╎    ╎    ╎    ╎    ╎    ╎    ╎  39    ...e/boot.jl:459; Array
-    ╎    ╎    ╎    ╎    ╎    ╎     98    ...Random.jl:268; rand!
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 98    ...roSimd.jl:292; rand!
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎  98    ...roSimd.jl:141; xoshiro_bulk
-   2╎    ╎    ╎    ╎    ╎    ╎    ╎   32    ...roSimd.jl:247; xoshiro_bulk_si...
-  30╎    ╎    ╎    ╎    ╎    ╎    ╎    30    @Base/int.jl:477; &lt;=
+    ╎1401  @Base/client.jl:495; _start()
+    ╎ 1401  @Base/client.jl:292; exec_options(opts::Base.JLOpti...
+    ╎  1401  @Base/Base.jl:418; include(mod::Module, _path::S...
+    ╎   1401  @Base/loading.jl:1253; _include(mapexpr::Function, ...
+    ╎    1401  @Base/loading.jl:1196; include_string(mapexpr::typ...
+    ╎     1401  @Base/boot.jl:373; eval
+    ╎    ╎ 1401  ...src/Documenter.jl:260; (::Documenter.var&quot;#makedocs...
+    ╎    ╎  1401  ...rc/Documenter.jl:265; #makedocs#1
+    ╎    ╎   1401  @Base/file.jl:110; cd(f::Documenter.var&quot;#2#3...
+    ╎    ╎    1401  ...c/Documenter.jl:266; #2
+    ╎    ╎     1401  ...es/Selectors.jl:170; dispatch(#unused#::Type{...
+    ╎    ╎    ╎ 1401  .../src/Builder.jl:226; runner(#unused#::Type{Do...
+    ╎    ╎    ╎  1401  ...rc/Expanders.jl:42; expand(doc::Documenter.D...
+    ╎    ╎    ╎   1401  ...s/Selectors.jl:170; dispatch(::Type{Docume...
+    ╎    ╎    ╎    1401  .../Expanders.jl:665; runner(#unused#::Type{...
+    ╎    ╎    ╎     1401  .../IOCapture.jl:75; (::IOCapture.var&quot;#capt...
+    ╎    ╎    ╎    ╎ 1401  .../IOCapture.jl:116; capture(f::Documenter...
+    ╎    ╎    ╎    ╎  1401  ...e/logging.jl:623; with_logger
+    ╎    ╎    ╎    ╎   1401  ...e/logging.jl:511; with_logstate(f::Fu...
+    ╎    ╎    ╎    ╎    1401  ...OCapture.jl:118; (::IOCapture.var&quot;#3...
+    ╎    ╎    ╎    ╎     1401  ...xpanders.jl:666; (::Documenter.Expa...
+    ╎    ╎    ╎    ╎    ╎ 1401  @Base/file.jl:110; cd(f::Documenter.E...
+    ╎    ╎    ╎    ╎    ╎  1401  ...panders.jl:667; #20
+    ╎    ╎    ╎    ╎    ╎   1401  @Base/boot.jl:373; eval
+    ╎    ╎    ╎    ╎    ╎    1401  ...Profile.jl:28; top-level scope
+    ╎    ╎    ╎    ╎    ╎     1401  REPL[3]:1; macro expansion
+    ╎    ╎    ╎    ╎    ╎    ╎ 199   REPL[2]:2; foo(n::Int64)
+    ╎    ╎    ╎    ╎    ╎    ╎  199   ...Random.jl:278; rand
+    ╎    ╎    ╎    ╎    ╎    ╎   199   ...Random.jl:290; rand
+    ╎    ╎    ╎    ╎    ╎    ╎    199   ...Random.jl:289; rand
+    ╎    ╎    ╎    ╎    ╎    ╎     124   ...e/boot.jl:474; Array
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 124   ...e/boot.jl:467; Array
+ 124╎    ╎    ╎    ╎    ╎    ╎    ╎  124   ...e/boot.jl:459; Array
+    ╎    ╎    ╎    ╎    ╎    ╎     75    ...Random.jl:268; rand!
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 75    ...roSimd.jl:292; rand!
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎  75    ...roSimd.jl:141; xoshiro_bulk
+   5╎    ╎    ╎    ╎    ╎    ╎    ╎   32    ...roSimd.jl:247; xoshiro_bulk_si...
+  27╎    ╎    ╎    ╎    ╎    ╎    ╎    27    @Base/int.jl:477; &lt;=
     ╎    ╎    ╎    ╎    ╎    ╎    ╎   3     ...roSimd.jl:249; xoshiro_bulk_si...
    3╎    ╎    ╎    ╎    ╎    ╎    ╎    3     ...roSimd.jl:64; _shl17
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎   4     ...roSimd.jl:253; xoshiro_bulk_si...
-   4╎    ╎    ╎    ╎    ╎    ╎    ╎    4     ...roSimd.jl:76; _xor
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎   2     ...roSimd.jl:254; xoshiro_bulk_si...
-   2╎    ╎    ╎    ╎    ╎    ╎    ╎    2     ...roSimd.jl:76; _xor
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎   57    ...roSimd.jl:256; xoshiro_bulk_si...
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎    32    ...ointer.jl:118; unsafe_store!
-  32╎    ╎    ╎    ╎    ╎    ╎    ╎     32    ...ointer.jl:118; unsafe_store!
-  25╎    ╎    ╎    ╎    ╎    ╎    ╎    25    ...roSimd.jl:107; _bits2float
-    ╎    ╎    ╎    ╎    ╎    ╎ 186   REPL[2]:3; foo(n::Int64)
-    ╎    ╎    ╎    ╎    ╎    ╎  186   ...aymath.jl:47; +(A::Matrix{Flo...
-    ╎    ╎    ╎    ╎    ╎    ╎   186   ...adcast.jl:849; broadcast_prese...
-    ╎    ╎    ╎    ╎    ╎    ╎    186   ...adcast.jl:860; materialize
-    ╎    ╎    ╎    ╎    ╎    ╎     186   ...adcast.jl:885; copy
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 151   ...adcast.jl:913; copyto!
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎  151   ...adcast.jl:960; copyto!
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎   150   ...mdloop.jl:77; macro expansion
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎    150   ...adcast.jl:961; macro expansion
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎     85    ...adcast.jl:597; getindex
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 73    ...adcast.jl:642; _broadcast_geti...
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  73    ...adcast.jl:666; _getindex
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   73    ...adcast.jl:636; _broadcast_geti...
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    73    ...sional.jl:644; getindex
-  73╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     73    .../array.jl:862; getindex
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 12    ...adcast.jl:643; _broadcast_geti...
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  12    ...adcast.jl:670; _broadcast_geti...
-  12╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   12    .../float.jl:399; +
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎     65    ...sional.jl:646; setindex!
-  65╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 65    .../array.jl:905; setindex!
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎   1     ...mdloop.jl:78; macro expansion
-   1╎    ╎    ╎    ╎    ╎    ╎    ╎    1     @Base/int.jl:87; +
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 35    ...adcast.jl:211; similar
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎  35    ...adcast.jl:212; similar
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎   35    ...tarray.jl:828; similar
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎    35    ...tarray.jl:829; similar
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎     35    ...e/boot.jl:474; Array
-    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 35    ...e/boot.jl:467; Array
-  35╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  35    ...e/boot.jl:459; Array
-    ╎    ╎    ╎    ╎    ╎    ╎ 1408  REPL[2]:4; foo(n::Int64)
-    ╎    ╎    ╎    ╎    ╎    ╎  1408  ...matmul.jl:160; *
-    ╎    ╎    ╎    ╎    ╎    ╎   45    .../array.jl:378; similar
-    ╎    ╎    ╎    ╎    ╎    ╎    45    ...e/boot.jl:467; Array
-  45╎    ╎    ╎    ╎    ╎    ╎     45    ...e/boot.jl:459; Array
-    ╎    ╎    ╎    ╎    ╎    ╎   1363  ...matmul.jl:275; mul!
-    ╎    ╎    ╎    ╎    ╎    ╎    1363  ...matmul.jl:169; mul!
-    ╎    ╎    ╎    ╎    ╎    ╎     1363  ...matmul.jl:671; gemm_wrapper!(C...
-1363╎    ╎    ╎    ╎    ╎    ╎    ╎ 1363  ...c/blas.jl:1421; gemm!(transA::C...
-    ╎5193  @Base/task.jl:544; task_done_hook(t::Task)
-    ╎ 5193  @Base/task.jl:836; wait()
-5192╎  5193  @Base/task.jl:827; poptask(W::Base.InvasiveLinke...
-Total snapshots: 13848</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Profile.clear()</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h2 id="Introspection-and-debugging"><a class="docs-heading-anchor" href="#Introspection-and-debugging">Introspection and debugging</a><a id="Introspection-and-debugging-1"></a><a class="docs-heading-anchor-permalink" href="#Introspection-and-debugging" title="Permalink"></a></h2><p>To discover problems on the code more in general we can use several introspection functions that Julia provide us (some of which we have already saw):</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; # @less rand(3)  # Show the source code of the specific method invoked - use `q` to quit
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎   3     ...roSimd.jl:253; xoshiro_bulk_si...
+   3╎    ╎    ╎    ╎    ╎    ╎    ╎    3     ...roSimd.jl:76; _xor
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎   37    ...roSimd.jl:256; xoshiro_bulk_si...
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎    21    ...ointer.jl:118; unsafe_store!
+  21╎    ╎    ╎    ╎    ╎    ╎    ╎     21    ...ointer.jl:118; unsafe_store!
+  16╎    ╎    ╎    ╎    ╎    ╎    ╎    16    ...roSimd.jl:107; _bits2float
+    ╎    ╎    ╎    ╎    ╎    ╎ 125   REPL[2]:3; foo(n::Int64)
+    ╎    ╎    ╎    ╎    ╎    ╎  125   ...aymath.jl:47; +(A::Matrix{Flo...
+    ╎    ╎    ╎    ╎    ╎    ╎   125   ...adcast.jl:849; broadcast_prese...
+    ╎    ╎    ╎    ╎    ╎    ╎    125   ...adcast.jl:860; materialize
+    ╎    ╎    ╎    ╎    ╎    ╎     125   ...adcast.jl:885; copy
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 125   ...adcast.jl:913; copyto!
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎  125   ...adcast.jl:960; copyto!
+   1╎    ╎    ╎    ╎    ╎    ╎    ╎   1     ...mdloop.jl:75; macro expansion
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎   122   ...mdloop.jl:77; macro expansion
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎    122   ...adcast.jl:961; macro expansion
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎     94    ...adcast.jl:597; getindex
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 84    ...adcast.jl:642; _broadcast_geti...
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  84    ...adcast.jl:666; _getindex
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   84    ...adcast.jl:636; _broadcast_geti...
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    84    ...sional.jl:644; getindex
+  84╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     84    .../array.jl:862; getindex
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 10    ...adcast.jl:643; _broadcast_geti...
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  10    ...adcast.jl:670; _broadcast_geti...
+  10╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   10    .../float.jl:399; +
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎     28    ...sional.jl:646; setindex!
+  28╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 28    .../array.jl:905; setindex!
+    ╎    ╎    ╎    ╎    ╎    ╎    ╎   2     ...mdloop.jl:78; macro expansion
+   2╎    ╎    ╎    ╎    ╎    ╎    ╎    2     @Base/int.jl:87; +
+    ╎    ╎    ╎    ╎    ╎    ╎ 1077  REPL[2]:4; foo(n::Int64)
+    ╎    ╎    ╎    ╎    ╎    ╎  1077  ...matmul.jl:160; *
+    ╎    ╎    ╎    ╎    ╎    ╎   2     .../array.jl:378; similar
+    ╎    ╎    ╎    ╎    ╎    ╎    2     ...e/boot.jl:467; Array
+   2╎    ╎    ╎    ╎    ╎    ╎     2     ...e/boot.jl:459; Array
+    ╎    ╎    ╎    ╎    ╎    ╎   1075  ...matmul.jl:275; mul!
+    ╎    ╎    ╎    ╎    ╎    ╎    1075  ...matmul.jl:169; mul!
+    ╎    ╎    ╎    ╎    ╎    ╎     1075  ...matmul.jl:671; gemm_wrapper!(C...
+1075╎    ╎    ╎    ╎    ╎    ╎    ╎ 1075  ...c/blas.jl:1421; gemm!(transA::C...
+    ╎4212  @Base/task.jl:544; task_done_hook(t::Task)
+    ╎ 4212  @Base/task.jl:836; wait()
+4211╎  4212  @Base/task.jl:827; poptask(W::Base.InvasiveLinke...
+Total snapshots: 11232</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Profile.clear()</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h2 id="Introspection-and-debugging"><a class="docs-heading-anchor" href="#Introspection-and-debugging">Introspection and debugging</a><a id="Introspection-and-debugging-1"></a><a class="docs-heading-anchor-permalink" href="#Introspection-and-debugging" title="Permalink"></a></h2><p>To discover problems on the code more in general we can use several introspection functions that Julia provide us (some of which we have already saw):</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; # @less rand(3)  # Show the source code of the specific method invoked - use `q` to quit
        # @edit rand(3)  # Like @loss but it opens the source code in an editor
        methods(foo)</code><code class="nohighlight hljs ansi" style="display:block;"># 2 methods for generic function &quot;foo&quot;:
 [1] foo() in Main at REPL[1]:1
@@ -435,7 +544,7 @@ Total snapshots: 13848</code><br/><code class="language-julia-repl hljs" style="
 	andq	$-32, %rsp
 	subq	$96, %rsp
 	movq	%rdi, %rdx
-	movabsq	$140360722689661, %r13          # imm = 0x7FA847042E7D
+	movabsq	$140246701088381, %r13          # imm = 0x7F8DBACC9E7D
 	vxorps	%xmm0, %xmm0, %xmm0
 	vmovaps	%ymm0, (%rsp)
 	movq	%fs:0, %rax
@@ -448,7 +557,7 @@ Total snapshots: 13848</code><br/><code class="language-julia-repl hljs" style="
 	movq	%rax, 8(%rsp)
 	movq	%rsp, %rax
 	movq	%rax, (%r12)
-	movabsq	$140360587988592, %rdi          # imm = 0x7FA83EFCCE70
+	movabsq	$140245698022384, %rdi          # imm = 0x7F8D7F030BF0
 	movq	%rdx, %rsi
 	vzeroupper
 	callq	*%r13
@@ -524,7 +633,7 @@ L176:
 	movq	24(%rax), %rsi
 	movq	32(%rax), %rdx
 	movq	%rax, 16(%rsp)
-	movabsq	$140360587988592, %rdi          # imm = 0x7FA83EFCCE70
+	movabsq	$140245698022384, %rdi          # imm = 0x7F8D7F030BF0
 ; ││└
 ; ││┌ @ array.jl:378 within `similar`
 ; │││┌ @ boot.jl:467 within `Array` @ boot.jl:459
@@ -554,7 +663,7 @@ L176:
 	retq
 	nopw	%cs:(%rax,%rax)
 ; └</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @code_llvm foo(3)</code><code class="nohighlight hljs ansi" style="display:block;">;  @ REPL[2]:1 within `foo`
-define nonnull {}* @julia_foo_12481(i64 signext %0) #0 {
+define nonnull {}* @julia_foo_22865(i64 signext %0) #0 {
 top:
   %1 = alloca [2 x {}*], align 8
   %gcframe3 = alloca [4 x {}*], align 16
@@ -577,7 +686,7 @@ top:
     store {}** %6, {}*** %5, align 8
     %7 = bitcast {}*** %pgcstack to {}***
     store {}** %gcframe3.sub, {}*** %7, align 8
-    %8 = call nonnull {}* inttoptr (i64 140360722689661 to {}* ({}*, i64, i64)*)({}* inttoptr (i64 140360587988592 to {}*), i64 %0, i64 %0)
+    %8 = call nonnull {}* inttoptr (i64 140246701088381 to {}* ({}*, i64, i64)*)({}* inttoptr (i64 140245698022384 to {}*), i64 %0, i64 %0)
 ; │└
 ; │┌ @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.7/Random/src/Random.jl:268 within `rand!` @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.7/Random/src/XoshiroSimd.jl:292
 ; ││┌ @ abstractarray.jl:1164 within `pointer`
@@ -606,7 +715,7 @@ L11:                                              ; preds = %top
      store {}* %8, {}** %17, align 16
 ; ││└
 ; ││┌ @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.7/Random/src/XoshiroSimd.jl:141 within `xoshiro_bulk`
-     %18 = call i64 @j_xoshiro_bulk_simd_12483(i64 zeroext %11, i64 signext %15) #0
+     %18 = call i64 @j_xoshiro_bulk_simd_22867(i64 zeroext %11, i64 signext %15) #0
 ; ││└
 ; ││┌ @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.7/Random/src/XoshiroSimd.jl:142 within `xoshiro_bulk`
 ; │││┌ @ int.jl:86 within `-`
@@ -637,7 +746,7 @@ L22:                                              ; preds = %L17
      store {}* %8, {}** %22, align 16
 ; ││└
 ; ││┌ @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.7/Random/src/XoshiroSimd.jl:146 within `xoshiro_bulk`
-     call void @j_xoshiro_bulk_nosimd_12484(i64 zeroext %value_phi, i64 signext %value_phi1) #0
+     call void @j_xoshiro_bulk_nosimd_22868(i64 zeroext %value_phi, i64 signext %value_phi1) #0
      br label %L25
 
 L25:                                              ; preds = %L22, %L17
@@ -648,7 +757,7 @@ L25:                                              ; preds = %L22, %L17
   store {}* %8, {}** %.sub, align 8
   %24 = getelementptr inbounds [2 x {}*], [2 x {}*]* %1, i64 0, i64 1
   store {}* %8, {}** %24, align 8
-  %25 = call nonnull {}* @&quot;j1_+_12485&quot;({}* inttoptr (i64 140360405655600 to {}*), {}** nonnull %.sub, i32 2)
+  %25 = call nonnull {}* @&quot;j1_+_22869&quot;({}* inttoptr (i64 140246384599088 to {}*), {}** nonnull %.sub, i32 2)
 ;  @ REPL[2]:4 within `foo`
 ; ┌ @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.7/LinearAlgebra/src/matmul.jl:160 within `*`
 ; │┌ @ array.jl:150 within `size`
@@ -663,12 +772,12 @@ L25:                                              ; preds = %L22, %L17
 ; │└
 ; │┌ @ array.jl:378 within `similar`
 ; ││┌ @ boot.jl:467 within `Array` @ boot.jl:459
-     %33 = call nonnull {}* inttoptr (i64 140360722689661 to {}* ({}*, i64, i64)*)({}* inttoptr (i64 140360587988592 to {}*), i64 %29, i64 %32)
+     %33 = call nonnull {}* inttoptr (i64 140246701088381 to {}* ({}*, i64, i64)*)({}* inttoptr (i64 140245698022384 to {}*), i64 %29, i64 %32)
      %34 = getelementptr inbounds [4 x {}*], [4 x {}*]* %gcframe3, i64 0, i64 3
      store {}* %33, {}** %34, align 8
 ; │└└
 ; │┌ @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.7/LinearAlgebra/src/matmul.jl:275 within `mul!` @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.7/LinearAlgebra/src/matmul.jl:169
-    %35 = call nonnull {}* @&quot;j_gemm_wrapper!_12486&quot;({}* nonnull %33, i32 zeroext 1308622848, i32 zeroext 1308622848, {}* nonnull %25, {}* nonnull %25, [2 x i8]* nocapture readonly @_j_const1) #0
+    %35 = call nonnull {}* @&quot;j_gemm_wrapper!_22870&quot;({}* nonnull %33, i32 zeroext 1308622848, i32 zeroext 1308622848, {}* nonnull %25, {}* nonnull %25, [2 x i8]* nocapture readonly @_j_const1) #0
     %36 = load {}*, {}** %4, align 8
     %37 = bitcast {}*** %pgcstack to {}**
     store {}* %36, {}** %37, align 8
@@ -817,7 +926,7 @@ L25:                                              ; preds = %L22, %L17
  -59.0
    0.0
  -60.0
-   0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime parentThreaded(100,20)     #  47 μs</code><code class="nohighlight hljs ansi" style="display:block;">  132.602 μs (22 allocations: 2.19 KiB)
+   0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; @btime parentThreaded(100,20)     #  47 μs</code><code class="nohighlight hljs ansi" style="display:block;">  132.902 μs (22 allocations: 2.19 KiB)
 20-element Vector{Float64}:
  -51.0
    0.0
@@ -873,4 +982,4 @@ function pf(n)
   return s
 end
 @btime  f(10000000) # median time: 11.1 ms   0 allocations
-@btime pf(10000000) # median time:  5.7 ms 145 allocations</code></pre><p>Note that also in this case the improvement is less than proportional with the number of processes we add</p><p>Details on parallel comutation can be found <a href="https://docs.julialang.org/en/v1/manual/parallel-computing/">on the official documentation</a>, including information to run nativelly Julia on GPUs or TPUs.</p><p><a href="https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/master/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0106-further_topics.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0105-custom_types.html">« 0105-custom types</a><a class="docs-footer-nextpage" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201-WranglingData.html">0201-WranglingData »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.10 on <span class="colophon-date" title="Thursday 10 February 2022 15:14">Thursday 10 February 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+@btime pf(10000000) # median time:  5.7 ms 145 allocations</code></pre><p>Note that also in this case the improvement is less than proportional with the number of processes we add</p><p>Details on parallel comutation can be found <a href="https://docs.julialang.org/en/v1/manual/parallel-computing/">on the official documentation</a>, including information to run nativelly Julia on GPUs or TPUs.</p><p><a href="https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0106-further_topics.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0105-custom_types.html">« 0105-custom types</a><a class="docs-footer-nextpage" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201-wrangling_data.html">0201-wrangling data »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.13 on <span class="colophon-date" title="Wednesday 2 March 2022 12:41">Wednesday 2 March 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

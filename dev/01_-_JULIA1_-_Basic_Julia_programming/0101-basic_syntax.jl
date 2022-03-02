@@ -120,8 +120,10 @@ d = 0/0
 b2 = mean([1,b,3])
 c2 = mean([1,c,3])
 b3 = mean(skipmissing([1,b,3]))
-b == missing
+b == missing # propagate
 ismissing(b)
+isequal(b,2)  # exception to the propagation rule, it allows comparations when one of the item may be missing
+isequal(b,missing)
 b4 = [1,missing,3]
 typeof(b4)
 eltype(b4)
