@@ -3,7 +3,7 @@ Introduction to Scientific Programming and Machine Learning with Julia
 
 https://github.com/sylvaticus/IntroSPMLJuliaCourse
 
-STATUS: Work in progress. The course is still being worked on.
+STATUS: Work in progress. The course is still being worked on (2021.03.04: the part on Julia is completed ;-) )
 
 Objectives: 
 1. Supply students with an operational knowledge of a modern and efficient general-purpose language that can be employed for the implementation of their research daily activities;
@@ -66,3 +66,17 @@ Videos (hosted on YouTube):
   - [Part B - Interoperability with other languages](https://www.youtube.com/watch?v=xK_Ug2gtQvU&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=21) (23:6)
   - [Part C - Performances and errors: profiling, debugging, introspection and exceptions](https://www.youtube.com/watch?v=vg8v_6oX2DM&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=22)(27:33)
   - [Part D - Parallel computation: multithreading, multiprocessing](https://www.youtube.com/watch?v=L849oXXCXFM&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=23) (20:3)
+
+
+### 02 JULIA2: Scientific Julia programming (2h:39:34)
+- Data Wrangling (1h:31:15)
+  - [Part A - Introduction and data import](https://www.youtube.com/watch?v=o3TiuZlxMKI&list=PLDIpPSqVuMmI4Dhiekw2y1wakzsaMSJVG&index=1) (18:28)
+  - [Part B - Getting insights](https://www.youtube.com/watch?v=_iQh9dddIUY&list=PLDIpPSqVuMmI4Dhiekw2y1wakzsaMSJVG&index=2) (25:26)
+  - [Part C - Edit data and structure](https://www.youtube.com/watch?v=qhhT-Ckyvag&list=PLDIpPSqVuMmI4Dhiekw2y1wakzsaMSJVG&index=3) (23:40)
+  - [Part D - Pivot, Split-Apply-Combine and export](https://www.youtube.com/watch?v=w1KcD8sJLok&list=PLDIpPSqVuMmI4Dhiekw2y1wakzsaMSJVG&index=4) (23:39)
+- Further topics (1h:08:19)
+  - [Part A - Plotting](https://www.youtube.com/watch?v=b-WkKMLd-Ws&list=PLDIpPSqVuMmI4Dhiekw2y1wakzsaMSJVG&index=5) (15:18)
+  - [Part B - Probabilities distributions and data fitting](https://www.youtube.com/watch?v=cfNXk2eiIFE&list=PLDIpPSqVuMmI4Dhiekw2y1wakzsaMSJVG&index=6) (11:55)
+  - [Part C - Constrained optimisation, the transport problem](https://www.youtube.com/watch?v=vxo7nOpnFSs&list=PLDIpPSqVuMmI4Dhiekw2y1wakzsaMSJVG&index=7) (24:59)
+  - [Part D - Nonlinear constrained optimisation, the optimal portfolio allocation](https://www.youtube.com/watch?v=_ypOlSwCC7U&list=PLDIpPSqVuMmI4Dhiekw2y1wakzsaMSJVG&index=8) (16:04)
+ 
