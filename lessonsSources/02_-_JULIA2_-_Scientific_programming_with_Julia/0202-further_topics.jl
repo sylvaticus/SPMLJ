@@ -37,7 +37,7 @@ using StatsPlots # no need to `using Plots` as `Plots` elements are reexported b
 # Let's start plotting a function. The FIRST TIME you invoke `plot` will take a while. This is the famous "time to first plot" problem due to the JIT compilation, but it refer only to the first plotting in a working session 
 plot(cos) # default [-5,+5] range
 plot!(x->x^2, -2,2 ) # more explicit, with ranges
-plot!(x->max(x,2), label="max function", linestyle=:dot, color=:black, title="Chart title", subtitle="Some lines", xlabel= "X axis", ylabel="Y axis", legend=:topleft) # a bit of design
+plot!(x->max(x,2), label="max function", linestyle=:dot, color=:black, title="Chart title", xlabel= "X axis", ylabel="Y axis", legend=:topleft) # a bit of design
 plot!(twinx(),x->20x,colour=RGB(20/255,120/255,13/255)) # secondary axis
 
 # ### Plotting data
@@ -267,7 +267,7 @@ end
 # The idea is that within the infinite possible allocations, the locus of those allocations for which is not possible to increase the portfolio profitability without increasing also its variance and the converse whose variance can not be lowered without at the same time lower its expected profitability are efficient in the Pareto meaning and form an "efficient frontier". Within this frontier the problem is to find the unique point that maximise the utility of the portfolio's owner given its risk aversion characteristic.
 # Graphically the problem is depicted i nthe following picture:
 
-![The efficient frontier and the owner utility curves](graph_eff_frontier_v2.png "The efficient frontier and the owner utility curves")
+# ![The efficient frontier and the owner utility curves](graph_eff_frontier_v2.png "The efficient frontier and the owner utility curves")
 
 
 # Data originally from the Institut national de l'information géographique et forestière (IGN) of France. See the paper [A. Dragicevic, A. Lobianco, A. Leblois (2016), ”Forest planning and productivity-risk trade-off through the Markowitz mean-variance model“, Forest Policy and Economics, Volume 64](http://dx.doi.org/10.1016/j.forpol.2015.12.010) for a thorough discussion of this model.
