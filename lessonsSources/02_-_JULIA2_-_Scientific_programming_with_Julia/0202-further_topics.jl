@@ -78,7 +78,7 @@ using Distributions
 # | Discrete uniform  | `DiscreteUniform(lRange,uRange)`  | Uniform            | `Uniform(lRange,uRange)` |
 # | Bernoulli         | `Bernoulli(p)`                    | Exponential        | `Exponential(rate)`      |
 # | Binomial          | `Binomial(n,p)`                   | Laplace            | `Laplace(loc, scale)`    |
-# | Categorical       | `Categorical(ps)`                 | Normal             | `Normal(μ,σ)`    |
+# | Categorical       | `Categorical(ps)`                 | Normal             | `Normal(μ,σ)`            |
 # | Multinomial       | `Multinomial(n, ps)`              | Erlang             | `Erlang(n,rate)`         |
 # | Geometric         | `Geometric(p)`                    | Cauchy             | `Cauchy(μ, σ)`           |
 # | Hypergeometric    | `Hypergeometric(nS, nF, nTrials)` | Chisq              | `Chisq(df)`              |
@@ -96,6 +96,7 @@ quantile(d,0.9)
 cdf(d,13.844)
 pdf(d,0)
 sample = rand(d,1000)
+rand(d,10,2,3)
 
 density(sample)
 plot!(d)
@@ -381,6 +382,7 @@ end
 αs = [1000,100,10,1,0.1,0.05,0.02,0.01]
 pOptScores = Array{Float64,2}(undef,0,2)
 for α in αs
+    global pOptScore
     pVar,pY =computeOptimalPortfolio(species,y,σ,α)
     pOptScores = vcat(pOptScores,[pVar pY])
 end
@@ -389,6 +391,7 @@ scatter!(pOptScores[:,1],pOptScores[:,2],colour=:red)
 αs = [82.45,50,30,20,15,12,10,9,8,7,6,5]
 pOptScores = Array{Float64,2}(undef,0,2)
 for α in αs
+    global pOptScore
     pVar,pY =computeOptimalPortfolio(species,y,σ,α)
     pOptScores = vcat(pOptScores,[pVar pY])
 end
