@@ -149,6 +149,8 @@ plot!(data.age, residuals, seriestype=:bar, label = "Residuals")
 
 using  JuMP, GLPK, DataFrames, CSV
 
+# #### "Sets" and exogenous parameters definition
+
 # index sets
 orig = ["Epinal", "Bordeaux", "Grenoble"] # plant/sawmills origin of timber
 dest = ["Paris", "Lyon", "Nantes", "Tulouse", "Lille", "Marseille", "Strasbourg"] # markets
@@ -195,12 +197,18 @@ Pannels  Grenoble 26    14   17     13      31    104       20
 """), DataFrame, delim=" ", ignorerepeated=true,copycols=true)
 cost = Dict( (r[:prod],r[:orig],d) => r[Symbol(d)] for r in eachrow(costtable), d in dest)
 
+# #### Optimisation model definition
+
 trmodel = Model(GLPK.Optimizer)
 set_optimizer_attribute(trmodel, "msg_lev", GLPK.GLP_MSG_ON)
+
+# #### Model's endogenous variables definition
 
 @variables trmodel begin
     x[p in prod, o in orig, d in dest] >= 0
 end
+
+# #### Constraints definition
 
 @constraints trmodel begin
     supply[p in prod, o in orig], # observe supply limit at plant/sawmill origin o
@@ -211,14 +219,22 @@ end
         sum(x[p,o,d] for p in prod) <= limit[o,d]
 end
 
+# #### Objective function definition
 @objective trmodel Min begin
     sum(cost[p,o,d] * x[p,o,d] for p in prod, o in orig, d in dest)
 end
 
+# #### Human-readable visualisatio nof the model
+
 print(trmodel)
 
+# #### Model resolution
 optimize!(trmodel)
 status = termination_status(trmodel)
+
+# #### Post-resolution information retrieval 
+
+# Here, after the model has been "solved", we can retrieve information as the optimal level of the endogenous variables, the value of the opjective function at these optimal levels and the shadow costs of the contraints.
 
 if (status == MOI.OPTIMAL || status == MOI.LOCALLY_SOLVED || status == MOI.TIME_LIMIT) && has_values(trmodel)
     println("#################################################################")
@@ -244,12 +260,15 @@ else
 end
 
 
-
 # ### A nonlinear example: portfolio optimisation
 
 # The problem objective is to choose the shares of different assets in the portfolio (here forest species, but the example is exactly the same considering other assets, for example financial investments) that maximise the portfolio expected returns while minimising its expected variance under the portfolio owner risk aversion risk.
 # Here the "returns" are based on the timber production and the covariance between individual species of the portfolio is based on the observed volume growth covariances.
 # The idea is that within the infinite possible allocations, the locus of those allocations for which is not possible to increase the portfolio profitability without increasing also its variance and the converse whose variance can not be lowered without at the same time lower its expected profitability are efficient in the Pareto meaning and form an "efficient frontier". Within this frontier the problem is to find the unique point that maximise the utility of the portfolio's owner given its risk aversion characteristic.
+# Graphically the problem is depicted i nthe following picture:
+
+![The efficient frontier and the owner utility curves](graph_eff_frontier_v2.png "The efficient frontier and the owner utility curves")
+
 
 # Data originally from the Institut national de l'information géographique et forestière (IGN) of France. See the paper [A. Dragicevic, A. Lobianco, A. Leblois (2016), ”Forest planning and productivity-risk trade-off through the Markowitz mean-variance model“, Forest Policy and Economics, Volume 64](http://dx.doi.org/10.1016/j.forpol.2015.12.010) for a thorough discussion of this model.
 
@@ -288,8 +307,9 @@ import BetaML.Utils:softmax
 
 pScores = Array{Float64,2}(undef,0,2)
 for i in 1:nSamples
-    pVar = sum(shares[i,j1] * shares[i,j2] * σ[species[j1],species[j2]] for j1 in 1:nSpecies, j2 in 1:nSpecies)
-    pY   = sum(shares[i,j]*y[species[j]] for j in 1:nSpecies)
+    global pScores
+    pVar    = sum(shares[i,j1] * shares[i,j2] * σ[species[j1],species[j2]] for j1 in 1:nSpecies, j2 in 1:nSpecies)
+    pY      = sum(shares[i,j]*y[species[j]] for j in 1:nSpecies)
     pScores = vcat(pScores,[pVar pY])
 end
 
