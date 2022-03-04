@@ -134,7 +134,7 @@ plot!(data.age, residuals, seriestype=:bar, label = "Residuals")
 
 # ## Constrained optimisation
 
-# `JuMP` is the leading library to express complex optimisation problems in a clear, mathematical friendly syntax, compute the information required by the solver engines to solve the optimisatio nproblem, pass the problem to the aforementioned solver engines and retrieve the solutions.
+# `JuMP` is the leading library to express complex optimisation problems in a clear, mathematical friendly syntax, compute the information required by the solver engines to solve the optimisation problem, pass the problem to the aforementioned solver engines and retrieve the solutions.
 
 # JuMP has the same flexibility and expressivity of dedicated _algeabric modelling languages_ as `GAMS` or `AMPL` but with the advantage of being a library within a much more general programming language, with larger community, development tools, language constructs and possibility to interface the specific "optimisation component" of a model with the rest of the model.
 
@@ -268,7 +268,7 @@ end
 # The idea is that within the infinite possible allocations, the locus of those allocations for which is not possible to increase the portfolio profitability without increasing also its variance and the converse whose variance can not be lowered without at the same time lower its expected profitability are efficient in the Pareto meaning and form an "efficient frontier". Within this frontier the problem is to find the unique point that maximise the utility of the portfolio's owner given its risk aversion characteristic.
 # Graphically the problem is depicted i nthe following picture:
 
-# ![The efficient frontier and the owner utility curves](graph_eff_frontier_v2.png "The efficient frontier and the owner utility curves")
+# ![The efficient frontier and the owner utility curves](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/graph_eff_frontier_v2.png "The efficient frontier and the owner utility curves")
 
 
 # Data originally from the Institut national de l'information géographique et forestière (IGN) of France. See the paper [A. Dragicevic, A. Lobianco, A. Leblois (2016), ”Forest planning and productivity-risk trade-off through the Markowitz mean-variance model“, Forest Policy and Economics, Volume 64](http://dx.doi.org/10.1016/j.forpol.2015.12.010) for a thorough discussion of this model.
