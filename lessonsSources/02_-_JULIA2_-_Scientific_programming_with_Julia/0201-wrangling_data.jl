@@ -219,7 +219,7 @@ end
 #     See also the section [`Missingness implementations`](@ref) for a general discussion on missing values
 
 df = copy(data)
-# df[3,"forarea"]  = missing # Error, type is Flat64, not Union{Float64,Missing}
+## df[3,"forarea"]  = missing # Error, type is Flat64, not Union{Float64,Missing}
 df.forarea = allowmissing(df.forarea) # also disallowmissing
 allowmissing!(df)
 df[3,"forarea"]  = missing
@@ -232,7 +232,7 @@ collect(skipmissing(df.forarea))
 completecases(df)
 completecases(df[!,["forarea","forvol"]])
 [df[ismissing.(df[!,col]), col] .= 0 for col in names(df) if nonmissingtype(eltype(df[!,col])) <: Number] # Replace `missing` with `0` values in all numeric columns, like `Float64` and `Int64`;
-[df[ismissing.(df[!,col]), col] .= "" for col in names(df) if nonmissingtype(eltype(df[!,col])) <: String] # Replace `missing` with `""` values in all string columns;
+[df[ismissing.(df[!,col]), col] .= "" for col in names(df) if nonmissingtype(eltype(df[!,col])) <: AbstractString] # Replace `missing` with `""` values in all string columns;
 df
 
 # ## Editing data
@@ -270,11 +270,12 @@ df.Year2 = categorical(df.Year2)
 transform!(df, names(df, AbstractString) .=> categorical, renamecols=false) # transform to categorical all string columns
 
 # !!! warning
-#     Attention that while the memory to stroe the data decreases, and grouping is way more efficient, filtering with categorical values is not necessarily quicker (indeed it can be a bit slower)
+#     Attention that while the memory to store the data decreases, and grouping is way more efficient, filtering with categorical values is not necessarily quicker (indeed it can be a bit slower)
 
 levels(df.Year2)
 levels!(df.Country,["Sweden","Germany","France","Italy"]) # Let you define a personalised order, useful for ordered data
 sort(df.Country)
+sort!(df,"Country")
 df.Years2 = unwrap.(df.Year2) # convert a categorical array into a normal one.
 
 # ### Joining dataframes
@@ -321,7 +322,7 @@ wideWideDf = outerjoin(wideArea,wideVols,on="Country")
 
 # ## The Split-Apply-Combine strategy
 
-# Aka "divide and conquer". Rather than try to modify the dataset direclty, we first split it in subparts, we work on each subpart and then we recombine them in a target tadaset
+# Aka "divide and conquer". Rather than try to modify the dataset direclty, we first split it in subparts, we work on each subpart and then we recombine them in a target dataset
 
 using Statistics # for `mean`
 groupby(data,["Country","Year"]) # The "split" part
@@ -333,13 +334,13 @@ combine(groupby(data,["Year"])) do subdf # slower
     (sumarea = sum(subdf.forarea), sumvol = sum(subdf.forvol), nCountries = size(subdf,1))
 end
 # Cumulative computation:
-combine(groupby(data,["Year"])) do subdf # slower
+a = combine(groupby(data,["Year"])) do subdf # slower
     (country = subdf.Country, area = subdf.forarea, cumArea = cumsum(subdf.forarea))
 end
 
 # Note in these examples that while in the aggregation we was returning a _single record_ for each subgroup (hence we did some dimensionality reduction) in the cumulative compuation we still output the whole subgroup, so the combined dataframe in output has the same number of rows as the original dataframe.
 
-# An alternative approach is to use the `@linq` macro from the `DatAFrameMEta` package that provide a R's `splyr`-like query language using piped data: 
+# An alternative approach is to use the `@linq` macro from the `DatAFrameMEta` package that provide a R's `dplyr`-like query language using piped data: 
 using DataFramesMeta
 dfCum = @linq data |>
             groupby([:Year]) |>
@@ -384,3 +385,7 @@ CSV.write("outdata.csv",data) # see options at the beginning of segment in the i
 # ### Saving as OpenDocument spreadsheet
 
 ods_write("outdata.ods",Dict(("myData",3,2) => data)) # exported starting on cell B3 of sheet "myData"
+
+# ### Saving as Excel spreadsheet
+XLSX.writetable("outdata.xlsx",myData = (collect(eachcol(data)),names(data)))
+

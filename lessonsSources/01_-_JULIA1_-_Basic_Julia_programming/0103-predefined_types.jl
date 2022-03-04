@@ -17,7 +17,7 @@ using Pkg
 Pkg.activate(".")     
 # If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 # Pkg.resolve()   
-# Pkg.instantiate()
+# Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
 Random.seed!(123)
 using InteractiveUtils # loaded automatically when working... interactively
