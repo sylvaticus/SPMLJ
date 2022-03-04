@@ -382,7 +382,7 @@ end
 αs = [1000,100,10,1,0.1,0.05,0.02,0.01]
 pOptScores = Array{Float64,2}(undef,0,2)
 for α in αs
-    global pOptScore
+    global pOptScores
     pVar,pY =computeOptimalPortfolio(species,y,σ,α)
     pOptScores = vcat(pOptScores,[pVar pY])
 end
@@ -391,7 +391,7 @@ scatter!(pOptScores[:,1],pOptScores[:,2],colour=:red)
 αs = [82.45,50,30,20,15,12,10,9,8,7,6,5]
 pOptScores = Array{Float64,2}(undef,0,2)
 for α in αs
-    global pOptScore
+    global pOptScores
     pVar,pY =computeOptimalPortfolio(species,y,σ,α)
     pOptScores = vcat(pOptScores,[pVar pY])
 end
