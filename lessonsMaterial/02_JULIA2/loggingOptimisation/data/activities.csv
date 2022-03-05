@@ -1,0 +1,13 @@
+label;gm;integer
+Exploit Coppices;0;0
+Exploit High Forest;0;0
+Sell Fuelwood;30;0
+Sell Industrial Wood;50;0
+Buy liquidity;-0.08;0
+Sell liquidity;0.01;0
+Rent workers;-40;0
+Buy Chain saw;-20;1
+Buy Tractor;-2666.66666666667;1
+Buy Full-logging eq.;-20000;1
+Buy coppices Stumpage;-800;0
+Buy High forest Stumpage;-1200;0
