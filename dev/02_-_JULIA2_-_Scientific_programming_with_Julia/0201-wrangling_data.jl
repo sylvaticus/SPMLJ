@@ -223,7 +223,7 @@ df = copy(data)
 df.forarea = allowmissing(df.forarea) # also disallowmissing
 allowmissing!(df)
 df[3,"forarea"]  = missing
-df[6,"forarea"]   = missing
+df[6,"forarea"]  = missing
 df[6,"Country"]  = missing
 nMissings        = length(findall(x -> ismissing(x), df.forarea)) # Count `missing` values in a column.
 dropmissing(df)
