@@ -706,11 +706,11 @@ iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
    0 -1.0691173e-01 9.60e-01 8.33e-01  -1.0 0.00e+00    -  0.00e+00 0.00e+00   0
    1 -2.6796169e+00 0.00e+00 2.26e+01  -1.7 2.46e-01    -  4.19e-02 1.00e+00f  1
    2 -3.2598524e+00 0.00e+00 2.13e+01  -1.7 6.87e+00    -  4.95e-02 5.88e-02f  1
-   3 -3.2590630e+00 1.11e-16 1.93e+01  -1.7 1.61e-01    -  1.00e+00 9.81e-02f  2
+   3 -3.2590630e+00 0.00e+00 1.93e+01  -1.7 1.61e-01    -  1.00e+00 9.81e-02f  2
    4 -3.2586433e+00 0.00e+00 2.00e-07  -1.7 1.45e-02    -  1.00e+00 1.00e+00f  1
-   5 -3.2971652e+00 0.00e+00 4.96e-03  -3.8 7.04e-02    -  9.08e-01 1.00e+00f  1
+   5 -3.2971652e+00 1.11e-16 4.96e-03  -3.8 7.04e-02    -  9.08e-01 1.00e+00f  1
    6 -3.2983547e+00 0.00e+00 1.50e-09  -3.8 2.19e-02    -  1.00e+00 1.00e+00f  1
-   7 -3.2986538e+00 0.00e+00 1.84e-11  -5.7 2.93e-03    -  1.00e+00 1.00e+00f  1
+   7 -3.2986538e+00 1.11e-16 1.84e-11  -5.7 2.93e-03    -  1.00e+00 1.00e+00f  1
    8 -3.2986576e+00 0.00e+00 2.55e-14  -8.6 4.72e-05    -  1.00e+00 1.00e+00f  1
 
 Number of Iterations....: 8
@@ -720,8 +720,8 @@ Objective...............:  -3.2986575928648394e+00   -3.2986575928648394e+00
 Dual infeasibility......:   2.5521078983849546e-14    2.5521078983849546e-14
 Constraint violation....:   0.0000000000000000e+00    0.0000000000000000e+00
 Variable bound violation:   8.2731345336654260e-09    8.2731345336654260e-09
-Complementarity.........:   3.5155177510884357e-09    3.5155177510884357e-09
-Overall NLP error.......:   3.5155177510884357e-09    3.5155177510884357e-09
+Complementarity.........:   3.5155177510884348e-09    3.5155177510884348e-09
+Overall NLP error.......:   3.5155177510884348e-09    3.5155177510884348e-09
 
 
 Number of objective function evaluations             = 11
@@ -737,12 +737,12 @@ EXIT: Optimal Solution Found.</code><br/><code class="language-julia-repl hljs" 
     Dimension 1, [&quot;Chêne pédonculé&quot;, &quot;Chêne sessile&quot;, &quot;Hêtre&quot;, &quot;Pin sylvestre&quot;]
 And data, a 4-element Vector{Float64}:
  -8.273134533665426e-9
- -7.695921190269722e-9
-  0.7428494846386048
-  0.25715053133045096</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; [println(&quot;$sp = $(optShares[sp])&quot;) for sp in species];</code><code class="nohighlight hljs ansi" style="display:block;">Chêne pédonculé = -8.273134533665426e-9
-Chêne sessile = -7.695921190269722e-9
-Hêtre = 0.7428494846386048
-Pin sylvestre = 0.25715053133045096</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pOptVar = sum(optShares[species[j1]] * optShares[species[j2]] * σ[species[j1],species[j2]] for j1 in 1:nSpecies, j2 in 1:nSpecies)</code><code class="nohighlight hljs ansi" style="display:block;">0.0881449684288383</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pOptY   = sum(optShares[species[j]]*y[species[j]] for j in 1:nSpecies)</code><code class="nohighlight hljs ansi" style="display:block;">3.307472089707723</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function computeOptimalPortfolio(species,y,σ,α)
+ -7.695921190269298e-9
+  0.7428494846386049
+  0.2571505313304509</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; [println(&quot;$sp = $(optShares[sp])&quot;) for sp in species];</code><code class="nohighlight hljs ansi" style="display:block;">Chêne pédonculé = -8.273134533665426e-9
+Chêne sessile = -7.695921190269298e-9
+Hêtre = 0.7428494846386049
+Pin sylvestre = 0.2571505313304509</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pOptVar = sum(optShares[species[j1]] * optShares[species[j2]] * σ[species[j1],species[j2]] for j1 in 1:nSpecies, j2 in 1:nSpecies)</code><code class="nohighlight hljs ansi" style="display:block;">0.08814496842883826</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pOptY   = sum(optShares[species[j]]*y[species[j]] for j in 1:nSpecies)</code><code class="nohighlight hljs ansi" style="display:block;">3.307472089707723</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function computeOptimalPortfolio(species,y,σ,α)
            port = Model(Ipopt.Optimizer)
            set_optimizer_attribute(port, &quot;print_level&quot;, 0)
            @variables port begin
@@ -784,4 +784,4 @@ Pin sylvestre = 0.25715053133045096</code><br/><code class="language-julia-repl 
            global pOptScores
            pVar,pY =computeOptimalPortfolio(species,y,σ,α)
            pOptScores = vcat(pOptScores,[pVar pY])
-       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; scatter(pOptScores[:,1],pOptScores[:,2],colour=:red)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><p><a href="https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/0202-further_topics.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0201-wrangling_data.html">« 0201-wrangling data</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.13 on <span class="colophon-date" title="Saturday 5 March 2022 08:26">Saturday 5 March 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; scatter(pOptScores[:,1],pOptScores[:,2],colour=:red)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><p><a href="https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/0202-further_topics.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0201-wrangling_data.html">« 0201-wrangling data</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.13 on <span class="colophon-date" title="Saturday 5 March 2022 19:03">Saturday 5 March 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
