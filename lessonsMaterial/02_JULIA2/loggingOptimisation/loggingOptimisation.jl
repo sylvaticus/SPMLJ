@@ -1,9 +1,9 @@
 ################################################################################
 #    loggingOptimisation Problem
 #
-# You are the decision-maker of a productive unit (here a logging company) and have a set of possible activities to undergo.
+# You are the decision-maker of a production unit (here a logging company) and have a set of possible activities to undergo.
 # How do you choose the activities that lead to a maximisation of the unit's profit? 
-# The objective of this problem is hence to find the optimal level of activities to maximise the company profit, given (a) the profitability (gross margin) of each activity, (b) the resources available to the company and (c) the matrix of technical coefficients that link each activity to the resources needed (positive coefficient) or provided (negative coefficient) by that specific activity.
+# The objective of this problem is hence to find the optimal level of activities to maximise the company profit, given (a) the profitability (gross margin) of each activity, (b) the resources available to the company and (c) the matrix of technical coefficients that link each activity to the resources required (positive coefficient) or provided (negative coefficient) by that specific activity.
 
 # The problem is the same as those in the SpreadSheet file "Optimal production mix.ods" (available in the `data` folder) and can be solved in LibreOffice by using the "Solver tool" as indicated in that file. You can use it to check your results.
 #

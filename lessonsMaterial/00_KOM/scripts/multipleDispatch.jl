@@ -1,7 +1,7 @@
 
 
 X = [1 2 3; 4 5 6]
-Y =  [[1,2,3] [4,5,6]]
+Y = [[1,2,3] [4,5,6]]
 
 # Low level function:
 mydivide(x,y) = x/y
