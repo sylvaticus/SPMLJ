@@ -11,7 +11,7 @@ The features are numerical, and possibly highly multi-dimensional.
 The Perceptron algorithm is a method to find the parameters of a linear classifier that minimise classification errors. These classifiers will be nothing else than a hyperplane (the generalisation of the concept of "plane" on multiple dimensions) that divides our space into two parts, with the hyperplane itself forming the boundaries between the two parts, and we will use this hyperplane to discriminate all points on one side of it v.s. all points on the other side.
 For example, the following figure shows a hyperplane in 2D (i.e. a line) used to classify some points:
 
-![A linear classifier in 2D](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning_1/imgs/linearClassifier.png "A linear classifier in 2D")
+![A linear classifier in 2D](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/linearClassifier.png)
 
 All points in the direction of the arrow are "positive", all points in the opposite direction are negative.
 From the figure we can deduce a few things in that example:
@@ -49,7 +49,7 @@ We randomly split our dataset into three subsets:
 - finally the **test set** is used to judge the overall performances of the algorithm when it is used with the "best" hyperparameter (we can't use the validation set for this, as the hyperparameters are "fitted" based on it).
 
 
-![Train, validation and test set](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning_1/imgs/trainingValidationTestSet.png "Train, validation and test set")
+![Train, validation and test set](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/trainingValidationTestSet.png "Train, validation and test set")
 
 In practice, we have various ways to look for the "best hyperparameters".. grid search over the hyperparameters space, random search, gradient-based methods... In all cases, we run the algorithm under the training set, and we evaluate it under the validation set until we find the "best" hyperparameter set. At this point, with the "best" hyperparameters we train one last time the algorithm using the training set and we evaluate it under the test set.
 

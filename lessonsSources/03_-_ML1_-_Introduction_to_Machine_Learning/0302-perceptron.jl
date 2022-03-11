@@ -115,9 +115,11 @@ function perceptronOrigin(X,y,epochs=1;verbose=false)
                 θ = perceptronUpdate(θ,y[n],X[n,:])
                 if verbose
                     println("**update! New theta: $θ")
-                    plot2DClassifierWithData(X,y,θ, origin=true)
                 end
             end
+        end
+        if verbose
+            plot2DClassifierWithData(X,y,θ, origin=true)
         end
     end
     return θ
@@ -197,12 +199,12 @@ function train!(model::Perceptron,X,y,ops=PerceptronTrainingOptions()::TrainingO
                 θ = update!(model,X[n,:],y[n])
                 if verbose
                     println("**update! New theta: $(model.θ)")
-                    plot2DClassifierWithData(X,y,θ)
                 end
             end
         end
         if verbose
             println("Epoch $t errors: $errors")
+            plot2DClassifierWithData(X,y,model.θ)
         end
     end
     return model.θ
@@ -266,7 +268,9 @@ bestShuffle = false
 bestAcc     = 0.0
 
 for e in epochsSet, s in shuffleSet
-    ops     = PerceptronTrainingOptions(epochs=e,shuffle=s)
+    global bestE, bestShuffle, bestAcc
+    local acc
+    local ops     = PerceptronTrainingOptions(epochs=e,shuffle=s)
     (acc,_) = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
                     (xtrain,ytrain) = trainData; (xval,yval) = valData
                     m               = Perceptron(zeros(size(xtrain,2)+1))
