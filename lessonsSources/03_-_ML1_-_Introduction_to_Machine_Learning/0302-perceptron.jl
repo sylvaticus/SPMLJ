@@ -24,7 +24,7 @@ Random.seed!(123)
 # ## Perceptron elementary operations
 
 using StatsPlots
-function plot2DClassifierWithData(X,y,θ;d1=1,d2=2,origin=false)
+function plot2DClassifierWithData(X,y,θ;d1=1,d2=2,origin=false,pid=1)
     (nR,nD) = size(X)
     colors = [y == -1 ? "red" : "green" for y in y]
     labels = [y == -1 ? "-1" : "+1" for y in y]
@@ -46,6 +46,7 @@ function plot2DClassifierWithData(X,y,θ;d1=1,d2=2,origin=false)
     end
     plot!([0,θ[d1]],[0,θ[d2]],arrow=true,color=:black,linewidth=2,label="")
     display(myplot)
+    savefig("currentPlot$(pid).svg");
 end
 isClassificationError(θ,y,x) =  y * (θ' * x) <= eps()
 perceptronUpdate(θ,y,x)      = return θ .+ y .* x 
@@ -61,11 +62,13 @@ y = [-1,-1]
 
 ϵ = isClassificationError(θ,y[1],X[1,:])
 θ = perceptronUpdate(θ,y[1],X[1,:])
-plot2DClassifierWithData(X,y,θ,origin=true)
+plot2DClassifierWithData(X,y,θ,origin=true,pid=1)
+# ![](currentPlot1.svg)
 ϵ = isClassificationError(θ,y[1],X[1,:])
 ϵ = isClassificationError(θ,y[2],X[2,:])
 θ = perceptronUpdate(θ,y[2],X[2,:])
-plot2DClassifierWithData(X,y,θ,origin=true)
+plot2DClassifierWithData(X,y,θ,origin=true,pid=2)
+# ![](currentPlot2.svg)
 ϵ = isClassificationError(θ,y[2],X[2,:])
 ϵ = isClassificationError(θ,y[1],X[1,:])
 
@@ -75,15 +78,18 @@ X = [ 2 4
 
 ϵ = isClassificationError(θ,y[1],X[1,:])
 θ = perceptronUpdate(θ,y[1],X[1,:])
-plot2DClassifierWithData(X,y,θ, origin=true)
+plot2DClassifierWithData(X,y,θ, origin=true,pid=3)
+# ![](currentPlot3.svg)
 ϵ = isClassificationError(θ,y[1],X[1,:])
 ϵ = isClassificationError(θ,y[2],X[2,:])
 θ = perceptronUpdate(θ,y[2],X[2,:])
-plot2DClassifierWithData(X,y,θ, origin=true)
+plot2DClassifierWithData(X,y,θ, origin=true,pid=4)
+# ![](currentPlot4.svg)
 ϵ = isClassificationError(θ,y[1],X[1,:])
 ϵ = isClassificationError(θ,y[2],X[2,:])
 θ = perceptronUpdate(θ,y[2],X[2,:])
-plot2DClassifierWithData(X,y,θ,origin=true)
+plot2DClassifierWithData(X,y,θ,origin=true,pid=5)
+# ![](currentPlot5.svg)
 ϵ = isClassificationError(θ,y[1],X[1,:])
 ϵ = isClassificationError(θ,y[2],X[2,:])
 θ
@@ -94,10 +100,12 @@ y = [-1,1]
 θ = θ₀
 ϵ = isClassificationError(θ,y[1],X[1,:])
 θ = perceptronUpdate(θ,y[1],X[1,:])
-plot2DClassifierWithData(X,y,θ, origin=true)
+plot2DClassifierWithData(X,y,θ, origin=true,pid=6)
+# ![](currentPlot6.svg)
 ϵ = isClassificationError(θ,y[2],X[2,:])
 θ = perceptronUpdate(θ,y[2],X[2,:])
-plot2DClassifierWithData(X,y,θ,origin=true)
+plot2DClassifierWithData(X,y,θ,origin=true,pid=7)
+# ![](currentPlot7.svg)
 
 
 
@@ -118,13 +126,12 @@ function perceptronOrigin(X,y,epochs=1;verbose=false)
                 end
             end
         end
-        if verbose
-            plot2DClassifierWithData(X,y,θ, origin=true)
-        end
     end
     return θ
 end
 θopt =  perceptronOrigin(X,y,verbose=true)
+plot2DClassifierWithData(X,y,θopt, origin=true,pid=8)
+# ![](currentPlot8.svg)
 
 
 using BetaML, DelimitedFiles
@@ -142,7 +149,7 @@ y                = convert(Array{Int64,1},copy(perceptronData[:,1]))
 # ## A better organisation
 
 # Now we rewrite the perceptron algorithm setting all the parameters in a structure and using what could be a generic interface for any supervised model. This is the approach used by most ML libraries.
-# We will see how to measure the classification error and as we are here we add the constant term with the constant addition to the data trick (there are better ways...)
+# We will see how to measure the classification error and as we are here we add the constant term with the constant addition to the data trick (note that editing every time the feature matrix is _NOT_ efficient and we do it here only for simplicity. A better way is to explicitly model the perceptron model with a constant parameter.)
 
 
 abstract type SupervisedModel end
@@ -185,7 +192,7 @@ function train!(model::Perceptron,X,y,ops=PerceptronTrainingOptions()::TrainingO
     nD += 1
     for t in 1:epochs
         errors = 0
-        if ops.shuffle
+        if ops.shuffle   # more efficient !
           idx = shuffle(1:nR)
           X = X[idx,:]
           y = y[idx]
@@ -204,24 +211,30 @@ function train!(model::Perceptron,X,y,ops=PerceptronTrainingOptions()::TrainingO
         end
         if verbose
             println("Epoch $t errors: $errors")
-            plot2DClassifierWithData(X,y,model.θ)
         end
     end
     return model.θ
 end
 
-# ## Testing the PErceptron algorithm
+# ## Testing the Perceptron algorithm
 
 m   = Perceptron(zeros(size(X,2)+1))
-ops = PerceptronTrainingOptions(verbose=true)
+ops = PerceptronTrainingOptions()
 train!(m,X,y,ops)
+plot2DClassifierWithData(X,y,m.θ,pid=9)
+# ![](currentPlot9.svg)
+
+
+
 ŷ = predict(m,X)
 inSampleAccuracy = sum(y .== ŷ)/length(y)
 
 # Let's see if shuffling and increasing epochs we improve the accuracy....
-ops = PerceptronTrainingOptions(verbose=true,epochs=5,shuffle=true)
+ops = PerceptronTrainingOptions(verbose=false,epochs=5,shuffle=true)
 m   = Perceptron(zeros(size(X,2)+1))
 train!(m,X,y,ops)
+plot2DClassifierWithData(X,y,m.θ,pid=10)
+# ![](currentPlot10.svg)
 ŷ = predict(m,X)
 inSampleAccuracy = sum(y .== ŷ)/length(y)
 
@@ -234,12 +247,16 @@ inSampleAccuracy = sum(y .== ŷ)/length(y)
 m             = Perceptron(zeros(size(X,2)+1))
 ops           = PerceptronTrainingOptions(epochs=5,shuffle=true)
 train!(m,xtrain,ytrain,ops)
+plot2DClassifierWithData(xtrain,ytrain,m.θ,pid=11)
+# ![](currentPlot11.svg)
 ŷtrain = predict(m,xtrain)
 trainAccuracy = accuracy(ŷtrain,ytrain)
 sum(ytrain  .== ŷtrain)/length(ytrain)
 ## @edit accuracy(ŷtrain,ytrain)
 ŷtest         = predict(m,xtest)
 testAccuracy  = accuracy(ŷtest,ytest)
+plot2DClassifierWithData(xtest,ytest,m.θ,pid=12)
+# ![](currentPlot12.svg)
 cfOut = ConfusionMatrix(ŷ,y)
 print(cfOut)
 
@@ -270,8 +287,8 @@ bestAcc     = 0.0
 for e in epochsSet, s in shuffleSet
     global bestE, bestShuffle, bestAcc
     local acc
-    local ops     = PerceptronTrainingOptions(epochs=e,shuffle=s)
-    (acc,_) = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
+    local ops  = PerceptronTrainingOptions(epochs=e,shuffle=s)
+    (acc,_)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
                     (xtrain,ytrain) = trainData; (xval,yval) = valData
                     m               = Perceptron(zeros(size(xtrain,2)+1))
                     train!(m,xtrain,ytrain,ops)
@@ -296,8 +313,5 @@ train!(m,xtrain,ytrain,ops)
 ŷtest           = predict(m,xtest)
 testAccuracy    = accuracy(ŷtest,ytest)
 
-plot2DClassifierWithData(xtest,ytest,m.θ)
-
-# test....
-using StatsPlots
-plot(sin)
+plot2DClassifierWithData(xtest,ytest,m.θ,pid=13)
+# ![](currentPlot13.svg)

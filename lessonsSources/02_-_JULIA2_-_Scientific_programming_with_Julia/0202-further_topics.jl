@@ -36,9 +36,17 @@ using StatsPlots # no need to `using Plots` as `Plots` elements are reexported b
 
 # Let's start plotting a function. The FIRST TIME you invoke `plot` will take a while. This is the famous "time to first plot" problem due to the JIT compilation, but it refer only to the first plotting in a working session 
 plot(cos) # default [-5,+5] range
+savefig("currentPlot1.svg"); #src
+# ![](currentPlot.svg)
 plot!(x->x^2, -2,2 ) # more explicit, with ranges
+savefig("currentPlot1.svg"); #src
+# ![](currentPlot.svg)
 plot!(x->max(x,2), label="max function", linestyle=:dot, color=:black, title="Chart title", xlabel= "X axis", ylabel="Y axis", legend=:topleft) # a bit of design
+savefig("currentPlot2.svg"); #src
+# ![](currentPlot2.svg)
 plot!(twinx(),x->20x,colour=RGB(20/255,120/255,13/255)) # secondary axis
+savefig("currentPlot3.svg"); #src
+# ![](currentPlot3.svg)
 
 # ### Plotting data
 
@@ -46,9 +54,17 @@ using DataFrames
 x = 11:15
 data = DataFrame(a=[4,8,6,6,3], b=[2,4,5,8,6], c=[20,40,15,5,30])
 plot(x, Matrix(data)) # x, series (in column)
+savefig("currentPlot4.svg"); #src
+# ![](currentPlot4.svg)
 @df data plot(x, :a, seriestype=:bar, legend=:topleft)
+savefig("currentPlot5.svg"); #src
+# ![](currentPlot5.svg)
 plot!(x, data.b, seriestype=:line)
+savefig("currentPlot6.svg"); #src
+# ![](currentPlot6.svg)
 scatter!(twinx(), x, data.c) # alias for `plot!(..., seriestype=:scatter)`
+savefig("currentPlot7.svg"); #src
+# ![](currentPlot7.svg)
 
 # ### Layouts with multiple plots
 
@@ -57,6 +73,8 @@ p1 = plot(x, data.a)
 p2 = scatter(x, data.b)
 p3 = plot(x, data.c)
 plot(p1, p2, p3, layout = l)
+savefig("currentPlot8.svg"); #src
+# ![](currentPlot8.svg)
 
 # ### Saving the plot..
 savefig("myplot.png")
@@ -99,7 +117,11 @@ sample = rand(d,1000)
 rand(d,10,2,3)
 
 density(sample)
+savefig("currentPlot9.svg"); #src
+# ![](currentPlot9.svg)
 plot!(d)
+savefig("currentPlot10.svg"); #src
+# ![](currentPlot10.svg)
 fit(Normal, sample) # using MLE 
 
 # ## Curve fitting
@@ -112,6 +134,8 @@ data = DataFrame(
     vol = [64,112,170,231,293,352,408,459,505,546,582,613,640,663,683]
 ) # Scots Pine, data from the UK Forestry Commission https://web.archive.org/web/20170119072737/http://forestry.gov.uk/pdf/FCBK048.pdf/$FILE/FCBK048.pdf
 plot(data.vol)
+savefig("currentPlot11.svg"); #src
+# ![](currentPlot11.svg)
 
 logisticModel(age,parameters) = parameters[1]/(1+exp(-parameters[2] * (age-parameters[3]) ))
 logisticModelVec(age,parameters) = logisticModel.(age,Ref(parameters))
@@ -131,6 +155,8 @@ x = 0:maximum(data.age)*1.5
 plot(x->logisticModel(x,fitparams),0,maximum(x), label= "Fitted vols", legend=:topleft)
 plot!(data.age, data.vol, seriestype=:scatter, label = "Obs vols")
 plot!(data.age, residuals, seriestype=:bar, label = "Residuals")
+savefig("currentPlot12.svg"); #src
+# ![](currentPlot12.svg)
 
 # ## Constrained optimisation
 
@@ -268,7 +294,7 @@ end
 # The idea is that within the infinite possible allocations, the locus of those allocations for which is not possible to increase the portfolio profitability without increasing also its variance and the converse whose variance can not be lowered without at the same time lower its expected profitability are efficient in the Pareto meaning and form an "efficient frontier". Within this frontier the problem is to find the unique point that maximise the utility of the portfolio's owner given its risk aversion characteristic.
 # Graphically the problem is depicted i nthe following picture:
 
-# ![The efficient frontier and the owner utility curves](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/graph_eff_frontier_v2.png "The efficient frontier and the owner utility curves")
+# ![The efficient frontier and the owner utility curves](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/graph_eff_frontier_v2.png)
 
 
 # Data originally from the Institut national de l'information géographique et forestière (IGN) of France. See the paper [A. Dragicevic, A. Lobianco, A. Leblois (2016), ”Forest planning and productivity-risk trade-off through the Markowitz mean-variance model“, Forest Policy and Economics, Volume 64](http://dx.doi.org/10.1016/j.forpol.2015.12.010) for a thorough discussion of this model.
@@ -319,6 +345,8 @@ end
 #pY   = sum(goodShares[j]*y[species[j]] for j in 1:nSpecies)
 
 scatter(pScores[:,1],pScores[:,2],colour=:blue)
+savefig("currentPlot13.svg"); #src
+# ![](currentPlot13.svg)
 
 ################################################################################
 ### Finding (one) optimal portfolio ############################################
@@ -387,6 +415,8 @@ for α in αs
     pOptScores = vcat(pOptScores,[pVar pY])
 end
 scatter!(pOptScores[:,1],pOptScores[:,2],colour=:red)
+savefig("currentPlot14.svg"); #src
+# ![](currentPlot14.svg)
 
 αs = [82.45,50,30,20,15,12,10,9,8,7,6,5]
 pOptScores = Array{Float64,2}(undef,0,2)
@@ -397,5 +427,7 @@ for α in αs
 end
 
 scatter(pOptScores[:,1],pOptScores[:,2],colour=:red)
+savefig("currentPlot15.svg"); #src
+# ![](currentPlot15.svg)
 
 
