@@ -298,3 +298,6 @@ testAccuracy    = accuracy(ŷtest,ytest)
 
 plot2DClassifierWithData(xtest,ytest,m.θ)
 
+# test....
+using StatsPlots
+plot(sin)
