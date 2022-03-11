@@ -4,7 +4,7 @@ We start our journey on Machine Learning from the perceptron algorithm. This is 
 
 ## A linear classifier for the binary classification problem
 
-So, which is our problem? We are in the realm of supervised machine learning as we defined in the kick-off lesson, where the objective is to make some predictions over a component of the dataset (an unknown characteristic, or some future event...) that we call "label" based on other known characteristics of the data (that we call "features"), and we can "learn" this relation by "supervising" the algorithm, that is providing the algorithm with data from which we know both the features and the associated labels (across this course I'll often use "X" as a shortcut for the former, and "Y" for the later).
+So, which is our problem? We are in the realm of supervised machine learning as we defined in the kick-off lesson, where the objective is to make some predictions over a component of the dataset (an unknown characteristic, or some future event...) that we call "label" based on other known characteristics of the data (that we call "features"), and we can "learn" this relation by "supervising" the algorithm, that is providing the algorithm with data from which we know both the features and the associated labels (across this course I'll often use "X" as a shortcut for the former, and "Y" for the latter).
 More specifically we are in the realm of classification, where the labels are given a finite set of possible values, and we start from binary labels, where the values can only be -1 or +1 (it is easy then to use this binary classifier as the base for a multiclass classifier, e.g. using a so-called _one-vs-all_ strategy).
 The features are numerical, and possibly highly multi-dimensional.
 
@@ -58,7 +58,7 @@ In practice, we have various ways to look for the "best hyperparameters".. grid 
 Note that training and validation sets don't need to be the same sample across the whole process.
 Indeed a common technique is the so-called **K-folds cross-validation**:
 
-![5-folds CrossValidation](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning_1/imgs/5FoldsCrossValidation.png)
+![5-folds CrossValidation](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/5FoldsCrossValidation.png)
 
 Here we first randomly divide our whole dataset in a train/validation set and in the test set.
 For each possible hyperparameter set, we randomly partition the train/validation test in K sets. We use K-1 of them for training and the remaining one for computing the out-of-sample score of the model. We do that (keeping the same hyperparameters and the same partition) for all the different K subsets and we average the performances of the model with that given hyperparameters.
@@ -70,7 +70,7 @@ We can now start our analysis of the Perceptron algorithm.
 
 - We start with the parameters of the hyperplane all zeros $\theta = 0$
 - We check if, with this parameter, the classifier makes an error
-- If so, we progressively update the classifier using as the update function  $\theta^{n} = \theta^{n - 1} + y^n * x^i$.
+- If so, we progressively update the classifier using as the update function  $ere are better way\theta^{n} = \theta^{n - 1} + y^n * x^i$.
 
 As we start with $\theta^0 = \begin{bmatrix}0\\0\\...\end{bmatrix}$, the first attempt will always lead to an error and to a first "update" that will be $\theta^{1} = \begin{bmatrix}0\\0\\...\end{bmatrix} + y^1 * \begin{bmatrix}x^1_{d1}\\x^1_{d2}\\...\end{bmatrix}$.
 
@@ -82,7 +82,7 @@ We hence run a second update to obtain  $\theta^2 = \begin{bmatrix}-2\\-4\end{bm
 I let you see geometrically that this classifier correctly classify the two points:
 
 
-![Perceptron example over 2 points](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning_1/imgs/perceptron2PointsExample.png)
+![Perceptron example over 2 points](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/perceptron2PointsExample.png)
 
 More in general, we run the perceptron algorithm over the whole training set, starting from the 0 parameter vector and then going over all the training examples.
 And if the n-th example is a mistake, then we perform that update that we just discussed.
@@ -111,7 +111,7 @@ Typically, there are many solutions, but the algorithm will find one. And note t
 
 While the Perceptron algorithm finds _one_ possible classifier, it is clear that this may not be the "best" one. See the following figure:
 
-![Different linear classifiers over the same dataset](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning_1/imgs/differentLinearClassifiers.png)
+![Different linear classifiers over the same dataset](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/differentLinearClassifiers.png)
 
 Linear classifiers do generalise relatively well and the `epochs` parameter could be used as a form of regularisation. Still, we could end up with a perceptron classifier like in figure (a), very dependent on noisy data and that doesn't generalise well.
 Support Vector Machines (SVM, which we will not develop further in this course except in this small discussion) are linear classifiers that try to maximise the boundary with the classified data. So here we enter the realm of "optimisation", usually achieved employing a gradient-based approach that we'll see when discussing neural networks: it is no longer indifferent one classifier that separates the data from another, but SVM (should) retrieve _the_ classifier that is more "far away" from the two datasets, on both the directions (figure (b)).
@@ -124,7 +124,7 @@ The "good news" is that we can easily engineer our data performing non-linear tr
 
 For example in the left diagram in the figure below, the three points are not separable in one dimension:  
 
-![Inseparable points becoming separable in higher dimensions](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning_1/imgs/separablePointsInHigherDimensions.png)
+![Inseparable points becoming separable in higher dimensions](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/separablePointsInHigherDimensions.png)
 
 However, we can "engineer" our dataset by creating a new dimension that is the square of our original dimension (diagram on the right): the points are now clearly separable by a linear classifier !
 
