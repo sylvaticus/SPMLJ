@@ -92,46 +92,46 @@
   15 │    90    683</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot(data.vol)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><p><img src="currentPlot11.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; logisticModel(age,parameters) = parameters[1]/(1+exp(-parameters[2] * (age-parameters[3]) ))</code><code class="nohighlight hljs ansi" style="display:block;">logisticModel (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; logisticModelVec(age,parameters) = logisticModel.(age,Ref(parameters))</code><code class="nohighlight hljs ansi" style="display:block;">logisticModelVec (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; initialParameters = [1000,0.02,50] #max growth; growth rate, mid age</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
  1000.0
     0.02
-   50.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fitobject         = curve_fit(logisticModelVec, data.age, data.vol, initialParameters)</code><code class="nohighlight hljs ansi" style="display:block;">LsqFit.LsqFitResult{Vector{Float64}, Vector{Float64}, Matrix{Float64}, Vector{Int64}}([692.5825413201447, 0.0730342753017813, 45.521079747061144], [28.97750654868652, 14.4747120457303, -1.3542656293143693, -11.572229993656407, -15.595058416701022, -12.297282501288635, -5.569946832126675, 2.5891442587341658, 9.0377822008561, 12.048522818740707, 11.305933439788191, 7.51664984555066, 0.9186273617362986, -7.11365784284169, -16.307121770375602], [0.1342475459642054 -2054.3321912028164 -5.878930833778442; 0.1826131969850543 -2121.443789792599 -7.5501928577705195; … ; 0.9470154140965453 1371.9661652874784 -2.538077366651779; 0.9626186605323886 1108.4980035881208 -1.820150919492338], true, Int64[])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fitparams         = fitobject.param</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
- 692.5825413201447
-   0.0730342753017813
-  45.521079747061144</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fitobject.resid</code><code class="nohighlight hljs ansi" style="display:block;">15-element Vector{Float64}:
-  28.97750654868652
-  14.4747120457303
-  -1.3542656293143693
- -11.572229993656407
- -15.595058416701022
- -12.297282501288635
-  -5.569946832126675
-   2.5891442587341658
-   9.0377822008561
-  12.048522818740707
-  11.305933439788191
-   7.51664984555066
-   0.9186273617362986
-  -7.11365784284169
- -16.307121770375602</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; residuals = logisticModelVec(data.age,fitparams) .- data.vol</code><code class="nohighlight hljs ansi" style="display:block;">15-element Vector{Float64}:
-  28.97750654868652
-  14.4747120457303
-  -1.3542656293143693
- -11.572229993656407
- -15.595058416701022
- -12.297282501288635
-  -5.569946832126675
-   2.5891442587341658
-   9.0377822008561
-  12.048522818740707
-  11.305933439788191
-   7.51664984555066
-   0.9186273617362986
-  -7.11365784284169
- -16.307121770375602</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fitobject.resid == residuals</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sigma            = stderror(fitobject)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
- 12.682368775085612
-  0.0035444978135975988
-  0.7982532437184201</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; confidence_inter = confidence_interval(fitobject, 0.05) # 5% significance level</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Tuple{Float64, Float64}}:
- (664.9500335224171, 720.2150491178724)
- (0.06531147799078742, 0.08075707261277519)
- (43.78183533832397, 47.260324155798315)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x = 0:maximum(data.age)*1.5</code><code class="nohighlight hljs ansi" style="display:block;">0.0:1.0:135.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot(x-&gt;logisticModel(x,fitparams),0,maximum(x), label= &quot;Fitted vols&quot;, legend=:topleft)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot!(data.age, data.vol, seriestype=:scatter, label = &quot;Obs vols&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=2}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot!(data.age, residuals, seriestype=:bar, label = &quot;Residuals&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=3}</code></pre><p><img src="currentPlot12.svg" alt/></p><h2 id="Constrained-optimisation"><a class="docs-heading-anchor" href="#Constrained-optimisation">Constrained optimisation</a><a id="Constrained-optimisation-1"></a><a class="docs-heading-anchor-permalink" href="#Constrained-optimisation" title="Permalink"></a></h2><p><code>JuMP</code> is the leading library to express complex optimisation problems in a clear, mathematical friendly syntax, compute the information required by the solver engines to solve the optimisation problem, pass the problem to the aforementioned solver engines and retrieve the solutions.</p><p>JuMP has the same flexibility and expressivity of dedicated <em>algeabric modelling languages</em> as <code>GAMS</code> or <code>AMPL</code> but with the advantage of being a library within a much more general programming language, with larger community, development tools, language constructs and possibility to interface the specific &quot;optimisation component&quot; of a model with the rest of the model.</p><p>We will see how to specify the variables, the constraints and the objective function of an optimisation model, how to &quot;solve&quot; it and how to retrieve the optimal values</p><h3 id="A-linear-example:-the-classical-&quot;transport&quot;-problem"><a class="docs-heading-anchor" href="#A-linear-example:-the-classical-&quot;transport&quot;-problem">A linear example: the classical &quot;transport&quot; problem</a><a id="A-linear-example:-the-classical-&quot;transport&quot;-problem-1"></a><a class="docs-heading-anchor-permalink" href="#A-linear-example:-the-classical-&quot;transport&quot;-problem" title="Permalink"></a></h3><p>Obj: minimise transport costs <span>$c$</span> from several plants <span>$p$</span> to several markets <span>$m$</span> under the contraint to satisfy the demand <span>$d_m$</span> at each market while respecting the production capacity <span>$c_p$</span> of each plant: <span>$min_{x_{p,m}} \sum_p \sum_m c_{p,m} * x_{p,m}$</span> subject to: <span>$\sum_m x_{p,m} \leq d_m$</span> <span>$\sum_p x_{p,m} \geq c_m$</span></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using  JuMP, GLPK, DataFrames, CSV</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h4 id="&quot;Sets&quot;-and-exogenous-parameters-definition"><a class="docs-heading-anchor" href="#&quot;Sets&quot;-and-exogenous-parameters-definition">&quot;Sets&quot; and exogenous parameters definition</a><a id="&quot;Sets&quot;-and-exogenous-parameters-definition-1"></a><a class="docs-heading-anchor-permalink" href="#&quot;Sets&quot;-and-exogenous-parameters-definition" title="Permalink"></a></h4><p>index sets</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; orig = [&quot;Epinal&quot;, &quot;Bordeaux&quot;, &quot;Grenoble&quot;] # plant/sawmills origin of timber</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{String}:
+   50.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fitobject         = curve_fit(logisticModelVec, data.age, data.vol, initialParameters)</code><code class="nohighlight hljs ansi" style="display:block;">LsqFit.LsqFitResult{Vector{Float64}, Vector{Float64}, Matrix{Float64}, Vector{Int64}}([692.5825422828775, 0.07303427509732684, 45.52107981788288], [28.97750668159236, 14.474712120558934, -1.3542656499264467, -11.572230141558435, -15.595058703518134, -12.297282905897703, -5.569947299156581, 2.5891438057124674, 9.0377818376827, 12.048522602057005, 11.305933398986667, 7.5166499849867705, 0.918627668329691, -7.113657391374545, -16.307121199174617], [0.13424754596734656 -2054.3321998272545 -5.878930825611521; 0.18261319683794697 -2121.443798747934 -7.55019284238938; … ; 0.9470154134307186 1371.9661809827821 -2.5380773932229017; 0.9626186600210723 1108.498017997386 -1.8201509407877365], true, Int64[])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fitparams         = fitobject.param</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ 692.5825422828775
+   0.07303427509732684
+  45.52107981788288</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fitobject.resid</code><code class="nohighlight hljs ansi" style="display:block;">15-element Vector{Float64}:
+  28.97750668159236
+  14.474712120558934
+  -1.3542656499264467
+ -11.572230141558435
+ -15.595058703518134
+ -12.297282905897703
+  -5.569947299156581
+   2.5891438057124674
+   9.0377818376827
+  12.048522602057005
+  11.305933398986667
+   7.5166499849867705
+   0.918627668329691
+  -7.113657391374545
+ -16.307121199174617</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; residuals = logisticModelVec(data.age,fitparams) .- data.vol</code><code class="nohighlight hljs ansi" style="display:block;">15-element Vector{Float64}:
+  28.97750668159236
+  14.474712120558934
+  -1.3542656499264467
+ -11.572230141558435
+ -15.595058703518134
+ -12.297282905897703
+  -5.569947299156581
+   2.5891438057124674
+   9.0377818376827
+  12.048522602057005
+  11.305933398986667
+   7.5166499849867705
+   0.918627668329691
+  -7.113657391374545
+ -16.307121199174617</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fitobject.resid == residuals</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sigma            = stderror(fitobject)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ 12.682368852695115
+  0.003544497804635113
+  0.7982532477773243</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; confidence_inter = confidence_interval(fitobject, 0.05) # 5% significance level</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Tuple{Float64, Float64}}:
+ (664.9500343160533, 720.2150502497017)
+ (0.06531147780586052, 0.08075707238879315)
+ (43.781835400302114, 47.26032423546364)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x = 0:maximum(data.age)*1.5</code><code class="nohighlight hljs ansi" style="display:block;">0.0:1.0:135.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot(x-&gt;logisticModel(x,fitparams),0,maximum(x), label= &quot;Fitted vols&quot;, legend=:topleft)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot!(data.age, data.vol, seriestype=:scatter, label = &quot;Obs vols&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=2}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot!(data.age, residuals, seriestype=:bar, label = &quot;Residuals&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=3}</code></pre><p><img src="currentPlot12.svg" alt/></p><h2 id="Constrained-optimisation"><a class="docs-heading-anchor" href="#Constrained-optimisation">Constrained optimisation</a><a id="Constrained-optimisation-1"></a><a class="docs-heading-anchor-permalink" href="#Constrained-optimisation" title="Permalink"></a></h2><p><code>JuMP</code> is the leading library to express complex optimisation problems in a clear, mathematical friendly syntax, compute the information required by the solver engines to solve the optimisation problem, pass the problem to the aforementioned solver engines and retrieve the solutions.</p><p>JuMP has the same flexibility and expressivity of dedicated <em>algeabric modelling languages</em> as <code>GAMS</code> or <code>AMPL</code> but with the advantage of being a library within a much more general programming language, with larger community, development tools, language constructs and possibility to interface the specific &quot;optimisation component&quot; of a model with the rest of the model.</p><p>We will see how to specify the variables, the constraints and the objective function of an optimisation model, how to &quot;solve&quot; it and how to retrieve the optimal values</p><h3 id="A-linear-example:-the-classical-&quot;transport&quot;-problem"><a class="docs-heading-anchor" href="#A-linear-example:-the-classical-&quot;transport&quot;-problem">A linear example: the classical &quot;transport&quot; problem</a><a id="A-linear-example:-the-classical-&quot;transport&quot;-problem-1"></a><a class="docs-heading-anchor-permalink" href="#A-linear-example:-the-classical-&quot;transport&quot;-problem" title="Permalink"></a></h3><p>Obj: minimise transport costs <span>$c$</span> from several plants <span>$p$</span> to several markets <span>$m$</span> under the contraint to satisfy the demand <span>$d_m$</span> at each market while respecting the production capacity <span>$c_p$</span> of each plant: <span>$min_{x_{p,m}} \sum_p \sum_m c_{p,m} * x_{p,m}$</span> subject to: <span>$\sum_m x_{p,m} \leq d_m$</span> <span>$\sum_p x_{p,m} \geq c_m$</span></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using  JuMP, GLPK, DataFrames, CSV</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h4 id="&quot;Sets&quot;-and-exogenous-parameters-definition"><a class="docs-heading-anchor" href="#&quot;Sets&quot;-and-exogenous-parameters-definition">&quot;Sets&quot; and exogenous parameters definition</a><a id="&quot;Sets&quot;-and-exogenous-parameters-definition-1"></a><a class="docs-heading-anchor-permalink" href="#&quot;Sets&quot;-and-exogenous-parameters-definition" title="Permalink"></a></h4><p>index sets</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; orig = [&quot;Epinal&quot;, &quot;Bordeaux&quot;, &quot;Grenoble&quot;] # plant/sawmills origin of timber</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{String}:
  &quot;Epinal&quot;
  &quot;Bordeaux&quot;
  &quot;Grenoble&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; dest = [&quot;Paris&quot;, &quot;Lyon&quot;, &quot;Nantes&quot;, &quot;Tulouse&quot;, &quot;Lille&quot;, &quot;Marseille&quot;, &quot;Strasbourg&quot;] # markets</code><code class="nohighlight hljs ansi" style="display:block;">7-element Vector{String}:
@@ -706,11 +706,11 @@ iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
    0 -1.0691173e-01 9.60e-01 8.33e-01  -1.0 0.00e+00    -  0.00e+00 0.00e+00   0
    1 -2.6796169e+00 0.00e+00 2.26e+01  -1.7 2.46e-01    -  4.19e-02 1.00e+00f  1
    2 -3.2598524e+00 0.00e+00 2.13e+01  -1.7 6.87e+00    -  4.95e-02 5.88e-02f  1
-   3 -3.2590630e+00 1.11e-16 1.93e+01  -1.7 1.61e-01    -  1.00e+00 9.81e-02f  2
+   3 -3.2590630e+00 0.00e+00 1.93e+01  -1.7 1.61e-01    -  1.00e+00 9.81e-02f  2
    4 -3.2586433e+00 0.00e+00 2.00e-07  -1.7 1.45e-02    -  1.00e+00 1.00e+00f  1
-   5 -3.2971652e+00 0.00e+00 4.96e-03  -3.8 7.04e-02    -  9.08e-01 1.00e+00f  1
+   5 -3.2971652e+00 1.11e-16 4.96e-03  -3.8 7.04e-02    -  9.08e-01 1.00e+00f  1
    6 -3.2983547e+00 0.00e+00 1.50e-09  -3.8 2.19e-02    -  1.00e+00 1.00e+00f  1
-   7 -3.2986538e+00 0.00e+00 1.84e-11  -5.7 2.93e-03    -  1.00e+00 1.00e+00f  1
+   7 -3.2986538e+00 1.11e-16 1.84e-11  -5.7 2.93e-03    -  1.00e+00 1.00e+00f  1
    8 -3.2986576e+00 0.00e+00 2.55e-14  -8.6 4.72e-05    -  1.00e+00 1.00e+00f  1
 
 Number of Iterations....: 8
@@ -720,8 +720,8 @@ Objective...............:  -3.2986575928648394e+00   -3.2986575928648394e+00
 Dual infeasibility......:   2.5521078983849546e-14    2.5521078983849546e-14
 Constraint violation....:   0.0000000000000000e+00    0.0000000000000000e+00
 Variable bound violation:   8.2731345336654260e-09    8.2731345336654260e-09
-Complementarity.........:   3.5155177510884357e-09    3.5155177510884357e-09
-Overall NLP error.......:   3.5155177510884357e-09    3.5155177510884357e-09
+Complementarity.........:   3.5155177510884348e-09    3.5155177510884348e-09
+Overall NLP error.......:   3.5155177510884348e-09    3.5155177510884348e-09
 
 
 Number of objective function evaluations             = 11
@@ -731,18 +731,18 @@ Number of inequality constraint evaluations          = 0
 Number of equality constraint Jacobian evaluations   = 1
 Number of inequality constraint Jacobian evaluations = 0
 Number of Lagrangian Hessian evaluations             = 8
-Total seconds in IPOPT                               = 0.006
+Total seconds in IPOPT                               = 0.003
 
 EXIT: Optimal Solution Found.</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; status = termination_status(port)</code><code class="nohighlight hljs ansi" style="display:block;">LOCALLY_SOLVED::TerminationStatusCode = 4</code></pre><p>Return the objective:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; println(&quot;Objective value: &quot;, objective_value(port))</code><code class="nohighlight hljs ansi" style="display:block;">Objective value: -3.2986575928648394</code></pre><p>Return the value of the decision variable:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; optShares = value.(x)</code><code class="nohighlight hljs ansi" style="display:block;">1-dimensional DenseAxisArray{Float64,1,...} with index sets:
     Dimension 1, [&quot;Chêne pédonculé&quot;, &quot;Chêne sessile&quot;, &quot;Hêtre&quot;, &quot;Pin sylvestre&quot;]
 And data, a 4-element Vector{Float64}:
  -8.273134533665426e-9
- -7.695921190269722e-9
-  0.7428494846386048
-  0.25715053133045096</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; [println(&quot;$sp = $(optShares[sp])&quot;) for sp in species];</code><code class="nohighlight hljs ansi" style="display:block;">Chêne pédonculé = -8.273134533665426e-9
-Chêne sessile = -7.695921190269722e-9
-Hêtre = 0.7428494846386048
-Pin sylvestre = 0.25715053133045096</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pOptVar = sum(optShares[species[j1]] * optShares[species[j2]] * σ[species[j1],species[j2]] for j1 in 1:nSpecies, j2 in 1:nSpecies)</code><code class="nohighlight hljs ansi" style="display:block;">0.0881449684288383</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pOptY   = sum(optShares[species[j]]*y[species[j]] for j in 1:nSpecies)</code><code class="nohighlight hljs ansi" style="display:block;">3.307472089707723</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function computeOptimalPortfolio(species,y,σ,α)
+ -7.695921190269298e-9
+  0.7428494846386049
+  0.2571505313304509</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; [println(&quot;$sp = $(optShares[sp])&quot;) for sp in species];</code><code class="nohighlight hljs ansi" style="display:block;">Chêne pédonculé = -8.273134533665426e-9
+Chêne sessile = -7.695921190269298e-9
+Hêtre = 0.7428494846386049
+Pin sylvestre = 0.2571505313304509</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pOptVar = sum(optShares[species[j1]] * optShares[species[j2]] * σ[species[j1],species[j2]] for j1 in 1:nSpecies, j2 in 1:nSpecies)</code><code class="nohighlight hljs ansi" style="display:block;">0.08814496842883826</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pOptY   = sum(optShares[species[j]]*y[species[j]] for j in 1:nSpecies)</code><code class="nohighlight hljs ansi" style="display:block;">3.307472089707723</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function computeOptimalPortfolio(species,y,σ,α)
            port = Model(Ipopt.Optimizer)
            set_optimizer_attribute(port, &quot;print_level&quot;, 0)
            @variables port begin
@@ -784,4 +784,4 @@ Pin sylvestre = 0.25715053133045096</code><br/><code class="language-julia-repl 
            global pOptScores
            pVar,pY =computeOptimalPortfolio(species,y,σ,α)
            pOptScores = vcat(pOptScores,[pVar pY])
-       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; scatter(pOptScores[:,1],pOptScores[:,2],colour=:red)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><p><img src="currentPlot15.svg" alt/></p><p><a href="https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/0202-further_topics.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0201-wrangling_data.html">« 0201-wrangling data</a><a class="docs-footer-nextpage" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0301-MachineLearningMainIdeas.html">0301-MachineLearningMainIdeas »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.13 on <span class="colophon-date" title="Friday 11 March 2022 17:06">Friday 11 March 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; scatter(pOptScores[:,1],pOptScores[:,2],colour=:red)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><p><img src="currentPlot15.svg" alt/></p><p><a href="https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/0202-further_topics.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0201-wrangling_data.html">« 0201-wrangling data</a><a class="docs-footer-nextpage" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0301-MachineLearningMainIdeas.html">0301-MachineLearningMainIdeas »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.13 on <span class="colophon-date" title="Saturday 12 March 2022 19:29">Saturday 12 March 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

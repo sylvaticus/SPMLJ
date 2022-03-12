@@ -12,9 +12,9 @@
 
 # ## Some stuff to set-up the environment..
 
-cd(@__DIR__)         
-using Pkg             
-Pkg.activate(".")   
+cd(@__DIR__)    
+using Pkg      
+Pkg.activate(".")  
 # If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 # Pkg.resolve()   
 Pkg.instantiate()
@@ -25,13 +25,11 @@ Random.seed!(123)
 
 using StatsPlots
 function plot2DClassifierWithData(X,y,θ;d1=1,d2=2,origin=false,pid=1)
-    (nR,nD) = size(X)
     colors = [y == -1 ? "red" : "green" for y in y]
     labels = [y == -1 ? "-1" : "+1" for y in y]
     minD1,maxD1 = extrema(X[:,d1])
     minD2,maxD2 = extrema(X[:,d2])
     myplot = scatter(X[:,d1],X[:,d2], colour=colors, title="Linear classifier in 2D",xlabel="Dimx: $d1", ylabel="Dimy: $d2", group=labels)
-    xclassifier = minD1:0.01:maxD1
     constTerm = 0.0
     if !origin
         d1 += 1
@@ -51,14 +49,11 @@ end
 isClassificationError(θ,y,x) =  y * (θ' * x) <= eps()
 perceptronUpdate(θ,y,x)      = return θ .+ y .* x 
 
-
 X = [ 2 4
      -6 1]
 y = [-1,-1]
 θ₀ = [0,0]
-
 θ = θ₀
-
 
 ϵ = isClassificationError(θ,y[1],X[1,:])
 θ = perceptronUpdate(θ,y[1],X[1,:])
@@ -146,6 +141,9 @@ X                = copy(perceptronData[:,[2,3]])
 y                = convert(Array{Int64,1},copy(perceptronData[:,1]))
 θopt             = perceptronOrigin(X,y,verbose=true)
 
+plot2DClassifierWithData(X,y,θopt, origin=true,pid=20)
+# ![](currentPlot20.svg)
+
 # ## A better organisation
 
 # Now we rewrite the perceptron algorithm setting all the parameters in a structure and using what could be a generic interface for any supervised model. This is the approach used by most ML libraries.
@@ -224,8 +222,6 @@ train!(m,X,y,ops)
 plot2DClassifierWithData(X,y,m.θ,pid=9)
 # ![](currentPlot9.svg)
 
-
-
 ŷ = predict(m,X)
 inSampleAccuracy = sum(y .== ŷ)/length(y)
 
@@ -243,7 +239,7 @@ inSampleAccuracy = sum(y .== ŷ)/length(y)
 
 # Let's see now using separate training/validation
 # We use the BetaML `partition()` function
-((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.7,0.3])
+((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.6,0.4])
 m             = Perceptron(zeros(size(X,2)+1))
 ops           = PerceptronTrainingOptions(epochs=5,shuffle=true)
 train!(m,xtrain,ytrain,ops)
@@ -257,13 +253,13 @@ ŷtest         = predict(m,xtest)
 testAccuracy  = accuracy(ŷtest,ytest)
 plot2DClassifierWithData(xtest,ytest,m.θ,pid=12)
 # ![](currentPlot12.svg)
-cfOut = ConfusionMatrix(ŷ,y)
+cfOut = ConfusionMatrix(ŷtest,ytest)
 print(cfOut)
 
 # Lets use CrossValidation 
 ((xtrain,xvalidation,xtest),(ytrain,yvalidation,ytest)) = partition([X,y],[0.6,0.2,0.2])
 ## Very few records..... let's go back to using only two subsets but with CrossValidation 
-((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.7,0.3])
+((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.6,0.4])
 
 sampler    = KFold(nSplits=10)
 
@@ -276,8 +272,9 @@ ops     = PerceptronTrainingOptions(epochs=10,shuffle=true)
                 valAccuracy  = accuracy(ŷval,yval)
                 return valAccuracy
             end
+            
 
-epochsSet  = 1:5:301
+epochsSet  = 1:10:301
 shuffleSet = [false,true]
 
 bestE       = 0
