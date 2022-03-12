@@ -79,4 +79,14 @@ Videos (hosted on YouTube):
   - [Part B - Probability distributions and data fitting](https://www.youtube.com/watch?v=cfNXk2eiIFE&list=PLDIpPSqVuMmI4Dhiekw2y1wakzsaMSJVG&index=6) (11:55)
   - [Part C - Constrained optimisation, the transport problem](https://www.youtube.com/watch?v=vxo7nOpnFSs&list=PLDIpPSqVuMmI4Dhiekw2y1wakzsaMSJVG&index=7) (24:59)
   - [Part D - Nonlinear constrained optimisation, the optimal portfolio allocation](https://www.youtube.com/watch?v=_ypOlSwCC7U&list=PLDIpPSqVuMmI4Dhiekw2y1wakzsaMSJVG&index=8) (16:04)
- 
+
+### 03 ML1: Introduction to Machine Learning (1h:29:43)
+- ML - main concepts (44:45)
+  - [Part A - Introduction, perceptron overall idea](https://www.youtube.com/watch?v=JuqCxqLik0s&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=1) (11:23)
+  - [Part B - Hyperparameters and cross-validation](https://www.youtube.com/watch?v=agi2dKxClec&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=2) (15:18)
+  - [Part C - The perceptron algorithm](https://www.youtube.com/watch?v=2otq8KEMp8Y&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=3) (9:53)
+  - [Part D - SVM and non-linear classification with linear classifiers](https://www.youtube.com/watch?v=KsOubVwDcjY&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=4) (8:9)
+- The Perceptron algorithm for linear classification (44:58)
+  - [Part A - A first version](https://www.youtube.com/watch?v=kOGSvdgd_3Y&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=5) (13:22)
+  - [Part B - A better version](https://www.youtube.com/watch?v=g0yz7La53Vc&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=6) (10:28)
+  - [Part C - Cross-validation implementation](https://www.youtube.com/watch?v=ieIZFF6RYQo&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=7) (21:7)

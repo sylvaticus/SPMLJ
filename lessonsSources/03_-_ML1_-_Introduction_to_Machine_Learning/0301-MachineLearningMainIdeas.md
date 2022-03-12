@@ -1,4 +1,4 @@
-# 0301 - Machine Learning main ideas
+# 0301 - Machine Learning -  main concepts
 
 We start our journey on Machine Learning from the perceptron algorithm. This is a linear classifier that historically has been a bit a pioneer in ML algorithms. We start from it due to its simplicity, and it will be the only algorithm that we will study in detail.
 
@@ -70,7 +70,7 @@ We can now start our analysis of the Perceptron algorithm.
 
 - We start with the parameters of the hyperplane all zeros $\theta = 0$
 - We check if, with this parameter, the classifier makes an error
-- If so, we progressively update the classifier using as the update function  $ere are better way\theta^{n} = \theta^{n - 1} + y^n * x^i$.
+- If so, we progressively update the classifier using as the update function  $\theta^{n} = \theta^{n - 1} + y^n * x^n$.
 
 As we start with $\theta^0 = \begin{bmatrix}0\\0\\...\end{bmatrix}$, the first attempt will always lead to an error and to a first "update" that will be $\theta^{1} = \begin{bmatrix}0\\0\\...\end{bmatrix} + y^1 * \begin{bmatrix}x^1_{d1}\\x^1_{d2}\\...\end{bmatrix}$.
 
