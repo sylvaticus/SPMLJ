@@ -1,5 +1,0 @@
-Breast Cancer Wisconsin (Diagnostic) Data Set
-
-UCI Machine Learning Repository
-
-https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29
