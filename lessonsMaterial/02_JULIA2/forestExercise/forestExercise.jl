@@ -48,6 +48,9 @@ end
 
 # 6) Aggregate the `trees` dataframe by the `idp` column to retrieve the sum of `vHa` and the number of trees for each point, calling these two columns `vHa` and `ntrees`.
 
+
+
+
 # 7) Join the output of step 6 (the trees dataframe aggregated "by point") with the original points dataframe using the column `idp`.
 
 # 8) Use boolean selection to apply the following filters:

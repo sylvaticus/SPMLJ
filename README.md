@@ -1,26 +1,24 @@
-# IntroSPMLJuliaCourse
-Introduction to Scientific Programming and Machine Learning with Julia
+# Introduction to Sciuentific Programming and Machine Learning with Julia (SPMLJ)
+An introductory course on common scientific-related and machine learning tasks using the Julia programming language.
+With videos, code and exercises.
 
-https://github.com/sylvaticus/IntroSPMLJuliaCourse
+- This repository: https://github.com/sylvaticus/SPMLJ
+- The code organised by topics and with the output that the code produces: [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://sylvaticus.github.io/SPMLJ/dev)
+- The videos : See lists below
+- Quizes and exercises: For now they are available only for the MOODLE courses where I teach this course, I am looking for a way to provide interactive content to a wider public (maybe [QuizQuestions.jl](https://github.com/jverzani/QuizQuestions.jl) ??)
 
-STATUS: Work in progress. The course is still being worked on (2021.03.04: the part on Julia is completed ;-) )
+STATUS: At 2022.03.17 the course is ~90% content completed
 
 Objectives: 
 1. Supply students with an operational knowledge of a modern and efficient general-purpose language that can be employed for the implementation of their research daily activities;
-2. Present several specific but commonly used tools in multiple scientific areas (data transformation, optimisation, symbolic calculation,...)
+2. Present several specific but commonly used tools in multiple scientific areas (data transformation, optimisation,...)
 3. Introducing students to modern tools for scientific collaboration and software quality, such as version control systems and best practices to obtain replicable results.
 4. Introduce machine learning approaches: scopes, terminology, typologies, workflow organisation
 5. Introduce some specific machine learning algorithms for classification and regression
 
-Resources provided:
-- julia scripts
-- the same script with the output
-  - [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://sylvaticus.github.io/IntroSPMLJuliaCourse/dev)
-- videos divided in "small" segments and parts
-- interactive quizzes between the different segments or parts (at time of writing quizzes are available only for students with access to the specific elearning platform used for the course, the plan it to integrate them in the compiled documentation for the general public, e.g. using [QuizQuestions.jl](https://github.com/jverzani/QuizQuestions.jl))
 
 To execute yourself the code in the videos in the lessons run the code in the `lessonsSource` folder.
-Other resources used in the course (in particualr the examples of the Keek-off meeting) are located under the `lessonsMaterial` folder.
+Other resources used in the course (in particular the examples of the Keek-off meeting and the exercises) are located under the `lessonsMaterial` folder.
 
 Videos (hosted on YouTube):
 
