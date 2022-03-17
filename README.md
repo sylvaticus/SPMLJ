@@ -1,11 +1,11 @@
-# Introduction to Sciuentific Programming and Machine Learning with Julia (SPMLJ)
+# Introduction to Scientific Programming and Machine Learning with Julia (SPMLJ)
 An introductory course on common scientific-related and machine learning tasks using the Julia programming language.
 With videos, code and exercises.
 
 - This repository: https://github.com/sylvaticus/SPMLJ
 - The code organised by topics and with the output that the code produces: [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://sylvaticus.github.io/SPMLJ/dev)
-- The videos : See lists below
-- Quizes and exercises: For now they are available only for the MOODLE courses where I teach this course, I am looking for a way to provide interactive content to a wider public (maybe [QuizQuestions.jl](https://github.com/jverzani/QuizQuestions.jl) ??)
+- The videos : see lists below
+- Quizes and exercises: for now they are available only for the MOODLE courses where I teach this course, I am looking for a way to provide interactive content to a wider public (maybe [QuizQuestions.jl](https://github.com/jverzani/QuizQuestions.jl) ??)
 
 STATUS: At 2022.03.17 the course is ~90% content completed
 
