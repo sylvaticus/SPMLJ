@@ -153,7 +153,7 @@ makedocs(sitename="SPMLJ",
 
 println("Starting deploying the documentation...")
 deploydocs(
-    repo = "github.com/sylvaticus/IntroSPMLJuliaCourse.git",
+    repo = "github.com/sylvaticus/SPMLJ.git",
     devbranch = "main",
     target = "buildedDoc"
 )
