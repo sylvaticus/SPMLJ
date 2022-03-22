@@ -171,6 +171,8 @@ findall(x -> x == 1, [2,1,3,1]) # anonymous function returning an array of bools
 findfirst(x -> x == 1, [2,1,3,1])
 myComparitionWith1(i) = i==1
 findall(x -> myComparitionWith1(x), [2,1,3,1])
+filter(i -> i > 2, [1,2,3,4])
+
 
 ## delete [7,2,5] from an 1:10 array:
 data     = [1:10;]
