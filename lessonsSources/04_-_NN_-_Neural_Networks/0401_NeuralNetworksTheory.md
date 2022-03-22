@@ -1,6 +1,8 @@
 # 0401 - Neural Networks - theory
 
 While powerful, neural networks are really composed of very simple units that are akin to linear classification or regression methods.
+Don't be afraid by their name and the methaphore with the human brain. Neural networks are really simple transformations of the data that flow from the input, trough various layers, ending with an output.  
+That's their beauty ! Complex capabilities emerge from very simple units, when we put them together. Like for example the capability to recognise not "just" objects in an image but also abstract concepts as people's emotions or situations and environments.
 
 We'll first describe them, and we'll later learn how to train a neural network from the data.
 Concerning the practical implementation in Julia, we'll not implement a complete neural network but rather only certain parts, as we will mostly deal with using them and apply to different kind of datasets.
@@ -36,7 +38,28 @@ where:
 
 The output of the neuron can be the output of our neural network or it can be the input of a further layer.
 
-Let's specific a bit of terminology concerning Naural Networks:
+In Julia we can implement a layer of neurons and its predictions very easily (altought implementing the learning of the weigths is a bit more complex):
+
+```@repl 0401_NeuralNetworksTheory.jl
+using LinearAlgebra
+mutable struct DenseLayer
+    wb::Array{Float64,1} # weights with reference to the bias (will be learned from data)
+    wi::Array{Float64,2} # weigths with reference to the input (will be learned from data)
+    f::Function          # the activation function of each neuron (chosen from the modeller)
+end
+
+function forward(m,x) # The predictions  - or "forward" to the next layer
+      return m.f.(m.wb .+ m.wi * x)
+end
+
+(nI,nO) = 3,2 # Number of nodes in input and in outputs of this layer
+
+layer = DenseLayer(rand(nO),rand(nO,nI),tanh)
+x = zeros(nI)
+y = forward(layer,x)
+```
+
+Let's specific a bit of terminology concerning Neural Networks:
 
 - The individual computation units of a layer are known as **nodes** or **neurons**.
 - **Width_l** (_of the layer_) is the number of units in that specific layer $l$
@@ -158,7 +181,7 @@ Finally, the output of the layer would be (using ReLU) $\begin{bmatrix}
 
 We can run the following snippet to make the above computations:
 
-```@repl 0401-nn.jl
+```@repl 0401_NeuralNetworksTheory.jl
 ReLU(x) = max(0,x)
 x = [1 1 2 1 1;
         3 1 4 1 1;
@@ -191,11 +214,6 @@ Where the $d$ index accounts for the (extremelly unusual) case where one of the 
 Because the weights of the filters are the same, it doesn't really matter where the object is learned, in which part of the image. With convolutional layers, we have _translational invariance_ as the same filter is passed over the entire image. Therefore, it will detect the patterns regardless of their location.
 
 Still, it is often convenient to operate some **data augmentation** to the training set, that is to add slightly modified images (rotated, mirrored..) in order to improve this translational invariance.
-
-
-
-
-
 
 ### Considering multiple filters per layer
 
@@ -239,4 +257,78 @@ These layers are finally followed by some "normal", "fully connected" layers (li
 
 The best network implementation are tested in so called "competitions", like the yearly ImageNet context.
 
-Note that we can train this networks exactly like for feedformard NN, defining a loss function and finding the weights that minimise the loss function. In particular we can apply the stochastic gradient descendent algorithm (with a few tricks based on getting pairs of image and the corresponding label), where the gradient with respect to the various parameters (weights) is obtained by backpropagation.
+Note that we can train this networks exactly like for feedforward NN, defining a loss function and finding the weights that minimise the loss function. In particular we can apply the stochastic gradient descendent algorithm (with a few tricks based on getting pairs of image and the corresponding label), where the gradient with respect to the various parameters (weights) is obtained by backpropagation.
+
+## Recursive Neural Networks (RNNs)
+
+### Motivations
+
+Recursive neural networks are used to learn _sequences_ of data.
+A "sequence" is characterised by the fact that each element may depend not only from the features in place at time $t$, but also from lagged features or lagged values of the sequence (we use here the time dimension just for simplicity, of course a sequence can be defined on any dimension).
+And here it comes the problem: we could always consider lagged features or sequence values as further dimensions at time t and use a "standard" feed-forward network. For example we could consider values at time $t-1$, those at time $t-2$ and those at time $t-3$.
+But, again, we would be doing "manual" feature engineering, similar to the way we can introduce non-linear feature transformation and use linear classifiers.
+But we want this to be learn by the algorithm. We want the model to learn how much of the history retain to predict the next element of the sequence, and which elements "deserve" to be kept in memory (to be used for predicitons) even if far away in the sequence steps.
+
+
+note, the next word or the next stock value.
+
+### Description
+
+There are a few differences with feed-forward neural networks:
+- the input doesn't arrive only at the beginning of the chain, but at each layer (each input being an element of the sequence)
+- each RNN layer processes, using learnable parameters, the input corresponding to its layer, together the input coming from the previous layers (called the state)
+- these weigths are shared for the various RNN layers across the sequence
+
+
+We can adapt our code above to include the state: 
+
+```@repl 0401_NeuralNetworksTheory.jl
+mutable struct RNNLayer
+    wb::Array{Float64,1} # weights with reference to the bias
+    wi::Array{Float64,2} # weigths with reference to the input
+    ws::Array{Float64,2} # weigths with reference to the state
+    f::Function
+end
+
+(nI,nO)  = 3,2
+relu(x)  = max(0,x)
+rnnLayer = RNNLayer(rand(nO),rand(nO,nI),rand(nO,nO),relu)
+function forward(m,x,s)
+    return m.f.(m.wb .+ m.wi * x .+ m.ws * s)
+end
+x,s = zeros(nI),zeros(nO)
+s = forward(rnnLayer,x,s)
+s = forward(rnnLayer,x,s)  # The state change even if x remains constant
+```
+
+The code above is the simplest implementation of a Recursive neural network (or at least of its forward passage).
+In practice, the state is often memorised as part of the layer structure so its usage in most neural network libraries is similar to a "normal" feed-forward layer `forward(layer,x)`.
+
+
+### Usage: sequence-to-one
+
+RNNs can be used to characterise a sequence, like in sentiment analysis to predict the overall attitute (positive or negative) of a text or the language of the text.
+In this cases the RNN task is to _encode_ the sequence in a vector format (the final state) and this is feed to a further part of the chain whose task is to _decode_ according to the task required. Note that the parameters for both the tasks are learned jointly.
+The scheme is as follow:
+
+![Sequence-to-one scheme](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/sequenceToOne.png)
+
+Training in this scenario implies starting the model from a initial state (normally a zero-vector) and some random weigths,  and  "feed" the model with one item at time until the sequence ends. At this time the final state is decoded to an overall output that is compared to the "true" y. 
+From here the backward passage is made in a similar way that in feed-forward networks so that the "contribution" of each weigths to the errors can be assessed and the weights adjusted
+Note that you can interpret a recursive network equivalently like being formed by different layers on each input of the sequence (but with shared weigths) or like a single layer that call itself recursively.
+
+!!! danger
+    While weights are progressivelly adjusted across the training samples, the state of the network should be resetted at each new sequence sample
+
+
+### Usage: sequence-to-sequence
+
+An other scenario is when we want the RNN to _replicate_ some sequence pattern, like in next word, next note or next price predictions. In this case we are interested in all the elements of the sequence and not only to the final state of the sequence. 
+The decoding part happens hence at each step of the sequence and the resulting $\hat y_i$ is compared with the true $y_i$, with the resulting loss used to train the weigths:
+
+![Sequence-to-sequence scheme](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/sequenceToSequence.png)
+
+### Gaten networks
+
+While theoretically RNN can "learn" the importance of features across indeterminatly long sequence steps, in practice the fact of continuing multiplicating the status across the varius elements of the sequence makes the problem of vanishing gradient even stronger for them.
+New contributions has hence been proposed with a "gating" system that "learn" what to store in memory (in the sequence state) and what to "forget". At time of writing the most used approach is the Long short-term memory (LSTM). While internally more complex due to the presence of the gates and of several different states (_hidden_ and _visible_ in LSTM), LSTM networks are operationally used exacly in the same ways as the RNN networks descrived above.
