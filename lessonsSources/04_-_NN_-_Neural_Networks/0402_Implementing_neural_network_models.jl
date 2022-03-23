@@ -114,14 +114,13 @@ ŷtest         = predict(mynn,scale(xtest))
 trainAccuracy = accuracy(ŷtrain,ytrain)
 testAccuracy  = accuracy(ŷtest,ytest,tol=1,ignoreLabels=false)  
 
-cm = ConfusionMatrix(parse.(Int64,mode(ŷtest,rng=copy(FIXEDRNG))),ytest,classes=[1,2,3],labels=["US","EU","Japan"])
 cm = ConfusionMatrix(ŷtest,ytest, labels=["setosa", "versicolor", "virginica"])
 print(cm)
 
 # ### Regression
 
 # Data Loading and processing..
-using Pipe, HTTP, CSV, Plots
+using Pipe, HTTP, CSV, Plots, DataFrames
 urlData = "https://www4.stat.ncsu.edu/~boos/var.select/diabetes.tab.txt"
 data = @pipe HTTP.get(urlData).body |> CSV.File(_, delim='\t') |> DataFrame
 sex_oh = oneHotEncoder(data.SEX) 
@@ -130,7 +129,6 @@ y = data.Y
 (xtrain,xval),(ytrain,yval) = partition([X,y],[0.8,0.2])
 
 # Model definition...
-N = 20
 l1   = DenseLayer(11,20,f=relu)
 l2   = DenseLayer(20,20,f=relu) 
 l3   = DenseLayer(20,1,f=relu) # y is positive
@@ -148,7 +146,7 @@ scatter(yval,ŷval,xlabel="obs",ylabel="est",legend=nothing)
 
 # ## Convolutional neural networks
 
-using Flux, MLDatasets
+using Flux, MLDatasets, Statistics
 
 x_train, y_train = MLDatasets.MNIST.traindata()
 x_train          = permutedims(x_train,(2,1,3)) # For correct img axis
@@ -192,11 +190,11 @@ ŷtest  =   model(x_test)
 myaccuracy(ŷtrain, y_train)
 myaccuracy(ŷtest, y_test)
 
-plot(Gray.(i))
+plot(Gray.(x_train[:,:,1,1]))
 
 # ## Recursive neural networks
 
-using Statistics
+
 # Generating simulated data
 nSeeds    = 5
 seqLength = 10
@@ -226,7 +224,7 @@ seqs_vectors[1][1]
 y    = seqs_vectors # y here is the value of the sequence itself
 m    = Chain(Dense(1,5,σ),LSTM(5, 5), Dense(5, 1))
 #σ
-function loss(x, y)
+function myloss(x, y)
     Flux.reset!(m)               # Reset the state (not the weigtht!)
     #[m(x[i]) for i in 1:nSeeds]  # Ignores the output but updates the hidden states
     sum(Flux.mse(m(xi), yi) for (xi, yi) in zip(x[1:end], y[1:end]))
@@ -237,7 +235,8 @@ opt = ADAM()
 
 trainxy = zip(seqs_vectors,seqs_vectors)
 # Actual training
-Flux.train!(loss, ps, trainxy, opt)
+#=
+Flux.train!(myloss, ps, trainxy, opt)
 
 
 function predictSequence(m,seeds,seqLength)
@@ -256,3 +255,4 @@ estseq  = predictSequence(m,x0[i],seqLength)
 
 plot(trueseq[nSeeds+1:end])
 plot!(estseq[nSeeds+1:end])
+=#

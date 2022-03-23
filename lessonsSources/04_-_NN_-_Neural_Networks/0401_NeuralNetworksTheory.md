@@ -9,7 +9,7 @@ Concerning the practical implementation in Julia, we'll not implement a complete
 
 ## Motivations and types
 
-When we studied the Perceptron algorithm, we noted how we can transform the original feature vector $\mathbf{x}$ to a feature representation  $\phi(\mathbf{x}$ that includes non-linear transformations, to still use linear classifiers for non-linearly separable datasets (we studied classification tasks but the same is true for regression ones).
+When we studied the Perceptron algorithm, we noted how we can transform the original feature vector $\mathbf{x}$ to a feature representation  $\phi(\mathbf{x})$ that includes non-linear transformations, to still use linear classifiers for non-linearly separable datasets (we studied classification tasks but the same is true for regression ones).
 The "problem" is that this feature transformation is not learned from the data but is applied a priori, before using the actual machine learning (linear) algorithm.
 With neural networks instead, the feature transformation is endogenous to the learning (training) step.
 
@@ -98,9 +98,9 @@ Note in the figure that using all the three columns leads to linearly dependency
 
 #### Gradient and learning rate
 
-We now need a way to _learn_ the parameters from the data, and a common way is to try to reduce the contribution of the individual parameter to the error made by the network. We need first to find the link between the individual parameter and the output of the loss function, that is how the error change when we change the parameter. But this is nothing else than the derivate of the loss function with respect to the parameter. In our simple one-neuron example above we have the parameters directly appearing in the loss function. Considering the squared error as lost we have $\epsilon = (y - sin(w_0 + w_1 x_1 + w_2 x_2))^2$. If we are interested in the $w_1$ parameter we can compute the derivate of the error with respect to it using the chain rule as $\frac{\partial\epsilon}{\partial w_1} = 2*(y - sin(w_0 + w_1 x_1 + w_2 x_2)) * - cos(w_0 + w_1 x_1 + w_2 x_2) * x_1$.
+We now need a way to _learn_ the parameters from the data, and a common way is to try to reduce the contribution of the individual parameter to the error made by the network. We need first to find the link between the individual parameter and the output of the loss function, that is how the error change when we change the parameter. But this is nothing else than the derivative of the loss function with respect to the parameter. In our simple one-neuron example above we have the parameters directly appearing in the loss function. Considering the squared error as lost we have $\epsilon = (y - sin(w_0 + w_1 x_1 + w_2 x_2))^2$. If we are interested in the $w_1$ parameter we can compute the derivate of the error with respect to it using the chain rule as $\frac{\partial\epsilon}{\partial w_1} = 2*(y - sin(w_0 + w_1 x_1 + w_2 x_2)) * - cos(w_0 + w_1 x_1 + w_2 x_2) * x_1$.
 
-Numerically, we have: $\frac{\partial\epsilon}{\partial w_1} = 2(-0.6-sin(2+4+4)) * -cos(2+4+4) * 2 = -0.188$ If I increase $w_1$ of 0.01, I should have my error moving of $-0.01*0.188 = -0.0018$. Indeed, if I compute the original error I have $\epsilon^{t=0} = 0.00313$, but after having moved $w_1$ to 2.01, the output of the neural network chain would now be $\hat y^{t=1} = 0.561$ and its error lowered to $\epsilon^{t=1} =  0.00154$. The difference is $0.00159$, slighly lower in absolute terms than what we computed with the derivate, $0.0018$. The reason, of course, is that the derivate is a concept at the margin, when the step tends to zero.
+Numerically, we have: $\frac{\partial\epsilon}{\partial w_1} = 2(-0.6-sin(2+4+4)) * -cos(2+4+4) * 2 = -0.188$ If I increase $w_1$ of 0.01, I should have my error moving of $-0.01*0.188 = -0.0018$. Indeed, if I compute the original error I have $\epsilon^{t=0} = 0.00313$, but after having moved $w_1$ to 2.01, the output of the neural network chain would now be $\hat y^{t=1} = 0.561$ and its error lowered to $\epsilon^{t=1} =  0.00154$. The difference is $0.00159$, slighly lower in absolute terms than what we computed with the derivate, $0.0018$. The reason, of course, is that the derivative is a concept at the margin, when the step tends to zero.
 
 We should note a few things:
 - the derivate depends on the level of $w_1$. "zero" is almost always a bad starting point (as the derivatives of previous layers will be zero). Various initialisation strategies are used, but all involve sampling randomly the initial parameters under a certain range
@@ -226,7 +226,7 @@ So in each layer we map the output of the previous layer (or the original image 
 
 ![Convolutional layer](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/convolutionalLayer.png)
 
-In the image above the input layer has size (4,4,4) and the output layer has size (3,3,2), i.e. 2 "independent" filters of size (3,3).
+In the image above the input layer has size (4,4,4) and the output layer has size (3,3,2), i.e. 2 "independent" filters of size (2,2).
 
 For square layers, each filter has $F^2 \times D_{l-1} + 1$ parameters where $D_{l-1}$ is the dimensions ("depth") of the previous layer, so the total number of parameters per layer is $(F^2 \times D_{l-1} + 1) * D_l$.
 
