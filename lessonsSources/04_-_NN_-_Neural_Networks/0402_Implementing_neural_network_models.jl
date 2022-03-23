@@ -192,5 +192,67 @@ ŷtest  =   model(x_test)
 myaccuracy(ŷtrain, y_train)
 myaccuracy(ŷtest, y_test)
 
-
 plot(Gray.(i))
+
+# ## Recursive neural networks
+
+using Statistics
+# Generating simulated data
+nSeeds    = 5
+seqLength = 10
+nTrains   = 1000
+nTest     = 100
+
+nTot = nTrains+nTest
+makeSeeds(nSeeds) = 2 .* (rand(nSeeds) .- 0.5) # [-1,+1]
+function makeSequence(seeds,seqLength)
+  seq = Vector{Float32}(undef,seqLength+nSeeds) # Flux Works with Float32 for performance reasons
+  [seq[i] = seeds[i] for i in 1:nSeeds]
+  for i in nSeeds:(seqLength+nSeeds)
+    seq[i] = seq[i-1] + seeds[1]*0.1*seq[i-1] +seeds[2]*seeds[3]*seq[i-1]*0.4+seeds[4]*seeds[5]*(seq[i-3]-seq[i-4])
+    #seq[i] = seq[i-1] + mean(seeds)
+  end
+  return seq
+  return seq[nSeeds+1:end]
+end
+
+seq=makeSequence(makeSeeds(nSeeds),seqLength)
+plot(seq)
+
+x0   = [makeSeeds(nSeeds) for i in 1:nTot]
+seqs = makeSequence.(x0,seqLength)
+seqs_vectors = [[[e] for e in seq] for seq in seqs]
+seqs_vectors[1][1]
+y    = seqs_vectors # y here is the value of the sequence itself
+m    = Chain(Dense(1,5,σ),LSTM(5, 5), Dense(5, 1))
+#σ
+function loss(x, y)
+    Flux.reset!(m)               # Reset the state (not the weigtht!)
+    #[m(x[i]) for i in 1:nSeeds]  # Ignores the output but updates the hidden states
+    sum(Flux.mse(m(xi), yi) for (xi, yi) in zip(x[1:end], y[1:end]))
+end
+
+ps  = params(m)
+opt = ADAM()
+
+trainxy = zip(seqs_vectors,seqs_vectors)
+# Actual training
+Flux.train!(loss, ps, trainxy, opt)
+
+
+function predictSequence(m,seeds,seqLength)
+    seq = Vector{Vector{Float32}}(undef,seqLength+length(seeds))
+    Flux.reset!(m) # Reset the state (not the weigtht!)
+    [seq[i] = m([convert(Float32, seeds[i])]) for i in 1:nSeeds]
+    [seq[i] = m(seq[i-1]) for i in nSeeds+1:nSeeds+seqLength]
+    [s[1] for s in seq]
+end 
+
+a = predictSequence(m,x0[1],seqLength)
+
+i = 2
+trueseq = makeSequence(x0[i],seqLength)
+estseq  = predictSequence(m,x0[i],seqLength)
+
+plot(trueseq[nSeeds+1:end])
+plot!(estseq[nSeeds+1:end])
