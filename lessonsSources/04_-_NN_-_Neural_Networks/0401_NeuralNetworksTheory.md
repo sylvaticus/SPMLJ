@@ -312,7 +312,7 @@ From here the backward passage is made in a similar way that in feed-forward net
 Note that you can interpret a recursive network equivalently like being formed by different layers on each element of the sequence (but with shared weights) or like a single, evolving, layer that calls itself recursively.
 
 
-!!! danger
+!!! warning
     While weights are progressively adjusted across the training samples, the state of the network should be reset at each new sequence sample.
 
 
