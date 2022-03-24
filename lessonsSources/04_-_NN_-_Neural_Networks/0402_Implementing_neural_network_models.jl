@@ -39,8 +39,6 @@ data = data[idx,:]
 X    = copy(data[:,[2,3]])
 y    = max.(0,convert(Array{Int64,1},copy(data[:,1]))) # Converting labels from {-1,1} to {0,1}
 ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.7,0.3])
-println("mydebug 0")
-
 
 # #### Using defaults - hidding complexity
 
@@ -149,10 +147,10 @@ scatter(yval,ŷval,xlabel="obs",ylabel="est",legend=nothing)
 
 # ## Convolutional neural networks
 
-println("Working with a convolutional neural network...")
 using Flux, MLDatasets, Statistics, Plots
 
 x_train, y_train = MLDatasets.MNIST.traindata(dir = "data/MNIST")
+#=
 x_train          = permutedims(x_train,(2,1,3)) # For correct img axis
 x_train          = convert(Array{Float32,3},x_train)
 x_train          = reshape(x_train,(28,28,1,60000))
@@ -186,8 +184,8 @@ model = Chain(
 opt = Flux.ADAM()
 ps  = Flux.params(model)
 number_epochs = 4
-println("mydebug a")
-#=
+
+
 Flux.@epochs number_epochs Flux.train!(myloss, ps, train_data, opt)
 println("mydebug b")
 
