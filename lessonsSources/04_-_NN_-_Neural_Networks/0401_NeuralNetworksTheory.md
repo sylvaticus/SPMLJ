@@ -274,6 +274,8 @@ There are a few differences with feed-forward neural networks:
 - each RNN layer processes, using learnable parameters, the input corresponding to its layer, together the input coming from the previous layers (called the state)
 - these weights are shared for the various RNN layers across the sequence
 
+Note that you can interpret a recursive network equivalently like being formed by different layers on each element of the sequence (but with shared weights) or like a single, evolving, layer that calls itself recursively.
+
 To implement a recursive neural network we can adapt our code above to include the state: 
 
 ```@repl 0401_NeuralNetworksTheory.jl
@@ -309,7 +311,7 @@ The scheme is as follow:
 
 Training in this scenario implies starting the model from an initial state (normally a zero-vector) and some random weights,  and  "feeding" the model with one item at a time until the sequence ends. At this time the final state is decoded to an overall output that is compared to the "true" y. 
 From here the backward passage is made in a similar way that in feed-forward networks so that the "contribution" of each weight to the errors can be assessed and the weights adjusted
-Note that you can interpret a recursive network equivalently like being formed by different layers on each element of the sequence (but with shared weights) or like a single, evolving, layer that calls itself recursively.
+
 
 
 !!! warning

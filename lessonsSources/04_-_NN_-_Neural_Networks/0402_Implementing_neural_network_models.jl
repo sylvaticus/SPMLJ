@@ -116,7 +116,7 @@ trainAccuracy = accuracy(ŷtrain,ytrain)
 testAccuracy  = accuracy(ŷtest,ytest,tol=1,ignoreLabels=false)  
 
 cm = ConfusionMatrix(ŷtest,ytest, labels=["setosa", "versicolor", "virginica"])
-print(cm)
+println(cm)
 
 # ### Regression
 
@@ -147,7 +147,8 @@ scatter(yval,ŷval,xlabel="obs",ylabel="est",legend=nothing)
 
 # ## Convolutional neural networks
 
-using Flux, MLDatasets, Statistics
+println("Working with a convolutional neural network...")
+using Flux, MLDatasets, Statistics, Plots
 
 x_train, y_train = MLDatasets.MNIST.traindata()
 x_train          = permutedims(x_train,(2,1,3)) # For correct img axis
@@ -182,16 +183,21 @@ model = Chain(
 
 opt = Flux.ADAM()
 ps  = Flux.params(model)
-number_epochs = 5
+number_epochs = 4
+println("mydebug a")
 Flux.@epochs number_epochs Flux.train!(myloss, ps, train_data, opt)
+println("mydebug b")
 
 ŷtrain =   model(x_train)
+println("mydebug c")
 ŷtest  =   model(x_test)
-
+println("mydebug d")
 myaccuracy(ŷtrain, y_train)
+println("mydebug e")
 myaccuracy(ŷtest, y_test)
-
+println("mydebug f")
 plot(Gray.(x_train[:,:,1,1]))
+println("mydebug g")
 
 # ## Recursive neural networks
 
@@ -201,7 +207,7 @@ nSeeds    = 5
 seqLength = 10
 nTrains   = 1000
 nTest     = 100
-
+println("mydebug h")
 nTot = nTrains+nTest
 makeSeeds(nSeeds) = 2 .* (rand(nSeeds) .- 0.5) # [-1,+1]
 function makeSequence(seeds,seqLength)
@@ -233,8 +239,9 @@ end
 
 ps  = params(m)
 opt = ADAM()
-
+println("mydebug i")
 trainxy = zip(seqs_vectors,seqs_vectors)
+println("mydebug l")
 # Actual training
 #=
 Flux.train!(myloss, ps, trainxy, opt)
