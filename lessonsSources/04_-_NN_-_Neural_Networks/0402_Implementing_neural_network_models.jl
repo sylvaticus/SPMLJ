@@ -195,6 +195,7 @@ plot(Gray.(x_train[:,:,1,1]))
 cm = ConfusionMatrix(Flux.onecold(ŷtest) .-1 ,Flux.onecold(y_test) .-1)
 println(cm)
 
+#=
 # ## Recursive neural networks
 
 
@@ -204,7 +205,7 @@ println(cm)
 
 nSeeds    = 5
 seqLength = 5
-nTrains   = 1000  # Try at least 1500/100
+nTrains   = 3000  
 nVal      = 100
 nTot = nTrains+nVal
 makeSeeds(nSeeds) = 2 .* (rand(nSeeds) .- 0.5) # [-1,+1]
@@ -212,8 +213,8 @@ function makeSequence(seeds,seqLength)
   seq = Vector{Float32}(undef,seqLength+nSeeds) # Flux Works with Float32 for performance reasons
   [seq[i] = seeds[i] for i in 1:nSeeds]
   for i in nSeeds+1:(seqLength+nSeeds)
-    seq[i] = seq[i-1] + seeds[1]*0.1*seq[i-1] +seeds[2]*seeds[3]*seq[i-1]*0.4+seeds[4]*seeds[5]*(seq[i-3]-seq[i-4])
-    ## seq[i] = i*(seeds[1]*0.1 + seeds[2]*2 + seeds[3]*0.01 + seeds[4]*0.01 + seeds[5]*0.1) 
+     ##seq[i] = seq[i-1] + seeds[1]*0.1*seq[i-1] +seeds[2]*seeds[3]*seq[i-1]*0.4+seeds[4]*seeds[5]*(seq[i-3]-seq[i-4])
+     seq[i] = i*(seeds[4]*0.5) # the only seed that matters is the 4th
   end
   return seq
   return seq[nSeeds+1:end]
@@ -232,7 +233,12 @@ xval   = seqs_vectors[nTrains+1:end]
 ytrain = y[1:nTrains]
 yval   = y[nTrains+1:end]
 
-m    = Chain(Dense(1,15,σ),LSTM(15, 15), Dense(15, 1))
+allData   = xtrain;
+aSequence = allData[1]
+anElement = aSequence[1]
+
+
+m    = Chain(Dense(1,10,σ),LSTM(10, 10), Dense(10, 1))
 
 function myloss(x, y)
     Flux.reset!(m)                 # Reset the state (not the weigtht!)
@@ -245,7 +251,7 @@ y1   = ytrain[1]
 
 
 ps  = params(m)
-opt = Flux.ADAM(0.00001)
+opt = Flux.ADAM()
 function predictSequence(m,seeds,seqLength)
     seq = Vector{Vector{Float32}}(undef,seqLength+length(seeds)-1)
     Flux.reset!(m) # Reset the state (not the weigtht!)
@@ -257,11 +263,33 @@ end
 predictSequence(m,x0e[1],seqLength)
 
 
+function batchSequences(x,batchSize)
+    x = copy(xtrain)
+    batchSize = 3
+    nRecords  = length(x)
+    nItems    = length(x[1])
+    nDims     = size(x[1][1],1) 
+    nBatches  = Int(floor(nRecords/batchSize))
+
+    emptyBatchedElement = Matrix{Float32}(undef,nDims,batchSize)
+    emptySeq = [similar(emptyBatchedElement) for i in 1:nItems]
+    outx = [similar(emptySeq) for i in 1:nBatches]
+    for b in 1:nBatches
+        xmin = (b-1)*batchSize + 1
+        xmax = b*batchSize
+        for e in 1:nItems
+            outx[b][e] = hcat([x[i][e][:,1] for i in xmin:xmax]... )
+        end
+    end  
+    return outx
+end
+
 # Actual training
 
-trainMSE = Float64[]
-valMSE   = Float64[]
-epochs = 20 # Try at least 100 epochs
+trainMSE  = Float64[]
+valMSE    = Float64[]
+epochs    = 5000 # Try at least 100 epochs
+batchSize = 32
 for e in 1:epochs
     print("Epoch $e ")
     ## Shuffling at each epoch
@@ -269,23 +297,29 @@ for e in 1:epochs
     x0e      = x0[ids]
     xtraine  = xtrain[ids]
     ytraine  = ytrain[ids]
+
+    xtraine =batchSequences(xtraine,batchSize)
+    ytraine =batchSequences(ytraine,batchSize)
     trainxy = zip(xtraine,ytraine)
 
     ## Actual training
     Flux.train!(myloss, ps, trainxy, opt)
     ## Making prediction on the trained model and computing accuracies
     global trainMSE, valMSE
-    ŷtrain  = [predictSequence(m,x0e[1],seqLength) for i in 1:nTrains]
-    ŷval    = [predictSequence(m,x0e[1],seqLength) for i in (nTrains+1):nTot]
+    ŷtrain  = [predictSequence(m,x0[i],seqLength) for i in 1:nTrains]
+    ŷval    = [predictSequence(m,x0[i],seqLength) for i in (nTrains+1):nTot]
     ytrain  = [makeSequence(x0[i],seqLength) for i in  1:nTrains]
     yval    = [makeSequence(x0[i],seqLength) for i in  (nTrains+1):nTot]
 
-    trainmse =  sum(norm(ŷtrain[i] - ytrain[i][1:end-1])^2 for i in 1:nTrains)/nTrains
-    valmse   =  sum(norm(ŷval[i] - yval[i][1:end-1])^2 for i in 1:nVal)/nVal
+    trainmse =  sum(norm(ŷtrain[i][nSeeds+1:end] - ytrain[i][nSeeds+1:end-1])^2 for i in 1:nTrains)/nTrains
+    valmse   =  sum(norm(ŷval[i][nSeeds+1:end] - yval[i][nSeeds+1:end-1])^2 for i in 1:nVal)/nVal
     push!(trainMSE,trainmse)
     push!(valMSE,valmse)
     println("MEan Sq Error: $trainmse - $valmse")
 end
+
+predictSequence(m,x0[1],seqLength)
+makeSequence(x0[1],seqLength)
 
 for i = 1:20:100
     trueseq = makeSequence(x0[i],seqLength)
@@ -295,5 +329,13 @@ for i = 1:20:100
     display(seqPlot)
 end
 
+
 plot(trainMSE,label="Train MSE")
 plot!(valMSE,label="Validation MSE")
+
+
+=#
+
+
+
+

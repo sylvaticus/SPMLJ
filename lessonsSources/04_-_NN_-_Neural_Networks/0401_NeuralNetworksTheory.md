@@ -257,11 +257,11 @@ The best network implementations are tested in so-called "competitions", like th
 
 Note that we can train these networks exactly like for feedforward NN, defining a loss function and finding the weights that minimise the loss function. In particular, we can apply the stochastic gradient descendent algorithm (with a few tricks based on getting pairs of image and the corresponding label), where the gradient with respect to the various parameters (weights) is obtained by backpropagation.
 
-## Recursive Neural Networks (RNNs)
+## Recurrent Neural Networks (RNNs)
 
 ### Motivations
 
-Recursive neural networks are used to learn _sequences_ of data.
+Recurrent neural networks are used to learn _sequences_ of data.
 A "sequence" is characterised by the fact that each element may depend not only on the features in place at time $t$, but also from lagged features or lagged values of the sequence (we use here the time dimension just for simplicity. Of course, a sequence can be defined on any dimension).
 And here comes the problem: we could always consider lagged features or sequence values as further dimensions at time $t$ and use a "standard" feed-forward network. For example we could consider values at time $t-1$, those at time $t-2$ and those at time $t-3$.
 But, again, we would be doing "manual" feature engineering, similar to the way we can introduce non-linear feature transformation and use linear classifiers.
@@ -274,9 +274,9 @@ There are a few differences with feed-forward neural networks:
 - each RNN layer processes, using learnable parameters, the input corresponding to its layer, together the input coming from the previous layers (called the state)
 - these weights are shared for the various RNN layers across the sequence
 
-Note that you can interpret a recursive network equivalently like being formed by different layers on each element of the sequence (but with shared weights) or like a single, evolving, layer that calls itself recursively.
+Note that you can interpret a recurrent network equivalently like being formed by different layers on each element of the sequence (but with shared weights) or like a single, evolving, layer that calls itself recursively.
 
-To implement a recursive neural network we can adapt our code above to include the state: 
+To implement a recurrent neural network we can adapt our code above to include the state: 
 
 ```@repl 0401_NeuralNetworksTheory.jl
 mutable struct RNNLayer
