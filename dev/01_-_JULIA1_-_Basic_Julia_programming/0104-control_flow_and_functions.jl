@@ -225,7 +225,7 @@ methods(foo3)
 # In general, unless we need to write specialised methods, no need to specify the type of the parameters. No influence on performances, this is automatically inferred (and the funciton compiled) based on the run-time type of the argument
 
 # !!! tip Functions performances tip
-#         The most important things for performances are (1) that the function is _type stable_, that is that conditional to a specific combination of the types  of the parameters the function return the same type. This is the condition to have a working chain of type inference across function calls, (2) that no (non constant) global constants are used in the function and indeed all the required information for the functio ndoing its work is embedded in the function parameters
+#     The most important things for performances are (1) that the function is _type stable_, that is, that conditional to a specific combination of the types of the parameters the function returns the same type. This is a condition necessary to have a working chain of type inference across function calls; (2) that no (non constant) global constants are used in the function and indeed all the required information for the functio ndoing its work is embedded in the function parameters
 
 
 # ### Function templates
