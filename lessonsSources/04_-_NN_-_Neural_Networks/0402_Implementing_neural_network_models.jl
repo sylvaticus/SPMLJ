@@ -164,7 +164,7 @@ y_test           = Flux.onehotbatch(y_test, 0:9)
 
 myaccuracy(ŷ, y) = (mean(Flux.onecold(ŷ) .== Flux.onecold(y)))
 myloss(x, y)     = Flux.crossentropy(model(x), y)
-
+#=
 model = Chain(
     # 28x28 => 14x14
     Conv((5, 5), 1=>8, pad=2, stride=2, relu),
@@ -181,7 +181,7 @@ model = Chain(
     Flux.softmax
 )
 
-#=
+
 opt = Flux.ADAM()
 ps  = Flux.params(model)
 number_epochs = 4
