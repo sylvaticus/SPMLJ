@@ -40,7 +40,7 @@ X    = copy(data[:,[2,3]])
 y    = max.(0,convert(Array{Int64,1},copy(data[:,1]))) # Converting labels from {-1,1} to {0,1}
 ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.7,0.3])
 println("mydebug 0")
-#=
+
 
 # #### Using defaults - hidding complexity
 
@@ -119,6 +119,9 @@ testAccuracy  = accuracy(ŷtest,ytest,tol=1,ignoreLabels=false)
 
 cm = ConfusionMatrix(ŷtest,ytest, labels=["setosa", "versicolor", "virginica"])
 println(cm)
+
+
+#=
 
 # ### Regression
 
