@@ -147,7 +147,7 @@ scatter(yval,ŷval,xlabel="obs",ylabel="est",legend=nothing)
 
 # ## Convolutional neural networks
 
-using Flux, MLDatasets, Statistics, Plots
+using LinearAlgebra, Statistics,Flux, MLDatasets, Plots
 
 x_train, y_train = MLDatasets.MNIST.traindata(dir = "data/MNIST")
 x_train          = permutedims(x_train,(2,1,3)) # For correct img axis
@@ -192,24 +192,25 @@ myaccuracy(ŷtrain, y_train)
 myaccuracy(ŷtest, y_test)
 
 plot(Gray.(x_train[:,:,1,1]))
+cm = ConfusionMatrix(Flux.onecold(ŷtest) .-1 ,Flux.onecold(y_test) .-1)
+println(cm)
 
 # ## Recursive neural networks
 
 
 # Generating simulated data
 nSeeds    = 5
-seqLength = 10
-nTrains   = 1000
-nTest     = 100
-println("mydebug h")
-nTot = nTrains+nTest
+seqLength = 5
+nTrains   = 400  # Try at least 1500/100
+nVal      = 100
+nTot = nTrains+nVal
 makeSeeds(nSeeds) = 2 .* (rand(nSeeds) .- 0.5) # [-1,+1]
 function makeSequence(seeds,seqLength)
   seq = Vector{Float32}(undef,seqLength+nSeeds) # Flux Works with Float32 for performance reasons
   [seq[i] = seeds[i] for i in 1:nSeeds]
-  for i in nSeeds:(seqLength+nSeeds)
+  for i in nSeeds+1:(seqLength+nSeeds)
     seq[i] = seq[i-1] + seeds[1]*0.1*seq[i-1] +seeds[2]*seeds[3]*seq[i-1]*0.4+seeds[4]*seeds[5]*(seq[i-3]-seq[i-4])
-    #seq[i] = seq[i-1] + mean(seeds)
+    ## seq[i] = i*(seeds[1]*0.1 + seeds[2]*2 + seeds[3]*0.01 + seeds[4]*0.01 + seeds[5]*0.1) 
   end
   return seq
   return seq[nSeeds+1:end]
@@ -221,39 +222,75 @@ plot(seq)
 x0   = [makeSeeds(nSeeds) for i in 1:nTot]
 seqs = makeSequence.(x0,seqLength)
 seqs_vectors = [[[e] for e in seq] for seq in seqs]
-seqs_vectors[1][1]
-y    = seqs_vectors # y here is the value of the sequence itself
-m    = Chain(Dense(1,5,σ),LSTM(5, 5), Dense(5, 1))
-#σ
+y    = [s[2:end] for s in seqs_vectors] # y here is the value of the sequence itself at next step
+
+xtrain = seqs_vectors[1:nTrains]
+xval   = seqs_vectors[nTrains+1:end]
+ytrain = y[1:nTrains]
+yval   = y[nTrains+1:end]
+
+m    = Chain(Dense(1,15,σ),LSTM(15, 15), Dense(15, 1))
+
 function myloss(x, y)
-    Flux.reset!(m)               # Reset the state (not the weigtht!)
-    #[m(x[i]) for i in 1:nSeeds]  # Ignores the output but updates the hidden states
-    sum(Flux.mse(m(xi), yi) for (xi, yi) in zip(x[1:end], y[1:end]))
+    Flux.reset!(m)                 # Reset the state (not the weigtht!)
+    [m(x[i]) for i in 1:nSeeds-1]  # Ignores the output but updates the hidden states
+    sum(Flux.mse(m(xi), yi) for (xi, yi) in zip(x[1:(end-1)], y[1:end]))
 end
 
+seq1 = xtrain[1]
+y1   = ytrain[1]
+
+
 ps  = params(m)
-opt = ADAM()
-trainxy = zip(seqs_vectors,seqs_vectors)
+opt = ADAM(0.0001)
+function predictSequence(m,seeds,seqLength)
+    seq = Vector{Vector{Float32}}(undef,seqLength+length(seeds)-1)
+    Flux.reset!(m) # Reset the state (not the weigtht!)
+    [seq[i] = [convert(Float32, seeds[i])] for i in 1:nSeeds]
+    [seq[i] = m(seq[i-1]) for i in nSeeds+1:nSeeds+seqLength-1]
+    [s[1] for s in seq]
+end
+
+predictSequence(m,x0e[1],seqLength)
+
 
 # Actual training
-#=
-Flux.train!(myloss, ps, trainxy, opt)
 
+trainMSE = Float64[]
+valMSE   = Float64[]
+epochs = 5 # Try at least 100 epochs
+for e in 1:epochs
+    print("Epoch $e ")
+    ## Shuffling at each epoch
+    ids = shuffle(1:length(xtrain))
+    x0e      = x0[ids]
+    xtraine  = xtrain[ids]
+    ytraine  = ytrain[ids]
+    trainxy = zip(xtraine,ytraine)
 
-function predictSequence(m,seeds,seqLength)
-    seq = Vector{Vector{Float32}}(undef,seqLength+length(seeds))
-    Flux.reset!(m) # Reset the state (not the weigtht!)
-    [seq[i] = m([convert(Float32, seeds[i])]) for i in 1:nSeeds]
-    [seq[i] = m(seq[i-1]) for i in nSeeds+1:nSeeds+seqLength]
-    [s[1] for s in seq]
-end 
+    ## Actual training
+    Flux.train!(myloss, ps, trainxy, opt)
+    ## Making prediction on the trained model and computing accuracies
+    global trainMSE, valMSE
+    ŷtrain  = [predictSequence(m,x0e[1],seqLength) for i in 1:nTrains]
+    ŷval    = [predictSequence(m,x0e[1],seqLength) for i in (nTrains+1):nTot]
+    ytrain  = [makeSequence(x0[i],seqLength) for i in  1:nTrains]
+    yval    = [makeSequence(x0[i],seqLength) for i in  (nTrains+1):nTot]
 
-a = predictSequence(m,x0[1],seqLength)
+    trainmse =  sum(norm(ŷtrain[i] - ytrain[i][1:end-1])^2 for i in 1:nTrains)/nTrains
+    valmse   =  sum(norm(ŷval[i] - yval[i][1:end-1])^2 for i in 1:nVal)/nVal
+    push!(trainMSE,trainmse)
+    push!(valMSE,valmse)
+    println("MEan Sq Error: $trainmse - $valmse")
+end
 
-i = 2
-trueseq = makeSequence(x0[i],seqLength)
-estseq  = predictSequence(m,x0[i],seqLength)
+for i = 1:20:100
+    trueseq = makeSequence(x0[i],seqLength)
+    estseq  = predictSequence(m,x0[i],seqLength)
+    seqPlot = plot(trueseq,label="true", title = "Seq $i")
+    plot!(seqPlot, estseq, label="est")
+    display(seqPlot)
+end
 
-plot(trueseq[nSeeds+1:end])
-plot!(estseq[nSeeds+1:end])
-=#
+plot(trainMSE,label="Train MSE")
+plot!(valMSE,label="Validation MSE")
