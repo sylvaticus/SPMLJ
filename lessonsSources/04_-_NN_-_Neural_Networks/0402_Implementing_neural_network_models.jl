@@ -199,9 +199,12 @@ println(cm)
 
 
 # Generating simulated data
+# The idea is to have a sequence that depend on the first 5 values. So the first 5 values are random, but the rest of the sequence depend deterministically to these first 5 values and the objective it to recreate this second part of the sequence knowing the first 5 parts.
+
+
 nSeeds    = 5
 seqLength = 5
-nTrains   = 400  # Try at least 1500/100
+nTrains   = 1000  # Try at least 1500/100
 nVal      = 100
 nTot = nTrains+nVal
 makeSeeds(nSeeds) = 2 .* (rand(nSeeds) .- 0.5) # [-1,+1]
@@ -234,7 +237,7 @@ m    = Chain(Dense(1,15,σ),LSTM(15, 15), Dense(15, 1))
 function myloss(x, y)
     Flux.reset!(m)                 # Reset the state (not the weigtht!)
     [m(x[i]) for i in 1:nSeeds-1]  # Ignores the output but updates the hidden states
-    sum(Flux.mse(m(xi), yi) for (xi, yi) in zip(x[1:(end-1)], y[1:end]))
+    sum(Flux.mse(m(xi), yi) for (xi, yi) in zip(x[nSeeds:(end-1)], y[nSeeds:end]))
 end
 
 seq1 = xtrain[1]
@@ -242,7 +245,7 @@ y1   = ytrain[1]
 
 
 ps  = params(m)
-opt = ADAM(0.0001)
+opt = Flux.ADAM(0.00001)
 function predictSequence(m,seeds,seqLength)
     seq = Vector{Vector{Float32}}(undef,seqLength+length(seeds)-1)
     Flux.reset!(m) # Reset the state (not the weigtht!)
@@ -258,7 +261,7 @@ predictSequence(m,x0e[1],seqLength)
 
 trainMSE = Float64[]
 valMSE   = Float64[]
-epochs = 5 # Try at least 100 epochs
+epochs = 20 # Try at least 100 epochs
 for e in 1:epochs
     print("Epoch $e ")
     ## Shuffling at each epoch
@@ -287,7 +290,7 @@ end
 for i = 1:20:100
     trueseq = makeSequence(x0[i],seqLength)
     estseq  = predictSequence(m,x0[i],seqLength)
-    seqPlot = plot(trueseq,label="true", title = "Seq $i")
+    seqPlot = plot(trueseq[1:end-1],label="true", title = "Seq $i")
     plot!(seqPlot, estseq, label="est")
     display(seqPlot)
 end
