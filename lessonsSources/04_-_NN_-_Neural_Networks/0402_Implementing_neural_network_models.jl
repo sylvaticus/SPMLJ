@@ -121,7 +121,7 @@ cm = ConfusionMatrix(ŷtest,ytest, labels=["setosa", "versicolor", "virginica"]
 println(cm)
 
 
-#=
+
 
 # ### Regression
 
@@ -156,6 +156,8 @@ println("Working with a convolutional neural network...")
 using Flux, MLDatasets, Statistics, Plots
 
 x_train, y_train = MLDatasets.MNIST.traindata()
+
+#=
 x_train          = permutedims(x_train,(2,1,3)) # For correct img axis
 x_train          = convert(Array{Float32,3},x_train)
 x_train          = reshape(x_train,(28,28,1,60000))
