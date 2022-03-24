@@ -39,8 +39,6 @@ data = data[idx,:]
 X    = copy(data[:,[2,3]])
 y    = max.(0,convert(Array{Int64,1},copy(data[:,1]))) # Converting labels from {-1,1} to {0,1}
 ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.7,0.3])
-println("mydebug 0")
-
 
 # #### Using defaults - hidding complexity
 
@@ -120,9 +118,6 @@ testAccuracy  = accuracy(ŷtest,ytest,tol=1,ignoreLabels=false)
 cm = ConfusionMatrix(ŷtest,ytest, labels=["setosa", "versicolor", "virginica"])
 println(cm)
 
-
-
-
 # ### Regression
 
 # Data Loading and processing..
@@ -152,18 +147,16 @@ scatter(yval,ŷval,xlabel="obs",ylabel="est",legend=nothing)
 
 # ## Convolutional neural networks
 
-println("Working with a convolutional neural network...")
 using Flux, MLDatasets, Statistics, Plots
 
-x_train, y_train = MLDatasets.MNIST.traindata()
-
+x_train, y_train = MLDatasets.MNIST.traindata(dir = "data/MNIST")
 #=
 x_train          = permutedims(x_train,(2,1,3)) # For correct img axis
 x_train          = convert(Array{Float32,3},x_train)
 x_train          = reshape(x_train,(28,28,1,60000))
 y_train          = Flux.onehotbatch(y_train, 0:9)
 train_data       = Flux.Data.DataLoader((x_train, y_train), batchsize=128)
-x_test, y_test   = MLDatasets.MNIST.testdata()
+x_test, y_test   = MLDatasets.MNIST.testdata(dir = "data/MNIST")
 x_test           = permutedims(x_test,(2,1,3)) # For correct img axis
 x_test           = convert(Array{Float32,3},x_test)
 x_test           = reshape(x_test,(28,28,1,10000))
@@ -191,7 +184,8 @@ model = Chain(
 opt = Flux.ADAM()
 ps  = Flux.params(model)
 number_epochs = 4
-println("mydebug a")
+
+
 Flux.@epochs number_epochs Flux.train!(myloss, ps, train_data, opt)
 println("mydebug b")
 
