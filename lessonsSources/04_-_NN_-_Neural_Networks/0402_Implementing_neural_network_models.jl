@@ -20,6 +20,7 @@ Pkg.activate(".")
 Pkg.instantiate()
 using Random
 Random.seed!(123)
+ENV["DATADEPS_ALWAYS_ACCEPT"] = "true"
 
 
 # We will _not_ run cross validation here to find the optimal hypermarameters. The process will not be different than those we saw in the lesson on the Perceptron. Instead we focus on creating neural network models, train them based on data and evaluationg their predictions.
