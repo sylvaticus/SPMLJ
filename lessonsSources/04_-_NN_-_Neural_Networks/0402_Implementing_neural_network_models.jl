@@ -150,7 +150,7 @@ scatter(yval,ŷval,xlabel="obs",ylabel="est",legend=nothing)
 using Flux, MLDatasets, Statistics, Plots
 
 x_train, y_train = MLDatasets.MNIST.traindata(dir = "data/MNIST")
-#=
+
 x_train          = permutedims(x_train,(2,1,3)) # For correct img axis
 x_train          = convert(Array{Float32,3},x_train)
 x_train          = reshape(x_train,(28,28,1,60000))
@@ -161,7 +161,7 @@ x_test           = permutedims(x_test,(2,1,3)) # For correct img axis
 x_test           = convert(Array{Float32,3},x_test)
 x_test           = reshape(x_test,(28,28,1,10000))
 y_test           = Flux.onehotbatch(y_test, 0:9)
-
+#=
 myaccuracy(ŷ, y) = (mean(Flux.onecold(ŷ) .== Flux.onecold(y)))
 myloss(x, y)     = Flux.crossentropy(model(x), y)
 
