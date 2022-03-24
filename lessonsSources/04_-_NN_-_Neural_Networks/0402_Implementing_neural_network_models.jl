@@ -150,7 +150,6 @@ scatter(yval,ŷval,xlabel="obs",ylabel="est",legend=nothing)
 using Flux, MLDatasets, Statistics, Plots
 
 x_train, y_train = MLDatasets.MNIST.traindata(dir = "data/MNIST")
-## up to here it works
 x_train          = permutedims(x_train,(2,1,3)) # For correct img axis
 x_train          = convert(Array{Float32,3},x_train)
 x_train          = reshape(x_train,(28,28,1,60000))
@@ -162,45 +161,37 @@ x_test           = convert(Array{Float32,3},x_test)
 x_test           = reshape(x_test,(28,28,1,10000))
 y_test           = Flux.onehotbatch(y_test, 0:9)
 
-myaccuracy(ŷ, y) = (mean(Flux.onecold(ŷ) .== Flux.onecold(y)))
-myloss(x, y)     = Flux.crossentropy(model(x), y)
-#=
 model = Chain(
-    # 28x28 => 14x14
+    ## 28x28 => 14x14
     Conv((5, 5), 1=>8, pad=2, stride=2, relu),
-    # 14x14 => 7x7
+    ## 14x14 => 7x7
     Conv((3, 3), 8=>16, pad=1, stride=2, relu),
-    # 7x7 => 4x4
+    ## 7x7 => 4x4
     Conv((3, 3), 16=>32, pad=1, stride=2, relu),
-    # 4x4 => 2x2
+    ## 4x4 => 2x2
     Conv((3, 3), 32=>32, pad=1, stride=2, relu),
-    # Average pooling on each width x height feature map
+    ## Average pooling on each width x height feature map
     GlobalMeanPool(),
     Flux.flatten,
     Dense(32, 10),
     Flux.softmax
 )
 
+myaccuracy(ŷ, y) = (mean(Flux.onecold(ŷ) .== Flux.onecold(y)))
+myloss(x, y)     = Flux.crossentropy(model(x), y)
 
 opt = Flux.ADAM()
 ps  = Flux.params(model)
 number_epochs = 4
 
-## up to here it DOESN'T WORK
-
 Flux.@epochs number_epochs Flux.train!(myloss, ps, train_data, opt)
-println("mydebug b")
 
 ŷtrain =   model(x_train)
-println("mydebug c")
 ŷtest  =   model(x_test)
-println("mydebug d")
 myaccuracy(ŷtrain, y_train)
-println("mydebug e")
 myaccuracy(ŷtest, y_test)
-println("mydebug f")
+
 plot(Gray.(x_train[:,:,1,1]))
-println("mydebug g")
 
 # ## Recursive neural networks
 
@@ -242,10 +233,8 @@ end
 
 ps  = params(m)
 opt = ADAM()
-println("mydebug i")
 trainxy = zip(seqs_vectors,seqs_vectors)
-println("mydebug l")
-=#
+
 # Actual training
 #=
 Flux.train!(myloss, ps, trainxy, opt)
