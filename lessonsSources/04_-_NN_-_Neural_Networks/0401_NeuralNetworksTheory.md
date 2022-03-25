@@ -275,6 +275,7 @@ There are a few differences with feed-forward neural networks:
 - these weights are shared for the various RNN layers across the sequence
 
 Note that you can interpret a recurrent network equivalently like being formed by different layers on each element of the sequence (but with shared weights) or like a single, evolving, layer that calls itself recursively.
+Note also the similarities with convolutional networks: there we have a filter than convolves along the image, keeping the weigths constant across the convolution, here we have a recurrent network that also "filter" the whole sequence and learn some shared weigths.  
 
 To implement a recurrent neural network we can adapt our code above to include the state: 
 
@@ -297,7 +298,7 @@ s = forward(rnnLayer,x,s)
 s = forward(rnnLayer,x,s)  # The state change even if x remains constant
 ```
 
-The code above is the simplest implementation of a Recursive Neural Network (or at least of its forward passage).
+The code above is the simplest implementation of a Recurrent Neural Network (or at least of its forward passage).
 In practice, the state is often memorised as part of the layer structure so its usage in most neural network libraries is similar to a "normal" feed-forward layer `forward(layer,x)`.
 
 

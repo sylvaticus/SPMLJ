@@ -7,7 +7,6 @@ With videos, code and exercises.
 - The videos : see lists below
 - Quizes and exercises: for now they are available only for the MOODLE courses where I teach this course, I am looking for a way to provide interactive content to a wider public (maybe [QuizQuestions.jl](https://github.com/jverzani/QuizQuestions.jl) ??)
 
-STATUS: At 2022.03.17 the course is ~90% content completed
 
 Objectives: 
 1. Supply students with an operational knowledge of a modern and efficient general-purpose language that can be employed for the implementation of their research daily activities;
@@ -79,7 +78,7 @@ Videos (hosted on YouTube):
   - [Part D - Nonlinear constrained optimisation, the optimal portfolio allocation](https://www.youtube.com/watch?v=_ypOlSwCC7U&list=PLDIpPSqVuMmI4Dhiekw2y1wakzsaMSJVG&index=8) (16:04)
 
 ### 03 ML1: Introduction to Machine Learning (1h:29:43)
-- ML - main concepts (44:45)
+- Main concepts in Machine Learning(44:45)
   - [Part A - Introduction, perceptron overall idea](https://www.youtube.com/watch?v=JuqCxqLik0s&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=1) (11:23)
   - [Part B - Hyperparameters and cross-validation](https://www.youtube.com/watch?v=agi2dKxClec&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=2) (15:18)
   - [Part C - The perceptron algorithm](https://www.youtube.com/watch?v=2otq8KEMp8Y&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=3) (9:53)
@@ -88,3 +87,17 @@ Videos (hosted on YouTube):
   - [Part A - A first version](https://www.youtube.com/watch?v=kOGSvdgd_3Y&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=5) (13:22)
   - [Part B - A better version](https://www.youtube.com/watch?v=g0yz7La53Vc&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=6) (10:28)
   - [Part C - Cross-validation implementation](https://www.youtube.com/watch?v=ieIZFF6RYQo&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=7) (21:7)
+
+### 03 NN: Neural Networks (2h:15:36)
+- Introduction to Neural Networks (1h:25:17)
+  - [Part A - Introduction and motivations](https://www.youtube.com/watch?v=4m_BzDV15XQ&list=PLDIpPSqVuMmIvTA3w7ATUKHzq82uey8pP&index=1) (5:32)
+  - [Part B - Feed-forward neural networks](https://www.youtube.com/watch?v=MMrM5X4gxqY&list=PLDIpPSqVuMmIvTA3w7ATUKHzq82uey8pP&index=2) (18:57)
+  - [Part C - How to train a neural network](https://www.youtube.com/watch?v=FNVfRwqT120&list=PLDIpPSqVuMmIvTA3w7ATUKHzq82uey8pP&index=3) (18:4)
+  - [Part D - Convolutional neural networks](https://www.youtube.com/watch?v=hFaOeSLEqpI&list=PLDIpPSqVuMmIvTA3w7ATUKHzq82uey8pP&index=4) (13:21)
+  - [Part E - Multiple layers in convolutional neural networks](https://www.youtube.com/watch?v=zWQ8-voVW78&list=PLDIpPSqVuMmIvTA3w7ATUKHzq82uey8pP&index=5) (10:33)
+  - [Part F - Recurrent neural networks](https://www.youtube.com/watch?v=oeyfFrgcW5c&list=PLDIpPSqVuMmIvTA3w7ATUKHzq82uey8pP&index=6) (17:49)
+- Neural Network workflows in Julia (50:18)
+  - [Part A - Binary classification](https://www.youtube.com/watch?v=IFVz0jsy5AQ&list=PLDIpPSqVuMmIvTA3w7ATUKHzq82uey8pP&index=7) (15:54)
+  - [Part B - Multinomial classification](https://www.youtube.com/watch?v=fqROq7B6nyY&list=PLDIpPSqVuMmIvTA3w7ATUKHzq82uey8pP&index=8) (15:1)
+  - [Part C - Regression](https://www.youtube.com/watch?v=jO-mfgzo7VY&list=PLDIpPSqVuMmIvTA3w7ATUKHzq82uey8pP&index=9) (6:3)
+  - [Part D - Convolutional neural network](https://www.youtube.com/watch?v=mSUdLu9HAd4&list=PLDIpPSqVuMmIvTA3w7ATUKHzq82uey8pP&index=10) (13:19)
