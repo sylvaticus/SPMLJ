@@ -15,16 +15,16 @@
 cd(@__DIR__)    
 using Pkg      
 Pkg.activate(".")  
-# If using a Julia version different than 1.7 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
-# Pkg.resolve()   
+## If using a Julia version different than 1.7 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
+## Pkg.resolve()   
 Pkg.instantiate()
 using Random
 Random.seed!(123)
 ENV["DATADEPS_ALWAYS_ACCEPT"] = "true"
 
 
-# We will _not_ run cross validation here to find the optimal hypermarameters. The process will not be different than those we saw in the lesson on the Perceptron. Instead we focus on creating neural network models, train them based on data and evaluationg their predictions.
-# For feed-forward neural networks (both for classification and regression) we will use [BetaML](https://github.com/sylvaticus/BetaML.jl), while for Convolutional Neural Networks and Recursive Neural NEtworks we will use the [Flux.jl](https://github.com/FluxML/Flux.jl) package.
+# We will _not_ run cross validation here to find the optimal hyper-parameters. The process will not be different than those we saw in the lesson on the Perceptron. Instead we focus on creating neural network models, train them based on data and evaluating their predictions.
+# For feed-forward neural networks (both for classification and regression) we will use [BetaML](https://github.com/sylvaticus/BetaML.jl), while for Convolutional Neural Networks example we will use the [Flux.jl](https://github.com/FluxML/Flux.jl) package.
 
 # ## Feed-forward neural networks
 
@@ -76,11 +76,11 @@ function myOwnTrainingInfo(nn,x,y;n,nBatches,epochs,verbosity,nEpoch,nBatch)
     if verbosity == FULL || ( nBatch == nBatches && ( nEpoch == 1  || nEpoch % ceil(epochs/nMsgs) == 0))
  
        ϵ = loss(nn,x,y)
-       println("Training.. \t avg ϵ on (Epoch $nEpoch Batch $nBatch): \t $(ϵ)")
+       println("MY Training.. \t avg ϵ on (Epoch $nEpoch Batch $nBatch): \t $(ϵ)")
     end
     return false
  end
-train!(mynn,xtrain,ytrain,epochs=300,batchSize=6,sequential=false,verbosity=STD,cb=myOwnTrainingInfo,optAlg=ADAM(η=t -> 0.001, λ=1.0, β₁=0.9, β₂=0.999, ϵ=1e-8),rng=copy(FIXEDRNG))
+train!(mynn,xtrain,ytrain,epochs=300,batchSize=6,sequential=true,verbosity=STD,cb=myOwnTrainingInfo,optAlg=ADAM(η=t -> 0.001, λ=1.0, β₁=0.9, β₂=0.999, ϵ=1e-8),rng=copy(FIXEDRNG))
 
 ŷtrain         = predict(mynn, xtrain) |> makeColVector .|> round .|> Int
 ŷtest          = predict(mynn, xtest)  |> makeColVector .|> round .|> Int
@@ -115,7 +115,7 @@ ŷtest         = predict(mynn,scale(xtest))
 trainAccuracy = accuracy(ŷtrain,ytrain)
 testAccuracy  = accuracy(ŷtest,ytest,tol=1,ignoreLabels=false)  
 
-cm = ConfusionMatrix(ŷtest,ytest, labels=["setosa", "versicolor", "virginica"])
+cm = ConfusionMatrix(ŷtrain,ytrain, labels=["setosa", "versicolor", "virginica"])
 println(cm)
 
 # ### Regression
@@ -191,151 +191,6 @@ ŷtest  =   model(x_test)
 myaccuracy(ŷtrain, y_train)
 myaccuracy(ŷtest, y_test)
 
-plot(Gray.(x_train[:,:,1,1]))
+plot(Gray.(x_train[:,:,1,2]))
 cm = ConfusionMatrix(Flux.onecold(ŷtest) .-1 ,Flux.onecold(y_test) .-1)
 println(cm)
-
-#=
-# ## Recursive neural networks
-
-
-# Generating simulated data
-# The idea is to have a sequence that depend on the first 5 values. So the first 5 values are random, but the rest of the sequence depend deterministically to these first 5 values and the objective it to recreate this second part of the sequence knowing the first 5 parts.
-
-
-nSeeds    = 5
-seqLength = 5
-nTrains   = 3000  
-nVal      = 100
-nTot = nTrains+nVal
-makeSeeds(nSeeds) = 2 .* (rand(nSeeds) .- 0.5) # [-1,+1]
-function makeSequence(seeds,seqLength)
-  seq = Vector{Float32}(undef,seqLength+nSeeds) # Flux Works with Float32 for performance reasons
-  [seq[i] = seeds[i] for i in 1:nSeeds]
-  for i in nSeeds+1:(seqLength+nSeeds)
-     ##seq[i] = seq[i-1] + seeds[1]*0.1*seq[i-1] +seeds[2]*seeds[3]*seq[i-1]*0.4+seeds[4]*seeds[5]*(seq[i-3]-seq[i-4])
-     seq[i] = i*(seeds[4]*0.5) # the only seed that matters is the 4th
-  end
-  return seq
-  return seq[nSeeds+1:end]
-end
-
-seq=makeSequence(makeSeeds(nSeeds),seqLength)
-plot(seq)
-
-x0   = [makeSeeds(nSeeds) for i in 1:nTot]
-seqs = makeSequence.(x0,seqLength)
-seqs_vectors = [[[e] for e in seq] for seq in seqs]
-y    = [s[2:end] for s in seqs_vectors] # y here is the value of the sequence itself at next step
-
-xtrain = seqs_vectors[1:nTrains]
-xval   = seqs_vectors[nTrains+1:end]
-ytrain = y[1:nTrains]
-yval   = y[nTrains+1:end]
-
-allData   = xtrain;
-aSequence = allData[1]
-anElement = aSequence[1]
-
-
-m    = Chain(Dense(1,10,σ),LSTM(10, 10), Dense(10, 1))
-
-function myloss(x, y)
-    Flux.reset!(m)                 # Reset the state (not the weigtht!)
-    [m(x[i]) for i in 1:nSeeds-1]  # Ignores the output but updates the hidden states
-    sum(Flux.mse(m(xi), yi) for (xi, yi) in zip(x[nSeeds:(end-1)], y[nSeeds:end]))
-end
-
-seq1 = xtrain[1]
-y1   = ytrain[1]
-
-
-ps  = params(m)
-opt = Flux.ADAM()
-function predictSequence(m,seeds,seqLength)
-    seq = Vector{Vector{Float32}}(undef,seqLength+length(seeds)-1)
-    Flux.reset!(m) # Reset the state (not the weigtht!)
-    [seq[i] = [convert(Float32, seeds[i])] for i in 1:nSeeds]
-    [seq[i] = m(seq[i-1]) for i in nSeeds+1:nSeeds+seqLength-1]
-    [s[1] for s in seq]
-end
-
-predictSequence(m,x0e[1],seqLength)
-
-
-function batchSequences(x,batchSize)
-    x = copy(xtrain)
-    batchSize = 3
-    nRecords  = length(x)
-    nItems    = length(x[1])
-    nDims     = size(x[1][1],1) 
-    nBatches  = Int(floor(nRecords/batchSize))
-
-    emptyBatchedElement = Matrix{Float32}(undef,nDims,batchSize)
-    emptySeq = [similar(emptyBatchedElement) for i in 1:nItems]
-    outx = [similar(emptySeq) for i in 1:nBatches]
-    for b in 1:nBatches
-        xmin = (b-1)*batchSize + 1
-        xmax = b*batchSize
-        for e in 1:nItems
-            outx[b][e] = hcat([x[i][e][:,1] for i in xmin:xmax]... )
-        end
-    end  
-    return outx
-end
-
-# Actual training
-
-trainMSE  = Float64[]
-valMSE    = Float64[]
-epochs    = 5000 # Try at least 100 epochs
-batchSize = 32
-for e in 1:epochs
-    print("Epoch $e ")
-    ## Shuffling at each epoch
-    ids = shuffle(1:length(xtrain))
-    x0e      = x0[ids]
-    xtraine  = xtrain[ids]
-    ytraine  = ytrain[ids]
-
-    xtraine =batchSequences(xtraine,batchSize)
-    ytraine =batchSequences(ytraine,batchSize)
-    trainxy = zip(xtraine,ytraine)
-
-    ## Actual training
-    Flux.train!(myloss, ps, trainxy, opt)
-    ## Making prediction on the trained model and computing accuracies
-    global trainMSE, valMSE
-    ŷtrain  = [predictSequence(m,x0[i],seqLength) for i in 1:nTrains]
-    ŷval    = [predictSequence(m,x0[i],seqLength) for i in (nTrains+1):nTot]
-    ytrain  = [makeSequence(x0[i],seqLength) for i in  1:nTrains]
-    yval    = [makeSequence(x0[i],seqLength) for i in  (nTrains+1):nTot]
-
-    trainmse =  sum(norm(ŷtrain[i][nSeeds+1:end] - ytrain[i][nSeeds+1:end-1])^2 for i in 1:nTrains)/nTrains
-    valmse   =  sum(norm(ŷval[i][nSeeds+1:end] - yval[i][nSeeds+1:end-1])^2 for i in 1:nVal)/nVal
-    push!(trainMSE,trainmse)
-    push!(valMSE,valmse)
-    println("MEan Sq Error: $trainmse - $valmse")
-end
-
-predictSequence(m,x0[1],seqLength)
-makeSequence(x0[1],seqLength)
-
-for i = 1:20:100
-    trueseq = makeSequence(x0[i],seqLength)
-    estseq  = predictSequence(m,x0[i],seqLength)
-    seqPlot = plot(trueseq[1:end-1],label="true", title = "Seq $i")
-    plot!(seqPlot, estseq, label="est")
-    display(seqPlot)
-end
-
-
-plot(trainMSE,label="Train MSE")
-plot!(valMSE,label="Validation MSE")
-
-
-=#
-
-
-
-
