@@ -2,6 +2,9 @@
 An introductory course on common scientific-related and machine learning tasks using the Julia programming language.
 With videos, code and exercises.
 
+This is the repository of the course with the source code of the pages that appear in the videos.
+Get and run the code by yourself with `git clone https://github.com/sylvaticus/SPMLJ.git` or [access the course](https://sylvaticus.github.io/SPMLJ/stable).
+
 - This repository: https://github.com/sylvaticus/SPMLJ
 - The code organised by topics and with the output that the code produces: [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://sylvaticus.github.io/SPMLJ/dev)
 - The videos : see lists below
