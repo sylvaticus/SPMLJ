@@ -1,0 +1,5 @@
+[deps]
+BetaML = "024491cd-cc6b-443e-8034-08ea7eb7db2b"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+Pipe = "b98c9c47-44ae-5843-9183-064241ee97a0"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
