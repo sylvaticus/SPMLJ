@@ -1,9 +1,10 @@
 # Introduction to Scientific Programming and Machine Learning with Julia
 
+Except for the introductions and this page, the course is completed, please use the menu to access a particular section.
 
-This site contains the scripts discussed in the video.
-- [GitHub repository](https://github.com/sylvaticus/IntroSPMLJuliaCourse)
-- [YouTube playlist](https://youtube.com)
+
+- [GitHub repository](https://github.com/sylvaticus/SPMLJ)
+
 
  
  

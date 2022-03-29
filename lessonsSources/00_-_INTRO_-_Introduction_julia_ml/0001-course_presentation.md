@@ -27,7 +27,8 @@ Any-how, the course is organised in units/lessons (e.g. `JULIA1`). Each unit/les
 
 ## Course author
 
-[![Antonello Lobianco](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/00_-_INTRO_-_Introduction_julia_ml/assets/imgs/photo_antonello_lobianco.jpg)]
+ <img src="https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/00_-_INTRO_-_Introduction_julia_ml/assets/imgs/photo_antonello_lobianco.jpg" alt="Antonello Lobianco" width="200"> 
+
 Antonello Lobianco
 [OrcID](https://orcid.org/0000-0002-1534-8697) - [Google Schoolar](https://scholar.google.com/citations?user=8DSfpVUAAAAJ) - [GitHub]( https://github.com/sylvaticus/) - [Personal site](https://lobianco.org/antonello)
 I am a Forest and Natural Resources Economist @ AgroParisTech, a French "Grand ecole" (sort of polytecnic university) in the life science domain and affiliated to BETA, the _Bureau d'Économie Théorique et Appliquée_, which brings together most of the economists located in the _Grand-Est_ region of France.

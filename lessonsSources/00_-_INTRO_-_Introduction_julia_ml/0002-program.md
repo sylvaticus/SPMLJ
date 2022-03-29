@@ -1,16 +1,16 @@
 # Program
 
-The following videos are available. All except the introduction follow very close the pages in this site.
+The following videos (15h:2':30'') are available. All except the introduction follow very close the pages in this site.
 
 Videos are hosted on YouTube.
 
 ### 00 KOM: Kick-off meeting (2h:44:54)
 
-Note that this introduction has been recorded before the rest of the course has been implemented, so that the organisation of the course, and the way it is delivered, are not exactly as described in the videos below
+Note that this introduction has been recorded before the rest of the course has been implemented, so that the organisation of the course, and the way it is delivered, are not exactly as described in the videos below.
 
 Take-home tip: in your projects, implement the introduction and the conclusions as the last elements ;-)
 
-The slides used in the vodeos below is available [here]().
+The slides used in the videos below are available [here](https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/00_-_INTRO_-_Introduction_julia_ml/assets/00_KOMEETING.pdf).
 
 - [Course introduction](https://www.youtube.com/watch?v=2tM5oIvOQnU&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=1) (16:11)
 - [Julia overview](https://www.youtube.com/watch?v=uW8iyTjSaJk&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=2) (36:25)
