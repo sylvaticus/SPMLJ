@@ -1,0 +1,133 @@
+# Quiz on Basic Syntax
+
+```@setup q0101
+cd(@__DIR__)    
+using Pkg      
+Pkg.activate(".")  
+## Pkg.resolve()   
+## Pkg.instantiate()
+using Random
+Random.seed!(123)
+using QuizQuestions
+```
+
+--------------------------------------------------------------------------------
+### Q1: What is it stored in a project file ?
+
+What information can be stored on a Julia `Project.toml` file ?
+
+```@example q0101
+
+choices = [ # hide
+    "The name of the packages directly used in the project (julia scripts)", # hide
+    "The ID of the packages directly used in the project (julia scripts)", # hide
+    "The minimum and maximum version of the packages directly used in the project (julia scripts) that are compatible with the project", # hide
+    "The exact version of the package directly emploied in the project (julia scripts)", # hide
+    "The name of all the dependencies libraries of the project (julia scripts)", # hide
+    "The ID of all the dependencies libraries of the project (julia scripts)", # hide
+    "The minimum and maximum version of all the dependencies libraries used in the project (julia scripts) that are compatible with the project", # hide
+    "The exact version of all the dependencies libraries emploied in the project (julia scripts)", # hide
+    "None of the (other) sentences is correct" ]  # hide
+answers = [1,2,3]  # hide
+multiq(choices, answers;)  # hide
+
+```
+
+```@raw html
+<details><summary>RESOLUTION</summary>
+```
+
+The `Project.toml` file task is to indicate which is the set of packages that works with the given project, but not the concrete istance of the environment that is used in a project, that is the exact version of all directly and indirectly used packages. This is indeed the task of the `Manifest.toml` file.
+
+The correct answers are:
+  - "The name of the packages directly used in the project (julia scripts)"
+  - "The ID of the packages directly used in the project (julia scripts)"
+  - "The minimum and maximum version of the packages directly used in the project (julia scripts) that are compatible with the project"
+```@raw html
+</details>
+```
+
+--------------------------------------------------------------------------------
+### Q2: Syntax for comments
+
+Given the following sequence of commands (one for each line) run in an interactive session:
+
+```julia
+# a = 1
+a = 2 # hello
+a = # hello # 3
+#= a = 4
+#= a = 5 =#
+a = 6
+=#
+```
+
+Which statements are correct ?
+
+```@example q0101
+choices = [ # hide
+    "`a` is now `1`", # hide
+    "`a` is now `2`", # hide
+    "`a` is now `3`", # hide
+    "`a` is now `4`", # hide
+    "`a` is now `5`", # hide
+    "`a` is now `6`", # hide
+    "None of the (other) sentences is correct", # hide
+    "At least one of that commands raises a run-time error", # hide
+    "None of that commands raises a run-time error"]  # hide
+answers = [2,8]  # hide
+multiq(choices, answers;)  # hide 
+```
+
+```@raw html
+<details><summary>RESOLUTION</summary>
+```
+The first command is a comment. On the second one, `a` is assigned the value `2`. The third one raises a syntax error as the equal operator expects a right and a left hand side, while here the right hand side is all commented out. Finally lines 4  to the end is a big nested comment. It results that after that commands have been run, `a` remains assigned to `2`.
+The correct answers are:
+- "`a` is now `2`"
+- "At least one of that commands raises a run-time error"
+```@raw html
+</details>
+```
+
+--------------------------------------------------------------------------------
+### Q3: Various syntax rules
+
+Given a file "Foo.jl" with the following code:
+```julia
+function foo(x)
+println(x²)
+end
+a = [2,3]
+foo(a)
+foo.(a)
+foo(a[1])
+```
+Which of the following statements are correct ?
+
+```@example q0101
+choices = [ #hide
+    "The output of `foo(a)` is `[4,9]`", #hide
+    "The output of `foo.(a)` is `[4,9]`", #hide
+    "The output of `foo(a[1])` is `4`", #hide
+    "The output of `foo(a[1])` is `9`", #hide
+    "Defining the function produces a run-time error because the body of the function is not idented", #hide
+    "Calling the function produces a run-time error because the body of the function is not idented", #hide
+    "Calling the function produces a run-time error because Unicode characters (`²`) are not allowed in Julia", #hide
+    "Calling the function produces a run-time error because `x²` is not defined", #hide
+    "None of the (other) sentences is correct", #hide
+]  # hide
+answers = [8]  # hide
+multiq(choices, answers;)  # hide
+```
+
+```@raw html
+<details><summary>RESOLUTION</summary>
+```
+
+First, Unicode characters are allowed (with very rare exceptions) and identation doesn't matter in Julia. We would then be tempted to say hence that the broadcasted call `foo.(a)` produces `[4,9]` as output and `foo(a[1])` produces `4`. However the rising to the power is not obtained by using the Unicode `²` character, but using the exponential operator, i.e. `x^2`. `x²` is just an other idetifier name that has not been defined, so the function in all cases returns an error that `x²` is not defined.
+The correct answer is:
+  - "Calling the function produces a run-time error because `x²` is not defined"
+```@raw html
+</details>
+```

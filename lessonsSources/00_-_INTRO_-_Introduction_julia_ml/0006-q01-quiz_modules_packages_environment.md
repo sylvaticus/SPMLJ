@@ -1,0 +1,263 @@
+# Quiz 01.1 on Modules, packages and environments
+
+```@setup q0001
+cd(@__DIR__)    
+using Pkg      
+Pkg.activate(".")  
+## Pkg.resolve()   
+## Pkg.instantiate()
+using Random
+Random.seed!(123)
+using QuizQuestions
+```
+
+--------------------------------------------------------------------------------
+### Q1: What is printed ?
+
+Given a file `foo.jl` with the following code:
+```julia
+println("A - I am in foo.jl")
+
+module Foo
+
+println("B - I am in module Foo in foo.jl")
+export x
+
+const x=1
+const y=2
+z() = println("C - I am in a function of module Foo")
+end
+
+module Foo2
+
+println("D - I am in module Foo2 in foo.jl")
+export a
+
+const a=1
+const b=2
+c() = println("E - I am in a function of module Foo2")
+end
+```
+
+Which print statements will appear after running the command `include(foo.jl)` ?
+
+```@example q0001
+
+choices = [ # hide
+  "All statements from `A` to `E`", # hide
+  "No statements will be printed (e.g. due to an error)", # hide
+  "Statement `A` only", # hide
+  "Statements `A`, `B` and `D` only", # hide
+  "Statements `A`, `C` and `E` only", # hide
+  "Statements `B` and `D` only", # hide
+  ]  # hide
+answers = [2]  # hide
+multiq(choices, answers;)  # hide
+
+```
+
+```@raw html
+<details><summary>RESOLUTION</summary>
+```
+The `include(foo.jl)` statement will lead to an error because there are no quotes around the filename. If the quotations would have been included it would have resulted in the statements `A`, `B` and `D`. Statements `C` and `E` are within function definition and would occur only when functions `z` or `c` would have been called.}
+
+The correct answer is:
+  - "No statements will be printed (e.g. due to an error)"
+```@raw html
+</details>
+```
+
+--------------------------------------------------------------------------------
+### Q2: Inclusion of a module
+
+Given a file `foo.jl` with the following code:
+
+```julia
+module Foo
+
+export x
+
+const x=1
+const y=2
+z() = println("Hello world!")
+end
+```
+
+and the following sequence of commands:
+
+```julia
+include("foo.jl")         # Command 1
+x                         # Command 2
+Foo.x                     # Command 3
+using Foo                 # Command 4
+using .Foo                # Command 5
+x                         # Command 6
+Foo.z()                   # Command 7
+```
+
+Which statements are correct ?
+
+```@example q0001
+
+choices = [ # hide
+  "Command 1 is wrong at it should have been `include foo` (without the .jl file extension)", # hide
+  "Command 2 returns the value `1`", # hide
+  "Command 3 returns the value `1`", # hide
+  "Command 4 returns an `ArgumentError: Package Foo not found in current path:`", # hide
+  "Command 5 returns an `ArgumentError: Package Foo not found in current path:`", # hide
+  "Command 6 returns the value  `1`", # hide
+  "Command 7 returns an `UndefVarError: z not defined`", # hide
+  ]  # hide
+answers = [3,4,6]  # hide
+multiq(choices, answers;keep_order=true)  # hide
+
+```
+
+```@raw html
+<details><summary>RESOLUTION</summary>
+```
+
+The `include("foo.jl")` statement evaluates the included content, but it doesn't yet bring it into scope. You can't yet refer directly to the objects of the `Foo` module, you need to use the qualified name as in command 3. `Foo` is a module, not a package, so command 4 will complain that it doesn't find the "package" `Foo`. After the module has been bring to scope we can refer to `x` directly as in command 6. Command 7, as we are using the qualified name, is indipenden than whether `z` was exported by `Foo` or not, and hence it works, and would have been worked even without the `using .Foo` of command 5.
+
+The correct answers are:
+  - "Command 3 returns the value `1`"
+  - "Command 4 returns an `ArgumentError: Package Foo not found in current path:`"
+  - "Command 6 returns the value  `1`"
+
+```@raw html
+</details>
+```
+
+--------------------------------------------------------------------------------
+### Q3: Submodules
+
+Given a file `Foo.jl` with the following code:
+```julia
+module Foo
+export x, plusOne
+x = 1
+plusOne(x) = x + 1
+module Foo2
+  export plusTwo
+  plusTwo(x) = plusOne(x)+1
+end
+end
+```
+
+After including the file we try to run the command `Foo.Foo2.plusTwo(10)`. Which of the following statements is correct ?
+
+```@example q0001
+
+choices = [ # hide
+  "The result is 12", # hide
+  "The result is 3", # hide
+  "The result is an error that we can avoid if we run instead the command `Main.Foo.Foo2.plusTwo(10)`", # hide
+  "The result is an error that we can avoid if we type `using Foo` before that command", # hide
+  "The result is an error that we can avoid if we type `using .Foo` before that command", # hide
+  "The result is an error that we can avoid if the function `plusTwo` in module `Foo2` is defined as `plusTwo(x) = Foo.plusOne(x)+1`", # hide
+  "The result is an error that we can avoid if the function `plusTwo` in module `Foo2` is defined as `plusTwo(x) = Main.Foo.plusOne(x)+1`", # hide
+  "The result is an error that we can avoid if the function `plusTwo` in module `Foo2` is defined as `plusTwo(x) = ..Foo.plusOne(x)+1`", # hide
+  "The result is an error that we can avoid if in module `Foo2` the function `plusTwo` is preceded by the statement `using Foo`", # hide
+  "The result is an error that we can avoid if in module `Foo2` the function `plusTwo` is preceded by the statement `using .Foo`", # hide
+  " The result is an error that we can avoid if in module `Foo2` the function `plusTwo` is preceded by the statement `using ..Foo`", # hide
+  ]  # hide
+answers = [7,11]  # hide
+multiq(choices, answers;)  # hide
+
+```
+
+```@raw html
+<details><summary>RESOLUTION</summary>
+```
+The given command results in a `UndefVarError: plusOne not defined`. Indeed even if `Foo2` is a submodule of `Foo`, it doesn't inherit the scope of parent modules. So its code can't find the 'plusOne' function.  When in the REPL we run the command we are in the `Main` module. Adding `using .Foo` doesn't change anything, as the problem is in the scope of the `Foo2` module, not in those of the REPL (`Main` - and , of course, typing `using Foo` looks-up for the package `Foo`, not the module `Foo`, and would end in a `Package Foo not found` error. So what can we do? One solution is using in the `plusTwo` function the full path of the `plusOne` function:  `plusTwo(x) = Main.Foo.plusOne(x)+1`. While this works, it may be a less portable solution, as it then requires module Foo to be a child of `Main`. Perhaps a better solution is to use a relative path and use the statement `using ..Foo` in module `Foo2` before the definition of `plusTwo` (trying to use a relative path directly in the function definition as in `plusTwo(x) = ..Foo.plusOne(x)+1` results in a parsing error)
+
+The correct answers are:
+  - The result is an error that we can avoid if the function `plusTwo` in module `Foo2` is defined as `plusTwo(x) = Main.Foo.plusOne(x)+1`
+  - The result is an error that we can avoid if in module `Foo2` the function `plusTwo` is preceded by the statement `using ..Foo`
+```@raw html
+</details>
+```
+
+--------------------------------------------------------------------------------
+### Q4: Submodules2 
+
+Given a module `Foo` with the following code:
+
+```julia
+module Foo
+export x
+x = 1
+module Foo2
+  export plusTwo
+  plusTwo(x) = x+2
+end
+module Foo3
+  export plusThree
+  [XXXX]
+  plusThree(x) = plusTwo(x)+1
+  end                  
+end
+```
+
+Which of the following statements are correct ?
+
+```@example q0001
+
+choices = [ # hide
+  "`[XXXX]` should be `using Main.Foo.Foo2` for the function `plusThree` to work", # hide
+  "`[XXXX]` should be `using Foo2` for the function `plusThree` to work", # hide
+  "`[XXXX]` should be `using .Foo2` for the function `plusThree` to work", # hide
+  "`[XXXX]` should be `using ..Foo2` for the function `plusThree` to work", # hide
+  "`[XXXX]` should be `import Main.Foo.Foo2` for the function `plusThree` to work", # hide
+  "`[XXXX]` should be `import Foo2` for the function `plusThree` to work", # hide
+  "`[XXXX]` should be `import .Foo2` for the function `plusThree` to work", # hide
+  "`[XXXX]` should be `import ..Foo2` for the function `plusThree` to work", # hide
+  ]  # hide
+answers = [1,4]  # hide
+multiq(choices, answers;)  # hide
+
+```
+
+```@raw html
+<details><summary>RESOLUTION</summary>
+```
+ The function `plusTwo` needs to access a function on a sibling module. So the module `Foo2` must be retrieved by going up to one level with the two dots and then naming the module, i.e. `using ..Foo2` or using the full module path `using Main.Foo.Foo2`. `import` statemens alone will not work as the `plusThree` function call the `plusTwo` function using the unqualified name, without prefixing the module, so the `plusThree` function name need to be exported.
+
+The correct answers are:
+  - "`[XXXX]` should be `using Main.Foo.Foo2` for the function `plusThree` to work"
+  - "`[XXXX]` should be `using ..Foo2` for the function `plusThree` to work"
+```@raw html
+</details>
+```
+
+--------------------------------------------------------------------------------
+### Q5: Reproducibility
+
+Which elements do you have to provide to others to guarantee reproducibility of your results obtained with a Julia project?
+
+```@example q0001
+
+choices = [ # hide
+  "The input data of your analysis", # hide
+  "The full source code of the scripts you have used", # hide
+  "The content of the Julia user folder on the machine your code ran to produce the results (e.g. `/home/[username]/.julia` in Linux)", # hide
+  "The file `Manifest.toml` of the environment where your code ran to produce the results", # hide
+  "The file `Project.toml` of the environment where your code ran to produce the results", # hide
+  ]  # hide
+answers = [1,2,4]  # hide
+multiq(choices, answers;)  # hide
+
+```
+
+```@raw html
+<details><summary>RESOLUTION</summary>
+```
+To provide replicable results, assuming a deterministic algorithm or one where the random seed generator has been fixed, we need to provide the input data, the source code and the 'Manifest.toml' file that describe the _exact_ version of all packages. The `Project.toml` file instead, when present, is used to describe in which conditions our scripts could be used (i.e. the _list_ and eventually _range_ of dependent packages), but not a _unique_ environment state. The information of the `Manifest.toml` (and, for Julia versions before 1.7, the Julia version itself, as this info was not encoded in the `Manifest.toml` file) is enougth, we don't need to provide the whole content of the user Julia folder.
+
+The correct answers are:
+  - "The input data of your analysis"
+  - "The full source code of the scripts you have used"
+  - "The file `Manifest.toml` of the environment where your code ran to produce the results"
+```@raw html
+</details>
+```
