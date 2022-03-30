@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>0104-control flow and functions · SPMLJ</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q39LHCRBB6"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q39LHCRBB6', {'page_path': location.pathname + location.search + location.hash});
+</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">SPMLJ</a></span></div><form class="docs-search" action="../search.html"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">INTRO - Introduction to the course, Julia and ML</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0001-course_presentation.html">0001-course presentation</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0002-program.html">0002-program</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003-introduction_to_Julia.html">0003-introduction to Julia</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004-introduction_to_ml.html">0004-introduction to ml</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0005-installing_julia_and_git.html">0005-installing julia and git</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0006-q01-quiz_modules_packages_environment.html">0006-q01-quiz modules packages environment</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-2" type="checkbox" checked/><label class="tocitem" for="menuitem-2-2"><span class="docs-label">JULIA1 - Basic Julia Programming</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="0101-basic_syntax.html">0101-basic syntax</a></li><li><a class="tocitem" href="0101-q01-quiz_basic_syntax.html">0101-q01-quiz basic syntax</a></li><li><a class="tocitem" href="0102-types_and_objects.html">0102-types and objects</a></li><li><a class="tocitem" href="0103-predefined_types.html">0103-predefined types</a></li><li class="is-active"><a class="tocitem" href="0104-control_flow_and_functions.html">0104-control flow and functions</a><ul class="internal"><li><a class="tocitem" href="#Control-Flow-and-Functions"><span>0104 Control Flow and Functions</span></a></li><li><a class="tocitem" href="#Some-stuff-to-set-up-the-environment.."><span>Some stuff to set-up the environment..</span></a></li><li><a class="tocitem" href="#Variables-scope"><span>Variables scope</span></a></li><li><a class="tocitem" href="#Repeated-iterations:-for-and-while-loops,-List-Comprehension,-Maps"><span>Repeated iterations: <code>for</code> and <code>while</code> loops, List Comprehension, Maps</span></a></li><li><a class="tocitem" href="#Conditional-statements:-if-blocks-and-ternary-operators"><span>Conditional statements: if blocks and ternary operators</span></a></li><li><a class="tocitem" href="#Functions"><span>Functions</span></a></li><li><a class="tocitem" href="#do-blocks"><span><code>do</code> blocks</span></a></li></ul></li><li><a class="tocitem" href="0105-custom_types.html">0105-custom types</a></li><li><a class="tocitem" href="0106-further_topics.html">0106-further topics</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-3" type="checkbox"/><label class="tocitem" for="menuitem-2-3"><span class="docs-label">JULIA2 - Scientific programming with Julia</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201-wrangling_data.html">0201-wrangling data</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202-further_topics.html">0202-further topics</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-4" type="checkbox"/><label class="tocitem" for="menuitem-2-4"><span class="docs-label">ML1 - Introduction to Machine Learning</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0301-MachineLearningMainIdeas.html">0301-MachineLearningMainIdeas</a></li><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0302-perceptron.html">0302-perceptron</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-5" type="checkbox"/><label class="tocitem" for="menuitem-2-5"><span class="docs-label">NN - Neural Networks</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0401_NeuralNetworksTheory.html">0401 NeuralNetworksTheory</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402_Implementing_neural_network_models.html">0402 Implementing neural network models</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Lessons</a></li><li><a class="is-disabled">JULIA1 - Basic Julia Programming</a></li><li class="is-active"><a href="0104-control_flow_and_functions.html">0104-control flow and functions</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0104-control_flow_and_functions.html">0104-control flow and functions</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0104-control_flow_and_functions.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><pre></pre><h2 id="Control-Flow-and-Functions"><a class="docs-heading-anchor" href="#Control-Flow-and-Functions">0104 Control Flow and Functions</a><a id="Control-Flow-and-Functions-1"></a><a class="docs-heading-anchor-permalink" href="#Control-Flow-and-Functions" title="Permalink"></a></h2><h2 id="Some-stuff-to-set-up-the-environment.."><a class="docs-heading-anchor" href="#Some-stuff-to-set-up-the-environment..">Some stuff to set-up the environment..</a><a id="Some-stuff-to-set-up-the-environment..-1"></a><a class="docs-heading-anchor-permalink" href="#Some-stuff-to-set-up-the-environment.." title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; cd(@__DIR__)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pkg</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.activate(&quot;.&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">  Activating project at `~/work/SPMLJ/SPMLJ/buildedDoc/01_-_JULIA1_-_Basic_Julia_programming`</code></pre><p>If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost) Pkg.resolve() Pkg.instantiate() # run this if you didn&#39;t in Segment 01.01</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Random</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Random.seed!(123)</code><code class="nohighlight hljs ansi" style="display:block;">Random.TaskLocalRNG()</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using InteractiveUtils # loaded automatically when working... interactively</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h2 id="Variables-scope"><a class="docs-heading-anchor" href="#Variables-scope">Variables scope</a><a id="Variables-scope-1"></a><a class="docs-heading-anchor-permalink" href="#Variables-scope" title="Permalink"></a></h2><p>The scope of a variable is the region of code where the variable can be accessed directly (without using prefixes). Modules, functions, <code>for</code> and other blocks (but notably not &quot;if&quot; blocks) introduce an inner scope that hinerit from the scope where the block or function is defined (but not, for function, from the caller&#39;s scope). Variables that are defined outside any block or function are <em>global</em> for the module where they are defined (the <code>Main</code> module if outside any other module, e.g. on the REPL), the others being <em>local</em>. Variables defined in a <code>for</code> block that already exists as global behave differently depending if we are working interactively or not:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; g  = 2</code><code class="nohighlight hljs ansi" style="display:block;">2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; g2 = 20</code><code class="nohighlight hljs ansi" style="display:block;">20</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; for i in 1:2
+           l1 = g2                                       # l1: local, g2: global (read only)
+           l1 += i
+           g = i                                         # REPL/INTERACTIVE: global (from Julia 1.5), FILE MODE: local by default (with a warning `g` being already defined)
+           g += i
+           println(&quot;i: $i&quot;)
+           println(&quot;l1: $l1&quot;)
+           println(&quot;g: $g&quot;)
+           for j in 1:2
+               l1 += j                                   # still the local in outer loop, not a new local one
+               l2 = j
+               g  += j
+               println(&quot;j: $j&quot;)
+               println(&quot;l1 inside inner loop: $l1&quot;)
+               println(&quot;l2 inside inner loop: $l2&quot;)
+               println(&quot;g inside inner loop: $g&quot;)
+           end
+           # println(&quot;l2 post: $l2&quot;)                     # error: l2 not defined in this scope
+           println(&quot;l1 post: $l1&quot;)
+           println(&quot;g post: $g&quot;)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">i: 1
+l1: 21
+g: 2
+j: 1
+l1 inside inner loop: 22
+l2 inside inner loop: 1
+g inside inner loop: 3
+j: 2
+l1 inside inner loop: 24
+l2 inside inner loop: 2
+g inside inner loop: 5
+l1 post: 24
+g post: 5
+i: 2
+l1: 22
+g: 4
+j: 1
+l1 inside inner loop: 23
+l2 inside inner loop: 1
+g inside inner loop: 5
+j: 2
+l1 inside inner loop: 25
+l2 inside inner loop: 2
+g inside inner loop: 7
+l1 post: 25
+g post: 7</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # println(&quot;l1 global $l1&quot;)                        # error; l1 is not defined in the global scope
+       println(&quot;g in global: $g&quot;)                        # REPL/INTERACTIVE: &quot;7&quot;, FILE MODE: &quot;2&quot;</code><code class="nohighlight hljs ansi" style="display:block;">g in global: 7</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function foo(i)
+           l1 = g2                                       # l1: local, g2: global (read only)
+           l1 += i
+           g = i                                         # REPL/INTERACTIVE and FILE MODE: local by default (with a warning `g` being already defined)
+           g += i
+           println(&quot;i: $i&quot;)
+           println(&quot;l1: $l1&quot;)
+           println(&quot;g: $g&quot;)
+           for j in 1:2
+               l1 += j                                   # still the local in outer loop, not a new local one
+               l2 = j
+               g  += j
+               println(&quot;j: $j&quot;)
+               println(&quot;l1 inside inner loop: $l1&quot;)
+               println(&quot;l2 inside inner loop: $l2&quot;)
+               println(&quot;g inside inner loop: $g&quot;)
+           end
+           # println(&quot;l2 post: $l2&quot;)                     # error: l2 not defined in this scope
+           println(&quot;l1 post: $l1&quot;)
+           println(&quot;g post: $g&quot;)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">foo (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; println(&quot;Calling foo..&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">Calling foo..</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo(10)</code><code class="nohighlight hljs ansi" style="display:block;">i: 10
+l1: 30
+g: 20
+j: 1
+l1 inside inner loop: 31
+l2 inside inner loop: 1
+g inside inner loop: 21
+j: 2
+l1 inside inner loop: 33
+l2 inside inner loop: 2
+g inside inner loop: 23
+l1 post: 33
+g post: 23</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; println(&quot;g in global: $g&quot;)                        # REPL/INTERACTIVE: &quot;7&quot;, FILE MODE: &quot;2&quot;</code><code class="nohighlight hljs ansi" style="display:block;">g in global: 7</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; g = 2</code><code class="nohighlight hljs ansi" style="display:block;">2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; include(&quot;010401-varScopeExample.jl.txt&quot;)            # gives a warning !</code><code class="nohighlight hljs ansi" style="display:block;">┌ Warning: Assignment to `g` in soft scope is ambiguous because a global variable by the same name exists: `g` will be treated as a new local. Disambiguate by using `local g` to suppress this warning or `global g` to assign to the existing global variable.
+└ @ ~/work/SPMLJ/SPMLJ/buildedDoc/01_-_JULIA1_-_Basic_Julia_programming/010401-varScopeExample.jl.txt:6
+i: 1
+l1: 21
+g: 2
+j: 1
+l1 inside inner loop: 22
+l2 inside inner loop: 1
+g inside inner loop: 3
+j: 2
+l1 inside inner loop: 24
+l2 inside inner loop: 2
+g inside inner loop: 5
+l1 post: 24
+g post: 5
+i: 2
+l1: 22
+g: 4
+j: 1
+l1 inside inner loop: 23
+l2 inside inner loop: 1
+g inside inner loop: 5
+j: 2
+l1 inside inner loop: 25
+l2 inside inner loop: 2
+g inside inner loop: 7
+l1 post: 25
+g post: 7
+g in global: 2
+Calling foo..
+i: 10
+l1: 30
+g: 20
+j: 1
+l1 inside inner loop: 31
+l2 inside inner loop: 1
+g inside inner loop: 21
+j: 2
+l1 inside inner loop: 33
+l2 inside inner loop: 2
+g inside inner loop: 23
+l1 post: 33
+g post: 23
+g in global: 2</code></pre><h2 id="Repeated-iterations:-for-and-while-loops,-List-Comprehension,-Maps"><a class="docs-heading-anchor" href="#Repeated-iterations:-for-and-while-loops,-List-Comprehension,-Maps">Repeated iterations: <code>for</code> and <code>while</code> loops, List Comprehension, Maps</a><a id="Repeated-iterations:-for-and-while-loops,-List-Comprehension,-Maps-1"></a><a class="docs-heading-anchor-permalink" href="#Repeated-iterations:-for-and-while-loops,-List-Comprehension,-Maps" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; for i in 1:2, j in 3:4             # j is the inner loop
+           println(&quot;i: $i, j: $j&quot;)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">i: 1, j: 3
+i: 1, j: 4
+i: 2, j: 3
+i: 2, j: 4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = 1</code><code class="nohighlight hljs ansi" style="display:block;">1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; while true             # or condition, e.g. while a == 10
+           global a += 1
+           println(&quot;a: $a&quot;)
+           if a == 10
+               break
+           else
+               continue
+           end
+           println(&quot;This is never printed&quot;)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">a: 2
+a: 3
+a: 4
+a: 5
+a: 6
+a: 7
+a: 8
+a: 9
+a: 10</code></pre><h3 id="List-Comprehension"><a class="docs-heading-anchor" href="#List-Comprehension">List Comprehension</a><a id="List-Comprehension-1"></a><a class="docs-heading-anchor-permalink" href="#List-Comprehension" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; [ i+j for i in 1:2, j in 3:4 if j &gt;= 4]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 5
+ 6</code></pre><h3 id="Maps"><a class="docs-heading-anchor" href="#Maps">Maps</a><a id="Maps-1"></a><a class="docs-heading-anchor-permalink" href="#Maps" title="Permalink"></a></h3><p>Apply a (possible anonymous) function to a list of arguments:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; map((name,year) -&gt; println(&quot;$name is $year year old&quot;), [&quot;Marc&quot;,&quot;Anna&quot;], [25,22])</code><code class="nohighlight hljs ansi" style="display:block;">Marc is 25 year old
+Anna is 22 year old
+2-element Vector{Nothing}:
+ nothing
+ nothing</code></pre><div class="admonition is-category-warninng"><header class="admonition-header">Warninng</header><div class="admonition-body"><p>Don&#39;t confuse the single-line arrows used in anonymous functions (<code>-&gt;</code>) with the double-line arrow used to define a Pair (<code>=&gt;</code>)</p></div></div><p>We can use maps to substitute values of an array based on a dictionary:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; countries = [&quot;US&quot;,&quot;UK&quot;,&quot;IT&quot;,&quot;UK&quot;,&quot;UK&quot;]</code><code class="nohighlight hljs ansi" style="display:block;">5-element Vector{String}:
+ &quot;US&quot;
+ &quot;UK&quot;
+ &quot;IT&quot;
+ &quot;UK&quot;
+ &quot;UK&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; countryNames = Dict(&quot;IT&quot; =&gt; &quot;Italy&quot;, &quot;UK&quot; =&gt; &quot;United Kngdom&quot;,  &quot;US&quot;=&gt;&quot;United States&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">Dict{String, String} with 3 entries:
+  &quot;IT&quot; =&gt; &quot;Italy&quot;
+  &quot;UK&quot; =&gt; &quot;United Kngdom&quot;
+  &quot;US&quot; =&gt; &quot;United States&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; countryLongNames = map(cShortName -&gt; countryNames[cShortName], countries)</code><code class="nohighlight hljs ansi" style="display:block;">5-element Vector{String}:
+ &quot;United States&quot;
+ &quot;United Kngdom&quot;
+ &quot;Italy&quot;
+ &quot;United Kngdom&quot;
+ &quot;United Kngdom&quot;</code></pre><h2 id="Conditional-statements:-if-blocks-and-ternary-operators"><a class="docs-heading-anchor" href="#Conditional-statements:-if-blocks-and-ternary-operators">Conditional statements: if blocks and ternary operators</a><a id="Conditional-statements:-if-blocks-and-ternary-operators-1"></a><a class="docs-heading-anchor-permalink" href="#Conditional-statements:-if-blocks-and-ternary-operators" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = 10</code><code class="nohighlight hljs ansi" style="display:block;">10</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; if a &lt; 4                      # use `!`, `&amp;&amp;` and `||` for &quot;not&quot;, &quot;and&quot; and  &quot;or&quot; conditions
+           println(&quot;a &lt; 4&quot;)
+       elseif a &lt; 8
+           println(&quot;a &lt; 8&quot;)
+       else
+           println(&quot;a is big!&quot;)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">a is big!</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = 10</code><code class="nohighlight hljs ansi" style="display:block;">10</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; if a &lt; 5
+         b = 100
+       else
+         b = 200
+       end</code><code class="nohighlight hljs ansi" style="display:block;">200</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b</code><code class="nohighlight hljs ansi" style="display:block;">200</code></pre><p>Ternary operators</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; b =  a &lt; 5 ? 100 : 200   # ? condition : if true : if false</code><code class="nohighlight hljs ansi" style="display:block;">200</code></pre><p>Short-circuit evaluation</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = 100</code><code class="nohighlight hljs ansi" style="display:block;">100</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; (a &lt; 5) || (b = 200)    # replace an if: the second part is executed unless the first part is already true</code><code class="nohighlight hljs ansi" style="display:block;">200</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b</code><code class="nohighlight hljs ansi" style="display:block;">200</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; (a &lt; 50) || (b = 500)   # here is never executed</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b</code><code class="nohighlight hljs ansi" style="display:block;">200</code></pre><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>Don&#39;t confuse boolean operators <code>&amp;&amp;</code> and <code>||</code> with their analogous <code>&amp;</code> and <code>|</code> bitwise operators</p></div></div><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = 3</code><code class="nohighlight hljs ansi" style="display:block;">3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = 2</code><code class="nohighlight hljs ansi" style="display:block;">2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bitstring(a)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;0000000000000000000000000000000000000000000000000000000000000011&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bitstring(b)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;0000000000000000000000000000000000000000000000000000000000000010&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ##a &amp;&amp; b     # error non boolean used in boolean context
+       a &amp; b</code><code class="nohighlight hljs ansi" style="display:block;">2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a | b</code><code class="nohighlight hljs ansi" style="display:block;">3</code></pre><h2 id="Functions"><a class="docs-heading-anchor" href="#Functions">Functions</a><a id="Functions-1"></a><a class="docs-heading-anchor-permalink" href="#Functions" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; function foo(x)             # function definition
+           x+2
+       end</code><code class="nohighlight hljs ansi" style="display:block;">foo (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo(2)                      # function call</code><code class="nohighlight hljs ansi" style="display:block;">4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; inlineFunction(x) = x+2</code><code class="nohighlight hljs ansi" style="display:block;">inlineFunction (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo2 = x -&gt; x+2             # anonymous function (aka &quot;lambda function&quot;) and assignment to the variable foo2</code><code class="nohighlight hljs ansi" style="display:block;">#9 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo2(2)</code><code class="nohighlight hljs ansi" style="display:block;">4</code></pre><p>A nested function:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; function f1(x)
+           function f2(x,y)
+               x+y
+           end
+           f2(x,2)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">f1 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; f1(2)</code><code class="nohighlight hljs ansi" style="display:block;">4</code></pre><p>A recursive function:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; function fib(n)                   # This is a naive implementation. Much faster implementations of the Fibonacci numbers exist
+           if n == 0  return 0
+           elseif n == 1 return 1
+           else
+            return fib(n-1) + fib(n-2)
+           end
+       end</code><code class="nohighlight hljs ansi" style="display:block;">fib (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fib(4)</code><code class="nohighlight hljs ansi" style="display:block;">3</code></pre><h3 id="Function-arguments"><a class="docs-heading-anchor" href="#Function-arguments">Function arguments</a><a id="Function-arguments-1"></a><a class="docs-heading-anchor-permalink" href="#Function-arguments" title="Permalink"></a></h3><h4 id="Positional-vs-keyword-arguments"><a class="docs-heading-anchor" href="#Positional-vs-keyword-arguments">Positional vs keyword arguments</a><a id="Positional-vs-keyword-arguments-1"></a><a class="docs-heading-anchor-permalink" href="#Positional-vs-keyword-arguments" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; f(a,b=1;c=1) = a+10b+100c  # `a` and `b` are positional arguments (`b` with a default provided), `c` is a keyword argument</code><code class="nohighlight hljs ansi" style="display:block;">f (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; f(2)</code><code class="nohighlight hljs ansi" style="display:block;">112</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; f(2,c=3)</code><code class="nohighlight hljs ansi" style="display:block;">312</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo(a, args...;c=1) = a + length(args) + sum(args) + c</code><code class="nohighlight hljs ansi" style="display:block;">foo (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo(1,2,3,c=4)</code><code class="nohighlight hljs ansi" style="display:block;">12</code></pre><p>Rules for positional and keyword arguments:</p><ul><li>keyword arguments follow a semicolon <code>;</code> in the parameters list of the function definition</li><li>a positional argument without a default can not follow a positional argument with a default provided</li><li>the splat operator to define variable number of arguments must be the last positional argument</li><li>the function call must use positional arguments by position and keyword arguments by name</li></ul><pre></pre><h3 id="Argument-types-and-multiple-dispatch"><a class="docs-heading-anchor" href="#Argument-types-and-multiple-dispatch">Argument types and multiple dispatch</a><a id="Argument-types-and-multiple-dispatch-1"></a><a class="docs-heading-anchor-permalink" href="#Argument-types-and-multiple-dispatch" title="Permalink"></a></h3><p>Simple to understand the usage, complex to understand the deep implications</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo3(a::Int64,b::String) = a + parse(Int64,b)</code><code class="nohighlight hljs ansi" style="display:block;">foo3 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo3(2,&quot;3&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">5</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo3(a::String,b::Int64) = parse(Int64,a) + b</code><code class="nohighlight hljs ansi" style="display:block;">foo3 (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo3(&quot;3&quot;,2)</code><code class="nohighlight hljs ansi" style="display:block;">5</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; methods(foo3)</code><code class="nohighlight hljs ansi" style="display:block;"># 2 methods for generic function &quot;foo3&quot;:
+[1] foo3(a::Int64, b::String) in Main at REPL[1]:1
+[2] foo3(a::String, b::Int64) in Main at REPL[3]:1</code></pre><p>Multiple dispatch allows to compile a <em>specialised</em> version JIT at run time, on the first call with the given parameters type We will see it again when dealing with type inheritance In general, unless we need to write specialised methods, no need to specify the type of the parameters. No influence on performances, this is automatically inferred (and the funciton compiled) based on the run-time type of the argument</p><p>!!! tip Functions performances tip     The most important things for performances are (1) that the function is <em>type stable</em>, that is, that conditional to a specific combination of the types of the parameters the function returns the same type. This is a condition necessary to have a working chain of type inference across function calls; (2) that no (non constant) global constants are used in the function and indeed all the required information for the functio ndoing its work is embedded in the function parameters</p><h3 id="Function-templates"><a class="docs-heading-anchor" href="#Function-templates">Function templates</a><a id="Function-templates-1"></a><a class="docs-heading-anchor-permalink" href="#Function-templates" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo3(a::T,b::String) where {T&lt;: Number} = a + parse(T,b)             # can use T in the function body</code><code class="nohighlight hljs ansi" style="display:block;">foo3 (generic function with 3 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo3(2,&quot;1&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo3(1.5,&quot;1.5&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">3.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo4(a::Int64,b::T where T &lt;: Number) = a + b                        # ok not used in functio nbody</code><code class="nohighlight hljs ansi" style="display:block;">foo4 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo4(a::Int64,b::Array{T} where T &lt;: Number) = a .+ fill(T,b,2)      # wil lerror, can&#39;t use T in the function body</code><code class="nohighlight hljs ansi" style="display:block;">foo4 (generic function with 2 methods)</code></pre><h3 id="*Call-by-reference*-vs.-*call-by-value*"><a class="docs-heading-anchor" href="#*Call-by-reference*-vs.-*call-by-value*"><em>Call by reference</em> vs. <em>call by value</em></a><a id="*Call-by-reference*-vs.-*call-by-value*-1"></a><a class="docs-heading-anchor-permalink" href="#*Call-by-reference*-vs.-*call-by-value*" title="Permalink"></a></h3><p>How the variable used as function argument within the function body relates to the variable used in calling the function ?</p><ul><li><strong>call by value</strong>: the value of the argument is copied and the function body works on a copy of the value</li><li><strong>call by reference</strong>: the function works on the same object being referenced by the caller variable and the function argument</li><li><strong>call by sharing</strong> (Julia): the arguments are just new local variables that bind the same object. The effects of &quot;modifications&quot; on the local variable on the caller&#39;s one depends on the mutability property of the object as we saw in the <em>Types and objects</em> segment:<ul><li>immutable objects: we can only have that the argument is rebinded to other objects. No effects on the original caller object</li><li>mutable objects: if the argument is rebinded to an other object, no effects on the caller object. If the object is modified, the caller object (being the same object) is also modified</li></ul></li></ul><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; x = 10</code><code class="nohighlight hljs ansi" style="display:block;">10</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo(y) = y = 1</code><code class="nohighlight hljs ansi" style="display:block;">foo (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo(x)</code><code class="nohighlight hljs ansi" style="display:block;">1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x</code><code class="nohighlight hljs ansi" style="display:block;">10</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo(x) = x[1] = 10</code><code class="nohighlight hljs ansi" style="display:block;">foo (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x = [1,2]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 1
+ 2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo(x)</code><code class="nohighlight hljs ansi" style="display:block;">10</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 10
+  2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo3(x) = x = [10,20]</code><code class="nohighlight hljs ansi" style="display:block;">foo3 (generic function with 4 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo3(x)</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 10
+ 20</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 10
+  2</code></pre><div class="admonition is-info"><header class="admonition-header">Info</header><div class="admonition-body"><p>Functions that modify at least one of their arguments are named, by convention, with an exclamation mark at the end of their name and the argument(s) that is (are) modified set as the first(s) argument(s)</p></div></div><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; foo!(x) = x[1] = 10 # to follow the convention</code><code class="nohighlight hljs ansi" style="display:block;">foo! (generic function with 1 method)</code></pre><h2 id="do-blocks"><a class="docs-heading-anchor" href="#do-blocks"><code>do</code> blocks</a><a id="do-blocks-1"></a><a class="docs-heading-anchor-permalink" href="#do-blocks" title="Permalink"></a></h2><p>Functions that accept an other function as their first parameter can be rewritten with the function itself defined in a <code>do</code> block:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Statistics</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pool(f,x,poolSize=3) = [f(x[i:i+poolSize-1]) for i in 1:length(x)-poolSize+1] # a real case, used in neural networks as pooling layer</code><code class="nohighlight hljs ansi" style="display:block;">pool (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pool(mean,[1,2,3,4,5,6])</code><code class="nohighlight hljs ansi" style="display:block;">4-element Vector{Float64}:
+ 2.0
+ 3.0
+ 4.0
+ 5.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pool(maximum,[1,2,3,4,5,6])</code><code class="nohighlight hljs ansi" style="display:block;">4-element Vector{Int64}:
+ 3
+ 4
+ 5
+ 6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pool([1,2,3,4,5]) do x      # x is a local variable within the do block. We need as many local variables as the number of parameters of the inner function
+           sum(x)/length(x)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ 2.0
+ 3.0
+ 4.0</code></pre><p>Using the <code>do</code><code>block we can call the outer function and define the inner function at the same time.</code>do` blocks are frequently used in input/output operations</p><p><a href="https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0104-control_flow_and_functions.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0103-predefined_types.html">« 0103-predefined types</a><a class="docs-footer-nextpage" href="0105-custom_types.html">0105-custom types »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Wednesday 30 March 2022 17:12">Wednesday 30 March 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
