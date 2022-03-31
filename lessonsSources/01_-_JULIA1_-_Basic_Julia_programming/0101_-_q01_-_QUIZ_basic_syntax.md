@@ -76,7 +76,7 @@ choices = [ # hide
     "At least one of that commands raises a run-time error", # hide
     "None of that commands raises a run-time error"]  # hide
 answers = [2,8]  # hide
-multiq(choices, answers;)  # hide 
+multiq(choices, answers;)  # hide
 ```
 
 ```@raw html
@@ -106,16 +106,16 @@ foo(a[1])
 Which of the following statements are correct ?
 
 ```@example q0101
-choices = [ #hide
-    "The output of `foo(a)` is `[4,9]`", #hide
-    "The output of `foo.(a)` is `[4,9]`", #hide
-    "The output of `foo(a[1])` is `4`", #hide
-    "The output of `foo(a[1])` is `9`", #hide
-    "Defining the function produces a run-time error because the body of the function is not idented", #hide
-    "Calling the function produces a run-time error because the body of the function is not idented", #hide
-    "Calling the function produces a run-time error because Unicode characters (`²`) are not allowed in Julia", #hide
-    "Calling the function produces a run-time error because `x²` is not defined", #hide
-    "None of the (other) sentences is correct", #hide
+choices = [ # hide
+    "The output of `foo(a)` is `[4,9]`", # hide
+    "The output of `foo.(a)` is `[4,9]`", # hide
+    "The output of `foo(a[1])` is `4`", # hide
+    "The output of `foo(a[1])` is `9`", # hide
+    "Defining the function produces a run-time error because the body of the function is not idented", # hide
+    "Calling the function produces a run-time error because the body of the function is not idented", # hide
+    "Calling the function produces a run-time error because Unicode characters (`²`) are not allowed in Julia", # hide
+    "Calling the function produces a run-time error because `x²` is not defined", # hide
+    "None of the (other) sentences is correct", # hide
 ]  # hide
 answers = [8]  # hide
 multiq(choices, answers;)  # hide

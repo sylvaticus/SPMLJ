@@ -27,7 +27,7 @@ cd(@__DIR__)
 Pkg.activate(".")
 
 #Pkg.resolve()
-#Pkg.instantiate()
+Pkg.instantiate()
 #Pkg.add(["Documenter", "Literate"])
 
 using Documenter, Literate, Test
@@ -82,7 +82,8 @@ function makeList(rootDir,subDirList)
       lessonName  = replace(lessonName,"_"=>" ")
       dirArray =[]
       for file in filter(file -> endswith(file, ".md"), sort(readdir(joinpath(rootDir,lessonDir))))
-        displayFilename = replace(file,".md"=>"","_"=>" ")
+        displayFilename = replace(file,".md"=>"")
+        displayFilename = replace(displayFilename,"_"=>" ")
         push!(dirArray,displayFilename=>joinpath(lessonDir,file))
       end
       push!(outArray,lessonName=>dirArray)
@@ -143,6 +144,7 @@ makedocs(sitename="SPMLJ",
             "Index" => "index.md",
             "Lessons" => makeList(LESSONS_ROOTDIR,LESSONS_SUBDIR),
          ],
+         #assets = ["assets/custom.css"],
          format = Documenter.HTML(prettyurls = false, analytics = "G-Q39LHCRBB6" ),
          #strict = true,
          #doctest = false
