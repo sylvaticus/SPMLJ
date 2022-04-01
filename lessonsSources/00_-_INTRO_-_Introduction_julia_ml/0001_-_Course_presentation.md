@@ -25,11 +25,56 @@ Note that there will be a bit of incongruence in the terminology used for "units
 Any-how, the course is organised in units/lessons (e.g. `JULIA1`). Each unit/lesson has its own Julia environment and it is organised in several _segments_. These are the individual pages on this site and correspond to a single file in the github repository. Then each segment is divised in multiple videos, that I call _parts_.
 
 
-## Course author
+## Course authors
+
+g
 
 ```@raw html
- <img src="https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/00_-_INTRO_-_Introduction_julia_ml/assets/imgs/photo_antonello_lobianco.jpg" alt="Antonello Lobianco" width="200"> 
- ```
+ <img src="https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/00_-_INTRO_-_Introduction_julia_ml/assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="200"> 
+```
+
+a
+
+```@raw html
+ <img src="../assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="200"> 
+```
+
+b
+
+```@raw html
+ <img src="assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="200"> 
+```
+
+c
+
+```@raw html
+ <img src="./00_-_INTRO_-_Introduction_julia_ml/assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="200"> 
+```
+
+d
+
+```@raw html
+ <img src="./assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="200"> 
+```
+--------------------------------------------------------------------------------
+
+g
+![Antonello Lobianco](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/00_-_INTRO_-_Introduction_julia_ml/assets/imgs/photo_antonello_lobianco.png)
+
+a
+![Antonello Lobianco](../assets/imgs/photo_antonello_lobianco.png)
+
+b
+
+![Antonello Lobianco](assets/imgs/photo_antonello_lobianco.png)
+
+c
+
+![Antonello Lobianco](./00_-_INTRO_-_Introduction_julia_ml/assets/imgs/photo_antonello_lobianco.png)
+
+d
+![Antonello Lobianco](./assets/imgs/photo_antonello_lobianco.png)
+
 
 Antonello Lobianco
 
