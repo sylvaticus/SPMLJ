@@ -1,405 +1,54 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>0101 - q01 - QUIZ basic syntax · SPMLJ</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q39LHCRBB6"></script><script>  window.dataLayer = window.dataLayer || [];
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Quiz on Basic Syntax · SPMLJ</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q39LHCRBB6"></script><script>  window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-Q39LHCRBB6', {'page_path': location.pathname + location.search + location.hash});
-</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">SPMLJ</a></span></div><form class="docs-search" action="../search.html"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">INTRO - Introduction to the course, Julia and ML</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html">0001 - Course presentation</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0002_-_Program.html">0002 - Program</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003_-_Introduction_to_Julia.html">0003 - Introduction to Julia</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004_-_Introduction_to_ML.html">0004 - Introduction to ML</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0005_-_How_to_install_Julia_and_git.html">0005 - How to install Julia and git</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0006_-_Modules_packages_and_environments.html">0006 - Modules packages and environments</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0006_-_q01_-_QUIZ_modules_packages_environment.html">0006 - q01 - QUIZ modules packages environment</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-2" type="checkbox" checked/><label class="tocitem" for="menuitem-2-2"><span class="docs-label">JULIA1 - Basic Julia Programming</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="0101_-_Basic_syntax.html">0101 - Basic syntax</a></li><li class="is-active"><a class="tocitem" href="0101_-_q01_-_QUIZ_basic_syntax.html">0101 - q01 - QUIZ basic syntax</a></li><li><a class="tocitem" href="0102-types_and_objects.html">0102-types and objects</a></li><li><a class="tocitem" href="0103-predefined_types.html">0103-predefined types</a></li><li><a class="tocitem" href="0104-control_flow_and_functions.html">0104-control flow and functions</a></li><li><a class="tocitem" href="0105-custom_types.html">0105-custom types</a></li><li><a class="tocitem" href="0106-further_topics.html">0106-further topics</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-3" type="checkbox"/><label class="tocitem" for="menuitem-2-3"><span class="docs-label">JULIA2 - Scientific programming with Julia</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201-wrangling_data.html">0201-wrangling data</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202-further_topics.html">0202-further topics</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-4" type="checkbox"/><label class="tocitem" for="menuitem-2-4"><span class="docs-label">ML1 - Introduction to Machine Learning</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0301-MachineLearningMainIdeas.html">0301-MachineLearningMainIdeas</a></li><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0302-perceptron.html">0302-perceptron</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-5" type="checkbox"/><label class="tocitem" for="menuitem-2-5"><span class="docs-label">NN - Neural Networks</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0401_NeuralNetworksTheory.html">0401 NeuralNetworksTheory</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402_Implementing_neural_network_models.html">0402 Implementing neural network models</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Lessons</a></li><li><a class="is-disabled">JULIA1 - Basic Julia Programming</a></li><li class="is-active"><a href="0101_-_q01_-_QUIZ_basic_syntax.html">0101 - q01 - QUIZ basic syntax</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0101_-_q01_-_QUIZ_basic_syntax.html">0101 - q01 - QUIZ basic syntax</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/sylvaticus/SPMLJ/blob/master/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0101_-_q01_-_QUIZ_basic_syntax.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Quiz-on-Basic-Syntax"><a class="docs-heading-anchor" href="#Quiz-on-Basic-Syntax">Quiz on Basic Syntax</a><a id="Quiz-on-Basic-Syntax-1"></a><a class="docs-heading-anchor-permalink" href="#Quiz-on-Basic-Syntax" title="Permalink"></a></h1><hr/><h3 id="Q1:-What-is-it-stored-in-a-project-file-?"><a class="docs-heading-anchor" href="#Q1:-What-is-it-stored-in-a-project-file-?">Q1: What is it stored in a project file ?</a><a id="Q1:-What-is-it-stored-in-a-project-file-?-1"></a><a class="docs-heading-anchor-permalink" href="#Q1:-What-is-it-stored-in-a-project-file-?" title="Permalink"></a></h3><p>What information can be stored on a Julia <code>Project.toml</code> file ?</p><form class="mx-2 my-3" name='WeaveQuestion' data-id='iZfIHysE' data-controltype='radio'>
-  <div class='form-group '>
-    <div class='controls'>
-      <div class="form-floating input-group" id="controls_iZfIHysE">
-        <div style="padding-top: 5px">
-    <div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
-              id="check_iZfIHysE_1" value="1">
-      <span = class="label-body">
-        The exact version of all the dependencies libraries emploied in the project &#40;julia scripts&#41;
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
-              id="check_iZfIHysE_2" value="2">
-      <span = class="label-body">
-        None of the &#40;other&#41; sentences is correct
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
-              id="check_iZfIHysE_3" value="3">
-      <span = class="label-body">
-        The minimum and maximum version of the packages directly used in the project &#40;julia scripts&#41; that are compatible with the project
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
-              id="check_iZfIHysE_4" value="4">
-      <span = class="label-body">
-        The exact version of the package directly emploied in the project &#40;julia scripts&#41;
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
-              id="check_iZfIHysE_5" value="5">
-      <span = class="label-body">
-        The name of the packages directly used in the project &#40;julia scripts&#41;
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
-              id="check_iZfIHysE_6" value="6">
-      <span = class="label-body">
-        The ID of all the dependencies libraries of the project &#40;julia scripts&#41;
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
-              id="check_iZfIHysE_7" value="7">
-      <span = class="label-body">
-        The name of all the dependencies libraries of the project &#40;julia scripts&#41;
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
-              id="check_iZfIHysE_8" value="8">
-      <span = class="label-body">
-        The minimum and maximum version of all the dependencies libraries used in the project &#40;julia scripts&#41; that are compatible with the project
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
-              id="check_iZfIHysE_9" value="9">
-      <span = class="label-body">
-        The ID of the packages directly used in the project &#40;julia scripts&#41;
-      </span>
-    </input>
-  </label>
-</div>
-
-    
-        </div>
-      </div>
-      <div id='iZfIHysE_message' style="padding-bottom: 15px">
-      </div>
-    </div>
-  </div>
-</form>
-
-<script text='text/javascript'>
-document.querySelectorAll('input[name="check_iZfIHysE"]').forEach(function(rb) {
-rb.addEventListener("change", function() {
-    var choice_buttons = document.getElementsByName("check_iZfIHysE");
-    selected = [];
-    for (var i=0; i < choice_buttons.length; i++) {
-        if (choice_buttons[i].checked) {
-           selected.push(i+1)
-        }
-    }
-    var a = selected;
-    b = [3, 5, 9];
-    // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
-    correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
-    var msgBox = document.getElementById('iZfIHysE_message');
-      if(correct) {
-    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp; Correct </span></div>";
-  } else {
-    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; Not yet </span></div>";
-  }
-
-})});
-
-</script>
-<details><summary>RESOLUTION</summary><p>The <code>Project.toml</code> file task is to indicate which is the set of packages that works with the given project, but not the concrete istance of the environment that is used in a project, that is the exact version of all directly and indirectly used packages. This is indeed the task of the <code>Manifest.toml</code> file.</p><p>The correct answers are:</p><ul><li>&quot;The name of the packages directly used in the project (julia scripts)&quot;</li><li>&quot;The ID of the packages directly used in the project (julia scripts)&quot;</li><li>&quot;The minimum and maximum version of the packages directly used in the project (julia scripts) that are compatible with the project&quot;</li></ul></details><hr/><h3 id="Q2:-Syntax-for-comments"><a class="docs-heading-anchor" href="#Q2:-Syntax-for-comments">Q2: Syntax for comments</a><a id="Q2:-Syntax-for-comments-1"></a><a class="docs-heading-anchor-permalink" href="#Q2:-Syntax-for-comments" title="Permalink"></a></h3><p>Given the following sequence of commands (one for each line) run in an interactive session:</p><pre><code class="language-julia hljs"># a = 1
+</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">SPMLJ</a></span></div><form class="docs-search" action="../search.html"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">INTRO - Introduction to the course, Julia and ML</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html">0001 - Course presentation</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0002_-_Program.html">0002 - Program</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003_-_Introduction_to_Julia.html">0003 - Introduction to Julia</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004_-_Introduction_to_ML.html">0004 - Introduction to ML</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0005_-_How_to_install_Julia_and_git.html">0005 - How to install Julia and git</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0006_-_Modules_packages_and_environments.html">0006 - Modules packages and environments</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0006_-_q01_-_QUIZ_modules_packages_environment.html">0006 - q01 - QUIZ modules packages environment</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href="0101_-_q01_-_QUIZ_basic_syntax.html">Quiz on Basic Syntax</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0101_-_q01_-_QUIZ_basic_syntax.html">Quiz on Basic Syntax</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/sylvaticus/SPMLJ/blob/master/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0101_-_q01_-_QUIZ_basic_syntax.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Quiz-on-Basic-Syntax"><a class="docs-heading-anchor" href="#Quiz-on-Basic-Syntax">Quiz on Basic Syntax</a><a id="Quiz-on-Basic-Syntax-1"></a><a class="docs-heading-anchor-permalink" href="#Quiz-on-Basic-Syntax" title="Permalink"></a></h1><hr/><h3 id="Q1:-What-is-it-stored-in-a-project-file-?"><a class="docs-heading-anchor" href="#Q1:-What-is-it-stored-in-a-project-file-?">Q1: What is it stored in a project file ?</a><a id="Q1:-What-is-it-stored-in-a-project-file-?-1"></a><a class="docs-heading-anchor-permalink" href="#Q1:-What-is-it-stored-in-a-project-file-?" title="Permalink"></a></h3><p>What information can be stored on a Julia <code>Project.toml</code> file ?</p><pre><code class="language- hljs">
+choices = [ # hide
+    &quot;The name of the packages directly used in the project (julia scripts)&quot;, # hide
+    &quot;The ID of the packages directly used in the project (julia scripts)&quot;, # hide
+    &quot;The minimum and maximum version of the packages directly used in the project (julia scripts) that are compatible with the project&quot;, # hide
+    &quot;The exact version of the package directly emploied in the project (julia scripts)&quot;, # hide
+    &quot;The name of all the dependencies libraries of the project (julia scripts)&quot;, # hide
+    &quot;The ID of all the dependencies libraries of the project (julia scripts)&quot;, # hide
+    &quot;The minimum and maximum version of all the dependencies libraries used in the project (julia scripts) that are compatible with the project&quot;, # hide
+    &quot;The exact version of all the dependencies libraries emploied in the project (julia scripts)&quot;, # hide
+    &quot;None of the (other) sentences is correct&quot; ]  # hide
+answers = [1,2,3]  # hide
+multiq(choices, answers;)  # hide
+</code></pre><details><summary>RESOLUTION</summary><p>The <code>Project.toml</code> file task is to indicate which is the set of packages that works with the given project, but not the concrete istance of the environment that is used in a project, that is the exact version of all directly and indirectly used packages. This is indeed the task of the <code>Manifest.toml</code> file.</p><p>The correct answers are:</p><ul><li>&quot;The name of the packages directly used in the project (julia scripts)&quot;</li><li>&quot;The ID of the packages directly used in the project (julia scripts)&quot;</li><li>&quot;The minimum and maximum version of the packages directly used in the project (julia scripts) that are compatible with the project&quot;</li></ul></details><hr/><h3 id="Q2:-Syntax-for-comments"><a class="docs-heading-anchor" href="#Q2:-Syntax-for-comments">Q2: Syntax for comments</a><a id="Q2:-Syntax-for-comments-1"></a><a class="docs-heading-anchor-permalink" href="#Q2:-Syntax-for-comments" title="Permalink"></a></h3><p>Given the following sequence of commands (one for each line) run in an interactive session:</p><pre><code class="language-julia hljs"># a = 1
 a = 2 # hello
 a = # hello # 3
 #= a = 4
 #= a = 5 =#
 a = 6
-=#</code></pre><p>Which statements are correct ?</p><form class="mx-2 my-3" name='WeaveQuestion' data-id='14uOlNsG' data-controltype='radio'>
-  <div class='form-group '>
-    <div class='controls'>
-      <div class="form-floating input-group" id="controls_14uOlNsG">
-        <div style="padding-top: 5px">
-    <div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
-              id="check_14uOlNsG_1" value="1">
-      <span = class="label-body">
-        None of that commands raises a run-time error
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
-              id="check_14uOlNsG_2" value="2">
-      <span = class="label-body">
-        <code>a</code> is now <code>4</code>
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
-              id="check_14uOlNsG_3" value="3">
-      <span = class="label-body">
-        <code>a</code> is now <code>6</code>
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
-              id="check_14uOlNsG_4" value="4">
-      <span = class="label-body">
-        <code>a</code> is now <code>1</code>
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
-              id="check_14uOlNsG_5" value="5">
-      <span = class="label-body">
-        <code>a</code> is now <code>2</code>
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
-              id="check_14uOlNsG_6" value="6">
-      <span = class="label-body">
-        None of the &#40;other&#41; sentences is correct
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
-              id="check_14uOlNsG_7" value="7">
-      <span = class="label-body">
-        At least one of that commands raises a run-time error
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
-              id="check_14uOlNsG_8" value="8">
-      <span = class="label-body">
-        <code>a</code> is now <code>3</code>
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
-              id="check_14uOlNsG_9" value="9">
-      <span = class="label-body">
-        <code>a</code> is now <code>5</code>
-      </span>
-    </input>
-  </label>
-</div>
-
-    
-        </div>
-      </div>
-      <div id='14uOlNsG_message' style="padding-bottom: 15px">
-      </div>
-    </div>
-  </div>
-</form>
-
-<script text='text/javascript'>
-document.querySelectorAll('input[name="check_14uOlNsG"]').forEach(function(rb) {
-rb.addEventListener("change", function() {
-    var choice_buttons = document.getElementsByName("check_14uOlNsG");
-    selected = [];
-    for (var i=0; i < choice_buttons.length; i++) {
-        if (choice_buttons[i].checked) {
-           selected.push(i+1)
-        }
-    }
-    var a = selected;
-    b = [5, 7];
-    // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
-    correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
-    var msgBox = document.getElementById('14uOlNsG_message');
-      if(correct) {
-    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp; Correct </span></div>";
-  } else {
-    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; Not yet </span></div>";
-  }
-
-})});
-
-</script>
-<details><summary>RESOLUTION</summary><p>The first command is a comment. On the second one, <code>a</code> is assigned the value <code>2</code>. The third one raises a syntax error as the equal operator expects a right and a left hand side, while here the right hand side is all commented out. Finally lines 4  to the end is a big nested comment. It results that after that commands have been run, <code>a</code> remains assigned to <code>2</code>. The correct answers are:</p><ul><li>&quot;<code>a</code> is now <code>2</code>&quot;</li><li>&quot;At least one of that commands raises a run-time error&quot;</li></ul></details><hr/><h3 id="Q3:-Various-syntax-rules"><a class="docs-heading-anchor" href="#Q3:-Various-syntax-rules">Q3: Various syntax rules</a><a id="Q3:-Various-syntax-rules-1"></a><a class="docs-heading-anchor-permalink" href="#Q3:-Various-syntax-rules" title="Permalink"></a></h3><p>Given a file &quot;Foo.jl&quot; with the following code:</p><pre><code class="language-julia hljs">function foo(x)
+=#</code></pre><p>Which statements are correct ?</p><pre><code class="language- hljs">choices = [ # hide
+    &quot;`a` is now `1`&quot;, # hide
+    &quot;`a` is now `2`&quot;, # hide
+    &quot;`a` is now `3`&quot;, # hide
+    &quot;`a` is now `4`&quot;, # hide
+    &quot;`a` is now `5`&quot;, # hide
+    &quot;`a` is now `6`&quot;, # hide
+    &quot;None of the (other) sentences is correct&quot;, # hide
+    &quot;At least one of that commands raises a run-time error&quot;, # hide
+    &quot;None of that commands raises a run-time error&quot;]  # hide
+answers = [2,8]  # hide
+multiq(choices, answers;)  # hide</code></pre><details><summary>RESOLUTION</summary><p>The first command is a comment. On the second one, <code>a</code> is assigned the value <code>2</code>. The third one raises a syntax error as the equal operator expects a right and a left hand side, while here the right hand side is all commented out. Finally lines 4  to the end is a big nested comment. It results that after that commands have been run, <code>a</code> remains assigned to <code>2</code>. The correct answers are:</p><ul><li>&quot;<code>a</code> is now <code>2</code>&quot;</li><li>&quot;At least one of that commands raises a run-time error&quot;</li></ul></details><hr/><h3 id="Q3:-Various-syntax-rules"><a class="docs-heading-anchor" href="#Q3:-Various-syntax-rules">Q3: Various syntax rules</a><a id="Q3:-Various-syntax-rules-1"></a><a class="docs-heading-anchor-permalink" href="#Q3:-Various-syntax-rules" title="Permalink"></a></h3><p>Given a file &quot;Foo.jl&quot; with the following code:</p><pre><code class="language-julia hljs">function foo(x)
 println(x²)
 end
 a = [2,3]
 foo(a)
 foo.(a)
-foo(a[1])</code></pre><p>Which of the following statements are correct ?</p><form class="mx-2 my-3" name='WeaveQuestion' data-id='sPRCaYSp' data-controltype='radio'>
-  <div class='form-group '>
-    <div class='controls'>
-      <div class="form-floating input-group" id="controls_sPRCaYSp">
-        <div style="padding-top: 5px">
-    <div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_sPRCaYSp"
-              id="check_sPRCaYSp_1" value="1">
-      <span = class="label-body">
-        Calling the function produces a run-time error because the body of the function is not idented
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_sPRCaYSp"
-              id="check_sPRCaYSp_2" value="2">
-      <span = class="label-body">
-        Calling the function produces a run-time error because <code>x²</code> is not defined
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_sPRCaYSp"
-              id="check_sPRCaYSp_3" value="3">
-      <span = class="label-body">
-        The output of <code>foo&#40;a&#41;</code> is <code>&#91;4,9&#93;</code>
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_sPRCaYSp"
-              id="check_sPRCaYSp_4" value="4">
-      <span = class="label-body">
-        The output of <code>foo.&#40;a&#41;</code> is <code>&#91;4,9&#93;</code>
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_sPRCaYSp"
-              id="check_sPRCaYSp_5" value="5">
-      <span = class="label-body">
-        The output of <code>foo&#40;a&#91;1&#93;&#41;</code> is <code>9</code>
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_sPRCaYSp"
-              id="check_sPRCaYSp_6" value="6">
-      <span = class="label-body">
-        Calling the function produces a run-time error because Unicode characters &#40;<code>²</code>&#41; are not allowed in Julia
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_sPRCaYSp"
-              id="check_sPRCaYSp_7" value="7">
-      <span = class="label-body">
-        The output of <code>foo&#40;a&#91;1&#93;&#41;</code> is <code>4</code>
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_sPRCaYSp"
-              id="check_sPRCaYSp_8" value="8">
-      <span = class="label-body">
-        None of the &#40;other&#41; sentences is correct
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_sPRCaYSp"
-              id="check_sPRCaYSp_9" value="9">
-      <span = class="label-body">
-        Defining the function produces a run-time error because the body of the function is not idented
-      </span>
-    </input>
-  </label>
-</div>
-
-    
-        </div>
-      </div>
-      <div id='sPRCaYSp_message' style="padding-bottom: 15px">
-      </div>
-    </div>
-  </div>
-</form>
-
-<script text='text/javascript'>
-document.querySelectorAll('input[name="check_sPRCaYSp"]').forEach(function(rb) {
-rb.addEventListener("change", function() {
-    var choice_buttons = document.getElementsByName("check_sPRCaYSp");
-    selected = [];
-    for (var i=0; i < choice_buttons.length; i++) {
-        if (choice_buttons[i].checked) {
-           selected.push(i+1)
-        }
-    }
-    var a = selected;
-    b = [2];
-    // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
-    correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
-    var msgBox = document.getElementById('sPRCaYSp_message');
-      if(correct) {
-    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp; Correct </span></div>";
-  } else {
-    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; Not yet </span></div>";
-  }
-
-})});
-
-</script>
-<details><summary>RESOLUTION</summary><p>First, Unicode characters are allowed (with very rare exceptions) and identation doesn&#39;t matter in Julia. We would then be tempted to say hence that the broadcasted call <code>foo.(a)</code> produces <code>[4,9]</code> as output and <code>foo(a[1])</code> produces <code>4</code>. However the rising to the power is not obtained by using the Unicode <code>²</code> character, but using the exponential operator, i.e. <code>x^2</code>. <code>x²</code> is just an other idetifier name that has not been defined, so the function in all cases returns an error that <code>x²</code> is not defined. The correct answer is:</p><ul><li>&quot;Calling the function produces a run-time error because <code>x²</code> is not defined&quot;</li></ul></details></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0101_-_Basic_syntax.html">« 0101 - Basic syntax</a><a class="docs-footer-nextpage" href="0102-types_and_objects.html">0102-types and objects »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Thursday 31 March 2022 18:58">Thursday 31 March 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+foo(a[1])</code></pre><p>Which of the following statements are correct ?</p><pre><code class="language- hljs">choices = [ # hide
+    &quot;The output of `foo(a)` is `[4,9]`&quot;, # hide
+    &quot;The output of `foo.(a)` is `[4,9]`&quot;, # hide
+    &quot;The output of `foo(a[1])` is `4`&quot;, # hide
+    &quot;The output of `foo(a[1])` is `9`&quot;, # hide
+    &quot;Defining the function produces a run-time error because the body of the function is not idented&quot;, # hide
+    &quot;Calling the function produces a run-time error because the body of the function is not idented&quot;, # hide
+    &quot;Calling the function produces a run-time error because Unicode characters (`²`) are not allowed in Julia&quot;, # hide
+    &quot;Calling the function produces a run-time error because `x²` is not defined&quot;, # hide
+    &quot;None of the (other) sentences is correct&quot;, # hide
+]  # hide
+answers = [8]  # hide
+multiq(choices, answers;)  # hide</code></pre><details><summary>RESOLUTION</summary><p>First, Unicode characters are allowed (with very rare exceptions) and identation doesn&#39;t matter in Julia. We would then be tempted to say hence that the broadcasted call <code>foo.(a)</code> produces <code>[4,9]</code> as output and <code>foo(a[1])</code> produces <code>4</code>. However the rising to the power is not obtained by using the Unicode <code>²</code> character, but using the exponential operator, i.e. <code>x^2</code>. <code>x²</code> is just an other idetifier name that has not been defined, so the function in all cases returns an error that <code>x²</code> is not defined. The correct answer is:</p><ul><li>&quot;Calling the function produces a run-time error because <code>x²</code> is not defined&quot;</li></ul></details></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Friday 1 April 2022 12:25">Friday 1 April 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
