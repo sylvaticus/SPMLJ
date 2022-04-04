@@ -8,7 +8,7 @@
 ################################################################################
 
 
-# # 0402 - Neural network implementations 
+# # 0402 - Implementation of Neural network workflows
 
 # ## Some stuff to set-up the environment..
 

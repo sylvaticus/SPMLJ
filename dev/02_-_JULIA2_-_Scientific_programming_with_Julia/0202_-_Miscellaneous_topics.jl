@@ -8,7 +8,7 @@
 ################################################################################
 
 
-# # 0202 - Further Topics 
+# # 0202 - Miscellaneous topics
 
 # ## Some stuff to set-up the environment..
 
