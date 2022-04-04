@@ -27,53 +27,12 @@ Any-how, the course is organised in units/lessons (e.g. `JULIA1`). Each unit/les
 
 ## Course authors
 
-g
 
 ```@raw html
- <img src="https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/00_-_INTRO_-_Introduction_julia_ml/assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="200"> 
+  <!--
+ <img src="assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="150"> 
+ -->
 ```
-
-a
-
-```@raw html
- <img src="../assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="200"> 
-```
-
-b
-
-```@raw html
- <img src="assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="200"> 
-```
-
-c
-
-```@raw html
- <img src="./00_-_INTRO_-_Introduction_julia_ml/assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="200"> 
-```
-
-d
-
-```@raw html
- <img src="./assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="200"> 
-```
---------------------------------------------------------------------------------
-
-g
-![Antonello Lobianco](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/00_-_INTRO_-_Introduction_julia_ml/assets/imgs/photo_antonello_lobianco.png)
-
-a
-![Antonello Lobianco](../assets/imgs/photo_antonello_lobianco.png)
-
-b
-
-![Antonello Lobianco](assets/imgs/photo_antonello_lobianco.png)
-
-c
-
-![Antonello Lobianco](./00_-_INTRO_-_Introduction_julia_ml/assets/imgs/photo_antonello_lobianco.png)
-
-d
-![Antonello Lobianco](./assets/imgs/photo_antonello_lobianco.png)
 
 
 Antonello Lobianco

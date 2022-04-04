@@ -1,4 +1,4 @@
-# 0401 - Neural Networks - theory
+# 0401 - Neural Networks architectures
 
 While powerful, neural networks are actually composed of very simple units that are akin to linear classification or regression methods.
 Don't be afraid by their name and the metaphor with the human brain. Neural networks are really simple transformations of the data that flow from the input, through various layers, ending with an output.  
