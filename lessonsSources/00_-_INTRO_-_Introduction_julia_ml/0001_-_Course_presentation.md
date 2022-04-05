@@ -31,7 +31,7 @@ Any-how, the course is organised in units/lessons (e.g. `JULIA1`). Each unit/les
 
 
 ```@raw html
- <img src="assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="150"> 
+ <img src="assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="100"> 
 ```
 
 
@@ -55,7 +55,6 @@ The only 3 conditions are that:
 3. some sort of interactive tools are proposed to the students, like the quizzes or  practical exercises.
 
 While the production of videos for your content is welcome, this is not strictly necessary.
-
 
 
 ```@raw html

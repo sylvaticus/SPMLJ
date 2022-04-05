@@ -39,6 +39,12 @@ using Documenter, Literate, Test
 const LESSONS_ROOTDIR = joinpath(@__DIR__, "lessonsSources")
 # Important: If some lesson is removed but the md file is left, this may still be used by Documenter
 
+FOOTER_FILE = joinpath(LESSONS_ROOTDIR,"assets","footerCommentScript.txt")
+
+#footerDefault = "Powered by [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) and the [Julia Programming Language](https://julialang.org/)."
+#footerContent = read(FOOTER_FILE,String)
+
+#footerMerged = footerDefault * footerContent
 
 LESSONS_SUBDIR = Dict(
   "INTRO - Introduction to the course, Julia and ML"  => "00_-_INTRO_-_Introduction_julia_ml",
@@ -73,7 +79,14 @@ function include_sandbox(filename)
     return Base.include(mod, filename)
 end
 
-function makeList(rootDir,subDirList)
+function addFooter(file,footerFile) # to cancel, unused
+    footerContent = read(footerFile,String)
+    open(file,"a") do f
+        write(f, "\n"*footerContent)
+    end
+end
+
+function makeList(rootDir,subDirList,footerTemplate=nothing)
     outArray = []
     for l in sort(collect(subDirList), by=x->x[2])
       #println(l)
@@ -85,6 +98,9 @@ function makeList(rootDir,subDirList)
         displayFilename = replace(file,".md"=>"")
         displayFilename = replace(displayFilename,"_"=>" ")
         push!(dirArray,displayFilename=>joinpath(lessonDir,file))
+        #if footerTemplate != nothing
+        #    addFooter(file,footerTemplate)
+        #end
       end
       push!(outArray,lessonName=>dirArray)
     end
@@ -137,6 +153,8 @@ end
 println("Starting literating tutorials (.jl --> .md)...")
 literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR ,lsubdir),values(LESSONS_SUBDIR)))
 
+a = makeList(LESSONS_ROOTDIR,LESSONS_SUBDIR)
+
 println("Starting making the documentation...")
 makedocs(sitename="SPMLJ",
          authors = "Antonello Lobianco",
@@ -145,7 +163,11 @@ makedocs(sitename="SPMLJ",
             "Lessons" => makeList(LESSONS_ROOTDIR,LESSONS_SUBDIR),
          ],
          #assets = ["assets/custom.css"],
-         format = Documenter.HTML(prettyurls = false, analytics = "G-Q39LHCRBB6" ),
+         format = Documenter.HTML(
+             prettyurls = false,
+             analytics = "G-Q39LHCRBB6",
+             #footer=footerMerged
+             ),
          #strict = true,
          #doctest = false
          source  = "lessonsSources",
