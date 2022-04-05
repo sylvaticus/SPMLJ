@@ -61,7 +61,7 @@ While the production of videos for your content is welcome, this is not strictly
 ```@raw html
 <script src="https://utteranc.es/client.js"
         repo="sylvaticus/SPMLJ"
-        issue-term="url"
+        issue-term="pathname"
         label="💬 website_comment"
         theme="github-dark"
         crossorigin="anonymous"
