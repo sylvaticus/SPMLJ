@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>0202 - Miscellaneous topics · SPMLJ</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q39LHCRBB6"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q39LHCRBB6', {'page_path': location.pathname + location.search + location.hash});
+</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">SPMLJ</a></span></div><form class="docs-search" action="../search.html"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">INTRO - Introduction to the course, Julia and ML</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html">0001 - Course presentation</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0002_-_Program.html">0002 - Program</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003_-_Introduction_to_Julia.html">0003 - Introduction to Julia</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004_-_Introduction_to_ML.html">0004 - Introduction to ML</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0005_-_How_to_install_Julia_and_git.html">0005 - How to install Julia and git</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0006_-_Modules_packages_and_environments.html">0006 - Modules packages and environments</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0006q_-_QUIZ_0.1.html">0006q - QUIZ 0.1</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-2" type="checkbox"/><label class="tocitem" for="menuitem-2-2"><span class="docs-label">JULIA1 - Basic Julia programming</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101_-_Basic_syntax.html">0101 - Basic syntax</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101q_-_QUIZ_1.1.html">0101q - QUIZ 1.1</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101q_-_QUIZ_1.2.html">0101q - QUIZ 1.2</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0102_-_Types_and_objects.html">0102 - Types and objects</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103_-_Predefined_types.html">0103 - Predefined types</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104_-_Control_flow_and_functions.html">0104 - Control flow and functions</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105_-_Custom_types.html">0105 - Custom types</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106_-_Further_topics.html">0106 - Further topics</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-3" type="checkbox" checked/><label class="tocitem" for="menuitem-2-3"><span class="docs-label">JULIA2 - Scientific programming with Julia</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="0201_-_Wranging_data.html">0201 - Wranging data</a></li><li class="is-active"><a class="tocitem" href="0202_-_Miscellaneous_topics.html">0202 - Miscellaneous topics</a><ul class="internal"><li><a class="tocitem" href="#Some-stuff-to-set-up-the-environment.."><span>Some stuff to set-up the environment..</span></a></li><li><a class="tocitem" href="#Plotting"><span>Plotting</span></a></li><li><a class="tocitem" href="#Probabilistic-analysis"><span>Probabilistic analysis</span></a></li><li><a class="tocitem" href="#Curve-fitting"><span>Curve fitting</span></a></li><li><a class="tocitem" href="#Constrained-optimisation"><span>Constrained optimisation</span></a></li></ul></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-4" type="checkbox"/><label class="tocitem" for="menuitem-2-4"><span class="docs-label">ML1 - Introduction to Machine Learning</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0301_-_Machine_learning_main_concepts.html">0301 - Machine learning main concepts</a></li><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0302_-_The_Perceptron_classifier.html">0302 - The Perceptron classifier</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-5" type="checkbox"/><label class="tocitem" for="menuitem-2-5"><span class="docs-label">NN - Neural Networks</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0401_-_Neural_network_architectures.html">0401 - Neural network architectures</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402_-_Implementation_of_neural_networks_workflows.html">0402 - Implementation of neural networks workflows</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Lessons</a></li><li><a class="is-disabled">JULIA2 - Scientific programming with Julia</a></li><li class="is-active"><a href="0202_-_Miscellaneous_topics.html">0202 - Miscellaneous topics</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0202_-_Miscellaneous_topics.html">0202 - Miscellaneous topics</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/0202_-_Miscellaneous_topics.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><pre></pre><h1 id="Miscellaneous-topics"><a class="docs-heading-anchor" href="#Miscellaneous-topics">0202 - Miscellaneous topics</a><a id="Miscellaneous-topics-1"></a><a class="docs-heading-anchor-permalink" href="#Miscellaneous-topics" title="Permalink"></a></h1><h2 id="Some-stuff-to-set-up-the-environment.."><a class="docs-heading-anchor" href="#Some-stuff-to-set-up-the-environment..">Some stuff to set-up the environment..</a><a id="Some-stuff-to-set-up-the-environment..-1"></a><a class="docs-heading-anchor-permalink" href="#Some-stuff-to-set-up-the-environment.." title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; cd(@__DIR__)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pkg</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.activate(&quot;.&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">  Activating project at `~/work/SPMLJ/SPMLJ/buildedDoc/02_-_JULIA2_-_Scientific_programming_with_Julia`</code></pre><p>If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost) Pkg.resolve() Pkg.instantiate() # run this if you didn&#39;t in Segment 02.01</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Random</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Random.seed!(123)</code><code class="nohighlight hljs ansi" style="display:block;">Random.TaskLocalRNG()</code></pre><h2 id="Plotting"><a class="docs-heading-anchor" href="#Plotting">Plotting</a><a id="Plotting-1"></a><a class="docs-heading-anchor-permalink" href="#Plotting" title="Permalink"></a></h2><p>Within the many possible packages to plot in Julia we use here the <code>Plots</code> package that allows at run time to choose the plot&#39;s backend. The defauld backend is <code>gr</code> (that, if you want to go back to it after you choosen another backend, you can activate with <code>gr()</code>). Other common backends are the Python MatplotLib (<code>pyplot()</code>, requiring package <code>PyPlot</code>) and Plotly (<code>plotlyjs()</code> from package <code>PlotlyJS</code>). Actually we use <code>StatsPlots</code> that just adds a set of convenient functionalities (in <code>plots</code> terminology called &quot;<em>recipes</em>&quot;) on top of <code>Plots</code>.</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using StatsPlots # no need to `using Plots` as `Plots` elements are reexported by StatsPlots</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p>The basic idea is that we can draw different &quot;graphical elements&quot; in a Plot figure. The <code>plot(.)</code> function will first create a new figure, while <code>plot!(.)</code> will modify an existing plot (by drawing new elements on it, such as a new serie) taking the &quot;current&quot; plot as default if no plot object is passed as first argument.</p><h3 id="Plotting-functions"><a class="docs-heading-anchor" href="#Plotting-functions">Plotting functions</a><a id="Plotting-functions-1"></a><a class="docs-heading-anchor-permalink" href="#Plotting-functions" title="Permalink"></a></h3><p>Let&#39;s start plotting a function. The FIRST TIME you invoke <code>plot</code> will take a while. This is the famous &quot;time to first plot&quot; problem due to the JIT compilation, but it refer only to the first plotting in a working session</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot(cos) # default [-5,+5] range</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><p><img src="currentPlot.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot!(x-&gt;x^2, -2,2 ) # more explicit, with ranges</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=2}</code></pre><p><img src="currentPlot.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot!(x-&gt;max(x,2), label=&quot;max function&quot;, linestyle=:dot, color=:black, title=&quot;Chart title&quot;, xlabel= &quot;X axis&quot;, ylabel=&quot;Y axis&quot;, legend=:topleft) # a bit of design</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=3}</code></pre><p><img src="currentPlot2.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot!(twinx(),x-&gt;20x,colour=RGB(20/255,120/255,13/255)) # secondary axis</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=4}</code></pre><p><img src="currentPlot3.svg" alt/></p><h3 id="Plotting-data"><a class="docs-heading-anchor" href="#Plotting-data">Plotting data</a><a id="Plotting-data-1"></a><a class="docs-heading-anchor-permalink" href="#Plotting-data" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using DataFrames</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x = 11:15</code><code class="nohighlight hljs ansi" style="display:block;">11:15</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; data = DataFrame(a=[4,8,6,6,3], b=[2,4,5,8,6], c=[20,40,15,5,30])</code><code class="nohighlight hljs ansi" style="display:block;">5×3 DataFrame
+ Row │ a      b      c
+     │ Int64  Int64  Int64
+─────┼─────────────────────
+   1 │     4      2     20
+   2 │     8      4     40
+   3 │     6      5     15
+   4 │     6      8      5
+   5 │     3      6     30</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot(x, Matrix(data)) # x, series (in column)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=3}</code></pre><p><img src="currentPlot4.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; @df data plot(x, :a, seriestype=:bar, legend=:topleft)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><p><img src="currentPlot5.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot!(x, data.b, seriestype=:line)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=2}</code></pre><p><img src="currentPlot6.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; scatter!(twinx(), x, data.c) # alias for `plot!(..., seriestype=:scatter)`</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=3}</code></pre><p><img src="currentPlot7.svg" alt/></p><h3 id="Layouts-with-multiple-plots"><a class="docs-heading-anchor" href="#Layouts-with-multiple-plots">Layouts with multiple plots</a><a id="Layouts-with-multiple-plots-1"></a><a class="docs-heading-anchor-permalink" href="#Layouts-with-multiple-plots" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; l = @layout [a ; b c] # a,b,c, here are just placeholders, not related with the df column names..</code><code class="nohighlight hljs ansi" style="display:block;">2×1 Matrix{Any}:
+ (label = :a, blank = false)
+ Any[(label = :b, blank = false) (label = :c, blank = false)]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; p1 = plot(x, data.a)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; p2 = scatter(x, data.b)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; p3 = plot(x, data.c)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot(p1, p2, p3, layout = l)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=3}</code></pre><p><img src="currentPlot8.svg" alt/></p><h3 id="Saving-the-plot.."><a class="docs-heading-anchor" href="#Saving-the-plot..">Saving the plot..</a><a id="Saving-the-plot..-1"></a><a class="docs-heading-anchor-permalink" href="#Saving-the-plot.." title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; savefig(&quot;myplot.png&quot;)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; savefig(&quot;myplot.pdf&quot;)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; savefig(&quot;myplot.svg&quot;)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h2 id="Probabilistic-analysis"><a class="docs-heading-anchor" href="#Probabilistic-analysis">Probabilistic analysis</a><a id="Probabilistic-analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Probabilistic-analysis" title="Permalink"></a></h2><p>Julia has a very elegant package to deal with probability analysis, the <code>Distributions</code> package.</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Distributions</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p>The idea is that we first create a <code>Distribution</code> object, of the distribution family and with the parameter required, and then we operate on it, for example to sample or to retrieve a quantile. The following table gives the distribution constructors for some of the most common distributions:</p><table><tr><th style="text-align: right">Discrete distr.</th><th style="text-align: right">Constructor</th><th style="text-align: right">Continuous distr.</th><th style="text-align: right">Constructor</th></tr><tr><td style="text-align: right">Discrete uniform</td><td style="text-align: right"><code>DiscreteUniform(lRange,uRange)</code></td><td style="text-align: right">Uniform</td><td style="text-align: right"><code>Uniform(lRange,uRange)</code></td></tr><tr><td style="text-align: right">Bernoulli</td><td style="text-align: right"><code>Bernoulli(p)</code></td><td style="text-align: right">Exponential</td><td style="text-align: right"><code>Exponential(rate)</code></td></tr><tr><td style="text-align: right">Binomial</td><td style="text-align: right"><code>Binomial(n,p)</code></td><td style="text-align: right">Laplace</td><td style="text-align: right"><code>Laplace(loc, scale)</code></td></tr><tr><td style="text-align: right">Categorical</td><td style="text-align: right"><code>Categorical(ps)</code></td><td style="text-align: right">Normal</td><td style="text-align: right"><code>Normal(μ,σ)</code></td></tr><tr><td style="text-align: right">Multinomial</td><td style="text-align: right"><code>Multinomial(n, ps)</code></td><td style="text-align: right">Erlang</td><td style="text-align: right"><code>Erlang(n,rate)</code></td></tr><tr><td style="text-align: right">Geometric</td><td style="text-align: right"><code>Geometric(p)</code></td><td style="text-align: right">Cauchy</td><td style="text-align: right"><code>Cauchy(μ, σ)</code></td></tr><tr><td style="text-align: right">Hypergeometric</td><td style="text-align: right"><code>Hypergeometric(nS, nF, nTrials)</code></td><td style="text-align: right">Chisq</td><td style="text-align: right"><code>Chisq(df)</code></td></tr><tr><td style="text-align: right">Poisson</td><td style="text-align: right"><code>Poisson(rate)</code></td><td style="text-align: right">T Dist</td><td style="text-align: right"><code>TDist(df)</code></td></tr><tr><td style="text-align: right">Negative Binomial</td><td style="text-align: right"><code>NegativeBinomial(nSucc,p)</code></td><td style="text-align: right">F Dist</td><td style="text-align: right"><code>FDist(df1, df2)</code></td></tr><tr><td style="text-align: right"></td><td style="text-align: right"></td><td style="text-align: right">Beta Dist</td><td style="text-align: right"><code>Beta(shapeα,shapeβ)</code></td></tr><tr><td style="text-align: right"></td><td style="text-align: right"></td><td style="text-align: right">Gamma Dist</td><td style="text-align: right"><code>Gamma(shapeα,1/rateβ)</code></td></tr></table><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; d = Normal(10,3) # note that the parameter is the standard deviation, not the variance</code><code class="nohighlight hljs ansi" style="display:block;">Distributions.Normal{Float64}(μ=10.0, σ=3.0)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mean(d)</code><code class="nohighlight hljs ansi" style="display:block;">10.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; var(d)</code><code class="nohighlight hljs ansi" style="display:block;">9.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; median(d)</code><code class="nohighlight hljs ansi" style="display:block;">10.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; quantile(d,0.9)</code><code class="nohighlight hljs ansi" style="display:block;">13.844654696633802</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; cdf(d,13.844)</code><code class="nohighlight hljs ansi" style="display:block;">0.8999616952550467</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pdf(d,0)</code><code class="nohighlight hljs ansi" style="display:block;">0.0005140929987637017</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sample = rand(d,1000)</code><code class="nohighlight hljs ansi" style="display:block;">1000-element Vector{Float64}:
+  8.06280798368807
+  5.610245863333236
+  5.129188763241759
+  9.34700467964936
+ 11.476737059575548
+ 12.942939436372447
+ 10.23987048851518
+ 14.647373659128375
+  5.975172277350334
+ 11.236484904048904
+  ⋮
+ 12.403354837956826
+ 11.207094126354857
+ 10.268133622702884
+ 11.218490588652548
+ 13.852959856785546
+  9.729258694575801
+  9.830940369955442
+  9.918812742056703
+  9.48307358298061</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; rand(d,10,2,3)</code><code class="nohighlight hljs ansi" style="display:block;">10×2×3 Array{Float64, 3}:
+[:, :, 1] =
+ 10.8062    6.60818
+  7.9932    9.37579
+  7.66951  10.1019
+  9.22129   8.48094
+  4.6101   11.3663
+  5.48889  12.841
+  8.72932   5.66683
+  8.24601   6.1645
+  6.40937  13.4191
+ 11.2196    7.33339
+
+[:, :, 2] =
+ 10.6626   15.6785
+ 10.7449    9.40207
+ 12.826    11.7641
+  3.18095   9.36946
+ 11.7532   12.6085
+ 10.6311   18.5023
+  8.97362  15.4287
+  6.57179  11.7876
+ 16.27     13.5498
+  6.60767  15.6316
+
+[:, :, 3] =
+  2.49457   9.6878
+  7.7509   10.0882
+ 12.2083   12.1057
+ 11.2507   12.2525
+  8.523    11.6519
+ 10.4712   10.7674
+  9.43861   7.72881
+  9.96767  11.8262
+ 18.5956    8.25542
+  8.68291   6.75197</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; density(sample)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><p><img src="currentPlot9.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot!(d)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=2}</code></pre><p><img src="currentPlot10.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; fit(Normal, sample) # using MLE</code><code class="nohighlight hljs ansi" style="display:block;">Distributions.Normal{Float64}(μ=9.889575331472637, σ=3.1050339802530043)</code></pre><h2 id="Curve-fitting"><a class="docs-heading-anchor" href="#Curve-fitting">Curve fitting</a><a id="Curve-fitting-1"></a><a class="docs-heading-anchor-permalink" href="#Curve-fitting" title="Permalink"></a></h2><p><code>LsqFit</code> is a very flexible data fitting package for linear and nonlinear arbitrary functions (using least squares). Let&#39;s use it to fit a logistic growth curve (Verhulst model) of volumes for a forest stand.</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using LsqFit</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; data = DataFrame(
+           age = 20:5:90,
+           vol = [64,112,170,231,293,352,408,459,505,546,582,613,640,663,683]
+       ) # Scots Pine, data from the UK Forestry Commission https://web.archive.org/web/20170119072737/http://forestry.gov.uk/pdf/FCBK048.pdf/$FILE/FCBK048.pdf</code><code class="nohighlight hljs ansi" style="display:block;">15×2 DataFrame
+ Row │ age    vol
+     │ Int64  Int64
+─────┼──────────────
+   1 │    20     64
+   2 │    25    112
+   3 │    30    170
+   4 │    35    231
+   5 │    40    293
+   6 │    45    352
+   7 │    50    408
+   8 │    55    459
+   9 │    60    505
+  10 │    65    546
+  11 │    70    582
+  12 │    75    613
+  13 │    80    640
+  14 │    85    663
+  15 │    90    683</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot(data.vol)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><p><img src="currentPlot11.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; logisticModel(age,parameters) = parameters[1]/(1+exp(-parameters[2] * (age-parameters[3]) ))</code><code class="nohighlight hljs ansi" style="display:block;">logisticModel (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; logisticModelVec(age,parameters) = logisticModel.(age,Ref(parameters))</code><code class="nohighlight hljs ansi" style="display:block;">logisticModelVec (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; initialParameters = [1000,0.02,50] #max growth; growth rate, mid age</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ 1000.0
+    0.02
+   50.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fitobject         = curve_fit(logisticModelVec, data.age, data.vol, initialParameters)</code><code class="nohighlight hljs ansi" style="display:block;">LsqFit.LsqFitResult{Vector{Float64}, Vector{Float64}, Matrix{Float64}, Vector{Int64}}([692.5825413201447, 0.0730342753017813, 45.521079747061144], [28.97750654868652, 14.4747120457303, -1.3542656293143693, -11.572229993656407, -15.595058416701022, -12.297282501288635, -5.569946832126675, 2.5891442587341658, 9.0377822008561, 12.048522818740707, 11.305933439788191, 7.51664984555066, 0.9186273617362986, -7.11365784284169, -16.307121770375602], [0.1342475459642054 -2054.3321912028164 -5.878930833778442; 0.1826131969850543 -2121.443789792599 -7.5501928577705195; … ; 0.9470154140965453 1371.9661652874784 -2.538077366651779; 0.9626186605323886 1108.4980035881208 -1.820150919492338], true, Int64[])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fitparams         = fitobject.param</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ 692.5825413201447
+   0.0730342753017813
+  45.521079747061144</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fitobject.resid</code><code class="nohighlight hljs ansi" style="display:block;">15-element Vector{Float64}:
+  28.97750654868652
+  14.4747120457303
+  -1.3542656293143693
+ -11.572229993656407
+ -15.595058416701022
+ -12.297282501288635
+  -5.569946832126675
+   2.5891442587341658
+   9.0377822008561
+  12.048522818740707
+  11.305933439788191
+   7.51664984555066
+   0.9186273617362986
+  -7.11365784284169
+ -16.307121770375602</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; residuals = logisticModelVec(data.age,fitparams) .- data.vol</code><code class="nohighlight hljs ansi" style="display:block;">15-element Vector{Float64}:
+  28.97750654868652
+  14.4747120457303
+  -1.3542656293143693
+ -11.572229993656407
+ -15.595058416701022
+ -12.297282501288635
+  -5.569946832126675
+   2.5891442587341658
+   9.0377822008561
+  12.048522818740707
+  11.305933439788191
+   7.51664984555066
+   0.9186273617362986
+  -7.11365784284169
+ -16.307121770375602</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fitobject.resid == residuals</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sigma            = stderror(fitobject)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ 12.682368775085612
+  0.0035444978135975988
+  0.7982532437184201</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; confidence_inter = confidence_interval(fitobject, 0.05) # 5% significance level</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Tuple{Float64, Float64}}:
+ (664.9500335224171, 720.2150491178724)
+ (0.06531147799078742, 0.08075707261277519)
+ (43.78183533832397, 47.260324155798315)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x = 0:maximum(data.age)*1.5</code><code class="nohighlight hljs ansi" style="display:block;">0.0:1.0:135.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot(x-&gt;logisticModel(x,fitparams),0,maximum(x), label= &quot;Fitted vols&quot;, legend=:topleft)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot!(data.age, data.vol, seriestype=:scatter, label = &quot;Obs vols&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=2}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot!(data.age, residuals, seriestype=:bar, label = &quot;Residuals&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=3}</code></pre><p><img src="currentPlot12.svg" alt/></p><h2 id="Constrained-optimisation"><a class="docs-heading-anchor" href="#Constrained-optimisation">Constrained optimisation</a><a id="Constrained-optimisation-1"></a><a class="docs-heading-anchor-permalink" href="#Constrained-optimisation" title="Permalink"></a></h2><p><code>JuMP</code> is the leading library to express complex optimisation problems in a clear, mathematical friendly syntax, compute the information required by the solver engines to solve the optimisation problem, pass the problem to the aforementioned solver engines and retrieve the solutions.</p><p>JuMP has the same flexibility and expressivity of dedicated <em>algeabric modelling languages</em> as <code>GAMS</code> or <code>AMPL</code> but with the advantage of being a library within a much more general programming language, with larger community, development tools, language constructs and possibility to interface the specific &quot;optimisation component&quot; of a model with the rest of the model.</p><p>We will see how to specify the variables, the constraints and the objective function of an optimisation model, how to &quot;solve&quot; it and how to retrieve the optimal values</p><h3 id="A-linear-example:-the-classical-&quot;transport&quot;-problem"><a class="docs-heading-anchor" href="#A-linear-example:-the-classical-&quot;transport&quot;-problem">A linear example: the classical &quot;transport&quot; problem</a><a id="A-linear-example:-the-classical-&quot;transport&quot;-problem-1"></a><a class="docs-heading-anchor-permalink" href="#A-linear-example:-the-classical-&quot;transport&quot;-problem" title="Permalink"></a></h3><p>Obj: minimise transport costs <span>$c$</span> from several plants <span>$p$</span> to several markets <span>$m$</span> under the contraint to satisfy the demand <span>$d_m$</span> at each market while respecting the production capacity <span>$c_p$</span> of each plant: <span>$min_{x_{p,m}} \sum_p \sum_m c_{p,m} * x_{p,m}$</span> subject to: <span>$\sum_m x_{p,m} \leq d_m$</span> <span>$\sum_p x_{p,m} \geq c_m$</span></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using  JuMP, GLPK, DataFrames, CSV</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h4 id="&quot;Sets&quot;-and-exogenous-parameters-definition"><a class="docs-heading-anchor" href="#&quot;Sets&quot;-and-exogenous-parameters-definition">&quot;Sets&quot; and exogenous parameters definition</a><a id="&quot;Sets&quot;-and-exogenous-parameters-definition-1"></a><a class="docs-heading-anchor-permalink" href="#&quot;Sets&quot;-and-exogenous-parameters-definition" title="Permalink"></a></h4><p>index sets</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; orig = [&quot;Epinal&quot;, &quot;Bordeaux&quot;, &quot;Grenoble&quot;] # plant/sawmills origin of timber</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{String}:
+ &quot;Epinal&quot;
+ &quot;Bordeaux&quot;
+ &quot;Grenoble&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; dest = [&quot;Paris&quot;, &quot;Lyon&quot;, &quot;Nantes&quot;, &quot;Tulouse&quot;, &quot;Lille&quot;, &quot;Marseille&quot;, &quot;Strasbourg&quot;] # markets</code><code class="nohighlight hljs ansi" style="display:block;">7-element Vector{String}:
+ &quot;Paris&quot;
+ &quot;Lyon&quot;
+ &quot;Nantes&quot;
+ &quot;Tulouse&quot;
+ &quot;Lille&quot;
+ &quot;Marseille&quot;
+ &quot;Strasbourg&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; prod = [&quot;Fuelwood&quot;, &quot;Sawnwood&quot;, &quot;Pannels&quot;]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{String}:
+ &quot;Fuelwood&quot;
+ &quot;Sawnwood&quot;
+ &quot;Pannels&quot;</code></pre><p>Read input data into DataFrames and then into Dictionaries with 2D or 3D tuples of index sets as keys</p><p>supply(prod, orig) amounts available at origins</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; supplytable = CSV.read(IOBuffer(&quot;&quot;&quot;
+       prod     Epinal Bordeaux Grenoble
+       Fuelwood 400    700      800
+       Sawnwood 800    1600     1800
+       Pannels  200    300      300
+       &quot;&quot;&quot;), DataFrame, delim=&quot; &quot;, ignorerepeated=true,copycols=true)</code><code class="nohighlight hljs ansi" style="display:block;">3×4 DataFrame
+ Row │ prod      Epinal  Bordeaux  Grenoble
+     │ String15  Int64   Int64     Int64
+─────┼──────────────────────────────────────
+   1 │ Fuelwood     400       700       800
+   2 │ Sawnwood     800      1600      1800
+   3 │ Pannels      200       300       300</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; supply = Dict( (r[:prod],o) =&gt; r[Symbol(o)] for r in eachrow(supplytable), o in orig)</code><code class="nohighlight hljs ansi" style="display:block;">Dict{Tuple{InlineStrings.String15, String}, Int64} with 9 entries:
+  (&quot;Sawnwood&quot;, &quot;Bordeaux&quot;) =&gt; 1600
+  (&quot;Sawnwood&quot;, &quot;Epinal&quot;)   =&gt; 800
+  (&quot;Pannels&quot;, &quot;Epinal&quot;)    =&gt; 200
+  (&quot;Pannels&quot;, &quot;Bordeaux&quot;)  =&gt; 300
+  (&quot;Pannels&quot;, &quot;Grenoble&quot;)  =&gt; 300
+  (&quot;Fuelwood&quot;, &quot;Epinal&quot;)   =&gt; 400
+  (&quot;Fuelwood&quot;, &quot;Bordeaux&quot;) =&gt; 700
+  (&quot;Fuelwood&quot;, &quot;Grenoble&quot;) =&gt; 800
+  (&quot;Sawnwood&quot;, &quot;Grenoble&quot;) =&gt; 1800</code></pre><p>demand(prod, dest) amounts required at destinations</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; demandtable = CSV.read(IOBuffer(&quot;&quot;&quot;
+       prod      Paris Lyon Nantes Tulouse Lille Marseille Strasbourg
+       Fuelwood  300   300  100    75      650   225       250
+       Sawnwood  500   750  400    250     950   850       500
+       Pannels   100   100  0      50      200   100       250
+       &quot;&quot;&quot;), DataFrame, delim=&quot; &quot;, ignorerepeated=true,copycols=true)</code><code class="nohighlight hljs ansi" style="display:block;">3×8 DataFrame
+ Row │ prod      Paris  Lyon   Nantes  Tulouse  Lille  Marseille  Strasbourg
+     │ String15  Int64  Int64  Int64   Int64    Int64  Int64      Int64
+─────┼───────────────────────────────────────────────────────────────────────
+   1 │ Fuelwood    300    300     100       75    650        225         250
+   2 │ Sawnwood    500    750     400      250    950        850         500
+   3 │ Pannels     100    100       0       50    200        100         250</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; demand = Dict( (r[:prod],d) =&gt; r[Symbol(d)] for r in eachrow(demandtable), d in dest)</code><code class="nohighlight hljs ansi" style="display:block;">Dict{Tuple{InlineStrings.String15, String}, Int64} with 21 entries:
+  (&quot;Fuelwood&quot;, &quot;Paris&quot;)      =&gt; 300
+  (&quot;Pannels&quot;, &quot;Paris&quot;)       =&gt; 100
+  (&quot;Pannels&quot;, &quot;Lyon&quot;)        =&gt; 100
+  (&quot;Sawnwood&quot;, &quot;Tulouse&quot;)    =&gt; 250
+  (&quot;Fuelwood&quot;, &quot;Tulouse&quot;)    =&gt; 75
+  (&quot;Fuelwood&quot;, &quot;Nantes&quot;)     =&gt; 100
+  (&quot;Sawnwood&quot;, &quot;Lyon&quot;)       =&gt; 750
+  (&quot;Pannels&quot;, &quot;Tulouse&quot;)     =&gt; 50
+  (&quot;Fuelwood&quot;, &quot;Lille&quot;)      =&gt; 650
+  (&quot;Pannels&quot;, &quot;Nantes&quot;)      =&gt; 0
+  (&quot;Sawnwood&quot;, &quot;Lille&quot;)      =&gt; 950
+  (&quot;Pannels&quot;, &quot;Marseille&quot;)   =&gt; 100
+  (&quot;Fuelwood&quot;, &quot;Lyon&quot;)       =&gt; 300
+  (&quot;Fuelwood&quot;, &quot;Strasbourg&quot;) =&gt; 250
+  (&quot;Sawnwood&quot;, &quot;Paris&quot;)      =&gt; 500
+  (&quot;Sawnwood&quot;, &quot;Nantes&quot;)     =&gt; 400
+  (&quot;Fuelwood&quot;, &quot;Marseille&quot;)  =&gt; 225
+  (&quot;Pannels&quot;, &quot;Strasbourg&quot;)  =&gt; 250
+  (&quot;Sawnwood&quot;, &quot;Strasbourg&quot;) =&gt; 500
+  ⋮                          =&gt; ⋮</code></pre><p>limit(orig, dest) of total units from any origin to destination</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; defaultlimit = 625.0</code><code class="nohighlight hljs ansi" style="display:block;">625.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; limit = Dict((o,d) =&gt; defaultlimit for o in orig, d in dest)</code><code class="nohighlight hljs ansi" style="display:block;">Dict{Tuple{String, String}, Float64} with 21 entries:
+  (&quot;Bordeaux&quot;, &quot;Lyon&quot;)       =&gt; 625.0
+  (&quot;Epinal&quot;, &quot;Lille&quot;)        =&gt; 625.0
+  (&quot;Bordeaux&quot;, &quot;Marseille&quot;)  =&gt; 625.0
+  (&quot;Epinal&quot;, &quot;Marseille&quot;)    =&gt; 625.0
+  (&quot;Grenoble&quot;, &quot;Paris&quot;)      =&gt; 625.0
+  (&quot;Grenoble&quot;, &quot;Marseille&quot;)  =&gt; 625.0
+  (&quot;Bordeaux&quot;, &quot;Lille&quot;)      =&gt; 625.0
+  (&quot;Grenoble&quot;, &quot;Tulouse&quot;)    =&gt; 625.0
+  (&quot;Epinal&quot;, &quot;Strasbourg&quot;)   =&gt; 625.0
+  (&quot;Epinal&quot;, &quot;Tulouse&quot;)      =&gt; 625.0
+  (&quot;Bordeaux&quot;, &quot;Nantes&quot;)     =&gt; 625.0
+  (&quot;Grenoble&quot;, &quot;Lille&quot;)      =&gt; 625.0
+  (&quot;Grenoble&quot;, &quot;Nantes&quot;)     =&gt; 625.0
+  (&quot;Grenoble&quot;, &quot;Lyon&quot;)       =&gt; 625.0
+  (&quot;Bordeaux&quot;, &quot;Strasbourg&quot;) =&gt; 625.0
+  (&quot;Grenoble&quot;, &quot;Strasbourg&quot;) =&gt; 625.0
+  (&quot;Epinal&quot;, &quot;Nantes&quot;)       =&gt; 625.0
+  (&quot;Epinal&quot;, &quot;Paris&quot;)        =&gt; 625.0
+  (&quot;Bordeaux&quot;, &quot;Paris&quot;)      =&gt; 625.0
+  ⋮                          =&gt; ⋮</code></pre><p>cost(prod, orig, dest) Shipment cost per unit</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; costtable = CSV.read(IOBuffer(&quot;&quot;&quot;
+       prod     orig     Paris Lyon Nantes Tulouse Lille Marseille Strasbourg
+       Fuelwood Epinal   30    10   8      10      11    71        6
+       Fuelwood Bordeaux 22    7    10     7       21    82        13
+       Fuelwood Grenoble 19    11   12     10      25    83        15
+       
+       Sawnwood Epinal   39    14   11     14      16    82        8
+       Sawnwood Bordeaux 27    9    12     9       26    95        17
+       Sawnwood Grenoble 24    14   17     13      28    99        20
+       
+       Pannels  Epinal   41    15   12     16      17    86        8
+       Pannels  Bordeaux 29    9    13     9       28    99        18
+       Pannels  Grenoble 26    14   17     13      31    104       20
+       &quot;&quot;&quot;), DataFrame, delim=&quot; &quot;, ignorerepeated=true,copycols=true)</code><code class="nohighlight hljs ansi" style="display:block;">9×9 DataFrame
+ Row │ prod      orig      Paris  Lyon   Nantes  Tulouse  Lille  Marseille  St ⋯
+     │ String15  String15  Int64  Int64  Int64   Int64    Int64  Int64      In ⋯
+─────┼──────────────────────────────────────────────────────────────────────────
+   1 │ Fuelwood  Epinal       30     10       8       10     11         71     ⋯
+   2 │ Fuelwood  Bordeaux     22      7      10        7     21         82
+   3 │ Fuelwood  Grenoble     19     11      12       10     25         83
+   4 │ Sawnwood  Epinal       39     14      11       14     16         82
+   5 │ Sawnwood  Bordeaux     27      9      12        9     26         95     ⋯
+   6 │ Sawnwood  Grenoble     24     14      17       13     28         99
+   7 │ Pannels   Epinal       41     15      12       16     17         86
+   8 │ Pannels   Bordeaux     29      9      13        9     28         99
+   9 │ Pannels   Grenoble     26     14      17       13     31        104     ⋯
+                                                                1 column omitted</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; cost = Dict( (r[:prod],r[:orig],d) =&gt; r[Symbol(d)] for r in eachrow(costtable), d in dest)</code><code class="nohighlight hljs ansi" style="display:block;">Dict{Tuple{InlineStrings.String15, InlineStrings.String15, String}, Int64} with 63 entries:
+  (&quot;Sawnwood&quot;, &quot;Epinal&quot;, &quot;Lille&quot;)        =&gt; 16
+  (&quot;Sawnwood&quot;, &quot;Epinal&quot;, &quot;Paris&quot;)        =&gt; 39
+  (&quot;Sawnwood&quot;, &quot;Bordeaux&quot;, &quot;Lyon&quot;)       =&gt; 9
+  (&quot;Sawnwood&quot;, &quot;Epinal&quot;, &quot;Lyon&quot;)         =&gt; 14
+  (&quot;Sawnwood&quot;, &quot;Bordeaux&quot;, &quot;Strasbourg&quot;) =&gt; 17
+  (&quot;Fuelwood&quot;, &quot;Bordeaux&quot;, &quot;Tulouse&quot;)    =&gt; 7
+  (&quot;Fuelwood&quot;, &quot;Bordeaux&quot;, &quot;Lille&quot;)      =&gt; 21
+  (&quot;Fuelwood&quot;, &quot;Grenoble&quot;, &quot;Strasbourg&quot;) =&gt; 15
+  (&quot;Sawnwood&quot;, &quot;Grenoble&quot;, &quot;Strasbourg&quot;) =&gt; 20
+  (&quot;Fuelwood&quot;, &quot;Grenoble&quot;, &quot;Lyon&quot;)       =&gt; 11
+  (&quot;Fuelwood&quot;, &quot;Bordeaux&quot;, &quot;Lyon&quot;)       =&gt; 7
+  (&quot;Sawnwood&quot;, &quot;Grenoble&quot;, &quot;Lille&quot;)      =&gt; 28
+  (&quot;Pannels&quot;, &quot;Bordeaux&quot;, &quot;Tulouse&quot;)     =&gt; 9
+  (&quot;Fuelwood&quot;, &quot;Grenoble&quot;, &quot;Nantes&quot;)     =&gt; 12
+  (&quot;Pannels&quot;, &quot;Epinal&quot;, &quot;Lyon&quot;)          =&gt; 15
+  (&quot;Sawnwood&quot;, &quot;Bordeaux&quot;, &quot;Tulouse&quot;)    =&gt; 9
+  (&quot;Pannels&quot;, &quot;Bordeaux&quot;, &quot;Paris&quot;)       =&gt; 29
+  (&quot;Fuelwood&quot;, &quot;Bordeaux&quot;, &quot;Paris&quot;)      =&gt; 22
+  (&quot;Sawnwood&quot;, &quot;Epinal&quot;, &quot;Nantes&quot;)       =&gt; 11
+  ⋮                                      =&gt; ⋮</code></pre><h4 id="Optimisation-model-definition"><a class="docs-heading-anchor" href="#Optimisation-model-definition">Optimisation model definition</a><a id="Optimisation-model-definition-1"></a><a class="docs-heading-anchor-permalink" href="#Optimisation-model-definition" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; trmodel = Model(GLPK.Optimizer)</code><code class="nohighlight hljs ansi" style="display:block;">A JuMP Model
+Feasibility problem with:
+Variables: 0
+Model mode: AUTOMATIC
+CachingOptimizer state: EMPTY_OPTIMIZER
+Solver name: GLPK</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; set_optimizer_attribute(trmodel, &quot;msg_lev&quot;, GLPK.GLP_MSG_ON)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h4 id="Model&#39;s-endogenous-variables-definition"><a class="docs-heading-anchor" href="#Model&#39;s-endogenous-variables-definition">Model&#39;s endogenous variables definition</a><a id="Model&#39;s-endogenous-variables-definition-1"></a><a class="docs-heading-anchor-permalink" href="#Model&#39;s-endogenous-variables-definition" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; @variables trmodel begin
+           x[p in prod, o in orig, d in dest] &gt;= 0
+       end</code><code class="nohighlight hljs ansi" style="display:block;">(3-dimensional DenseAxisArray{JuMP.VariableRef,3,...} with index sets:
+    Dimension 1, [&quot;Fuelwood&quot;, &quot;Sawnwood&quot;, &quot;Pannels&quot;]
+    Dimension 2, [&quot;Epinal&quot;, &quot;Bordeaux&quot;, &quot;Grenoble&quot;]
+    Dimension 3, [&quot;Paris&quot;, &quot;Lyon&quot;, &quot;Nantes&quot;, &quot;Tulouse&quot;, &quot;Lille&quot;, &quot;Marseille&quot;, &quot;Strasbourg&quot;]
+And data, a 3×3×7 Array{JuMP.VariableRef, 3}:
+[:, :, &quot;Paris&quot;] =
+ x[Fuelwood,Epinal,Paris]  …  x[Fuelwood,Grenoble,Paris]
+ x[Sawnwood,Epinal,Paris]     x[Sawnwood,Grenoble,Paris]
+ x[Pannels,Epinal,Paris]      x[Pannels,Grenoble,Paris]
+
+[:, :, &quot;Lyon&quot;] =
+ x[Fuelwood,Epinal,Lyon]  …  x[Fuelwood,Grenoble,Lyon]
+ x[Sawnwood,Epinal,Lyon]     x[Sawnwood,Grenoble,Lyon]
+ x[Pannels,Epinal,Lyon]      x[Pannels,Grenoble,Lyon]
+
+[:, :, &quot;Nantes&quot;] =
+ x[Fuelwood,Epinal,Nantes]  …  x[Fuelwood,Grenoble,Nantes]
+ x[Sawnwood,Epinal,Nantes]     x[Sawnwood,Grenoble,Nantes]
+ x[Pannels,Epinal,Nantes]      x[Pannels,Grenoble,Nantes]
+
+[:, :, &quot;Tulouse&quot;] =
+ x[Fuelwood,Epinal,Tulouse]  …  x[Fuelwood,Grenoble,Tulouse]
+ x[Sawnwood,Epinal,Tulouse]     x[Sawnwood,Grenoble,Tulouse]
+ x[Pannels,Epinal,Tulouse]      x[Pannels,Grenoble,Tulouse]
+
+[:, :, &quot;Lille&quot;] =
+ x[Fuelwood,Epinal,Lille]  …  x[Fuelwood,Grenoble,Lille]
+ x[Sawnwood,Epinal,Lille]     x[Sawnwood,Grenoble,Lille]
+ x[Pannels,Epinal,Lille]      x[Pannels,Grenoble,Lille]
+
+[:, :, &quot;Marseille&quot;] =
+ x[Fuelwood,Epinal,Marseille]  …  x[Fuelwood,Grenoble,Marseille]
+ x[Sawnwood,Epinal,Marseille]     x[Sawnwood,Grenoble,Marseille]
+ x[Pannels,Epinal,Marseille]      x[Pannels,Grenoble,Marseille]
+
+[:, :, &quot;Strasbourg&quot;] =
+ x[Fuelwood,Epinal,Strasbourg]  …  x[Fuelwood,Grenoble,Strasbourg]
+ x[Sawnwood,Epinal,Strasbourg]     x[Sawnwood,Grenoble,Strasbourg]
+ x[Pannels,Epinal,Strasbourg]      x[Pannels,Grenoble,Strasbourg],)</code></pre><h4 id="Constraints-definition"><a class="docs-heading-anchor" href="#Constraints-definition">Constraints definition</a><a id="Constraints-definition-1"></a><a class="docs-heading-anchor-permalink" href="#Constraints-definition" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; @constraints trmodel begin
+           supply[p in prod, o in orig], # observe supply limit at plant/sawmill origin o
+               sum(x[p,o,d] for d in dest) &lt;= supply[p,o]
+           demand[p in prod, d in dest], # satisfy demand at market dest d
+               sum(x[p,o,d] for o in orig) &gt;= demand[p,d]
+           c_total_shipment[o in orig, d in dest],
+               sum(x[p,o,d] for p in prod) &lt;= limit[o,d]
+       end</code><code class="nohighlight hljs ansi" style="display:block;">(2-dimensional DenseAxisArray{JuMP.ConstraintRef{JuMP.Model, MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64}, MathOptInterface.LessThan{Float64}}, JuMP.ScalarShape},2,...} with index sets:
+    Dimension 1, [&quot;Fuelwood&quot;, &quot;Sawnwood&quot;, &quot;Pannels&quot;]
+    Dimension 2, [&quot;Epinal&quot;, &quot;Bordeaux&quot;, &quot;Grenoble&quot;]
+And data, a 3×3 Matrix{JuMP.ConstraintRef{JuMP.Model, MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64}, MathOptInterface.LessThan{Float64}}, JuMP.ScalarShape}}:
+ supply[Fuelwood,Epinal] : x[Fuelwood,Epinal,Paris] + x[Fuelwood,Epinal,Lyon] + x[Fuelwood,Epinal,Nantes] + x[Fuelwood,Epinal,Tulouse] + x[Fuelwood,Epinal,Lille] + x[Fuelwood,Epinal,Marseille] + x[Fuelwood,Epinal,Strasbourg] ≤ 400.0  …  supply[Fuelwood,Grenoble] : x[Fuelwood,Grenoble,Paris] + x[Fuelwood,Grenoble,Lyon] + x[Fuelwood,Grenoble,Nantes] + x[Fuelwood,Grenoble,Tulouse] + x[Fuelwood,Grenoble,Lille] + x[Fuelwood,Grenoble,Marseille] + x[Fuelwood,Grenoble,Strasbourg] ≤ 800.0
+ supply[Sawnwood,Epinal] : x[Sawnwood,Epinal,Paris] + x[Sawnwood,Epinal,Lyon] + x[Sawnwood,Epinal,Nantes] + x[Sawnwood,Epinal,Tulouse] + x[Sawnwood,Epinal,Lille] + x[Sawnwood,Epinal,Marseille] + x[Sawnwood,Epinal,Strasbourg] ≤ 800.0     supply[Sawnwood,Grenoble] : x[Sawnwood,Grenoble,Paris] + x[Sawnwood,Grenoble,Lyon] + x[Sawnwood,Grenoble,Nantes] + x[Sawnwood,Grenoble,Tulouse] + x[Sawnwood,Grenoble,Lille] + x[Sawnwood,Grenoble,Marseille] + x[Sawnwood,Grenoble,Strasbourg] ≤ 1800.0
+ supply[Pannels,Epinal] : x[Pannels,Epinal,Paris] + x[Pannels,Epinal,Lyon] + x[Pannels,Epinal,Nantes] + x[Pannels,Epinal,Tulouse] + x[Pannels,Epinal,Lille] + x[Pannels,Epinal,Marseille] + x[Pannels,Epinal,Strasbourg] ≤ 200.0             supply[Pannels,Grenoble] : x[Pannels,Grenoble,Paris] + x[Pannels,Grenoble,Lyon] + x[Pannels,Grenoble,Nantes] + x[Pannels,Grenoble,Tulouse] + x[Pannels,Grenoble,Lille] + x[Pannels,Grenoble,Marseille] + x[Pannels,Grenoble,Strasbourg] ≤ 300.0, 2-dimensional DenseAxisArray{JuMP.ConstraintRef{JuMP.Model, MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64}, MathOptInterface.GreaterThan{Float64}}, JuMP.ScalarShape},2,...} with index sets:
+    Dimension 1, [&quot;Fuelwood&quot;, &quot;Sawnwood&quot;, &quot;Pannels&quot;]
+    Dimension 2, [&quot;Paris&quot;, &quot;Lyon&quot;, &quot;Nantes&quot;, &quot;Tulouse&quot;, &quot;Lille&quot;, &quot;Marseille&quot;, &quot;Strasbourg&quot;]
+And data, a 3×7 Matrix{JuMP.ConstraintRef{JuMP.Model, MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64}, MathOptInterface.GreaterThan{Float64}}, JuMP.ScalarShape}}:
+ demand[Fuelwood,Paris] : x[Fuelwood,Epinal,Paris] + x[Fuelwood,Bordeaux,Paris] + x[Fuelwood,Grenoble,Paris] ≥ 300.0  …  demand[Fuelwood,Strasbourg] : x[Fuelwood,Epinal,Strasbourg] + x[Fuelwood,Bordeaux,Strasbourg] + x[Fuelwood,Grenoble,Strasbourg] ≥ 250.0
+ demand[Sawnwood,Paris] : x[Sawnwood,Epinal,Paris] + x[Sawnwood,Bordeaux,Paris] + x[Sawnwood,Grenoble,Paris] ≥ 500.0     demand[Sawnwood,Strasbourg] : x[Sawnwood,Epinal,Strasbourg] + x[Sawnwood,Bordeaux,Strasbourg] + x[Sawnwood,Grenoble,Strasbourg] ≥ 500.0
+ demand[Pannels,Paris] : x[Pannels,Epinal,Paris] + x[Pannels,Bordeaux,Paris] + x[Pannels,Grenoble,Paris] ≥ 100.0         demand[Pannels,Strasbourg] : x[Pannels,Epinal,Strasbourg] + x[Pannels,Bordeaux,Strasbourg] + x[Pannels,Grenoble,Strasbourg] ≥ 250.0, 2-dimensional DenseAxisArray{JuMP.ConstraintRef{JuMP.Model, MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64}, MathOptInterface.LessThan{Float64}}, JuMP.ScalarShape},2,...} with index sets:
+    Dimension 1, [&quot;Epinal&quot;, &quot;Bordeaux&quot;, &quot;Grenoble&quot;]
+    Dimension 2, [&quot;Paris&quot;, &quot;Lyon&quot;, &quot;Nantes&quot;, &quot;Tulouse&quot;, &quot;Lille&quot;, &quot;Marseille&quot;, &quot;Strasbourg&quot;]
+And data, a 3×7 Matrix{JuMP.ConstraintRef{JuMP.Model, MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64}, MathOptInterface.LessThan{Float64}}, JuMP.ScalarShape}}:
+ c_total_shipment[Epinal,Paris] : x[Fuelwood,Epinal,Paris] + x[Sawnwood,Epinal,Paris] + x[Pannels,Epinal,Paris] ≤ 625.0          …  c_total_shipment[Epinal,Strasbourg] : x[Fuelwood,Epinal,Strasbourg] + x[Sawnwood,Epinal,Strasbourg] + x[Pannels,Epinal,Strasbourg] ≤ 625.0
+ c_total_shipment[Bordeaux,Paris] : x[Fuelwood,Bordeaux,Paris] + x[Sawnwood,Bordeaux,Paris] + x[Pannels,Bordeaux,Paris] ≤ 625.0     c_total_shipment[Bordeaux,Strasbourg] : x[Fuelwood,Bordeaux,Strasbourg] + x[Sawnwood,Bordeaux,Strasbourg] + x[Pannels,Bordeaux,Strasbourg] ≤ 625.0
+ c_total_shipment[Grenoble,Paris] : x[Fuelwood,Grenoble,Paris] + x[Sawnwood,Grenoble,Paris] + x[Pannels,Grenoble,Paris] ≤ 625.0     c_total_shipment[Grenoble,Strasbourg] : x[Fuelwood,Grenoble,Strasbourg] + x[Sawnwood,Grenoble,Strasbourg] + x[Pannels,Grenoble,Strasbourg] ≤ 625.0)</code></pre><h4 id="Objective-function-definition"><a class="docs-heading-anchor" href="#Objective-function-definition">Objective function definition</a><a id="Objective-function-definition-1"></a><a class="docs-heading-anchor-permalink" href="#Objective-function-definition" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; @objective trmodel Min begin
+           sum(cost[p,o,d] * x[p,o,d] for p in prod, o in orig, d in dest)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">30 x[Fuelwood,Epinal,Paris] + 39 x[Sawnwood,Epinal,Paris] + 41 x[Pannels,Epinal,Paris] + 22 x[Fuelwood,Bordeaux,Paris] + 27 x[Sawnwood,Bordeaux,Paris] + 29 x[Pannels,Bordeaux,Paris] + 19 x[Fuelwood,Grenoble,Paris] + 24 x[Sawnwood,Grenoble,Paris] + 26 x[Pannels,Grenoble,Paris] + 10 x[Fuelwood,Epinal,Lyon] + 14 x[Sawnwood,Epinal,Lyon] + 15 x[Pannels,Epinal,Lyon] + 7 x[Fuelwood,Bordeaux,Lyon] + 9 x[Sawnwood,Bordeaux,Lyon] + 9 x[Pannels,Bordeaux,Lyon] + 11 x[Fuelwood,Grenoble,Lyon] + 14 x[Sawnwood,Grenoble,Lyon] + 14 x[Pannels,Grenoble,Lyon] + 8 x[Fuelwood,Epinal,Nantes] + 11 x[Sawnwood,Epinal,Nantes] + 12 x[Pannels,Epinal,Nantes] + 10 x[Fuelwood,Bordeaux,Nantes] + 12 x[Sawnwood,Bordeaux,Nantes] + 13 x[Pannels,Bordeaux,Nantes] + 12 x[Fuelwood,Grenoble,Nantes] + 17 x[Sawnwood,Grenoble,Nantes] + 17 x[Pannels,Grenoble,Nantes] + 10 x[Fuelwood,Epinal,Tulouse] + 14 x[Sawnwood,Epinal,Tulouse] + 16 x[Pannels,Epinal,Tulouse] + 7 x[Fuelwood,Bordeaux,Tulouse] + 9 x[Sawnwood,Bordeaux,Tulouse] + 9 x[Pannels,Bordeaux,Tulouse] + 10 x[Fuelwood,Grenoble,Tulouse] + 13 x[Sawnwood,Grenoble,Tulouse] + 13 x[Pannels,Grenoble,Tulouse] + 11 x[Fuelwood,Epinal,Lille] + 16 x[Sawnwood,Epinal,Lille] + 17 x[Pannels,Epinal,Lille] + 21 x[Fuelwood,Bordeaux,Lille] + 26 x[Sawnwood,Bordeaux,Lille] + 28 x[Pannels,Bordeaux,Lille] + 25 x[Fuelwood,Grenoble,Lille] + 28 x[Sawnwood,Grenoble,Lille] + 31 x[Pannels,Grenoble,Lille] + 71 x[Fuelwood,Epinal,Marseille] + 82 x[Sawnwood,Epinal,Marseille] + 86 x[Pannels,Epinal,Marseille] + 82 x[Fuelwood,Bordeaux,Marseille] + 95 x[Sawnwood,Bordeaux,Marseille] + 99 x[Pannels,Bordeaux,Marseille] + 83 x[Fuelwood,Grenoble,Marseille] + 99 x[Sawnwood,Grenoble,Marseille] + 104 x[Pannels,Grenoble,Marseille] + 6 x[Fuelwood,Epinal,Strasbourg] + 8 x[Sawnwood,Epinal,Strasbourg] + 8 x[Pannels,Epinal,Strasbourg] + 13 x[Fuelwood,Bordeaux,Strasbourg] + 17 x[Sawnwood,Bordeaux,Strasbourg] + 18 x[Pannels,Bordeaux,Strasbourg] + 15 x[Fuelwood,Grenoble,Strasbourg] + 20 x[Sawnwood,Grenoble,Strasbourg] + 20 x[Pannels,Grenoble,Strasbourg]</code></pre><h4 id="Human-readable-visualisatio-nof-the-model"><a class="docs-heading-anchor" href="#Human-readable-visualisatio-nof-the-model">Human-readable visualisatio nof the model</a><a id="Human-readable-visualisatio-nof-the-model-1"></a><a class="docs-heading-anchor-permalink" href="#Human-readable-visualisatio-nof-the-model" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; print(trmodel)</code><code class="nohighlight hljs ansi" style="display:block;">Min 30 x[Fuelwood,Epinal,Paris] + 39 x[Sawnwood,Epinal,Paris] + 41 x[Pannels,Epinal,Paris] + 22 x[Fuelwood,Bordeaux,Paris] + 27 x[Sawnwood,Bordeaux,Paris] + 29 x[Pannels,Bordeaux,Paris] + 19 x[Fuelwood,Grenoble,Paris] + 24 x[Sawnwood,Grenoble,Paris] + 26 x[Pannels,Grenoble,Paris] + 10 x[Fuelwood,Epinal,Lyon] + 14 x[Sawnwood,Epinal,Lyon] + 15 x[Pannels,Epinal,Lyon] + 7 x[Fuelwood,Bordeaux,Lyon] + 9 x[Sawnwood,Bordeaux,Lyon] + 9 x[Pannels,Bordeaux,Lyon] + 11 x[Fuelwood,Grenoble,Lyon] + 14 x[Sawnwood,Grenoble,Lyon] + 14 x[Pannels,Grenoble,Lyon] + 8 x[Fuelwood,Epinal,Nantes] + 11 x[Sawnwood,Epinal,Nantes] + 12 x[Pannels,Epinal,Nantes] + 10 x[Fuelwood,Bordeaux,Nantes] + 12 x[Sawnwood,Bordeaux,Nantes] + 13 x[Pannels,Bordeaux,Nantes] + 12 x[Fuelwood,Grenoble,Nantes] + 17 x[Sawnwood,Grenoble,Nantes] + 17 x[Pannels,Grenoble,Nantes] + 10 x[Fuelwood,Epinal,Tulouse] + 14 x[Sawnwood,Epinal,Tulouse] + 16 x[Pannels,Epinal,Tulouse] + 7 x[Fuelwood,Bordeaux,Tulouse] + 9 x[Sawnwood,Bordeaux,Tulouse] + 9 x[Pannels,Bordeaux,Tulouse] + 10 x[Fuelwood,Grenoble,Tulouse] + 13 x[Sawnwood,Grenoble,Tulouse] + 13 x[Pannels,Grenoble,Tulouse] + 11 x[Fuelwood,Epinal,Lille] + 16 x[Sawnwood,Epinal,Lille] + 17 x[Pannels,Epinal,Lille] + 21 x[Fuelwood,Bordeaux,Lille] + 26 x[Sawnwood,Bordeaux,Lille] + 28 x[Pannels,Bordeaux,Lille] + 25 x[Fuelwood,Grenoble,Lille] + 28 x[Sawnwood,Grenoble,Lille] + 31 x[Pannels,Grenoble,Lille] + 71 x[Fuelwood,Epinal,Marseille] + 82 x[Sawnwood,Epinal,Marseille] + 86 x[Pannels,Epinal,Marseille] + 82 x[Fuelwood,Bordeaux,Marseille] + 95 x[Sawnwood,Bordeaux,Marseille] + 99 x[Pannels,Bordeaux,Marseille] + 83 x[Fuelwood,Grenoble,Marseille] + 99 x[Sawnwood,Grenoble,Marseille] + 104 x[Pannels,Grenoble,Marseille] + 6 x[Fuelwood,Epinal,Strasbourg] + 8 x[Sawnwood,Epinal,Strasbourg] + 8 x[Pannels,Epinal,Strasbourg] + 13 x[Fuelwood,Bordeaux,Strasbourg] + 17 x[Sawnwood,Bordeaux,Strasbourg] + 18 x[Pannels,Bordeaux,Strasbourg] + 15 x[Fuelwood,Grenoble,Strasbourg] + 20 x[Sawnwood,Grenoble,Strasbourg] + 20 x[Pannels,Grenoble,Strasbourg]
+Subject to
+ demand[Fuelwood,Paris] : x[Fuelwood,Epinal,Paris] + x[Fuelwood,Bordeaux,Paris] + x[Fuelwood,Grenoble,Paris] ≥ 300.0
+ demand[Sawnwood,Paris] : x[Sawnwood,Epinal,Paris] + x[Sawnwood,Bordeaux,Paris] + x[Sawnwood,Grenoble,Paris] ≥ 500.0
+ demand[Pannels,Paris] : x[Pannels,Epinal,Paris] + x[Pannels,Bordeaux,Paris] + x[Pannels,Grenoble,Paris] ≥ 100.0
+ demand[Fuelwood,Lyon] : x[Fuelwood,Epinal,Lyon] + x[Fuelwood,Bordeaux,Lyon] + x[Fuelwood,Grenoble,Lyon] ≥ 300.0
+ demand[Sawnwood,Lyon] : x[Sawnwood,Epinal,Lyon] + x[Sawnwood,Bordeaux,Lyon] + x[Sawnwood,Grenoble,Lyon] ≥ 750.0
+ demand[Pannels,Lyon] : x[Pannels,Epinal,Lyon] + x[Pannels,Bordeaux,Lyon] + x[Pannels,Grenoble,Lyon] ≥ 100.0
+ demand[Fuelwood,Nantes] : x[Fuelwood,Epinal,Nantes] + x[Fuelwood,Bordeaux,Nantes] + x[Fuelwood,Grenoble,Nantes] ≥ 100.0
+ demand[Sawnwood,Nantes] : x[Sawnwood,Epinal,Nantes] + x[Sawnwood,Bordeaux,Nantes] + x[Sawnwood,Grenoble,Nantes] ≥ 400.0
+ demand[Pannels,Nantes] : x[Pannels,Epinal,Nantes] + x[Pannels,Bordeaux,Nantes] + x[Pannels,Grenoble,Nantes] ≥ 0.0
+ demand[Fuelwood,Tulouse] : x[Fuelwood,Epinal,Tulouse] + x[Fuelwood,Bordeaux,Tulouse] + x[Fuelwood,Grenoble,Tulouse] ≥ 75.0
+ demand[Sawnwood,Tulouse] : x[Sawnwood,Epinal,Tulouse] + x[Sawnwood,Bordeaux,Tulouse] + x[Sawnwood,Grenoble,Tulouse] ≥ 250.0
+ demand[Pannels,Tulouse] : x[Pannels,Epinal,Tulouse] + x[Pannels,Bordeaux,Tulouse] + x[Pannels,Grenoble,Tulouse] ≥ 50.0
+ demand[Fuelwood,Lille] : x[Fuelwood,Epinal,Lille] + x[Fuelwood,Bordeaux,Lille] + x[Fuelwood,Grenoble,Lille] ≥ 650.0
+ demand[Sawnwood,Lille] : x[Sawnwood,Epinal,Lille] + x[Sawnwood,Bordeaux,Lille] + x[Sawnwood,Grenoble,Lille] ≥ 950.0
+ demand[Pannels,Lille] : x[Pannels,Epinal,Lille] + x[Pannels,Bordeaux,Lille] + x[Pannels,Grenoble,Lille] ≥ 200.0
+ demand[Fuelwood,Marseille] : x[Fuelwood,Epinal,Marseille] + x[Fuelwood,Bordeaux,Marseille] + x[Fuelwood,Grenoble,Marseille] ≥ 225.0
+ demand[Sawnwood,Marseille] : x[Sawnwood,Epinal,Marseille] + x[Sawnwood,Bordeaux,Marseille] + x[Sawnwood,Grenoble,Marseille] ≥ 850.0
+ demand[Pannels,Marseille] : x[Pannels,Epinal,Marseille] + x[Pannels,Bordeaux,Marseille] + x[Pannels,Grenoble,Marseille] ≥ 100.0
+ demand[Fuelwood,Strasbourg] : x[Fuelwood,Epinal,Strasbourg] + x[Fuelwood,Bordeaux,Strasbourg] + x[Fuelwood,Grenoble,Strasbourg] ≥ 250.0
+ demand[Sawnwood,Strasbourg] : x[Sawnwood,Epinal,Strasbourg] + x[Sawnwood,Bordeaux,Strasbourg] + x[Sawnwood,Grenoble,Strasbourg] ≥ 500.0
+ demand[Pannels,Strasbourg] : x[Pannels,Epinal,Strasbourg] + x[Pannels,Bordeaux,Strasbourg] + x[Pannels,Grenoble,Strasbourg] ≥ 250.0
+ supply[Fuelwood,Epinal] : x[Fuelwood,Epinal,Paris] + x[Fuelwood,Epinal,Lyon] + x[Fuelwood,Epinal,Nantes] + x[Fuelwood,Epinal,Tulouse] + x[Fuelwood,Epinal,Lille] + x[Fuelwood,Epinal,Marseille] + x[Fuelwood,Epinal,Strasbourg] ≤ 400.0
+ supply[Sawnwood,Epinal] : x[Sawnwood,Epinal,Paris] + x[Sawnwood,Epinal,Lyon] + x[Sawnwood,Epinal,Nantes] + x[Sawnwood,Epinal,Tulouse] + x[Sawnwood,Epinal,Lille] + x[Sawnwood,Epinal,Marseille] + x[Sawnwood,Epinal,Strasbourg] ≤ 800.0
+ supply[Pannels,Epinal] : x[Pannels,Epinal,Paris] + x[Pannels,Epinal,Lyon] + x[Pannels,Epinal,Nantes] + x[Pannels,Epinal,Tulouse] + x[Pannels,Epinal,Lille] + x[Pannels,Epinal,Marseille] + x[Pannels,Epinal,Strasbourg] ≤ 200.0
+ supply[Fuelwood,Bordeaux] : x[Fuelwood,Bordeaux,Paris] + x[Fuelwood,Bordeaux,Lyon] + x[Fuelwood,Bordeaux,Nantes] + x[Fuelwood,Bordeaux,Tulouse] + x[Fuelwood,Bordeaux,Lille] + x[Fuelwood,Bordeaux,Marseille] + x[Fuelwood,Bordeaux,Strasbourg] ≤ 700.0
+ supply[Sawnwood,Bordeaux] : x[Sawnwood,Bordeaux,Paris] + x[Sawnwood,Bordeaux,Lyon] + x[Sawnwood,Bordeaux,Nantes] + x[Sawnwood,Bordeaux,Tulouse] + x[Sawnwood,Bordeaux,Lille] + x[Sawnwood,Bordeaux,Marseille] + x[Sawnwood,Bordeaux,Strasbourg] ≤ 1600.0
+ supply[Pannels,Bordeaux] : x[Pannels,Bordeaux,Paris] + x[Pannels,Bordeaux,Lyon] + x[Pannels,Bordeaux,Nantes] + x[Pannels,Bordeaux,Tulouse] + x[Pannels,Bordeaux,Lille] + x[Pannels,Bordeaux,Marseille] + x[Pannels,Bordeaux,Strasbourg] ≤ 300.0
+ supply[Fuelwood,Grenoble] : x[Fuelwood,Grenoble,Paris] + x[Fuelwood,Grenoble,Lyon] + x[Fuelwood,Grenoble,Nantes] + x[Fuelwood,Grenoble,Tulouse] + x[Fuelwood,Grenoble,Lille] + x[Fuelwood,Grenoble,Marseille] + x[Fuelwood,Grenoble,Strasbourg] ≤ 800.0
+ supply[Sawnwood,Grenoble] : x[Sawnwood,Grenoble,Paris] + x[Sawnwood,Grenoble,Lyon] + x[Sawnwood,Grenoble,Nantes] + x[Sawnwood,Grenoble,Tulouse] + x[Sawnwood,Grenoble,Lille] + x[Sawnwood,Grenoble,Marseille] + x[Sawnwood,Grenoble,Strasbourg] ≤ 1800.0
+ supply[Pannels,Grenoble] : x[Pannels,Grenoble,Paris] + x[Pannels,Grenoble,Lyon] + x[Pannels,Grenoble,Nantes] + x[Pannels,Grenoble,Tulouse] + x[Pannels,Grenoble,Lille] + x[Pannels,Grenoble,Marseille] + x[Pannels,Grenoble,Strasbourg] ≤ 300.0
+ c_total_shipment[Epinal,Paris] : x[Fuelwood,Epinal,Paris] + x[Sawnwood,Epinal,Paris] + x[Pannels,Epinal,Paris] ≤ 625.0
+ c_total_shipment[Bordeaux,Paris] : x[Fuelwood,Bordeaux,Paris] + x[Sawnwood,Bordeaux,Paris] + x[Pannels,Bordeaux,Paris] ≤ 625.0
+ c_total_shipment[Grenoble,Paris] : x[Fuelwood,Grenoble,Paris] + x[Sawnwood,Grenoble,Paris] + x[Pannels,Grenoble,Paris] ≤ 625.0
+ c_total_shipment[Epinal,Lyon] : x[Fuelwood,Epinal,Lyon] + x[Sawnwood,Epinal,Lyon] + x[Pannels,Epinal,Lyon] ≤ 625.0
+ c_total_shipment[Bordeaux,Lyon] : x[Fuelwood,Bordeaux,Lyon] + x[Sawnwood,Bordeaux,Lyon] + x[Pannels,Bordeaux,Lyon] ≤ 625.0
+ c_total_shipment[Grenoble,Lyon] : x[Fuelwood,Grenoble,Lyon] + x[Sawnwood,Grenoble,Lyon] + x[Pannels,Grenoble,Lyon] ≤ 625.0
+ c_total_shipment[Epinal,Nantes] : x[Fuelwood,Epinal,Nantes] + x[Sawnwood,Epinal,Nantes] + x[Pannels,Epinal,Nantes] ≤ 625.0
+ c_total_shipment[Bordeaux,Nantes] : x[Fuelwood,Bordeaux,Nantes] + x[Sawnwood,Bordeaux,Nantes] + x[Pannels,Bordeaux,Nantes] ≤ 625.0
+ c_total_shipment[Grenoble,Nantes] : x[Fuelwood,Grenoble,Nantes] + x[Sawnwood,Grenoble,Nantes] + x[Pannels,Grenoble,Nantes] ≤ 625.0
+ c_total_shipment[Epinal,Tulouse] : x[Fuelwood,Epinal,Tulouse] + x[Sawnwood,Epinal,Tulouse] + x[Pannels,Epinal,Tulouse] ≤ 625.0
+ c_total_shipment[Bordeaux,Tulouse] : x[Fuelwood,Bordeaux,Tulouse] + x[Sawnwood,Bordeaux,Tulouse] + x[Pannels,Bordeaux,Tulouse] ≤ 625.0
+ c_total_shipment[Grenoble,Tulouse] : x[Fuelwood,Grenoble,Tulouse] + x[Sawnwood,Grenoble,Tulouse] + x[Pannels,Grenoble,Tulouse] ≤ 625.0
+ c_total_shipment[Epinal,Lille] : x[Fuelwood,Epinal,Lille] + x[Sawnwood,Epinal,Lille] + x[Pannels,Epinal,Lille] ≤ 625.0
+ c_total_shipment[Bordeaux,Lille] : x[Fuelwood,Bordeaux,Lille] + x[Sawnwood,Bordeaux,Lille] + x[Pannels,Bordeaux,Lille] ≤ 625.0
+ c_total_shipment[Grenoble,Lille] : x[Fuelwood,Grenoble,Lille] + x[Sawnwood,Grenoble,Lille] + x[Pannels,Grenoble,Lille] ≤ 625.0
+ c_total_shipment[Epinal,Marseille] : x[Fuelwood,Epinal,Marseille] + x[Sawnwood,Epinal,Marseille] + x[Pannels,Epinal,Marseille] ≤ 625.0
+ c_total_shipment[Bordeaux,Marseille] : x[Fuelwood,Bordeaux,Marseille] + x[Sawnwood,Bordeaux,Marseille] + x[Pannels,Bordeaux,Marseille] ≤ 625.0
+ c_total_shipment[Grenoble,Marseille] : x[Fuelwood,Grenoble,Marseille] + x[Sawnwood,Grenoble,Marseille] + x[Pannels,Grenoble,Marseille] ≤ 625.0
+ c_total_shipment[Epinal,Strasbourg] : x[Fuelwood,Epinal,Strasbourg] + x[Sawnwood,Epinal,Strasbourg] + x[Pannels,Epinal,Strasbourg] ≤ 625.0
+ c_total_shipment[Bordeaux,Strasbourg] : x[Fuelwood,Bordeaux,Strasbourg] + x[Sawnwood,Bordeaux,Strasbourg] + x[Pannels,Bordeaux,Strasbourg] ≤ 625.0
+ c_total_shipment[Grenoble,Strasbourg] : x[Fuelwood,Grenoble,Strasbourg] + x[Sawnwood,Grenoble,Strasbourg] + x[Pannels,Grenoble,Strasbourg] ≤ 625.0
+ x[Fuelwood,Epinal,Paris] ≥ 0.0
+ x[Sawnwood,Epinal,Paris] ≥ 0.0
+ x[Pannels,Epinal,Paris] ≥ 0.0
+ x[Fuelwood,Bordeaux,Paris] ≥ 0.0
+ x[Sawnwood,Bordeaux,Paris] ≥ 0.0
+ x[Pannels,Bordeaux,Paris] ≥ 0.0
+ x[Fuelwood,Grenoble,Paris] ≥ 0.0
+ x[Sawnwood,Grenoble,Paris] ≥ 0.0
+ x[Pannels,Grenoble,Paris] ≥ 0.0
+ x[Fuelwood,Epinal,Lyon] ≥ 0.0
+ x[Sawnwood,Epinal,Lyon] ≥ 0.0
+ x[Pannels,Epinal,Lyon] ≥ 0.0
+ x[Fuelwood,Bordeaux,Lyon] ≥ 0.0
+ x[Sawnwood,Bordeaux,Lyon] ≥ 0.0
+ x[Pannels,Bordeaux,Lyon] ≥ 0.0
+ x[Fuelwood,Grenoble,Lyon] ≥ 0.0
+ x[Sawnwood,Grenoble,Lyon] ≥ 0.0
+ x[Pannels,Grenoble,Lyon] ≥ 0.0
+ x[Fuelwood,Epinal,Nantes] ≥ 0.0
+ x[Sawnwood,Epinal,Nantes] ≥ 0.0
+ x[Pannels,Epinal,Nantes] ≥ 0.0
+ x[Fuelwood,Bordeaux,Nantes] ≥ 0.0
+ x[Sawnwood,Bordeaux,Nantes] ≥ 0.0
+ x[Pannels,Bordeaux,Nantes] ≥ 0.0
+ x[Fuelwood,Grenoble,Nantes] ≥ 0.0
+ x[Sawnwood,Grenoble,Nantes] ≥ 0.0
+ x[Pannels,Grenoble,Nantes] ≥ 0.0
+ x[Fuelwood,Epinal,Tulouse] ≥ 0.0
+ x[Sawnwood,Epinal,Tulouse] ≥ 0.0
+ x[Pannels,Epinal,Tulouse] ≥ 0.0
+ x[Fuelwood,Bordeaux,Tulouse] ≥ 0.0
+ x[Sawnwood,Bordeaux,Tulouse] ≥ 0.0
+ x[Pannels,Bordeaux,Tulouse] ≥ 0.0
+ x[Fuelwood,Grenoble,Tulouse] ≥ 0.0
+ x[Sawnwood,Grenoble,Tulouse] ≥ 0.0
+ x[Pannels,Grenoble,Tulouse] ≥ 0.0
+ x[Fuelwood,Epinal,Lille] ≥ 0.0
+ x[Sawnwood,Epinal,Lille] ≥ 0.0
+ x[Pannels,Epinal,Lille] ≥ 0.0
+ x[Fuelwood,Bordeaux,Lille] ≥ 0.0
+ x[Sawnwood,Bordeaux,Lille] ≥ 0.0
+ x[Pannels,Bordeaux,Lille] ≥ 0.0
+ x[Fuelwood,Grenoble,Lille] ≥ 0.0
+ x[Sawnwood,Grenoble,Lille] ≥ 0.0
+ x[Pannels,Grenoble,Lille] ≥ 0.0
+ x[Fuelwood,Epinal,Marseille] ≥ 0.0
+ x[Sawnwood,Epinal,Marseille] ≥ 0.0
+ x[Pannels,Epinal,Marseille] ≥ 0.0
+ x[Fuelwood,Bordeaux,Marseille] ≥ 0.0
+ x[Sawnwood,Bordeaux,Marseille] ≥ 0.0
+ x[Pannels,Bordeaux,Marseille] ≥ 0.0
+ x[Fuelwood,Grenoble,Marseille] ≥ 0.0
+ x[Sawnwood,Grenoble,Marseille] ≥ 0.0
+ x[Pannels,Grenoble,Marseille] ≥ 0.0
+ x[Fuelwood,Epinal,Strasbourg] ≥ 0.0
+ x[Sawnwood,Epinal,Strasbourg] ≥ 0.0
+ x[Pannels,Epinal,Strasbourg] ≥ 0.0
+ x[Fuelwood,Bordeaux,Strasbourg] ≥ 0.0
+ x[Sawnwood,Bordeaux,Strasbourg] ≥ 0.0
+ x[Pannels,Bordeaux,Strasbourg] ≥ 0.0
+ x[Fuelwood,Grenoble,Strasbourg] ≥ 0.0
+ x[Sawnwood,Grenoble,Strasbourg] ≥ 0.0
+ x[Pannels,Grenoble,Strasbourg] ≥ 0.0</code></pre><h4 id="Model-resolution"><a class="docs-heading-anchor" href="#Model-resolution">Model resolution</a><a id="Model-resolution-1"></a><a class="docs-heading-anchor-permalink" href="#Model-resolution" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; optimize!(trmodel)</code><code class="nohighlight hljs ansi" style="display:block;">      0: obj =   0.000000000e+00 inf =   6.900e+03 (20)
+     38: obj =   2.172000000e+05 inf =   0.000e+00 (0)
+*    59: obj =   1.995000000e+05 inf =   0.000e+00 (0)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; status = termination_status(trmodel)</code><code class="nohighlight hljs ansi" style="display:block;">OPTIMAL::TerminationStatusCode = 1</code></pre><h4 id="Post-resolution-information-retrieval"><a class="docs-heading-anchor" href="#Post-resolution-information-retrieval">Post-resolution information retrieval</a><a id="Post-resolution-information-retrieval-1"></a><a class="docs-heading-anchor-permalink" href="#Post-resolution-information-retrieval" title="Permalink"></a></h4><p>Here, after the model has been &quot;solved&quot;, we can retrieve information as the optimal level of the endogenous variables, the value of the opjective function at these optimal levels and the shadow costs of the contraints.</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; if (status == MOI.OPTIMAL || status == MOI.LOCALLY_SOLVED || status == MOI.TIME_LIMIT) &amp;&amp; has_values(trmodel)
+           println(&quot;#################################################################&quot;)
+           if (status == MOI.OPTIMAL)
+               println(&quot;** Problem solved correctly **&quot;)
+           else
+               println(&quot;** Problem returned a (possibly suboptimal) solution **&quot;)
+           end
+           println(&quot;- Objective value (total costs): &quot;, objective_value(trmodel))
+           println(&quot;- Optimal routes:\n&quot;)
+           optRoutes = value.(x)
+           for p in prod
+             println(&quot;\n* $(p):&quot;)
+             [println(&quot;$o --&gt; $d: $(optRoutes[p,o,d])&quot;) for o in orig, d in dest]
+             println(&quot;- Shadow prices of supply:&quot;)
+             [println(&quot;$o = $(dual(supply[p,o]))&quot;) for o in orig]
+             println(&quot;- Shadow prices of demand:&quot;)
+             [println(&quot;$d = $(dual(demand[p,d]))&quot;) for d in dest]
+           end
+       else
+           println(&quot;The model was not solved correctly.&quot;)
+           println(status)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">#################################################################
+** Problem solved correctly **
+- Objective value (total costs): 199500.0
+- Optimal routes:
+
+
+* Fuelwood:
+Epinal --&gt; Paris: 0.0
+Bordeaux --&gt; Paris: 225.0
+Grenoble --&gt; Paris: 75.0
+Epinal --&gt; Lyon: 0.0
+Bordeaux --&gt; Lyon: 150.0
+Grenoble --&gt; Lyon: 150.0
+Epinal --&gt; Nantes: 0.0
+Bordeaux --&gt; Nantes: 0.0
+Grenoble --&gt; Nantes: 100.0
+Epinal --&gt; Tulouse: 0.0
+Bordeaux --&gt; Tulouse: 75.0
+Grenoble --&gt; Tulouse: 0.0
+Epinal --&gt; Lille: 400.0
+Bordeaux --&gt; Lille: 250.0
+Grenoble --&gt; Lille: 0.0
+Epinal --&gt; Marseille: 0.0
+Bordeaux --&gt; Marseille: 0.0
+Grenoble --&gt; Marseille: 225.0
+Epinal --&gt; Strasbourg: 0.0
+Bordeaux --&gt; Strasbourg: 0.0
+Grenoble --&gt; Strasbourg: 250.0
+- Shadow prices of supply:
+Epinal = -12.0
+Bordeaux = -3.0
+Grenoble = 0.0
+- Shadow prices of demand:
+Paris = 25.0
+Lyon = 11.0
+Nantes = 12.0
+Tulouse = 10.0
+Lille = 24.0
+Marseille = 83.0
+Strasbourg = 16.0
+
+* Sawnwood:
+Epinal --&gt; Paris: 0.0
+Bordeaux --&gt; Paris: 0.0
+Grenoble --&gt; Paris: 500.0
+Epinal --&gt; Lyon: 0.0
+Bordeaux --&gt; Lyon: 375.0
+Grenoble --&gt; Lyon: 375.0
+Epinal --&gt; Nantes: 0.0
+Bordeaux --&gt; Nantes: 400.0
+Grenoble --&gt; Nantes: 0.0
+Epinal --&gt; Tulouse: 0.0
+Bordeaux --&gt; Tulouse: 250.0
+Grenoble --&gt; Tulouse: 0.0
+Epinal --&gt; Lille: 25.0
+Bordeaux --&gt; Lille: 300.0
+Grenoble --&gt; Lille: 625.0
+Epinal --&gt; Marseille: 625.0
+Bordeaux --&gt; Marseille: 50.0
+Grenoble --&gt; Marseille: 175.0
+Epinal --&gt; Strasbourg: 150.0
+Bordeaux --&gt; Strasbourg: 225.0
+Grenoble --&gt; Strasbourg: 125.0
+- Shadow prices of supply:
+Epinal = -13.0
+Bordeaux = -4.0
+Grenoble = 0.0
+- Shadow prices of demand:
+Paris = 30.0
+Lyon = 14.0
+Nantes = 16.0
+Tulouse = 13.0
+Lille = 30.0
+Marseille = 99.0
+Strasbourg = 21.0
+
+* Pannels:
+Epinal --&gt; Paris: 0.0
+Bordeaux --&gt; Paris: 50.0
+Grenoble --&gt; Paris: 50.0
+Epinal --&gt; Lyon: 0.0
+Bordeaux --&gt; Lyon: 100.0
+Grenoble --&gt; Lyon: 0.0
+Epinal --&gt; Nantes: 0.0
+Bordeaux --&gt; Nantes: 0.0
+Grenoble --&gt; Nantes: 0.0
+Epinal --&gt; Tulouse: 0.0
+Bordeaux --&gt; Tulouse: 50.0
+Grenoble --&gt; Tulouse: 0.0
+Epinal --&gt; Lille: 200.0
+Bordeaux --&gt; Lille: 0.0
+Grenoble --&gt; Lille: 0.0
+Epinal --&gt; Marseille: 0.0
+Bordeaux --&gt; Marseille: 100.0
+Grenoble --&gt; Marseille: 0.0
+Epinal --&gt; Strasbourg: 0.0
+Bordeaux --&gt; Strasbourg: 0.0
+Grenoble --&gt; Strasbourg: 250.0
+- Shadow prices of supply:
+Epinal = -13.0
+Bordeaux = -3.0
+Grenoble = 0.0
+- Shadow prices of demand:
+Paris = 32.0
+Lyon = 13.0
+Nantes = 0.0
+Tulouse = 12.0
+Lille = 31.0
+Marseille = 102.0
+Strasbourg = 21.0</code></pre><h3 id="A-nonlinear-example:-portfolio-optimisation"><a class="docs-heading-anchor" href="#A-nonlinear-example:-portfolio-optimisation">A nonlinear example: portfolio optimisation</a><a id="A-nonlinear-example:-portfolio-optimisation-1"></a><a class="docs-heading-anchor-permalink" href="#A-nonlinear-example:-portfolio-optimisation" title="Permalink"></a></h3><p>The problem objective is to choose the shares of different assets in the portfolio (here forest species, but the example is exactly the same considering other assets, for example financial investments) that maximise the portfolio expected returns while minimising its expected variance under the portfolio owner risk aversion risk. Here the &quot;returns&quot; are based on the timber production and the covariance between individual species of the portfolio is based on the observed volume growth covariances. The idea is that within the infinite possible allocations, the locus of those allocations for which is not possible to increase the portfolio profitability without increasing also its variance and the converse whose variance can not be lowered without at the same time lower its expected profitability are efficient in the Pareto meaning and form an &quot;efficient frontier&quot;. Within this frontier the problem is to find the unique point that maximise the utility of the portfolio&#39;s owner given its risk aversion characteristic. Graphically the problem is depicted i nthe following picture:</p><p><img src="https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/graph_eff_frontier_v2.png" alt="The efficient frontier and the owner utility curves"/></p><p>Data originally from the Institut national de l&#39;information géographique et forestière (IGN) of France. See the paper <a href="http://dx.doi.org/10.1016/j.forpol.2015.12.010">A. Dragicevic, A. Lobianco, A. Leblois (2016), ”Forest planning and productivity-risk trade-off through the Markowitz mean-variance model“, Forest Policy and Economics, Volume 64</a> for a thorough discussion of this model.</p><p>Declare the packages we are going to use:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using JuMP, Ipopt, StatsPlots</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p>Forest species names</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; species   = [&quot;Chêne pédonculé&quot;, &quot;Chêne sessile&quot;, &quot;Hêtre&quot;, &quot;Pin sylvestre&quot;]</code><code class="nohighlight hljs ansi" style="display:block;">4-element Vector{String}:
+ &quot;Chêne pédonculé&quot;
+ &quot;Chêne sessile&quot;
+ &quot;Hêtre&quot;
+ &quot;Pin sylvestre&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nSpecies  = length(species)</code><code class="nohighlight hljs ansi" style="display:block;">4</code></pre><p>Average productiities by specie This is implemented in a dictionary: key-&gt;value</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; y   = Dict( &quot;Chêne pédonculé&quot; =&gt; 1.83933333333333,
+                   &quot;Chêne sessile&quot;   =&gt; 2.198,
+                   &quot;Hêtre&quot;           =&gt; 3.286,
+                   &quot;Pin sylvestre&quot;   =&gt; 3.3695)</code><code class="nohighlight hljs ansi" style="display:block;">Dict{String, Float64} with 4 entries:
+  &quot;Hêtre&quot;           =&gt; 3.286
+  &quot;Chêne pédonculé&quot; =&gt; 1.83933
+  &quot;Chêne sessile&quot;   =&gt; 2.198
+  &quot;Pin sylvestre&quot;   =&gt; 3.3695</code></pre><p>Covariance matrix between species</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; σtable = [[0.037502535947712	0.016082745098039	0.027797176470588	-0.025589882352942]
+                 [0.016082745098039	0.015177019607843	0.018791960784314	-0.102880470588234]
+                 [0.027797176470588	0.018791960784314	0.031732078431373	-0.166391058823529]
+                 [-0.025589882352942	-0.102880470588234	-0.166391058823529	2.02950454411765]]</code><code class="nohighlight hljs ansi" style="display:block;">4×4 Matrix{Float64}:
+  0.0375025   0.0160827   0.0277972  -0.0255899
+  0.0160827   0.015177    0.018792   -0.10288
+  0.0277972   0.018792    0.0317321  -0.166391
+ -0.0255899  -0.10288    -0.166391    2.0295</code></pre><p>We reshape the covariance matrix in a dictionary (sp1,sp2) -&gt; value The function (ix,x) = enumerate(X) returns a tuple of index position and element for each element of an array</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; σ = Dict((i,j) =&gt; σtable[i_ix,j_ix] for (i_ix,i) in enumerate(species), (j_ix,j) in enumerate(species))</code><code class="nohighlight hljs ansi" style="display:block;">Dict{Tuple{String, String}, Float64} with 16 entries:
+  (&quot;Pin sylvestre&quot;, &quot;Chêne pédonculé&quot;)   =&gt; -0.0255899
+  (&quot;Hêtre&quot;, &quot;Chêne pédonculé&quot;)           =&gt; 0.0277972
+  (&quot;Chêne pédonculé&quot;, &quot;Chêne sessile&quot;)   =&gt; 0.0160827
+  (&quot;Chêne pédonculé&quot;, &quot;Pin sylvestre&quot;)   =&gt; -0.0255899
+  (&quot;Chêne pédonculé&quot;, &quot;Hêtre&quot;)           =&gt; 0.0277972
+  (&quot;Hêtre&quot;, &quot;Pin sylvestre&quot;)             =&gt; -0.166391
+  (&quot;Pin sylvestre&quot;, &quot;Chêne sessile&quot;)     =&gt; -0.10288
+  (&quot;Chêne pédonculé&quot;, &quot;Chêne pédonculé&quot;) =&gt; 0.0375025
+  (&quot;Hêtre&quot;, &quot;Chêne sessile&quot;)             =&gt; 0.018792
+  (&quot;Chêne sessile&quot;, &quot;Hêtre&quot;)             =&gt; 0.018792
+  (&quot;Hêtre&quot;, &quot;Hêtre&quot;)                     =&gt; 0.0317321
+  (&quot;Chêne sessile&quot;, &quot;Pin sylvestre&quot;)     =&gt; -0.10288
+  (&quot;Pin sylvestre&quot;, &quot;Hêtre&quot;)             =&gt; -0.166391
+  (&quot;Pin sylvestre&quot;, &quot;Pin sylvestre&quot;)     =&gt; 2.0295
+  (&quot;Chêne sessile&quot;, &quot;Chêne sessile&quot;)     =&gt; 0.015177
+  (&quot;Chêne sessile&quot;, &quot;Chêne pédonculé&quot;)   =&gt; 0.0160827</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ################################################################################
+       ###### Showing the possible mean/variance of the portfolio by simulation #######
+       ################################################################################
+       
+       nSamples = 1000</code><code class="nohighlight hljs ansi" style="display:block;">1000</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; shares   = rand(nSamples,nSpecies)</code><code class="nohighlight hljs ansi" style="display:block;">1000×4 Matrix{Float64}:
+ 0.857544   0.358168    0.714206   0.539887
+ 0.74978    0.287594    0.214135   0.516831
+ 0.11053    0.967543    0.803186   0.639251
+ 0.550254   0.775492    0.715306   0.655609
+ 0.359139   0.175933    0.580716   0.397087
+ 0.0463536  0.399651    0.0843567  0.595187
+ 0.385862   0.354023    0.871394   0.409577
+ 0.725671   0.711808    0.555773   0.13944
+ 0.327527   0.00349933  0.627951   0.4587
+ 0.812195   0.222474    0.404572   0.790733
+ ⋮
+ 0.940492   0.29685     0.27006    0.661839
+ 0.800242   0.0229323   0.809486   0.853375
+ 0.41116    0.193858    0.30917    0.828293
+ 0.73218    0.695196    0.287749   0.78057
+ 0.218681   0.168836    0.979795   0.342067
+ 0.584438   0.653202    0.182601   0.231478
+ 0.98808    0.0826992   0.747275   0.530222
+ 0.469166   0.798967    0.894585   0.523067
+ 0.858724   0.905515    0.839785   0.657002</code></pre><p>Converting to probabilities</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; import BetaML.Utils:softmax</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; [shares[i,:]  = softmax(shares[i,:], β=one.(shares[i,:]) .* 5) for i in 1:nSamples]</code><code class="nohighlight hljs ansi" style="display:block;">1000-element Vector{Vector{Float64}}:
+ [0.5633854680746181, 0.04639000841973864, 0.27513866853119484, 0.11508585497444845]
+ [0.6757409634926689, 0.0670127164245097, 0.04641322954719109, 0.2108330905356304]
+ [0.008361719941903016, 0.6071214257713458, 0.2669193147467312, 0.11759753954002022]
+ [0.12407208316020922, 0.3826246981157689, 0.2831912941147636, 0.21011192460925815]
+ [0.17739969699667896, 0.0709784923714904, 0.5371567720287114, 0.21446503860311927]
+ [0.042352764224207314, 0.2477747488010868, 0.05121586446481678, 0.658656622509889]
+ [0.0698762388984897, 0.05959252192721206, 0.7918581592637335, 0.07867307991056431]
+ [0.41425049370237854, 0.38650843886122954, 0.17714686314889916, 0.02209420428749265]
+ [0.13130494469746365, 0.02598142451948623, 0.5897148197611294, 0.252998811021921]
+ [0.48055298102785043, 0.025187187333789524, 0.06260372252143406, 0.4316561091169262]
+ ⋮
+ [0.7556866601714841, 0.03024770296893701, 0.02645564877695111, 0.18760998808262744]
+ [0.2965490419705496, 0.006084012208208362, 0.3105777875219173, 0.3867891582993247]
+ [0.10012126904847496, 0.03378012951202738, 0.06012543350788544, 0.8059731679316121]
+ [0.3112081209200864, 0.2586678969979613, 0.03372736817634253, 0.39639661390561004]
+ [0.02058311910305543, 0.01604262922163409, 0.9252290045877261, 0.03814524708758473]
+ [0.3682374082256613, 0.5193329548232044, 0.04937985793082915, 0.06304977902030527]
+ [0.7081466482755057, 0.007657960618932915, 0.21243304473199429, 0.07176234637356722]
+ [0.06288699339920313, 0.32712522213824835, 0.5276488868492673, 0.08233889761328084]
+ [0.2826485398668308, 0.35715188527914943, 0.2571106916044648, 0.10308888324955477]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pScores = Array{Float64,2}(undef,0,2)</code><code class="nohighlight hljs ansi" style="display:block;">0×2 Matrix{Float64}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; for i in 1:nSamples
+           global pScores
+           pVar    = sum(shares[i,j1] * shares[i,j2] * σ[species[j1],species[j2]] for j1 in 1:nSpecies, j2 in 1:nSpecies)
+           pY      = sum(shares[i,j]*y[species[j]] for j in 1:nSpecies)
+           pScores = vcat(pScores,[pVar pY])
+       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; #goodShares = [0,0,0.74,0.26]
+       #pVar = sum(goodShares[j1] * goodShares[j2] * σ[species[j1],species[j2]] for j1 in 1:nSpecies, j2 in 1:nSpecies)
+       #pY   = sum(goodShares[j]*y[species[j]] for j in 1:nSpecies)
+       
+       scatter(pScores[:,1],pScores[:,2],colour=:blue)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><p><img src="currentPlot13.svg" alt/></p><pre></pre><p>Risk aversion coefficient</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; α = 0.1</code><code class="nohighlight hljs ansi" style="display:block;">0.1</code></pre><p>We declare an optimisation problem, we name it &quot;m&quot; and we let JuMP associate it with the most suitable solver within the one installed:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; port = Model(Ipopt.Optimizer)</code><code class="nohighlight hljs ansi" style="display:block;">A JuMP Model
+Feasibility problem with:
+Variables: 0
+Model mode: AUTOMATIC
+CachingOptimizer state: EMPTY_OPTIMIZER
+Solver name: Ipopt</code></pre><p>We declare a set of variables, indicized by the species name:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; @variables port begin
+           x[i in species] &gt;= 0
+       end</code><code class="nohighlight hljs ansi" style="display:block;">(1-dimensional DenseAxisArray{JuMP.VariableRef,1,...} with index sets:
+    Dimension 1, [&quot;Chêne pédonculé&quot;, &quot;Chêne sessile&quot;, &quot;Hêtre&quot;, &quot;Pin sylvestre&quot;]
+And data, a 4-element Vector{JuMP.VariableRef}:
+ x[Chêne pédonculé]
+ x[Chêne sessile]
+ x[Hêtre]
+ x[Pin sylvestre],)</code></pre><p>We declare the constraint shat the sum of shares must be equal to 1</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; @constraint(port, c_share, sum(x[i] for i in species) == 1)</code><code class="nohighlight hljs ansi" style="display:block;">c_share : x[Chêne pédonculé] + x[Chêne sessile] + x[Hêtre] + x[Pin sylvestre] = 1.0</code></pre><p>@objective port Min begin   α *  sum(x[i] * x[j] * σ[i,j] for i in species for j in species) - sum(x[i] * y[i] for i in species) end</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; @NLobjective port Min α *  sum(x[i] * x[j] * σ[i,j] for i in species for j in species) - sum(x[i] * y[i] for i in species)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p>Print the optimisation model in nice human-readable format:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; print(port)</code><code class="nohighlight hljs ansi" style="display:block;">Min 0.1 * (x[Chêne pédonculé] * x[Chêne pédonculé] * 0.037502535947712 + x[Chêne pédonculé] * x[Chêne sessile] * 0.016082745098039 + x[Chêne pédonculé] * x[Hêtre] * 0.027797176470588 + x[Chêne pédonculé] * x[Pin sylvestre] * -0.025589882352942 + x[Chêne sessile] * x[Chêne pédonculé] * 0.016082745098039 + x[Chêne sessile] * x[Chêne sessile] * 0.015177019607843 + x[Chêne sessile] * x[Hêtre] * 0.018791960784314 + x[Chêne sessile] * x[Pin sylvestre] * -0.102880470588234 + x[Hêtre] * x[Chêne pédonculé] * 0.027797176470588 + x[Hêtre] * x[Chêne sessile] * 0.018791960784314 + x[Hêtre] * x[Hêtre] * 0.031732078431373 + x[Hêtre] * x[Pin sylvestre] * -0.166391058823529 + x[Pin sylvestre] * x[Chêne pédonculé] * -0.025589882352942 + x[Pin sylvestre] * x[Chêne sessile] * -0.102880470588234 + x[Pin sylvestre] * x[Hêtre] * -0.166391058823529 + x[Pin sylvestre] * x[Pin sylvestre] * 2.02950454411765) - (x[Chêne pédonculé] * 1.83933333333333 + x[Chêne sessile] * 2.198 + x[Hêtre] * 3.286 + x[Pin sylvestre] * 3.3695)
+Subject to
+ c_share : x[Chêne pédonculé] + x[Chêne sessile] + x[Hêtre] + x[Pin sylvestre] = 1.0
+ x[Chêne pédonculé] ≥ 0.0
+ x[Chêne sessile] ≥ 0.0
+ x[Hêtre] ≥ 0.0
+ x[Pin sylvestre] ≥ 0.0</code></pre><p>Solve the model and return the solving status:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; optimize!(port)</code><code class="nohighlight hljs ansi" style="display:block;">This is Ipopt version 3.14.4, running with linear solver MUMPS 5.4.1.
+
+Number of nonzeros in equality constraint Jacobian...:        4
+Number of nonzeros in inequality constraint Jacobian.:        0
+Number of nonzeros in Lagrangian Hessian.............:       10
+
+Total number of variables............................:        4
+                     variables with only lower bounds:        4
+                variables with lower and upper bounds:        0
+                     variables with only upper bounds:        0
+Total number of equality constraints.................:        1
+Total number of inequality constraints...............:        0
+        inequality constraints with only lower bounds:        0
+   inequality constraints with lower and upper bounds:        0
+        inequality constraints with only upper bounds:        0
+
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+   0 -1.0691173e-01 9.60e-01 8.33e-01  -1.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1 -2.6796169e+00 0.00e+00 2.26e+01  -1.7 2.46e-01    -  4.19e-02 1.00e+00f  1
+   2 -3.2598524e+00 0.00e+00 2.13e+01  -1.7 6.87e+00    -  4.95e-02 5.88e-02f  1
+   3 -3.2590630e+00 0.00e+00 1.93e+01  -1.7 1.61e-01    -  1.00e+00 9.81e-02f  2
+   4 -3.2586433e+00 0.00e+00 2.00e-07  -1.7 1.45e-02    -  1.00e+00 1.00e+00f  1
+   5 -3.2971652e+00 1.11e-16 4.96e-03  -3.8 7.04e-02    -  9.08e-01 1.00e+00f  1
+   6 -3.2983547e+00 0.00e+00 1.50e-09  -3.8 2.19e-02    -  1.00e+00 1.00e+00f  1
+   7 -3.2986538e+00 1.11e-16 1.84e-11  -5.7 2.93e-03    -  1.00e+00 1.00e+00f  1
+   8 -3.2986576e+00 0.00e+00 2.55e-14  -8.6 4.72e-05    -  1.00e+00 1.00e+00f  1
+
+Number of Iterations....: 8
+
+                                   (scaled)                 (unscaled)
+Objective...............:  -3.2986575928648394e+00   -3.2986575928648394e+00
+Dual infeasibility......:   2.5521078983849546e-14    2.5521078983849546e-14
+Constraint violation....:   0.0000000000000000e+00    0.0000000000000000e+00
+Variable bound violation:   8.2731345336654260e-09    8.2731345336654260e-09
+Complementarity.........:   3.5155177510884348e-09    3.5155177510884348e-09
+Overall NLP error.......:   3.5155177510884348e-09    3.5155177510884348e-09
+
+
+Number of objective function evaluations             = 11
+Number of objective gradient evaluations             = 9
+Number of equality constraint evaluations            = 11
+Number of inequality constraint evaluations          = 0
+Number of equality constraint Jacobian evaluations   = 1
+Number of inequality constraint Jacobian evaluations = 0
+Number of Lagrangian Hessian evaluations             = 8
+Total seconds in IPOPT                               = 0.004
+
+EXIT: Optimal Solution Found.</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; status = termination_status(port)</code><code class="nohighlight hljs ansi" style="display:block;">LOCALLY_SOLVED::TerminationStatusCode = 4</code></pre><p>Return the objective:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; println(&quot;Objective value: &quot;, objective_value(port))</code><code class="nohighlight hljs ansi" style="display:block;">Objective value: -3.2986575928648394</code></pre><p>Return the value of the decision variable:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; optShares = value.(x)</code><code class="nohighlight hljs ansi" style="display:block;">1-dimensional DenseAxisArray{Float64,1,...} with index sets:
+    Dimension 1, [&quot;Chêne pédonculé&quot;, &quot;Chêne sessile&quot;, &quot;Hêtre&quot;, &quot;Pin sylvestre&quot;]
+And data, a 4-element Vector{Float64}:
+ -8.273134533665426e-9
+ -7.695921190269298e-9
+  0.7428494846386049
+  0.2571505313304509</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; [println(&quot;$sp = $(optShares[sp])&quot;) for sp in species];</code><code class="nohighlight hljs ansi" style="display:block;">Chêne pédonculé = -8.273134533665426e-9
+Chêne sessile = -7.695921190269298e-9
+Hêtre = 0.7428494846386049
+Pin sylvestre = 0.2571505313304509</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pOptVar = sum(optShares[species[j1]] * optShares[species[j2]] * σ[species[j1],species[j2]] for j1 in 1:nSpecies, j2 in 1:nSpecies)</code><code class="nohighlight hljs ansi" style="display:block;">0.08814496842883826</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pOptY   = sum(optShares[species[j]]*y[species[j]] for j in 1:nSpecies)</code><code class="nohighlight hljs ansi" style="display:block;">3.307472089707723</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function computeOptimalPortfolio(species,y,σ,α)
+           port = Model(Ipopt.Optimizer)
+           set_optimizer_attribute(port, &quot;print_level&quot;, 0)
+           @variables port begin
+               x[i in species] &gt;= 0
+           end
+           @constraint(port, c_share, sum(x[i] for i in species) == 1)
+           @NLobjective port Min α *  sum(x[i] * x[j] * σ[i,j] for i in species for j in species) - sum(x[i] * y[i] for i in species)
+           optimize!(port)
+           status = termination_status(port)
+           optShares = value.(x)
+           pOptVar = sum(optShares[species[j1]] * optShares[species[j2]] * σ[species[j1],species[j2]] for j1 in 1:nSpecies, j2 in 1:nSpecies)
+           pOptY   = sum(optShares[species[j]]*y[species[j]] for j in 1:nSpecies)
+           return (pOptVar,pOptY)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">computeOptimalPortfolio (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; αs = [1000,100,10,1,0.1,0.05,0.02,0.01]</code><code class="nohighlight hljs ansi" style="display:block;">8-element Vector{Float64}:
+ 1000.0
+  100.0
+   10.0
+    1.0
+    0.1
+    0.05
+    0.02
+    0.01</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pOptScores = Array{Float64,2}(undef,0,2)</code><code class="nohighlight hljs ansi" style="display:block;">0×2 Matrix{Float64}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; for α in αs
+           global pOptScores
+           pVar,pY =computeOptimalPortfolio(species,y,σ,α)
+           pOptScores = vcat(pOptScores,[pVar pY])
+       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; scatter!(pOptScores[:,1],pOptScores[:,2],colour=:red)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=2}</code></pre><p><img src="currentPlot14.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; αs = [82.45,50,30,20,15,12,10,9,8,7,6,5]</code><code class="nohighlight hljs ansi" style="display:block;">12-element Vector{Float64}:
+ 82.45
+ 50.0
+ 30.0
+ 20.0
+ 15.0
+ 12.0
+ 10.0
+  9.0
+  8.0
+  7.0
+  6.0
+  5.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pOptScores = Array{Float64,2}(undef,0,2)</code><code class="nohighlight hljs ansi" style="display:block;">0×2 Matrix{Float64}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; for α in αs
+           global pOptScores
+           pVar,pY =computeOptimalPortfolio(species,y,σ,α)
+           pOptScores = vcat(pOptScores,[pVar pY])
+       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; scatter(pOptScores[:,1],pOptScores[:,2],colour=:red)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><p><img src="currentPlot15.svg" alt/></p><p><a href="https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/0202_-_Miscellaneous_topics.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0201_-_Wranging_data.html">« 0201 - Wranging data</a><a class="docs-footer-nextpage" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0301_-_Machine_learning_main_concepts.html">0301 - Machine learning main concepts »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Thursday 7 April 2022 20:47">Thursday 7 April 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
