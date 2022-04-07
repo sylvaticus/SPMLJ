@@ -4,7 +4,7 @@
 
 # Source: Thomas C. Schelling (1971) Dynamic models of segregation, The Journal of Mathematical Sociology, 1:2, 143-186, DOI: [10.1080/0022250X.1971.9989794](https://doi.org/10.1080/0022250X.1971.9989794) 
 
-# Your job is implementing the Shelling Segregation Model, a classical agent-based model in the social sciences, introducing the concepts of emerging macro behaviours and tipping points, leading to its author (Thomas Schelling) receiving the Nobel price in Economics in 2005.
+# Your job is implementing the Shelling Segregation Model, a classical agent-based model in the social sciences, introducing the concepts of emerging macro behaviours and tipping points, leading to its author (Thomas Schelling) receiving the Nobel prize in Economics in 2005.
 # One of the very first results obtained from running simulations, especially in the social sciences.
 # The world is modelled as a gridded space inhabited by two groups (in that period racial and segregation questions concerning the cohabitation of "blacks" and "whites" were topical).
 # Each group has a preference to live in a neighbourhood inhabited by agents of their own type, with a certain "tolerance". When the share of agents of its own type in the neighbourhood falls below this "tolerance" level, the agent tries to relocate somewhere with a higher share of its own type of agents.
