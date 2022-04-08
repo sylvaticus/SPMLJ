@@ -67,9 +67,9 @@ uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
 [[deps.QuizQuestions]]
 deps = ["Markdown", "Mustache", "Random"]
-git-tree-sha1 = "2d4a8bb41b9d032c59e7c5560e20d26fcdddb47b"
+git-tree-sha1 = "876e25e070a174c05b7670c331121d8889b5ccce"
 uuid = "612c44de-1021-4a21-84fb-7261cf5eb2d4"
-version = "0.2.0"
+version = "0.3.4"
 
 [[deps.Random]]
 deps = ["SHA", "Serialization"]

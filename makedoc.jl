@@ -48,10 +48,10 @@ FOOTER_FILE = joinpath(LESSONS_ROOTDIR,"assets","footerCommentScript.txt")
 
 LESSONS_SUBDIR = Dict(
   "INTRO - Introduction to the course, Julia and ML"  => "00_-_INTRO_-_Introduction_julia_ml",
-  #"JULIA1 - Basic Julia programming"           => "01_-_JULIA1_-_Basic_Julia_programming",
-  #"JULIA2 - Scientific programming with Julia" => "02_-_JULIA2_-_Scientific_programming_with_Julia",
-  #"ML1 - Introduction to Machine Learning"     => "03_-_ML1_-_Introduction_to_Machine_Learning",
-  #"NN - Neural Networks"                      => "04_-_NN_-_Neural_Networks",
+  "JULIA1 - Basic Julia programming"           => "01_-_JULIA1_-_Basic_Julia_programming",
+  "JULIA2 - Scientific programming with Julia" => "02_-_JULIA2_-_Scientific_programming_with_Julia",
+  "ML1 - Introduction to Machine Learning"     => "03_-_ML1_-_Introduction_to_Machine_Learning",
+  "NN - Neural Networks"                      => "04_-_NN_-_Neural_Networks",
   #"RF&CL_-_Random_Forests_and_Clustering"     => "05_-_RF&CL_-_Random_Forests_and_Clustering"
 )
 
