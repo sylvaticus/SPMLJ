@@ -153,8 +153,6 @@ end
 println("Starting literating tutorials (.jl --> .md)...")
 literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR ,lsubdir),values(LESSONS_SUBDIR)))
 
-a = makeList(LESSONS_ROOTDIR,LESSONS_SUBDIR)
-
 println("Starting making the documentation...")
 makedocs(sitename="SPMLJ",
          authors = "Antonello Lobianco",
