@@ -1,0 +1,3 @@
+[deps]
+BetaML = "024491cd-cc6b-443e-8034-08ea7eb7db2b"
+StatsPlots = "f3b207a7-027a-5e70-b257-86293d7955fd"

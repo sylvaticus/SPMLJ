@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>0106q - QUIZ 1.13 · SPMLJ</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q39LHCRBB6"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q39LHCRBB6', {'page_path': location.pathname + location.search + location.hash});
+</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">SPMLJ</a></span></div><form class="docs-search" action="../search.html"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">INTRO - Introduction to the course, Julia and ML</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html">0001 - Course presentation</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0002_-_Program.html">0002 - Program</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003_-_Introduction_to_Julia.html">0003 - Introduction to Julia</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004_-_Introduction_to_ML.html">0004 - Introduction to ML</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0005_-_How_to_install_Julia_and_git.html">0005 - How to install Julia and git</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0006_-_Modules_packages_and_environments.html">0006 - Modules packages and environments</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0006q_-_QUIZ_0.1.html">0006q - QUIZ 0.1</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-2" type="checkbox" checked/><label class="tocitem" for="menuitem-2-2"><span class="docs-label">JULIA1 - Basic Julia programming</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="0101_-_Basic_syntax.html">0101 - Basic syntax</a></li><li><a class="tocitem" href="0101q_-_QUIZ_1.1.html">0101q - QUIZ 1.1</a></li><li><a class="tocitem" href="0101q_-_QUIZ_1.2.html">0101q - QUIZ 1.2</a></li><li><a class="tocitem" href="0102_-_Types_and_objects.html">0102 - Types and objects</a></li><li><a class="tocitem" href="0102q_-_QUIZ_1.3.html">0102q - QUIZ 1.3</a></li><li><a class="tocitem" href="0103_-_Predefined_types.html">0103 - Predefined types</a></li><li><a class="tocitem" href="0103q_-_QUIZ_1.4.html">0103q - QUIZ 1.4</a></li><li><a class="tocitem" href="0103q_-_QUIZ_1.5.html">0103q - QUIZ 1.5</a></li><li><a class="tocitem" href="0103q_-_QUIZ_1.6.html">0103q - QUIZ 1.6</a></li><li><a class="tocitem" href="0104_-_Control_flow_and_functions.html">0104 - Control flow and functions</a></li><li><a class="tocitem" href="0104q_-_QUIZ_1.7.html">0104q - QUIZ 1.7</a></li><li><a class="tocitem" href="0104q_-_QUIZ_1.8.html">0104q - QUIZ 1.8</a></li><li><a class="tocitem" href="0105_-_Custom_types.html">0105 - Custom types</a></li><li><a class="tocitem" href="0105q_-_QUIZ_1.10.html">0105q - QUIZ 1.10</a></li><li><a class="tocitem" href="0105q_-_QUIZ_1.9.html">0105q - QUIZ 1.9</a></li><li><a class="tocitem" href="0106_-_Further_topics.html">0106 - Further topics</a></li><li><a class="tocitem" href="0106q_-_QUIZ_1.11.html">0106q - QUIZ 1.11</a></li><li><a class="tocitem" href="0106q_-_QUIZ_1.12.html">0106q - QUIZ 1.12</a></li><li class="is-active"><a class="tocitem" href="0106q_-_QUIZ_1.13.html">0106q - QUIZ 1.13</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-3" type="checkbox"/><label class="tocitem" for="menuitem-2-3"><span class="docs-label">JULIA2 - Scientific programming with Julia</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201_-_Wranging_data.html">0201 - Wranging data</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202_-_Miscellaneous_topics.html">0202 - Miscellaneous topics</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-4" type="checkbox"/><label class="tocitem" for="menuitem-2-4"><span class="docs-label">ML1 - Introduction to Machine Learning</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0301_-_Machine_learning_main_concepts.html">0301 - Machine learning main concepts</a></li><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0302_-_The_Perceptron_classifier.html">0302 - The Perceptron classifier</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-5" type="checkbox"/><label class="tocitem" for="menuitem-2-5"><span class="docs-label">NN - Neural Networks</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0401_-_Neural_network_architectures.html">0401 - Neural network architectures</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402_-_Implementation_of_neural_networks_workflows.html">0402 - Implementation of neural networks workflows</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Lessons</a></li><li><a class="is-disabled">JULIA1 - Basic Julia programming</a></li><li class="is-active"><a href="0106q_-_QUIZ_1.13.html">0106q - QUIZ 1.13</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0106q_-_QUIZ_1.13.html">0106q - QUIZ 1.13</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/sylvaticus/SPMLJ/blob/master/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.13.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Quiz-1.13:-Performances,-parallel-computation"><a class="docs-heading-anchor" href="#Quiz-1.13:-Performances,-parallel-computation">Quiz 1.13: Performances, parallel computation</a><a id="Quiz-1.13:-Performances,-parallel-computation-1"></a><a class="docs-heading-anchor-permalink" href="#Quiz-1.13:-Performances,-parallel-computation" title="Permalink"></a></h1><hr/><h3 id="Q1:-Julia-code-optimisation"><a class="docs-heading-anchor" href="#Q1:-Julia-code-optimisation">Q1: Julia code optimisation</a><a id="Q1:-Julia-code-optimisation-1"></a><a class="docs-heading-anchor-permalink" href="#Q1:-Julia-code-optimisation" title="Permalink"></a></h3><p>Which of the following strategies would likely improve the performance of Julia&#39;s code ?</p><form class="mx-2 my-3" name='WeaveQuestion' data-id='iZfIHysE' data-controltype='radio'>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form-floating input-group" id="controls_iZfIHysE">
+        <div style="padding-top: 5px">
+    <div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
+              id="check_iZfIHysE_1" value="1">
+      <span = class="label-body">
+        Annotate all the fields of a type with their relevant concrete types
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
+              id="check_iZfIHysE_2" value="2">
+      <span = class="label-body">
+        None of the strategies in this list would likely increase performances
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
+              id="check_iZfIHysE_3" value="3">
+      <span = class="label-body">
+        Loop matrices first by rows and then by columns
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
+              id="check_iZfIHysE_4" value="4">
+      <span = class="label-body">
+        If the size of an output array is known, preallocate its size and modify each item one at a time rather than start from an empty array and add elements one at a time
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
+              id="check_iZfIHysE_5" value="5">
+      <span = class="label-body">
+        Avoid using constant global variables within a function body
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
+              id="check_iZfIHysE_6" value="6">
+      <span = class="label-body">
+        Annotate function arguments with their type
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
+              id="check_iZfIHysE_7" value="7">
+      <span = class="label-body">
+        Avoid modifying the objects passed as arguments in the body of the function
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
+              id="check_iZfIHysE_8" value="8">
+      <span = class="label-body">
+        Write the function in a way that given the types of the arguments, the result is of a fixed type
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_iZfIHysE"
+              id="check_iZfIHysE_9" value="9">
+      <span = class="label-body">
+        Avoid using non-constant global variables within a function body
+      </span>
+    </input>
+  </label>
+</div>
+
+    
+        </div>
+      </div>
+      <div id='iZfIHysE_message' style="padding-bottom: 15px">
+      </div>
+    </div>
+  </div>
+</form>
+
+<script text='text/javascript'>
+document.querySelectorAll('input[name="check_iZfIHysE"]').forEach(function(rb) {
+rb.addEventListener("change", function() {
+    var choice_buttons = document.getElementsByName("check_iZfIHysE");
+    selected = [];
+    for (var i=0; i < choice_buttons.length; i++) {
+        if (choice_buttons[i].checked) {
+           selected.push(i+1)
+        }
+    }
+    var a = selected;
+    b = [1, 4, 8, 9];
+    // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+    correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
+    var msgBox = document.getElementById('iZfIHysE_message');
+      if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp; Correct </span></div>";
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; Not yet </span></div>";
+  }
+
+})});
+
+</script>
+<details><summary>RESOLUTION</summary><p>Concerning the wrong answers: (1) Constant global variables (i.e. whose identifier can not be rebound to another type of object) can be efficiently used within functions; (2) Being Julia &quot;column mayor&quot;, it is more efficient to have the most inner loop along the rows of the same column, so to read (or write) continuous parts in memory; (3) While stylistically modify function arguments in-place should be limited (as it may lead to hard to find bugs), from a performance point of view it is absolutely fine. If it avoids allocating memory for temporary objects, it may even be faster; (4) The same for the type annotation of function arguments: it may be good to avoid bugs, or required for multiple dispatch, but in general it doesn&#39;t improve performances (except in very rare cases when it may help the compiler&#39;s type inference))</p><p>The correct answers are:</p><ul><li>Avoid using non-constant global variables within a function body</li><li>If the size of an output array is known, preallocate its size and modify each item one at a time rather than start from an empty array and add elements one at a time</li><li>Write the function in a way that given the types of the arguments, the result is of a fixed type</li><li>Annotate all the fields of a type with their relevant concrete types</li></ul></details><hr/><h3 id="Q2:-Type-stability"><a class="docs-heading-anchor" href="#Q2:-Type-stability">Q2: Type stability</a><a id="Q2:-Type-stability-1"></a><a class="docs-heading-anchor-permalink" href="#Q2:-Type-stability" title="Permalink"></a></h3><p>Given the following Julia snippet:</p><pre><code class="language-julia hljs">a = Any[&quot;a&quot;,1,2.5]
+b = [2,3]
+foo(x) = eltype(x) == Int64 ? 1       : nothing
+boo(x) = eltype(x) == Int64 ? x[1]    : nothing
+goo(x) = eltype(x) == Int64 ? nothing : 1
+zoo(x) = eltype(x) == Int64 ? nothing : x[1]</code></pre><p>Which of the following sentences are correct?</p><form class="mx-2 my-3" name='WeaveQuestion' data-id='14uOlNsG' data-controltype='radio'>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form-floating input-group" id="controls_14uOlNsG">
+        <div style="padding-top: 5px">
+    <div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
+              id="check_14uOlNsG_1" value="1">
+      <span = class="label-body">
+        None of the &#40;other&#41; sentences is correct &#40;i.e. all the cases are type instable&#41;
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
+              id="check_14uOlNsG_2" value="2">
+      <span = class="label-body">
+        <code>boo&#40;b&#41;</code> is type stable
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
+              id="check_14uOlNsG_3" value="3">
+      <span = class="label-body">
+        <code>goo&#40;b&#41;</code> is type stable
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
+              id="check_14uOlNsG_4" value="4">
+      <span = class="label-body">
+        <code>foo&#40;a&#41;</code> is type stable
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
+              id="check_14uOlNsG_5" value="5">
+      <span = class="label-body">
+        <code>foo&#40;b&#41;</code> is type stable
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
+              id="check_14uOlNsG_6" value="6">
+      <span = class="label-body">
+        <code>zoo&#40;a&#41;</code> is type stable
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
+              id="check_14uOlNsG_7" value="7">
+      <span = class="label-body">
+        <code>zoo&#40;b&#41;</code> is type stable
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
+              id="check_14uOlNsG_8" value="8">
+      <span = class="label-body">
+        <code>boo&#40;a&#41;</code> is type stable
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_14uOlNsG"
+              id="check_14uOlNsG_9" value="9">
+      <span = class="label-body">
+        <code>goo&#40;a&#41;</code> is type stable
+      </span>
+    </input>
+  </label>
+</div>
+
+    
+        </div>
+      </div>
+      <div id='14uOlNsG_message' style="padding-bottom: 15px">
+      </div>
+    </div>
+  </div>
+</form>
+
+<script text='text/javascript'>
+document.querySelectorAll('input[name="check_14uOlNsG"]').forEach(function(rb) {
+rb.addEventListener("change", function() {
+    var choice_buttons = document.getElementsByName("check_14uOlNsG");
+    selected = [];
+    for (var i=0; i < choice_buttons.length; i++) {
+        if (choice_buttons[i].checked) {
+           selected.push(i+1)
+        }
+    }
+    var a = selected;
+    b = [2, 3, 4, 5, 7, 8, 9];
+    // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+    correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
+    var msgBox = document.getElementById('14uOlNsG_message');
+      if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp; Correct </span></div>";
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; Not yet </span></div>";
+  }
+
+})});
+
+</script>
+<details><summary>RESOLUTION</summary><p>The only &quot;type instable&quot; function call is <code>zoo(a)</code> because in such a case the compiler doesn&#39;t know &quot;a priori&quot; the type of the returned output but has to look up the actual type of the first element of <code>a</code> at runtime. Not only the function <code>zoo</code> will not specialise and be slow, but also if there are other functions that depend on the returned value of <code>zoo</code>, the compiler will need extra steps - at run time - to lookup the correct method of these other functions to apply, further slowing down the code. Even if in this example we are working with a single argument, you can &quot;feel&quot; how it is the multiple dispatch <strong>together</strong> with JIT that really makes the difference in Julia: thanks to multiple dispatch we can have multiple JIT compiled versions of the function that specialise to the given inputs. So, for example, when we call <code>bool([2,3])</code>, the JIT compiler will compile a version of <code>boo</code> specific for <code>Vector{Int64}</code>, and hence resolve the condition at compilation time and compile the function returning directly <code>x[1]</code> and hence knowing it will be an <code>Int64</code> still at compilation time.</p><p>The correct answers are:</p><ul><li><code>foo(a)</code> is type stable</li><li><code>foo(b)</code> is type stable</li><li><code>boo(a)</code> is type stable</li><li><code>boo(b)</code> is type stable</li><li><code>goo(a)</code> is type stable</li><li><code>goo(b)</code> is type stable</li><li><code>zoo(b)</code> is type stable</li></ul></details><hr/><h3 id="Q3:-Parallel-computation"><a class="docs-heading-anchor" href="#Q3:-Parallel-computation">Q3: Parallel computation</a><a id="Q3:-Parallel-computation-1"></a><a class="docs-heading-anchor-permalink" href="#Q3:-Parallel-computation" title="Permalink"></a></h3><p>Which of the following statements regarding parallel computation are correct ?{</p><form class="mx-2 my-3" name='WeaveQuestion' data-id='NfvhhsPR' data-controltype='radio'>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form-floating input-group" id="controls_NfvhhsPR">
+        <div style="padding-top: 5px">
+    <div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_NfvhhsPR"
+              id="check_NfvhhsPR_1" value="1">
+      <span = class="label-body">
+        In Julia multiple processes can be run across different machines on a network, across a machine with multiple CPUS or on a single-CPU machine with multiple cores
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_NfvhhsPR"
+              id="check_NfvhhsPR_2" value="2">
+      <span = class="label-body">
+        Muiltiprocessing doesn&#39;t require to allocate memory to each process
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_NfvhhsPR"
+              id="check_NfvhhsPR_3" value="3">
+      <span = class="label-body">
+        None of the &#40;other&#41; sentences is correct
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_NfvhhsPR"
+              id="check_NfvhhsPR_4" value="4">
+      <span = class="label-body">
+        Multithreading is limited to the number of cores available on the CPU&#40;s&#41; where the Julia process runs
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_NfvhhsPR"
+              id="check_NfvhhsPR_5" value="5">
+      <span = class="label-body">
+        Both multithreading and multiprocessing scale less than linearly with the resources employed &#40;e.g. using 10 threads, or 10 processes, will take more than 1/10th of the time than a single thread or process&#41;
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_NfvhhsPR"
+              id="check_NfvhhsPR_6" value="6">
+      <span = class="label-body">
+        Once Julia has been started with a certain number of processes &#40;with the command line parameter -p &#41; is not possible to add further processes
+      </span>
+    </input>
+  </label>
+</div>
+
+    
+        </div>
+      </div>
+      <div id='NfvhhsPR_message' style="padding-bottom: 15px">
+      </div>
+    </div>
+  </div>
+</form>
+
+<script text='text/javascript'>
+document.querySelectorAll('input[name="check_NfvhhsPR"]').forEach(function(rb) {
+rb.addEventListener("change", function() {
+    var choice_buttons = document.getElementsByName("check_NfvhhsPR");
+    selected = [];
+    for (var i=0; i < choice_buttons.length; i++) {
+        if (choice_buttons[i].checked) {
+           selected.push(i+1)
+        }
+    }
+    var a = selected;
+    b = [1, 4, 5];
+    // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+    correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
+    var msgBox = document.getElementById('NfvhhsPR_message');
+      if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp; Correct </span></div>";
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; Not yet </span></div>";
+  }
+
+})});
+
+</script>
+<details><summary>RESOLUTION</summary><p>Concerning the wrong answers: (1) Multiprocessing <strong>does</strong> require (unfortunately!) allocation of the memory to each process, (2) differently than multithreading, we can add - or remove - processes dynamically using <code>addprocs()</code>.</p><p>The correct answers are:</p><ul><li>In Julia multiple processes can be run across different machines on a network, across a machine with multiple CPUS or on a single-CPU machine with multiple cores</li><li>Multithreading is limited to the number of cores available on the CPU(s) where the Julia process runs</li><li>Both multithreading and multiprocessing scale less than linearly with the resources employed (e.g. using 10 threads, or 10 processes, will take more than 1/10th of the time than a single thread or process)</li></ul></details><hr/><h3 id="Q4:-Stochasticity-and-multithreading"><a class="docs-heading-anchor" href="#Q4:-Stochasticity-and-multithreading">Q4: Stochasticity and multithreading</a><a id="Q4:-Stochasticity-and-multithreading-1"></a><a class="docs-heading-anchor-permalink" href="#Q4:-Stochasticity-and-multithreading" title="Permalink"></a></h3><p>Given the following Julia code:</p><pre><code class="language-julia hljs">using Random
+rng        = Random.GLOBAL_RNG
+Random.seed!(rng,123)
+nThreads   = Threads.nthreads() 
+rngs       = [deepcopy(rng) for i in 1:nThreads]
+
+function foo(rngs)
+  results      = Array{Int64,1}(undef,30)
+  masterSeed   = rand(rng,100:9999999999999)
+  Threads.@threads for i in 1:30
+    tsrng      = rngs[Threads.threadid()]
+    Random.seed!(tsrng,masterSeed+i*10)
+    sample     = rand(tsrng, 1:100,100)
+    results[i] = sum(sample)
+  end
+  return results&#39; * collect(1:30) # inner product value * position
+end
+
+(out1, out2) = (foo(rngs),foo(rngs))</code></pre><p>Which statements are correct ?</p><form class="mx-2 my-3" name='WeaveQuestion' data-id='m4vqnndR' data-controltype='radio'>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form-floating input-group" id="controls_m4vqnndR">
+        <div style="padding-top: 5px">
+    <div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_m4vqnndR"
+              id="check_m4vqnndR_1" value="1">
+      <span = class="label-body">
+        When the script is run multiple times &#40;in independent Julia sessions&#41; the couple <code>&#40;out1,out2&#41;</code> is the same across the various runs only if the number of threads used in the various attempts is constant
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_m4vqnndR"
+              id="check_m4vqnndR_2" value="2">
+      <span = class="label-body">
+        When the script is run multiple times &#40;in independent Julia sessions&#41; the couple <code>&#40;out1,out2&#41;</code> would be the same across the various runs only if instead of taking the inner product between the <code>results</code> and their position we would take the sum of the <code>results</code> vector
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_m4vqnndR"
+              id="check_m4vqnndR_3" value="3">
+      <span = class="label-body">
+        The script leads to an error
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_m4vqnndR"
+              id="check_m4vqnndR_4" value="4">
+      <span = class="label-body">
+        None of the &#40;other&#41; statements is correct
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_m4vqnndR"
+              id="check_m4vqnndR_5" value="5">
+      <span = class="label-body">
+        When the script is run multiple times &#40;in independent Julia sessions&#41; the couple <code>&#40;out1,out2&#41;</code> is the same across the various runs indipendently of the number of threads used in the various attempts
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_m4vqnndR"
+              id="check_m4vqnndR_6" value="6">
+      <span = class="label-body">
+        When the script is run multiple times &#40;in independent Julia sessions&#41; the couple <code>&#40;out1,out2&#41;</code> would differ from one run to the other
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_m4vqnndR"
+              id="check_m4vqnndR_7" value="7">
+      <span = class="label-body">
+        <code>out1</code> is different than <code>out2</code> indipendently to the number of threads used
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_m4vqnndR"
+              id="check_m4vqnndR_8" value="8">
+      <span = class="label-body">
+        <code>out1</code> is equal to <code>out2</code> indipendently from the number of threads used
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_m4vqnndR"
+              id="check_m4vqnndR_9" value="9">
+      <span = class="label-body">
+        <code>out1</code> is equal to <code>out2</code> when only one thread is used
+      </span>
+    </input>
+  </label>
+</div>
+
+    
+        </div>
+      </div>
+      <div id='m4vqnndR_message' style="padding-bottom: 15px">
+      </div>
+    </div>
+  </div>
+</form>
+
+<script text='text/javascript'>
+document.querySelectorAll('input[name="check_m4vqnndR"]').forEach(function(rb) {
+rb.addEventListener("change", function() {
+    var choice_buttons = document.getElementsByName("check_m4vqnndR");
+    selected = [];
+    for (var i=0; i < choice_buttons.length; i++) {
+        if (choice_buttons[i].checked) {
+           selected.push(i+1)
+        }
+    }
+    var a = selected;
+    b = [5, 7];
+    // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+    correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
+    var msgBox = document.getElementById('m4vqnndR_message');
+      if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp; Correct </span></div>";
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; Not yet </span></div>";
+  }
+
+})});
+
+</script>
+<details><summary>RESOLUTION</summary><p>This exercise serves to remember to consider exactly which kind of stochasticity we need from our program (do the results must be the same at each call given the inputs ? Or the model as a whole must return the same result given the inputs ? ) and how multiple threads complicate the issue. In this exemple we first set in <code>foo()</code> a masterseed, then we use this seed, in combination to the ith of the loop, to reseed the nth-thread rng that will be used in the ith computation. Note that the reseeding is based on the <em>ith</em> of the loop and NOT on the <em>nth</em> of the thread. This guarantees that our stochastic experiment is replicable indipendently from the number of threads used. Also, not only the elements in <code>results</code> are the same, but also their position (order). That is, the tuple <code>(out1,out2)</code> will always be the same across multiple runs of the whole code. However, for how it is written, at each time we call <code>foo()</code> we have a different result. I let to you, as a further exercise, to think how you could modify the code to have always the same result at each call of the function.</p><p>The correct answers are:</p><ul><li><code>out1</code> is different than <code>out2</code> indipendently to the number of threads used</li><li>When the script is run multiple times (in independent Julia sessions) the couple <code>(out1,out2)</code> is the same across the various runs indipendently of the number of threads used in the various attempts</li></ul></details></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0106q_-_QUIZ_1.12.html">« 0106q - QUIZ 1.12</a><a class="docs-footer-nextpage" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201_-_Wranging_data.html">0201 - Wranging data »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Tuesday 12 April 2022 15:43">Tuesday 12 April 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
