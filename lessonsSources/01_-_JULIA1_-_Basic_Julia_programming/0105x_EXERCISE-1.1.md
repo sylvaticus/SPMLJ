@@ -13,7 +13,7 @@
 Your job is to implement the [Shelling Segregation Model](https://en.wikipedia.org/wiki/Schelling%27s_model_of_segregation), a classical agent-based model in the social sciences, introducing the concepts of emerging macro behaviours and tipping points, leading to its author (Thomas Schelling) receiving the Nobel prize in Economics in 2005.
 
 It has been one of the very first results obtained from running simulations, especially in the social sciences.
-The world is modelled as a gridded space inhabited by two groups (in that period racial and segregation questions concerning the cohabitation of "blacks" and "whites" were topical).
+The World is modelled as a gridded space inhabited by two groups (in that period racial and segregation questions concerning the cohabitation of "blacks" and "whites" were topical).
 Each group has a preference to live in a neighbourhood inhabited by agents of their own type, with a certain "tolerance". When the share of agents of its own type in the neighbourhood falls below this "tolerance" level, the agent tries to relocate somewhere with a higher share of its own type of agents.
 The main result of the paper was that even a relatively mild preference for the presence of similar agents would have led to a segregated world and that there was a specific threshold level (between 30% and 40%) that was driving these two completely different outputs, i.e. a "tipping point".
 
