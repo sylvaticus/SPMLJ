@@ -1,5 +1,6 @@
 TODO. Please refer to the videos.
 
+```@raw html
 <script src="https://utteranc.es/client.js"
         repo="sylvaticus/SPMLJ"
         issue-term="title"
@@ -8,3 +9,4 @@ TODO. Please refer to the videos.
         crossorigin="anonymous"
         async>
 </script>
+```

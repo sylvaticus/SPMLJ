@@ -96,11 +96,9 @@ function preprocess(page,path)
         ```
         """
     return string(page,"\n---------\n",ratingCode1,"\n---------\n",commentCode,"\n---------\n",ratingCode2)
-    return string(page,"\n",addThisCode,"\n",ratingCode1,"\n",commentCode,"\n",ratingCode2)
-    return string(page,"\n\n",commentCode)
+    #return string(page,"\n",addThisCode,"\n",ratingCode1,"\n",commentCode,"\n",ratingCode2)
 end
 
-mypreprocess(page,path) = string(path,"\n",page)
 
 # Utility functions.....
 
