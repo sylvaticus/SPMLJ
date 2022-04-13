@@ -55,15 +55,3 @@ The only 3 conditions are that:
 3. some sort of interactive tools are proposed to the students, like the quizzes or  practical exercises.
 
 While the production of videos for your content is welcome, this is not strictly necessary.
-
-
-```@raw html
-<script src="https://utteranc.es/client.js"
-        repo="sylvaticus/SPMLJ"
-        issue-term="title"
-        label="💬 website_comment"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-</script>
-```

@@ -56,6 +56,51 @@ LESSONS_SUBDIR = Dict(
 )
 
 
+function preprocess(page,path)
+ 
+    commentCode = """
+        ```@raw html
+        <script src="https://utteranc.es/client.js"
+                repo="sylvaticus/SPMLJ"
+                issue-term="title"
+                label="💬 website_comment"
+                theme="github-dark"
+                crossorigin="anonymous"
+                async>
+        </script>
+        ```
+        """
+    addThisCode = """
+        ```@raw html
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+        ```
+        """
+    # https://crowdsignal.com/support/rating-widget/
+    ratingCode1 = """
+        ```@raw html
+        <div id="pd_rating_holder_8962705"></div>
+        <script type="text/javascript">
+        PDRTJS_settings_8962705 = {
+        "id" : "8962705",
+        "unique_id" : "$(path)",
+        "title" : "",
+        "permalink" : ""
+        };
+        </script>
+        ```
+        """
+    ratingCode2 = """
+        ```@raw html
+        <script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+        ```
+        """
+    return string(page,"\n---------\n",ratingCode1,"\n---------\n",commentCode,"\n---------\n",ratingCode2)
+    return string(page,"\n",addThisCode,"\n",ratingCode1,"\n",commentCode,"\n",ratingCode2)
+    return string(page,"\n\n",commentCode)
+end
+
+mypreprocess(page,path) = string(path,"\n",page)
 
 # Utility functions.....
 
@@ -79,14 +124,7 @@ function include_sandbox(filename)
     return Base.include(mod, filename)
 end
 
-function addFooter(file,footerFile) # to cancel, unused
-    footerContent = read(footerFile,String)
-    open(file,"a") do f
-        write(f, "\n"*footerContent)
-    end
-end
-
-function makeList(rootDir,subDirList,footerTemplate=nothing)
+function makeList(rootDir,subDirList)
     outArray = []
     for l in sort(collect(subDirList), by=x->x[2])
       #println(l)
@@ -98,9 +136,6 @@ function makeList(rootDir,subDirList,footerTemplate=nothing)
         displayFilename = replace(file,".md"=>"")
         displayFilename = replace(displayFilename,"_"=>" ")
         push!(dirArray,displayFilename=>joinpath(lessonDir,file))
-        #if footerTemplate != nothing
-        #    addFooter(file,footerTemplate)
-        #end
       end
       push!(outArray,lessonName=>dirArray)
     end
@@ -160,16 +195,16 @@ makedocs(sitename="SPMLJ",
             "Index" => "index.md",
             "Lessons" => makeList(LESSONS_ROOTDIR,LESSONS_SUBDIR),
          ],
-         #assets = ["assets/custom.css"],
          format = Documenter.HTML(
              prettyurls = false,
              analytics = "G-Q39LHCRBB6",
-             #footer=footerMerged
+             assets = ["assets/custom.css"],
              ),
          #strict = true,
          #doctest = false
          source  = "lessonsSources",
          build   = "buildedDoc",
+         preprocess = preprocess
 )
 
 
