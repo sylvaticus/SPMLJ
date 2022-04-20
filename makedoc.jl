@@ -33,18 +33,11 @@ Pkg.instantiate()
 using Documenter, Literate, Test
 
 
-#push!(LOAD_PATH,"./lessonsSources/")
-
-
 const LESSONS_ROOTDIR = joinpath(@__DIR__, "lessonsSources")
 # Important: If some lesson is removed but the md file is left, this may still be used by Documenter
 
-FOOTER_FILE = joinpath(LESSONS_ROOTDIR,"assets","footerCommentScript.txt")
+const LESSONS_ROOTDIR_TMP = joinpath(@__DIR__, "lessonsSources_tmp")
 
-#footerDefault = "Powered by [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) and the [Julia Programming Language](https://julialang.org/)."
-#footerContent = read(FOOTER_FILE,String)
-
-#footerMerged = footerDefault * footerContent
 
 LESSONS_SUBDIR = Dict(
   "INTRO - Introduction to the course, Julia and ML"  => "00_-_INTRO_-_Introduction_julia_ml",
@@ -183,15 +176,21 @@ function literate_directory(dir)
     return nothing
 end
 
+# ------------------------------------------------------------------------------
+cp(LESSONS_ROOTDIR, LESSONS_ROOTDIR_TMP; force=true)
+
 println("Starting literating tutorials (.jl --> .md)...")
-literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR ,lsubdir),values(LESSONS_SUBDIR)))
+literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR_TMP ,lsubdir),values(LESSONS_SUBDIR)))
+
+println("Starting preprocessing markdown pages...")
+# Preprocess here
 
 println("Starting making the documentation...")
 makedocs(sitename="SPMLJ",
          authors = "Antonello Lobianco",
          pages = [
             "Index" => "index.md",
-            "Lessons" => makeList(LESSONS_ROOTDIR,LESSONS_SUBDIR),
+            "Lessons" => makeList(LESSONS_ROOTDIR_TMP,LESSONS_SUBDIR),
          ],
          format = Documenter.HTML(
              prettyurls = false,
@@ -200,7 +199,7 @@ makedocs(sitename="SPMLJ",
              ),
          #strict = true,
          #doctest = false
-         source  = "lessonsSources",
+         source  = "lessonsSources_tmp", # Attention here !!!!!!!!!!!
          build   = "buildedDoc",
          #preprocess = preprocess
 )

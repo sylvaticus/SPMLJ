@@ -36,3 +36,6 @@ buildedDoc/
 lessonsMaterial/00_KOM/scripts/testGit/
 lessonsMaterial/00_KOM/scripts/testGit/*
 
+# Temporary directory for source
+/lessonsSources_TMP/
+
