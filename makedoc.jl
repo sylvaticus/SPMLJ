@@ -202,7 +202,7 @@ makedocs(sitename="SPMLJ",
          #doctest = false
          source  = "lessonsSources",
          build   = "buildedDoc",
-         preprocess = preprocess
+         #preprocess = preprocess
 )
 
 

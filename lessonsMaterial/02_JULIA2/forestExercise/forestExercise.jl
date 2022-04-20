@@ -77,7 +77,7 @@ logisticModelVec(age,parameters) = # .... complete
 # 15) Add to the plot a scatter chart of the actual observed VHa
 
 # 16) [OPTIONAL] Look at the growth curves of individual species.
-# Try to perform the above analysis for individual species, fur example plot the fitted curves for the 5 most common species
+# Try to perform the above analysis for individual species, for example plot the fitted curves for the 5 most common species
 
 
 

@@ -33,7 +33,7 @@ If you have already cloned or downloaded the whole [course repository](https://g
 Otherwise download a zip of just that folder [here](https://downgit.github.io/#/home?url=https://github.com/sylvaticus/SPMLJ/tree/main/lessonsMaterial/01_JULIA1/shellingSegregationModel).
 
 In the folder you will find the file `shellingSegreGationModel.jl` containing the julia file that **you will have to complete to implement and run the model** (follow the instructions on that file). 
-In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environmend ddefined by that file.  
+In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
 If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
 Good luck! 
 
