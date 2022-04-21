@@ -24,7 +24,7 @@
 # Also, seed the random seed with the integer `123`.
 
 
-# 2) Load the packages/modules Pipe, HTTP, CSV, DataFrames, BetaML
+# 2) Load the packages/modules Pipe, HTTP, CSV, DataFrames, Plots, BetaML
 
 
 # 3) Load from internet or from local file the input data into a DataFrame or a Matrix.
@@ -35,17 +35,17 @@ dataURL="https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housi
 # 4) The 4th column is a dummy related to the information if the suburb bounds a certain Boston river. Use the BetaML function `oneHotEncoder` to encode this dummy into two separate vectors, one for each possible value. Note that you will need to transform the range {0,1} into {1,2} before running the oneHotEncoder function (this can be done by simply uinsg `data[:,4] .+1`)
 
 
-# 5) Now create the X matrix of features concatenating horizzontaly the 1st to 3rd column of `data`, the 5th to 13th columns and the two columns you created with the one hot encoding. Make shure you have a 506×14 matrix.
+# 5) Now create the X matrix of features concatenating horizzontaly the 1st to 3rd column of `data`, the 5th to 13th columns and the two columns you created with the one hot encoding. Make sure you have a 506×14 matrix.
 
 
 # 6) Similarly define Y to be the 14th column of data
 
 
-# 7) Partition the data in (xtrain,xval) and (ytrain,yval) keeping 80% of the data for training and reserving 35% for testing. Keep the default option to shuffle the data, as the input data isn't.
+# 7) Partition the data in (`xtrain`,`xval`) and (`ytrain`,`yval`) keeping 80% of the data for training and reserving 35% for testing. Keep the default option to shuffle the data, as the input data isn't.
 
 
 # 8) Define a Neural Network model with the following characteristics:
-#   - 3 dense layers with respectively 14, 20 and 1 nodes and activation function relu
+#   - 3 dense layers with respectively 14, 20 and 1 nodes and activation function `relu`
 #   - cost function `squaredCost` 
 
 

@@ -1,4 +1,4 @@
-# EXERCISE 5.1: Predicting credit approval with a Random Forest model
+# EXERCISE 4.2: Wine class prediction with Neural Networks (multinomial classification)
 
 TODO copy from Moodle
 
@@ -9,21 +9,41 @@ TODO copy from Moodle
 <p>&nbsp;</p>
 ```
 
-How fast are French forests growing? How much timber can they provide in one hectare?
-Surely forests provide multiple ecosystem services, but in this (simplified) exercise we focus on the above questions by looking at the so-called "raw data" provided by the French National Forest Inventory, both in terms of individual trees and in terms of inventoried plots, to fit a generic growth model of the forest stands in terms of volumes with respect to the age of the trees.
+In this problem, we are given a dataset containing average house values in different Boston suburbs, together with the suburb characteristics (proportion of owner-occupied units built prior to 1940, index of accessibility to radial highways, ...)
+Our task is to build a neural network model and train it in order to predict the average house value on each suburb.
+
+The detailed attributes of the dataset are:
+  1. CRIM      per capita crime rate by town
+  2. ZN        proportion of residential land zoned for lots over 25,000 sq.ft.
+  3. INDUS     proportion of non-retail business acres per town
+  4. CHAS      Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)
+  5. NOX       nitric oxides concentration (parts per 10 million)
+  6. RM        average number of rooms per dwelling
+  7. AGE       proportion of owner-occupied units built prior to 1940
+  8. DIS       weighted distances to five Boston employment centres
+  9. RAD       index of accessibility to radial highways
+  10. TAX      full-value property-tax rate per $10,000
+  11. PTRATIO  pupil-teacher ratio by town
+  12. B        1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
+  13. LSTAT    % lower status of the population
+  14. MEDV     Median value of owner-occupied homes in $1000's
+
+Further information concerning this dataset can be found on [this file](https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.names)
+
+Our prediction concern the median value (column 14 of the dataset)
+
 
 Skills required:
 - download and import data from internet
-- wrangle tabular data: compute new columns (fields) based on existing one, filter rows (records), join tables
-- fit a generic model (curve) with data
+
 
 
 ## Instructions
 
-If you have already cloned or downloaded the whole [course repository](https://github.com/sylvaticus/SPMLJ/) the folder with the exercise is on `[REPOSITORY_ROOT]/lessonsMaterial/02_JULIA2/forestExercise`.
-Otherwise download a zip of just that folder [here](https://downgit.github.io/#/home?url=https://github.com/sylvaticus/SPMLJ/tree/main/lessonsMaterial/02_JULIA2/forestExercise).
+If you have already cloned or downloaded the whole [course repository](https://github.com/sylvaticus/SPMLJ/) the folder with the exercise is on `[REPOSITORY_ROOT]/lessonsMaterial/04_NN/bostonHousing`.
+Otherwise download a zip of just that folder [here](https://downgit.github.io/#/home?url=https://github.com/sylvaticus/SPMLJ/tree/main/lessonsMaterial/04_NN/bostonHousing).
 
-In the folder you will find the file `forestExercise.jl` containing the julia file that **you will have to complete to implement and run the model** (follow the instructions on that file). 
+In the folder you will find the file `BostonHousingValue.jl` containing the julia file that **you will have to complete to implement the missing parts and run the file** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
 If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
 Good luck! 
@@ -34,7 +54,7 @@ Click "ONE POSSIBLE SOLUTION" to get access to (one possible) solution for each 
 
 --------------------------------------------------------------------------------
 ### 1) Setting up the environment...
-Start by setting the working directory to the directory of this file and activate it. If you have the provided `Manifest.toml` file in the directory, just run `Pkg.instantiate()`, otherwise manually add the packages `Pipe`, `HTTP`, `CSV`, `DataFrames`, `LsqFit`, `StatsPlots`.
+Start by setting the working directory to the directory of this file and activate it. If you have the provided `Manifest.toml` file in the directory, just run `Pkg.instantiate()`, otherwise manually add the packages `Pipe`, `HTTP`, `CSV`, `DataFrames`, `Plots` and `BetaML`.
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
@@ -56,13 +76,13 @@ Random.seed!(123)
 
 --------------------------------------------------------------------------------
 ### 2) Load the packages 
-Load the packages Pipe, HTTP, CSV, DataFrames, LsqFit, StatsPlots
+Load the packages `Pipe`, `HTTP`, `CSV`, `DataFrames`, `Plots` and `BetaML`.
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-using Pipe, HTTP, CSV, DataFrames, LsqFit, StatsPlots
+using Pipe, HTTP, CSV, DataFrames, Plots, BetaM
 ```
 ```@raw html
 </details>

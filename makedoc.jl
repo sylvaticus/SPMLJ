@@ -45,7 +45,7 @@ LESSONS_SUBDIR = Dict(
   "JULIA2 - Scientific programming with Julia" => "02_-_JULIA2_-_Scientific_programming_with_Julia",
   "ML1 - Introduction to Machine Learning"     => "03_-_ML1_-_Introduction_to_Machine_Learning",
   "NN - Neural Networks"                      => "04_-_NN_-_Neural_Networks",
-  "DT - Decision trrees based algorithms"     => "05_-_DT_-_Decision_trees_based_algorithms"
+  "DT - Decision trees based algorithms"     => "05_-_DT_-_Decision_trees_based_algorithms"
 )
 
 

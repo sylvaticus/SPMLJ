@@ -1,28 +1,49 @@
-# EXERCISE 2.1: Fitting the growth of French forests
+# EXERCISE 4.1: House value prediction with Neural Networks (regression)
 
 
 ```@raw html
 <p>&nbsp;</p>
-<img src="imgs/forestGrowth.jpg" alt="Forest Growth" style="height:250px;"> 
-<img src="imgs/forestGrowthCurves.png" alt="Forest Growth curves" style="height:250px;"> 
+<img src="imgs/bostonHousingErrorPerEpoch.png" alt="Error per epoch" style="height:250px;"> 
+<img src="imgs/bostonHousingEstVsTrueValues.png" alt="Estimated vs True house values" style="height:250px;"> 
 <p>&nbsp;</p>
 ```
 
-How fast are French forests growing? How much timber can they provide in one hectare?
-Surely forests provide multiple ecosystem services, but in this (simplified) exercise we focus on the above questions by looking at the so-called "raw data" provided by the French National Forest Inventory, both in terms of individual trees and in terms of inventoried plots, to fit a generic growth model of the forest stands in terms of volumes with respect to the age of the trees.
+In this problem, we are given a dataset containing average house values in different Boston suburbs, together with the suburb characteristics (proportion of owner-occupied units built prior to 1940, index of accessibility to radial highways, etc...)
+Our task is to build a neural network model and train it in order to predict the average house value on each suburb.
+
+The detailed attributes of the dataset are:
+  1. CRIM      per capita crime rate by town
+  2. ZN        proportion of residential land zoned for lots over 25,000 sq.ft.
+  3. INDUS     proportion of non-retail business acres per town
+  4. CHAS      Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)
+  5. NOX       nitric oxides concentration (parts per 10 million)
+  6. RM        average number of rooms per dwelling
+  7. AGE       proportion of owner-occupied units built prior to 1940
+  8. DIS       weighted distances to five Boston employment centres
+  9. RAD       index of accessibility to radial highways
+  10. TAX      full-value property-tax rate per \$10,000
+  11. PTRATIO  pupil-teacher ratio by town
+  12. B        1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
+  13. LSTAT    % lower status of the population
+  14. MEDV     Median value of owner-occupied homes in \$1000's
+
+
+Further information concerning this dataset can be found on [this file](https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.names)
+
+Our prediction concern the median value (column 14 of the dataset)
+
 
 Skills required:
 - download and import data from internet
-- wrangle tabular data: compute new columns (fields) based on existing one, filter rows (records), join tables
-- fit a generic model (curve) with data
+
 
 
 ## Instructions
 
-If you have already cloned or downloaded the whole [course repository](https://github.com/sylvaticus/SPMLJ/) the folder with the exercise is on `[REPOSITORY_ROOT]/lessonsMaterial/02_JULIA2/forestExercise`.
-Otherwise download a zip of just that folder [here](https://downgit.github.io/#/home?url=https://github.com/sylvaticus/SPMLJ/tree/main/lessonsMaterial/02_JULIA2/forestExercise).
+If you have already cloned or downloaded the whole [course repository](https://github.com/sylvaticus/SPMLJ/) the folder with the exercise is on `[REPOSITORY_ROOT]/lessonsMaterial/04_NN/bostonHousing`.
+Otherwise download a zip of just that folder [here](https://downgit.github.io/#/home?url=https://github.com/sylvaticus/SPMLJ/tree/main/lessonsMaterial/04_NN/bostonHousing).
 
-In the folder you will find the file `forestExercise.jl` containing the julia file that **you will have to complete to implement and run the model** (follow the instructions on that file). 
+In the folder you will find the file `BostonHousingValue.jl` containing the julia file that **you will have to complete to implement the missing parts and run the file** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
 If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
 Good luck! 
@@ -33,7 +54,8 @@ Click "ONE POSSIBLE SOLUTION" to get access to (one possible) solution for each 
 
 --------------------------------------------------------------------------------
 ### 1) Setting up the environment...
-Start by setting the working directory to the directory of this file and activate it. If you have the provided `Manifest.toml` file in the directory, just run `Pkg.instantiate()`, otherwise manually add the packages `Pipe`, `HTTP`, `CSV`, `DataFrames`, `LsqFit`, `StatsPlots`.
+Start by setting the working directory to the directory of this file and activate it. If you have the provided `Manifest.toml` file in the directory, just run `Pkg.instantiate()`, otherwise manually add the packages `Pipe`, `HTTP`, `CSV`, `DataFrames`, `Plots` and `BetaML`.
+
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
@@ -55,13 +77,13 @@ Random.seed!(123)
 
 --------------------------------------------------------------------------------
 ### 2) Load the packages 
-Load the packages Pipe, HTTP, CSV, DataFrames, LsqFit, StatsPlots
+Load the packages `Pipe`, `HTTP`, `CSV`, `DataFrames`, `Plots` and `BetaML`.
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-using Pipe, HTTP, CSV, DataFrames, LsqFit, StatsPlots
+using Pipe, HTTP, CSV, DataFrames, Plots, BetaML
 ```
 ```@raw html
 </details>
@@ -69,272 +91,173 @@ using Pipe, HTTP, CSV, DataFrames, LsqFit, StatsPlots
 
 --------------------------------------------------------------------------------
 ### 3) Load the data
-
-Load from internet or from local files the following data:
+Load from internet or from local file the input data into a DataFrame or a Matrix.
+You will need the CSV options `header=false` and `ignorerepeated=true`
 
 ```julia
-ltURL     = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsMaterial/02_JULIA2/forestExercise/data/arbres_foret_2012.csv?raw=true" # live individual trees data
-dtURL     = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsMaterial/02_JULIA2/forestExercise/data/arbres_morts_foret_2012.csv?raw=true" # dead individual trees data
-pointsURL = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsMaterial/02_JULIA2/forestExercise/data/placettes_foret_2012.csv?raw=true" # plot level data
-docURL    = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsMaterial/02_JULIA2/forestExercise/data/documentation_2012.csv?raw=true" # optional, needed for the species label
+dataURL="https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data"
 ```
-
-If you have choosen to download the data from internet, you can make for each of the dataset a `@pipe` macro starting with `HTTP.get(URL).body`, continuing the pipe with `CSV.File(_)` and end the pipe with a DataFrame object.
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-lt     = @pipe HTTP.get(ltURL).body     |> CSV.File(_) |> DataFrame
-dt     = @pipe HTTP.get(dtURL).body     |> CSV.File(_) |> DataFrame
-points = @pipe HTTP.get(pointsURL).body |> CSV.File(_) |> DataFrame
-doc    = @pipe HTTP.get(docURL).body    |> CSV.File(_) |> DataFrame
+data    = @pipe HTTP.get(dataURL).body |> CSV.File(_, delim=' ', header=false, ignorerepeated=true) |> DataFrame
+```
+```@raw html
+</details>
+```
 
-# Or import from local...
-lt     = CSV.read("data/arbres_foret_2012.csv",DataFrame)
-dt     = CSV.read("data/arbres_morts_foret_2012.csv",DataFrame)
-points = CSV.read("data/placettes_foret_2012.csv",DataFrame)
-doc    = CSV.read("data/documentation_2012.csv",DataFrame)
+
+--------------------------------------------------------------------------------
+### 4) Implement one-hot encoding of categorical variables
+The 4th column is a dummy related to the information if the suburb bounds a certain Boston river. Use the BetaML function `oneHotEncoder` to encode this dummy into two separate vectors, one for each possible value. Note that you will need to transform the range {0,1} into {1,2} before running the oneHotEncoder function (this can be done by simply uinsg `data[:,4] .+1`)
+
+```@raw html
+<details><summary>ONE POSSIBLE SOLUTION</summary>
+```
+```julia
+riverDummy = oneHotEncoder(data[:,4] .+1)
 ```
 ```@raw html
 </details>
 ```
 
 --------------------------------------------------------------------------------
-### 4) Filter out unused information 
-These datasets have many variable we are not using in this exercise.
-Out of all the variables, select only for the `lt` and `dt` dataframes the columns `idp` (pixel id), `c13` (circumference at 1.30 meters) and `v` (tree's volume). Then vertical concatenate the two dataset in an overall `trees` dataset.
-For the `points` dataset, select only the variables `idp` (pixel id), `esspre` (code of the main forest species in the stand) and `cac` (age class).
+### 5) Put together the feature matrix
+Now create the X matrix of features concatenating horizzontaly the 1st to 3rd column of `data`, the 5th to 13th columns and the two columns you created with the one hot encoding. Make sure you have a 506×14 matrix.
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-lt     = lt[:,["idp","c13","v"]]
-dt     = dt[:,["idp","c13","v"]]
-trees  = vcat(lt,dt)
-points = points[:,["idp","esspre","cac"]]
+X = hcat(Matrix(data[:,[1:3;5:13]]),riverDummy)
 ```
 ```@raw html
 </details>
 ```
 
 --------------------------------------------------------------------------------
-### 5) Compute the timber volumes per hectare
-As the French inventory system is based on a concentric sample method (small trees are sampled on a small area (6 metres radius), intermediate trees on a concentric area of 9 metres and only large trees (with a circonference larger than 117.5 cm) are sampled on a concentric area of 15 metres of radius), define the following function to compute the contribution of each tree to the volume per hectare:
-
-```julia
-"""
-    vHaContribution(volume,circonference)
-
-Return the contribution in terms of m³/ha of the tree.
-
-The French inventory system is based on a concentric sample method: small trees are sampled on a small area (6 metres radius), intermediate trees on a concentric area of 9 metres and only large trees (with a circonference larger than 117.5 cm) are sampled on a concentric area of 15 metres of radius.
-This function normalise the contribution of each tree to m³/ha.
-"""
-function vHaContribution(v,c13)
-    if c13 < 70.5
-        return v/(6^2*pi/(100*100))
-    elseif c13 < 117.5
-        return v/(9^2*pi/(100*100))
-    else 
-        return v/(15^2*pi/(100*100))
-    end
-end
-```
-Use the above function to compute `trees.vHa` based on `trees.v` and `trees.c13`.
+### 6) Build the label vector
+Similarly define Y to be the 14th column of data
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-trees.vHa  = vHaContribution.(trees.v,trees.c13)
+Y = data[:,14]
 ```
 ```@raw html
 </details>
 ```
 
 --------------------------------------------------------------------------------
-### 6) Aggregate trees data
-Aggregate the `trees` dataframe by the `idp` column to retrieve the sum of `vHa` and the number of trees for each point, calling these two columns `vHa` and `ntrees`.
+### 7) Partition the data
+Partition the data in (`xtrain`,`xval`) and (`ytrain`,`yval`) keeping 80% of the data for training and reserving 35% for testing. Keep the default option to shuffle the data, as the input data isn't.
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-pointsVols = combine(groupby(trees,["idp"]) ,  "vHa" => sum => "vHa", nrow => "ntrees")
+((xtrain,xval),(ytrain,yval)) = partition([X,Y],[0.8,0.2])
 ```
 ```@raw html
 </details>
 ```
 
 --------------------------------------------------------------------------------
-### 7) Join datasets
-Join the output of the previous step (the trees dataframe aggregated "by point") with the original points dataframe using the column `idp`.
+### 8) Define the neural network architecture
+Define a Neural Network model with the following characteristics:
+  - 3 dense layers with respectively 14, 20 and 1 nodes and activation function `relu`
+  - cost function `squaredCost` 
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-points     = innerjoin(points,pointsVols,on="idp")
+l1 = DenseLayer(14,20,f=relu)
+l2 = DenseLayer(20,20,f=relu)
+l3 = DenseLayer(20,1,f=relu)
+mynn = buildNetwork([l1,l2,l3],squaredCost)
 ```
 ```@raw html
 </details>
 ```
 
 --------------------------------------------------------------------------------
-### 8) Filter data
-Use boolean selection to apply the following filters:
-```julia
-filter_nTrees           = points.ntrees .> 5 # we skip points with few trees 
-filter_IHaveAgeClass    = .! in.(points.cac,Ref(["AA","NR"]))
-filter_IHaveMainSpecies = .! ismissing.(points.esspre) 
-filter_overall          = filter_nTrees .&& filter_IHaveAgeClass .&& filter_IHaveMainSpecies
-```
+### 9) Train the model
+Train the model using `ytrain` and a scaled version of `xtrain` (where all columns have zero mean and 1 standard deviaiton) for 400 epochs and use a batch size of 6 records.
+Save the output of your training function to `trainingLogs`
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-points                  = points[filter_overall,:] 
-```
-```@raw html
-</details>
-```
---------------------------------------------------------------------------------
-### 9) Compute the age class
-Run the following command to parse the age class (originally as a string indicating the 5-ages group) to an integer and compute the mid-range of the class in years. For example, class "02" will become 7.5 years.
-
-```julia
-points.cac              = (parse.(Int64,points.cac) .- 1 ) .* 5 .+ 2.5
-```
-
---------------------------------------------------------------------------------
-### 10) Define the model to fit
-Define the following logistic model of the growth relation with respect to the age with 3 parameters and make its vectorised form:
-
-```julia
-logisticModel(age,parameters) = parameters[1]/(1+exp(-parameters[2] * (age-parameters[3]) ))
-logisticModelVec(age,parameters) = # .... complete here
-```
-
-```@raw html
-<details><summary>ONE POSSIBLE SOLUTION</summary>
-```
-```julia
-logisticModelVec(age,parameters) = logisticModel.(age,Ref(parameters))
+trainingLogs = train!(mynn,scale(xtrain),ytrain,batchSize=6,epochs=400)
 ```
 ```@raw html
 </details>
 ```
 
 --------------------------------------------------------------------------------
-### 11) Set the initial values for the parameters to fit
-Set `initialParameters` to 1000,0.05 and 50 respectivelly.
+### 10) Predict the labels
+Predict the training labels `ŷtrain` and the validation labels `ŷval`. Recall you did the training on the scaled features!
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-initialParameters = [1000,0.05,50] #max growth; growth rate, mid age
+ŷtrain   = predict(mynn, scale(xtrain)) 
+ŷval     = predict(mynn, scale(xval))  
 ```
 ```@raw html
 </details>
 ```
 
 --------------------------------------------------------------------------------
-### 12) Fit the model
-Perform the fitting of the model using the function `curve_fit(model,X,Y,initial parameters)` and obtain the fitted parameter `fitobject.param`
+### 11) Evaluate the model
+Compute the train and test relative mean error using the function `meanRelError` with the parameter `normRec` set to `false`
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-fitobject         = curve_fit(logisticModelVec, points.cac, points.vHa, initialParameters)
-fitparams         = fitobject.param
+trainRME = meanRelError(ŷtrain,ytrain,normRec=false) 
+testRME  = meanRelError(ŷval,yval,normRec=false)
 ```
 ```@raw html
 </details>
 ```
 
 --------------------------------------------------------------------------------
-### 13) Compute the errors
-Compute the standard error for each estimated parameter and the confidence interval at 10% significance level
+### 12) Plot the errors and the estimated values vs the true ones
+Run the following commands to plots the average loss per epoch and the true vs estimation validation values:
 
-```@raw html
-<details><summary>ONE POSSIBLE SOLUTION</summary>
-```
 ```julia
-sigma            = stderror(fitobject)
-confidence_inter = confidence_interval(fitobject, 0.1) # 10% significance level
+plot(trainingLogs.ϵ_epochs)
+scatter(yval,ŷval,xlabel="true values", ylabel="estimated values", legend=nothing)
 ```
-```@raw html
-</details>
-```
-
 --------------------------------------------------------------------------------
-### 14) Plot fitted model
-Plot a chart of fitted (y) by stand age (x) (i.e. the logisticModel with the given parameters)
+### 13) (Optional) Use unscaled data
+Run the same workflow without scaling the data. How this affect the quality of your predictions ? 
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-x = 0:maximum(points.cac)*1.5
-plot(x->logisticModel(x,fitparams),0,maximum(x), label= "Fitted vols", legend=:topleft)
-```
-```@raw html
-</details>
-```
-
---------------------------------------------------------------------------------
-### 15) Add the observations to the plot
-Add to the plot a scatter chart of the actual observed VHa
-
-```@raw html
-<details><summary>ONE POSSIBLE SOLUTION</summary>
-```
-```julia
-plot!(points.cac, points.vHa, seriestype=:scatter, label = "Obs vHa")
-```
-```@raw html
-</details>
-```
-
---------------------------------------------------------------------------------
-### 16) [OPTIONAL] Differentiate the model per tree specie 
-Look at the growth curves of individual species. Try to perform the above analysis for individual species, for example plot the fitted curves for the 5 most common species
-
-```@raw html
-<details><summary>ONE POSSIBLE SOLUTION</summary>
-```
-```julia
-speciesCount = combine(groupby(points, :esspre), nrow => :count)
-sort!(speciesCount,"count",rev=true)
-
-spLabel        = doc[doc.donnee .== "ESSPRE",:]
-spLabel.spCode = parse.(Int64,spLabel.code)
-speciesCount = leftjoin(speciesCount,spLabel, on="esspre" => "spCode")
-
-
-# plot the 5 main species separately
-for (i,sp) in enumerate(speciesCount[1:5,"esspre"])
-    local fitobject, fitparams, x
-    spLabel    = speciesCount[i,"libelle"]
-    pointsSp   = points[points.esspre .== sp, : ]
-    fitobject  = curve_fit(logisticModelVec, pointsSp.cac, pointsSp.vHa, initialParameters)
-    fitparams  = fitobject.param
-    x = 0:maximum(points.cac)*1.5
-    println(i)
-    println(sp)
-    println(fitparams)
-    if i == 1
-        myplot = plot(x->logisticModel(x,fitparams),0,maximum(x), label= spLabel, legend=:topleft)
-    else
-        myplot = plot!(x->logisticModel(x,fitparams),0,maximum(x), label= spLabel, legend=:topleft)
-    end
-    display(myplot)
-end
+Random.seed!(123) # To get the same random numbers as before...
+((xtrain,xval),(ytrain,yval)) = partition([X,Y],[0.8,0.2])
+l1 = DenseLayer(14,20,f=relu)
+l2 = DenseLayer(20,20,f=relu)
+l3 = DenseLayer(20,1,f=relu)
+mynn = buildNetwork([l1,l2,l3],squaredCost)
+trainingLogs = train!(mynn,xtrain,ytrain,batchSize=6,epochs=400)
+ŷtrain   = predict(mynn, xtrain) 
+ŷval     = predict(mynn, xval)
+trainRME = meanRelError(ŷtrain,ytrain,normRec=false) 
+testRME  = meanRelError(ŷval,yval,normRec=false)
+plot(trainingLogs.ϵ_epochs)
+scatter(yval,ŷval,xlabel="true values", ylabel="estimated values", legend=nothing)
 ```
 ```@raw html
 </details>
