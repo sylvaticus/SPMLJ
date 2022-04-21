@@ -177,10 +177,11 @@ function literate_directory(dir)
 end
 
 # ------------------------------------------------------------------------------
+# Saving the unmodified source to a temp directory
 cp(LESSONS_ROOTDIR, LESSONS_ROOTDIR_TMP; force=true)
 
 println("Starting literating tutorials (.jl --> .md)...")
-literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR_TMP ,lsubdir),values(LESSONS_SUBDIR)))
+literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR ,lsubdir),values(LESSONS_SUBDIR)))
 
 println("Starting preprocessing markdown pages...")
 # Preprocess here
@@ -190,7 +191,7 @@ makedocs(sitename="SPMLJ",
          authors = "Antonello Lobianco",
          pages = [
             "Index" => "index.md",
-            "Lessons" => makeList(LESSONS_ROOTDIR_TMP,LESSONS_SUBDIR),
+            "Lessons" => makeList(LESSONS_ROOTDIR,LESSONS_SUBDIR),
          ],
          format = Documenter.HTML(
              prettyurls = false,
@@ -199,11 +200,13 @@ makedocs(sitename="SPMLJ",
              ),
          #strict = true,
          #doctest = false
-         source  = "lessonsSources_tmp", # Attention here !!!!!!!!!!!
+         source  = "lessonsSources", # Attention here !!!!!!!!!!!
          build   = "buildedDoc",
          #preprocess = preprocess
 )
 
+# Copying back the unmodified source
+cp(LESSONS_ROOTDIR_TMP, LESSONS_ROOTDIR; force=true)
 
 println("Starting deploying the documentation...")
 deploydocs(
