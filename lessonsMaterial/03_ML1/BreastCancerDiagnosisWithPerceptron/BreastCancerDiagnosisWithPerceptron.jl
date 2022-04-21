@@ -1,8 +1,8 @@
 ################################################################################
 # Breast Cancer diagnosis problem
 #
-# In this problem you are given a dataset containing real world characteristics of observed breast cancer (size, pattern,..) together with the associated diagnosis in terms of malignity or benignity of the cancer.
-# Your task is to build a linear classifier using the perceptron algorithm that we studied and train it in order to make diagnosis based on the cancer characteristics.
+# In this problem we are given a dataset containing real world characteristics of observed breast cancer (size, pattern,..) together with the associated diagnosis in terms of malignity or benignity of the cancer.
+# Our task is to build a linear classifier using the perceptron algorithm that we studied and train it in order to make diagnosis based on the cancer characteristics.
 
 # ### Environment set-up and data loading
 
@@ -33,7 +33,8 @@ colors = [y == 1 ? "red" : "green" for y in y]
 labels = [y == 1 ? "malign" : "benign" for y in y]
 scatter(X[:,1],X[:,2], colour=colors, title="Classified tumors",xlabel="Tumor Radius", ylabel="Tumor Texture", group=labels)
 
-function plot2DClassifierWithData(X,y,θ;d1=1,d2=2,origin=false)
+
+function plot2DClassifierWithData(X,y,θ;d1=1,d2=2,origin=false,xlabel="Dimx: $(d1)",ylabel="Dimy: $(d2)")
     nR    = size(X,1)
     X     = hcat(ones(nR),X)
     X     = scale(X) # for visualisation
@@ -43,14 +44,13 @@ function plot2DClassifierWithData(X,y,θ;d1=1,d2=2,origin=false)
     labels = [y == 1 ? "malign" : "benign" for y in y]
     minD1,maxD1 = extrema(X[:,d1])
     minD2,maxD2 = extrema(X[:,d2])
-    myplot = scatter(X[:,d1],X[:,d2], colour=colors, title="Linear classifier in 2D",xlabel="Dimx: $(d1-1)", ylabel="Dimy: $(d2-1)", group=labels)
+    myplot = scatter(X[:,d1],X[:,d2], colour=colors, title="Linear classifier in 2D",xlabel=xlabel, ylabel=ylabel, group=labels)
     d2Class(x) = -θ[1]/θ[d2] -x * θ[d1]/θ[d2]
     if θ[d2] == 0
         vline!([0], color= "blue",label="",linewidth=5)
     else
         plot!(d2Class,minD1,maxD1, color= "blue",label="",linewidth=5)
     end
-    #plot!([0,10*θ[d1]/norm(θ)],[0,10*θ[d2]/norm(θ)],arrow=true,color=:black,linewidth=2,label="")
     display(myplot)
 end
 
@@ -106,18 +106,21 @@ function train!(model::Perceptron,X,y,ops=PerceptronTrainingOptions()::TrainingO
     return model.θ
 end
 
-# 9) Instanziate a `Perceptron`` with a parameter vector of nD+1 zeros and a  `PerceptronTrainingOption` object with 5 epochs and shuffling, use the options to train the model o nthe whole dataset, compute the model predictions and the accuracy relative to the whole sample.
+# 9) Instanziate a `Perceptron` object with a parameter vector of nD+1 zeros and a `PerceptronTrainingOption` object with 5 epochs and shuffling, use the options to train the model on the whole dataset, compute the model predictions and the accuracy relative to the whole sample.
+
 m   = Perceptron(zeros(size(X,2)+1))
 ops = #...
 train!(m,X,y,ops)
-plot2DClassifierWithData(X,y,m.θ,d1=1,d2=2)
-ŷ           = 
-inSampleAcc =  # 0.91
+plot2DClassifierWithData(X,y,m.θ,d1=1,d2=2,xlabel="Tumor Radius", ylabel="Tumor Texture")
+ŷ           = #...
+inSampleAcc = accuracy(#= ... =#) # 0.91
 
-# 10) Partition the data in (xtrain,xtest) and (ytrain,ytest) keeping 65% of the data for training and reserving 35% for testing
+# 10) Partition the data in `(xtrain,xtest)` and `(ytrain,ytest)` keeping 65% of the data for training and reserving 35% for testing
+
 ((xtrain,xtest),(ytrain,ytest)) = partition(#=...=#)
 
-# 11) Using a 10-folds cross-validation strategy, find the best hyperparameters within the following possibilities :
+# 11) Using a 10-folds cross-validation strategy, find the best hyperparameters within the following ranges :
+
 sampler = KFold(#=...=#)
 
 epochsSet  = 1:5:150
@@ -161,7 +164,7 @@ bestShuffle
 plot(epochsSet,accuraciesNonShuffle,label="Val accuracy without shuffling", legend=:bottomright)
 plot!(epochsSet,accuraciesShuffle, label="Val accuracy with shuffling")
 
-# 12) Using the "best" hyperparameters found in the previous task, instantiate a new model and options, train the model using (xtrain,ytrain), make your predicitons for the testing features (xtest) and compute your output accuracy with those of the true `ytest`
+# 12) Using the "best" hyperparameters found in the previous step, instantiate a new model and options, train the model using `(xtrain,ytrain)`, make your predicitons for the testing features (`xtest`) and compute your output accuracy compared with those of the true `ytest` (use the BetaML function `accuracy`)
 
 ops = PerceptronTrainingOptions(#=...=#)
 m   = Perceptron(zeros(size(xtest,2)+1))
@@ -169,10 +172,10 @@ train!(#=...=#)
 ŷtest           = predict(#=...=#)
 testAccuracy    = accuracy(#=...=#) # 0.89
 
-plot2DClassifierWithData(xtest,ytest,m.θ)
+plot2DClassifierWithData(xtest,ytest,m.θ,xlabel="Tumor Radius", ylabel="Tumor Texture")
 plot2DClassifierWithData(xtest,ytest,m.θ,d1=3,d2=4)
 
-# 13) (optional) Add a scaling passage to the workflow and test it with cross-validation if it improve the accuracy
+# 13) (optional) Add a scaling passage to the workflow and test it with cross-validation if it improves the accuracy
 
 epochsSet  = 1:10:150
 shuffleSet = [false,true]
@@ -243,4 +246,4 @@ else
 end
 testAccuracy    = accuracy(#=...=#) # 0.96
 
-plot2DClassifierWithData(xtest,ytest,m.θ)
+plot2DClassifierWithData(xtest,ytest,m.θ,xlabel="Tumor Radius", ylabel="Tumor Texture")
