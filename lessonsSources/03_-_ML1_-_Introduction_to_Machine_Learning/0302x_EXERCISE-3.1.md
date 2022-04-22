@@ -11,7 +11,7 @@
 In this problem we are given a dataset containing real world characteristics of observed breast cancer (size, pattern,..) together with the associated diagnosis in terms of malignity or benignity of the cancer.
 Our task is to build a linear classifier using the perceptron algorithm that we studied and train it in order to make diagnosis based on the cancer characteristics.
 
-Skills required:
+**Skills employed:**
 - download and import data from internet
 - implement the training function of a perceptron algorithm
 - use the BetaML `partition`, `crossValidation` and `accuracy` functions

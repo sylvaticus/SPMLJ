@@ -2,7 +2,7 @@
 
 # ### Instructions
 
-# In this exercise we will try to predict the approval (yes/no) for credit applications from the applicant characteristics.
+# In this exercise we will predict the approval (yes/no) for credit applications from the applicant characteristics.
 
 # As the data comes from a real-world log from a financial institution, both fields' names and values have been replaced with meaningless symbols to preserve anonymity. 
 
@@ -44,15 +44,17 @@ using Random
 Random.seed!(123)
 
 # ------------------------------------------------------------------------------
-# ### 2) Load the packages/modules DelimitedFiles, Pipe, HTTP, CSV, DataFrames, Plots, BetaML
-using DelimitedFiles, Pipe, HTTP, CSV, DataFrames, Plots, BetaML
+# ### 2) Load the packages/modules Pipe, HTTP, CSV, DataFrames, Plots, BetaML
+using  Pipe, HTTP, CSV, DataFrames, Plots, BetaML
 
 
 # ### 3) Load from internet or from local file the input data.
 # You can use a pipeline from HTTP.get() to CSV.File to finally a DataFrame.
 # Use the parameter `missingstring="?"` in the `CSV.File()` call.
+
 dataURL = "https://archive.ics.uci.edu/ml/machine-learning-databases/credit-screening/crx.data"
-data    = @pipe HTTP.get(dataURL).body |> CSV.File(_,missingstring="?") |> DataFrame
+
+# [...] write your code here...
 
 # ------------------------------------------------------------------------------
 # ### 4) Now create the X matrix and Y vector
@@ -98,6 +100,6 @@ maxFeatures_range        = [2,3,4,5,6]
 
 # ------------------------------------------------------------------------------
 # ### 7) Perform the final training with the best hyperparameters and compute the accuracy on the test set
-# If you have choosen good hyperparameters, your accuracy should be in the 98%-99% range for training and 81%-89% range for testing 
+# If you have chosen good hyperparameters, your accuracy should be in the 98%-99% range for training and 81%-89% range for testing 
 
 # [...] write your code here...

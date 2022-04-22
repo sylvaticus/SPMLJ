@@ -26,7 +26,7 @@
 # 2) Load the packages/modules DelimitedFiles, Pipe, HTTP, Plots, BetaML
 
 
-# 3) Load from internet or from local file the input data a Matrix.
+# 3) Load from internet or from local file the input data as a Matrix.
 # You can use `readdlm`` using the comma as field separator.
 dataURL="https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data"
 

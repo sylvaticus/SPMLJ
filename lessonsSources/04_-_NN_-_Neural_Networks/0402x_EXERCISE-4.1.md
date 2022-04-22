@@ -33,9 +33,10 @@ Further information concerning this dataset can be found on [this file](https://
 Our prediction concern the median value (column 14 of the dataset)
 
 
-Skills required:
+**Skills employed:**
 - download and import data from internet
-
+- design and train a Neural Network for regression tasks using `BetaML`
+- use the additional `BetaML` functions `partition`, `oneHotEncoder`, `scale`, `meanRelError`
 
 
 ## Instructions
@@ -153,7 +154,7 @@ Y = data[:,14]
 
 --------------------------------------------------------------------------------
 ### 7) Partition the data
-Partition the data in (`xtrain`,`xval`) and (`ytrain`,`yval`) keeping 80% of the data for training and reserving 35% for testing. Keep the default option to shuffle the data, as the input data isn't.
+Partition the data in (`xtrain`,`xval`) and (`ytrain`,`yval`) keeping 80% of the data for training and reserving 20% for testing. Keep the default option to shuffle the data, as the input data isn't.
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>

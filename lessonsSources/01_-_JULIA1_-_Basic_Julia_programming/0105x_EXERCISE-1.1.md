@@ -27,6 +27,13 @@ The skeleton below proposes an intermediate approach with only one `Agent` class
 Source: Thomas C. Schelling (1971) Dynamic models of segregation, The Journal of Mathematical Sociology, 1:2, 143-186, DOI: [10.1080/0022250X.1971.9989794](https://doi.org/10.1080/0022250X.1971.9989794) 
 
 
+**Skills employed:**
+- design custom types
+- defining and calling functions
+- manipulating arrays
+- use conditional statements and for loops
+- plotting
+
 ## Instructions
 
 If you have already cloned or downloaded the whole [course repository](https://github.com/sylvaticus/SPMLJ/) the folder with the exercise is on `[REPOSITORY_ROOT]/lessonsMaterial/01_JULIA1/shellingSegregationModel`.

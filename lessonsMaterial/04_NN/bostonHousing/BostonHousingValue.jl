@@ -41,7 +41,7 @@ dataURL="https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housi
 # 6) Similarly define Y to be the 14th column of data
 
 
-# 7) Partition the data in (`xtrain`,`xval`) and (`ytrain`,`yval`) keeping 80% of the data for training and reserving 35% for testing. Keep the default option to shuffle the data, as the input data isn't.
+# 7) Partition the data in (`xtrain`,`xval`) and (`ytrain`,`yval`) keeping 80% of the data for training and reserving 20% for testing. Keep the default option to shuffle the data, as the input data isn't.
 
 
 # 8) Define a Neural Network model with the following characteristics:

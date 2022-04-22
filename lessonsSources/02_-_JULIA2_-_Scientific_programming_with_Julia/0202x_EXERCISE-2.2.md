@@ -17,7 +17,7 @@ The objective of this problem is hence to find the optimal level of activities t
 The problem is the same as those in the SpreadSheet file "Optimal production mix.ods" (available in the `data` folder) and can be solved in LibreOffice by using the "Solver tool" as indicated in that file. You can use it to check your results.
 
 
-Skills required:
+**Skills employed:**
 - download and import data from internet
 - define, solve and retriever optimal values of an optimisation problem using the [JuMP](https://jump.dev/) [algebraic modelling language](https://en.wikipedia.org/wiki/Algebraic_modeling_language)
 

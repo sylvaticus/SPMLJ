@@ -11,7 +11,7 @@
 How fast are French forests growing? How much timber can they provide in one hectare?
 Surely forests provide multiple ecosystem services, but in this (simplified) exercise we focus on the above questions by looking at the so-called "raw data" provided by the French National Forest Inventory, both in terms of individual trees and in terms of inventoried plots, to fit a generic growth model of the forest stands in terms of volumes with respect to the age of the trees.
 
-Skills required:
+**Skills employed:**
 - download and import data from internet
 - wrangle tabular data: compute new columns (fields) based on existing one, filter rows (records), join tables
 - fit a generic model (curve) with data
