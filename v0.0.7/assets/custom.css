@@ -1,0 +1,16 @@
+/*
+
+html.theme--documenter-dark pre code {
+    padding: 0.1rem 0.2rem !important;
+}
+
+html.theme--documenter-light pre code {
+    padding: 0.1rem 0.2rem !important;
+}
+*/
+
+.utterances .utterances-frame {
+   /*min-width: 600px; */
+   min-height: 300px;
+   position: relative;
+}

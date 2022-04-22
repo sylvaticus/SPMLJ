@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>0103 - Predefined types · SPMLJ</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q39LHCRBB6"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q39LHCRBB6', {'page_path': location.pathname + location.search + location.hash});
+</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/custom.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">SPMLJ</a></span></div><form class="docs-search" action="../search.html"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">INTRO - Introduction to the course, Julia and ML</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html">0001 - Course presentation</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0002_-_Program.html">0002 - Program</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003_-_Introduction_to_Julia.html">0003 - Introduction to Julia</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004_-_Introduction_to_ML.html">0004 - Introduction to ML</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0005_-_How_to_install_Julia_and_git.html">0005 - How to install Julia and git</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0006_-_Modules_packages_and_environments.html">0006 - Modules packages and environments</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0006q_-_QUIZ_0.1.html">0006q - QUIZ 0.1</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-2" type="checkbox" checked/><label class="tocitem" for="menuitem-2-2"><span class="docs-label">JULIA1 - Basic Julia programming</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="0101_-_Basic_syntax.html">0101 - Basic syntax</a></li><li><a class="tocitem" href="0101q_-_QUIZ_1.1.html">0101q - QUIZ 1.1</a></li><li><a class="tocitem" href="0101q_-_QUIZ_1.2.html">0101q - QUIZ 1.2</a></li><li><a class="tocitem" href="0102_-_Types_and_objects.html">0102 - Types and objects</a></li><li><a class="tocitem" href="0102q_-_QUIZ_1.3.html">0102q - QUIZ 1.3</a></li><li class="is-active"><a class="tocitem" href="0103_-_Predefined_types.html">0103 - Predefined types</a><ul class="internal"><li><a class="tocitem" href="#Some-stuff-to-set-up-the-environment.."><span>Some stuff to set-up the environment..</span></a></li><li><a class="tocitem" href="#Primitive-types"><span>Primitive types</span></a></li><li><a class="tocitem" href="#Arrays-Array{T,N}"><span>Arrays - <code>Array{T,N}</code></span></a></li><li><a class="tocitem" href="#Tuples-Tuple{T1,T2,...}"><span>Tuples - <code>Tuple{T1,T2,...}</code></span></a></li><li><a class="tocitem" href="#Named-tuples-NamedTuple{T1,T2,...}"><span>Named tuples - <code>NamedTuple{T1,T2,...}</code></span></a></li><li><a class="tocitem" href="#Dictionaries-Dict{Tkey,TValue}"><span>Dictionaries - <code>Dict{Tkey,TValue}</code></span></a></li><li><a class="tocitem" href="#Sets-Set{T}"><span>Sets - <code>Set{T}</code></span></a></li><li><a class="tocitem" href="#Date-and-time-Date,-DateTime"><span>Date and time - <code>Date</code>, <code>DateTime</code></span></a></li></ul></li><li><a class="tocitem" href="0103q_-_QUIZ_1.4.html">0103q - QUIZ 1.4</a></li><li><a class="tocitem" href="0103q_-_QUIZ_1.5.html">0103q - QUIZ 1.5</a></li><li><a class="tocitem" href="0103q_-_QUIZ_1.6.html">0103q - QUIZ 1.6</a></li><li><a class="tocitem" href="0104_-_Control_flow_and_functions.html">0104 - Control flow and functions</a></li><li><a class="tocitem" href="0104q_-_QUIZ_1.7.html">0104q - QUIZ 1.7</a></li><li><a class="tocitem" href="0104q_-_QUIZ_1.8.html">0104q - QUIZ 1.8</a></li><li><a class="tocitem" href="0105_-_Custom_types.html">0105 - Custom types</a></li><li><a class="tocitem" href="0105q_-_QUIZ_1.10.html">0105q - QUIZ 1.10</a></li><li><a class="tocitem" href="0105q_-_QUIZ_1.9.html">0105q - QUIZ 1.9</a></li><li><a class="tocitem" href="0105x_EXERCISE-1.1.html">0105x EXERCISE-1.1</a></li><li><a class="tocitem" href="0106_-_Further_topics.html">0106 - Further topics</a></li><li><a class="tocitem" href="0106q_-_QUIZ_1.11.html">0106q - QUIZ 1.11</a></li><li><a class="tocitem" href="0106q_-_QUIZ_1.12.html">0106q - QUIZ 1.12</a></li><li><a class="tocitem" href="0106q_-_QUIZ_1.13.html">0106q - QUIZ 1.13</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-3" type="checkbox"/><label class="tocitem" for="menuitem-2-3"><span class="docs-label">JULIA2 - Scientific programming with Julia</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201_-_Wranging_data.html">0201 - Wranging data</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202_-_Miscellaneous_topics.html">0202 - Miscellaneous topics</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.1.html">0202x EXERCISE-2.1</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.2.html">0202x EXERCISE-2.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-4" type="checkbox"/><label class="tocitem" for="menuitem-2-4"><span class="docs-label">ML1 - Introduction to Machine Learning</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0301_-_Machine_learning_main_concepts.html">0301 - Machine learning main concepts</a></li><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0302_-_The_Perceptron_classifier.html">0302 - The Perceptron classifier</a></li><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0302x_EXERCISE-3.1.html">0302x EXERCISE-3.1</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-5" type="checkbox"/><label class="tocitem" for="menuitem-2-5"><span class="docs-label">NN - Neural Networks</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0401_-_Neural_network_architectures.html">0401 - Neural network architectures</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402_-_Implementation_of_neural_networks_workflows.html">0402 - Implementation of neural networks workflows</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402x_EXERCISE-4.1.html">0402x EXERCISE-4.1</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402x_EXERCISE-4.2.html">0402x EXERCISE-4.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-6" type="checkbox"/><label class="tocitem" for="menuitem-2-6"><span class="docs-label">DT - Decision trees based algorithms</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.html">0501 - Decision trees based algorithms</a></li><li><a class="tocitem" href="../05_-_DT_-_Decision_trees_based_algorithms/0502x_EXERCISE-5.1.html">0502x EXERCISE-5.1</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Lessons</a></li><li><a class="is-disabled">JULIA1 - Basic Julia programming</a></li><li class="is-active"><a href="0103_-_Predefined_types.html">0103 - Predefined types</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0103_-_Predefined_types.html">0103 - Predefined types</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0103_-_Predefined_types.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><pre></pre><h1 id="Predefined-types"><a class="docs-heading-anchor" href="#Predefined-types">0103 Predefined types</a><a id="Predefined-types-1"></a><a class="docs-heading-anchor-permalink" href="#Predefined-types" title="Permalink"></a></h1><h2 id="Some-stuff-to-set-up-the-environment.."><a class="docs-heading-anchor" href="#Some-stuff-to-set-up-the-environment..">Some stuff to set-up the environment..</a><a id="Some-stuff-to-set-up-the-environment..-1"></a><a class="docs-heading-anchor-permalink" href="#Some-stuff-to-set-up-the-environment.." title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; cd(@__DIR__)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pkg</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.activate(&quot;.&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">  Activating project at `~/work/SPMLJ/SPMLJ/buildedDoc/01_-_JULIA1_-_Basic_Julia_programming`</code></pre><p>If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost) Pkg.resolve() Pkg.instantiate() # run this if you didn&#39;t in Segment 01.01</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Random</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Random.seed!(123)</code><code class="nohighlight hljs ansi" style="display:block;">Random.TaskLocalRNG()</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using InteractiveUtils # loaded automatically when working... interactively</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h2 id="Primitive-types"><a class="docs-heading-anchor" href="#Primitive-types">Primitive types</a><a id="Primitive-types-1"></a><a class="docs-heading-anchor-permalink" href="#Primitive-types" title="Permalink"></a></h2><p>Primitive types have a fixed number of bits associated to them. Examples of them are <code>Int64</code>, <code>Float64</code>, <code>Char</code>, <code>UInt64</code>, <code>UFloat64</code>, <code>Int32</code>, <code>Float32</code>,... Even primitive types can be custom defined. See the &quot;custom types&quot; segment !</p><h3 id="Char-and-Strings-Char,-String"><a class="docs-heading-anchor" href="#Char-and-Strings-Char,-String">Char and Strings - <code>Char</code>, <code>String</code></a><a id="Char-and-Strings-Char,-String-1"></a><a class="docs-heading-anchor-permalink" href="#Char-and-Strings-Char,-String" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = &quot;Hello World &quot;</code><code class="nohighlight hljs ansi" style="display:block;">&quot;Hello World &quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = a[2]</code><code class="nohighlight hljs ansi" style="display:block;">&#39;e&#39;: ASCII/Unicode U+0065 (category Ll: Letter, lowercase)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(b)</code><code class="nohighlight hljs ansi" style="display:block;">Char</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = a[3:end]</code><code class="nohighlight hljs ansi" style="display:block;">&quot;llo World &quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(b)</code><code class="nohighlight hljs ansi" style="display:block;">String</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; #a[2] = &#39;E&#39; # error !
+       
+       # info...
+       ismutable(a) # long story.... https://github.com/JuliaLang/julia/issues/30210</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; length(a)</code><code class="nohighlight hljs ansi" style="display:block;">12</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; findfirst(isequal(&#39;o&#39;), a)</code><code class="nohighlight hljs ansi" style="display:block;">5</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; findnext(isequal(&#39;o&#39;), a, 6)</code><code class="nohighlight hljs ansi" style="display:block;">8</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; occursin(&quot;world&quot;,a)</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; occursin(lowercase(&quot;world&quot;),lowercase(a))</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Unicode</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; occursin(Unicode.normalize(&quot;world&quot;, casefold=true),Unicode.normalize(a, casefold=true))</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; endswith(a,&quot;ld &quot;)</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; startswith(a,&quot;Mooo&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; occursin(r&quot;H*.d &quot;, a)</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # modifications..
+       lowercase(a)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;hello world &quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; lowercasefirst(a)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;hello World &quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; split(a, &quot; &quot;)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{SubString{String}}:
+ &quot;Hello&quot;
+ &quot;World&quot;
+ &quot;&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; replace(a,&quot;World&quot; =&gt; &quot;Universe&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;Hello Universe &quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; strip(a)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;Hello World&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # concatenation..
+       a = &quot;Hello&quot;; b= &quot;World&quot;</code><code class="nohighlight hljs ansi" style="display:block;">&quot;World&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; c = join([a,b],&quot; &quot;)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;Hello World&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; c = a*&quot; &quot;*b</code><code class="nohighlight hljs ansi" style="display:block;">&quot;Hello World&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; c = string(a,&quot; &quot;,b)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;Hello World&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; c = &quot;$a $b&quot;              # interpolation</code><code class="nohighlight hljs ansi" style="display:block;">&quot;Hello World&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Conversion..
+       a = parse(Int64,&quot;2012&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">2012</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = string(2019)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;2019&quot;</code></pre><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>Attention not to confuse the <code>string</code> function with the <code>String</code> type and the <code>String()</code> constructor!</p></div></div><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; # to know more...
+       methodswith(String,supertypes=true); # where any argument is a String or any parent type (such e.g. AbstractString)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><h2 id="Arrays-Array{T,N}"><a class="docs-heading-anchor" href="#Arrays-Array{T,N}">Arrays - <code>Array{T,N}</code></a><a id="Arrays-Array{T,N}-1"></a><a class="docs-heading-anchor-permalink" href="#Arrays-Array{T,N}" title="Permalink"></a></h2><p><code>Array{T,NDims}</code> A <em>parameteric</em> type where the type of the content and the number of dimensions define the specific type</p><div class="admonition is-success"><header class="admonition-header">Tip</header><div class="admonition-body"><p><code>Vector{T}</code> is an alias for <code>Array{T,1}</code> and <code>Matrix{T}</code> is an alias for <code>Array{T,2}</code>, but there isn&#39;t anything &quot;special&quot; for 1 or 2 dimensions compared to more dimensions</p></div></div><h3 id="Vectors-Array{T,1}"><a class="docs-heading-anchor" href="#Vectors-Array{T,1}">Vectors - <code>Array{T,1}</code></a><a id="Vectors-Array{T,1}-1"></a><a class="docs-heading-anchor-permalink" href="#Vectors-Array{T,1}" title="Permalink"></a></h3><p>One-dimensions arrays in julia are treated as column vector, and, depending on the inner type, they can be stored efficiently contiguously in memory. However they are NOT the same of a single column of a two dimensions array. A row vector is necessarily instead a single row of a 2 dimensions array.</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [1,2,3]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = [1 ; 2 ; 3 ;;] # This syntax requires Julia &gt;= 1.7</code><code class="nohighlight hljs ansi" style="display:block;">3×1 Matrix{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a == b</code><code class="nohighlight hljs ansi" style="display:block;">false</code></pre><h4 id="Initialisation"><a class="docs-heading-anchor" href="#Initialisation">Initialisation</a><a id="Initialisation-1"></a><a class="docs-heading-anchor-permalink" href="#Initialisation" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [1,2,3]; #= or =# a = [1;2;3]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [1; 6:-2:2; 10] # notes: (a) the semicolon, (b) the range includes BOTH the extremes</code><code class="nohighlight hljs ansi" style="display:block;">5-element Vector{Int64}:
+  1
+  6
+  4
+  2
+ 10</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [[1,2],[3,4]]   # nested vectors. Each elements can have a different lenght, but rules of linear algebra doesn&#39;t apply</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector{Int64}}:
+ [1, 2]
+ [3, 4]</code></pre><div class="admonition is-danger"><header class="admonition-header">Danger</header><div class="admonition-body"><p>Don&#39;t confuse nested vectors with multi-dimensional arrays!</p></div></div><p>Empty (zero-elements) arrays:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = []</code><code class="nohighlight hljs ansi" style="display:block;">Any[]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = Int64[]</code><code class="nohighlight hljs ansi" style="display:block;">Int64[]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [1,2,3]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = [1,&quot;pizza&quot;,&quot;beer&quot;]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Any}:
+ 1
+  &quot;pizza&quot;
+  &quot;beer&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = Array{Int64,1}()</code><code class="nohighlight hljs ansi" style="display:block;">Int64[]</code></pre><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>Watch out for the difference between <code>a = Array{Int64,1}()</code> and <code>a = Array{Int64,1}</code></p></div></div><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = Vector{Int64}()</code><code class="nohighlight hljs ansi" style="display:block;">Int64[]</code></pre><p>n-elements initialisation:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; n = 3</code><code class="nohighlight hljs ansi" style="display:block;">3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; T = Int64</code><code class="nohighlight hljs ansi" style="display:block;">Int64</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; zeros(n)            # zeros (Float64)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ 0.0
+ 0.0
+ 0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; zeros(T,n)          # zeros (casted as type T)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 0
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ones(n)             # ones  (Float64)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ 1.0
+ 1.0
+ 1.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ones(T,n)           # ones  (casted of type T)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 1
+ 1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Array{T,1}(undef,n) # garbage</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+               0
+ 140299928870944
+ 140299706494272</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fill(2,3)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 2
+ 2
+ 2</code></pre><h4 id="Accessing-Vectors"><a class="docs-heading-anchor" href="#Accessing-Vectors">Accessing Vectors</a><a id="Accessing-Vectors-1"></a><a class="docs-heading-anchor-permalink" href="#Accessing-Vectors" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [101:200;]</code><code class="nohighlight hljs ansi" style="display:block;">100-element Vector{Int64}:
+ 101
+ 102
+ 103
+ 104
+ 105
+ 106
+ 107
+ 108
+ 109
+ 110
+   ⋮
+ 192
+ 193
+ 194
+ 195
+ 196
+ 197
+ 198
+ 199
+ 200</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a[1]</code><code class="nohighlight hljs ansi" style="display:block;">101</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a[end]</code><code class="nohighlight hljs ansi" style="display:block;">200</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a[[1; 6:-2:2; 10]] # indicised by a vector of positions</code><code class="nohighlight hljs ansi" style="display:block;">5-element Vector{Int64}:
+ 101
+ 106
+ 104
+ 102
+ 110</code></pre><h4 id="Collecting-iterators-into-vectors"><a class="docs-heading-anchor" href="#Collecting-iterators-into-vectors">Collecting iterators into vectors</a><a id="Collecting-iterators-into-vectors-1"></a><a class="docs-heading-anchor-permalink" href="#Collecting-iterators-into-vectors" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; aRange = 3:2:7</code><code class="nohighlight hljs ansi" style="display:block;">3:2:7</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = collect(aRange)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 3
+ 5
+ 7</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(aRange)</code><code class="nohighlight hljs ansi" style="display:block;">StepRange{Int64, Int64}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(aRange) &lt;: AbstractArray # Everywhere an AbstractArray is expected, you can provide a range instead</code><code class="nohighlight hljs ansi" style="display:block;">true</code></pre><h4 id="Common-operations-with-vectors"><a class="docs-heading-anchor" href="#Common-operations-with-vectors">Common operations with vectors</a><a id="Common-operations-with-vectors-1"></a><a class="docs-heading-anchor-permalink" href="#Common-operations-with-vectors" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [1,2,3]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; reverse(a), a[end:-1:1] # Other way to revert an array</code><code class="nohighlight hljs ansi" style="display:block;">([3, 2, 1], [3, 2, 1])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; vcat([1,2,3],[4,5],6)</code><code class="nohighlight hljs ansi" style="display:block;">6-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; push!(a,4)  # add as individual elements</code><code class="nohighlight hljs ansi" style="display:block;">4-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; append!(a,5) # add as many new elements</code><code class="nohighlight hljs ansi" style="display:block;">5-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5</code></pre><div class="admonition is-success"><header class="admonition-header">Functions with exclamation marks</header><div class="admonition-body"><p>By <strong>convention</strong> functions that modify one of their parameters (and usually this is the first one) are named with an exclamation mark at the end. Remember (most) unicode characters are valid in functions or variable names.</p></div></div><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; push!([[1,2],[3,4,5]],[6,7])</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Vector{Int64}}:
+ [1, 2]
+ [3, 4, 5]
+ [6, 7]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; append!([1,2,3,4,5],[6,7])</code><code class="nohighlight hljs ansi" style="display:block;">7-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pop!(a)</code><code class="nohighlight hljs ansi" style="display:block;">5</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a</code><code class="nohighlight hljs ansi" style="display:block;">4-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; popfirst!(a)</code><code class="nohighlight hljs ansi" style="display:block;">1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; deleteat!(a,2)</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 2
+ 4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pushfirst!([2,3],1)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [2,1,3,1]</code><code class="nohighlight hljs ansi" style="display:block;">4-element Vector{Int64}:
+ 2
+ 1
+ 3
+ 1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sort(a)   # also `sort!(a)``</code><code class="nohighlight hljs ansi" style="display:block;">4-element Vector{Int64}:
+ 1
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; unique(a) # also `unique!(a)`</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 2
+ 1
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; in(1,a)   # also available as operator: `if 2 in a [...] end`</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; length(a) # number of elements contained in all the dimensions</code><code class="nohighlight hljs ansi" style="display:block;">4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; size(a),size(a,1) # number of elements by dimension</code><code class="nohighlight hljs ansi" style="display:block;">((4,), 4)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; minimum(a)</code><code class="nohighlight hljs ansi" style="display:block;">1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; min(a...)</code><code class="nohighlight hljs ansi" style="display:block;">1</code></pre><div class="admonition is-success"><header class="admonition-header">...</header><div class="admonition-body"><p>&quot;...&quot; is called the <em>splat operator</em> and it is used to convert the elements in a vector into a tuple of separate elements in a function call, like the example above</p></div></div><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; min(4,7,3)</code><code class="nohighlight hljs ansi" style="display:block;">3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; minimum([4,7,9])</code><code class="nohighlight hljs ansi" style="display:block;">4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; argmin([4,2,5,2])</code><code class="nohighlight hljs ansi" style="display:block;">2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sum([1,2,3])</code><code class="nohighlight hljs ansi" style="display:block;">6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; cumsum([1,2,3])</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 3
+ 6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; empty!(a) # only for Vectors</code><code class="nohighlight hljs ansi" style="display:block;">Int64[]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Random</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; shuffle([1,2,3]) # also shuffle!([1,2,3])</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 3
+ 2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; isempty(a)</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; findall(x -&gt; x == 1, [2,1,3,1]) # anonymous function returning an array of bools, findall then return the indexes</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 2
+ 4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; findfirst(x -&gt; x == 1, [2,1,3,1])</code><code class="nohighlight hljs ansi" style="display:block;">2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; myComparitionWith1(i) = i==1</code><code class="nohighlight hljs ansi" style="display:block;">myComparitionWith1 (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; findall(x -&gt; myComparitionWith1(x), [2,1,3,1])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 2
+ 4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; filter(i -&gt; i &gt; 2, [1,2,3,4])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 3
+ 4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # delete [7,2,5] from an 1:10 array:
+       data     = [1:10;]</code><code class="nohighlight hljs ansi" style="display:block;">10-element Vector{Int64}:
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; toDelete = [7,5,2]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 7
+ 5
+ 2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; deleteat!(data, findall(x -&gt; x in toDelete, data))</code><code class="nohighlight hljs ansi" style="display:block;">7-element Vector{Int64}:
+  1
+  3
+  4
+  6
+  8
+  9
+ 10</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; for (i,value) in enumerate([10,20,30]) # iterator that returns an index/element tuple
+           println(&quot;$i - $value&quot;)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">1 - 10
+2 - 20
+3 - 30</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; names = [&quot;Marc&quot;, &quot;Anne&quot;]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{String}:
+ &quot;Marc&quot;
+ &quot;Anne&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sex   = [&#39;M&#39;,&#39;F&#39;]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Char}:
+ &#39;M&#39;: ASCII/Unicode U+004D (category Lu: Letter, uppercase)
+ &#39;F&#39;: ASCII/Unicode U+0046 (category Lu: Letter, uppercase)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; age   = [25,20]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 25
+ 20</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; for zippedElements in zip(names,sex,age) # iterator that returns tuples made with one element per argument of zip
+           println(zippedElements)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">(&quot;Marc&quot;, &#39;M&#39;, 25)
+(&quot;Anne&quot;, &#39;F&#39;, 20)</code></pre><h3 id="Multidimensional-arrays-Array{T,N}"><a class="docs-heading-anchor" href="#Multidimensional-arrays-Array{T,N}">Multidimensional arrays - <code>Array{T,N}</code></a><a id="Multidimensional-arrays-Array{T,N}-1"></a><a class="docs-heading-anchor-permalink" href="#Multidimensional-arrays-Array{T,N}" title="Permalink"></a></h3><h4 id="Initialisation-2"><a class="docs-heading-anchor" href="#Initialisation-2">Initialisation</a><a class="docs-heading-anchor-permalink" href="#Initialisation-2" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [[1,2,3] [4,5,6]] # By column, i.e. elements of the first column, elements of the second column, ...</code><code class="nohighlight hljs ansi" style="display:block;">3×2 Matrix{Int64}:
+ 1  4
+ 2  5
+ 3  6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [1 4; 2 5; 3 6]   # By row, i.e. elements of the first row, elements of the second row, ...</code><code class="nohighlight hljs ansi" style="display:block;">3×2 Matrix{Int64}:
+ 1  4
+ 2  5
+ 3  6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Empty (zero-elements) arrays:
+       a = Array{Float64}(undef, 0, 0, 0) # using explicitly the constructor and explicitly giving zero for each wanted dimension</code><code class="nohighlight hljs ansi" style="display:block;">0×0×0 Array{Float64, 3}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # n-elements initialisation:
+       (T,n,m,g,j) = (Int64,1,2,3,&#39;a&#39;)</code><code class="nohighlight hljs ansi" style="display:block;">(Int64, 1, 2, 3, &#39;a&#39;)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = zeros(n,m,g)            # n,m,g-elements zeros array</code><code class="nohighlight hljs ansi" style="display:block;">1×2×3 Array{Float64, 3}:
+[:, :, 1] =
+ 0.0  0.0
+
+[:, :, 2] =
+ 0.0  0.0
+
+[:, :, 3] =
+ 0.0  0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = ones(n,m,g)             # n,m,g-elements ones array</code><code class="nohighlight hljs ansi" style="display:block;">1×2×3 Array{Float64, 3}:
+[:, :, 1] =
+ 1.0  1.0
+
+[:, :, 2] =
+ 1.0  1.0
+
+[:, :, 3] =
+ 1.0  1.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = Array{T,3}(undef,n,m,g) # n,m,g-elements array whose content is garbage</code><code class="nohighlight hljs ansi" style="display:block;">1×2×3 Array{Int64, 3}:
+[:, :, 1] =
+ 0  140299705343840
+
+[:, :, 2] =
+ 140299704898256  0
+
+[:, :, 3] =
+ 140299705343840  140299710795280</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = fill(j,n,m,g)           # n,m,g-elements array of identical j elements</code><code class="nohighlight hljs ansi" style="display:block;">1×2×3 Array{Char, 3}:
+[:, :, 1] =
+ &#39;a&#39;  &#39;a&#39;
+
+[:, :, 2] =
+ &#39;a&#39;  &#39;a&#39;
+
+[:, :, 3] =
+ &#39;a&#39;  &#39;a&#39;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = rand(n,m,g)             # n,m,g-elements array of of random numbers</code><code class="nohighlight hljs ansi" style="display:block;">1×2×3 Array{Float64, 3}:
+[:, :, 1] =
+ 0.890879  0.190907
+
+[:, :, 2] =
+ 0.525662  0.390588
+
+[:, :, 3] =
+ 0.044818  0.933353</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [3x + 2y + z for x in 1:2, y in 2:3, z in 1:2] # from using list comprehension</code><code class="nohighlight hljs ansi" style="display:block;">2×2×2 Array{Int64, 3}:
+[:, :, 1] =
+  8  10
+ 11  13
+
+[:, :, 2] =
+  9  11
+ 12  14</code></pre><h4 id="Accessing-n-dimensional-arrays"><a class="docs-heading-anchor" href="#Accessing-n-dimensional-arrays">Accessing n-dimensional arrays</a><a id="Accessing-n-dimensional-arrays-1"></a><a class="docs-heading-anchor-permalink" href="#Accessing-n-dimensional-arrays" title="Permalink"></a></h4><p>Access by indicating position</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [1 2 3 4; 5 6 7 8; 9 10 11 12]</code><code class="nohighlight hljs ansi" style="display:block;">3×4 Matrix{Int64}:
+ 1   2   3   4
+ 5   6   7   8
+ 9  10  11  12</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a[2,1]   # comma to separate the dimensions</code><code class="nohighlight hljs ansi" style="display:block;">5</code></pre><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>Don&#39;t confuse <code>a[i,j]</code> for selecting an element of a Matrix with <code>a[i][j]</code> to select the inner component of a nested array</p></div></div><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a[1,2:3]   # with a range on the second dimension</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a[[1,3],1] # with a vector of positions in the first dimension</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 1
+ 9</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a[2,:]     # with a full range (all values) in the second dimension, i.e. all columns value for row 2</code><code class="nohighlight hljs ansi" style="display:block;">4-element Vector{Int64}:
+ 5
+ 6
+ 7
+ 8</code></pre><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>Note that when the data as only one element on a given dimension, julia reduces the dimensions automatically: the result of <code>a[2,:]</code> is NOT a row vector (that is a one-row matrix) but a one dimensional array</p></div></div><p>Access by a mask (boolean selection)</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = [true false true false; true true true false; true false true false]</code><code class="nohighlight hljs ansi" style="display:block;">3×4 Matrix{Bool}:
+ 1  0  1  0
+ 1  1  1  0
+ 1  0  1  0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a[b] # always flatted array returned (need eventually reshaping, see later)</code><code class="nohighlight hljs ansi" style="display:block;">7-element Vector{Int64}:
+  1
+  5
+  9
+  6
+  3
+  7
+ 11</code></pre><h4 id="Funcionality-related-to-dimensions"><a class="docs-heading-anchor" href="#Funcionality-related-to-dimensions">Funcionality related to dimensions</a><a id="Funcionality-related-to-dimensions-1"></a><a class="docs-heading-anchor-permalink" href="#Funcionality-related-to-dimensions" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; size(a)              # returns a tuple (i.e. an immutable list) with the sizes of the n dimensions</code><code class="nohighlight hljs ansi" style="display:block;">(3, 4)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ndims(a)             # return the number of dimensions of the array (e.g. `2` for a matrix)</code><code class="nohighlight hljs ansi" style="display:block;">2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; reshape(a, 2,3,2)</code><code class="nohighlight hljs ansi" style="display:block;">2×3×2 Array{Int64, 3}:
+[:, :, 1] =
+ 1  9   6
+ 5  2  10
+
+[:, :, 2] =
+ 3  11   8
+ 7   4  12</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; 2*3*2 == length(a)</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = rand(2,1,3)</code><code class="nohighlight hljs ansi" style="display:block;">2×1×3 Array{Float64, 3}:
+[:, :, 1] =
+ 0.5805599818745412
+ 0.32723787925628356
+
+[:, :, 2] =
+ 0.5269959187969865
+ 0.8362285750521512
+
+[:, :, 3] =
+ 0.04090613602769255
+ 0.4652015053812224</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; dropdims(b,dims=(2)) # remove the specified dimensions, provided that the specified dimension have only a single element</code><code class="nohighlight hljs ansi" style="display:block;">2×3 Matrix{Float64}:
+ 0.58056   0.526996  0.0409061
+ 0.327238  0.836229  0.465202</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; permutedims(a)  # &quot;swap&quot; the dimensions</code><code class="nohighlight hljs ansi" style="display:block;">4×3 Matrix{Int64}:
+ 1  5   9
+ 2  6  10
+ 3  7  11
+ 4  8  12</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; reshape(a,4,3)  # keep the column mayor order</code><code class="nohighlight hljs ansi" style="display:block;">4×3 Matrix{Int64}:
+ 1   6  11
+ 5  10   4
+ 9   3   8
+ 2   7  12</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; for slice in eachslice(a,dims=1)
+           println(slice)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">[1, 2, 3, 4]
+[5, 6, 7, 8]
+[9, 10, 11, 12]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = reshape(1:24, 3,4,2)</code><code class="nohighlight hljs ansi" style="display:block;">3×4×2 reshape(::UnitRange{Int64}, 3, 4, 2) with eltype Int64:
+[:, :, 1] =
+ 1  4  7  10
+ 2  5  8  11
+ 3  6  9  12
+
+[:, :, 2] =
+ 13  16  19  22
+ 14  17  20  23
+ 15  18  21  24</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; for slice in eachslice(a,dims=1)
+           println(slice)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">[1 13; 4 16; 7 19; 10 22]
+[2 14; 5 17; 8 20; 11 23]
+[3 15; 6 18; 9 21; 12 24]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [1 2;3 4; 5 6]</code><code class="nohighlight hljs ansi" style="display:block;">3×2 Matrix{Int64}:
+ 1  2
+ 3  4
+ 5  6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; selectdim(a,1,3) # Select an hyperplane on dimension 1 (rows) at position 3. Returns a view</code><code class="nohighlight hljs ansi" style="display:block;">2-element view(::Matrix{Int64}, 3, :) with eltype Int64:
+ 5
+ 6</code></pre><h4 id="Flat-to-vector.."><a class="docs-heading-anchor" href="#Flat-to-vector..">Flat to vector..</a><a id="Flat-to-vector..-1"></a><a class="docs-heading-anchor-permalink" href="#Flat-to-vector.." title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [1 2; 3 4]</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Int64}:
+ 1  2
+ 3  4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; vec(a)        # shadow copy (different view of the underlying data)</code><code class="nohighlight hljs ansi" style="display:block;">4-element Vector{Int64}:
+ 1
+ 3
+ 2
+ 4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; reshape(a,4)  # shadow copy</code><code class="nohighlight hljs ansi" style="display:block;">4-element Vector{Int64}:
+ 1
+ 3
+ 2
+ 4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a[:]          # allocate, as all slice operations do</code><code class="nohighlight hljs ansi" style="display:block;">4-element Vector{Int64}:
+ 1
+ 3
+ 2
+ 4</code></pre><h4 id="Other-functionality-related-to-Arrays"><a class="docs-heading-anchor" href="#Other-functionality-related-to-Arrays">Other functionality related to Arrays</a><a id="Other-functionality-related-to-Arrays-1"></a><a class="docs-heading-anchor-permalink" href="#Other-functionality-related-to-Arrays" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; vcat([1 2; 3 4], [5 6; 7 8]) # works also for DataFrames</code><code class="nohighlight hljs ansi" style="display:block;">4×2 Matrix{Int64}:
+ 1  2
+ 3  4
+ 5  6
+ 7  8</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; hcat([1,2,3],[4,5,6])        # works also for DataFrames</code><code class="nohighlight hljs ansi" style="display:block;">3×2 Matrix{Int64}:
+ 1  4
+ 2  5
+ 3  6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [1 2; 3 4]</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Int64}:
+ 1  2
+ 3  4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = similar(a) # garbage inside</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Int64}:
+               0  140299704898256
+ 140299705343840                0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; cat(a,a,a,dims=3)</code><code class="nohighlight hljs ansi" style="display:block;">2×2×3 Array{Int64, 3}:
+[:, :, 1] =
+ 1  2
+ 3  4
+
+[:, :, 2] =
+ 1  2
+ 3  4
+
+[:, :, 3] =
+ 1  2
+ 3  4</code></pre><p>Sort by column (field)</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [[3,2,1] [20,30,20] [1000,3000,2000] [300,100,200]]</code><code class="nohighlight hljs ansi" style="display:block;">3×4 Matrix{Int64}:
+ 3  20  1000  300
+ 2  30  3000  100
+ 1  20  2000  200</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; idx = sortperm(a[:,3], rev=true) # return the positions that sort the 3rd column</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 2
+ 3
+ 1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sortedMatrix = a[idx,:] # selected by using the sorted positions array on the row dimension</code><code class="nohighlight hljs ansi" style="display:block;">3×4 Matrix{Int64}:
+ 2  30  3000  100
+ 1  20  2000  200
+ 3  20  1000  300</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sortslices(a, dims=2)   # by cols, using the first row to sort</code><code class="nohighlight hljs ansi" style="display:block;">3×4 Matrix{Int64}:
+ 3  20  300  1000
+ 2  30  100  3000
+ 1  20  200  2000</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sortslices(a, dims=1)   # by rows, using the first column to sort</code><code class="nohighlight hljs ansi" style="display:block;">3×4 Matrix{Int64}:
+ 1  20  2000  200
+ 2  30  3000  100
+ 3  20  1000  300</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sortslices(a, dims=1, by = x -&gt; (x[2],x[4])) # by rows, using second and fourth columns</code><code class="nohighlight hljs ansi" style="display:block;">3×4 Matrix{Int64}:
+ 1  20  2000  200
+ 3  20  1000  300
+ 2  30  3000  100</code></pre><h4 id="Basic-linear-algebra"><a class="docs-heading-anchor" href="#Basic-linear-algebra">Basic linear algebra</a><a id="Basic-linear-algebra-1"></a><a class="docs-heading-anchor-permalink" href="#Basic-linear-algebra" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using LinearAlgebra</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a = [-1,2,3]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ -1
+  2
+  3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = [4,5,6]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 4
+ 5
+ 6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; transpose(a)</code><code class="nohighlight hljs ansi" style="display:block;">1×3 transpose(::Vector{Int64}) with eltype Int64:
+ -1  2  3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a&#39;</code><code class="nohighlight hljs ansi" style="display:block;">1×3 adjoint(::Vector{Int64}) with eltype Int64:
+ -1  2  3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; norm(a)   # l-2 by default</code><code class="nohighlight hljs ansi" style="display:block;">3.7416573867739413</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; norm(a,1)</code><code class="nohighlight hljs ansi" style="display:block;">6.0</code></pre><p>Vector products:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; dot(a,b)    # dot, aka &quot;inner&quot; product</code><code class="nohighlight hljs ansi" style="display:block;">24</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a&#39; * b  == dot(a,b)</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; cross(a,b)  # cross product</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+  -3
+  18
+ -13</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a .* b      # element-wise product</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ -4
+ 10
+ 18</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; a * b&#39;</code><code class="nohighlight hljs ansi" style="display:block;">3×3 Matrix{Int64}:
+ -4  -5  -6
+  8  10  12
+ 12  15  18</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; A = [1 2 3; 6 4 5; 7 8 9]</code><code class="nohighlight hljs ansi" style="display:block;">3×3 Matrix{Int64}:
+ 1  2  3
+ 6  4  5
+ 7  8  9</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; A^(-1) # inverse</code><code class="nohighlight hljs ansi" style="display:block;">3×3 Matrix{Float64}:
+ -0.222222   0.333333  -0.111111
+ -1.05556   -0.666667   0.722222
+  1.11111    0.333333  -0.444444</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; A^2</code><code class="nohighlight hljs ansi" style="display:block;">3×3 Matrix{Int64}:
+  34   34   40
+  65   68   83
+ 118  118  142</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; det(A) # determinant</code><code class="nohighlight hljs ansi" style="display:block;">18.000000000000004</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; transpose(A)</code><code class="nohighlight hljs ansi" style="display:block;">3×3 transpose(::Matrix{Int64}) with eltype Int64:
+ 1  6  7
+ 2  4  8
+ 3  5  9</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; A&#39;</code><code class="nohighlight hljs ansi" style="display:block;">3×3 adjoint(::Matrix{Int64}) with eltype Int64:
+ 1  6  7
+ 2  4  8
+ 3  5  9</code></pre><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>Be aware that <code>transpose</code> works only for numerical types. When the matrix contains other types (e.g. strings), use <code>permutedims</code></p></div></div><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; diag(A)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 4
+ 9</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; I # operator that automatically scale to the context without actually building the matrix</code><code class="nohighlight hljs ansi" style="display:block;">LinearAlgebra.UniformScaling{Bool}
+true*I</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; A*I</code><code class="nohighlight hljs ansi" style="display:block;">3×3 Matrix{Int64}:
+ 1  2  3
+ 6  4  5
+ 7  8  9</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; B = [1 2; 3 4]; B*I</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Int64}:
+ 1  2
+ 3  4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; (evalues, evectors) = eigen(A)</code><code class="nohighlight hljs ansi" style="display:block;">LinearAlgebra.Eigen{ComplexF64, ComplexF64, Matrix{ComplexF64}, Vector{ComplexF64}}
+values:
+3-element Vector{ComplexF64}:
+ -0.8056073109913221 - 0.7099395230053246im
+ -0.8056073109913221 + 0.7099395230053246im
+   15.61121462198265 + 0.0im
+vectors:
+3×3 Matrix{ComplexF64}:
+ -0.267976-0.290703im  -0.267976+0.290703im  0.239114+0.0im
+  0.777975-0.0im        0.777975+0.0im       0.485634+0.0im
+ -0.426158+0.238381im  -0.426158-0.238381im  0.840824+0.0im</code></pre><h2 id="Tuples-Tuple{T1,T2,...}"><a class="docs-heading-anchor" href="#Tuples-Tuple{T1,T2,...}">Tuples - <code>Tuple{T1,T2,...}</code></a><a id="Tuples-Tuple{T1,T2,...}-1"></a><a class="docs-heading-anchor-permalink" href="#Tuples-Tuple{T1,T2,...}" title="Permalink"></a></h2><p>A &quot;collection&quot; similar to Array but:</p><ul><li>Immutable</li><li>Can efficiently host heterogeneous types, as type information is stored for each individual element</li><li>Linear algebra doesn&#39;t apply (use StaticArray.jl package for that)</li></ul><p>Can be tought as anonymous (immutable) structures Used to unpack multiple values, e.g. to store on inddividual variables the output of functions with multiple return value</p><h3 id="Initialisation-3"><a class="docs-heading-anchor" href="#Initialisation-3">Initialisation</a><a class="docs-heading-anchor-permalink" href="#Initialisation-3" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; t = (1,2.5,&quot;a&quot;,3)</code><code class="nohighlight hljs ansi" style="display:block;">(1, 2.5, &quot;a&quot;, 3)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; t = 1,2.5,&quot;a&quot;,3</code><code class="nohighlight hljs ansi" style="display:block;">(1, 2.5, &quot;a&quot;, 3)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(t)</code><code class="nohighlight hljs ansi" style="display:block;">Tuple{Int64, Float64, String, Int64}</code></pre><h3 id="Indexing"><a class="docs-heading-anchor" href="#Indexing">Indexing</a><a id="Indexing-1"></a><a class="docs-heading-anchor-permalink" href="#Indexing" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; t[1]</code><code class="nohighlight hljs ansi" style="display:block;">1</code></pre><h3 id="Conversion"><a class="docs-heading-anchor" href="#Conversion">Conversion</a><a id="Conversion-1"></a><a class="docs-heading-anchor-permalink" href="#Conversion" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; v = [1,2,3]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; t = (v...,) # note the comma</code><code class="nohighlight hljs ansi" style="display:block;">(1, 2, 3)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; v2 = [t...]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; v3 = [i[1] for i in t]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; v4 = collect(t)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; v == v2 == v3 == v4</code><code class="nohighlight hljs ansi" style="display:block;">true</code></pre><h2 id="Named-tuples-NamedTuple{T1,T2,...}"><a class="docs-heading-anchor" href="#Named-tuples-NamedTuple{T1,T2,...}">Named tuples - <code>NamedTuple{T1,T2,...}</code></a><a id="Named-tuples-NamedTuple{T1,T2,...}-1"></a><a class="docs-heading-anchor-permalink" href="#Named-tuples-NamedTuple{T1,T2,...}" title="Permalink"></a></h2><p>As the name suggests, named tuples are collection similar to ordinary tuples, but whose indexing can accept also a name:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; nt = (a=1, b=2.5)</code><code class="nohighlight hljs ansi" style="display:block;">(a = 1, b = 2.5)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; #nt = (&quot;a&quot;=1, &quot;b&quot;=2.5)    # Error !
+       typeof(nt)</code><code class="nohighlight hljs ansi" style="display:block;">NamedTuple{(:a, :b), Tuple{Int64, Float64}}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nt[1]</code><code class="nohighlight hljs ansi" style="display:block;">1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nt.a</code><code class="nohighlight hljs ansi" style="display:block;">1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; keys(nt)</code><code class="nohighlight hljs ansi" style="display:block;">(:a, :b)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; values(nt)</code><code class="nohighlight hljs ansi" style="display:block;">(1, 2.5)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; for (k,v) in pairs(nt)
+           println(&quot;$k - $v&quot;)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">a - 1
+b - 2.5</code></pre><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>The keys of NamedTuples are <em>symbols</em>, not strings. We&#39;ll see symbols in the metaprogramming segment.</p></div></div><h3 id="Conversion-2"><a class="docs-heading-anchor" href="#Conversion-2">Conversion</a><a class="docs-heading-anchor-permalink" href="#Conversion-2" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; k = [:a,:b,:c]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Symbol}:
+ :a
+ :b
+ :c</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; v = [1,2,3]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nt = NamedTuple(Dict(:a=&gt;1,:b=&gt;2,:c=&gt;3))             # Order not guaranteed! We are &quot;lucky&quot; here</code><code class="nohighlight hljs ansi" style="display:block;">(a = 1, b = 2, c = 3)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nt = NamedTuple(Dict([k=&gt;v for (k,v) in zip(k,v)]))  # Same...</code><code class="nohighlight hljs ansi" style="display:block;">(a = 1, b = 2, c = 3)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; v2 = [nt...]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; v3 = [i[1] for i in nt]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; v4 = collect(nt)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; v == v2 == v3 == v4</code><code class="nohighlight hljs ansi" style="display:block;">true</code></pre><h2 id="Dictionaries-Dict{Tkey,TValue}"><a class="docs-heading-anchor" href="#Dictionaries-Dict{Tkey,TValue}">Dictionaries - <code>Dict{Tkey,TValue}</code></a><a id="Dictionaries-Dict{Tkey,TValue}-1"></a><a class="docs-heading-anchor-permalink" href="#Dictionaries-Dict{Tkey,TValue}" title="Permalink"></a></h2><p>Dictionary are mutable, key-referenced containers:</p><table><tr><th style="text-align: right"></th><th style="text-align: right">Mutable</th><th style="text-align: right">Immutable</th></tr><tr><td style="text-align: right">Use position</td><td style="text-align: right">Arrays</td><td style="text-align: right">Tuples</td></tr><tr><td style="text-align: right">Use keys</td><td style="text-align: right">Dictionaries</td><td style="text-align: right">Named tuples</td></tr></table><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>Note that order is not preserved. For insertion-order preservation see <code>OrderedDict</code> and for sorted dictionaries see <code>SortedDict</code>, both from the <a href="https://github.com/JuliaCollections/DataStructures.jl">DataStructures.jl</a> package.</p></div></div><h3 id="Initialisation-4"><a class="docs-heading-anchor" href="#Initialisation-4">Initialisation</a><a class="docs-heading-anchor-permalink" href="#Initialisation-4" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; mydict = Dict(); #= or better =#  mydict = Dict{String,Int64}()</code><code class="nohighlight hljs ansi" style="display:block;">Dict{String, Int64}()</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mydict = Dict(&#39;a&#39;=&gt;1, &#39;b&#39;=&gt;2, &#39;c&#39;=&gt;3)</code><code class="nohighlight hljs ansi" style="display:block;">Dict{Char, Int64} with 3 entries:
+  &#39;a&#39; =&gt; 1
+  &#39;c&#39; =&gt; 3
+  &#39;b&#39; =&gt; 2</code></pre><h3 id="Indexing-2"><a class="docs-heading-anchor" href="#Indexing-2">Indexing</a><a class="docs-heading-anchor-permalink" href="#Indexing-2" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; mydict[&#39;a&#39;]</code><code class="nohighlight hljs ansi" style="display:block;">1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; #mydict[&#39;d&#39;]     # error!
+       get(mydict,&#39;d&#39;,0) # specific a default if key not found</code><code class="nohighlight hljs ansi" style="display:block;">0</code></pre><h3 id="Adding/deleting/checking"><a class="docs-heading-anchor" href="#Adding/deleting/checking">Adding/deleting/checking</a><a id="Adding/deleting/checking-1"></a><a class="docs-heading-anchor-permalink" href="#Adding/deleting/checking" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; mydict[&#39;d&#39;] = 4</code><code class="nohighlight hljs ansi" style="display:block;">4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; delete!(mydict,&#39;d&#39;)</code><code class="nohighlight hljs ansi" style="display:block;">Dict{Char, Int64} with 3 entries:
+  &#39;a&#39; =&gt; 1
+  &#39;c&#39; =&gt; 3
+  &#39;b&#39; =&gt; 2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; haskey(mydict, &#39;a&#39;)</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; in((&#39;a&#39; =&gt; 1), mydict)</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(&#39;a&#39; =&gt; 1)</code><code class="nohighlight hljs ansi" style="display:block;">Pair{Char, Int64}</code></pre><h3 id="Conversion-3"><a class="docs-heading-anchor" href="#Conversion-3">Conversion</a><a class="docs-heading-anchor-permalink" href="#Conversion-3" title="Permalink"></a></h3><p>Array - &gt; Dictionary</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; map((i,j) -&gt; mydict[i]=j, [&#39;e&#39;,&#39;f&#39;,&#39;g&#39;], [4,5,6])</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 4
+ 5
+ 6</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mydict</code><code class="nohighlight hljs ansi" style="display:block;">Dict{Char, Int64} with 6 entries:
+  &#39;f&#39; =&gt; 5
+  &#39;g&#39; =&gt; 6
+  &#39;a&#39; =&gt; 1
+  &#39;c&#39; =&gt; 3
+  &#39;e&#39; =&gt; 4
+  &#39;b&#39; =&gt; 2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; k = [:a,:b,:c]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Symbol}:
+ :a
+ :b
+ :c</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; v = [1,2,3]</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mydict = Dict([k=&gt;v for (k,v) in zip(k,v)])</code><code class="nohighlight hljs ansi" style="display:block;">Dict{Symbol, Int64} with 3 entries:
+  :a =&gt; 1
+  :b =&gt; 2
+  :c =&gt; 3</code></pre><p>Dictionary -&gt; Arrays</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; collect(keys(mydict)) # keys or values alore return an iterator</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Symbol}:
+ :a
+ :b
+ :c</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; collect(values(mydict))</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Int64}:
+ 1
+ 2
+ 3</code></pre><h3 id="Iteration"><a class="docs-heading-anchor" href="#Iteration">Iteration</a><a id="Iteration-1"></a><a class="docs-heading-anchor-permalink" href="#Iteration" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; for (k,v) in mydict
+          println(&quot;$k is $v&quot;)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">a is 1
+b is 2
+c is 3</code></pre><h2 id="Sets-Set{T}"><a class="docs-heading-anchor" href="#Sets-Set{T}">Sets - <code>Set{T}</code></a><a id="Sets-Set{T}-1"></a><a class="docs-heading-anchor-permalink" href="#Sets-Set{T}" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; s = Set(); #= or better =# Set{Int64}()</code><code class="nohighlight hljs ansi" style="display:block;">Set{Int64}()</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; s = Set([1,2,3,4]) # Only a single `2` will be stored</code><code class="nohighlight hljs ansi" style="display:block;">Set{Int64} with 4 elements:
+  4
+  2
+  3
+  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; s</code><code class="nohighlight hljs ansi" style="display:block;">Set{Int64} with 4 elements:
+  4
+  2
+  3
+  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; push!(s,5)</code><code class="nohighlight hljs ansi" style="display:block;">Set{Int64} with 5 elements:
+  5
+  4
+  2
+  3
+  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; delete!(s,1)</code><code class="nohighlight hljs ansi" style="display:block;">Set{Int64} with 4 elements:
+  5
+  4
+  2
+  3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; s2 = Set([4,5,6,7])</code><code class="nohighlight hljs ansi" style="display:block;">Set{Int64} with 4 elements:
+  5
+  4
+  6
+  7</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; intersect(s,s2)</code><code class="nohighlight hljs ansi" style="display:block;">Set{Int64} with 2 elements:
+  5
+  4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; union(s,s2)</code><code class="nohighlight hljs ansi" style="display:block;">Set{Int64} with 6 elements:
+  5
+  4
+  6
+  7
+  2
+  3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; setdiff(s,s2)</code><code class="nohighlight hljs ansi" style="display:block;">Set{Int64} with 2 elements:
+  2
+  3</code></pre><h2 id="Date-and-time-Date,-DateTime"><a class="docs-heading-anchor" href="#Date-and-time-Date,-DateTime">Date and time - <code>Date</code>, <code>DateTime</code></a><a id="Date-and-time-Date,-DateTime-1"></a><a class="docs-heading-anchor-permalink" href="#Date-and-time-Date,-DateTime" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Dates # a standard library module dealing with dates and times, including periods and calendars</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p>While a <code>DateTime</code> is a more informative object it is also a much more complex one, as it has to deal with problems as the time zones and the daylight saving</p><h3 id="Creation-of-a-date-or-time-object-(&quot;input&quot;)"><a class="docs-heading-anchor" href="#Creation-of-a-date-or-time-object-(&quot;input&quot;)">Creation of a date or time object (&quot;input&quot;)</a><a id="Creation-of-a-date-or-time-object-(&quot;input&quot;)-1"></a><a class="docs-heading-anchor-permalink" href="#Creation-of-a-date-or-time-object-(&quot;input&quot;)" title="Permalink"></a></h3><p>From current (local) date/time...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; todayDate = today()</code><code class="nohighlight hljs ansi" style="display:block;">2022-04-22</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nowTime = now()</code><code class="nohighlight hljs ansi" style="display:block;">2022-04-22T14:58:27.363</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(todayDate)</code><code class="nohighlight hljs ansi" style="display:block;">Dates.Date</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(nowTime)</code><code class="nohighlight hljs ansi" style="display:block;">Dates.DateTime</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Date     &lt;: Dates.AbstractTime</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; DateTime &lt;: Dates.AbstractTime</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nowTimeUnix = time()  # The so-called &quot;Unix time, a 64bit integer counting the number of seconds since the beginning of the year 1970</code><code class="nohighlight hljs ansi" style="display:block;">1.650639507388806e9</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nowTime = Dates.unix2datetime(nowTimeUnix) # attention this is not local but UTC (Coordinated Universal Time - the Greenwitch time )!</code><code class="nohighlight hljs ansi" style="display:block;">2022-04-22T14:58:27.389</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nowTime = Dates.now(Dates.UTC) # an other way to have UTC time</code><code class="nohighlight hljs ansi" style="display:block;">2022-04-22T14:58:27.390</code></pre><div class="admonition is-success"><header class="admonition-header">Tip</header><div class="admonition-body"><p>For Time Zone functionalities and conversion, use the external package <a href="https://github.com/JuliaTime/TimeZones.jl/">TimeZone.jl</a></p></div></div><p>From a String...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; christmasDay      = Date(&quot;25 Dec 2030&quot;, &quot;d u yyyy&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">2030-12-25</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; newYearDay        = Date(&quot;2031/01/01&quot;, &quot;yyyy/m/d&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">2031-01-01</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; christmasLunch    = DateTime(&quot;2030-12-25T12:30:00&quot;, ISODateTimeFormat)   # well known string datetime ISO8601 Format</code><code class="nohighlight hljs ansi" style="display:block;">2030-12-25T12:30:00</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; newYearEvenDinner = DateTime(&quot;Sat, 30 Dec 2030 21:30:00&quot;, RFC1123Format) # an othe well known format</code><code class="nohighlight hljs ansi" style="display:block;">2030-12-30T21:30:00</code></pre><p>Date and time formatters:</p><ul><li>y  Year digit (ef yyyy =&gt; 2030, yy =&gt; 30)</li><li>m  Month digit (eg m =&gt; 3, mm =&gt; 03)</li><li>u  Month name (eg &quot;Jan&quot;)</li><li>U  Month name long (eg &quot;January&quot;)</li><li>e  Day of week (eg &quot;Tue&quot;)</li><li>E  Day of week long (eg &quot;Tuesday&quot;)</li><li>d  Day of month (eg d =&gt; 3, dd =&gt; 03)</li><li>H  Hour digit (eg H =&gt; 8, HH =&gt; 08)</li><li>M  Minute digit (eg M =&gt; 0, MM =&gt; 00)</li><li>S  Second digit (eg S =&gt; 0, SS =&gt; 00)</li><li>s  Millisecond digit (eg .000, fixed 3 digits)</li></ul><p>Note that the doubling for the digits matters only for using the formatters in the output (see later)</p><p>From a tuple of integers: y, m, d, H, M, S, s ...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; d  = Date(2030, 12)  # no need to give it all</code><code class="nohighlight hljs ansi" style="display:block;">2030-12-01</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; dt = DateTime(2030, 12, 31, 9, 30, 0, 0)</code><code class="nohighlight hljs ansi" style="display:block;">2030-12-31T09:30:00</code></pre><h3 id="Date/Time-extraction-of-information-(&quot;output&quot;)..."><a class="docs-heading-anchor" href="#Date/Time-extraction-of-information-(&quot;output&quot;)...">Date/Time extraction of information (&quot;output&quot;)...</a><a id="Date/Time-extraction-of-information-(&quot;output&quot;)...-1"></a><a class="docs-heading-anchor-permalink" href="#Date/Time-extraction-of-information-(&quot;output&quot;)..." title="Permalink"></a></h3><p>To String represerntation...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; Dates.format(newYearDay, &quot;dd/m/yy&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;01/1/31&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Dates.format(christmasLunch, &quot;dd/mm/yy H:M:SS&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;25/12/30 12:30:00&quot;</code></pre><p>Other...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Date and DateTime...
+       year(christmasDay)</code><code class="nohighlight hljs ansi" style="display:block;">2030</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; isleapyear(christmasDay)</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; month(christmasLunch)</code><code class="nohighlight hljs ansi" style="display:block;">12</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; monthname(christmasDay)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;December&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; day(christmasDay)</code><code class="nohighlight hljs ansi" style="display:block;">25</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; dayofweek(christmasDay)</code><code class="nohighlight hljs ansi" style="display:block;">3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; dayname(christmasDay)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;Wednesday&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; daysofweekinmonth(christmasDay) # there are 4 Wednesdays in December 2030</code><code class="nohighlight hljs ansi" style="display:block;">4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; dayofweekofmonth(christmasDay)  # and the 25th is the 4th of them</code><code class="nohighlight hljs ansi" style="display:block;">4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Only datetime..
+       hour(christmasLunch)</code><code class="nohighlight hljs ansi" style="display:block;">12</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; minute(christmasLunch)</code><code class="nohighlight hljs ansi" style="display:block;">30</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; second(christmasLunch)</code><code class="nohighlight hljs ansi" style="display:block;">0</code></pre><h3 id="Periods-and-datetime-arithmetics"><a class="docs-heading-anchor" href="#Periods-and-datetime-arithmetics">Periods and datetime arithmetics</a><a id="Periods-and-datetime-arithmetics-1"></a><a class="docs-heading-anchor-permalink" href="#Periods-and-datetime-arithmetics" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; hollidayPeriod = newYearDay - christmasDay  # between dates is in days</code><code class="nohighlight hljs ansi" style="display:block;">7 days</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; longPeriod = Date(2035,6,1) - christmasDay</code><code class="nohighlight hljs ansi" style="display:block;">1619 days</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mealPeriod = DateTime(2030,12,31,23,30) - newYearEvenDinner # between datetime is in milliseconds</code><code class="nohighlight hljs ansi" style="display:block;">93600000 milliseconds</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; #newYearDay - newYearEvenDinner # error! no mixed
+       convert(DateTime,newYearDay)</code><code class="nohighlight hljs ansi" style="display:block;">2031-01-01T00:00:00</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; convert(Date,newYearEvenDinner) # possible information loss</code><code class="nohighlight hljs ansi" style="display:block;">2030-12-30</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mealPeriod = convert(DateTime,newYearDay) - newYearEvenDinner</code><code class="nohighlight hljs ansi" style="display:block;">95400000 milliseconds</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(hollidayPeriod)</code><code class="nohighlight hljs ansi" style="display:block;">Dates.Day</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(mealPeriod)</code><code class="nohighlight hljs ansi" style="display:block;">Dates.Millisecond</code></pre><p>Period hierarchy:</p><ul><li><code>Period</code><ul><li><code>DatePeriod</code><ul><li><code>Year</code></li><li><code>Month</code></li><li><code>Week</code></li><li><code>Day</code></li></ul></li><li><code>TimePeriod</code><ul><li><code>Hour</code></li><li><code>Minute</code></li><li><code>Second</code></li><li><code>Millisecond</code></li><li><code>Microsecond</code></li><li><code>Nanosecond</code></li></ul></li></ul></li></ul><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; #convert(Dates.Year,longPeriod)      # going up: error or inexacterror
+       convert(Dates.Millisecond,longPeriod) # going down:  fine</code><code class="nohighlight hljs ansi" style="display:block;">139881600000 milliseconds</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; convert(Dates.Millisecond,mealPeriod)</code><code class="nohighlight hljs ansi" style="display:block;">95400000 milliseconds</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; canLongPeriod = Dates.canonicalize(longPeriod)</code><code class="nohighlight hljs ansi" style="display:block;">231 weeks, 2 days</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; typeof(canLongPeriod)</code><code class="nohighlight hljs ansi" style="display:block;">Dates.CompoundPeriod</code></pre><p>That the best we can get. We can&#39;t &quot;easily&quot; decompose a &quot;period&quot; in  years or months... how many days in a month ? 31 or 30 ? And in an year ? A <code>Period</code> doesn&#39;t store information on when it starts. However we can make math with periods based on a specific date/time:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; nextChristmas                = christmasDay + Year(1) # We can use the constructors of the various periods</code><code class="nohighlight hljs ansi" style="display:block;">2031-12-25</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; christmasPresentsOpeningTime = christmasLunch + Hour(3)</code><code class="nohighlight hljs ansi" style="display:block;">2030-12-25T15:30:00</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; thisWeekdayNextCentury       = dayname(today()+Year(100))</code><code class="nohighlight hljs ansi" style="display:block;">&quot;Wednesday&quot;</code></pre><p>Ranges</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; semesters = Dates.Date(2020,1,1):Dates.Month(6):Dates.Date(2022,1,1)</code><code class="nohighlight hljs ansi" style="display:block;">Dates.Date(&quot;2020-01-01&quot;):Dates.Month(6):Dates.Date(&quot;2022-01-01&quot;)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; collect(semesters)</code><code class="nohighlight hljs ansi" style="display:block;">5-element Vector{Dates.Date}:
+ 2020-01-01
+ 2020-07-01
+ 2021-01-01
+ 2021-07-01
+ 2022-01-01</code></pre><h3 id="Adjustments"><a class="docs-heading-anchor" href="#Adjustments">Adjustments</a><a id="Adjustments-1"></a><a class="docs-heading-anchor-permalink" href="#Adjustments" title="Permalink"></a></h3><p>Iterate the past/future days of a date untill some condition is true</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; sundayBefChristmas = toprev(d -&gt; Dates.dayname(d) == &quot;Sunday&quot;, christmasDay)</code><code class="nohighlight hljs ansi" style="display:block;">2030-12-22</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; lastDayOfThisMonth = tonext(d -&gt; Dates.day(d+Day(1)) == 1, today())</code><code class="nohighlight hljs ansi" style="display:block;">2022-04-30</code></pre><p>Find first or last weekday of {month,year} of a given date:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; lastTuesdayOfThisMonth = tolast(today(), 2, of=Month) # &quot;2&quot; stands for Tuesday</code><code class="nohighlight hljs ansi" style="display:block;">2022-04-26</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; firstSundayOfThisYear  = tofirst(today(), 7, of=Year) # &quot;7&quot; stands for Sunday</code><code class="nohighlight hljs ansi" style="display:block;">2022-01-02</code></pre><p><a href="https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0103_-_Predefined_types.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0102q_-_QUIZ_1.3.html">« 0102q - QUIZ 1.3</a><a class="docs-footer-nextpage" href="0103q_-_QUIZ_1.4.html">0103q - QUIZ 1.4 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Friday 22 April 2022 15:21">Friday 22 April 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
