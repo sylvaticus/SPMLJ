@@ -29,6 +29,7 @@ Any-how, the course is organised in units/lessons (e.g. `JULIA1`). Each unit/les
 
 ## Course authors
 
+-----
 
 ```@raw html
  <img src="assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="100"> 
@@ -43,6 +44,10 @@ I am a Forest and Natural Resources Economist @ AgroParisTech, a French "Grand e
 My main interest is in exploring the interplay between the biophysical layers in the forest sector (climate change, forest dynamics) and the socio-economic ones (individual forest owners behaviours, timber markets "behaviours") in order to better understand the space of actions that society has to maximise social benefits in a sustenible way. For that I design, develop and use bio-economic simulation models of the forest sector.
 
 While this course is in English, English is not my native language... please, be understanding !
+
+**Acknowledgements**: The development of this course at the _Bureau d'Economie Théorique et Appliquée_ (BETA, Nancy) was supported by the French National Research Agency through the [Laboratory of Excellence ARBRE](http://mycor.nancy.inra.fr/ARBRE/), a part of the “Investissements d'Avenir” Program (ANR 11 – LABX-0002-01).
+
+-----
 
 
 ## How to contribute to the course

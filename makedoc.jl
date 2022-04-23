@@ -167,6 +167,7 @@ function preprocess(rootDir)
         if size(segmentVideos,1) > 0
             outContent *= """
                         ```@raw html
+                        <div id="ytb-videos">
                         <span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
                         """
             for video in eachrow(segmentVideos)
@@ -182,6 +183,7 @@ function preprocess(rootDir)
                     """
             end # end of each video
             outContent *= """
+                </div>
                 ```
                 ------
                 """

@@ -22,6 +22,11 @@ html.theme--documenter-light pre code {
     height: 300px;
 }
 
+#ytb-videos {
+    background-color: #8a6700;
+    padding: 10px;
+}
+
 p, li{
     text-align: justify;
 }
