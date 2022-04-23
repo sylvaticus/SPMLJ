@@ -189,55 +189,58 @@ function preprocess(rootDir)
         outContent *= origContent
         if (filename != "index.md")
             commentCode = """
-            ```@raw html
-            <script src="https://utteranc.es/client.js"
-                    repo="sylvaticus/SPMLJ"
-                    issue-term="title"
-                    label="💬 website_comment"
-                    theme="github-dark"
-                    crossorigin="anonymous"
-                    async>
-            </script>
-            ```
-            """
-            addThisCode = """
-            ```@raw html
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
-            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
-            ```
-            """
+                ```@raw html
+                <script src="https://utteranc.es/client.js"
+                        repo="sylvaticus/SPMLJ"
+                        issue-term="title"
+                        label="💬 website_comment"
+                        theme="github-dark"
+                        crossorigin="anonymous"
+                        async>
+                </script>
+                ```
+                """
+            addThisCode1 = """
+                ```@raw html
+                <div class="addthis_inline_share_toolbox"></div>
+                ```
+                """
+            addThisCode2 = """
+                ```@raw html
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+                ```
+                """
             # https://crowdsignal.com/support/rating-widget/
             ratingCode1 = """
-            ```@raw html
-            <div id="pd_rating_holder_8962705"></div>
-            <script type="text/javascript">
-            PDRTJS_settings_8962705 = {
-            "id" : "8962705",
-            "unique_id" : "$(file)",
-            "title" : "$(filename)",
-            "permalink" : ""
-            };
-            </script>
-            ```
-            """
+                ```@raw html
+                <div id="pd_rating_holder_8962705"></div>
+                <script type="text/javascript">
+                PDRTJS_settings_8962705 = {
+                "id" : "8962705",
+                "unique_id" : "$(file)",
+                "title" : "$(filename)",
+                "permalink" : ""
+                };
+                </script>
+                ```
+                """
             ratingCode2 = """
-            ```@raw html
-            <script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
-            ```
-            """
+                ```@raw html
+                <script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+                ```
+                """
             outContent *= "\n---------\n"
             outContent *= ratingCode1
+            outContent *= addThisCode1
             outContent *= "\n---------\n"
             outContent *= commentCode
             outContent *= ratingCode2
+            outContent *= addThisCode2
         end
-        #print(outContent)
-        #println(file)
         write(file,outContent)
     end # end for each file
 end #end preprocess function
-    
-
 
 # ------------------------------------------------------------------------------
 # Saving the unmodified source to a temp directory
