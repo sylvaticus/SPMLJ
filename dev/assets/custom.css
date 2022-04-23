@@ -14,3 +14,8 @@ html.theme--documenter-light pre code {
    min-height: 300px;
    position: relative;
 }
+
+.ytb-container iframe.embed-responsive-item{
+    width: 600px;
+    height: 300px;
+}
