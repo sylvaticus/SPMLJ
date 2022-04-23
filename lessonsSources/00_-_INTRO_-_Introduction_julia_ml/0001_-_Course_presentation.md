@@ -2,7 +2,7 @@
 # Course Presentation
 
 
-## Objectives 
+## What will you get from this course
 
 This course aims to provide a gentle introduction to Julia, a modern, expressive and efficient programming language, and introduce the main concepts around machine learning, together with some algorithms and practical implementations of machine learning workflows.
 
