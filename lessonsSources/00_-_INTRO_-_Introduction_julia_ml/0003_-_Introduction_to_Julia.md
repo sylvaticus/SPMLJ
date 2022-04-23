@@ -1,12 +1,8 @@
-TODO. Please refer to the videos.
+TODO. Please refer to the videos above or to the slides.
 
-```@raw html
-<script src="https://utteranc.es/client.js"
-        repo="sylvaticus/SPMLJ"
-        issue-term="title"
-        label="💬 website_comment"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-</script>
-```
+# An introduction to the Julia Programming Language
+
+## How to install Julia and git
+
+## Julia modules, packages and environments
+

@@ -27,7 +27,7 @@ The slides used in the videos below are available [here](https://github.com/sylv
 ### 01 JULIA1: Basic Julia programming (5h:52:33)
 - Basic syntax elements (46:45)
   - [Part A - Introduction and setup of the environment](https://www.youtube.com/watch?v=fRv3vAmzHS8&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=1) (8:37)
-  - [Part B - Comments, code organsation, Unicode support, broadcasting](https://www.youtube.com/watch?v=1SVA6woAq18&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=2) (12:04)
+  - [Part B - Comments, code organisation, Unicode support, broadcasting](https://www.youtube.com/watch?v=1SVA6woAq18&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=2) (12:04)
   - [Part C - Math operators, quotation marks](https://www.youtube.com/watch?v=1AVb-92QmPg&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=3) (6:49)
   - [Part D - Missing values](https://www.youtube.com/watch?v=UGlJlH1BbjM&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=4) (10:04)
   - [Part E - Stochasticity in programming](https://www.youtube.com/watch?v=Hi_a7YWA_j8&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=5) (9:14)

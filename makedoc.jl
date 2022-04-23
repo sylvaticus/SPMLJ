@@ -28,15 +28,16 @@ Pkg.activate(".")
 
 #Pkg.resolve()
 Pkg.instantiate()
-#Pkg.add(["Documenter", "Literate"])
+#Pkg.add(["Documenter", "Literate", "Glob", "DataFrames", "OdsIO"])
 
-using Documenter, Literate, Test
+using Documenter, Literate, Test, Glob, DataFrames, OdsIO
 
 
 const LESSONS_ROOTDIR = joinpath(@__DIR__, "lessonsSources")
 # Important: If some lesson is removed but the md file is left, this may still be used by Documenter
 
 const LESSONS_ROOTDIR_TMP = joinpath(@__DIR__, "lessonsSources_tmp")
+# Where to save the lessons before they are preprocessed
 
 
 LESSONS_SUBDIR = Dict(
@@ -48,49 +49,6 @@ LESSONS_SUBDIR = Dict(
   "DT - Decision trees based algorithms"     => "05_-_DT_-_Decision_trees_based_algorithms"
 )
 
-
-function preprocess(page,path)
- 
-    commentCode = """
-        ```@raw html
-        <script src="https://utteranc.es/client.js"
-                repo="sylvaticus/SPMLJ"
-                issue-term="title"
-                label="💬 website_comment"
-                theme="github-dark"
-                crossorigin="anonymous"
-                async>
-        </script>
-        ```
-        """
-    addThisCode = """
-        ```@raw html
-        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
-        ```
-        """
-    # https://crowdsignal.com/support/rating-widget/
-    ratingCode1 = """
-        ```@raw html
-        <div id="pd_rating_holder_8962705"></div>
-        <script type="text/javascript">
-        PDRTJS_settings_8962705 = {
-        "id" : "8962705",
-        "unique_id" : "$(path)",
-        "title" : "",
-        "permalink" : ""
-        };
-        </script>
-        ```
-        """
-    ratingCode2 = """
-        ```@raw html
-        <script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
-        ```
-        """
-    return string(page,"\n---------\n",ratingCode1,"\n---------\n",commentCode,"\n---------\n",ratingCode2)
-    #return string(page,"\n",addThisCode,"\n",ratingCode1,"\n",commentCode,"\n",ratingCode2)
-end
 
 
 # Utility functions.....
@@ -132,6 +90,24 @@ function makeList(rootDir,subDirList)
     end
     return outArray
 end
+
+"""
+    rdir(string,match)
+
+Return a vector of all files (full paths) of a given directory recursivelly taht matches `match`, recursivelly.
+
+# example
+filenames = getindex.(splitdir.(rdir(LESSONS_ROOTDIR,"*.jl")),2) #get all md filenames
+"""
+function rdir(dir::AbstractString, pat::Glob.FilenameMatch)
+    result = String[]
+    for (root, dirs, files) in walkdir(dir)
+        append!(result, filter!(f -> occursin(pat, f), joinpath.(root, files)))
+    end
+    return result
+end
+rdir(dir::AbstractString, pat::AbstractString) = rdir(dir, Glob.FilenameMatch(pat))
+
 
 function literate_directory(dir)
     # Removing old compiled md files...
@@ -176,6 +152,93 @@ function literate_directory(dir)
     return nothing
 end
 
+function preprocess(rootDir)
+    cd(@__DIR__)
+    Pkg.activate(".")
+    #rootDir = LESSONS_ROOTDIR 
+    files  = rdir(rootDir,"*.md")
+    videos = ods_read(joinpath(@__DIR__,"videosList.ods");sheetName="videos",retType="DataFrame")
+    for file in files
+        #file = files[4]
+        origContent = read(file,String)
+        outContent = ""
+        filename = splitdir(file)[2]
+        segmentVideos = videos[videos.host_filename .== filename,:]
+        if size(segmentVideos,1) > 0
+            outContent *= """
+                        ```@raw html
+                        <span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
+                        """
+            for video in eachrow(segmentVideos)
+                #video = segmentVideos[1,:]
+                outContent *= """
+                    <details><summary>$(video.lesson_short_name) - $(video.segment_id)$(video.part_id): $(video.part_name) ($(video.minutes):$(video.seconds))</summary>
+                    <div class="container ytb-container">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/$(video.vid)" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                    </details>
+                    """
+            end # end of each video
+            outContent *= """
+                ```
+                ------
+                """
+        end # end of if there are videos
+        outContent *= origContent
+        if (filename != "index.md")
+            commentCode = """
+            ```@raw html
+            <script src="https://utteranc.es/client.js"
+                    repo="sylvaticus/SPMLJ"
+                    issue-term="title"
+                    label="💬 website_comment"
+                    theme="github-dark"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+            ```
+            """
+            addThisCode = """
+            ```@raw html
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+            ```
+            """
+            # https://crowdsignal.com/support/rating-widget/
+            ratingCode1 = """
+            ```@raw html
+            <div id="pd_rating_holder_8962705"></div>
+            <script type="text/javascript">
+            PDRTJS_settings_8962705 = {
+            "id" : "8962705",
+            "unique_id" : "$(file)",
+            "title" : "$(filename)",
+            "permalink" : ""
+            };
+            </script>
+            ```
+            """
+            ratingCode2 = """
+            ```@raw html
+            <script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+            ```
+            """
+            outContent *= "\n---------\n"
+            outContent *= ratingCode1
+            outContent *= "\n---------\n"
+            outContent *= commentCode
+            outContent *= ratingCode2
+        end
+        #print(outContent)
+        #println(file)
+        write(file,outContent)
+    end # end for each file
+end #end preprocess function
+    
+
+
 # ------------------------------------------------------------------------------
 # Saving the unmodified source to a temp directory
 cp(LESSONS_ROOTDIR, LESSONS_ROOTDIR_TMP; force=true)
@@ -184,7 +247,7 @@ println("Starting literating tutorials (.jl --> .md)...")
 literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR ,lsubdir),values(LESSONS_SUBDIR)))
 
 println("Starting preprocessing markdown pages...")
-# Preprocess here
+preprocess(LESSONS_ROOTDIR)
 
 println("Starting making the documentation...")
 makedocs(sitename="SPMLJ",
