@@ -9,13 +9,31 @@ html.theme--documenter-light pre code {
 }
 */
 
+/* Comments widget */
 .utterances .utterances-frame {
    /*min-width: 600px; */
    min-height: 300px;
    position: relative;
 }
 
+/* Youtube widgets*/
 .ytb-container iframe.embed-responsive-item{
     width: 600px;
     height: 300px;
+}
+
+p, li{
+    text-align: justify;
+}
+
+/* Rating and sharing widgets */
+#pd_rating_holder_8962705 {
+    display: inline !important;
+}
+
+div.addthis_inline_share_toolbox {
+  clear: none !important;
+  margin-left: 20px;
+  margin-top: -0.8em;
+  display: inline-block;
 }

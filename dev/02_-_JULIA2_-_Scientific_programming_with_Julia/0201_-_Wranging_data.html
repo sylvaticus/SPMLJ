@@ -607,18 +607,18 @@ Float64</code></pre><h2 id="Selection-and-querying-data"><a class="docs-heading-
    7 │ Sweden    2000  10.0      3184.67
    8 │ Sweden    2020  27.98     3653.91
    9 │ UK        2020   5.0       800.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; df2 = similar(df) # rubish inside</code><code class="nohighlight hljs ansi" style="display:block;">9×4 DataFrame
- Row │ Country  Year             forarea       forvol
-     │ String   Int64            Float64       Float64
-─────┼──────────────────────────────────────────────────────
-   1 │ #undef                20  5.0e-324      8.69169e-311
-   2 │ #undef                42  1.0e-323      1.28823e-231
-   3 │ #undef                74  1.5e-323      2.22507e-308
-   4 │ #undef                96  2.0e-323      0.0
-   5 │ #undef               114  2.5e-323      0.0
-   6 │ #undef               114  3.0e-323      0.0
-   7 │ #undef               114  3.5e-323      0.0
-   8 │ #undef               114  4.0e-323      6.94931e-310
-   9 │ #undef   140655883976705  6.94951e-310  5.0e-324</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; df = similar(df,0) # empty a dataframe. The second parameter is the number of rows desired</code><code class="nohighlight hljs ansi" style="display:block;">0×4 DataFrame</code></pre><h2 id="Work-on-dataframe-structure"><a class="docs-heading-anchor" href="#Work-on-dataframe-structure">Work on dataframe structure</a><a id="Work-on-dataframe-structure-1"></a><a class="docs-heading-anchor-permalink" href="#Work-on-dataframe-structure" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; df       = copy(data)</code><code class="nohighlight hljs ansi" style="display:block;">8×4 DataFrame
+ Row │ Country  Year             forarea         forvol
+     │ String   Int64            Float64         Float64
+─────┼──────────────────────────────────────────────────────────
+   1 │ #undef       68719476736    6.92716e-310    6.92716e-310
+   2 │ #undef       73014444047    6.92716e-310    6.92716e-310
+   3 │ #undef                15    6.92716e-310    6.92716e-310
+   4 │ #undef       64424509455    6.9273e-310     6.9273e-310
+   5 │ #undef       64424509455    6.9273e-310     6.9273e-310
+   6 │ #undef       64424509455    6.92731e-310    6.92731e-310
+   7 │ #undef       25769803788    5.0e-324        5.0e-324
+   8 │ #undef   140204912410627  NaN             NaN
+   9 │ #undef             65793    6.89903e-310    6.89903e-310</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; df = similar(df,0) # empty a dataframe. The second parameter is the number of rows desired</code><code class="nohighlight hljs ansi" style="display:block;">0×4 DataFrame</code></pre><h2 id="Work-on-dataframe-structure"><a class="docs-heading-anchor" href="#Work-on-dataframe-structure">Work on dataframe structure</a><a id="Work-on-dataframe-structure-1"></a><a class="docs-heading-anchor-permalink" href="#Work-on-dataframe-structure" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; df       = copy(data)</code><code class="nohighlight hljs ansi" style="display:block;">8×4 DataFrame
  Row │ Country  Year   forarea   forvol
      │ String   Int64  Float64   Float64
 ─────┼───────────────────────────────────
@@ -1102,11 +1102,12 @@ PDRTJS_settings_8962705 = {
 "title" : "0201_-_Wranging_data.md",
 "permalink" : ""
 };
-</script><hr/><script src="https://utteranc.es/client.js"
+</script><div class="addthis_inline_share_toolbox"></div><hr/><script src="https://utteranc.es/client.js"
         repo="sylvaticus/SPMLJ"
         issue-term="title"
         label="💬 website_comment"
         theme="github-dark"
         crossorigin="anonymous"
         async>
-</script><script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.13.html">« 0106q - QUIZ 1.13</a><a class="docs-footer-nextpage" href="0202_-_Miscellaneous_topics.html">0202 - Miscellaneous topics »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Saturday 23 April 2022 13:05">Saturday 23 April 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+</script><script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script><!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.13.html">« 0106q - QUIZ 1.13</a><a class="docs-footer-nextpage" href="0202_-_Miscellaneous_topics.html">0202 - Miscellaneous topics »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Saturday 23 April 2022 15:19">Saturday 23 April 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
