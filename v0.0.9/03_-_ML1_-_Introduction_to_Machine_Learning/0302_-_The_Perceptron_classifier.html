@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>0302 - The Perceptron classifier · SPMLJ</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q39LHCRBB6"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q39LHCRBB6', {'page_path': location.pathname + location.search + location.hash});
+</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/custom.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">SPMLJ</a></span></div><form class="docs-search" action="../search.html"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">INTRO - Introduction to the course, Julia and ML</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html">0001 - Course presentation</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0002_-_Program.html">0002 - Program</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003_-_Introduction_to_Julia.html">0003 - Introduction to Julia</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004_-_Introduction_to_ML.html">0004 - Introduction to ML</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004q_-_QUIZ_0.1.html">0004q - QUIZ 0.1</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-2" type="checkbox"/><label class="tocitem" for="menuitem-2-2"><span class="docs-label">JULIA1 - Basic Julia programming</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101_-_Basic_syntax.html">0101 - Basic syntax</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101q_-_QUIZ_1.1.html">0101q - QUIZ 1.1</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101q_-_QUIZ_1.2.html">0101q - QUIZ 1.2</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0102_-_Types_and_objects.html">0102 - Types and objects</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0102q_-_QUIZ_1.3.html">0102q - QUIZ 1.3</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103_-_Predefined_types.html">0103 - Predefined types</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.4.html">0103q - QUIZ 1.4</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.5.html">0103q - QUIZ 1.5</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.6.html">0103q - QUIZ 1.6</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104_-_Control_flow_and_functions.html">0104 - Control flow and functions</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104q_-_QUIZ_1.7.html">0104q - QUIZ 1.7</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104q_-_QUIZ_1.8.html">0104q - QUIZ 1.8</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105_-_Custom_types.html">0105 - Custom types</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105q_-_QUIZ_1.10.html">0105q - QUIZ 1.10</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105q_-_QUIZ_1.9.html">0105q - QUIZ 1.9</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105x_EXERCISE-1.1.html">0105x EXERCISE-1.1</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106_-_Further_topics.html">0106 - Further topics</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.11.html">0106q - QUIZ 1.11</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.12.html">0106q - QUIZ 1.12</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.13.html">0106q - QUIZ 1.13</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-3" type="checkbox"/><label class="tocitem" for="menuitem-2-3"><span class="docs-label">JULIA2 - Scientific programming with Julia</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201_-_Wranging_data.html">0201 - Wranging data</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202_-_Miscellaneous_topics.html">0202 - Miscellaneous topics</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.1.html">0202x EXERCISE-2.1</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.2.html">0202x EXERCISE-2.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-4" type="checkbox" checked/><label class="tocitem" for="menuitem-2-4"><span class="docs-label">ML1 - Introduction to Machine Learning</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="0301_-_Machine_learning_main_concepts.html">0301 - Machine learning main concepts</a></li><li class="is-active"><a class="tocitem" href="0302_-_The_Perceptron_classifier.html">0302 - The Perceptron classifier</a><ul class="internal"><li><a class="tocitem" href="#Some-stuff-to-set-up-the-environment.."><span>Some stuff to set-up the environment..</span></a></li><li><a class="tocitem" href="#Perceptron-elementary-operations"><span>Perceptron elementary operations</span></a></li><li><a class="tocitem" href="#The-complete-algorithm"><span>The complete algorithm</span></a></li><li><a class="tocitem" href="#A-better-organisation"><span>A better organisation</span></a></li><li><a class="tocitem" href="#Testing-the-Perceptron-algorithm"><span>Testing the Perceptron algorithm</span></a></li><li><a class="tocitem" href="#Cross-validation-and-hyperparameters-optimisation"><span>Cross-validation and hyperparameters optimisation</span></a></li></ul></li><li><a class="tocitem" href="0302x_EXERCISE-3.1.html">0302x EXERCISE-3.1</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-5" type="checkbox"/><label class="tocitem" for="menuitem-2-5"><span class="docs-label">NN - Neural Networks</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0401_-_Neural_network_architectures.html">0401 - Neural network architectures</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402_-_Implementation_of_neural_networks_workflows.html">0402 - Implementation of neural networks workflows</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402x_EXERCISE-4.1.html">0402x EXERCISE-4.1</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402x_EXERCISE-4.2.html">0402x EXERCISE-4.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-6" type="checkbox"/><label class="tocitem" for="menuitem-2-6"><span class="docs-label">DT - Decision trees based algorithms</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.html">0501 - Decision trees based algorithms</a></li><li><a class="tocitem" href="../05_-_DT_-_Decision_trees_based_algorithms/0502x_EXERCISE-5.1.html">0502x EXERCISE-5.1</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Lessons</a></li><li><a class="is-disabled">ML1 - Introduction to Machine Learning</a></li><li class="is-active"><a href="0302_-_The_Perceptron_classifier.html">0302 - The Perceptron classifier</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0302_-_The_Perceptron_classifier.html">0302 - The Perceptron classifier</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/0302_-_The_Perceptron_classifier.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><div id="ytb-videos">
+<span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
+<details><summary>03 ML1  - 2A:  A first version (13:22)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/kOGSvdgd_3Y" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details><summary>03 ML1  - 2B:  A better version (10:28)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/g0yz7La53Vc" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details><summary>03 ML1  - 2C:  Cross-validation implementation (21:7)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ieIZFF6RYQo" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+</div><hr/><pre></pre><h1 id="The-Perceptron-algorithm-for-linear-classification"><a class="docs-heading-anchor" href="#The-Perceptron-algorithm-for-linear-classification">0302 - The Perceptron algorithm for linear classification</a><a id="The-Perceptron-algorithm-for-linear-classification-1"></a><a class="docs-heading-anchor-permalink" href="#The-Perceptron-algorithm-for-linear-classification" title="Permalink"></a></h1><h2 id="Some-stuff-to-set-up-the-environment.."><a class="docs-heading-anchor" href="#Some-stuff-to-set-up-the-environment..">Some stuff to set-up the environment..</a><a id="Some-stuff-to-set-up-the-environment..-1"></a><a class="docs-heading-anchor-permalink" href="#Some-stuff-to-set-up-the-environment.." title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; cd(@__DIR__)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pkg</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.activate(&quot;.&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">  Activating project at `~/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning`</code></pre><p>If using a Julia version different than 1.7 please uncomment and run the following line (the guarantee of reproducibility will however be lost) Pkg.resolve()</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.instantiate()</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Random</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Random.seed!(123)</code><code class="nohighlight hljs ansi" style="display:block;">Random.TaskLocalRNG()</code></pre><h2 id="Perceptron-elementary-operations"><a class="docs-heading-anchor" href="#Perceptron-elementary-operations">Perceptron elementary operations</a><a id="Perceptron-elementary-operations-1"></a><a class="docs-heading-anchor-permalink" href="#Perceptron-elementary-operations" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using StatsPlots</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function plot2DClassifierWithData(X,y,θ;d1=1,d2=2,origin=false,pid=1)
+           colors = [y == -1 ? &quot;red&quot; : &quot;green&quot; for y in y]
+           labels = [y == -1 ? &quot;-1&quot; : &quot;+1&quot; for y in y]
+           minD1,maxD1 = extrema(X[:,d1])
+           minD2,maxD2 = extrema(X[:,d2])
+           myplot = scatter(X[:,d1],X[:,d2], colour=colors, title=&quot;Linear classifier in 2D&quot;,xlabel=&quot;Dimx: $d1&quot;, ylabel=&quot;Dimy: $d2&quot;, group=labels)
+           constTerm = 0.0
+           if !origin
+               d1 += 1
+               d2 += 1
+               constTerm = -θ[1]/θ[d2]
+           end
+           d2Class(x) = constTerm -x * θ[d1]/θ[d2]
+           if θ[d2] == 0
+               vline!([0], color= &quot;blue&quot;,label=&quot;&quot;,linewidth=5)
+           else
+               plot!(d2Class,min(θ[d1],minD1),max(maxD1,θ[d1]), color= &quot;blue&quot;,label=&quot;&quot;,linewidth=5)
+           end
+           plot!([0,θ[d1]],[0,θ[d2]],arrow=true,color=:black,linewidth=2,label=&quot;&quot;)
+           display(myplot)
+           savefig(&quot;currentPlot$(pid).svg&quot;);
+       end</code><code class="nohighlight hljs ansi" style="display:block;">plot2DClassifierWithData (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; isClassificationError(θ,y,x) =  y * (θ&#39; * x) &lt;= eps()</code><code class="nohighlight hljs ansi" style="display:block;">isClassificationError (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; perceptronUpdate(θ,y,x)      = return θ .+ y .* x</code><code class="nohighlight hljs ansi" style="display:block;">perceptronUpdate (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X = [ 2 4
+            -6 1]</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Int64}:
+  2  4
+ -6  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y = [-1,-1]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -1
+ -1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ₀ = [0,0]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = θ₀</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -2
+ -4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ,origin=true,pid=1)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot1.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+  4
+ -5</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ,origin=true,pid=2)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot2.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X = [ 2 4
+            1 -2]</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Int64}:
+ 2   4
+ 1  -2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = θ₀</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -2
+ -4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ, origin=true,pid=3)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot3.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -3
+ -2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ, origin=true,pid=4)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot4.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -4
+  0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ,origin=true,pid=5)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot5.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -4
+  0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X = [ 2 4
+            -2 2]</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Int64}:
+  2  4
+ -2  2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y = [-1,1]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -1
+  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = θ₀</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -2
+ -4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ, origin=true,pid=6)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot6.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -4
+ -2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ,origin=true,pid=7)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot7.svg" alt/></p><h2 id="The-complete-algorithm"><a class="docs-heading-anchor" href="#The-complete-algorithm">The complete algorithm</a><a id="The-complete-algorithm-1"></a><a class="docs-heading-anchor-permalink" href="#The-complete-algorithm" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; function perceptronOrigin(X,y,epochs=1;verbose=false)
+           (nR,nD) = size(X)
+           local θ = zeros(nD)
+           for t in 1:epochs
+               for n in 1:nR
+                   if verbose
+                       println(&quot;$n: X[n,:] \t θ: $θ&quot;)
+                   end
+                   if isClassificationError(θ,y[n],X[n,:])
+                       θ = perceptronUpdate(θ,y[n],X[n,:])
+                       if verbose
+                           println(&quot;**update! New theta: $θ&quot;)
+                       end
+                   end
+               end
+           end
+           return θ
+       end</code><code class="nohighlight hljs ansi" style="display:block;">perceptronOrigin (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θopt =  perceptronOrigin(X,y,verbose=true)</code><code class="nohighlight hljs ansi" style="display:block;">1: X[n,:] 	 θ: [0.0, 0.0]
+**update! New theta: [-2.0, -4.0]
+2: X[n,:] 	 θ: [-2.0, -4.0]
+**update! New theta: [-4.0, -2.0]
+2-element Vector{Float64}:
+ -4.0
+ -2.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θopt, origin=true,pid=8)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot8.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using BetaML, DelimitedFiles</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; baseDir          = joinpath(dirname(pathof(BetaML)),&quot;..&quot;,&quot;test&quot;,&quot;data&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/.julia/packages/BetaML/cpTAz/src/../test/data&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; perceptronData   = readdlm(joinpath(dirname(pathof(BetaML)),&quot;..&quot;,&quot;test&quot;,&quot;data&quot;,&quot;binary2DData.csv&quot;),&#39;\t&#39;)</code><code class="nohighlight hljs ansi" style="display:block;">200×3 Matrix{Float64}:
+ -1.0   1.76    0.4
+ -1.0   0.979   2.24
+ -1.0   1.87   -0.977
+ -1.0   0.95   -0.151
+ -1.0  -0.103   0.411
+ -1.0   0.144   1.45
+ -1.0   0.761   0.122
+ -1.0   0.444   0.334
+ -1.0   1.49   -0.205
+ -1.0   0.313  -0.854
+  ⋮
+  1.0  -0.256   0.977
+  1.0   2.04    0.343
+  1.0   1.01    0.528
+  1.0   3.65    2.16
+  1.0   2.57    1.78
+  1.0   1.65    0.384
+  1.0   1.71    1.24
+  1.0   2.86    3.14
+  1.0   3.47    2.85</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nR = size(perceptronData,1)</code><code class="nohighlight hljs ansi" style="display:block;">200</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; idx = shuffle(1:nR)</code><code class="nohighlight hljs ansi" style="display:block;">200-element Vector{Int64}:
+ 123
+ 131
+  74
+  23
+  19
+  78
+  43
+ 130
+  83
+ 186
+   ⋮
+ 137
+ 175
+ 182
+  37
+  71
+  89
+ 142
+  82
+ 170</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; perceptronData = perceptronData[idx,:]</code><code class="nohighlight hljs ansi" style="display:block;">200×3 Matrix{Float64}:
+  1.0   1.69     0.324
+  1.0   0.811    1.49
+ -1.0  -0.913    1.12
+ -1.0  -0.5097  -0.4381
+ -1.0   1.23     1.2
+ -1.0  -0.0985  -0.6635
+ -1.0   1.49     1.9
+  1.0   0.417    2.61
+ -1.0  -1.23     0.844
+  1.0   2.28     1.01
+  ⋮
+  1.0   3.96     2.39
+  1.0   2.58     2.35
+  1.0   2.93     2.34
+ -1.0   1.14    -1.23
+ -1.0  -1.49     0.439
+ -1.0  -0.8034  -0.6895
+  1.0   1.31     3.54
+ -1.0   0.949    0.0876
+  1.0   1.32     3.66</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X                = copy(perceptronData[:,[2,3]])</code><code class="nohighlight hljs ansi" style="display:block;">200×2 Matrix{Float64}:
+  1.69     0.324
+  0.811    1.49
+ -0.913    1.12
+ -0.5097  -0.4381
+  1.23     1.2
+ -0.0985  -0.6635
+  1.49     1.9
+  0.417    2.61
+ -1.23     0.844
+  2.28     1.01
+  ⋮
+  3.96     2.39
+  2.58     2.35
+  2.93     2.34
+  1.14    -1.23
+ -1.49     0.439
+ -0.8034  -0.6895
+  1.31     3.54
+  0.949    0.0876
+  1.32     3.66</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y                = convert(Array{Int64,1},copy(perceptronData[:,1]))</code><code class="nohighlight hljs ansi" style="display:block;">200-element Vector{Int64}:
+  1
+  1
+ -1
+ -1
+ -1
+ -1
+ -1
+  1
+ -1
+  1
+  ⋮
+  1
+  1
+  1
+ -1
+ -1
+ -1
+  1
+ -1
+  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θopt             = perceptronOrigin(X,y,verbose=true)</code><code class="nohighlight hljs ansi" style="display:block;">1: X[n,:] 	 θ: [0.0, 0.0]
+**update! New theta: [1.69, 0.324]
+2: X[n,:] 	 θ: [1.69, 0.324]
+3: X[n,:] 	 θ: [1.69, 0.324]
+4: X[n,:] 	 θ: [1.69, 0.324]
+5: X[n,:] 	 θ: [1.69, 0.324]
+**update! New theta: [0.45999999999999996, -0.8759999999999999]
+6: X[n,:] 	 θ: [0.45999999999999996, -0.8759999999999999]
+**update! New theta: [0.5585, -0.2124999999999999]
+7: X[n,:] 	 θ: [0.5585, -0.2124999999999999]
+**update! New theta: [-0.9315, -2.1125]
+8: X[n,:] 	 θ: [-0.9315, -2.1125]
+**update! New theta: [-0.5145, 0.49750000000000005]
+9: X[n,:] 	 θ: [-0.5145, 0.49750000000000005]
+**update! New theta: [0.7155, -0.3464999999999999]
+10: X[n,:] 	 θ: [0.7155, -0.3464999999999999]
+11: X[n,:] 	 θ: [0.7155, -0.3464999999999999]
+**update! New theta: [1.2915, 1.1635]
+12: X[n,:] 	 θ: [1.2915, 1.1635]
+13: X[n,:] 	 θ: [1.2915, 1.1635]
+14: X[n,:] 	 θ: [1.2915, 1.1635]
+15: X[n,:] 	 θ: [1.2915, 1.1635]
+**update! New theta: [-0.5785, 0.25749999999999995]
+16: X[n,:] 	 θ: [-0.5785, 0.25749999999999995]
+17: X[n,:] 	 θ: [-0.5785, 0.25749999999999995]
+**update! New theta: [1.1315, -1.6925]
+18: X[n,:] 	 θ: [1.1315, -1.6925]
+19: X[n,:] 	 θ: [1.1315, -1.6925]
+**update! New theta: [2.6515, 0.9275000000000002]
+20: X[n,:] 	 θ: [2.6515, 0.9275000000000002]
+21: X[n,:] 	 θ: [2.6515, 0.9275000000000002]
+22: X[n,:] 	 θ: [2.6515, 0.9275000000000002]
+**update! New theta: [1.7045, 1.0825000000000002]
+23: X[n,:] 	 θ: [1.7045, 1.0825000000000002]
+24: X[n,:] 	 θ: [1.7045, 1.0825000000000002]
+**update! New theta: [0.5245, 1.2625000000000002]
+25: X[n,:] 	 θ: [0.5245, 1.2625000000000002]
+26: X[n,:] 	 θ: [0.5245, 1.2625000000000002]
+**update! New theta: [-0.4255, 1.4135000000000002]
+27: X[n,:] 	 θ: [-0.4255, 1.4135000000000002]
+28: X[n,:] 	 θ: [-0.4255, 1.4135000000000002]
+29: X[n,:] 	 θ: [-0.4255, 1.4135000000000002]
+**update! New theta: [2.3445, 2.2295000000000003]
+30: X[n,:] 	 θ: [2.3445, 2.2295000000000003]
+31: X[n,:] 	 θ: [2.3445, 2.2295000000000003]
+32: X[n,:] 	 θ: [2.3445, 2.2295000000000003]
+33: X[n,:] 	 θ: [2.3445, 2.2295000000000003]
+**update! New theta: [0.1844999999999999, 0.8895000000000002]
+34: X[n,:] 	 θ: [0.1844999999999999, 0.8895000000000002]
+35: X[n,:] 	 θ: [0.1844999999999999, 0.8895000000000002]
+**update! New theta: [1.2545, -0.16049999999999986]
+36: X[n,:] 	 θ: [1.2545, -0.16049999999999986]
+37: X[n,:] 	 θ: [1.2545, -0.16049999999999986]
+**update! New theta: [0.49349999999999994, -0.28249999999999986]
+38: X[n,:] 	 θ: [0.49349999999999994, -0.28249999999999986]
+**update! New theta: [0.5571999999999999, 1.9075000000000002]
+39: X[n,:] 	 θ: [0.5571999999999999, 1.9075000000000002]
+40: X[n,:] 	 θ: [0.5571999999999999, 1.9075000000000002]
+41: X[n,:] 	 θ: [0.5571999999999999, 1.9075000000000002]
+42: X[n,:] 	 θ: [0.5571999999999999, 1.9075000000000002]
+**update! New theta: [0.8251999999999999, 1.1055000000000001]
+43: X[n,:] 	 θ: [0.8251999999999999, 1.1055000000000001]
+44: X[n,:] 	 θ: [0.8251999999999999, 1.1055000000000001]
+45: X[n,:] 	 θ: [0.8251999999999999, 1.1055000000000001]
+**update! New theta: [-1.0448000000000002, 2.0825]
+46: X[n,:] 	 θ: [-1.0448000000000002, 2.0825]
+47: X[n,:] 	 θ: [-1.0448000000000002, 2.0825]
+**update! New theta: [-0.6968000000000002, 1.9265]
+48: X[n,:] 	 θ: [-0.6968000000000002, 1.9265]
+49: X[n,:] 	 θ: [-0.6968000000000002, 1.9265]
+50: X[n,:] 	 θ: [-0.6968000000000002, 1.9265]
+51: X[n,:] 	 θ: [-0.6968000000000002, 1.9265]
+**update! New theta: [0.9170999999999997, 2.1392]
+52: X[n,:] 	 θ: [0.9170999999999997, 2.1392]
+53: X[n,:] 	 θ: [0.9170999999999997, 2.1392]
+54: X[n,:] 	 θ: [0.9170999999999997, 2.1392]
+**update! New theta: [1.7780999999999998, 0.2292000000000003]
+55: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+56: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+57: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+58: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+59: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+60: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+61: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+62: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+63: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+64: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+65: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+66: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+67: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+68: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+69: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+70: X[n,:] 	 θ: [1.7780999999999998, 0.2292000000000003]
+**update! New theta: [0.018099999999999783, -0.17079999999999973]
+71: X[n,:] 	 θ: [0.018099999999999783, -0.17079999999999973]
+72: X[n,:] 	 θ: [0.018099999999999783, -0.17079999999999973]
+73: X[n,:] 	 θ: [0.018099999999999783, -0.17079999999999973]
+74: X[n,:] 	 θ: [0.018099999999999783, -0.17079999999999973]
+**update! New theta: [3.1681, 2.9092000000000002]
+75: X[n,:] 	 θ: [3.1681, 2.9092000000000002]
+76: X[n,:] 	 θ: [3.1681, 2.9092000000000002]
+77: X[n,:] 	 θ: [3.1681, 2.9092000000000002]
+**update! New theta: [3.5711, 1.6892000000000003]
+78: X[n,:] 	 θ: [3.5711, 1.6892000000000003]
+79: X[n,:] 	 θ: [3.5711, 1.6892000000000003]
+80: X[n,:] 	 θ: [3.5711, 1.6892000000000003]
+81: X[n,:] 	 θ: [3.5711, 1.6892000000000003]
+82: X[n,:] 	 θ: [3.5711, 1.6892000000000003]
+83: X[n,:] 	 θ: [3.5711, 1.6892000000000003]
+**update! New theta: [2.3811, 1.3722000000000003]
+84: X[n,:] 	 θ: [2.3811, 1.3722000000000003]
+85: X[n,:] 	 θ: [2.3811, 1.3722000000000003]
+86: X[n,:] 	 θ: [2.3811, 1.3722000000000003]
+87: X[n,:] 	 θ: [2.3811, 1.3722000000000003]
+88: X[n,:] 	 θ: [2.3811, 1.3722000000000003]
+**update! New theta: [2.2141, 0.7372000000000003]
+89: X[n,:] 	 θ: [2.2141, 0.7372000000000003]
+90: X[n,:] 	 θ: [2.2141, 0.7372000000000003]
+91: X[n,:] 	 θ: [2.2141, 0.7372000000000003]
+92: X[n,:] 	 θ: [2.2141, 0.7372000000000003]
+93: X[n,:] 	 θ: [2.2141, 0.7372000000000003]
+94: X[n,:] 	 θ: [2.2141, 0.7372000000000003]
+**update! New theta: [1.6001000000000003, -0.18479999999999974]
+95: X[n,:] 	 θ: [1.6001000000000003, -0.18479999999999974]
+96: X[n,:] 	 θ: [1.6001000000000003, -0.18479999999999974]
+**update! New theta: [0.7431000000000003, 0.4662000000000003]
+97: X[n,:] 	 θ: [0.7431000000000003, 0.4662000000000003]
+98: X[n,:] 	 θ: [0.7431000000000003, 0.4662000000000003]
+99: X[n,:] 	 θ: [0.7431000000000003, 0.4662000000000003]
+**update! New theta: [-0.3868999999999996, 1.5462000000000002]
+100: X[n,:] 	 θ: [-0.3868999999999996, 1.5462000000000002]
+**update! New theta: [-0.5138999999999996, 1.1442]
+101: X[n,:] 	 θ: [-0.5138999999999996, 1.1442]
+102: X[n,:] 	 θ: [-0.5138999999999996, 1.1442]
+**update! New theta: [-2.0439, -0.32579999999999987]
+103: X[n,:] 	 θ: [-2.0439, -0.32579999999999987]
+**update! New theta: [-0.0038999999999997925, 0.01720000000000016]
+104: X[n,:] 	 θ: [-0.0038999999999997925, 0.01720000000000016]
+105: X[n,:] 	 θ: [-0.0038999999999997925, 0.01720000000000016]
+106: X[n,:] 	 θ: [-0.0038999999999997925, 0.01720000000000016]
+107: X[n,:] 	 θ: [-0.0038999999999997925, 0.01720000000000016]
+108: X[n,:] 	 θ: [-0.0038999999999997925, 0.01720000000000016]
+**update! New theta: [1.1661000000000001, -0.8837999999999999]
+109: X[n,:] 	 θ: [1.1661000000000001, -0.8837999999999999]
+110: X[n,:] 	 θ: [1.1661000000000001, -0.8837999999999999]
+**update! New theta: [-0.7138999999999998, 0.46620000000000017]
+111: X[n,:] 	 θ: [-0.7138999999999998, 0.46620000000000017]
+**update! New theta: [0.3461000000000003, 2.0562000000000005]
+112: X[n,:] 	 θ: [0.3461000000000003, 2.0562000000000005]
+113: X[n,:] 	 θ: [0.3461000000000003, 2.0562000000000005]
+114: X[n,:] 	 θ: [0.3461000000000003, 2.0562000000000005]
+**update! New theta: [-0.009899999999999687, 1.3492000000000006]
+115: X[n,:] 	 θ: [-0.009899999999999687, 1.3492000000000006]
+**update! New theta: [-0.02039999999999969, -0.4407999999999994]
+116: X[n,:] 	 θ: [-0.02039999999999969, -0.4407999999999994]
+**update! New theta: [-0.5973999999999996, -0.23279999999999942]
+117: X[n,:] 	 θ: [-0.5973999999999996, -0.23279999999999942]
+**update! New theta: [1.2726000000000006, 2.847200000000001]
+118: X[n,:] 	 θ: [1.2726000000000006, 2.847200000000001]
+119: X[n,:] 	 θ: [1.2726000000000006, 2.847200000000001]
+120: X[n,:] 	 θ: [1.2726000000000006, 2.847200000000001]
+121: X[n,:] 	 θ: [1.2726000000000006, 2.847200000000001]
+122: X[n,:] 	 θ: [1.2726000000000006, 2.847200000000001]
+123: X[n,:] 	 θ: [1.2726000000000006, 2.847200000000001]
+124: X[n,:] 	 θ: [1.2726000000000006, 2.847200000000001]
+125: X[n,:] 	 θ: [1.2726000000000006, 2.847200000000001]
+126: X[n,:] 	 θ: [1.2726000000000006, 2.847200000000001]
+127: X[n,:] 	 θ: [1.2726000000000006, 2.847200000000001]
+**update! New theta: [1.1176000000000006, 2.4692000000000007]
+128: X[n,:] 	 θ: [1.1176000000000006, 2.4692000000000007]
+129: X[n,:] 	 θ: [1.1176000000000006, 2.4692000000000007]
+130: X[n,:] 	 θ: [1.1176000000000006, 2.4692000000000007]
+131: X[n,:] 	 θ: [1.1176000000000006, 2.4692000000000007]
+132: X[n,:] 	 θ: [1.1176000000000006, 2.4692000000000007]
+133: X[n,:] 	 θ: [1.1176000000000006, 2.4692000000000007]
+134: X[n,:] 	 θ: [1.1176000000000006, 2.4692000000000007]
+**update! New theta: [-0.8023999999999993, 0.9892000000000007]
+135: X[n,:] 	 θ: [-0.8023999999999993, 0.9892000000000007]
+**update! New theta: [-0.16639999999999933, 0.3132000000000007]
+136: X[n,:] 	 θ: [-0.16639999999999933, 0.3132000000000007]
+137: X[n,:] 	 θ: [-0.16639999999999933, 0.3132000000000007]
+138: X[n,:] 	 θ: [-0.16639999999999933, 0.3132000000000007]
+139: X[n,:] 	 θ: [-0.16639999999999933, 0.3132000000000007]
+**update! New theta: [-1.1453999999999993, -1.9267999999999996]
+140: X[n,:] 	 θ: [-1.1453999999999993, -1.9267999999999996]
+**update! New theta: [0.04460000000000064, -1.3927999999999996]
+141: X[n,:] 	 θ: [0.04460000000000064, -1.3927999999999996]
+142: X[n,:] 	 θ: [0.04460000000000064, -1.3927999999999996]
+**update! New theta: [1.6746000000000005, 0.3672000000000004]
+143: X[n,:] 	 θ: [1.6746000000000005, 0.3672000000000004]
+144: X[n,:] 	 θ: [1.6746000000000005, 0.3672000000000004]
+145: X[n,:] 	 θ: [1.6746000000000005, 0.3672000000000004]
+146: X[n,:] 	 θ: [1.6746000000000005, 0.3672000000000004]
+147: X[n,:] 	 θ: [1.6746000000000005, 0.3672000000000004]
+148: X[n,:] 	 θ: [1.6746000000000005, 0.3672000000000004]
+149: X[n,:] 	 θ: [1.6746000000000005, 0.3672000000000004]
+**update! New theta: [1.2726000000000006, 1.0522000000000005]
+150: X[n,:] 	 θ: [1.2726000000000006, 1.0522000000000005]
+151: X[n,:] 	 θ: [1.2726000000000006, 1.0522000000000005]
+**update! New theta: [-0.21739999999999937, 1.2572000000000005]
+152: X[n,:] 	 θ: [-0.21739999999999937, 1.2572000000000005]
+153: X[n,:] 	 θ: [-0.21739999999999937, 1.2572000000000005]
+154: X[n,:] 	 θ: [-0.21739999999999937, 1.2572000000000005]
+**update! New theta: [-2.5973999999999995, 0.3132000000000006]
+155: X[n,:] 	 θ: [-2.5973999999999995, 0.3132000000000006]
+**update! New theta: [-2.5691999999999995, -0.1147999999999994]
+156: X[n,:] 	 θ: [-2.5691999999999995, -0.1147999999999994]
+**update! New theta: [-0.049199999999999466, 1.3052000000000006]
+157: X[n,:] 	 θ: [-0.049199999999999466, 1.3052000000000006]
+158: X[n,:] 	 θ: [-0.049199999999999466, 1.3052000000000006]
+**update! New theta: [0.01900000000000053, -0.4047999999999994]
+159: X[n,:] 	 θ: [0.01900000000000053, -0.4047999999999994]
+**update! New theta: [2.5390000000000006, 1.6852000000000005]
+160: X[n,:] 	 θ: [2.5390000000000006, 1.6852000000000005]
+161: X[n,:] 	 θ: [2.5390000000000006, 1.6852000000000005]
+162: X[n,:] 	 θ: [2.5390000000000006, 1.6852000000000005]
+**update! New theta: [1.8100000000000005, 1.5562000000000005]
+163: X[n,:] 	 θ: [1.8100000000000005, 1.5562000000000005]
+164: X[n,:] 	 θ: [1.8100000000000005, 1.5562000000000005]
+165: X[n,:] 	 θ: [1.8100000000000005, 1.5562000000000005]
+166: X[n,:] 	 θ: [1.8100000000000005, 1.5562000000000005]
+167: X[n,:] 	 θ: [1.8100000000000005, 1.5562000000000005]
+168: X[n,:] 	 θ: [1.8100000000000005, 1.5562000000000005]
+**update! New theta: [1.1380000000000003, 1.1492000000000004]
+169: X[n,:] 	 θ: [1.1380000000000003, 1.1492000000000004]
+**update! New theta: [0.6150000000000003, 1.3212000000000004]
+170: X[n,:] 	 θ: [0.6150000000000003, 1.3212000000000004]
+**update! New theta: [0.5485000000000003, 1.0192000000000003]
+171: X[n,:] 	 θ: [0.5485000000000003, 1.0192000000000003]
+172: X[n,:] 	 θ: [0.5485000000000003, 1.0192000000000003]
+173: X[n,:] 	 θ: [0.5485000000000003, 1.0192000000000003]
+**update! New theta: [0.34050000000000036, 0.04220000000000035]
+174: X[n,:] 	 θ: [0.34050000000000036, 0.04220000000000035]
+175: X[n,:] 	 θ: [0.34050000000000036, 0.04220000000000035]
+176: X[n,:] 	 θ: [0.34050000000000036, 0.04220000000000035]
+177: X[n,:] 	 θ: [0.34050000000000036, 0.04220000000000035]
+178: X[n,:] 	 θ: [0.34050000000000036, 0.04220000000000035]
+**update! New theta: [-0.10349999999999965, -0.29179999999999967]
+179: X[n,:] 	 θ: [-0.10349999999999965, -0.29179999999999967]
+**update! New theta: [0.8035000000000003, -0.3436999999999997]
+180: X[n,:] 	 θ: [0.8035000000000003, -0.3436999999999997]
+181: X[n,:] 	 θ: [0.8035000000000003, -0.3436999999999997]
+182: X[n,:] 	 θ: [0.8035000000000003, -0.3436999999999997]
+183: X[n,:] 	 θ: [0.8035000000000003, -0.3436999999999997]
+**update! New theta: [1.1575000000000002, 1.0313000000000003]
+184: X[n,:] 	 θ: [1.1575000000000002, 1.0313000000000003]
+185: X[n,:] 	 θ: [1.1575000000000002, 1.0313000000000003]
+**update! New theta: [2.3275, -0.9086999999999996]
+186: X[n,:] 	 θ: [2.3275, -0.9086999999999996]
+**update! New theta: [1.9315000000000002, 0.18130000000000046]
+187: X[n,:] 	 θ: [1.9315000000000002, 0.18130000000000046]
+188: X[n,:] 	 θ: [1.9315000000000002, 0.18130000000000046]
+189: X[n,:] 	 θ: [1.9315000000000002, 0.18130000000000046]
+**update! New theta: [1.1595000000000002, -0.6426999999999995]
+190: X[n,:] 	 θ: [1.1595000000000002, -0.6426999999999995]
+**update! New theta: [1.8031000000000001, 1.5807000000000002]
+191: X[n,:] 	 θ: [1.8031000000000001, 1.5807000000000002]
+**update! New theta: [0.8821000000000001, 1.2617000000000003]
+192: X[n,:] 	 θ: [0.8821000000000001, 1.2617000000000003]
+193: X[n,:] 	 θ: [0.8821000000000001, 1.2617000000000003]
+194: X[n,:] 	 θ: [0.8821000000000001, 1.2617000000000003]
+195: X[n,:] 	 θ: [0.8821000000000001, 1.2617000000000003]
+196: X[n,:] 	 θ: [0.8821000000000001, 1.2617000000000003]
+197: X[n,:] 	 θ: [0.8821000000000001, 1.2617000000000003]
+198: X[n,:] 	 θ: [0.8821000000000001, 1.2617000000000003]
+199: X[n,:] 	 θ: [0.8821000000000001, 1.2617000000000003]
+**update! New theta: [-0.06689999999999985, 1.1741000000000004]
+200: X[n,:] 	 θ: [-0.06689999999999985, 1.1741000000000004]
+2-element Vector{Float64}:
+ -0.06689999999999985
+  1.1741000000000004</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θopt, origin=true,pid=20)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot20.svg" alt/></p><h2 id="A-better-organisation"><a class="docs-heading-anchor" href="#A-better-organisation">A better organisation</a><a id="A-better-organisation-1"></a><a class="docs-heading-anchor-permalink" href="#A-better-organisation" title="Permalink"></a></h2><p>Now we rewrite the perceptron algorithm setting all the parameters in a structure and using what could be a generic interface for any supervised model. This is the approach used by most ML libraries. We will see how to measure the classification error and as we are here we add the constant term with the constant addition to the data trick (note that editing every time the feature matrix is <em>NOT</em> efficient and we do it here only for simplicity. A better way is to explicitly model the perceptron model with a constant parameter.)</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; abstract type SupervisedModel end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; abstract type TrainingOptions end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mutable struct Perceptron &lt;: SupervisedModel
+           θ::Vector{Float64}
+       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mutable struct PerceptronTrainingOptions &lt;: TrainingOptions
+           epochs::Int64
+           verbose::Bool
+           shuffle::Bool
+           function PerceptronTrainingOptions(;epochs=1,verbose=false,shuffle=false)
+               return new(epochs,verbose,shuffle)
+           end
+       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function predict(model::Perceptron,x::AbstractVector)
+           x = vcat(1.0,x)
+           x&#39; * model.θ &gt; eps() ? (return 1) : (return -1)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">predict (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function predict(model::Perceptron,X::AbstractMatrix)
+           return [predict(model,r) for r in eachrow(X)]
+       end</code><code class="nohighlight hljs ansi" style="display:block;">predict (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function update!(model::Perceptron,X::Vector,y)
+           X       = vcat(1.0,X)
+           model.θ = model.θ .+ y .* X
+           return model.θ
+       end</code><code class="nohighlight hljs ansi" style="display:block;">update! (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function train!(model::Perceptron,X,y,ops=PerceptronTrainingOptions()::TrainingOptions)
+           epochs  = ops.epochs
+           verbose = ops.verbose
+           (nR,nD) = size(X)
+           nD += 1
+           for t in 1:epochs
+               errors = 0
+               if ops.shuffle   # more efficient !
+                 idx = shuffle(1:nR)
+                 X = X[idx,:]
+                 y = y[idx]
+               end
+               for n in 1:nR
+                   if verbose
+                       println(&quot;$n: X[n,:] \t θ: $(model.θ)&quot;)
+                   end
+                   if  predict(model,X[n,:]) != y[n]
+                       errors += 1
+                       θ = update!(model,X[n,:],y[n])
+                       if verbose
+                           println(&quot;**update! New theta: $(model.θ)&quot;)
+                       end
+                   end
+               end
+               if verbose
+                   println(&quot;Epoch $t errors: $errors&quot;)
+               end
+           end
+           return model.θ
+       end</code><code class="nohighlight hljs ansi" style="display:block;">train! (generic function with 2 methods)</code></pre><h2 id="Testing-the-Perceptron-algorithm"><a class="docs-heading-anchor" href="#Testing-the-Perceptron-algorithm">Testing the Perceptron algorithm</a><a id="Testing-the-Perceptron-algorithm-1"></a><a class="docs-heading-anchor-permalink" href="#Testing-the-Perceptron-algorithm" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; m   = Perceptron(zeros(size(X,2)+1))</code><code class="nohighlight hljs ansi" style="display:block;">Main.Perceptron([0.0, 0.0, 0.0])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ops = PerceptronTrainingOptions()</code><code class="nohighlight hljs ansi" style="display:block;">Main.PerceptronTrainingOptions(1, false, false)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; train!(m,X,y,ops)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ -5.0
+  1.7424999999999995
+  2.6404999999999994</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,m.θ,pid=9)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot9.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷ = predict(m,X)</code><code class="nohighlight hljs ansi" style="display:block;">200-element Vector{Int64}:
+ -1
+  1
+ -1
+ -1
+  1
+ -1
+  1
+  1
+ -1
+  1
+  ⋮
+  1
+  1
+  1
+ -1
+ -1
+ -1
+  1
+ -1
+  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; inSampleAccuracy = sum(y .== ŷ)/length(y)</code><code class="nohighlight hljs ansi" style="display:block;">0.89</code></pre><p>Let&#39;s see if shuffling and increasing epochs we improve the accuracy....</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ops = PerceptronTrainingOptions(verbose=false,epochs=5,shuffle=true)</code><code class="nohighlight hljs ansi" style="display:block;">Main.PerceptronTrainingOptions(5, false, true)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; m   = Perceptron(zeros(size(X,2)+1))</code><code class="nohighlight hljs ansi" style="display:block;">Main.Perceptron([0.0, 0.0, 0.0])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; train!(m,X,y,ops)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ -6.0
+  3.2406999999999955
+  3.5374000000000034</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,m.θ,pid=10)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot10.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷ = predict(m,X)</code><code class="nohighlight hljs ansi" style="display:block;">200-element Vector{Int64}:
+  1
+  1
+ -1
+ -1
+  1
+ -1
+  1
+  1
+ -1
+  1
+  ⋮
+  1
+  1
+  1
+ -1
+ -1
+ -1
+  1
+ -1
+  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; inSampleAccuracy = sum(y .== ŷ)/length(y)</code><code class="nohighlight hljs ansi" style="display:block;">0.92</code></pre><h2 id="Cross-validation-and-hyperparameters-optimisation"><a class="docs-heading-anchor" href="#Cross-validation-and-hyperparameters-optimisation">Cross-validation and hyperparameters optimisation</a><a id="Cross-validation-and-hyperparameters-optimisation-1"></a><a class="docs-heading-anchor-permalink" href="#Cross-validation-and-hyperparameters-optimisation" title="Permalink"></a></h2><p>Let&#39;s see now using separate training/validation We use the BetaML <code>partition()</code> function</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.6,0.4])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector}:
+ AbstractMatrix{Float64}[[-0.861 1.91; 1.35 1.48; … ; 0.0637 2.19; 0.396 -1.09], [1.37 1.52; 1.18 -0.18; … ; 1.98 2.38; -1.49 0.439]]
+ AbstractVector{Int64}[[-1, 1, 1, -1, 1, -1, -1, 1, -1, -1  …  1, 1, 1, 1, 1, 1, -1, -1, 1, -1], [1, -1, 1, -1, 1, -1, -1, -1, -1, -1  …  1, -1, -1, 1, 1, 1, 1, -1, 1, -1]]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; m             = Perceptron(zeros(size(X,2)+1))</code><code class="nohighlight hljs ansi" style="display:block;">Main.Perceptron([0.0, 0.0, 0.0])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ops           = PerceptronTrainingOptions(epochs=5,shuffle=true)</code><code class="nohighlight hljs ansi" style="display:block;">Main.PerceptronTrainingOptions(5, false, true)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; train!(m,xtrain,ytrain,ops)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ -4.0
+  3.7297999999999973
+  1.829999999999997</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(xtrain,ytrain,m.θ,pid=11)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot11.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtrain = predict(m,xtrain)</code><code class="nohighlight hljs ansi" style="display:block;">120-element Vector{Int64}:
+ -1
+  1
+  1
+ -1
+  1
+ -1
+  1
+  1
+ -1
+ -1
+  ⋮
+  1
+  1
+  1
+  1
+  1
+  1
+ -1
+  1
+ -1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; trainAccuracy = accuracy(ŷtrain,ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">0.9166666666666666</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sum(ytrain  .== ŷtrain)/length(ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">0.9166666666666666</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # @edit accuracy(ŷtrain,ytrain)
+       ŷtest         = predict(m,xtest)</code><code class="nohighlight hljs ansi" style="display:block;">80-element Vector{Int64}:
+  1
+  1
+  1
+  1
+  1
+ -1
+ -1
+  1
+ -1
+ -1
+  ⋮
+ -1
+  1
+  1
+  1
+  1
+  1
+ -1
+  1
+ -1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; testAccuracy  = accuracy(ŷtest,ytest)</code><code class="nohighlight hljs ansi" style="display:block;">0.8625</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(xtest,ytest,m.θ,pid=12)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot12.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; cfOut = ConfusionMatrix(ŷtest,ytest)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Utils.ConfusionMatrix{Int64}([1, -1], [&quot;1&quot;, &quot;-1&quot;], 0.8625, 0.13749999999999996, [36, 44], [41, 39], [33 3; 8 36], [0.9166666666666666 0.08333333333333333; 0.18181818181818182 0.8181818181818182], [33, 36], [36, 33], [8, 3], [3, 8], [0.8048780487804879, 0.9230769230769231], [0.9166666666666666, 0.8181818181818182], [0.8181818181818182, 0.9166666666666666], [0.8571428571428571, 0.8674698795180723], (0.8639774859287055, 0.8698874296435273), (0.8674242424242424, 0.8625), (0.8674242424242424, 0.8723484848484848), (0.8623063683304647, 0.8628227194492254))</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; print(cfOut)</code><code class="nohighlight hljs ansi" style="display:block;">
+-----------------------------------------------------------------
+
+*** CONFUSION MATRIX ***
+
+Scores actual (rows) vs predicted (columns):
+
+
+Normalised scores actual (rows) vs predicted (columns):
+
+
+ *** CONFUSION REPORT ***
+
+- Accuracy:               0.8625
+- Misclassification rate: 0.13749999999999996
+- Number of classes:      2
+
+  N Class   precision   recall  specificity  f1Score  actualCount  predictedCount
+                          TPR       TNR                 support                  
+
+  1 1           0.805    0.917        0.818    0.857           36              41
+  2 -1          0.923    0.818        0.917    0.867           44              39
+
+- Simple   avg.    0.864    0.867        0.867    0.862
+- Weigthed avg.    0.870    0.863        0.872    0.863
+
+-----------------------------------------------------------------</code></pre><p>Lets use CrossValidation</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ((xtrain,xvalidation,xtest),(ytrain,yvalidation,ytest)) = partition([X,y],[0.6,0.2,0.2])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector}:
+ AbstractMatrix{Float64}[[0.947 -0.155; -0.77 0.539; … ; 1.32 3.66; 1.86 3.14], [-1.1475 -0.4378; 1.31 0.786; … ; 0.577 -0.208; -0.4136 -0.7475], [1.14 -1.23; 1.24 0.562; … ; 0.873 1.27; 2.1 2.58]]
+ AbstractVector{Int64}[[-1, -1, 1, 1, -1, -1, -1, 1, 1, 1  …  -1, 1, 1, 1, -1, -1, -1, 1, 1, 1], [-1, 1, -1, 1, -1, 1, 1, -1, 1, 1  …  -1, -1, -1, 1, -1, -1, -1, -1, -1, -1], [-1, 1, 1, 1, -1, -1, -1, 1, -1, 1  …  1, -1, -1, -1, -1, -1, 1, 1, 1, 1]]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Very few records..... let&#39;s go back to using only two subsets but with CrossValidation
+       ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.6,0.4])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector}:
+ AbstractMatrix{Float64}[[1.52 2.62; -0.74 1.54; … ; 2.84 1.75; 1.94 1.89], [-0.659 2.61; 0.844 2.78; … ; -1.1 0.0522; 2.75 0.811]]
+ AbstractVector{Int64}[[1, -1, 1, -1, 1, -1, 1, 1, -1, -1  …  1, 1, 1, -1, 1, -1, -1, 1, 1, 1], [1, 1, 1, 1, 1, -1, -1, -1, -1, -1  …  -1, 1, 1, -1, -1, -1, 1, -1, -1, 1]]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sampler    = KFold(nSplits=10)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Utils.KFold(10, 1, true, Random._GLOBAL_RNG())</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ops     = PerceptronTrainingOptions(epochs=10,shuffle=true)</code><code class="nohighlight hljs ansi" style="display:block;">Main.PerceptronTrainingOptions(10, false, true)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; (acc,σ) = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
+                       (xtrain,ytrain) = trainData; (xval,yval) = valData
+                       m               = Perceptron(zeros(size(xtrain,2)+1))
+                       train!(m,xtrain,ytrain,ops)
+                       ŷval         = predict(m,xval)
+                       valAccuracy  = accuracy(ŷval,yval)
+                       return valAccuracy
+                   end</code><code class="nohighlight hljs ansi" style="display:block;">(0.8583333333333334, 0.08827915878928168)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; epochsSet  = 1:10:301</code><code class="nohighlight hljs ansi" style="display:block;">1:10:301</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; shuffleSet = [false,true]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Bool}:
+ 0
+ 1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bestE       = 0</code><code class="nohighlight hljs ansi" style="display:block;">0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bestShuffle = false</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bestAcc     = 0.0</code><code class="nohighlight hljs ansi" style="display:block;">0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; for e in epochsSet, s in shuffleSet
+           global bestE, bestShuffle, bestAcc
+           local acc
+           local ops  = PerceptronTrainingOptions(epochs=e,shuffle=s)
+           (acc,_)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
+                           (xtrain,ytrain) = trainData; (xval,yval) = valData
+                           m               = Perceptron(zeros(size(xtrain,2)+1))
+                           train!(m,xtrain,ytrain,ops)
+                           ŷval            = predict(m,xval)
+                           valAccuracy     = accuracy(ŷval,yval)
+                           return valAccuracy
+                       end
+           if acc &gt; bestAcc
+               bestAcc     = acc
+               bestE       = e
+               bestShuffle = s
+           end
+       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bestAcc</code><code class="nohighlight hljs ansi" style="display:block;">0.925</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bestE</code><code class="nohighlight hljs ansi" style="display:block;">161</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bestShuffle</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ops = PerceptronTrainingOptions(epochs=bestE,shuffle=bestShuffle)</code><code class="nohighlight hljs ansi" style="display:block;">Main.PerceptronTrainingOptions(161, false, true)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; m   = Perceptron(zeros(size(xtest,2)+1))</code><code class="nohighlight hljs ansi" style="display:block;">Main.Perceptron([0.0, 0.0, 0.0])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; train!(m,xtrain,ytrain,ops)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ -5.0
+  2.5832999999999586
+  4.0829999999999735</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtest           = predict(m,xtest)</code><code class="nohighlight hljs ansi" style="display:block;">80-element Vector{Int64}:
+  1
+  1
+  1
+  1
+  1
+ -1
+ -1
+  1
+ -1
+ -1
+  ⋮
+  1
+  1
+ -1
+ -1
+ -1
+  1
+ -1
+ -1
+  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; testAccuracy    = accuracy(ŷtest,ytest)</code><code class="nohighlight hljs ansi" style="display:block;">0.875</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(xtest,ytest,m.θ,pid=13)</code><code class="nohighlight hljs ansi" style="display:block;"></code></pre><p><img src="currentPlot13.svg" alt/></p><p><a href="https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/0302_-_The_Perceptron_classifier.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p><hr/><div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/runner/work/SPMLJ/SPMLJ/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/0302_-_The_Perceptron_classifier.md",
+"title" : "0302_-_The_Perceptron_classifier.md",
+"permalink" : ""
+};
+</script><div class="addthis_inline_share_toolbox"></div><hr/><script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script><script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script><!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0301_-_Machine_learning_main_concepts.html">« 0301 - Machine learning main concepts</a><a class="docs-footer-nextpage" href="0302x_EXERCISE-3.1.html">0302x EXERCISE-3.1 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Sunday 24 April 2022 14:10">Sunday 24 April 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

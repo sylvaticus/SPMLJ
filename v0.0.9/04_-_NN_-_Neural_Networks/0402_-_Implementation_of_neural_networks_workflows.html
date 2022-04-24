@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>0402 - Implementation of neural networks workflows · SPMLJ</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q39LHCRBB6"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q39LHCRBB6', {'page_path': location.pathname + location.search + location.hash});
+</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/custom.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">SPMLJ</a></span></div><form class="docs-search" action="../search.html"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">INTRO - Introduction to the course, Julia and ML</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html">0001 - Course presentation</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0002_-_Program.html">0002 - Program</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003_-_Introduction_to_Julia.html">0003 - Introduction to Julia</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004_-_Introduction_to_ML.html">0004 - Introduction to ML</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004q_-_QUIZ_0.1.html">0004q - QUIZ 0.1</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-2" type="checkbox"/><label class="tocitem" for="menuitem-2-2"><span class="docs-label">JULIA1 - Basic Julia programming</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101_-_Basic_syntax.html">0101 - Basic syntax</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101q_-_QUIZ_1.1.html">0101q - QUIZ 1.1</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101q_-_QUIZ_1.2.html">0101q - QUIZ 1.2</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0102_-_Types_and_objects.html">0102 - Types and objects</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0102q_-_QUIZ_1.3.html">0102q - QUIZ 1.3</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103_-_Predefined_types.html">0103 - Predefined types</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.4.html">0103q - QUIZ 1.4</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.5.html">0103q - QUIZ 1.5</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.6.html">0103q - QUIZ 1.6</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104_-_Control_flow_and_functions.html">0104 - Control flow and functions</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104q_-_QUIZ_1.7.html">0104q - QUIZ 1.7</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104q_-_QUIZ_1.8.html">0104q - QUIZ 1.8</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105_-_Custom_types.html">0105 - Custom types</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105q_-_QUIZ_1.10.html">0105q - QUIZ 1.10</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105q_-_QUIZ_1.9.html">0105q - QUIZ 1.9</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105x_EXERCISE-1.1.html">0105x EXERCISE-1.1</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106_-_Further_topics.html">0106 - Further topics</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.11.html">0106q - QUIZ 1.11</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.12.html">0106q - QUIZ 1.12</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.13.html">0106q - QUIZ 1.13</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-3" type="checkbox"/><label class="tocitem" for="menuitem-2-3"><span class="docs-label">JULIA2 - Scientific programming with Julia</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201_-_Wranging_data.html">0201 - Wranging data</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202_-_Miscellaneous_topics.html">0202 - Miscellaneous topics</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.1.html">0202x EXERCISE-2.1</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.2.html">0202x EXERCISE-2.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-4" type="checkbox"/><label class="tocitem" for="menuitem-2-4"><span class="docs-label">ML1 - Introduction to Machine Learning</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0301_-_Machine_learning_main_concepts.html">0301 - Machine learning main concepts</a></li><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0302_-_The_Perceptron_classifier.html">0302 - The Perceptron classifier</a></li><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0302x_EXERCISE-3.1.html">0302x EXERCISE-3.1</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-5" type="checkbox" checked/><label class="tocitem" for="menuitem-2-5"><span class="docs-label">NN - Neural Networks</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="0401_-_Neural_network_architectures.html">0401 - Neural network architectures</a></li><li class="is-active"><a class="tocitem" href="0402_-_Implementation_of_neural_networks_workflows.html">0402 - Implementation of neural networks workflows</a><ul class="internal"><li><a class="tocitem" href="#Some-stuff-to-set-up-the-environment.."><span>Some stuff to set-up the environment..</span></a></li><li><a class="tocitem" href="#Feed-forward-neural-networks"><span>Feed-forward neural networks</span></a></li><li><a class="tocitem" href="#Convolutional-neural-networks"><span>Convolutional neural networks</span></a></li></ul></li><li><a class="tocitem" href="0402x_EXERCISE-4.1.html">0402x EXERCISE-4.1</a></li><li><a class="tocitem" href="0402x_EXERCISE-4.2.html">0402x EXERCISE-4.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-6" type="checkbox"/><label class="tocitem" for="menuitem-2-6"><span class="docs-label">DT - Decision trees based algorithms</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.html">0501 - Decision trees based algorithms</a></li><li><a class="tocitem" href="../05_-_DT_-_Decision_trees_based_algorithms/0502x_EXERCISE-5.1.html">0502x EXERCISE-5.1</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Lessons</a></li><li><a class="is-disabled">NN - Neural Networks</a></li><li class="is-active"><a href="0402_-_Implementation_of_neural_networks_workflows.html">0402 - Implementation of neural networks workflows</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0402_-_Implementation_of_neural_networks_workflows.html">0402 - Implementation of neural networks workflows</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/04_-_NN_-_Neural_Networks/0402_-_Implementation_of_neural_networks_workflows.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><div id="ytb-videos">
+<span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
+<details><summary>04 NN  - 2A:  Binary classification (15:54)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IFVz0jsy5AQ" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details><summary>04 NN  - 2B:  Multinomial classification (15:1)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fqROq7B6nyY" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details><summary>04 NN  - 2C:  Regression (6:3)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/jO-mfgzo7VY" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details><summary>04 NN  - 2D:  Convolutional neural networks (13:19)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mSUdLu9HAd4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+</div><hr/><pre></pre><h1 id="Implementation-of-Neural-network-workflows"><a class="docs-heading-anchor" href="#Implementation-of-Neural-network-workflows">0402 - Implementation of Neural network workflows</a><a id="Implementation-of-Neural-network-workflows-1"></a><a class="docs-heading-anchor-permalink" href="#Implementation-of-Neural-network-workflows" title="Permalink"></a></h1><h2 id="Some-stuff-to-set-up-the-environment.."><a class="docs-heading-anchor" href="#Some-stuff-to-set-up-the-environment..">Some stuff to set-up the environment..</a><a id="Some-stuff-to-set-up-the-environment..-1"></a><a class="docs-heading-anchor-permalink" href="#Some-stuff-to-set-up-the-environment.." title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; cd(@__DIR__)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pkg</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.activate(&quot;.&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">  Activating project at `~/work/SPMLJ/SPMLJ/buildedDoc/04_-_NN_-_Neural_Networks`</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # If using a Julia version different than 1.7 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
+       # Pkg.resolve()
+       Pkg.instantiate()</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Random</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Random.seed!(123)</code><code class="nohighlight hljs ansi" style="display:block;">Random.TaskLocalRNG()</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ENV[&quot;DATADEPS_ALWAYS_ACCEPT&quot;] = &quot;true&quot;</code><code class="nohighlight hljs ansi" style="display:block;">&quot;true&quot;</code></pre><p>We will <em>not</em> run cross validation here to find the optimal hyper-parameters. The process will not be different than those we saw in the lesson on the Perceptron. Instead we focus on creating neural network models, train them based on data and evaluating their predictions. For feed-forward neural networks (both for classification and regression) we will use <a href="https://github.com/sylvaticus/BetaML.jl">BetaML</a>, while for Convolutional Neural Networks example we will use the <a href="https://github.com/FluxML/Flux.jl">Flux.jl</a> package.</p><h2 id="Feed-forward-neural-networks"><a class="docs-heading-anchor" href="#Feed-forward-neural-networks">Feed-forward neural networks</a><a id="Feed-forward-neural-networks-1"></a><a class="docs-heading-anchor-permalink" href="#Feed-forward-neural-networks" title="Permalink"></a></h2><h3 id="Binary-classification"><a class="docs-heading-anchor" href="#Binary-classification">Binary classification</a><a id="Binary-classification-1"></a><a class="docs-heading-anchor-permalink" href="#Binary-classification" title="Permalink"></a></h3><p>Data loading...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using BetaML, DelimitedFiles</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; data  = readdlm(joinpath(dirname(pathof(BetaML)),&quot;..&quot;,&quot;test&quot;,&quot;data&quot;,&quot;binary2DData.csv&quot;),&#39;\t&#39;)</code><code class="nohighlight hljs ansi" style="display:block;">200×3 Matrix{Float64}:
+ -1.0   1.76    0.4
+ -1.0   0.979   2.24
+ -1.0   1.87   -0.977
+ -1.0   0.95   -0.151
+ -1.0  -0.103   0.411
+ -1.0   0.144   1.45
+ -1.0   0.761   0.122
+ -1.0   0.444   0.334
+ -1.0   1.49   -0.205
+ -1.0   0.313  -0.854
+  ⋮
+  1.0  -0.256   0.977
+  1.0   2.04    0.343
+  1.0   1.01    0.528
+  1.0   3.65    2.16
+  1.0   2.57    1.78
+  1.0   1.65    0.384
+  1.0   1.71    1.24
+  1.0   2.86    3.14
+  1.0   3.47    2.85</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nR   = size(data,1)</code><code class="nohighlight hljs ansi" style="display:block;">200</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; idx  = shuffle(1:nR)</code><code class="nohighlight hljs ansi" style="display:block;">200-element Vector{Int64}:
+ 123
+ 131
+  74
+  23
+  19
+  78
+  43
+ 130
+  83
+ 186
+   ⋮
+ 137
+ 175
+ 182
+  37
+  71
+  89
+ 142
+  82
+ 170</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; data = data[idx,:]</code><code class="nohighlight hljs ansi" style="display:block;">200×3 Matrix{Float64}:
+  1.0   1.69     0.324
+  1.0   0.811    1.49
+ -1.0  -0.913    1.12
+ -1.0  -0.5097  -0.4381
+ -1.0   1.23     1.2
+ -1.0  -0.0985  -0.6635
+ -1.0   1.49     1.9
+  1.0   0.417    2.61
+ -1.0  -1.23     0.844
+  1.0   2.28     1.01
+  ⋮
+  1.0   3.96     2.39
+  1.0   2.58     2.35
+  1.0   2.93     2.34
+ -1.0   1.14    -1.23
+ -1.0  -1.49     0.439
+ -1.0  -0.8034  -0.6895
+  1.0   1.31     3.54
+ -1.0   0.949    0.0876
+  1.0   1.32     3.66</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X    = copy(data[:,[2,3]])</code><code class="nohighlight hljs ansi" style="display:block;">200×2 Matrix{Float64}:
+  1.69     0.324
+  0.811    1.49
+ -0.913    1.12
+ -0.5097  -0.4381
+  1.23     1.2
+ -0.0985  -0.6635
+  1.49     1.9
+  0.417    2.61
+ -1.23     0.844
+  2.28     1.01
+  ⋮
+  3.96     2.39
+  2.58     2.35
+  2.93     2.34
+  1.14    -1.23
+ -1.49     0.439
+ -0.8034  -0.6895
+  1.31     3.54
+  0.949    0.0876
+  1.32     3.66</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y    = max.(0,convert(Array{Int64,1},copy(data[:,1]))) # Converting labels from {-1,1} to {0,1}</code><code class="nohighlight hljs ansi" style="display:block;">200-element Vector{Int64}:
+ 1
+ 1
+ 0
+ 0
+ 0
+ 0
+ 0
+ 1
+ 0
+ 1
+ ⋮
+ 1
+ 1
+ 1
+ 0
+ 0
+ 0
+ 1
+ 0
+ 1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.7,0.3])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector}:
+ AbstractMatrix{Float64}[[1.23 1.2; 3.49 -0.07; … ; 2.69 2.69; 0.979 2.24], [-0.8708 -0.5788; 0.127 0.402; … ; -0.312 0.0562; -0.674 0.0318]]
+ AbstractVector{Int64}[[0, 1, 0, 0, 0, 0, 1, 1, 1, 1  …  1, 1, 1, 0, 0, 0, 0, 1, 1, 0], [0, 0, 0, 1, 0, 1, 1, 1, 1, 1  …  0, 1, 1, 0, 0, 0, 1, 1, 0, 0]]</code></pre><h4 id="Using-defaults-hidding-complexity"><a class="docs-heading-anchor" href="#Using-defaults-hidding-complexity">Using defaults - hidding complexity</a><a id="Using-defaults-hidding-complexity-1"></a><a class="docs-heading-anchor-permalink" href="#Using-defaults-hidding-complexity" title="Permalink"></a></h4><p>Model definition...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; l1   = DenseLayer(2,5,f=tanh)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer([0.7114333605012103 -0.46840598025417524; -0.5672928157707955 0.4615531187467369; … ; 0.3460984398145658 -0.042222920388582996; -0.3373448835886066 0.13190727737286456], [-0.3003496305664325, 0.4564154347727757, -0.680410701712616, -0.4411408342040226, -0.727094508745879], tanh, nothing)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l2   = DenseLayer(5,5,f=relu)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer([-0.24966234202395343 -0.1450088367408291 … -0.10738350533488994 0.7247141142027148; -0.6656904389257094 -0.25622478582029584 … 0.08056492594196829 -0.26225834425970906; … ; -0.05944120984655077 0.5919235655676248 … -0.6555792177003029 -0.48387955484315165; -0.34028100059184424 0.3808788075736441 … 0.1397207349693791 0.4839512714899258], [-0.5050945187284572, -0.4236829371301429, 0.4386534893642128, -0.014288651256534779, -0.22467496450689328], BetaML.Utils.relu, nothing)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l3   = DenseLayer(5,1,f=sigmoid)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer([-0.6941847710439693 0.6253114897153567 … 0.9597552104353553 -0.3356524103426095], [-0.31962023986613586], BetaML.Utils.sigmoid, nothing)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mynn = buildNetwork([l1,l2,l3],squaredCost)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.NN(BetaML.Nn.AbstractLayer[BetaML.Nn.DenseLayer([0.7114333605012103 -0.46840598025417524; -0.5672928157707955 0.4615531187467369; … ; 0.3460984398145658 -0.042222920388582996; -0.3373448835886066 0.13190727737286456], [-0.3003496305664325, 0.4564154347727757, -0.680410701712616, -0.4411408342040226, -0.727094508745879], tanh, nothing), BetaML.Nn.DenseLayer([-0.24966234202395343 -0.1450088367408291 … -0.10738350533488994 0.7247141142027148; -0.6656904389257094 -0.25622478582029584 … 0.08056492594196829 -0.26225834425970906; … ; -0.05944120984655077 0.5919235655676248 … -0.6555792177003029 -0.48387955484315165; -0.34028100059184424 0.3808788075736441 … 0.1397207349693791 0.4839512714899258], [-0.5050945187284572, -0.4236829371301429, 0.4386534893642128, -0.014288651256534779, -0.22467496450689328], BetaML.Utils.relu, nothing), BetaML.Nn.DenseLayer([-0.6941847710439693 0.6253114897153567 … 0.9597552104353553 -0.3356524103426095], [-0.31962023986613586], BetaML.Utils.sigmoid, nothing)], BetaML.Utils.squaredCost, nothing, false, &quot;Neural Network&quot;)</code></pre><p>Training...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; train!(mynn,xtrain,ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">***
+*** Training Neural Network for 100 epochs with algorithm BetaML.Nn.ADAM.
+Training.. 	 avg ϵ on (Epoch 1 Batch 4): 	 0.15699130044905962
+Training.. 	 avg ϵ on (Epoch 10 Batch 4): 	 0.1567364224941614
+Training.. 	 avg ϵ on (Epoch 20 Batch 4): 	 0.16405010084739874
+Training.. 	 avg ϵ on (Epoch 30 Batch 4): 	 0.12619916483702404
+Training.. 	 avg ϵ on (Epoch 40 Batch 4): 	 0.11126964564711478
+Training.. 	 avg ϵ on (Epoch 50 Batch 4): 	 0.107809851602766
+Training.. 	 avg ϵ on (Epoch 60 Batch 4): 	 0.09092457830472603
+Training.. 	 avg ϵ on (Epoch 70 Batch 4): 	 0.06796781644461652
+Training.. 	 avg ϵ on (Epoch 80 Batch 4): 	 0.06750170957599748
+Training.. 	 avg ϵ on (Epoch 90 Batch 4): 	 0.053652390131002786
+Training.. 	 avg ϵ on (Epoch 100 Batch 4): 	 0.03537649303167354
+Training of 100 epoch completed. Final epoch error: 0.04901051694560962.
+(epochs = 100, ϵ_epochs = [0.16917361724292546, 0.1673212323433058, 0.16559724017832195, 0.16391033138766398, 0.1622650152221565, 0.1606237255175449, 0.15904696343918534, 0.1574994634681001, 0.1560231922458023, 0.15463191100381887  …  0.05271910822952187, 0.05223613716710994, 0.05176930524991748, 0.05132435927692999, 0.05089006848008419, 0.05047956943681352, 0.05010007704280328, 0.04973158120785569, 0.049363124241603495, 0.04901051694560962], θ_epochs = Any[])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtrain         = predict(mynn, xtrain) |&gt; makeColVector .|&gt; round .|&gt; Int</code><code class="nohighlight hljs ansi" style="display:block;">140-element Vector{Int64}:
+ 1
+ 1
+ 0
+ 0
+ 0
+ 0
+ 1
+ 1
+ 1
+ 1
+ ⋮
+ 1
+ 1
+ 0
+ 0
+ 0
+ 0
+ 1
+ 1
+ 1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtest          = predict(mynn, xtest)  |&gt; makeColVector .|&gt; round .|&gt; Int</code><code class="nohighlight hljs ansi" style="display:block;">60-element Vector{Int64}:
+ 0
+ 0
+ 0
+ 1
+ 0
+ 1
+ 1
+ 1
+ 1
+ 0
+ ⋮
+ 1
+ 1
+ 0
+ 0
+ 1
+ 1
+ 1
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; trainAccuracy  = accuracy(ŷtrain,ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">0.9214285714285714</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; testAccuracy   = accuracy(ŷtest,ytest)</code><code class="nohighlight hljs ansi" style="display:block;">0.9333333333333333</code></pre><h4 id="Specifying-all-options"><a class="docs-heading-anchor" href="#Specifying-all-options">Specifying all options</a><a id="Specifying-all-options-1"></a><a class="docs-heading-anchor-permalink" href="#Specifying-all-options" title="Permalink"></a></h4><p>Model definition...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; l1   = DenseLayer(2,5,f=tanh, df= dtanh,rng=copy(FIXEDRNG))</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer([-0.5906259287724187 -0.030940667488043583; -0.24536094247801754 0.48878436852866713; … ; -0.8466984663657858 0.027858152254290336; -0.11481842953412624 -0.009180955255778445], [0.37280922460295074, 0.35842073435858446, 0.696721837875378, 0.8225343299333828, 0.44293565195483586], tanh, BetaML.Utils.dtanh)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l2   = DenseLayer(5,5,f=relu,df=drelu,rng=copy(FIXEDRNG))</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer([-0.49415310523844497 -0.025886819681528617 … 0.09224620317870791 -0.2298725180847525; -0.20528369264408397 0.40894634274263597 … 0.01065168104625569 0.04243100148415224; … ; -0.7083987613359595 0.023307802404264888 … -0.3619336136169306 -0.4825559053138102; -0.09606399030062296 -0.0076813382679077336 … -0.3824319138128976 0.21378287379211514], [-0.11178452751598777, -0.2115472973462721, 0.12029035453379433, -0.06939594013486328, -0.5177091839997635], BetaML.Utils.relu, BetaML.Utils.drelu)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l3   = DenseLayer(5,1,f=sigmoid,df=dsigmoid,rng=copy(FIXEDRNG))</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer([-0.6379489156883928 -0.2650201076194998 … -0.9145388683760447 -0.12401807820151456], [-0.033419740504278206], BetaML.Utils.sigmoid, BetaML.Utils.dsigmoid)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mynn = buildNetwork([l1,l2,l3],squaredCost,dcf=dSquaredCost,name=&quot;A classification task&quot;) # or crossEntropy / dCrossEntropy</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.NN(BetaML.Nn.AbstractLayer[BetaML.Nn.DenseLayer([-0.5906259287724187 -0.030940667488043583; -0.24536094247801754 0.48878436852866713; … ; -0.8466984663657858 0.027858152254290336; -0.11481842953412624 -0.009180955255778445], [0.37280922460295074, 0.35842073435858446, 0.696721837875378, 0.8225343299333828, 0.44293565195483586], tanh, BetaML.Utils.dtanh), BetaML.Nn.DenseLayer([-0.49415310523844497 -0.025886819681528617 … 0.09224620317870791 -0.2298725180847525; -0.20528369264408397 0.40894634274263597 … 0.01065168104625569 0.04243100148415224; … ; -0.7083987613359595 0.023307802404264888 … -0.3619336136169306 -0.4825559053138102; -0.09606399030062296 -0.0076813382679077336 … -0.3824319138128976 0.21378287379211514], [-0.11178452751598777, -0.2115472973462721, 0.12029035453379433, -0.06939594013486328, -0.5177091839997635], BetaML.Utils.relu, BetaML.Utils.drelu), BetaML.Nn.DenseLayer([-0.6379489156883928 -0.2650201076194998 … -0.9145388683760447 -0.12401807820151456], [-0.033419740504278206], BetaML.Utils.sigmoid, BetaML.Utils.dsigmoid)], BetaML.Utils.squaredCost, BetaML.Utils.dSquaredCost, false, &quot;A classification task&quot;)</code></pre><p>Training...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; function myOwnTrainingInfo(nn,x,y;n,nBatches,epochs,verbosity,nEpoch,nBatch)
+           if verbosity == NONE
+               return false # doesn&#39;t stop the training
+           end
+           nMsgDict = Dict(LOW =&gt; 0, STD =&gt; 10,HIGH =&gt; 100, FULL =&gt; n)
+           nMsgs = nMsgDict[verbosity]
+           batchSize = size(x,1)
+           if verbosity == FULL || ( nBatch == nBatches &amp;&amp; ( nEpoch == 1  || nEpoch % ceil(epochs/nMsgs) == 0))
+       
+              ϵ = loss(nn,x,y)
+              println(&quot;MY Training.. \t avg ϵ on (Epoch $nEpoch Batch $nBatch): \t $(ϵ)&quot;)
+           end
+           return false
+        end</code><code class="nohighlight hljs ansi" style="display:block;">myOwnTrainingInfo (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; train!(mynn,xtrain,ytrain,epochs=300,batchSize=6,sequential=true,verbosity=STD,cb=myOwnTrainingInfo,optAlg=ADAM(η=t -&gt; 0.001, λ=1.0, β₁=0.9, β₂=0.999, ϵ=1e-8),rng=copy(FIXEDRNG))</code><code class="nohighlight hljs ansi" style="display:block;">***
+*** Training A classification task for 300 epochs with algorithm BetaML.Nn.ADAM.
+MY Training.. 	 avg ϵ on (Epoch 1 Batch 23): 	 0.16103412507860362
+MY Training.. 	 avg ϵ on (Epoch 30 Batch 23): 	 0.08706632850368307
+MY Training.. 	 avg ϵ on (Epoch 60 Batch 23): 	 0.013326640238467073
+MY Training.. 	 avg ϵ on (Epoch 90 Batch 23): 	 0.004384819775697903
+MY Training.. 	 avg ϵ on (Epoch 120 Batch 23): 	 0.0030238464135311552
+MY Training.. 	 avg ϵ on (Epoch 150 Batch 23): 	 0.002613284569064071
+MY Training.. 	 avg ϵ on (Epoch 180 Batch 23): 	 0.002421544671018368
+Training the Neural Network... 66%|█████████████▉       |  ETA: 0:00:01MY Training.. 	 avg ϵ on (Epoch 210 Batch 23): 	 0.0023272034592897897
+MY Training.. 	 avg ϵ on (Epoch 240 Batch 23): 	 0.002228380401705371
+MY Training.. 	 avg ϵ on (Epoch 270 Batch 23): 	 0.002167310449657978
+MY Training.. 	 avg ϵ on (Epoch 300 Batch 23): 	 0.0021340729712622506
+Training the Neural Network...100%|█████████████████████| Time: 0:00:01
+Training of 300 epoch completed. Final epoch error: 0.030711116726713256.
+(epochs = 300, ϵ_epochs = [0.20942586889145268, 0.1935386151188913, 0.17609737229555203, 0.1602127808957446, 0.1476973401269771, 0.13911783758503385, 0.13258912586968766, 0.1273331140962368, 0.12336251767930122, 0.11999524737501492  …  0.030726403524812807, 0.030724668111004914, 0.030722941891226454, 0.030721224881454994, 0.030719517094469573, 0.030717818539856057, 0.030716129224029727, 0.03071444915027169, 0.03071277831877717, 0.030711116726713256], θ_epochs = Any[])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtrain         = predict(mynn, xtrain) |&gt; makeColVector .|&gt; round .|&gt; Int</code><code class="nohighlight hljs ansi" style="display:block;">140-element Vector{Int64}:
+ 1
+ 1
+ 0
+ 0
+ 0
+ 0
+ 1
+ 1
+ 1
+ 1
+ ⋮
+ 1
+ 1
+ 0
+ 0
+ 0
+ 0
+ 1
+ 1
+ 1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtest          = predict(mynn, xtest)  |&gt; makeColVector .|&gt; round .|&gt; Int</code><code class="nohighlight hljs ansi" style="display:block;">60-element Vector{Int64}:
+ 0
+ 0
+ 0
+ 1
+ 0
+ 1
+ 1
+ 1
+ 1
+ 0
+ ⋮
+ 1
+ 1
+ 0
+ 0
+ 1
+ 1
+ 1
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; trainAccuracy  = accuracy(ŷtrain,ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">0.9214285714285714</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; testAccuracy   = accuracy(ŷtest,ytest)</code><code class="nohighlight hljs ansi" style="display:block;">0.95</code></pre><h3 id="Multinomial-classification"><a class="docs-heading-anchor" href="#Multinomial-classification">Multinomial classification</a><a id="Multinomial-classification-1"></a><a class="docs-heading-anchor-permalink" href="#Multinomial-classification" title="Permalink"></a></h3><p>We want to determine the plant specie given some bothanic measures of the flower</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; iris     = readdlm(joinpath(dirname(Base.find_package(&quot;BetaML&quot;)),&quot;..&quot;,&quot;test&quot;,&quot;data&quot;,&quot;iris.csv&quot;),&#39;,&#39;,skipstart=1)</code><code class="nohighlight hljs ansi" style="display:block;">150×5 Matrix{Any}:
+ 5.1  3.5  1.4  0.2  &quot;setosa&quot;
+ 4.9  3.0  1.4  0.2  &quot;setosa&quot;
+ 4.7  3.2  1.3  0.2  &quot;setosa&quot;
+ 4.6  3.1  1.5  0.2  &quot;setosa&quot;
+ 5.0  3.6  1.4  0.2  &quot;setosa&quot;
+ 5.4  3.9  1.7  0.4  &quot;setosa&quot;
+ 4.6  3.4  1.4  0.3  &quot;setosa&quot;
+ 5.0  3.4  1.5  0.2  &quot;setosa&quot;
+ 4.4  2.9  1.4  0.2  &quot;setosa&quot;
+ 4.9  3.1  1.5  0.1  &quot;setosa&quot;
+ ⋮
+ 6.9  3.1  5.1  2.3  &quot;virginica&quot;
+ 5.8  2.7  5.1  1.9  &quot;virginica&quot;
+ 6.8  3.2  5.9  2.3  &quot;virginica&quot;
+ 6.7  3.3  5.7  2.5  &quot;virginica&quot;
+ 6.7  3.0  5.2  2.3  &quot;virginica&quot;
+ 6.3  2.5  5.0  1.9  &quot;virginica&quot;
+ 6.5  3.0  5.2  2.0  &quot;virginica&quot;
+ 6.2  3.4  5.4  2.3  &quot;virginica&quot;
+ 5.9  3.0  5.1  1.8  &quot;virginica&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; iris     = iris[shuffle(axes(iris, 1)), :] # Shuffle the records, as they aren&#39;t by default</code><code class="nohighlight hljs ansi" style="display:block;">150×5 Matrix{Any}:
+ 7.6  3.0  6.6  2.1  &quot;virginica&quot;
+ 6.5  3.0  5.2  2.0  &quot;virginica&quot;
+ 6.3  3.3  6.0  2.5  &quot;virginica&quot;
+ 6.2  3.4  5.4  2.3  &quot;virginica&quot;
+ 6.3  3.4  5.6  2.4  &quot;virginica&quot;
+ 5.5  3.5  1.3  0.2  &quot;setosa&quot;
+ 5.0  2.3  3.3  1.0  &quot;versicolor&quot;
+ 7.1  3.0  5.9  2.1  &quot;virginica&quot;
+ 6.3  2.3  4.4  1.3  &quot;versicolor&quot;
+ 5.2  3.5  1.5  0.2  &quot;setosa&quot;
+ ⋮
+ 5.1  2.5  3.0  1.1  &quot;versicolor&quot;
+ 7.2  3.0  5.8  1.6  &quot;virginica&quot;
+ 4.8  3.1  1.6  0.2  &quot;setosa&quot;
+ 5.1  3.5  1.4  0.3  &quot;setosa&quot;
+ 4.9  3.6  1.4  0.1  &quot;setosa&quot;
+ 6.1  2.6  5.6  1.4  &quot;virginica&quot;
+ 6.3  2.5  4.9  1.5  &quot;versicolor&quot;
+ 5.0  3.6  1.4  0.2  &quot;setosa&quot;
+ 7.7  2.6  6.9  2.3  &quot;virginica&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x        = convert(Array{Float64,2}, iris[:,1:4])</code><code class="nohighlight hljs ansi" style="display:block;">150×4 Matrix{Float64}:
+ 7.6  3.0  6.6  2.1
+ 6.5  3.0  5.2  2.0
+ 6.3  3.3  6.0  2.5
+ 6.2  3.4  5.4  2.3
+ 6.3  3.4  5.6  2.4
+ 5.5  3.5  1.3  0.2
+ 5.0  2.3  3.3  1.0
+ 7.1  3.0  5.9  2.1
+ 6.3  2.3  4.4  1.3
+ 5.2  3.5  1.5  0.2
+ ⋮
+ 5.1  2.5  3.0  1.1
+ 7.2  3.0  5.8  1.6
+ 4.8  3.1  1.6  0.2
+ 5.1  3.5  1.4  0.3
+ 4.9  3.6  1.4  0.1
+ 6.1  2.6  5.6  1.4
+ 6.3  2.5  4.9  1.5
+ 5.0  3.6  1.4  0.2
+ 7.7  2.6  6.9  2.3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y        = map(x-&gt;Dict(&quot;setosa&quot; =&gt; 1, &quot;versicolor&quot; =&gt; 2, &quot;virginica&quot; =&gt;3)[x],iris[:, 5]) # Convert the target column to numbers</code><code class="nohighlight hljs ansi" style="display:block;">150-element Vector{Int64}:
+ 3
+ 3
+ 3
+ 3
+ 3
+ 1
+ 2
+ 3
+ 2
+ 1
+ ⋮
+ 2
+ 3
+ 1
+ 1
+ 1
+ 3
+ 2
+ 1
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ((xtrain,xtest),(ytrain,ytest)) = partition([x,y],[0.8,0.2],shuffle=false)</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector}:
+ AbstractMatrix{Float64}[[7.6 3.0 6.6 2.1; 6.5 3.0 5.2 2.0; … ; 6.3 3.3 4.7 1.6; 6.3 2.7 4.9 1.8], [4.4 2.9 1.4 0.2; 5.5 2.3 4.0 1.3; … ; 5.0 3.6 1.4 0.2; 7.7 2.6 6.9 2.3]]
+ AbstractVector{Int64}[[3, 3, 3, 3, 3, 1, 2, 3, 2, 1  …  3, 2, 2, 1, 3, 1, 3, 2, 2, 3], [1, 2, 2, 1, 1, 2, 2, 3, 2, 2  …  3, 2, 3, 1, 1, 1, 3, 2, 1, 3]]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ytrain_oh = oneHotEncoder(ytrain) # Convert to One-hot representation (e.g. 2 =&gt; [0 1 0], 3 =&gt; [0 0 1])</code><code class="nohighlight hljs ansi" style="display:block;">120×3 Matrix{Int64}:
+ 0  0  1
+ 0  0  1
+ 0  0  1
+ 0  0  1
+ 0  0  1
+ 1  0  0
+ 0  1  0
+ 0  0  1
+ 0  1  0
+ 1  0  0
+ ⋮
+ 0  1  0
+ 0  1  0
+ 1  0  0
+ 0  0  1
+ 1  0  0
+ 0  0  1
+ 0  1  0
+ 0  1  0
+ 0  0  1</code></pre><p>Define the Artificial Neural Network model</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; l1   = DenseLayer(4,10,f=relu) # Activation function is ReLU</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer([0.08810718257267769 0.4438377967110334 -0.37264137236830386 -0.5675793667600653; 0.28330514434945786 -0.6492760216930226 -0.38373378010496734 -0.2068666764154719; … ; 0.49212947049159106 0.3525703845340231 -0.2738356656608552 0.04824168948786289; 0.3620453496524063 -0.16339999103332714 -0.5223113549978162 0.27679840195925676], [-0.30345566664660867, 0.6221600121053414, 0.2583008737739664, -0.16376191205074286, 0.26464602008093285, 0.05938240548430895, 0.1776504251523865, 0.03896925233156634, 0.45328794043691545, 0.6401364079583236], BetaML.Utils.relu, nothing)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l2   = DenseLayer(10,3)        # Activation function is identity by default</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer([-0.16526408831202344 0.09443683140104497 … 0.2817357432654801 -0.5052590524413781; 0.3925951602664908 -0.0028374365951118197 … 0.47488714495141426 -0.1107389715437852; 0.37642387099674224 -0.2156111929531354 … 0.019362140605474698 0.030582101562182662], [-0.1316500788791678, 0.40702832655345755, -0.4739179415699], identity, nothing)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l3   = VectorFunctionLayer(3,f=softmax) # Add a (parameterless) layer whose activation function (softMax in this case) is defined to all its nodes at once</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.VectorFunctionLayer{0}(fill(NaN), 3, 3, BetaML.Utils.softmax, nothing, nothing)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mynn = buildNetwork([l1,l2,l3],crossEntropy,name=&quot;Multinomial logistic regression Model Sepal&quot;) # Build the NN and use the squared cost (aka MSE) as error function (crossEntropy could also be used)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.NN(BetaML.Nn.AbstractLayer[BetaML.Nn.DenseLayer([0.08810718257267769 0.4438377967110334 -0.37264137236830386 -0.5675793667600653; 0.28330514434945786 -0.6492760216930226 -0.38373378010496734 -0.2068666764154719; … ; 0.49212947049159106 0.3525703845340231 -0.2738356656608552 0.04824168948786289; 0.3620453496524063 -0.16339999103332714 -0.5223113549978162 0.27679840195925676], [-0.30345566664660867, 0.6221600121053414, 0.2583008737739664, -0.16376191205074286, 0.26464602008093285, 0.05938240548430895, 0.1776504251523865, 0.03896925233156634, 0.45328794043691545, 0.6401364079583236], BetaML.Utils.relu, nothing), BetaML.Nn.DenseLayer([-0.16526408831202344 0.09443683140104497 … 0.2817357432654801 -0.5052590524413781; 0.3925951602664908 -0.0028374365951118197 … 0.47488714495141426 -0.1107389715437852; 0.37642387099674224 -0.2156111929531354 … 0.019362140605474698 0.030582101562182662], [-0.1316500788791678, 0.40702832655345755, -0.4739179415699], identity, nothing), BetaML.Nn.VectorFunctionLayer{0}(fill(NaN), 3, 3, BetaML.Utils.softmax, nothing, nothing)], BetaML.Utils.crossEntropy, nothing, false, &quot;Multinomial logistic regression Model Sepal&quot;)</code></pre><p>Training it (default to ADAM)</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; res = train!(mynn,scale(xtrain),ytrain_oh,batchSize=6) # Use optAlg=SGD() to use Stochastic Gradient Descent instead</code><code class="nohighlight hljs ansi" style="display:block;">***
+*** Training Multinomial logistic regression Model Sepal for 100 epochs with algorithm BetaML.Nn.ADAM.
+Training.. 	 avg ϵ on (Epoch 1 Batch 20): 	 0.9948127457289552
+Training.. 	 avg ϵ on (Epoch 10 Batch 20): 	 0.5837865124896999
+Training.. 	 avg ϵ on (Epoch 20 Batch 20): 	 0.36694017936439677
+Training.. 	 avg ϵ on (Epoch 30 Batch 20): 	 0.22011985671566248
+Training.. 	 avg ϵ on (Epoch 40 Batch 20): 	 0.31818952808538375
+Training.. 	 avg ϵ on (Epoch 50 Batch 20): 	 0.13230320748958713
+Training.. 	 avg ϵ on (Epoch 60 Batch 20): 	 0.2772086520705127
+Training.. 	 avg ϵ on (Epoch 70 Batch 20): 	 0.02489704393546822
+Training.. 	 avg ϵ on (Epoch 80 Batch 20): 	 0.03742574620568454
+Training.. 	 avg ϵ on (Epoch 90 Batch 20): 	 0.03262732414394961
+Training.. 	 avg ϵ on (Epoch 100 Batch 20): 	 0.027611497248841266
+Training of 100 epoch completed. Final epoch error: 0.08016519346344649.
+(epochs = 100, ϵ_epochs = [1.2671601037241338, 1.158705164288321, 1.0633035006544664, 0.9714764470962363, 0.8981174025629668, 0.8353360876340743, 0.779735982869415, 0.7282557325133754, 0.6848860468161013, 0.6412222884724327  …  0.08936372126355155, 0.08815735892785255, 0.08705601536883403, 0.08594278536952424, 0.08489919240480992, 0.08390185721584734, 0.08290798132642287, 0.08195111840306994, 0.08106313154147712, 0.08016519346344649], θ_epochs = Any[])</code></pre><p>Test it</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtrain        = predict(mynn,scale(xtrain))   # Note the scaling function</code><code class="nohighlight hljs ansi" style="display:block;">120×3 Matrix{Float64}:
+ 2.32979e-8   0.00515854  0.994841
+ 7.2735e-6    0.0653419   0.934651
+ 4.09545e-7   0.00458407  0.995416
+ 1.76891e-5   0.023216    0.976766
+ 4.16751e-6   0.0110585   0.988937
+ 0.994953     0.00504644  1.28891e-7
+ 0.00912393   0.983288    0.00758834
+ 2.25892e-7   0.0134471   0.986553
+ 3.73313e-5   0.905279    0.094684
+ 0.9953       0.00469946  2.1606e-7
+ ⋮
+ 0.00746492   0.817767    0.174768
+ 0.000369756  0.808816    0.190814
+ 0.995381     0.00461871  5.23794e-7
+ 5.2395e-7    0.00987338  0.990126
+ 0.991457     0.00854238  9.9192e-7
+ 5.90119e-5   0.105251    0.89469
+ 0.0352721    0.940225    0.0245033
+ 0.011004     0.780962    0.208034
+ 1.06058e-5   0.209703    0.790287</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtest         = predict(mynn,scale(xtest))</code><code class="nohighlight hljs ansi" style="display:block;">30×3 Matrix{Float64}:
+ 0.995291     0.00470855   3.59367e-7
+ 0.000557691  0.948207     0.0512354
+ 0.0875071    0.896935     0.0155581
+ 0.996055     0.0039452    1.52129e-7
+ 0.994537     0.00546294   2.91913e-7
+ 0.00208604   0.98966      0.00825415
+ 0.000107087  0.355057     0.644836
+ 8.97297e-5   0.334001     0.665909
+ 0.00842967   0.963262     0.028308
+ 0.0137498    0.940738     0.0455124
+ ⋮
+ 0.0527497    0.943359     0.00389135
+ 8.14023e-5   0.23899      0.760929
+ 0.995957     0.00404292   2.58076e-7
+ 0.994855     0.00514453   1.9656e-7
+ 0.9974       0.00260001   6.56563e-8
+ 8.41223e-5   0.419339     0.580577
+ 6.4054e-5    0.574292     0.425643
+ 0.996376     0.00362363   1.09204e-7
+ 1.51542e-10  0.000823812  0.999176</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; trainAccuracy = accuracy(ŷtrain,ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">0.975</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; testAccuracy  = accuracy(ŷtest,ytest,tol=1,ignoreLabels=false)</code><code class="nohighlight hljs ansi" style="display:block;">0.9666666666666667</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; cm = ConfusionMatrix(ŷtrain,ytrain, labels=[&quot;setosa&quot;, &quot;versicolor&quot;, &quot;virginica&quot;])</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Utils.ConfusionMatrix{Int64}([3, 1, 2], [&quot;setosa&quot;, &quot;versicolor&quot;, &quot;virginica&quot;], 0.975, 0.025000000000000022, [41, 41, 38], [42, 41, 37], [40 0 1; 0 41 0; 2 0 36], [0.975609756097561 0.0 0.024390243902439025; 0.0 1.0 0.0; 0.05263157894736842 0.0 0.9473684210526315], [40, 41, 36], [77, 79, 81], [2, 0, 1], [1, 0, 2], [0.9523809523809523, 1.0, 0.972972972972973], [0.975609756097561, 1.0, 0.9473684210526315], [0.9746835443037974, 1.0, 0.9878048780487805], [0.963855421686747, 1.0, 0.96], (0.9751179751179752, 0.9751716001716001), (0.9743260590500641, 0.975), (0.9874961407841926, 0.987488422352578), (0.9746184738955823, 0.9749839357429718))</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; println(cm)</code><code class="nohighlight hljs ansi" style="display:block;">
+-----------------------------------------------------------------
+
+*** CONFUSION MATRIX ***
+
+Scores actual (rows) vs predicted (columns):
+
+
+Normalised scores actual (rows) vs predicted (columns):
+
+
+ *** CONFUSION REPORT ***
+
+- Accuracy:               0.975
+- Misclassification rate: 0.025000000000000022
+- Number of classes:      3
+
+  N Class      precision   recall  specificity  f1Score  actualCount  predictedCount
+                             TPR       TNR                 support                  
+
+  1 setosa         0.952    0.976        0.975    0.964           41              42
+  2 versicolor     1.000    1.000        1.000    1.000           41              41
+  3 virginica      0.973    0.947        0.988    0.960           38              37
+
+- Simple   avg.    0.975    0.974        0.987    0.975
+- Weigthed avg.    0.975    0.975        0.987    0.975
+
+-----------------------------------------------------------------</code></pre><h3 id="Regression"><a class="docs-heading-anchor" href="#Regression">Regression</a><a id="Regression-1"></a><a class="docs-heading-anchor-permalink" href="#Regression" title="Permalink"></a></h3><p>Data Loading and processing..</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pipe, HTTP, CSV, Plots, DataFrames</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; urlData = &quot;https://www4.stat.ncsu.edu/~boos/var.select/diabetes.tab.txt&quot;</code><code class="nohighlight hljs ansi" style="display:block;">&quot;https://www4.stat.ncsu.edu/~boos/var.select/diabetes.tab.txt&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; data = @pipe HTTP.get(urlData).body |&gt; CSV.File(_, delim=&#39;\t&#39;) |&gt; DataFrame</code><code class="nohighlight hljs ansi" style="display:block;">442×11 DataFrame
+ Row │ AGE    SEX    BMI      BP       S1     S2       S3       S4       S5    ⋯
+     │ Int64  Int64  Float64  Float64  Int64  Float64  Float64  Float64  Float ⋯
+─────┼──────────────────────────────────────────────────────────────────────────
+   1 │    59      2     32.1   101.0     157     93.2     38.0     4.0    4.85 ⋯
+   2 │    48      1     21.6    87.0     183    103.2     70.0     3.0    3.89
+   3 │    72      2     30.5    93.0     156     93.6     41.0     4.0    4.67
+   4 │    24      1     25.3    84.0     198    131.4     40.0     5.0    4.89
+   5 │    50      1     23.0   101.0     192    125.4     52.0     4.0    4.29 ⋯
+   6 │    23      1     22.6    89.0     139     64.8     61.0     2.0    4.18
+   7 │    36      2     22.0    90.0     160     99.6     50.0     3.0    3.95
+   8 │    66      2     26.2   114.0     255    185.0     56.0     4.55   4.24
+  ⋮  │   ⋮      ⋮       ⋮        ⋮       ⋮       ⋮        ⋮        ⋮        ⋮  ⋱
+ 436 │    45      1     24.2    83.0     177    118.4     45.0     4.0    4.21 ⋯
+ 437 │    33      1     19.5    80.0     171     85.4     75.0     2.0    3.97
+ 438 │    60      2     28.2   112.0     185    113.8     42.0     4.0    4.98
+ 439 │    47      2     24.9    75.0     225    166.0     42.0     5.0    4.44
+ 440 │    60      2     24.9    99.67    162    106.6     43.0     3.77   4.12 ⋯
+ 441 │    36      1     30.0    95.0     201    125.2     42.0     4.79   5.12
+ 442 │    36      1     19.6    71.0     250    133.2     97.0     3.0    4.59
+                                                  3 columns and 427 rows omitted</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sex_oh = oneHotEncoder(data.SEX)</code><code class="nohighlight hljs ansi" style="display:block;">442×2 Matrix{Int64}:
+ 0  1
+ 1  0
+ 0  1
+ 1  0
+ 1  0
+ 1  0
+ 0  1
+ 0  1
+ 0  1
+ 1  0
+ ⋮
+ 1  0
+ 1  0
+ 1  0
+ 1  0
+ 0  1
+ 0  1
+ 0  1
+ 1  0
+ 1  0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X = hcat(data.AGE, Matrix(data[:,3:10]),sex_oh)</code><code class="nohighlight hljs ansi" style="display:block;">442×11 Matrix{Float64}:
+ 59.0  32.1  101.0   157.0   93.2  38.0  4.0   4.8598   87.0  0.0  1.0
+ 48.0  21.6   87.0   183.0  103.2  70.0  3.0   3.8918   69.0  1.0  0.0
+ 72.0  30.5   93.0   156.0   93.6  41.0  4.0   4.6728   85.0  0.0  1.0
+ 24.0  25.3   84.0   198.0  131.4  40.0  5.0   4.8903   89.0  1.0  0.0
+ 50.0  23.0  101.0   192.0  125.4  52.0  4.0   4.2905   80.0  1.0  0.0
+ 23.0  22.6   89.0   139.0   64.8  61.0  2.0   4.1897   68.0  1.0  0.0
+ 36.0  22.0   90.0   160.0   99.6  50.0  3.0   3.9512   82.0  0.0  1.0
+ 66.0  26.2  114.0   255.0  185.0  56.0  4.55  4.2485   92.0  0.0  1.0
+ 60.0  32.1   83.0   179.0  119.4  42.0  4.0   4.4773   94.0  0.0  1.0
+ 29.0  30.0   85.0   180.0   93.4  43.0  4.0   5.3845   88.0  1.0  0.0
+  ⋮                                 ⋮                              ⋮
+ 41.0  20.8   86.0   223.0  128.2  83.0  3.0   4.0775   89.0  1.0  0.0
+ 53.0  26.5   97.0   193.0  122.4  58.0  3.0   4.1431   99.0  1.0  0.0
+ 45.0  24.2   83.0   177.0  118.4  45.0  4.0   4.2195   82.0  1.0  0.0
+ 33.0  19.5   80.0   171.0   85.4  75.0  2.0   3.9703   80.0  1.0  0.0
+ 60.0  28.2  112.0   185.0  113.8  42.0  4.0   4.9836   93.0  0.0  1.0
+ 47.0  24.9   75.0   225.0  166.0  42.0  5.0   4.4427  102.0  0.0  1.0
+ 60.0  24.9   99.67  162.0  106.6  43.0  3.77  4.1271   95.0  0.0  1.0
+ 36.0  30.0   95.0   201.0  125.2  42.0  4.79  5.1299   85.0  1.0  0.0
+ 36.0  19.6   71.0   250.0  133.2  97.0  3.0   4.5951   92.0  1.0  0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y = data.Y</code><code class="nohighlight hljs ansi" style="display:block;">442-element Vector{Int64}:
+ 151
+  75
+ 141
+ 206
+ 135
+  97
+ 138
+  63
+ 110
+ 310
+   ⋮
+  72
+  49
+  64
+  48
+ 178
+ 104
+ 132
+ 220
+  57</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; (xtrain,xval),(ytrain,yval) = partition([X,y],[0.8,0.2])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector}:
+ AbstractMatrix{Float64}[[61.0 32.7 … 0.0 1.0; 48.0 23.9 … 1.0 0.0; … ; 41.0 24.9 … 0.0 1.0; 51.0 23.5 … 1.0 0.0], [34.0 35.5 … 0.0 1.0; 47.0 28.6 … 1.0 0.0; … ; 57.0 26.9 … 1.0 0.0; 71.0 26.1 … 0.0 1.0]]
+ AbstractVector{Int64}[[259, 152, 179, 116, 283, 69, 77, 155, 198, 65  …  52, 51, 177, 127, 144, 185, 142, 310, 53, 154], [243, 121, 61, 131, 268, 235, 253, 138, 60, 202  …  96, 179, 131, 85, 288, 95, 217, 217, 249, 139]]</code></pre><p>Model definition...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; l1   = DenseLayer(11,20,f=relu)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer([-0.2924033262554372 -0.2539644635579579 … 0.2708283712107636 -0.3397651148559973; 0.3200055913343534 0.34843279884887385 … 0.2850466882977612 0.40310296345588464; … ; -0.14567183246806553 -0.3460098530593056 … -0.10977686864464409 -0.11023709217691652; 0.3731613045812631 -0.10210748942685816 … -0.338215061941476 0.1408952609322956], [0.09592800790203365, 0.15860323464133336, 0.3551464313117509, -0.04620145965674505, -0.36129502082159637, 0.31020624847324435, 0.1962275378594674, -0.19652653926097655, 0.16684584295204136, 0.23639369054502485, 0.1755727972983427, -0.3673393833437488, -0.40059902215997695, 0.1933896650049401, 0.4044925415855833, -0.28878525234767244, -0.20173882418331515, -0.17491544700243872, -0.2198048834412415, -0.4046519243293346], BetaML.Utils.relu, nothing)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l2   = DenseLayer(20,20,f=relu)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer([-0.2927494810685075 0.22219075184423648 … 0.2673123538870123 0.20410674617461927; -0.2320135040440592 0.3292687339809626 … 0.11745976371776506 0.2749281212619707; … ; 0.29099415187214067 0.12183960430470392 … -0.09269557835592285 -0.01060543642578815; -0.09588210686525739 -0.17734571306244018 … -0.04581198248266788 -0.17839653524534227], [-0.3280003996511005, 0.04546914264795188, -0.2556527937208482, 0.22780164042762602, -0.36702175649579394, -0.08101120595044425, -0.26900852855358964, -0.003716502775307995, -0.06992958602385585, 0.0866901916940902, 0.3087058654826345, 0.28944003386379064, -0.09506133807591433, 0.30825057340536494, -0.34752756073212243, 0.3175303340526932, 0.2302359016855347, -0.05159916226591843, 0.1427898320160052, 0.25687884208929207], BetaML.Utils.relu, nothing)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l3   = DenseLayer(20,1,f=relu) # y is positive</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer([-0.19336934131814693 -0.0012534394550661743 … -0.40957078962790305 -0.28122106464306357], [-0.04427898450034906], BetaML.Utils.relu, nothing)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mynn = buildNetwork([l1,l2,l3],squaredCost)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.NN(BetaML.Nn.AbstractLayer[BetaML.Nn.DenseLayer([-0.2924033262554372 -0.2539644635579579 … 0.2708283712107636 -0.3397651148559973; 0.3200055913343534 0.34843279884887385 … 0.2850466882977612 0.40310296345588464; … ; -0.14567183246806553 -0.3460098530593056 … -0.10977686864464409 -0.11023709217691652; 0.3731613045812631 -0.10210748942685816 … -0.338215061941476 0.1408952609322956], [0.09592800790203365, 0.15860323464133336, 0.3551464313117509, -0.04620145965674505, -0.36129502082159637, 0.31020624847324435, 0.1962275378594674, -0.19652653926097655, 0.16684584295204136, 0.23639369054502485, 0.1755727972983427, -0.3673393833437488, -0.40059902215997695, 0.1933896650049401, 0.4044925415855833, -0.28878525234767244, -0.20173882418331515, -0.17491544700243872, -0.2198048834412415, -0.4046519243293346], BetaML.Utils.relu, nothing), BetaML.Nn.DenseLayer([-0.2927494810685075 0.22219075184423648 … 0.2673123538870123 0.20410674617461927; -0.2320135040440592 0.3292687339809626 … 0.11745976371776506 0.2749281212619707; … ; 0.29099415187214067 0.12183960430470392 … -0.09269557835592285 -0.01060543642578815; -0.09588210686525739 -0.17734571306244018 … -0.04581198248266788 -0.17839653524534227], [-0.3280003996511005, 0.04546914264795188, -0.2556527937208482, 0.22780164042762602, -0.36702175649579394, -0.08101120595044425, -0.26900852855358964, -0.003716502775307995, -0.06992958602385585, 0.0866901916940902, 0.3087058654826345, 0.28944003386379064, -0.09506133807591433, 0.30825057340536494, -0.34752756073212243, 0.3175303340526932, 0.2302359016855347, -0.05159916226591843, 0.1427898320160052, 0.25687884208929207], BetaML.Utils.relu, nothing), BetaML.Nn.DenseLayer([-0.19336934131814693 -0.0012534394550661743 … -0.40957078962790305 -0.28122106464306357], [-0.04427898450034906], BetaML.Utils.relu, nothing)], BetaML.Utils.squaredCost, nothing, false, &quot;Neural Network&quot;)</code></pre><p>Training...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; trainingLogs = train!(mynn,scale(xtrain),ytrain,batchSize=6,epochs=600)</code><code class="nohighlight hljs ansi" style="display:block;">***
+*** Training Neural Network for 600 epochs with algorithm BetaML.Nn.ADAM.
+Training.. 	 avg ϵ on (Epoch 1 Batch 59): 	 18200.666666666668
+Training the Neural Network...  8%|█▋                   |  ETA: 0:00:13Training.. 	 avg ϵ on (Epoch 60 Batch 59): 	 2311.447494343469
+Training the Neural Network... 15%|███▎                 |  ETA: 0:00:12Training.. 	 avg ϵ on (Epoch 120 Batch 59): 	 1096.3721539775713
+Training the Neural Network... 23%|████▊                |  ETA: 0:00:11Training.. 	 avg ϵ on (Epoch 180 Batch 59): 	 1183.9727203520767
+Training the Neural Network... 30%|██████▍              |  ETA: 0:00:10Training the Neural Network... 38%|███████▉             |  ETA: 0:00:09Training.. 	 avg ϵ on (Epoch 240 Batch 59): 	 1669.988564564045
+Training the Neural Network... 46%|█████████▌           |  ETA: 0:00:07Training.. 	 avg ϵ on (Epoch 300 Batch 59): 	 2206.9635313792533
+Training the Neural Network... 53%|███████████▎         |  ETA: 0:00:06Training.. 	 avg ϵ on (Epoch 360 Batch 59): 	 3609.3644618634694
+Training the Neural Network... 61%|████████████▉        |  ETA: 0:00:05Training the Neural Network... 69%|██████████████▍      |  ETA: 0:00:04Training.. 	 avg ϵ on (Epoch 420 Batch 59): 	 727.1238508027868
+Training the Neural Network... 76%|████████████████     |  ETA: 0:00:03Training.. 	 avg ϵ on (Epoch 480 Batch 59): 	 1004.9777649170204
+Training the Neural Network... 84%|█████████████████▋   |  ETA: 0:00:02Training.. 	 avg ϵ on (Epoch 540 Batch 59): 	 2508.140012788528
+Training the Neural Network... 92%|███████████████████▍ |  ETA: 0:00:01Training.. 	 avg ϵ on (Epoch 600 Batch 59): 	 187.24782669718715
+Training the Neural Network...100%|█████████████████████| Time: 0:00:13
+Training of 600 epoch completed. Final epoch error: 859.4899241611331.
+(epochs = 600, ϵ_epochs = [14208.966671695342, 14208.077745778835, 14138.68312357319, 13629.947479634317, 12450.855876272957, 10171.303498611165, 7196.525130476429, 4705.788206260294, 3369.2826728035957, 2762.9103991956863  …  867.210357410691, 867.602434922532, 865.0629967095606, 865.099877426571, 864.1631343819134, 862.7428138777036, 862.2436356784573, 861.2465082652734, 861.0490572001324, 859.4899241611331], θ_epochs = Any[])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtrain   = predict(mynn, scale(xtrain)) |&gt; makeColVector</code><code class="nohighlight hljs ansi" style="display:block;">354-element Vector{Float64}:
+ 240.31120588557175
+ 190.8988303554195
+ 107.79245408713788
+  69.17992668465486
+ 289.89894654193563
+ 113.25449969898348
+  78.68896482395154
+ 229.72104446669428
+ 160.4160000940321
+ 109.35573080553155
+   ⋮
+  75.55409623341583
+ 122.67332996806492
+ 146.20831599248353
+ 136.7843660733973
+ 167.08493322603584
+ 147.47219464099368
+ 341.5978150300695
+  56.73030004138741
+ 126.00509240093193</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷval     = predict(mynn, scale(xval))  |&gt; makeColVector</code><code class="nohighlight hljs ansi" style="display:block;">88-element Vector{Float64}:
+ 273.1093656906662
+ 122.26535101498642
+  93.34352251036084
+ 136.61685032408332
+ 223.2622753106145
+ 183.0946247402568
+  27.29629085316508
+  71.97966164716122
+ 100.95504890276
+ 109.12048536952426
+   ⋮
+ 137.96381446479472
+ 147.6423484030756
+  87.1518598867429
+ 178.85337383593952
+ 148.63901112215885
+ 259.34129569773046
+ 179.8201520945061
+ 192.89044573992857
+ 108.02964996556128</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; trainRME = meanRelError(ŷtrain,ytrain,normRec=false)</code><code class="nohighlight hljs ansi" style="display:block;">0.21010628849128826</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; testRME  = meanRelError(ŷval,yval,normRec=false)</code><code class="nohighlight hljs ansi" style="display:block;">0.2640386331207359</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot(trainingLogs.ϵ_epochs[10:end])</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; scatter(yval,ŷval,xlabel=&quot;obs&quot;,ylabel=&quot;est&quot;,legend=nothing)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><h2 id="Convolutional-neural-networks"><a class="docs-heading-anchor" href="#Convolutional-neural-networks">Convolutional neural networks</a><a id="Convolutional-neural-networks-1"></a><a class="docs-heading-anchor-permalink" href="#Convolutional-neural-networks" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using LinearAlgebra, Statistics,Flux, MLDatasets, Plots</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x_train, y_train = MLDatasets.MNIST.traindata(dir = &quot;data/MNIST&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">([0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; … ; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8;;; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; … ; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8;;; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; … ; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8;;; … ;;; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; … ; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8;;; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; … ; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8;;; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; … ; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8], [5, 0, 4, 1, 9, 2, 1, 3, 1, 4  …  9, 2, 9, 5, 1, 8, 3, 5, 6, 8])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x_train          = permutedims(x_train,(2,1,3)) # For correct img axis</code><code class="nohighlight hljs ansi" style="display:block;">28×28×60000 Array{N0f8,3} with eltype FixedPointNumbers.N0f8:
+[:, :, 1] =
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0    …  0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0       0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0       0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0       0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0       0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0    …  0.969  0.498  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0       0.765  0.251  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0       0.153  0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0       0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0       0.0    0.0    0.0  0.0  0.0  0.0
+ ⋮                          ⋮             ⋱                     ⋮
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0       0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0    …  0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0       0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.071     0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.216  0.675  0.886     0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.533  0.992  0.992     0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0    …  0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0       0.0    0.0    0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0       0.0    0.0    0.0  0.0  0.0  0.0
+
+[:, :, 2] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.024  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.478  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.655  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.659  0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮           ⋱                        ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.337     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.333  …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.333     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.11      0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 3] =
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0  …  0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0     0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0     0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0     0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0     0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0  …  0.153  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.243  0.318  0.0     0.153  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.494  0.639  0.0     0.157  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.863  0.639  0.0     0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.871  0.639  0.0     0.0    0.0  0.0  0.0  0.0  0.0
+ ⋮                          ⋮           ⋱                   ⋮
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0     0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0  …  0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0     0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0     0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0     0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0     0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0  …  0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0     0.0    0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0    0.0    0.0     0.0    0.0  0.0  0.0  0.0  0.0
+
+;;; …
+
+[:, :, 59998] =
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0    …  0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0    …  1.0    1.0    0.475  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.949  0.573  0.271  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.09   0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0    0.0    0.0    0.0  0.0  0.0
+ ⋮                        ⋮             ⋱                       ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0    …  0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.086  0.0       0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.769  0.631     0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.451  0.941     0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0    …  0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0    0.0    0.0    0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0    0.0    0.0    0.0  0.0  0.0
+
+[:, :, 59999] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.106  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.106  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮           ⋱                        ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.055     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.11   …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.141     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 60000] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0   0.082  0.643  0.733  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.09  0.796  0.925  0.231  0.0  0.0
+ ⋮                        ⋮           ⋱                      ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.259  …  0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.557     0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.353     0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.102     0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0   0.0    0.0    0.0    0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0   0.0    0.0    0.0    0.0  0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x_train          = convert(Array{Float32,3},x_train)</code><code class="nohighlight hljs ansi" style="display:block;">28×28×60000 Array{Float32, 3}:
+[:, :, 1] =
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.498039  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.25098   0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ ⋮                             ⋮         ⋱                 ⋮
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.215686  0.67451      0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.533333  0.992157     0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+
+[:, :, 2] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮              ⋱                 ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.337255     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.333333  …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.333333     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.109804     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 3] =
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.152941  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.243137  0.317647     0.152941  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.494118  0.639216     0.156863  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.862745  0.639216     0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.870588  0.639216     0.0       0.0  0.0  0.0  0.0  0.0
+ ⋮                             ⋮         ⋱                      ⋮
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+
+;;; …
+
+[:, :, 59998] =
+ 0.0  0.0  0.0  0.0  0.0  0.0        …  0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0        …  1.0       0.47451   0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.572549  0.270588  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ ⋮                        ⋮          ⋱                      ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0        …  0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0862745     0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.768627      0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.45098       0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0        …  0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+
+[:, :, 59999] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮              ⋱                 ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.054902     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.109804  …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.141176     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 60000] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.643137  0.733333  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.92549   0.231373  0.0  0.0
+ ⋮                        ⋮              ⋱            ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.258824  …  0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.556863     0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.352941     0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.101961     0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x_train          = reshape(x_train,(28,28,1,60000))</code><code class="nohighlight hljs ansi" style="display:block;">28×28×1×60000 Array{Float32, 4}:
+[:, :, 1, 1] =
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.498039  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.25098   0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ ⋮                             ⋮         ⋱                 ⋮
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.215686  0.67451      0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.533333  0.992157     0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0
+
+[:, :, 1, 2] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮              ⋱                 ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.337255     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.333333  …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.333333     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.109804     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 1, 3] =
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.152941  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.243137  0.317647     0.152941  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.494118  0.639216     0.156863  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.862745  0.639216     0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.870588  0.639216     0.0       0.0  0.0  0.0  0.0  0.0
+ ⋮                             ⋮         ⋱                      ⋮
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0       …  0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0       0.0          0.0       0.0  0.0  0.0  0.0  0.0
+
+;;;; …
+
+[:, :, 1, 59998] =
+ 0.0  0.0  0.0  0.0  0.0  0.0        …  0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0        …  1.0       0.47451   0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.572549  0.270588  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ ⋮                        ⋮          ⋱                      ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0        …  0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0862745     0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.768627      0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.45098       0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0        …  0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0           0.0       0.0       0.0  0.0  0.0
+
+[:, :, 1, 59999] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮              ⋱                 ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.054902     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.109804  …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.141176     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 1, 60000] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.643137  0.733333  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.92549   0.231373  0.0  0.0
+ ⋮                        ⋮              ⋱            ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.258824  …  0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.556863     0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.352941     0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.101961     0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0       0.0       0.0  0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y_train          = Flux.onehotbatch(y_train, 0:9)</code><code class="nohighlight hljs ansi" style="display:block;">10×60000 OneHotMatrix(::Vector{UInt32}) with eltype Bool:
+ ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  …  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅
+ ⋅  ⋅  ⋅  1  ⋅  ⋅  1  ⋅  1  ⋅  ⋅  ⋅  ⋅     ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅
+ ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅     ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅
+ ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  1  ⋅  1     ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅
+ ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅     ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅
+ 1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  …  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  1  ⋅  ⋅
+ ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅     ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅
+ ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅     1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅
+ ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅     ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  1
+ ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅     ⋅  ⋅  1  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; train_data       = Flux.Data.DataLoader((x_train, y_train), batchsize=128)</code><code class="nohighlight hljs ansi" style="display:block;">Flux.Data.DataLoader{Tuple{Array{Float32, 4}, Flux.OneHotArray{UInt32, 10, 1, 2, Vector{UInt32}}}, Random._GLOBAL_RNG}(([0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0; … ; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0;;;; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0; … ; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0;;;; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0; … ; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0;;;; … ;;;; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0; … ; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0;;;; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0; … ; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0;;;; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0; … ; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0], Bool[0 1 … 0 0; 0 0 … 0 0; … ; 0 0 … 0 1; 0 0 … 0 0]), 128, 60000, true, 60000, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10  …  59991, 59992, 59993, 59994, 59995, 59996, 59997, 59998, 59999, 60000], false, Random._GLOBAL_RNG())</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x_test, y_test   = MLDatasets.MNIST.testdata(dir = &quot;data/MNIST&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">([0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; … ; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8;;; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; … ; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8;;; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; … ; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8;;; … ;;; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; … ; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8;;; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; … ; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8;;; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; … ; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8; 0.0N0f8 0.0N0f8 … 0.0N0f8 0.0N0f8], [7, 2, 1, 0, 4, 1, 4, 9, 5, 9  …  7, 8, 9, 0, 1, 2, 3, 4, 5, 6])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x_test           = permutedims(x_test,(2,1,3)) # For correct img axis</code><code class="nohighlight hljs ansi" style="display:block;">28×28×10000 Array{N0f8,3} with eltype FixedPointNumbers.N0f8:
+[:, :, 1] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.329     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.871     0.204  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.263     0.549  0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮           ⋱                        ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 2] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.204     0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.302     0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ ⋮                        ⋮                ⋱                ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.588  0.588  0.576  0.039  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.992  0.992  0.992  0.482  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.663  0.459  0.459  0.224  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+
+[:, :, 3] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮              ⋱                      ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+
+;;; …
+
+[:, :, 9998] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.573  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.094  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.043  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮         ⋱                        ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0    0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 9999] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.408  0.408  0.408  0.271  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.996  0.996  0.996  0.996  0.0
+ ⋮                        ⋮                ⋱                ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.776     0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.349  …  0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0    …  0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0       0.0    0.0    0.0    0.0    0.0
+
+[:, :, 10000] =
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0    …  0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0    …  0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮             ⋱                  ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.008  0.451     0.02  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.012  …  0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0    …  0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0    0.0       0.0   0.0  0.0  0.0  0.0  0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x_test           = convert(Array{Float32,3},x_test)</code><code class="nohighlight hljs ansi" style="display:block;">28×28×10000 Array{Float32, 3}:
+[:, :, 1] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.329412     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.870588     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.262745     0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮              ⋱                 ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 2] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ ⋮                        ⋮         ⋱            ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.588235  0.576471  0.0392157  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.992157  0.992157  0.482353   0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.458824  0.458824  0.223529   0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+
+[:, :, 3] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮              ⋱                      ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+
+;;; …
+
+[:, :, 9998] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮                   ⋱                 ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 9999] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.407843  0.407843  0.270588  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.996078  0.996078  0.996078  0.0
+ ⋮                        ⋮         ⋱            ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+
+[:, :, 10000] =
+ 0.0  0.0  0.0  0.0  0.0  0.0         …  0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0         …  0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮           ⋱                       ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.00784314     0.0196078  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0         …  0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0         …  0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x_test           = reshape(x_test,(28,28,1,10000))</code><code class="nohighlight hljs ansi" style="display:block;">28×28×1×10000 Array{Float32, 4}:
+[:, :, 1, 1] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.329412     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.870588     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.262745     0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮              ⋱                 ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0       …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0          0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 1, 2] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ ⋮                        ⋮         ⋱            ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.588235  0.576471  0.0392157  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.992157  0.992157  0.482353   0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.458824  0.458824  0.223529   0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0        0.0
+
+[:, :, 1, 3] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮              ⋱                      ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0  0.0
+
+;;;; …
+
+[:, :, 1, 9998] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮                   ⋱                 ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0  0.0  0.0  0.0  0.0  0.0
+
+[:, :, 1, 9999] =
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.407843  0.407843  0.270588  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.996078  0.996078  0.996078  0.0
+ ⋮                        ⋮         ⋱            ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  …  0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0     0.0       0.0       0.0       0.0
+
+[:, :, 1, 10000] =
+ 0.0  0.0  0.0  0.0  0.0  0.0         …  0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0         …  0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮           ⋱                       ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.00784314     0.0196078  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0         …  0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0         …  0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0            0.0        0.0  0.0  0.0  0.0  0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y_test           = Flux.onehotbatch(y_test, 0:9)</code><code class="nohighlight hljs ansi" style="display:block;">10×10000 OneHotMatrix(::Vector{UInt32}) with eltype Bool:
+ ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  …  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅
+ ⋅  ⋅  1  ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅     ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅
+ ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅     ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅
+ ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅     ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅
+ ⋅  ⋅  ⋅  ⋅  1  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅     ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅
+ ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  …  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅
+ ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅     ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1
+ 1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅     ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅
+ ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅     ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅
+ ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  1  ⋅  1  ⋅  ⋅  1     ⋅  ⋅  ⋅  ⋅  1  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅  ⋅</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; model = Chain(
+           # 28x28 =&gt; 14x14
+           Conv((5, 5), 1=&gt;8, pad=2, stride=2, relu),
+           # 14x14 =&gt; 7x7
+           Conv((3, 3), 8=&gt;16, pad=1, stride=2, relu),
+           # 7x7 =&gt; 4x4
+           Conv((3, 3), 16=&gt;32, pad=1, stride=2, relu),
+           # 4x4 =&gt; 2x2
+           Conv((3, 3), 32=&gt;32, pad=1, stride=2, relu),
+           # Average pooling on each width x height feature map
+           GlobalMeanPool(),
+           Flux.flatten,
+           Dense(32, 10),
+           Flux.softmax
+       )</code><code class="nohighlight hljs ansi" style="display:block;">Chain(
+  Conv((5, 5), 1 =&gt; 8, relu, pad=2, stride=2),  # 208 parameters
+  Conv((3, 3), 8 =&gt; 16, relu, pad=1, stride=2),  # 1_168 parameters
+  Conv((3, 3), 16 =&gt; 32, relu, pad=1, stride=2),  # 4_640 parameters
+  Conv((3, 3), 32 =&gt; 32, relu, pad=1, stride=2),  # 9_248 parameters
+  GlobalMeanPool(),
+  Flux.flatten,
+  Dense(32, 10),                        # 330 parameters
+  NNlib.softmax,
+)                   # Total: 10 arrays, 15_594 parameters, 62.445 KiB.</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; myaccuracy(ŷ, y) = (mean(Flux.onecold(ŷ) .== Flux.onecold(y)))</code><code class="nohighlight hljs ansi" style="display:block;">myaccuracy (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; myloss(x, y)     = Flux.crossentropy(model(x), y)</code><code class="nohighlight hljs ansi" style="display:block;">myloss (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; opt = Flux.ADAM()</code><code class="nohighlight hljs ansi" style="display:block;">Flux.Optimise.ADAM(0.001, (0.9, 0.999), 1.0e-8, IdDict{Any, Any}())</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ps  = Flux.params(model)</code><code class="nohighlight hljs ansi" style="display:block;">Params([[0.023862107 -0.022992894 … -0.13604958 0.15969822; -0.063866526 0.0006153065 … -0.020561356 0.08067694; … ; -0.021431658 -0.0214133 … -0.08991645 0.10196106; 0.12255692 0.10971502 … -0.0674425 0.076625824;;;; 0.04458019 -0.14320295 … 0.12877183 0.044681825; 0.13526046 -0.052736465 … -0.074084766 -0.13155727; … ; -0.025855487 -0.098319486 … 0.02538809 0.05311996; 0.048898607 0.14338064 … -0.04258535 0.044824205;;;; 0.018377902 -0.11280815 … -0.068238944 0.11056673; 0.15533584 -0.16198854 … -0.14063536 -0.035111208; … ; 0.05864635 0.11383246 … 0.10686652 0.109167635; 0.08447786 -0.086739585 … 0.050344754 0.0636106;;;; -0.142237 0.036692634 … 0.057175867 -0.15975259; -0.12518999 0.03975293 … 0.094653614 0.02341834; … ; -0.056607865 -0.091589056 … -0.15113162 -0.03335472; 0.07901861 0.15878077 … 0.01247627 -0.1362346;;;; -0.1173514 -0.10772156 … 0.0033358692 -0.029049482; 0.006412713 0.13107464 … -0.048367884 0.03646057; … ; -0.12772167 -0.119516805 … 0.048879996 0.005547706; 0.031170856 -0.045432445 … -0.029227624 0.053592656;;;; 0.10035075 -0.06843097 … -0.07012347 -0.013877704; -0.14706464 -0.10389252 … 0.13084471 0.009435984; … ; 0.0049067033 -0.07289326 … 0.014728422 -0.035233714; -0.07886445 -0.137296 … -0.04188147 -0.141749;;;; -0.03663867 -0.08817106 … 0.05841902 0.029822256; -0.060414717 0.010523185 … 0.0013975991 0.048807696; … ; -0.027815832 -0.09055819 … -0.06560119 0.13223472; 0.09966935 0.004174148 … -0.15378775 0.0112576485;;;; -0.07274685 0.15286319 … 0.057437774 -0.039769985; -0.00045094834 -0.063316375 … -0.11340754 0.13394158; … ; -0.00717659 -0.06917947 … -0.11109241 -0.052734032; -0.1590077 0.028418195 … 0.067401916 -0.08838616], Float32[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [-0.124562845 0.020809215 0.04074397; -0.1110157 0.00576969 -0.117446825; -0.09450712 0.11891049 0.045459174;;; 0.10707438 0.16113159 -0.12537377; 0.046322726 -0.082071826 0.090844296; -0.15822941 -0.1110944 -0.13268101;;; -0.055257797 -0.15510213 -0.09683794; 0.098562025 -0.10373136 -0.032766283; -0.08965926 0.083150744 0.0662248;;; 0.083446264 -0.07947292 -0.051504552; 0.09079596 0.031455815 -0.11304121; 0.1444298 -0.078741096 -0.01020827;;; -0.1440374 -0.121918105 -0.008406719; -0.12374024 0.08535614 -0.02679972; -0.1340426 -0.020137152 0.03199951;;; 0.11769788 -0.012285769 -0.14397809; -0.050862096 0.12626481 -0.16661453; -0.024014633 -0.075671755 0.012358865;;; 0.035659097 -0.016703308 0.02318738; -0.14083807 -0.0651114 -0.08247696; -0.15585648 -0.14796746 0.054952364;;; 0.13378982 -0.08473428 0.01726397; 0.0873371 -0.13672206 -0.15327; 0.021077871 0.0070699854 -0.0117344465;;;; 0.09333277 -0.09544437 0.14790969; 0.0532404 -0.024779063 -0.09830129; -0.068092845 0.07152133 -0.111325964;;; -0.100318596 -0.14829701 -0.113318786; -0.070290074 0.1074103 0.05554509; -0.0472131 -0.113596976 -0.033130687;;; 0.14523417 -0.15480304 -0.041594844; -0.12913367 -0.048358083 0.0648916; 0.043858945 -0.15713179 0.1334186;;; -0.039146703 0.121412955 0.1332472; -0.117113315 0.04701692 0.0795933; -0.08802496 0.044287086 0.020050209;;; 0.062223673 -0.1490957 -0.022037249; 0.0060096784 -0.08286339 -0.010944784; 0.13486163 0.08418 0.09041375;;; -0.0031679075 0.022636753 0.042912226; -0.027527452 0.114197835 0.05664025; 0.15339467 -0.15798083 -0.074676394;;; 0.11343384 0.1323087 0.1664701; 0.07141203 0.15620485 0.14478014; 0.09883058 -0.021613162 -0.14892511;;; 0.15922686 -0.12234503 -0.10658634; -0.09180047 0.1508749 0.05787041; 0.07499236 -0.083810866 -0.15766817;;;; 0.031617343 0.08204156 -0.04229186; -0.106004044 -0.028594574 -0.07781659; 0.010692438 0.09416501 0.09830676;;; 0.1340045 -0.049056333 -0.058630805; -0.12994973 -0.006025692 -0.037448607; -0.1525816 0.12988594 -0.03642885;;; 0.09111401 0.06128798 -0.105546296; 0.02953897 0.107687294 -0.032167315; -0.079622686 -0.057254694 -0.10651027;;; 0.14737843 0.11108504 -0.14337747; 0.15586093 0.090409696 0.00572298; 0.04425174 -0.073779345 -0.13986647;;; 0.03593781 0.11707938 -0.16445658; 0.080909334 0.007833104 -0.12260511; -0.05728239 -0.1368218 0.16515493;;; 0.0752188 -0.031948607 0.0009642641; 0.06251556 0.09040191 -0.07109463; 0.110451505 0.123420164 -0.016446948;;; 0.11107334 0.07940068 -0.16172794; 0.12018268 0.032161415 0.07873529; 0.032723546 -0.07390048 -0.0994191;;; -0.021021366 -0.12395086 0.13615817; -0.08066821 -0.116458595 -0.081480764; -0.10318816 -0.031249743 -0.15087402;;;; … ;;;; -0.058437407 -0.14964162 -0.111509226; 0.09532224 0.12320547 -0.009609699; -0.09993124 -0.07072886 0.121924244;;; -0.043275356 0.027106464 -0.026364386; 0.056396782 -0.15778932 -0.03355521; -0.122781515 -0.0865854 -0.08490668;;; -0.053518735 0.1430889 -0.13158688; 0.002131641 -0.12134212 -0.1612122; 0.10836242 0.10029887 0.12782012;;; 0.1396791 0.11685507 -0.14261411; -0.10457146 0.03742051 0.0542294; 0.053182684 -0.1474515 0.061282616;;; -0.15088078 0.032618087 -0.08552458; 0.11915718 0.0917392 -0.124933526; -0.08953661 0.16641818 0.039194845;;; 0.12962419 -0.10497731 0.027314465; 0.09481989 0.07499175 0.059538744; -0.04370747 0.08558556 -0.06212318;;; -0.08608782 -0.08304014 -0.06639284; -0.02627192 0.112712026 0.10292932; -0.034732025 0.13683733 0.07507306;;; 0.10894178 -0.116291665 0.052514713; -0.1338715 0.04212604 0.112781666; -0.025290987 -0.049458247 0.07683776;;;; -0.10599401 0.13856074 -0.16550754; 0.010936677 0.12912282 0.11677983; 0.0017891725 0.09916421 -0.073826596;;; -0.068432674 -0.058658898 -0.0324233; 0.16193746 0.15597576 0.16401008; 0.023146372 0.0051293373 0.0853497;;; -0.08800797 0.01674698 -0.13708985; 0.1269022 0.019027352 -0.04768626; 0.15574221 -0.090607345 0.048449855;;; 0.0042722626 -0.043611944 -0.15424547; 0.053734265 -0.011357507 0.12004471; 0.040238142 0.024233958 0.03282374;;; -0.039721273 0.022347074 -0.0582909; -0.016503772 -0.025181433 0.12423031; 0.0879184 0.0047910614 0.109704815;;; -0.13240778 -0.0279154 0.05036376; 0.055957537 0.035275638 0.13818252; -0.122329615 0.0015948415 0.0025083225;;; 0.09746393 0.13061742 0.13400346; -0.06489788 0.031795584 0.11256536; 0.09925445 0.15236402 0.0045297346;;; -0.05102269 0.0773233 0.074200295; -0.12663975 0.037415586 -0.0622622; -0.12059528 0.083413385 -0.010221183;;;; -0.031068048 0.057775877 -0.047952794; -0.023996215 0.16551864 0.1621871; 0.0014677843 0.13561705 0.061083876;;; -0.017549992 0.15394035 0.07466012; 0.063625716 -0.15655172 0.0664444; 0.09848517 -0.0065482063 -0.12029056;;; 0.043031275 -0.018187046 0.04107813; 0.0912449 -0.017071366 0.027932923; 0.0939038 -0.086958215 -0.15180925;;; -0.043396376 -0.15056595 -0.13044596; 0.0043955445 0.0076770983 0.15246342; 0.03950858 -0.0072923503 -0.05460469;;; 0.07516019 0.064090475 0.14185384; 0.060324013 -0.042329054 -0.08682384; -0.14321636 -0.11432533 -0.11069733;;; 0.009443283 0.09354846 -0.019568583; -0.15924047 -0.028823655 0.066635534; -0.13846546 -0.07152057 -0.042290352;;; -0.036301296 -0.15733258 0.010758122; -0.027200203 0.16468088 0.080886886; -0.1646643 -0.14008212 0.11211723;;; 0.08773655 -0.07540017 -0.012282888; -0.13597678 -0.0044254465 -0.1208817; -0.07532762 0.08455531 0.08159586], Float32[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [-0.045977026 0.07089965 0.11593586; -0.033474896 0.00879904 0.07785989; 0.040035065 -0.026863348 0.031614732;;; 0.0917509 -0.10409983 -0.11214405; 0.0570944 -0.03471011 -0.070393585; 0.043130007 0.019376788 -0.013494283;;; 0.06276503 -0.038724538 -0.042470016; -0.044982363 -0.00965486 -0.048051424; -0.10780935 -0.102437705 -0.090473644;;; … ;;; -0.092605636 -0.042890713 0.09818089; -0.051331364 -0.07981146 0.1114013; -0.114269376 0.108143404 -0.008778304;;; 0.103440404 -0.10599876 -0.02448812; -0.02803416 0.065784335 0.07938936; 0.10254326 0.023867423 -0.04058372;;; -0.05674559 -0.042493843 -0.100799315; -0.06341553 -0.015222149 0.04097858; 0.11642907 0.008986551 -0.026644984;;;; 0.038293403 0.015256021 0.06829765; 0.08111772 0.016028587 0.06861303; 0.07036273 -0.033354945 0.08719188;;; -0.03844384 0.052394252 0.11479391; 0.0071305586 0.04780113 -0.08999108; 0.01932464 0.0054719113 0.033666242;;; -0.05858811 -0.08986485 -0.051671546; 0.00017454416 0.04312731 -0.06166473; -0.0010670598 -0.10254178 -0.115861304;;; … ;;; -0.016942836 -0.08369056 -0.09385585; -0.09068889 0.07939939 0.061301213; 0.06777874 0.024823608 -0.033416156;;; -0.058438558 0.08301094 -0.012045429; 0.068688095 -0.08699174 -0.06041491; 0.04253863 0.058411572 0.05792781;;; -0.01620427 -0.046019215 0.050203584; 0.028500162 -0.10035044 0.023708066; -0.094340764 -0.028709605 0.0546124;;;; 0.056723 0.044822976 -0.06325361; 0.08084515 -0.04453365 0.057019517; 0.0014212339 0.037731953 -0.09516116;;; 0.03035898 -0.030516356 -0.030874463; 0.021813495 0.023452109 0.041302465; 0.014657803 0.050272703 -0.11388705;;; 0.066539675 0.08351397 -0.038167626; -0.0489099 -0.029684026 -0.10875379; -0.07982837 0.08034968 -0.0820403;;; … ;;; -0.07905667 -0.032136496 0.05305867; -0.100501046 -0.031662975 0.03552961; 0.116006926 -0.028884936 -0.062253352;;; 0.11461105 0.008611177 0.037449807; -0.033073377 -0.038178567 0.11421993; -0.096284024 0.10647676 -0.050611664;;; 0.050342724 0.064058155 0.064640105; -0.0033596938 0.032162063 -0.008717387; 0.005657217 0.0319931 0.04053903;;;; … ;;;; 0.049840756 -0.07873009 0.081589244; -0.07751623 -0.05918852 -0.073276736; -0.07316173 0.00038414044 0.025956824;;; -0.015238446 0.021447562 0.107351914; -0.11148642 -0.052940838 -0.099285066; 0.10136678 -0.020909304 0.048598196;;; 0.025612822 0.054535843 -0.06686595; 0.08012835 -0.036422182 0.11617259; -0.091932535 -0.030680615 -0.0500212;;; … ;;; -0.039628983 -0.010659752 0.03791091; 0.043258753 -0.07406661 0.088675775; 0.07281308 0.07737532 -0.009594997;;; 0.058946908 -0.048652146 -0.062138658; 0.09396258 0.076513335 0.061030548; 0.10490304 0.0098872855 -0.085320145;;; 0.018831592 -0.02905341 -0.08877776; 0.076609656 0.057725433 -0.0015316446; -0.08049839 0.07752335 0.025139991;;;; -0.07896268 -0.052688576 0.1093703; -0.06655177 0.047929958 -0.0044303504; -0.034731854 0.079076946 0.005294136;;; 0.10318625 0.08243537 0.110367805; 0.03961086 0.0583413 -0.11404641; -0.05538586 0.008133035 -0.07164509;;; 0.05760173 0.05461768 0.0025130901; 0.020909823 0.07596962 -0.07986204; -0.105719216 -0.08976924 -0.060731586;;; … ;;; -0.026500659 0.037591815 0.026386555; 0.050885845 0.054565135 -0.101482786; 0.11252967 -0.109724335 0.0019909327;;; -0.03337279 0.07551285 0.068522714; -0.029336216 -0.07130848 0.07782063; -0.012624302 -0.090479545 0.045574468;;; -0.03295545 -0.027778342 0.011208772; 0.051095624 0.08408183 0.00954126; 0.07461445 0.09694294 0.07458392;;;; -0.018430732 0.10578032 -0.03640472; -0.015537393 0.026579825 0.009464777; -0.032825667 0.112903625 0.023630684;;; -0.09427646 -0.06018823 0.037376907; 0.005553943 -0.11609316 -0.106980406; 0.08114954 0.02142563 0.04516462;;; 0.110333815 0.097915724 0.010678719; -0.10588662 0.020076694 -0.028383022; -0.077014655 -0.116459794 0.05317352;;; … ;;; -0.008353716 0.010243539 -0.040543806; -0.108326264 -0.026863221 0.03598301; 0.11089857 -0.055101372 0.04255597;;; -0.027077481 -0.069325946 -0.059793722; 0.014312648 0.009316603 -0.013810047; 0.016766466 -0.06665815 0.010082384;;; 0.107081376 0.014614195 -0.102717236; 0.106328055 0.06457099 0.10175321; 0.052963022 0.1128162 0.058215488], Float32[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0  …  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.099754795 0.049594752 -0.014092805; -0.077849254 -0.06331911 0.037723754; -0.03166878 0.07582418 0.012997347;;; 0.016888103 0.027967459 0.041876767; 0.026542502 -0.052891977 -0.015670588; 0.029525802 -0.09129931 -0.056070164;;; 0.052335862 -0.017780108 -0.10124501; 0.052015364 0.0019214336 0.036170013; 0.04475448 0.099409044 0.018478906;;; … ;;; -0.03922197 0.0059294887 -0.081055745; -0.065321855 -0.04145352 -0.01707816; 0.08657888 0.06899562 -0.05460913;;; -0.04166876 0.015986826 0.004192479; -0.10177188 0.042152233 0.037440147; 0.00037890903 0.062232256 -0.017960772;;; -0.036292084 -0.07531724 -0.0071972394; 0.048794582 -0.022000218 -0.08987842; 0.012413891 -0.093351364 -0.022592433;;;; -0.049333327 0.05445027 -0.09670494; 0.07707448 0.026214475 -0.015037516; 0.03954114 -0.058757447 -0.036049962;;; -0.025752356 -0.054026492 -0.053763423; -0.055831768 -0.08875293 0.09360739; 0.0076307408 -0.03838452 -0.0064661033;;; -0.08759277 -0.08581889 0.07084154; -0.055903055 0.052751843 0.029026465; 0.03997464 0.004411553 0.030730953;;; … ;;; 0.036221843 -0.053866208 -0.022233162; -0.026872208 -0.004060798 0.05848722; -0.07098768 0.0582535 -0.021170251;;; -0.07589766 -0.075887814 0.026923345; 0.05190293 0.043649483 -0.052211504; 0.01878058 -0.05638599 -0.06294783;;; -0.061788183 -0.059164204 -0.099911995; 0.0242649 -0.021202687 0.07145233; 0.029100597 -0.03157204 -0.05275935;;;; 0.06973505 -0.086096674 0.081865214; -0.0007918606 -0.053990588 0.06123652; 0.09975959 0.049064662 -0.06665104;;; -0.07706671 0.018716242 0.012382586; -0.034714725 0.023039501 0.037609205; 0.0059441617 0.014531915 -0.06092646;;; 0.015894895 0.029520787 -0.08728245; 0.0193594 0.056821097 -0.04503568; 0.0148677165 0.04485673 0.06669698;;; … ;;; -0.09263223 0.079020165 0.09200979; 0.06502501 -0.087577455 -0.0062510315; 0.09625109 -0.048195407 0.04981996;;; -0.06629857 0.007574725 -0.09253843; 0.017852511 0.046230514 -0.016593436; -0.09101455 0.0020634683 -0.05339372;;; -0.07641433 0.07302391 0.07031223; 0.03712841 -0.022625916 -0.06988182; 0.04997987 -0.050524708 -0.089173235;;;; … ;;;; -0.028646132 0.085229695 0.06469668; 0.09551051 -0.029904138 0.061243914; -0.06403407 0.024726724 0.06494644;;; 0.087064005 -0.06847626 0.019330723; 0.026065238 0.06840617 -0.04758202; 0.05141817 0.098892726 0.03404699;;; 0.04708777 0.055663493 -0.006951289; 0.03175363 -0.081033595 -0.08275124; -0.071311854 0.009341933 0.03468775;;; … ;;; -0.02962642 -0.09590666 -0.05600529; 0.0889436 0.051508036 0.009184033; -0.032021273 0.08017524 -0.0074233343;;; 0.051486038 -0.023097476 0.00037087896; 0.01542566 0.025198344 -0.062196657; 0.08505366 0.031190028 0.051176015;;; -0.011284878 -0.026235571 0.02665109; 0.09830653 0.010861754 -0.07334161; 0.018412681 0.081333615 -0.035648778;;;; 0.0047940514 -0.09131999 0.093716785; -0.09351495 -0.023043187 0.09217563; 0.08891072 -0.01849819 -0.03696084;;; -0.08545913 0.041527834 0.061140254; 0.006178165 0.06362019 -0.04539051; 0.09544395 0.066641234 0.045293517;;; -0.06272596 0.098123915 0.056528293; -0.09218042 0.08848565 -0.044335764; 0.06863449 0.08431406 -0.025425741;;; … ;;; -0.098906785 -0.008493862 0.071079284; 0.046335246 -0.011786841 0.051547263; 0.03209958 -0.05064685 -0.051987235;;; -0.05792142 -0.080285974 -0.0060197297; 0.047787942 0.057805132 0.044005714; 0.043525834 -0.008493399 0.005553938;;; -0.039126374 0.07253904 0.038394265; -0.06102601 0.03199498 -0.06237333; -0.019649675 0.017388145 0.06730994;;;; 0.08643391 0.028957687 0.00047196032; 0.027759846 -0.04988857 0.058159158; -0.0019255582 0.035215348 0.06260449;;; 0.07596742 -0.051595733 0.03205911; -0.08560997 -0.017798638 0.011382016; -0.06789561 -0.056417257 -0.026994899;;; -0.062560186 0.0866486 -0.025037767; 0.022535238 -0.0037006622 -0.05831258; 0.0909063 0.079050474 -0.0426645;;; … ;;; -0.023582466 0.0071744025 0.008353117; -0.07659491 0.07431554 0.0010513652; -0.066755645 -0.09958351 0.020332899;;; 0.065030314 0.017242545 -0.076637335; 0.04759526 -0.070779875 0.084404096; -0.045749113 0.0076133544 -0.047563978;;; 0.049377467 0.01978391 -0.096014366; -0.042722072 -0.032273807 0.08236582; 0.060949214 -0.04627918 0.0472368], Float32[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0  …  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], Float32[0.24565256 -0.067274645 … 0.13032791 0.34515887; 0.1619829 0.28926072 … -0.12070169 -0.2739247; … ; -0.27309504 0.09004243 … 0.23412597 0.050702095; -0.32344115 0.3456587 … -0.2038819 -0.14619532], Float32[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; number_epochs = 4</code><code class="nohighlight hljs ansi" style="display:block;">4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Flux.@epochs number_epochs Flux.train!(myloss, ps, train_data, opt)</code><code class="nohighlight hljs ansi" style="display:block;">[ Info: Epoch 1
+[ Info: Epoch 2
+[ Info: Epoch 3
+[ Info: Epoch 4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtrain =   model(x_train)</code><code class="nohighlight hljs ansi" style="display:block;">10×60000 Matrix{Float32}:
+ 5.83999f-8   0.99995     4.63425f-6   …  0.00126185   0.00448981
+ 2.44199f-5   4.21395f-8  0.000106931     6.05711f-5   1.74361f-5
+ 0.000819204  1.93822f-5  1.28212f-6      0.000217144  0.012105
+ 0.0546756    5.78045f-7  0.000145291     0.000104459  0.00051933
+ 7.6241f-12   1.195f-10   0.979206        0.000128258  1.08515f-6
+ 0.944452     1.95141f-6  4.01708f-6   …  0.00817953   0.00288775
+ 3.53696f-10  3.47445f-7  4.19271f-6      0.990015     5.76174f-6
+ 7.02689f-6   2.13208f-5  0.00475644      6.69981f-7   0.000243437
+ 1.76797f-5   4.71961f-6  1.36012f-5      1.5976f-5    0.977381
+ 3.95936f-6   1.66754f-6  0.0157573       1.70286f-5   0.00234913</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtest  =   model(x_test)</code><code class="nohighlight hljs ansi" style="display:block;">10×10000 Matrix{Float32}:
+ 9.33421f-7   4.28918f-8   2.6852f-5    …  3.72469f-8   3.55274f-8
+ 9.51805f-7   3.22909f-6   0.997274        3.88848f-8   2.89881f-11
+ 1.6244f-5    0.993951     0.000684368     1.84664f-8   8.36462f-8
+ 5.40632f-5   0.0059913    0.000141944     6.30324f-6   8.27977f-10
+ 4.75044f-9   2.24394f-14  0.000548244     9.87622f-11  3.77131f-9
+ 6.78681f-7   4.60226f-5   6.41511f-5   …  0.999976     7.7614f-6
+ 7.23235f-11  4.98492f-9   0.000259821     9.71741f-8   0.999992
+ 0.999895     7.83937f-12  0.000643316     3.81952f-9   1.22256f-14
+ 1.6757f-7    8.00306f-6   0.000273961     1.75159f-5   5.43085f-10
+ 3.17071f-5   2.9313f-16   8.32828f-5      2.84061f-8   3.82977f-11</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; myaccuracy(ŷtrain, y_train)</code><code class="nohighlight hljs ansi" style="display:block;">0.96935</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; myaccuracy(ŷtest, y_test)</code><code class="nohighlight hljs ansi" style="display:block;">0.9688</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot(Gray.(x_train[:,:,1,2]))</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; cm = ConfusionMatrix(Flux.onecold(ŷtest) .-1 ,Flux.onecold(y_test) .-1)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Utils.ConfusionMatrix{Int64}([7, 2, 1, 0, 4, 9, 5, 6, 3, 8], [&quot;7&quot;, &quot;2&quot;, &quot;1&quot;, &quot;0&quot;, &quot;4&quot;, &quot;9&quot;, &quot;5&quot;, &quot;6&quot;, &quot;3&quot;, &quot;8&quot;], 0.9688, 0.031200000000000006, [1028, 1032, 1135, 980, 982, 1009, 892, 958, 1010, 974], [1020, 1029, 1149, 999, 951, 1032, 939, 927, 1036, 918], [990 12 … 4 1; 7 1000 … 13 4; … ; 6 3 … 993 1; 6 8 … 11 905], [0.9630350194552529 0.011673151750972763 … 0.0038910505836575876 0.0009727626459143969; 0.006782945736434108 0.9689922480620154 … 0.012596899224806201 0.003875968992248062; … ; 0.005940594059405941 0.0029702970297029703 … 0.9831683168316832 0.0009900990099009901; 0.006160164271047228 0.008213552361396304 … 0.011293634496919919 0.9291581108829569], [990, 1000, 1128, 969, 938, 973, 877, 915, 993, 905], [8942, 8939, 8844, 8990, 9005, 8932, 9046, 9030, 8947, 9013], [30, 29, 21, 30, 13, 59, 62, 12, 43, 13], [38, 32, 7, 11, 44, 36, 15, 43, 17, 69], [0.9705882352941176, 0.9718172983479106, 0.9817232375979112, 0.96996996996997, 0.9863301787592008, 0.9428294573643411, 0.933972310969116, 0.9870550161812298, 0.9584942084942085, 0.985838779956427], [0.9630350194552529, 0.9689922480620154, 0.9938325991189427, 0.9887755102040816, 0.955193482688391, 0.9643211100099108, 0.9831838565022422, 0.9551148225469729, 0.9831683168316832, 0.9291581108829569], [0.9966562639322336, 0.9967662801070473, 0.9976311336717428, 0.9966740576496674, 0.9985584386781992, 0.9934378823267712, 0.9931927975406236, 0.9986728599867286, 0.9952169076751947, 0.9985597163749169], [0.966796875, 0.970402717127608, 0.9877408056042032, 0.9792824658918646, 0.9705121572684946, 0.953454189122979, 0.9579464773347898, 0.9708222811671088, 0.9706744868035191, 0.9566596194503171], (0.9688618692934433, 0.9692385890186533), (0.9684775076302449, 0.9688), (0.9965366337943123, 0.9965663379431253), (0.9684292074770886, 0.9687887341930121))</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; println(cm)</code><code class="nohighlight hljs ansi" style="display:block;">
+-----------------------------------------------------------------
+
+*** CONFUSION MATRIX ***
+
+Scores actual (rows) vs predicted (columns):
+
+
+Normalised scores actual (rows) vs predicted (columns):
+
+
+ *** CONFUSION REPORT ***
+
+- Accuracy:               0.9688
+- Misclassification rate: 0.031200000000000006
+- Number of classes:      10
+
+  N Class   precision   recall  specificity  f1Score  actualCount  predictedCount
+                          TPR       TNR                 support                  
+
+  1 7           0.971    0.963        0.997    0.967         1028            1020
+  2 2           0.972    0.969        0.997    0.970         1032            1029
+  3 1           0.982    0.994        0.998    0.988         1135            1149
+  4 0           0.970    0.989        0.997    0.979          980             999
+  5 4           0.986    0.955        0.999    0.971          982             951
+  6 9           0.943    0.964        0.993    0.953         1009            1032
+  7 5           0.934    0.983        0.993    0.958          892             939
+  8 6           0.987    0.955        0.999    0.971          958             927
+  9 3           0.958    0.983        0.995    0.971         1010            1036
+ 10 8           0.986    0.929        0.999    0.957          974             918
+
+- Simple   avg.    0.969    0.968        0.997    0.968
+- Weigthed avg.    0.969    0.969        0.997    0.969
+
+-----------------------------------------------------------------</code></pre><p><a href="https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/04_-_NN_-_Neural_Networks/0402_-_Implementation_of_neural_networks_workflows.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p><hr/><div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/runner/work/SPMLJ/SPMLJ/lessonsSources/04_-_NN_-_Neural_Networks/0402_-_Implementation_of_neural_networks_workflows.md",
+"title" : "0402_-_Implementation_of_neural_networks_workflows.md",
+"permalink" : ""
+};
+</script><div class="addthis_inline_share_toolbox"></div><hr/><script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script><script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script><!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0401_-_Neural_network_architectures.html">« 0401 - Neural network architectures</a><a class="docs-footer-nextpage" href="0402x_EXERCISE-4.1.html">0402x EXERCISE-4.1 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Sunday 24 April 2022 14:10">Sunday 24 April 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

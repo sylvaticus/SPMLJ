@@ -1,0 +1,44 @@
+/*
+
+html.theme--documenter-dark pre code {
+    padding: 0.1rem 0.2rem !important;
+}
+
+html.theme--documenter-light pre code {
+    padding: 0.1rem 0.2rem !important;
+}
+*/
+
+/* Comments widget */
+.utterances .utterances-frame {
+   /*min-width: 600px; */
+   min-height: 300px;
+   position: relative;
+}
+
+/* Youtube widgets*/
+.ytb-container iframe.embed-responsive-item{
+    width: 600px;
+    height: 300px;
+}
+
+#ytb-videos {
+    background-color: #8a6700;
+    padding: 10px;
+}
+
+p, li{
+    text-align: justify;
+}
+
+/* Rating and sharing widgets */
+#pd_rating_holder_8962705 {
+    display: inline !important;
+}
+
+div.addthis_inline_share_toolbox {
+  clear: none !important;
+  margin-left: 20px;
+  margin-top: -0.8em;
+  display: inline-block;
+}
