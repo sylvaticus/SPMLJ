@@ -1,0 +1,21 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Introduction to Scientific Programming and Machine
+  Learning with Julia (SPMLJ)
+message: Please cite this course using these metadata.
+type: software
+authors:
+  - given-names: Antonello
+    family-names: Lobianco
+    email: antonello@lobianco.org
+    affiliation: >-
+      AgroParisTech, Bureau d'Économie Théorique et
+      Appliquée (BETA)
+    orcid: 'https://orcid.org/0000-0002-1534-8697'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.6425030
+    description: Zenodo archive

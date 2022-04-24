@@ -4,14 +4,15 @@
 
 ## What will you get from this course
 
-This course aims to provide a gentle introduction to Julia, a modern, expressive and efficient programming language, and introduce the main concepts around machine learning, together with some algorithms and practical implementations of machine learning workflows.
+This course aims to provide a gentle introduction to Julia, a modern, expressive and efficient programming language, and to introduce the main concepts around machine learning, together with some algorithms and practical implementations of machine learning workflows.
 
-In particular the objectives are : 
-1. Supply students with an operational knowledge of a modern and efficient general-purpose language that can be employed for the implementation of their research daily activities;
-2. Present several specific but commonly used tools in multiple scientific areas (data transformation, optimisation,...)
-3. Introducing students to modern tools for scientific collaboration and software quality, such as version control systems and best practices to obtain replicable results.
-4. Introduce machine learning approaches: scopes, terminology, typologies, workflow organisation
-5. Introduce some specific machine learning algorithms for classification and regression
+In particular, attending this course you will receive : 
+1. An operational knowledge of a modern and efficient general-purpose language, with a focus on numerical and scientific computation;
+2. An exposure to several specific but commonly used tools in multiple scientific areas (data transformation, optimisation, ...)
+3. An overview of modern tools for scientific collaboration and software quality, such as version control systems and best practices to obtain replicable results.
+4. An introduction to machine learning approaches: scopes, terminology, typologies, workflow organisation
+5. An in-deep introduction to some specific machine learning algorithms for classification and regression (perceptron, neural networks, random forests..)
+6. Experience is employing Machine Learning workflows to specific cases on multiple domains
 
 ## How to attend the course
 
@@ -19,7 +20,7 @@ The course is multi-channel, with these pages complemented with youtube videos (
 
 **To fully master the subject, nothing is better than cloning [the repository on GitHub](https://github.com/sylvaticus/SPMLJ) and run these pages by yourself!**
 To execute yourself the code discussed in the videos run the code in the `lessonsSource` folder.
-Other resources used in the course (in particular the examples of the introduciton and the exercises) are located under the `lessonsMaterial` folder.
+Other resources used in the course (in particular the examples of the introduction and the exercises) are located under the `lessonsMaterial` folder.
 
 While the content of this course may also be used in specific academic courses with a fixed calendar, you are free to complete the course at your pace. You don't even need to log-in. This however means that there is no way to track your progress or the outcomes of the quizes.
 
@@ -32,13 +33,13 @@ Any-how, the course is organised in units/lessons (e.g. `JULIA1`). Each unit/les
 -----
 
 ```@raw html
- <img src="assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="100"> 
+ <p style ="font-weigth: bold;"><img src="assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="100" style="float: left; margin-right: 15px;"> 
+ Antonello Lobianco</p>
+ <p> <a href="https://orcid.org/0000-0002-1534-8697">OrcID</a> - <a href="https://scholar.google.com/citations?user=8DSfpVUAAAAJ">Google Schoolar</a> - <a href="https://github.com/sylvaticus/">GitHub</a> - <a href="https://lobianco.org/antonello">Personal site</a>
+ </p>
+ <p style="clear:both;">
 ```
 
-
-Antonello Lobianco
-
-[OrcID](https://orcid.org/0000-0002-1534-8697) - [Google Schoolar](https://scholar.google.com/citations?user=8DSfpVUAAAAJ) - [GitHub]( https://github.com/sylvaticus/) - [Personal site](https://lobianco.org/antonello)
 
 I am a Forest and Natural Resources Economist @ AgroParisTech, a French "Grand ecole" (sort of polytecnic university) in the life science domain and affiliated to BETA, the _Bureau d'Économie Théorique et Appliquée_, which brings together most of the economists located in the _Grand-Est_ region of France.
 My main interest is in exploring the interplay between the biophysical layers in the forest sector (climate change, forest dynamics) and the socio-economic ones (individual forest owners behaviours, timber markets "behaviours") in order to better understand the space of actions that society has to maximise social benefits in a sustenible way. For that I design, develop and use bio-economic simulation models of the forest sector.
@@ -48,6 +49,17 @@ While this course is in English, English is not my native language... please, be
 **Acknowledgements**: The development of this course at the _Bureau d'Economie Théorique et Appliquée_ (BETA, Nancy) was supported by the French National Research Agency through the [Laboratory of Excellence ARBRE](http://mycor.nancy.inra.fr/ARBRE/), a part of the “Investissements d'Avenir” Program (ANR 11 – LABX-0002-01).
 
 -----
+
+## How to cite the course
+
+Please cite as :
+
+Antonello Lobianco (2022), _Introduction to Scientific Programming and Machine
+Learning with Julia (SPMLJ)_, doi: [10.5281/zenodo.6425030](https://doi.org/10.5281/zenodo.6425030)
+
+[![DOI](https://zenodo.org/badge/429458515.svg)](https://zenodo.org/badge/latestdoi/429458515)
+
+
 
 
 ## How to contribute to the course
