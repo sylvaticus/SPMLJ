@@ -5,7 +5,7 @@ INPROGRESS. Please refer to the videos above or to the slides.
 
 ## An introduction to the Julia Programming Language
 
-Julia is an modern, interactive and dynamic general-purpose programming language. While being dynamic, Julia compiles the code the first time it is evaluated (e.g. on the first time a function is called) using a tecnique called _Just In Time_. This resuls in performances typical of a compiled language, and solves the dual-language problem, that is to first prototipy an algorithm in an expressive, dynamic language and then re-code it in a compiled languages for performances.
+Julia is an modern, interactive and dynamic general-purpose programming language. While being dynamic, Julia compiles the code the first time it is evaluated (e.g. on the first time a function is called) using a tecnique called _Just In Time_. This resuls in performances typical of a compiled language, and help avoiding the dual-language problem, that is to first prototipy an algorithm in an expressive, dynamic language and then re-code it in a compiled languages for performances.
 If one get typically interested in Julia because of its speed, there are other elements that contribute to make it a modern programming language particularly suited for numerical and scientific computation.
 This segment try to highliths its main characteristics that will be further developed in the first unit `JULIA1`.
 
