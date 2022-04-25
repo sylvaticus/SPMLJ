@@ -14,13 +14,13 @@ The slides used in the videos below are available [here](https://github.com/sylv
 
 - [Course introduction](https://www.youtube.com/watch?v=2tM5oIvOQnU&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=1) (16:11)
 - [Julia overview](https://www.youtube.com/watch?v=uW8iyTjSaJk&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=2) (36:25)
-- [ML Terminology](https://www.youtube.com/watch?v=l9ls2yssKiE&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=3) (21:19)
-- [A first ML Example](https://www.youtube.com/watch?v=SclPPNvYEAI&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=4) (7:00)
-- [ML application areas](https://www.youtube.com/watch?v=bIApDXIhm1k&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=5) (14:24)
 - Hands on (42:09)
-  - [Part A](https://www.youtube.com/watch?v=kT9Vm8Ov6qo&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=6) (20:15)
-  - [Part B](https://www.youtube.com/watch?v=51AwIJzxtgw&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=7) (21:54)
-- [Pkgs, modules and environments](https://www.youtube.com/watch?v=_qTLSrk1ICA&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=8) (20:56)
+  - [Part A](https://www.youtube.com/watch?v=kT9Vm8Ov6qo&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=3) (20:15)
+  - [Part B](https://www.youtube.com/watch?v=51AwIJzxtgw&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=4) (21:54)
+- [Pkgs, modules and environments](https://www.youtube.com/watch?v=_qTLSrk1ICA&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=5) (20:56)
+- [ML Terminology](https://www.youtube.com/watch?v=l9ls2yssKiE&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=6) (21:19)
+- [A first ML Example](https://www.youtube.com/watch?v=SclPPNvYEAI&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=7) (7:00)
+- [ML application areas](https://www.youtube.com/watch?v=bIApDXIhm1k&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=8) (14:24)
 - [Further ML Examples](https://www.youtube.com/watch?v=9Kni5XkQV5M&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=9) (6:34)
 
 
