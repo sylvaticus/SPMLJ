@@ -31,6 +31,10 @@ p, li{
     text-align: justify;
 }
 
+.docs-menu li {
+    text-align:left;
+}
+
 /* Rating and sharing widgets */
 #pd_rating_holder_8962705 {
     display: inline !important;

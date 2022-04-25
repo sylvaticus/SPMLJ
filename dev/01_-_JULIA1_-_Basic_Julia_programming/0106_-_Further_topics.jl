@@ -744,7 +744,7 @@ customIndex(a,4)
 
 # Note that handling exceptions is computationally expensive, so do not use exceptions in place of conditional statements
 
-# ## Parallel computation
+# ## Parallel computation (@id parallel_computation)
 
 # Finally one note on parallel computation. We see only some basic usage of multithreading and multiprocesses in this course, but with Julia it is relativelly easy to parallelise the code either using multiple threads or multiple processes. What's the difference ?
 # - **multithread**
