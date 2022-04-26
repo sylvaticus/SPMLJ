@@ -41,12 +41,12 @@ const LESSONS_ROOTDIR_TMP = joinpath(@__DIR__, "lessonsSources_tmp")
 
 
 LESSONS_SUBDIR = Dict(
-  "INTRO - Introduction to the course, Julia and ML"  => "00_-_INTRO_-_Introduction_julia_ml",
-  "JULIA1 - Basic Julia programming"           => "01_-_JULIA1_-_Basic_Julia_programming",
-  "JULIA2 - Scientific programming with Julia" => "02_-_JULIA2_-_Scientific_programming_with_Julia",
-  "ML1 - Introduction to Machine Learning"     => "03_-_ML1_-_Introduction_to_Machine_Learning",
-  "NN - Neural Networks"                      => "04_-_NN_-_Neural_Networks",
-  "DT - Decision trees based algorithms"     => "05_-_DT_-_Decision_trees_based_algorithms"
+  "INTRO - Introduction to the course, Julia and ML [DRAFT]"  => "00_-_INTRO_-_Introduction_julia_ml",
+  "JULIA1 - Basic Julia programming"              => "01_-_JULIA1_-_Basic_Julia_programming",
+  "JULIA2 - Scientific programming with Julia"    => "02_-_JULIA2_-_Scientific_programming_with_Julia",
+  "ML1 - Introduction to Machine Learning"        => "03_-_ML1_-_Introduction_to_Machine_Learning",
+  "NN - Neural Networks"                          => "04_-_NN_-_Neural_Networks",
+  "DT - Decision trees based algorithms [DRAFT]"  => "05_-_DT_-_Decision_trees_based_algorithms"
 )
 
 
@@ -164,16 +164,19 @@ function preprocess(rootDir)
         outContent = ""
         filename = splitdir(file)[2]
         segmentVideos = videos[videos.host_filename .== filename,:]
+        #openVideosFlag = filename == "0001_-_Course_presentation.md" ? "open" : ""
+
         if size(segmentVideos,1) > 0
             outContent *= """
                         ```@raw html
                         <div id="ytb-videos">
                         <span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
                         """
-            for video in eachrow(segmentVideos)
+            for (i, video) in enumerate(eachrow(segmentVideos))
                 #video = segmentVideos[1,:]
+                openVideosFlag = (i == 1) ? "open" : ""
                 outContent *= """
-                    <details><summary>$(video.lesson_short_name) - $(video.segment_id)$(video.part_id): $(video.part_name) ($(video.minutes):$(video.seconds))</summary>
+                    <details $(openVideosFlag)><summary>$(video.lesson_short_name) - $(video.segment_id)$(video.part_id): $(video.part_name) ($(video.minutes):$(video.seconds))</summary>
                     <div class="container ytb-container">
                         <div class="embed-responsive embed-responsive-16by9">
                             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/$(video.vid)" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>

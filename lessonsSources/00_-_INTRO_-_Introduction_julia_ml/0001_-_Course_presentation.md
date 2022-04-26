@@ -7,7 +7,7 @@ This course aims to provide a gentle introduction to Julia, a modern, expressive
 
 In particular, by attending this course you will receive : 
 1. An operational knowledge of a modern and efficient general-purpose language, with a focus on numerical and scientific computation;
-2. An exposure to several specific but commonly used tools in multiple scientific areas (data transformation, optimisation, ...)
+2. An exposure to several specific but commonly used tools in multiple scientific areas (data wrangling and visualisation, constrained optimisation, ...)
 3. An overview of modern tools for scientific collaboration and software quality, such as version control systems and best practices to obtain replicable results.
 4. An introduction to machine learning approaches: scopes, terminology, typologies, workflow organisation
 5. An in-deep introduction to some specific machine learning algorithms for classification and regression (perceptron, neural networks, random forests..)
