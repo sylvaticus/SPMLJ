@@ -97,39 +97,115 @@ After the model has been estimated, the modeller needs to provide the decision m
 If we go instead for a machine learning approach, we would use instead a "generic" regression algorithm (for example a decisions tree) and the goodness of the predicted output would be obtained by comparing the ML predictions with the true values for a set of records that has not being used to train the model (we'll see this important concept in detail in the `ML1` unit).
 While ML predictions are likelly to be more accurate compared to those obtained by an out-of-sample interpolation of the statistical model, there is still a glitch.
 Now we don't have any more a _compact_ representation of our model, so we can provide the company with just an equation and its parameters.
-For the decision maker to be able to make predictions, we need now to provide to it the whole "trained" algorithm, so that it can be ran by the decision maker whenever it needs to make predicitons.
-
-## Further examples
-
-Digits recognition
-will the algorithm recognise your hand-written digits ? (i.e. why captchas are a matter of the past) 
-A regression task: the prediction of bike sharing demand
-The task is to estimate the influence of several variables (like the weather, the season, the day of the week..) on the demand of shared bicycles, so that the authority in charge of the service can organise the service in the best way.
-A classification task when labels are known - determining the country of origin of cars given the cars characteristics
-In this exercise we have some car technical characteristics (mpg, horsepower,weight, model year...) and the country of origin and we would like to create a model such that the country of origin can be accurately predicted given the technical characteristics. As the information to predict is a multi-class one, this is a classification task. It is a challenging exercise due to the simultaneous presence of three factors: (1) presence of missing data; (2) unbalanced data - 254 out of 406 cars are US made; (3) small dataset.
-A clustering task: the prediction of plant species from floral measures (the iris dataset)
-The task is to estimate the species of a plant given some floral measurements. It use the classical "Iris" dataset. Note that in this example we are using clustering approaches, so we try to understand the "structure" of our data, without relying to actually knowing the true labels ("classes" or "factors"). However we have chosen a dataset for which the true labels are actually known, so to compare the accuracy of the algorithms we use, but these labels will not be used during the algorithms training.
+For the decision maker to be able to make predictions, we need now to provide to it the whole "trained" algorithm, so that it can be run by the decision maker whenever it needs to make predicitons.
 
 ## Type of Machine Learning areas
 
-Supervised learning
-obj: predict Y ("labels" or "target": continuous → regression or categorical → classification) based on X ("features")
-given a certain number of (X,Y) couples provided to the algorithms
-learn solution from examples
-Unsupervised learning
-exploit the "hidden" structure of some data (normally highly dimensional) without having any label provided
-es. PCA, clustering
-Reinforcement learning
-learn the "best" action an agent can make toward a certain goal given unknown "rewards" of the actions
-e.g. board games (chess, go), self-driving robots, control systems
-often in a physic world
-need training with many repeated "experiments" (including many failures!)
+ML algorithms differentiate for the predictive capacity, the computational efficiency (both memory and CPU), the necessity of input preprocessing (both simple data transformation and feature-engineering), the possibility to "reverse-engineer" the machinery and "understand" ("interpret") the relation between the X and the Y,...
+
+We can typically distinguish three different kinds of Machine Learning tasks, _supervised learning_, _unsupervised learning_ and _reinforcement learning_, although the most interesting tasks are those where these things are actually mixed up in the same job.
+
+
+### Supervised learning
+
+![Supervised Learning](assets/imgs/mlXToYRelation.png)
+
+In a _supervised learning_ problem, the objective is to predict some new information. This can be to predict the occurrence of some events in the future, as if a loan holder would default, or if a tree species would be successful in a new environment, or which is the next word you will want to type in a sentence ?
+The  information to predict can also be just some properties that we don't yet know, as the objects depicted in an image, or if a bottle of wine is really "Château Pétrus" or it is a fake.
+
+The information to predict, the probability of default for example, is called _label_ or _target_ or simply `Y`, while the characteristics from which to make the prediction – the current debt level, the previous default history, the monthly incomes.. are the `X` or _feature vector_.
+
+If the label is continuous, e.g. the speed a car can go given its characteristics, the task is a _regression_. If the set of possible values the `Y` can take is finite, it is a _classification_ task. 
+In supervised learning the algorithm is provided with a set of examples of both the `X` and the corresponding `Y`, i.e. you give "supervision" of what the correct behaviour is, and the algorithm "learns" the mapping from the `X` to the `Y` using these examples, with the caveat that the algorithm will need to learn a "general" mapping from the `X` to the `Y`, and not one specific to the examples we provide to it, so that when we will feed the algorithm a new `X` that the algorithm never saw, it will indicate the correct `Y`. This is the problem of generalisation, the equivalent to overfitting in statistics, actually the opposite of it, and we will discuss it in unit `ML1`.
+
+The step where the algorithm learns the relation from the provided couples is called _training_ and it is often very computationally intensive.
+Once the algorithm is trained, it can be used to make _predictions_ of the unknown `Y` based on some new `X`.
+
+On `ML1` we'll have an exercise on digit recognition: we draw a digit, we scan the image and we let the computer guess which digit is represented in the image.
+This "simple" task is indeed very hard for a computer and only recently, thanks to ML, has been largely solved. As we discussed earlier, it would be really complex to instruct an algorithm to recognize a digit based on "classical" engineering procedures. You write the number "7" with two lines, I add another horizontal line in the middle, you type it perfectly vertical, I give it a bit of a slant.. you close perfectly the "zero", while I leave a small gap… For this kind of digit recognision task it is much simpler to just teach the classification with examples, and let the algorithm find which are the characteristics that make more likely a digit to be a "9" rather than a "8" for example. 
+
+
+
+## Unsupervised learning
+![Unsupervised Learning](assets/imgs/mlClusterOutExample.png)
+
+Another area of application of machine learning is to automatise the discovery of information hidden in large datasets, often highly multidimensional.
+
+In unsupervised machine learning tasks, we ask the algorithm to "scan" the data and find patterns, hidden structures that would be difficult to retrieve manually.  In this class of tasks we don't provide a label, we let the algorithm find a result from the data by itself.
+
+A typical example is to recognise the presence of a structure that lead to distinguish between different groups in the data, i.e. divide the data in several clusters.  We will see an example using the famous "sepal" dataset – a dataset where the floral species is determined from morphological measures of flower parts. In this case we could also apply supervised learning, as the `Y` – the plant species – is included in the dataset, but even if this information would not be part of the dataset, a clustering algorithm would be able to separate the observations in different species.
+
+Other examples are the algorithms of dimensionality reduction, where we want to reduce the number of dimensions where our data live in, to be able to represent them or to further process for other ML algorithms. We will see the Principal Component Analysis, PCA, a technique that linearly transforms the data following the dimensions where the variance is maximised.
+
+
+
+
+## Reinforcement learning
+![Reinforcement Learning](assets/imgs/mlReinforcementLearningChildExample.jpg)
+
+Reinforcement learning refers to the tasks when we learn the "best" action an agent can make toward a certain goal, given unknown "rewards" of the individual actions.
+
+E.g. board games (chess, go), self-driving robots, control systems
+
+It is something similar to supervised learning, as we know the final reward of each set of actions that complexivelly lead to a certain state, but here we have the added complexity that the algoritm needs to distribute this _reward_ to each individual action.
+
+As the algorithm needs training with many repeated "experiments", including many failures, its applicability is however limited to problems where we do have these data and.. where having many "fealures" during training is acceptable
+
 exploration vs exploitation trade off
+
+
+Finally, we can consider reinforcement learning tasks.
+Somehow similar to supervised learning, here the algorithm is provided with a feedback, how "good" the solution it arrived is, but the feedback concerns only the very final state deriving from the set of decisions the algorithms has taken. So we will have many attempts, or "games", each one composed of various actions that the algorithm takes and each action changes the current state of the world until we arrive at a final state and at this time the algorithm is provided with a feedback on how good that "final" state is.  The algorithm will have then to track down how the individual decisions that it made relate to the final outcome.
+
+Note that this is actually a very broad topic, it isn't restricted to board games like chess or Go or to robotic simulations. For example, it can be applied in a business context where you are trying to get customers to sign a contract and have to decide the best actions between sending emails, making phone calls, organising a physical meeting, and so on..
+What is important again is that you need to have a lot of data and, as in the business example, be prepared for many "failures", at least initially. It can't be applied to situations where it is imperative to succeed in something where it is the first time you are attempting, as you would miss the "experience" that algorithm requires for training.
+Indeed, at the heart of reinforcement learning there is a universal concept known as "exploration vs exploitation". We will see that the way to train a reinforcement learning algorithm includes a first step where the initial experience is not available or it is very limited, and we should let the algorithm "explore" the various options with the objective indeed to achieve a large and diverse experience, to then gradually shift toward more and more usage of this experience, "exploit" the accumulated experience and reducing the exploration.
+This is very much what happens in learning in everyday situations. I have 3 kids, and I only recently realised the full meaning of the "terrible three" (or sometimes "terrible two"!) expression. Toddlers at this age looks really "terrible", as they are "exploring" the world around them, and making the most "crazy" experiments,  like spilling a glass of water on the floor, putting the shoes in a puddle, pulling the pet's tail – or eating the dog's nuggets… Only later kids learn "how to behave", the effect of their actions and start using their knowledge. But this is true also in biological systems. When you are young your immune system doesn't yet know the pathogens, and its response is much more general, dynamic. Adult immune response conversely is much more targeted to the "know pathogen" list, it exploits the experience accumulated over a lifetime. This is why a "new" pathogen, as the covid-19, is much more dangerous to old people than young ones.
+So, we will see that, as in these real world situations, efficient reinforcement learning algorithms require a training that switch from first exploring the options available to one exploiting the accumulated experience.
+
+
+
+## Further examples
+
+You can get an idea of ML tasks by looking at the various tutorials of the [BetaML documentation](https://sylvaticus.github.io/BetaML.jl/stable/tutorials/Betaml_tutorial_getting_started.html):  
+
+- [A regression task: the prediction of bike sharing demand](https://sylvaticus.github.io/BetaML.jl/stable/tutorials/Regression%20-%20bike%20sharing/betaml_tutorial_regression_sharingBikes.html)
+This is the implementation of the example we discussed above
+- [A classification task when labels are known - determining the country of origin of cars given the cars characteristics](https://sylvaticus.github.io/BetaML.jl/stable/tutorials/Classification%20-%20cars/betaml_tutorial_classification_cars.html)
+In this exercise we have some car technical characteristics (mpg, horsepower,weight, model year...) and the country of origin and we would like to create a model such that the country of origin can be accurately predicted given the technical characteristics. As the information to predict is a multi-class one, this is a classification task. It is a challenging exercise due to the simultaneous presence of three factors: (1) presence of missing data; (2) unbalanced data - 254 out of 406 cars are US made; (3) small dataset.
+- [A clustering task: the prediction of plant species from floral measures (the iris dataset)](https://sylvaticus.github.io/BetaML.jl/stable/tutorials/Clustering%20-%20Iris/betaml_tutorial_cluster_iris.html)
+The task is to estimate the species of a plant given some floral measurements. It use the classical "Iris" dataset. Note that in this example we are using clustering approaches, so we try to understand the "structure" of our data, without relying to actually knowing the true labels ("classes" or "factors"). However we have chosen a dataset for which the true labels are actually known, so to compare the accuracy of the algorithms we use, but these labels will not be used during the algorithms training.
+
+
 
 ## ML current research hot topics
 
-ML algorithms differentiate for the predictive capacity, the computational efficiency (both memory and CPU), the necessity of input preprocessing (both simple data transformation and feature-engineering), the possibility to "reverse-engineer" the machinery and "understand" the relation between the X and the Y,...
-requirement for lot of data, next step is transfer knowledge from a system (problem) to an other
 
 
-## 
+
+
+Another area of application of Machine Learning is to automatise the discovery of information hidden in large datasets, often highly multidimensional.
+In unsupervised machine learning tasks we ask the algorithm to "scan" the data and find patterns, hidden structures that would be difficult to retrieve manually.  In this class of tasks we don't provide a label, we let the algorithm find a result from the data by itself.
+A typical example is to recognise the presence of a structure that lead to distinguish between different groups in the data, i.e. divide the data in several clusters.  We will see an example using the famous "sepal" dataset – a dataset where the floral species is determined from morphological measures of flower parts. In this case we could also apply supervised learning, as the Y – the plant species – is included in the dataset, but even if this information would not be part of the dataset, a clustering algorithm would be able to separate the observations in different species.
+Other examples are the algorithms of dimensionality reduction, where we want to reduce the number of dimensions where our data live in, to be able to represent them or to further process for other ML algorithms. We will see the Principal Component Analysis, PCA, a technique that linearly transforms the data following the dimensions where the variance is maximised.
+
+Finally, we will see reinforcement learning tasks.
+Somehow similar to supervised learning, here the algorithm is provided with a feedback, how "good" the solution it arrived is, but the feedback concerns only the very final state deriving from the  set of decisions the algorithms has taken. So we will have many attempts, or "games", each one composed of various actions that the algorithm takes and each action changes the current state of the world until we arrive at a final state and the algorithm is provided with a feedback on how good that "final" state is.  The algorithm will have then to track down how the individual decisions that it made relate to the final outcome.
+
+Note that this is actually a very broad topic, it isn't restricted to board games like chess or Go or to robotic simulations. For example, it can be applied in a business context where you are trying to get customers to sign a contract and have to decide the best actions between sending emails, making phone calls, organising a physical meeting, and so on..
+What is important again is that you need to have a lot of data and, as in the business example, be prepared for many "failures", at least initially. It can't be applied to situations where it is imperative to succeed in something where it is the first time you are attempting, as you would miss the "experience" that algorithm requires for training.
+Indeed, at the heart of reinforcement learning there is a universal concept known as "exploration vs exploitation". We will see that the way to train a reinforcement learning algorithm includes a first step where the initial experience is not available or it is very limited, and we should let the algorithm "explore" the various options with the objective indeed to achieve a large and diverse experience, to then gradually shift toward more and more usage of this experience, "exploit" the accumulated experience and reducing the exploration.
+This is very much what happens in learning in everyday situations. I have 3 kids, and I only recently realised the full meaning of the "terrible three" (or sometimes "terrible two"!) expression. Toddlers at this age looks really "terrible", as they are "exploring" the world around them, and making the most "crazy" experiments,  like spilling a glass of water on the floor, putting the shoes in a puddle, pulling the pet's tail – or eating the dog's nuggets… Only later kids learn "how to behave", the effect of their actions and start using their knowledge. But this is true also in biological systems. When you are young your immune system doesn't yet know the pathogens, and its response is much more general, dynamic. Adult immune response conversely is much more targeted to the "know pathogen" list, it exploits the experience accumulated over a lifetime. This is why a "new" pathogen, as the covid-19, is much more dangerous to old people than young ones.
+So, we will see that, as in these real world situations, efficient reinforcement learning algorithms require a training that switch from first exploring the options available to one exploiting the accumulated experience.
+
+While the applications of ML, the sectors where ML can be applied, are really diverse, the set of algorithms that we need to study is surprisingly relatively small, as the same algorithm can be applied to very different situations.
+
+More than for the specific application, ML algorithms differ for their predictive capacity – although  some ML algorithms can have better predictions for some jobs than others and be worst for other tasks.
+They also differ for the computational resources they require – we  already see the trade-off between memory and CPU with online algorithms saving with the formers to the detriment of the latter. Some algorithms are trivially parallelizable, so do very well if Graphical Processing Units (GPUs) or TPUs are available.
+Another important element to decide which algorithm to use is how easily it adapts to the kind of data we have (more than to the problem we have). For examples, random forests algorithms can be directly trained with almost everything directly, while neural networks require numerical data only, and hence we need for example to transform a field "weekday" to a bunch of "ones/zeros" to code the same information.
+Finally, while ML algorithms are traditionally presented as "black boxes", there are techniques that allow to retrieve some insights on the way they form their predictions, on the contribution of the input dimension to the prediction.
+
+Still, a major drawback of ML for which there is still lot of work on is the current difficulty in using the knowledge learned by a model in a given task to perform other, more or less related, tasks.
+Most of the time we start from zero at each task, we "just" train the new model from scratch, requiring large computational and data retrieval efforts.
+But key to "learning", at least for intelligent agents, is the capacity to generalise the learned tasks and transfer this knowledge to solve new tasks. Something that goes under the name of "transfer learning".
+For examples the basic law of physics that a kid learns using her building blocks can be used later on in life during adulthood.  She doesn't need to make fall down many piles of books from the desk to discover that large pile of books are unstable ! (that's the situation in my office, maybe I didn't use too many building blocks as a child!).
