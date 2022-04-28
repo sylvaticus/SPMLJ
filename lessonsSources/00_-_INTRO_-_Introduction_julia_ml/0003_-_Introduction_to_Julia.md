@@ -1,5 +1,3 @@
-INPROGRESS. Please refer to the videos above or to the slides.
-
 # Introduction to Julia, git and the Julia package manager
 
 

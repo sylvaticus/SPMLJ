@@ -42,7 +42,7 @@ coef  = @pipe HTTP.get(urlCoefficients).body |> readdlm(_,';')
 # 7) Define the non-negative model `x` variable, indexed by the positions between 1 and `nA` (i.e. `x[1:nA] >= 0`) (you could use the @variables macro). Don't set the `x` variable to be integer at this step, as some variables are continuous, just set them to be non-negative.
 
 # 8) Set the variables for which the corresponding `integer` column in the `activity` dataframe is equal to 1 as a integer variable.
-# To set the specific vaciable `x[a]` as integer use  `set_integer(x[a])`
+# To set the specific vaciable `x[i]` as integer use  `set_integer(x[i])`
 
 # ### Model's constraint definition
 
