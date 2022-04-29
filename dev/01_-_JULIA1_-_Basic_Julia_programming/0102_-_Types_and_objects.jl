@@ -16,9 +16,9 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
-# Pkg.resolve()   
-# Pkg.instantiate() # run this if you didn't in Segment 01.01
+## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## Pkg.resolve()   
+## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
 Random.seed!(123)
 
@@ -37,38 +37,38 @@ typeof(b)
 
 # Type hierarchy in Julia:
 # 
-# - Any
-#   - AbstractString     # We'll see what all these "abstract" mean....
-#     - String
+# - `Any`
+#   - `AbstractString`     (We'll see what all these "abstract" mean....)
+#     - `String`
 #     - ...
-#   - AbstractArray
-#     - Array
+#   - `AbstractArray`
+#     - `Array`
 #     - ....
-#   - Number
-#     - Complex
-#     - Real
-#       - Rational
-#       - Integer
-#         - Unsigned
-#           - UInt64
+#   - `Number`
+#     - `Complex`
+#     - `Real`
+#       - `Rational`
+#       - `Integer`
+#         - `Unsigned`
+#           - `UInt64`
 #           - ...
-#         - Signed
-#           - Int32
-#           - Int64
-#           - BigInt
+#         - `Signed`
+#           - `Int32`
+#           - `Int64`
+#           - `BigInt`
 #           - ...
-#         - Bool
-#       - FixedPoints
+#         - `Bool`
+#       - `FixedPoints`
 #         - ...
-#       - AbstractIrrational
-#         - Irrational
-#       - AbstractFloat
-#         - Float32
-#         - Float64
-#         - BigFloat
+#       - `AbstractIrrational`
+#         - `Irrational`
+#       - `AbstractFloat`
+#         - `Float32`
+#         - `Float64`
+#         - `BigFloat`
 #         - ...
 #   - ...
-# Complete Number hierarchy: https://upload.wikimedia.org/wikipedia/commons/d/d9/Julia-number-type-hierarchy.svg
+# Complete Number hierarchy: [https://upload.wikimedia.org/wikipedia/commons/d/d9/Julia-number-type-hierarchy.svg](https://upload.wikimedia.org/wikipedia/commons/d/d9/Julia-number-type-hierarchy.svg)
 
 ## Everythong is an object, i.e. of some "type"
 c = typeof(a)

@@ -15,9 +15,9 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will however be lost)
-# Pkg.resolve()   
-# Pkg.instantiate() # run this if you didn't in Segment 01.01
+## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will however be lost)
+## Pkg.resolve()   
+## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
 Random.seed!(123)
 using InteractiveUtils # loaded automatically when working... interactively
@@ -365,7 +365,7 @@ a = rcopy(R"sumMyArgs"(3,4,5))  # 12
 # install_julia()
 # ```
 
-# `install_julia()`` will force R download and install a private copy of julia. If you prefer to use instead an existing version of julia and having R default to download a private version only if it can't find a version already installed, use `julia_setup(installJulia = TRUE)` instead of `install_julia()`, eventually passing the `JULIA_HOME = "/path/to/julia/binary/executable/directory"` (e.g. `JULIA_HOME = "/home/myUser/lib/julia-1.7.0/bin"`) parameter to the `julia_setup` call
+# `install_julia()` will force the download of R and install a private copy of julia. If you prefer to use instead an existing version of julia and having R default to download a private version only if it can't find a version already installed, use `julia_setup(installJulia = TRUE)` instead of `install_julia()`, eventually passing the `JULIA_HOME = "/path/to/julia/binary/executable/directory"` (e.g. `JULIA_HOME = "/home/myUser/lib/julia-1.7.0/bin"`) parameter to the `julia_setup` call.
 
 # `JuliaCall` depends for some things (like object conversion between Julia and R) from the Julia `RCall` package. If we don't already have it installed in Julia, it will try to install it automatically.
 
@@ -518,7 +518,7 @@ f3(x)   = x + cg
 
 # Julia is column mayor (differently than Python) so arrays of bits types are contiguous in memory across the different rows of the same column
 
-a = rand(1000,1000)
+a = rand(1000,1000);
 function f1(x)
     (R,C) = size(x)
     cum = 0.0
@@ -568,12 +568,12 @@ function f3(x)
     return s
 end
 
-x = rand(10000)
+x = rand(10000);
 @btime f1($x)
 @btime f2($x)
 @btime f3($x)
 
-X = rand(100,20)
+X = rand(100,20);
 function f1(x)
     s = 0.0
     for i in 1:size(x,1)
@@ -634,7 +634,7 @@ x = 1000
 @btime f3($x)
 @btime f4($x)
 
-# But attention! Not always a ggood idea:
+# But attention! Not always a good idea:
 function f3(y)
     s = 0.0
     for i in 2:y
@@ -744,7 +744,7 @@ customIndex(a,4)
 
 # Note that handling exceptions is computationally expensive, so do not use exceptions in place of conditional statements
 
-# ## Parallel computation (@id parallel_computation)
+# ## [Parallel computation](@id parallel_computation)
 
 # Finally one note on parallel computation. We see only some basic usage of multithreading and multiprocesses in this course, but with Julia it is relativelly easy to parallelise the code either using multiple threads or multiple processes. What's the difference ?
 # - **multithread**

@@ -150,15 +150,15 @@ scatter(yval,ŷval,xlabel="obs",ylabel="est",legend=nothing)
 using LinearAlgebra, Statistics,Flux, MLDatasets, Plots
 
 x_train, y_train = MLDatasets.MNIST.traindata(dir = "data/MNIST")
-x_train          = permutedims(x_train,(2,1,3)) # For correct img axis
-x_train          = convert(Array{Float32,3},x_train)
-x_train          = reshape(x_train,(28,28,1,60000))
+x_train          = permutedims(x_train,(2,1,3)); # For correct img axis
+x_train          = convert(Array{Float32,3},x_train);
+x_train          = reshape(x_train,(28,28,1,60000));
 y_train          = Flux.onehotbatch(y_train, 0:9)
 train_data       = Flux.Data.DataLoader((x_train, y_train), batchsize=128)
 x_test, y_test   = MLDatasets.MNIST.testdata(dir = "data/MNIST")
-x_test           = permutedims(x_test,(2,1,3)) # For correct img axis
-x_test           = convert(Array{Float32,3},x_test)
-x_test           = reshape(x_test,(28,28,1,10000))
+x_test           = permutedims(x_test,(2,1,3)); # For correct img axis
+x_test           = convert(Array{Float32,3},x_test);
+x_test           = reshape(x_test,(28,28,1,10000));
 y_test           = Flux.onehotbatch(y_test, 0:9)
 
 model = Chain(
