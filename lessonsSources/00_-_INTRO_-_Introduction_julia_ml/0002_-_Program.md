@@ -12,7 +12,7 @@ Take-home tip: in your projects, implement the introduction and the conclusions 
 
 The slides used in the videos below are available [here](https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/00_-_INTRO_-_Introduction_julia_ml/assets/00_KOMEETING.pdf).
 
-- [Course introduction](https://www.youtube.com/watch?v=ozdfSX2uk2E&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=1) (6:03)
+- [Course introduction](https://www.youtube.com/watch?v=82IbUHUgzLo&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=1) (6:03)
 - [Julia overview](https://www.youtube.com/watch?v=uW8iyTjSaJk&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=2) (36:25)
 - Hands on (42:09)
   - [Part A](https://www.youtube.com/watch?v=kT9Vm8Ov6qo&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=3) (20:15)

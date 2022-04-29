@@ -11,7 +11,7 @@ In particular, by attending this course you will receive :
 3. An overview of modern tools for scientific collaboration and software quality, such as version control systems and best practices to obtain replicable results.
 4. An introduction to machine learning approaches: scopes, terminology, typologies, workflow organisation
 5. An in-deep introduction to some specific machine learning algorithms for classification and regression (perceptron, neural networks, random forests..)
-6. Experience is employing Machine Learning workflows to specific cases on multiple domains
+6. Experience in employing Machine Learning workflows to specific cases on multiple domains
 
 ## How to attend the course
 
