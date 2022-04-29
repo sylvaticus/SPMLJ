@@ -44,6 +44,7 @@ Let's look also for _machine learning_ in the dictionary definitions:
 A common concept in these definitions is that in ML we try to "learn" a system, its structure, some patterns or how the system relates its input to the outputs, from the data itself, without a predefined "model" of how this relation should be defined.
 
 It follows that machine learning algorithms should be generic. They shouldn't be problem-specific, should not include domain-specific instructions, but rather should _learn_ the problem resolution from the data[^1].
+
 [^1]: This is a remarkable and pretty desirable property to have: you will be surprised by how few algorithms can be applied to so many different contexts.
 
 For example, for the digit recognition exercise that we will see in unit `NN`, we could have created a computer program that works with the following set of instructions: (1) identify the lines by checking for the variation in pixel darkness in a certain direction and when it is higher than a specific threshold, consider it as a line: (2) assign the label "1" if you can find a vertical bar in the centre of the image without any other lines in the middle (where I would have to define the tolerance for both "vertical" and "centre"), and so on…

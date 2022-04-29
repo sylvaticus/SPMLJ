@@ -1,4 +1,4 @@
-# Course Presentation
+# [Course Presentation](@id course_presentation)
 
 
 ## What will you get from this course
@@ -15,7 +15,7 @@ In particular, by attending this course you will receive :
 
 ## How to attend the course
 
-The course is multi-channel, with these pages complemented with youtube videos (see [Program](0002_-_Program.html)), quizzes and exercises. Thanks to projects such as [Literate.jl](https://github.com/fredrikekre/Literate.jl) and [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) the source of most of these pages are runnable valid Julia files.
+The course is multi-channel, with these pages complemented with youtube videos (see [Program](@ref course_program)), quizzes and exercises. Thanks to projects such as [Literate.jl](https://github.com/fredrikekre/Literate.jl) and [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) the source of most of these pages are runnable valid Julia files.
 
 **To fully master the subject, nothing is better than cloning [the repository on GitHub](https://github.com/sylvaticus/SPMLJ) and running these pages by yourself!**
 To execute yourself the code discussed in the videos, run the code in the `lessonsSource` folder.
@@ -27,7 +27,7 @@ Note that there will be a bit of incongruence in the terminology used for "units
 Anyhow, the course is organised in units/lessons (e.g. `JULIA1`). Each unit/lesson has its own Julia environment and it is organised in several _segments_. These are the individual pages on this site and correspond to a single file in the GitHub repository. Then each segment is divided into multiple videos, which I call _parts_.
 
 
-## Course authors
+## [Course authors](@id course_authors)
 
 -----
 
@@ -45,7 +45,7 @@ My main interest is in exploring the interplay between the biophysical layers in
 
 While this course is in English, English is not my native language... please, be understanding !
 
-**Acknowledgements**: The development of this course at the _Bureau d'Economie Théorique et Appliquée_ (BETA, Nancy) was supported by the French National Research Agency through the [Laboratory of Excellence ARBRE](http://mycor.nancy.inra.fr/ARBRE/), a part of the “Investissements d'Avenir” program (ANR 11 – LABX-0002-01).
+**Acknowledgements**: The development of this course at the _Bureau d'Economie Théorique et Appliquée_ (BETA, Nancy) was supported by the French National Research Agency through the [Laboratory of Excellence ARBRE](https://mycor.nancy.inra.fr/ARBRE/), a part of the “Investissements d'Avenir” program (ANR 11 – LABX-0002-01).
 
 -----
 
@@ -61,7 +61,7 @@ Learning with Julia (SPMLJ)_, doi: [10.5281/zenodo.6425030](https://doi.org/10.5
 
 
 
-## How to contribute to the course
+## [How to contribute to the course](@id contribution_guidelines)
 
 Contributions are really welcome! From simple, minor editing and bug fixes (by making new comments or, better, pull requests) to introducing new arguments along with the course domain.
 

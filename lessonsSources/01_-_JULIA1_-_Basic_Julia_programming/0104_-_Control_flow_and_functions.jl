@@ -13,9 +13,9 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
-# Pkg.resolve()   
-# Pkg.instantiate() # run this if you didn't in Segment 01.01
+## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## Pkg.resolve()   
+## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
 Random.seed!(123)
 using InteractiveUtils # loaded automatically when working... interactively
@@ -236,7 +236,7 @@ foo4(a::Int64,b::T where T <: Number) = a + b                        # ok not us
 foo4(a::Int64,b::Array{T} where T <: Number) = a .+ fill(T,b,2)      # wil lerror, can't use T in the function body
 ## foo4(2,[1,2])                                                     # run time error, T not defined 
 
-# ### _Call by reference_ vs. _call by value_ 
+# ### Call by reference vs. call by value 
 
 # How the variable used as function argument within the function body relates to the variable used in calling the function ?
 # - **call by value**: the value of the argument is copied and the function body works on a copy of the value
@@ -274,5 +274,5 @@ pool(maximum,[1,2,3,4,5,6])
 pool([1,2,3,4,5]) do x      # x is a local variable within the do block. We need as many local variables as the number of parameters of the inner function
     sum(x)/length(x)
 end
-# Using the `do`` block we can call the outer function and define the inner function at the same time.
+# Using the `do` block we can call the outer function and define the inner function at the same time.
 # `do` blocks are frequently used in input/output operations

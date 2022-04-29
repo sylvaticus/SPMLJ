@@ -18,8 +18,8 @@ using Pkg
 Pkg.activate(".")   
 ENV["PYTHON"] = ""  # This will be needed in a further segment  
 ENV["R_HOME"] = "*" # This wil lbe needed in a further segment
-# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
-# Pkg.resolve()   
+## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## Pkg.resolve()   
 Pkg.instantiate()
 using Random
 Random.seed!(123)
@@ -137,8 +137,8 @@ rand(30:40)  # [30,40] integer
 rand(30:0.01:40) # [30,40] with precision to the second digit
 using Distributions
 rand(Exponential(10)) # We'll see Distributions more in detail in the Scientific Programming lesson
-rand(30:40,10) # A vector of 10 random numbers.
-rand(Exponential(10),10,23)
+rand(30:40,3) # A vector of 3 random numbers.
+rand(Exponential(10),3,4) # Same syntax for sampling from any distribution ! 
 using Random
 myRNG = MersenneTwister(123) # use StableRNG for a RNG guaranteed to remain stable between Julia-versions
 a1 = rand(myRNG,10:1000,5)

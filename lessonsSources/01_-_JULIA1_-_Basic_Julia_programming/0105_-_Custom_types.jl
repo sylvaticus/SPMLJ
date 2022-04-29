@@ -15,9 +15,9 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will however be lost)
-# Pkg.resolve()   
-# Pkg.instantiate() # run this if you didn't in Segment 01.01
+## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will however be lost)
+## Pkg.resolve()   
+## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
 Random.seed!(123)
 using InteractiveUtils # loaded automatically when working... interactively
@@ -86,7 +86,7 @@ Foo2(1,2,"aaa")
 # !!! tip
 #     If any inner constructor method is defined, no default constructor method is provided.
 
-# Foo2(1,"aaa") # Error, no default constructor !
+## Foo2(1,"aaa") # Error, no default constructor !
 
 # ## Parametric types
 

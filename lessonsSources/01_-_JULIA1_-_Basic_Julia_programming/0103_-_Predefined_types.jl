@@ -15,9 +15,9 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
-# Pkg.resolve()   
-# Pkg.instantiate() # run this if you didn't in Segment 01.01
+## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## Pkg.resolve()   
+## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
 Random.seed!(123)
 using InteractiveUtils # loaded automatically when working... interactively
@@ -117,15 +117,16 @@ Array{T,1}(undef,n) # garbage
 fill(2,3)
 
 # #### Accessing Vectors
-a = [101:200;] 
+a = [10,20,30,40,50,60,70,80,90] 
 a[1]
 a[end]
-a[[1; 6:-2:2; 10]] # indicised by a vector of positions 
+a[[1; 6:-2:2; 8]] # indicised by a vector of positions 
 
 
 # #### Collecting iterators into vectors
 aRange = 3:2:7
 a = collect(aRange)
+a = [3:2:7;] # alternative
 typeof(aRange)
 typeof(aRange) <: AbstractArray # Everywhere an AbstractArray is expected, you can provide a range instead
 
@@ -444,17 +445,17 @@ christmasLunch    = DateTime("2030-12-25T12:30:00", ISODateTimeFormat)   # well 
 newYearEvenDinner = DateTime("Sat, 30 Dec 2030 21:30:00", RFC1123Format) # an othe well known format
 
 # Date and time formatters:
-# - y  Year digit (ef yyyy => 2030, yy => 30)
-# - m  Month digit (eg m => 3, mm => 03)
-# - u  Month name (eg "Jan")
-# - U  Month name long (eg "January")
-# - e  Day of week (eg "Tue")
-# - E  Day of week long (eg "Tuesday")
-# - d  Day of month (eg d => 3, dd => 03)
-# - H  Hour digit (eg H => 8, HH => 08)
-# - M  Minute digit (eg M => 0, MM => 00)
-# - S  Second digit (eg S => 0, SS => 00)
-# - s  Millisecond digit (eg .000, fixed 3 digits)
+# - `y`  Year digit (ef yyyy => 2030, yy => 30)
+# - `m`  Month digit (eg m => 3, mm => 03)
+# - `u`  Month name (eg "Jan")
+# - `U`  Month name long (eg "January")
+# - `e`  Day of week (eg "Tue")
+# - `E`  Day of week long (eg "Tuesday")
+# - `d`  Day of month (eg d => 3, dd => 03)
+# - `H`  Hour digit (eg H => 8, HH => 08)
+# - `M`  Minute digit (eg M => 0, MM => 00)
+# - `S`  Second digit (eg S => 0, SS => 00)
+# - `s`  Millisecond digit (eg .000, fixed 3 digits)
 #
 # Note that the doubling for the digits matters only for using the formatters in the output (see later)
 

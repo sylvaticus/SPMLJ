@@ -7,7 +7,7 @@ This is the repository of the course with the source code of the pages that appe
 Get and run the code by yourself with `git clone https://github.com/sylvaticus/SPMLJ.git` (pages source code is in the `lessonSource` folder) or click the link below to access the course.
 
 
-[Access the course](https://sylvaticus.github.io/SPMLJ/stable) - [Collaboration guidelines](https://sylvaticus.github.io/SPMLJ/stable/00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html#How-to-contribute-to-the-course)
+[Access the course](https://sylvaticus.github.io/SPMLJ/stable) - [Contribution guidelines](https://sylvaticus.github.io/SPMLJ/stable/00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html#How-to-contribute-to-the-course)
 
 
 ![logos](lessonsSources/assets/imgs/beta_and_tutelles_white.png)

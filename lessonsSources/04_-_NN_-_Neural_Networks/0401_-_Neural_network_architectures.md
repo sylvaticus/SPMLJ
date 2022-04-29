@@ -33,8 +33,9 @@ More in detail, considering a single _dense_ neuron (in the sense that is connec
 ![Single neuron](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/singleNeuron.png)
 
 where:
-- $x$ is a two-dimensional input, with $x_1$ and $x_2$ being the two dimensions of our input data (they could equivalently be the outputs of a previous 2 neurons layers)
-- $w$ are the _weigths_ that are applied to $x$ plus a constant term ($w_0$). **These are the parameter we will want to learn with our algorithm**. $f$ is a function (often non-linear) that is applied to $w_0 + x_1w_1 + x_2w_2$ to define the output of the neuron
+
+- _x_ is a two-dimensional input, with $x_1$ and $x_2$ being the two dimensions of our input data (they could equivalently be the outputs of a previous 2 neurons layers)
+- _w_ are the _weigths_ that are applied to $x$ plus a constant term ($w_0$). **These are the parameter we will want to learn with our algorithm**. $f$ is a function (often non-linear) that is applied to $w_0 + x_1w_1 + x_2w_2$ to define the output of the neuron
 
 The output of the neuron can be the output of our neural network or it can be the input of a further layer.
 

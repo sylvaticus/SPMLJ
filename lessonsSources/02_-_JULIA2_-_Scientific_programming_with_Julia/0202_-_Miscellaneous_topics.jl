@@ -15,9 +15,9 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
-# Pkg.resolve()   
-# Pkg.instantiate() # run this if you didn't in Segment 02.01
+## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## Pkg.resolve()   
+## Pkg.instantiate() # run this if you didn't in Segment 02.01
 using Random
 Random.seed!(123)
 
@@ -113,9 +113,9 @@ median(d)
 quantile(d,0.9)
 cdf(d,13.844)
 pdf(d,0)
-sample = rand(d,1000)
-rand(d,10,2,3)
+rand(d,3,4,2)
 
+sample = rand(d,1000);
 density(sample)
 savefig("currentPlot9.svg"); #src
 # ![](currentPlot9.svg)
@@ -233,7 +233,7 @@ set_optimizer_attribute(trmodel, "msg_lev", GLPK.GLP_MSG_ON)
 
 @variables trmodel begin
     x[p in prod, o in orig, d in dest] >= 0
-end
+end;
 
 # #### Constraints definition
 
@@ -244,14 +244,14 @@ end
         sum(x[p,o,d] for o in orig) >= demand[p,d]
     c_total_shipment[o in orig, d in dest],
         sum(x[p,o,d] for p in prod) <= limit[o,d]
-end
+end;
 
 # #### Objective function definition
 @objective trmodel Min begin
     sum(cost[p,o,d] * x[p,o,d] for p in prod, o in orig, d in dest)
 end
 
-# #### Human-readable visualisatio nof the model
+# #### Human-readable visualisation of the model
 
 print(trmodel)
 
@@ -327,8 +327,8 @@ y   = Dict( "Chêne pédonculé" => 1.83933333333333,
 ################################################################################
 
 nSamples = 1000
-shares   = rand(nSamples,nSpecies)
-# Converting to probabilities
+shares   = rand(nSamples,nSpecies);
+# Converting to probabilities:
 import BetaML.Utils:softmax
 [shares[i,:]  = softmax(shares[i,:], β=one.(shares[i,:]) .* 5) for i in 1:nSamples]
 
@@ -339,10 +339,6 @@ for i in 1:nSamples
     pY      = sum(shares[i,j]*y[species[j]] for j in 1:nSpecies)
     pScores = vcat(pScores,[pVar pY])
 end
-
-#goodShares = [0,0,0.74,0.26]
-#pVar = sum(goodShares[j1] * goodShares[j2] * σ[species[j1],species[j2]] for j1 in 1:nSpecies, j2 in 1:nSpecies)
-#pY   = sum(goodShares[j]*y[species[j]] for j in 1:nSpecies)
 
 scatter(pScores[:,1],pScores[:,2],colour=:blue)
 savefig("currentPlot13.svg"); #src
