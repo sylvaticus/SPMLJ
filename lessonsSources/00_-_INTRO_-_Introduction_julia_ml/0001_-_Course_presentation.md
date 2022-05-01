@@ -42,6 +42,7 @@ Anyhow, the course is organised in units/lessons (e.g. `JULIA1`). Each unit/less
 
 I am a Forest and Natural Resources Economist @ AgroParisTech, a French "Grand Ecole" (sort of polytechnic university) in the life science domain and affiliated to BETA, the _Bureau d'Économie Théorique et Appliquée_, which brings together most of the economists located in the _Grand-Est_ region of France.
 My main interest is in exploring the interplay between the biophysical layers in the forest sector (climate change, forest dynamics) and the socio-economic ones (individual forest owners' behaviours, timber markets "behaviours") in order to better understand the space of actions that society has to maximise social benefits in a sustainable way. For that, I design, develop and use bio-economic simulation models of the forest sector.
+I started moving my research models to Julia in 2017 and in 2019 I wrote the book "[Julia Quick Syntax Reference: A Pocket Guide for Data Science Programming](https://doi.org/10.1007/978-1-4842-5190-4)" (Apress, 2019)
 
 While this course is in English, English is not my native language... please, be understanding !
 
