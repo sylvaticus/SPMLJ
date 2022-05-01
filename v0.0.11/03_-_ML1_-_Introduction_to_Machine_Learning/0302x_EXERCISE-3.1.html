@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>0302x EXERCISE-3.1 · SPMLJ</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q39LHCRBB6"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q39LHCRBB6', {'page_path': location.pathname + location.search + location.hash});
+</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/custom.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">SPMLJ</a></span></div><form class="docs-search" action="../search.html"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">INTRO - Introduction to the course, Julia and ML</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html">0001 - Course presentation</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0002_-_Program.html">0002 - Program</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003_-_Introduction_to_Julia.html">0003 - Introduction to Julia</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003q_-_QUIZ_0.1.html">0003q - QUIZ 0.1</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004_-_Introduction_to_ML.html">0004 - Introduction to ML</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004q_-_QUIZ_0.2.html">0004q - QUIZ 0.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-2" type="checkbox"/><label class="tocitem" for="menuitem-2-2"><span class="docs-label">JULIA1 - Basic Julia programming</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101_-_Basic_syntax.html">0101 - Basic syntax</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101q_-_QUIZ_1.1.html">0101q - QUIZ 1.1</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101q_-_QUIZ_1.2.html">0101q - QUIZ 1.2</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0102_-_Types_and_objects.html">0102 - Types and objects</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0102q_-_QUIZ_1.3.html">0102q - QUIZ 1.3</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103_-_Predefined_types.html">0103 - Predefined types</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.4.html">0103q - QUIZ 1.4</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.5.html">0103q - QUIZ 1.5</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.6.html">0103q - QUIZ 1.6</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104_-_Control_flow_and_functions.html">0104 - Control flow and functions</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104q_-_QUIZ_1.7.html">0104q - QUIZ 1.7</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104q_-_QUIZ_1.8.html">0104q - QUIZ 1.8</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105_-_Custom_types.html">0105 - Custom types</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105q_-_QUIZ_1.10.html">0105q - QUIZ 1.10</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105q_-_QUIZ_1.9.html">0105q - QUIZ 1.9</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105x_EXERCISE-1.1.html">0105x EXERCISE-1.1</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106_-_Further_topics.html">0106 - Further topics</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.11.html">0106q - QUIZ 1.11</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.12.html">0106q - QUIZ 1.12</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.13.html">0106q - QUIZ 1.13</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-3" type="checkbox"/><label class="tocitem" for="menuitem-2-3"><span class="docs-label">JULIA2 - Scientific programming with Julia</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201_-_Wranging_data.html">0201 - Wranging data</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202_-_Miscellaneous_topics.html">0202 - Miscellaneous topics</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.1.html">0202x EXERCISE-2.1</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.2.html">0202x EXERCISE-2.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-4" type="checkbox" checked/><label class="tocitem" for="menuitem-2-4"><span class="docs-label">ML1 - Introduction to Machine Learning</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="0301_-_Machine_learning_main_concepts.html">0301 - Machine learning main concepts</a></li><li><a class="tocitem" href="0302_-_The_Perceptron_classifier.html">0302 - The Perceptron classifier</a></li><li class="is-active"><a class="tocitem" href="0302x_EXERCISE-3.1.html">0302x EXERCISE-3.1</a><ul class="internal"><li><a class="tocitem" href="#Instructions"><span>Instructions</span></a></li><li><a class="tocitem" href="#Resolution"><span>Resolution</span></a></li></ul></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-5" type="checkbox"/><label class="tocitem" for="menuitem-2-5"><span class="docs-label">NN - Neural Networks</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0401_-_Neural_network_architectures.html">0401 - Neural network architectures</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402_-_Implementation_of_neural_networks_workflows.html">0402 - Implementation of neural networks workflows</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402x_EXERCISE-4.1.html">0402x EXERCISE-4.1</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402x_EXERCISE-4.2.html">0402x EXERCISE-4.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-6" type="checkbox"/><label class="tocitem" for="menuitem-2-6"><span class="docs-label">DT - Decision trees based algorithms [DRAFT]</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.html">0501 - Decision trees based algorithms</a></li><li><a class="tocitem" href="../05_-_DT_-_Decision_trees_based_algorithms/0502x_EXERCISE-5.1.html">0502x EXERCISE-5.1</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Lessons</a></li><li><a class="is-disabled">ML1 - Introduction to Machine Learning</a></li><li class="is-active"><a href="0302x_EXERCISE-3.1.html">0302x EXERCISE-3.1</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0302x_EXERCISE-3.1.html">0302x EXERCISE-3.1</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/sylvaticus/SPMLJ/blob/master/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/0302x_EXERCISE-3.1.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="EXERCISE-3.1:-Breast-cancer-diagnosis-using-the-perceptron-algorithm"><a class="docs-heading-anchor" href="#EXERCISE-3.1:-Breast-cancer-diagnosis-using-the-perceptron-algorithm">EXERCISE 3.1: Breast cancer diagnosis using the perceptron algorithm</a><a id="EXERCISE-3.1:-Breast-cancer-diagnosis-using-the-perceptron-algorithm-1"></a><a class="docs-heading-anchor-permalink" href="#EXERCISE-3.1:-Breast-cancer-diagnosis-using-the-perceptron-algorithm" title="Permalink"></a></h1><p>&nbsp;</p>
+<img src="imgs/breastCancerClassified.png" alt="Forest Growth" style="height:250px;"> 
+<img src="imgs/breastCancerClassificationAccuracies.png" alt="Forest Growth curves" style="height:250px;"> 
+<p>&nbsp;</p><p>In this problem we are given a dataset containing real world characteristics of observed breast cancer (size, pattern,..) together with the associated diagnosis in terms of malignity or benignity of the cancer. Our task is to build a linear classifier using the perceptron algorithm that we studied and train it in order to make diagnosis based on the cancer characteristics.</p><p><strong>Skills employed:</strong></p><ul><li>download and import data from internet</li><li>implement the training function of a perceptron algorithm</li><li>use the BetaML <code>partition</code>, <code>crossValidation</code> and <code>accuracy</code> functions</li></ul><h2 id="Instructions"><a class="docs-heading-anchor" href="#Instructions">Instructions</a><a id="Instructions-1"></a><a class="docs-heading-anchor-permalink" href="#Instructions" title="Permalink"></a></h2><p>If you have already cloned or downloaded the whole <a href="https://github.com/sylvaticus/SPMLJ/">course repository</a> the folder with the exercise is on <code>[REPOSITORY_ROOT]/lessonsMaterial/03_ML1/BreastCancerDiagnosisWithPerceptron</code>. Otherwise download a zip of just that folder <a href="https://downgit.github.io/#/home?url=https://github.com/sylvaticus/SPMLJ/tree/main/lessonsMaterial/03_ML1/BreastCancerDiagnosisWithPerceptron">here</a>.</p><p>In the folder you will find the file <code>BreastCancerDiagnosisWithPerceptron.jl</code> containing the Julia file that <strong>you will have to complete in order to implement and run it</strong> (follow the instructions on that file).  In that folder you will also find the <code>Manifest.toml</code> file. The proposal of resolution below has been tested with the environment defined by that file.   If you are stuck and you don&#39;t want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page. Good luck! </p><h2 id="Resolution"><a class="docs-heading-anchor" href="#Resolution">Resolution</a><a id="Resolution-1"></a><a class="docs-heading-anchor-permalink" href="#Resolution" title="Permalink"></a></h2><p>Click &quot;ONE POSSIBLE SOLUTION&quot; to get access to (one possible) solution for each part of the code that you are asked to implement.</p><hr/><h3 id=")-Setting-up-the-environment..."><a class="docs-heading-anchor" href="#)-Setting-up-the-environment...">1) Setting up the environment...</a><a id=")-Setting-up-the-environment...-1"></a><a class="docs-heading-anchor-permalink" href="#)-Setting-up-the-environment..." title="Permalink"></a></h3><p>Start by setting the working directory to the directory of this file and activate it. If you have the provided <code>Manifest.toml</code> file in the directory, just run <code>Pkg.instantiate()</code>, otherwise manually add the packages <code>Pipe</code>, <code>HTTP</code>, <code>StatsPlots</code> and <code>BetaML</code>.</p><details><summary>ONE POSSIBLE SOLUTION</summary><pre><code class="language-julia hljs">cd(@__DIR__)         
+using Pkg             
+Pkg.activate(&quot;.&quot;)   
+# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# Pkg.resolve()   
+Pkg.instantiate() 
+using Random
+Random.seed!(123)</code></pre></details><hr/><h3 id=")-Load-the-packages"><a class="docs-heading-anchor" href="#)-Load-the-packages">2) Load the packages</a><a id=")-Load-the-packages-1"></a><a class="docs-heading-anchor-permalink" href="#)-Load-the-packages" title="Permalink"></a></h3><p>Load the packages Statistics, DelimitedFiles, LinearAlgebra, Pipe, HTTP, StatsPlots, BetaML</p><details><summary>ONE POSSIBLE SOLUTION</summary><pre><code class="language-julia hljs">using Statistics, DelimitedFiles, LinearAlgebra, Pipe, HTTP, StatsPlots, BetaML</code></pre></details><hr/><h3 id=")-Load-the-data"><a class="docs-heading-anchor" href="#)-Load-the-data">3) Load the data</a><a id=")-Load-the-data-1"></a><a class="docs-heading-anchor-permalink" href="#)-Load-the-data" title="Permalink"></a></h3><p>Load from internet or from localfile the input data and shuffle its rows (records):</p><pre><code class="language-julia hljs">dataURL = &quot;https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsMaterial/03_ML1/BreastCancerDiagnosisWithPerceptron/data/wdbc.data.csv&quot;</code></pre><p>Source: <a href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29">Breast Cancer Wisconsin (Diagnostic) Data Set, UCI Machine Learning Repository</a></p><details><summary>ONE POSSIBLE SOLUTION</summary><pre><code class="language-julia hljs">data    = @pipe HTTP.get(dataURL).body |&gt; readdlm(_,&#39;,&#39;)
+nR      = size(data,1)
+data    = data[shuffle(1:nR),:]</code></pre></details><hr/><h3 id=")-Map-the-data-to-(X,y)"><a class="docs-heading-anchor" href="#)-Map-the-data-to-(X,y)">4) Map the data to (X,y)</a><a id=")-Map-the-data-to-(X,y)-1"></a><a class="docs-heading-anchor-permalink" href="#)-Map-the-data-to-(X,y)" title="Permalink"></a></h3><p>The data you have loaded contains the actual diagnosis for the cancer in the second column, coded with a string &quot;B&quot; for &quot;Benign&quot; and &quot;M&quot; for &quot;Malign&quot;, and the characteristics of the cancer foir the next 30 columns. Save the diagnosis to the vector <code>y</code>, coding malign cancers with <code>1</code> and benign cancers with <code>-1</code> Save the characteristics to the feature matrix <code>X</code> (and be sure it is made of Float64)</p><details><summary>ONE POSSIBLE SOLUTION</summary><pre><code class="language-julia hljs">y       = map( x -&gt; x == &quot;M&quot; ? 1 : -1,  data[:,2])
+X       = convert(Matrix{Float64},data[:,3:end])
+nD      = size(X,2)</code></pre></details><hr/><h3 id=")-(this-task-is-provided)-Plot-the-data-and-the-classifier"><a class="docs-heading-anchor" href="#)-(this-task-is-provided)-Plot-the-data-and-the-classifier">5) (this task is provided) Plot the data and the classifier</a><a id=")-(this-task-is-provided)-Plot-the-data-and-the-classifier-1"></a><a class="docs-heading-anchor-permalink" href="#)-(this-task-is-provided)-Plot-the-data-and-the-classifier" title="Permalink"></a></h3><p>Plot the first 2 attributes of training points and define the function <code>plot2DClassifierWithData()</code></p><pre><code class="language-julia hljs">colors = [y == 1 ? &quot;red&quot; : &quot;green&quot; for y in y]
+labels = [y == 1 ? &quot;malign&quot; : &quot;benign&quot; for y in y]
+scatter(X[:,1],X[:,2], colour=colors, title=&quot;Classified tumors&quot;,xlabel=&quot;Tumor Radius&quot;, ylabel=&quot;Tumor Texture&quot;, group=labels)
+
+function plot2DClassifierWithData(X,y,θ;d1=1,d2=2,origin=false,xlabel=&quot;Dimx: $(d1)&quot;,ylabel=&quot;Dimy: $(d2)&quot;)
+    nR    = size(X,1)
+    X     = hcat(ones(nR),X)
+    X     = scale(X) # for visualisation
+    d1    += 1
+    d2    += 1
+    colors = [y == 1 ? &quot;red&quot; : &quot;green&quot; for y in y]
+    labels = [y == 1 ? &quot;malign&quot; : &quot;benign&quot; for y in y]
+    minD1,maxD1 = extrema(X[:,d1])
+    minD2,maxD2 = extrema(X[:,d2])
+    myplot = scatter(X[:,d1],X[:,d2], colour=colors, title=&quot;Linear classifier in 2D&quot;,xlabel=xlabel, ylabel=ylabel, group=labels)
+    d2Class(x) = -θ[1]/θ[d2] -x * θ[d1]/θ[d2]
+    if θ[d2] == 0
+        vline!([0], color= &quot;blue&quot;,label=&quot;&quot;,linewidth=5)
+    else
+        plot!(d2Class,minD1,maxD1, color= &quot;blue&quot;,label=&quot;&quot;,linewidth=5)
+    end
+    display(myplot)
+end</code></pre><hr/><h3 id=")-(provided)-Define-the-Model-and-training-options"><a class="docs-heading-anchor" href="#)-(provided)-Define-the-Model-and-training-options">6) (provided) Define the Model and training options</a><a id=")-(provided)-Define-the-Model-and-training-options-1"></a><a class="docs-heading-anchor-permalink" href="#)-(provided)-Define-the-Model-and-training-options" title="Permalink"></a></h3><pre><code class="language-julia hljs">abstract type SupervisedModel end
+abstract type TrainingOptions end
+
+mutable struct Perceptron &lt;: SupervisedModel
+    θ::Vector{Float64}
+end
+
+mutable struct PerceptronTrainingOptions &lt;: TrainingOptions
+    epochs::Int64
+    verbose::Bool
+    shuffle::Bool
+    function PerceptronTrainingOptions(;epochs=1,verbose=false,shuffle=false)
+        return new(epochs,verbose,shuffle)
+    end
+end</code></pre><hr/><h3 id=")-(provided)-Implement-the-functions-predict()-and-update()"><a class="docs-heading-anchor" href="#)-(provided)-Implement-the-functions-predict()-and-update()">7) (provided) Implement the functions <code>predict()</code> and <code>update()</code></a><a id=")-(provided)-Implement-the-functions-predict()-and-update()-1"></a><a class="docs-heading-anchor-permalink" href="#)-(provided)-Implement-the-functions-predict()-and-update()" title="Permalink"></a></h3><pre><code class="language-julia hljs">function predict(model::Perceptron,x::AbstractVector)
+    x = vcat(1.0,x)
+    x&#39; * model.θ &gt; eps() ? (return 1) : (return -1)
+end
+
+function predict(model::Perceptron,X::AbstractMatrix)
+    return [predict(model,r) for r in eachrow(X)]
+end
+
+function update!(model::Perceptron,X::Vector,y)
+    X       = vcat(1.0,X)
+    model.θ = model.θ .+ y .* X
+    return model.θ
+end</code></pre><hr/><h3 id=")-Implement-the-training-function"><a class="docs-heading-anchor" href="#)-Implement-the-training-function">8) Implement the training function</a><a id=")-Implement-the-training-function-1"></a><a class="docs-heading-anchor-permalink" href="#)-Implement-the-training-function" title="Permalink"></a></h3><p>Implement the function <code>train!(model::Perceptron,X,y,ops=PerceptronTrainingOptions()::TrainingOptions)</code></p><p>Compared to the function we saw in the 0302-perceptron.jl file, add, if you wish, a counter to eventually return early if there are no more errors in an epoch (i.e., all points are correctly classified)</p><pre><code class="language-julia hljs">function train!(model::Perceptron,X,y,ops=PerceptronTrainingOptions()::TrainingOptions)
+    #...
+    for t in 1:epochs
+        #...
+        if ops.shuffle   
+           #...
+        end
+        for n in 1:nR
+           #...
+        end
+        #...
+    end
+    #...
+    return model.θ
+end</code></pre><details><summary>ONE POSSIBLE SOLUTION</summary><pre><code class="language-julia hljs">function train!(model::Perceptron,X,y,ops=PerceptronTrainingOptions()::TrainingOptions)
+    epochs  = ops.epochs
+    verbose = ops.verbose
+    (nR,nD) = size(X)
+    nD += 1
+    for t in 1:epochs
+        errors = 0
+        errorsPerEpoch = 0
+        if ops.shuffle   # more efficient !
+          idx = shuffle(1:nR)
+          X = X[idx,:]
+          y = y[idx]
+        end
+        for n in 1:nR
+            if verbose
+                println(&quot;$n: X[n,:] \t θ: $(model.θ)&quot;)
+            end
+            if  predict(model,X[n,:]) != y[n]
+                errors += 1
+                errorsPerEpoch += 1
+                update!(model,X[n,:],y[n])
+                if verbose
+                    println(&quot;**update! New theta: $(model.θ)&quot;)
+                end
+            end
+        end
+        if verbose
+            println(&quot;Epoch $t errors: $errors&quot;)
+        end
+        if errorsPerEpoch == 0
+            return model.θ
+        end
+    end
+    return model.θ
+end</code></pre></details><hr/><h3 id=")-Train,-predict-and-evaluate-the-model"><a class="docs-heading-anchor" href="#)-Train,-predict-and-evaluate-the-model">9) Train, predict and evaluate the model</a><a id=")-Train,-predict-and-evaluate-the-model-1"></a><a class="docs-heading-anchor-permalink" href="#)-Train,-predict-and-evaluate-the-model" title="Permalink"></a></h3><p>Instanziate a <code>Perceptron</code> object with a parameter vector of nD+1 zeros and a <code>PerceptronTrainingOption</code> object with 5 epochs and shuffling, use the options to train the model on the whole dataset, compute the model predictions and the accuracy relative to the whole sample.</p><pre><code class="language-julia hljs">m   = Perceptron(zeros(size(X,2)+1))
+ops = #...
+train!(m,X,y,ops)
+plot2DClassifierWithData(X,y,m.θ,d1=1,d2=2,xlabel=&quot;Tumor Radius&quot;, ylabel=&quot;Tumor Texture&quot;)
+ŷ           = #...
+inSampleAcc = accuracy(#= ... =#) # 0.91</code></pre><details><summary>ONE POSSIBLE SOLUTION</summary><pre><code class="language-julia hljs">ops = PerceptronTrainingOptions(epochs=5,shuffle=true)
+ŷ           = predict(m,X)
+inSampleAcc = accuracy(ŷ,y) # 0.91</code></pre></details><hr/><h3 id=")-Partition-the-data"><a class="docs-heading-anchor" href="#)-Partition-the-data">10) Partition the data</a><a id=")-Partition-the-data-1"></a><a class="docs-heading-anchor-permalink" href="#)-Partition-the-data" title="Permalink"></a></h3><p>Partition the data in <code>(xtrain,xtest)</code> and <code>(ytrain,ytest)</code> keeping 65% of the data for training and reserving 35% for testing</p><pre><code class="language-julia hljs">((xtrain,xtest),(ytrain,ytest)) = partition(#=...=#)</code></pre><details><summary>ONE POSSIBLE SOLUTION</summary><pre><code class="language-julia hljs">((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.65,0.35])</code></pre></details><hr/><h3 id=")-Implement-cross-validation"><a class="docs-heading-anchor" href="#)-Implement-cross-validation">11) Implement cross-validation</a><a id=")-Implement-cross-validation-1"></a><a class="docs-heading-anchor-permalink" href="#)-Implement-cross-validation" title="Permalink"></a></h3><p>Using a 10-folds cross-validation strategy, find the best hyperparameters within the following ranges :</p><pre><code class="language-julia hljs">sampler = KFold(#=...=#)
+
+epochsSet  = 1:5:150
+shuffleSet = [false,true]
+
+bestE       = 0
+bestShuffle = false
+bestAcc     = 0.0
+
+accuraciesNonShuffle = []
+accuraciesShuffle    = []
+
+for e in epochsSet, s in shuffleSet
+    global bestE, bestShuffle, bestAcc, accuraciesNonShuffle, accuraciesShuffle
+    local acc
+    local ops  = PerceptronTrainingOptions(#=...=#)
+    (acc,_)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
+                    (xtrain,ytrain) = trainData; (xval,yval) = valData
+                    m               = Perceptron(zeros(size(xtrain,2)+1))
+                    train!(#=...=#)
+                    ŷval            = predict(#=...=#)
+                    valAccuracy     = accuracy(#=...=#)
+                    return valAccuracy
+                end
+    if acc &gt; bestAcc
+        bestAcc     = acc
+        bestE       = e
+        bestShuffle = s
+    end
+    if s
+        push!(accuraciesShuffle,acc)
+    else
+        push!(accuraciesNonShuffle,acc)
+    end
+end</code></pre><details><summary>ONE POSSIBLE SOLUTION</summary><pre><code class="language-julia hljs">sampler = KFold(nSplits=10)
+local ops  = PerceptronTrainingOptions(epochs=e,shuffle=s)
+(acc,_)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
+                (xtrain,ytrain) = trainData; (xval,yval) = valData
+                m               = Perceptron(zeros(size(xtrain,2)+1))
+                train!(m,xtrain,ytrain,ops)
+                ŷval            = predict(m,xval)
+                valAccuracy     = accuracy(ŷval,yval)
+                return valAccuracy
+            end</code></pre></details><pre><code class="language-julia hljs">bestAcc # 0.91
+bestE
+bestShuffle
+
+plot(epochsSet,accuraciesNonShuffle,label=&quot;Val accuracy without shuffling&quot;, legend=:bottomright)
+plot!(epochsSet,accuraciesShuffle, label=&quot;Val accuracy with shuffling&quot;)</code></pre><hr/><h3 id=")-Train,-predict-and-evaluate-the-&quot;optimal&quot;-model"><a class="docs-heading-anchor" href="#)-Train,-predict-and-evaluate-the-&quot;optimal&quot;-model">12) Train, predict and evaluate the &quot;optimal&quot; model</a><a id=")-Train,-predict-and-evaluate-the-&quot;optimal&quot;-model-1"></a><a class="docs-heading-anchor-permalink" href="#)-Train,-predict-and-evaluate-the-&quot;optimal&quot;-model" title="Permalink"></a></h3><p>Using the &quot;best&quot; hyperparameters found in the previous step, instantiate a new model and options, train the model using <code>(xtrain,ytrain)</code>, make your predicitons for the testing features (<code>xtest</code>) and compute your output accuracy compared with those of the true <code>ytest</code> (use the BetaML function <code>accuracy</code>).</p><pre><code class="language-julia hljs">ops = PerceptronTrainingOptions(#=...=#)
+m   = Perceptron(zeros(size(xtest,2)+1))
+train!(#=...=#)
+ŷtest           = predict(#=...=#)
+testAccuracy    = accuracy(#=...=#) # 0.89</code></pre><details><summary>ONE POSSIBLE SOLUTION</summary><pre><code class="language-julia hljs">ops = PerceptronTrainingOptions(epochs=bestE,shuffle=bestShuffle)
+m   = Perceptron(zeros(size(xtest,2)+1))
+train!(m,xtrain,ytrain,ops)
+ŷtest           = predict(m,xtest)
+testAccuracy    = accuracy(ŷtest,ytest) # 0.89</code></pre></details><pre><code class="language-julia hljs">plot2DClassifierWithData(xtest,ytest,m.θ,xlabel=&quot;Tumor Radius&quot;, ylabel=&quot;Tumor Texture&quot;)
+plot2DClassifierWithData(xtest,ytest,m.θ,d1=3,d2=4)</code></pre><hr/><h3 id=")-(optional)-Use-scaled-data"><a class="docs-heading-anchor" href="#)-(optional)-Use-scaled-data">13) (optional) Use scaled data</a><a id=")-(optional)-Use-scaled-data-1"></a><a class="docs-heading-anchor-permalink" href="#)-(optional)-Use-scaled-data" title="Permalink"></a></h3><p>Optionally, add a scaling passage to the workflow and test it with cross-validation if it improves the accuracy</p><pre><code class="language-julia hljs">epochsSet  = 1:10:150
+shuffleSet = [false,true]
+scalingSet = [false,true]
+
+bestE       = 0
+bestShuffle = false
+bestScaling = false
+bestAcc     = 0.0
+
+accNShuffleNSc = Float64[]
+accNShuffleSc  = Float64[]
+accShuffleNSc  = Float64[]
+accShuffleSc   = Float64[]
+
+
+scfactors = getScaleFactors(xtrain)
+
+for e in epochsSet, s in shuffleSet, sc in scalingSet
+    global bestE, bestShuffle, bestAcc, accNShuffleNSc, accNShuffleSc, accShuffleNSc, accShuffleSc
+    local acc
+    local ops  = PerceptronTrainingOptions(#=...=#)
+    xtrainsc= copy(xtrain)
+    if(sc)
+        xtrainsc =scale(xtrain,scfactors)
+    end
+    (acc,_)    = crossValidation([xtrainsc,ytrain],sampler) do trainData,valData,rng
+                    #...
+                    return valAccuracy
+                end
+    if acc &gt; bestAcc
+        bestAcc     = acc
+        bestE       = e
+        bestShuffle = s
+        bestScaling = sc
+    end
+    if s &amp;&amp; sc
+        push!(accShuffleSc,acc)
+    elseif  s &amp;&amp; !sc
+        push!(accShuffleNSc,acc)
+    elseif  !s &amp;&amp; sc
+        push!(accNShuffleSc,acc)
+    elseif  !s &amp;&amp; !sc
+        push!(accNShuffleNSc,acc)
+    else
+        @error &quot;Something wrong here&quot;
+    end
+end</code></pre><details><summary>ONE POSSIBLE SOLUTION</summary><pre><code class="language-julia hljs">local ops  = PerceptronTrainingOptions(epochs=e,shuffle=s)
+(acc,_)    = crossValidation([xtrainsc,ytrain],sampler) do trainData,valData,rng
+                (xtrain,ytrain) = trainData; (xval,yval) = valData
+                m               = Perceptron(zeros(size(xtrain,2)+1))
+                train!(m,xtrain,ytrain,ops)
+                ŷval            = predict(m,xval)
+                valAccuracy     = accuracy(ŷval,yval)
+                return valAccuracy
+            end</code></pre></details><pre><code class="language-julia hljs">bestAcc # 0.97
+bestE
+bestShuffle
+bestScaling
+
+plot(epochsSet,accShuffleSc,label=&quot;Val accuracy shuffling scaling&quot;, legend=:bottomright)
+plot!(epochsSet,accNShuffleSc,label=&quot;Val accuracy NON shuffling scaling&quot;, legend=:bottomright)
+plot!(epochsSet,accShuffleNSc,label=&quot;Val accuracy shuffling NON scaling&quot;, legend=:bottomright)
+plot!(epochsSet,accNShuffleNSc,label=&quot;Val accuracy NON shuffling NON scaling&quot;, legend=:bottomright)
+
+ops = PerceptronTrainingOptions(#=...=#)
+m   = Perceptron(#=...=#)
+if bestScaling
+    train!(m,scale(xtrain),ytrain,ops)
+    ŷtest  = predict(m,scale(xtest))
+else
+    train!(m,xtrain,ytrain,ops)
+    ŷtest  = predict(m,xtest)
+end
+testAccuracy    = accuracy(#=...=#) # 0.96</code></pre><details><summary>ONE POSSIBLE SOLUTION</summary><pre><code class="language-julia hljs">ops = PerceptronTrainingOptions(epochs=bestE,shuffle=bestShuffle)
+m   = Perceptron(zeros(size(xtest,2)+1))
+testAccuracy    = accuracy(ŷtest,ytest) # </code></pre></details><pre><code class="language-julia hljs">plot2DClassifierWithData(xtest,ytest,m.θ,xlabel=&quot;Tumor Radius&quot;, ylabel=&quot;Tumor Texture&quot;)</code></pre><hr/><div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/runner/work/SPMLJ/SPMLJ/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/0302x_EXERCISE-3.1.md",
+"title" : "0302x_EXERCISE-3.1.md",
+"permalink" : ""
+};
+</script><div class="addthis_inline_share_toolbox"></div><hr/><script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script><script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script><!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0302_-_The_Perceptron_classifier.html">« 0302 - The Perceptron classifier</a><a class="docs-footer-nextpage" href="../04_-_NN_-_Neural_Networks/0401_-_Neural_network_architectures.html">0401 - Neural network architectures »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Sunday 1 May 2022 14:51">Sunday 1 May 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
