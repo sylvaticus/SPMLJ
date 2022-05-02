@@ -1,5 +1,29 @@
 # [Program](@id course_program)
 
+
+
+## Course content:
+
+- **Introductory unit**: (a) motivations, highlights of the main Julia  characteristics; (b) guidance in setting up a Julia development environment and a crash course on git, (c) modules, packages environments, and the wider topic of reproducible results; (d) introduction to the topic of Machine Learning (scope definition, examples, clarification of the terminology)
+
+- **1ˢᵗ thematic unit `JULIA1`**: (a) a gentle but rather deep introduction to the Julia programming language (syntax, provided and custom data structures, control flows and functions); (b) advanced topics (meta-programming, code optimisation, interface with C/Python/R code, hints to parallel computation);
+
+- **2ⁿᵈ thematic unit `JULIA2`**: (a) data wrangling with the DataFrame package for in-memory tabular data, including the split-apply-combine strategy; (b) the Distributions package for making probabilistic models, (c) the LsqFit package for fitting any generic curve with data, (d) the Plots package for visualisation, (e) the JuMP algebraic modelling language for implementing and solving  complex constrained optimisation models (à la GAMS)
+
+- **3ʳᵈ thematic unit `ML1`**:  (a) intuitions of machine learning concepts (supervised learning, cross-validation and regularisation; (b) implementation of the perceptron linear classifier (perhaps the simplest machine learning algorithm)
+
+- **4ᵗʰ thematic unit `NN`**:  (a) neural network models: how they work, what they are good for and how to train them; (b) specific neural network architectures: convolutional neural networks and recurrent neural networks; (c) implements using Julia packages.
+
+## Course organisation:
+
+- 9 runnable Julia files in public GitHub repository and 7 MarkDown files with embedded Julia code
+- 15 hours of videos, 15 interactive quizzes with 52 questions and 7 guided exercises
+- Discussion forum embedded at the bottom of each page
+
+
+## List of available videos:
+
+
 The following videos (14h:52':22'') are available. All except the introduction follow very close the pages in this site.
 
 Videos are hosted on YouTube.
