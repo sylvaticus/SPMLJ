@@ -17,7 +17,7 @@ In particular, by attending this course you will receive :
 
 The course is multi-channel, with these pages complemented with youtube videos (see [Program](@ref course_program)), quizzes and exercises. Thanks to projects such as [Literate.jl](https://github.com/fredrikekre/Literate.jl) and [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) the source of most of these pages are runnable valid Julia files.
 
-**To fully master the subject, nothing is better than cloning [the repository on GitHub](https://github.com/sylvaticus/SPMLJ) and running these pages by yourself!**
+**To fully master the subject, nothing is better than cloning [the repository on GitHub](/lessonsSources/00_-_INTRO_-_Introduction_julia_ml/assets/imgs/zenodo.6509909.svg) and running these pages by yourself!**
 To execute yourself the code discussed in the videos, run the code in the `lessonsSource` folder.
 Other resources used in the course (in particular the examples of the introduction and the exercises) are located under the `lessonsMaterial` folder.
 
@@ -57,7 +57,7 @@ Please cite as :
 Antonello Lobianco (2022), _Introduction to Scientific Programming and Machine
 Learning with Julia (SPMLJ)_, doi: [10.5281/zenodo.6425030](https://doi.org/10.5281/zenodo.6425030)
 
-[![DOI](https://zenodo.org/badge/429458515.svg)](https://zenodo.org/badge/latestdoi/429458515)
+[![DOI](assets/imgs/zenodo.6509909.png)](https://zenodo.org/badge/latestdoi/429458515)
 
 
 

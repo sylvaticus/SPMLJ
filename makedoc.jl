@@ -39,6 +39,7 @@ const LESSONS_ROOTDIR = joinpath(@__DIR__, "lessonsSources")
 const LESSONS_ROOTDIR_TMP = joinpath(@__DIR__, "lessonsSources_tmp")
 # Where to save the lessons before they are preprocessed
 
+MAKE_PDF = false
 
 LESSONS_SUBDIR = Dict(
   "INTRO - Introduction to the course, Julia and ML"  => "00_-_INTRO_-_Introduction_julia_ml",
@@ -221,11 +222,12 @@ function preprocess(rootDir)
                 ```@raw html
                 <div id="pd_rating_holder_8962705"></div>
                 <script type="text/javascript">
+                const pageURL = window.location.href;
                 PDRTJS_settings_8962705 = {
                 "id" : "8962705",
                 "unique_id" : "$(file)",
                 "title" : "$(filename)",
-                "permalink" : ""
+                "permalink" : pageURL
                 };
                 </script>
                 ```
@@ -254,6 +256,23 @@ cp(LESSONS_ROOTDIR, LESSONS_ROOTDIR_TMP; force=true)
 println("Starting literating tutorials (.jl --> .md)...")
 literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR ,lsubdir),values(LESSONS_SUBDIR)))
 
+if MAKE_PDF
+    println("Starting making PDF...")
+    makedocs(sitename="SPMLJ - Introduction to Scientific Programming and Machine Learning with Julia",
+            authors = "Antonello Lobianco",
+            pages = [
+                "Index" => "index.md",
+                "Lessons" => makeList(LESSONS_ROOTDIR,LESSONS_SUBDIR),
+            ],
+            format = Documenter.LaTeX(),
+            source  = "lessonsSources", # Attention here !!!!!!!!!!!
+            build   = "buildedDoc_PDF",
+            #preprocess = preprocess
+    )
+end
+
+
+
 println("Starting preprocessing markdown pages...")
 preprocess(LESSONS_ROOTDIR)
 
@@ -275,6 +294,10 @@ makedocs(sitename="SPMLJ",
          build   = "buildedDoc",
          #preprocess = preprocess
 )
+
+
+
+
 
 # Copying back the unmodified source
 cp(LESSONS_ROOTDIR_TMP, LESSONS_ROOTDIR; force=true)

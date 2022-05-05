@@ -11,7 +11,7 @@ The features are numerical, and possibly highly multi-dimensional.
 The Perceptron algorithm is a method to find the parameters of a linear classifier that minimise classification errors. These classifiers will be nothing else than a hyperplane (the generalisation of the concept of "plane" on multiple dimensions) that divides our space into two parts, with the hyperplane itself forming the boundaries between the two parts, and we will use this hyperplane to discriminate all points on one side of it v.s. all points on the other side.
 For example, the following figure shows a hyperplane in 2D (i.e. a line) used to classify some points:
 
-![A linear classifier in 2D](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/linearClassifier.png)
+![A linear classifier in 2D](imgs/linearClassifier.png)
 
 All points in the direction of the arrow are "positive", all points in the opposite direction are negative.
 From the figure we can deduce a few things in that example:
@@ -49,7 +49,7 @@ We randomly split our dataset into three subsets:
 - finally the **test set** is used to judge the overall performances of the algorithm when it is used with the "best" hyperparameter (we can't use the validation set for this, as the hyperparameters are "fitted" based on it).
 
 
-![Train, validation and test set](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/trainingValidationTestSet.png)
+![Train, validation and test set](imgs/trainingValidationTestSet.png)
 
 In practice, we have various ways to look for the "best hyperparameters".. grid search over the hyperparameters space, random search, gradient-based methods... In all cases, we run the algorithm under the training set, and we evaluate it under the validation set until we find the "best" hyperparameter set. At this point, with the "best" hyperparameters we train one last time the algorithm using the training set and we evaluate it under the test set.
 
@@ -58,7 +58,7 @@ In practice, we have various ways to look for the "best hyperparameters".. grid 
 Note that training and validation sets don't need to be the same sample across the whole process.
 Indeed a common technique is the so-called **K-folds cross-validation**:
 
-![5-folds CrossValidation](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/5FoldsCrossValidation.png)
+![5-folds CrossValidation](imgs/5FoldsCrossValidation.png)
 
 Here we first randomly divide our whole dataset in a train/validation set and in the test set.
 For each possible hyperparameter set, we randomly partition the train/validation test in K sets. We use K-1 of them for training and the remaining one for computing the out-of-sample score of the model. We do that (keeping the same hyperparameters and the same partition) for all the different K subsets and we average the performances of the model with that given hyperparameters.
@@ -82,7 +82,7 @@ We hence run a second update to obtain  $\theta^2 = \begin{bmatrix}-2\\-4\end{bm
 I let you see geometrically that this classifier correctly classify the two points:
 
 
-![Perceptron example over 2 points](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/perceptron2PointsExample.png)
+![Perceptron example over 2 points](imgs/perceptron2PointsExample.png)
 
 More in general, we run the perceptron algorithm over the whole training set, starting from the 0 parameter vector and then going over all the training examples.
 And if the n-th example is a mistake, then we perform that update that we just discussed.
@@ -94,13 +94,13 @@ In other words, there may be cases where the perceptron algorithm needs to go ov
 So we have to go through the training set here multiple times. In the jargon of machine learning, we call _epoch_ each time an algorithm goes through the whole training set, either in order or selecting at random.
 On each record, we look at whether the current classify makes a mistake and eventually perform a simple update.
 
-* function perceptron $\displaystyle \left(\big \{ (x^{(n)}, y^{(n)}), n=1,...,N\big \} , epochs \right)$:
-  * initialize $\theta =0$ (vector);
-  * for $t=1,...,epochs$ do
-    * for $n=1,...,N$ do
-      * if $y^{(n)}(\theta \cdot x^{(n)}) \leq 0$ then
-        * update $\theta = \theta + y^{(n)}x^{(n)}$
-  * return $\theta$
+function perceptron $\displaystyle \left(\big \{ (x^{(n)}, y^{(n)}), n=1,...,N\big \} , epochs \right)$:
+* initialize $\theta =0$ (vector);
+* for $t=1,...,epochs$ do
+  * for $n=1,...,N$ do
+    * if $y^{(n)}(\theta \cdot x^{(n)}) \leq 0$ then
+      * update $\theta = \theta + y^{(n)}x^{(n)}$
+* return $\theta$
 
 So the perceptron algorithm takes two parameters: the training set of data (pairs feature vectors => label) and the epochs parameter that tells how many times going over the training set.
 
@@ -111,7 +111,7 @@ Typically, there are many solutions, but the algorithm will find one. And note t
 
 While the Perceptron algorithm finds _one_ possible classifier, it is clear that this may not be the "best" one. See the following figure:
 
-![Different linear classifiers over the same dataset](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/differentLinearClassifiers.png)
+![Different linear classifiers over the same dataset](imgs/differentLinearClassifiers.png)
 
 Linear classifiers do generalise relatively well and the `epochs` parameter could be used as a form of regularisation. Still, we could end up with a perceptron classifier like in figure (a), very dependent on noisy data and that doesn't generalise well.
 Support Vector Machines (SVM, which we will not develop further in this course except in this small discussion) are linear classifiers that try to maximise the boundary with the classified data. So here we enter the realm of "optimisation", usually achieved employing a gradient-based approach that we'll see when discussing neural networks: it is no longer indifferent one classifier that separates the data from another, but SVM (should) retrieve _the_ classifier that is more "far away" from the two datasets, on both the directions (figure (b)).
@@ -124,7 +124,7 @@ The "good news" is that we can easily engineer our data performing non-linear tr
 
 For example in the left diagram in the figure below, the three points are not separable in one dimension:  
 
-![Inseparable points becoming separable in higher dimensions](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/separablePointsInHigherDimensions.png)
+![Inseparable points becoming separable in higher dimensions](imgs/separablePointsInHigherDimensions.png)
 
 However, we can "engineer" our dataset by creating a new dimension that is the square of our original dimension (diagram on the right): the points are now clearly separable by a linear classifier !
 

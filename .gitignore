@@ -23,9 +23,6 @@ docs/site/
 # environment.
 # Manifest.toml
 
-# Builded documentation
-buildedDoc/
-
 # Markdown built from sourse by Literate
 #*.md
 /lessonsSources/**/*.md
@@ -36,6 +33,12 @@ buildedDoc/
 lessonsMaterial/00_KOM/scripts/testGit/
 lessonsMaterial/00_KOM/scripts/testGit/*
 
+# Builded documentation
+buildedDoc/
+
 # Temporary directory for source
 /lessonsSources_TMP/
+
+# Temporary directory for building PDF (not done in GItHub CI)
+/buildedDoc_PDF/
 
