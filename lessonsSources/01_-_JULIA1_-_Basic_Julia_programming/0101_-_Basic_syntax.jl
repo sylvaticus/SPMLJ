@@ -50,33 +50,52 @@ println("Hello world!")
 
 # ## Unicode support
 
-# Actually you can use any fancy unicode character and modifiers in the names of variable, type, funcion..
+# We can can use any fancy Unicode symbol, including modifiers, in the names of variables, types, functions..
 using Statistics # for the `mean` function, in the Standard Library
-σ²(x) = sum( (x .- mean(x)).^2 )/length(x) 
+σ²(x) = sum( (x .- mean(x)).^2 )/length(x) # The superscript `²` is just another character, it has no syntactic value.
 σ²([1,2,3])
 x̄ₙ = 10
 vàlidVarNαme! = 2
+🥞 = 8
+🍴(🥫,parts=4) = 🥫/parts
+🍰 = 🍴(🥞)
 
 # ## Broadcasting
+
+# _Broadcasting_ refers to the capacity to dispatch a function that accept a scalar as argument to any collection for that argument.
+# It is implemented by postfixing a function name (or prefixing an operator) with a single dot at call time:
 
 10 .+ [1,2,3] 
 add2(x) = x + 2
 add2(10)
 ## add2([1,2,3]) # would return an error
 add2.([1,2,3])  # any, including user defined functions, can be broadcasted. No need for map, for loops, etc..
+add2.((1,2,3)) # not only for arrays, here is a Tuple
+add2.(Set([1,2,3,2])) # and here a Set
+.+([1,2,3],[10,20,30]) # fine here
+## .+([1,2,3],[10,20]) # DimensionMismatch error: the input of the the broadcasted arguments must have the same size or be a scalar
+# To "protect" one specific argument to be broadcasted, use `Ref(arg)`:
+foo(x,y::AbstractArray) = [yi+x for yi in y] # a function that wants the first arguent as scalar and the second as vector
+foo(1,[10,20])
+## foo.([1,2],[10,20])  # error, as we try to broadcast also the seond element, but we can't call `foo` with two integers
+foo.([1,2],Ref([10,20])) # now it is fine, we broadcast only the first argument
+
 
 
 # ## 1 based arrays
-
+# Arrays start indexing at 1 (like R, Fortran, Matlab,...) instead of 0 (like in C, Python, Java...)
 a = [1,2,3]
 a[1]
+collect(1:3) # in ranges, both extremes are included
+
 # !!! joke "0 or 1 ?"
 #     Should array indices start at 0 or 1?  My compromise of 0.5 was rejected without, I thought, proper consideration. --Stan Kelly-Bootle
 
 
 # ## Basic Mathematic operations
 
-# ## All standard mathepatical arithmetic operators (`+`,`-`,`*`,`/`) are supported in the obvious way. 
+# All standard mathematical arithmetic operators (`+`,`-`,`*`,`/`) are supported in the obvious way:
+
 a = 2^4         # rise to power
 b = ℯ^2; #= or =# b = exp(2) # Exponential with base ℯ 
 d = log(7.3890) # base ℯ
@@ -108,6 +127,8 @@ _string_"""
 
 
 # ## Missingness implementations
+
+# Attention to these three different implementations (of 3 different concepts) of "missingness":
 
 a = nothing # C-style, "software engineer's null → run-time error
 b = missing # Data scientist's null → silent propagation

@@ -87,8 +87,7 @@ import Base.+
 10+20+30+40         # Also this one remains with the standard addition..
 
 # !!! warning
-#     After you tested this crazy addition, please restart julia or norhing will work.
-#     With great power come great responsability.. (..if you change the meaning of addition it is difficult you will not run into problems...)
+#     After you tested this singular interpretation of the summation function, please restart Julia or few things will continue to work: with great power comes great responsability, and if we change the meaning of such a inner feature of the language, repercussions will be deep.
 
 
 # ## Objects and variables

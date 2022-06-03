@@ -30,7 +30,7 @@ Pkg.activate(".")
 Pkg.instantiate()
 #Pkg.add(["Documenter", "Literate", "Glob", "DataFrames", "OdsIO"])
 
-using Documenter, Literate, Test, Glob, DataFrames, OdsIO
+using Test, Documenter, Literate, DocumenterMarkdown, Glob, DataFrames, OdsIO
 
 
 const LESSONS_ROOTDIR = joinpath(@__DIR__, "lessonsSources")
@@ -264,10 +264,9 @@ if MAKE_PDF
                 "Index" => "index.md",
                 "Lessons" => makeList(LESSONS_ROOTDIR,LESSONS_SUBDIR),
             ],
-            format = Documenter.LaTeX(),
+            format = Markdown(),
             source  = "lessonsSources", # Attention here !!!!!!!!!!!
             build   = "buildedDoc_PDF",
-            #preprocess = preprocess
     )
 end
 

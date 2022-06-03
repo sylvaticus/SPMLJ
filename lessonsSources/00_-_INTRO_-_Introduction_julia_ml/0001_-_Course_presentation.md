@@ -17,7 +17,7 @@ In particular, by attending this course you will receive :
 
 The course is multi-channel, with these pages complemented with youtube videos (see [Program](@ref course_program)), quizzes and exercises. Thanks to projects such as [Literate.jl](https://github.com/fredrikekre/Literate.jl) and [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) the source of most of these pages are runnable valid Julia files.
 
-**To fully master the subject, nothing is better than cloning [the repository on GitHub](/lessonsSources/00_-_INTRO_-_Introduction_julia_ml/assets/imgs/zenodo.6509909.svg) and running these pages by yourself!**
+**To fully master the subject, nothing is better than cloning [the repository on GitHub](https://github.com/sylvaticus/SPMLJ) and running these pages by yourself!**
 To execute yourself the code discussed in the videos, run the code in the `lessonsSource` folder.
 Other resources used in the course (in particular the examples of the introduction and the exercises) are located under the `lessonsMaterial` folder.
 
@@ -40,7 +40,7 @@ Anyhow, the course is organised in units/lessons (e.g. `JULIA1`). Each unit/less
 ```
 
 
-I am a Forest and Natural Resources Economist @ AgroParisTech, a French "Grand Ecole" (sort of polytechnic university) in the life science domain and affiliated to BETA, the _Bureau d'Économie Théorique et Appliquée_, which brings together most of the economists located in the _Grand-Est_ region of France.
+I am a Forest and Natural Resources Economist @ AgroParisTech, a French _Grand Ecole_ (polytechnic university) in the life science domain and affiliated to BETA, the _Bureau d'Économie Théorique et Appliquée_, which brings together most of the economists located in the _Grand-Est_ region of France.
 My main interest is in exploring the interplay between the biophysical layers in the forest sector (climate change, forest dynamics) and the socio-economic ones (individual forest owners' behaviours, timber markets "behaviours") in order to better understand the space of actions that society has to maximise social benefits in a sustainable way. For that, I design, develop and use bio-economic simulation models of the forest sector.
 I started moving my research models to Julia in 2017 and in 2019 I wrote the book "[Julia Quick Syntax Reference: A Pocket Guide for Data Science Programming](https://doi.org/10.1007/978-1-4842-5190-4)" (Apress, 2019)
 
@@ -54,10 +54,9 @@ While this course is in English, English is not my native language... please, be
 
 Please cite as :
 
-Antonello Lobianco (2022), _Introduction to Scientific Programming and Machine
-Learning with Julia (SPMLJ)_, doi: [10.5281/zenodo.6425030](https://doi.org/10.5281/zenodo.6425030)
+Antonello Lobianco (2022), _Introduction to Scientific Programming and Machine Learning with Julia (SPMLJ)_, online course, doi: [10.5281/zenodo.6425030](https://doi.org/10.5281/zenodo.6425030)
 
-[![DOI](assets/imgs/zenodo.6509909.png)](https://zenodo.org/badge/latestdoi/429458515)
+[![DOI](https://zenodo.org/badge/429458515.svg)](https://zenodo.org/badge/latestdoi/429458515)
 
 
 

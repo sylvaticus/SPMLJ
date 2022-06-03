@@ -4,20 +4,20 @@
 
 ## Course content:
 
-- **Introductory unit**: (a) motivations, highlights of the main Julia  characteristics; (b) guidance in setting up a Julia development environment and a crash course on git, (c) modules, packages environments, and the wider topic of reproducible results; (d) introduction to the topic of Machine Learning (scope definition, examples, clarification of the terminology)
+- **Introduction unit**: (a) motivations, highlights of the main Julia  characteristics; (b) guidance in setting up a Julia development environment and a crash course on git, (c) modules, packages, environments and the wider topic of reproducible results; (d) introduction to the topic of Machine Learning (scope, examples, clarification of the terminology)
 
-- **1ˢᵗ thematic unit `JULIA1`**: (a) a gentle but rather deep introduction to the Julia programming language (syntax, provided and custom data structures, control flows and functions); (b) advanced topics (meta-programming, code optimisation, interface with C/Python/R code, hints to parallel computation);
+- **1ˢᵗ thematic unit `JULIA1`**: (a) a gentle but rather deep introduction to the Julia programming language (syntax, provided data structures, custom types, control flows and functions); (b) advanced topics (meta-programming, code optimisation, interface with C/Python/R code, hints to parallel computation);
 
-- **2ⁿᵈ thematic unit `JULIA2`**: (a) data wrangling with the DataFrame package for in-memory tabular data, including the split-apply-combine strategy; (b) the Distributions package for making probabilistic models, (c) the LsqFit package for fitting any generic curve with data, (d) the Plots package for visualisation, (e) the JuMP algebraic modelling language for implementing and solving  complex constrained optimisation models (à la GAMS)
+- **2ⁿᵈ thematic unit `JULIA2`**: (a) data wrangling with the DataFrame package for in-memory tabular data, including the split-apply-combine strategy; (b) the Distributions package for making probabilistic models, (c) the LsqFit package for fitting any generic curve with data, (d) the Plots package for visualisation, (e) the JuMP algebraic modelling language for implementing and solving  complex constrained optimisation models (à la GAMS);
 
-- **3ʳᵈ thematic unit `ML1`**:  (a) intuitions of machine learning concepts (supervised learning, cross-validation and regularisation; (b) implementation of the perceptron linear classifier (perhaps the simplest machine learning algorithm)
+- **3ʳᵈ thematic unit `ML1`**:  (a) intuitions of machine learning concepts (supervised learning, cross-validation and regularisation); (b) implementation of the perceptron linear classifier;
 
-- **4ᵗʰ thematic unit `NN`**:  (a) neural network models: how they work, what they are good for and how to train them; (b) specific neural network architectures: convolutional neural networks and recurrent neural networks; (c) implements using Julia packages.
+- **4ᵗʰ thematic unit `NN`**:  (a) neural network models: how they work, what they are good for and how to train them; (b) specific neural network architectures: convolutional neural networks and recurrent neural networks; (c) implementation of neural network workflos using Julia packages.
 
 ## Course organisation:
 
-- 9 runnable Julia files in public GitHub repository and 7 MarkDown files with embedded Julia code
-- 15 hours of videos, 15 interactive quizzes with 52 questions and 7 guided exercises
+- 9 runnable Julia files in public GitHub repository and 7 MarkDown files with embedded Julia code;
+- 15 hours of videos, 15 interactive quizzes with 52 questions and 7 guided exercises;
 - Discussion forum embedded at the bottom of each page
 
 
@@ -39,8 +39,8 @@ The slides used in the videos below are available [here](https://github.com/sylv
 - [Course introduction](https://www.youtube.com/watch?v=82IbUHUgzLo&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=1) (6:03)
 - [Julia overview](https://www.youtube.com/watch?v=uW8iyTjSaJk&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=2) (36:25)
 - Hands on (42:09)
-  - [Part A](https://www.youtube.com/watch?v=kT9Vm8Ov6qo&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=3) (20:15)
-  - [Part B](https://www.youtube.com/watch?v=51AwIJzxtgw&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=4) (21:54)
+  - [Part A: Creating a git repository on GitHub, installing Julia and the VSCode Julia plugin](https://www.youtube.com/watch?v=kT9Vm8Ov6qo&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=3) (20:15)
+  - [Part B: Working with a git repository](https://www.youtube.com/watch?v=51AwIJzxtgw&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=4) (21:54)
 - [Pkgs, modules and environments](https://www.youtube.com/watch?v=_qTLSrk1ICA&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=5) (20:56)
 - [ML Terminology](https://www.youtube.com/watch?v=l9ls2yssKiE&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=6) (21:19)
 - [A first ML Example](https://www.youtube.com/watch?v=SclPPNvYEAI&list=PLDIpPSqVuMmLGUNGMXL2eO2pqKlzdPfxa&index=7) (7:00)
@@ -72,7 +72,7 @@ The slides used in the videos below are available [here](https://github.com/sylv
 - Custom Types (40:02)
   - [Part A - Types of types, composite types](https://www.youtube.com/watch?v=-tuVyAixoXE&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=17) (17:56)
   - [Part B - Parametric types](https://www.youtube.com/watch?v=UCybSmhURIE&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=18) (7:37)
-  - [Part C - Inheritance and composition OO paradigms](https://www.youtube.com/watch?v=gv8ZIThsHTo&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=19) (14:28)  
+  - [Part C - Inheritance and composition paradigms](https://www.youtube.com/watch?v=gv8ZIThsHTo&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=19) (14:28)  
 - Further Topics (1:34:30)
   - [Part A - Metaprogramming and macros](https://www.youtube.com/watch?v=Q3Fx6pFLCFk&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=20) (23:46)
   - [Part B - Interoperability with other languages](https://www.youtube.com/watch?v=xK_Ug2gtQvU&list=PLDIpPSqVuMmK1poGUS7nuAXXILxHxmV2O&index=21) (23:6)

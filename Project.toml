@@ -1,6 +1,7 @@
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+DocumenterMarkdown = "997ab1e6-3595-5248-9280-8efb232c3433"
 Glob = "c27321d9-0574-5035-807b-f59d2c89b15c"
 Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"
 OdsIO = "56b0d19f-0a74-5872-92bc-f48f9c5431d4"

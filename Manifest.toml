@@ -84,6 +84,12 @@ git-tree-sha1 = "7d9a46421aef53cbd6b8ecc40c3dcbacbceaf40e"
 uuid = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 version = "0.27.15"
 
+[[deps.DocumenterMarkdown]]
+deps = ["Documenter"]
+git-tree-sha1 = "9af057a98652336e30586d8092fac06f8b28ecdc"
+uuid = "997ab1e6-3595-5248-9280-8efb232c3433"
+version = "0.2.2"
+
 [[deps.Downloads]]
 deps = ["ArgTools", "LibCURL", "NetworkOptions"]
 uuid = "f43a241f-c20a-4ad4-852c-f6b1247861c6"

@@ -25,12 +25,12 @@ We will see three kinds of neural networks:
 
 In **deep forward neural networks**, neural network units are arranged in **layers**, from the _input layer_, where each unit holds the input coordinate, through various _hidden layer_ transformations, until the actual _output_ of the model:
 
-![Neural network scheme](imgs/feedforwardNNChart.png)
+![Neural network scheme](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/feedforwardNNChart.png)
 
 
 More in detail, considering a single _dense_ neuron (in the sense that is connected with _all_ the previous layer's neurons or with the input layer), we have the following figure:
 
-![Single neuron](imgs/singleNeuron.png)
+![Single neuron](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/singleNeuron.png)
 
 where:
 
@@ -91,7 +91,7 @@ Out (basic) network did pretty well, but still did an _error_: -0.6 is not -0.54
 
 Before moving to the next section, where we will study how to put everything together and learn how to train the neural network in order to reduce this error, let's first observe that neural networks are powerful tools that can work on many sorts of data, but they require however the input to be encoded in a numerical form, as the computation is strictly numerical. If I have a categorical variable, for example, I'll need to encode it expanding it to a set of dimensions where each dimension represent a single class and I encode with an indicator function if my record is that particular class or not. This is the most simple form of encoding and takes the name of _one hot encoding_:
 
-![One-hot encoding](imgs/onehotencoding.png)
+![One-hot encoding](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/onehotencoding.png)
 
 Note in the figure that using all the three columns leads to linearly dependency, and while, yes, we could save some resources by using only two columns instead of three, this is not a fundamental problem like it would be in statistical analysis. 
 
@@ -117,7 +117,7 @@ A gradient-descent based algorithm can hence be used to look iteratively for the
 The most basic algorithm is then $w_i^t = w_i^{t-1} - \frac{\partial\epsilon^{t-1}}{\partial w_1^{t-1}} * \lambda$ where $\lambda$ is the step that you are willing to make against the gradient, also known as _learning rate_.
 Note in the example above that if instead of moving the parameter $w_1$ of $0.01$ we would have increased it of $0.1$, we would have increased the error to $0.00997$ instead of reducing it. This highlights the problem to use a good learning rate (see next Figure): a too-small learning rate would make the learning slow and with the risk to get trapped in a local minimum instead of a global one. Conversely, a too-large learning rate would risk causing the algorithm to diverge.
 
-![Learning rate effect](imgs/learningRateEffect.png)
+![Learning rate effect](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/learningRateEffect.png)
 
 So, the learning rate is also a hyper-parameter to calibrate, although some modern gradient descent variations, like the ADAptive Moment estimation (ADAM) optimisation algorithm, tend to self_tune themselves and we rarely need to calibrate the default values.
 
@@ -148,7 +148,7 @@ In these networks, the layer $l$ is obtained by operating over the image at laye
 
 So, while we slide the filter, at each location of the filter, the output is composed of the dot product between the values of the filter and the corresponding location in the image (both vectorised), where the values of the filters are the weights that we want to learn, and they remain constant across the sliding. If our filter is a $10 \times 10$ matrix, we have only 100 weights to learn by layer (plus one for the offset). Exactly as for feedforward neural networks, then the dot product is passed through an activation function, here typically the `ReLU` function ($max(0,x)$) rather than `tanh`:
 
-![Convolutional filter](imgs/convolutionalFilter.png)
+![Convolutional filter](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/convolutionalFilter.png)
 
 ### Example
 
@@ -219,13 +219,13 @@ Still, it is often convenient to operate some **data augmentation** to the train
 
 Typically, one single layer is formed by applying multiple filters, not just one. This is because we want to learn different kinds of features. For example in an image one filter will specialize to catch vertical lines, the other obliques ones, and maybe another filter different colours.
 
-![Set of different convolutional filters outputs](imgs/convolutionalLayerOutputs.png)
+![Set of different convolutional filters outputs](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/convolutionalLayerOutputs.png)
 
 Convolutional filters outputs on the first layer (filters are of size 11x11x3 and are applied across input images of size 224x224x3). Source: [Krizhevsky et Oth. (2012), "ImageNet Classification with Deep Convolutional Neural Networks"](https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
 
 So in each layer we map the output of the previous layer (or the original image in case of the first layer) into multiple feature maps where each feature map is generated by a little weight matrix, the filter, that defines the little classifier that's run through the original image to get the associated feature map. Each of these feature maps defines a channel for information and we can represent it as a third dimension to form a "volume", where the depth is given by the different filters:
 
-![Convolutional layer](imgs/convolutionalLayer.png)
+![Convolutional layer](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/convolutionalLayer.png)
 
 In the image above the input layer has size (4,4,4) and the output layer has size (3,3,2), i.e. 2 "independent" filters of size (2,2).
 
@@ -309,7 +309,7 @@ RNNs can be used to characterise a sequence, like in sentiment analysis to predi
 In these cases, the RNN task is to _encode_ the sequence in a vector format (the final state) and this is fed to a further part of the chain whose task is to _decode_ according to the task required. Note that the parameters for both tasks are learned jointly.
 The scheme is as follow:
 
-![Sequence-to-one scheme](imgs/sequenceToOne.png)
+![Sequence-to-one scheme](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/sequenceToOne.png)
 
 Training in this scenario implies starting the model from an initial state (normally a zero-vector) and some random weights,  and  "feeding" the model with one item at a time until the sequence ends. At this time the final state is decoded to an overall output that is compared to the "true" y. 
 From here the backward passage is made in a similar way that in feed-forward networks so that the "contribution" of each weight to the errors can be assessed and the weights adjusted
@@ -325,7 +325,7 @@ From here the backward passage is made in a similar way that in feed-forward net
 Another scenario is when we want the RNN to _replicate_ some sequence pattern, like in next word, next note or next price predictions. In this case, we are interested in all the elements of the sequence and not only in the final state of the sequence. 
 The decoding part happens hence at each step of the sequence and the resulting $\hat y_i$ is compared with the true $y_i$, with the resulting loss used to train the weights:
 
-![Sequence-to-sequence scheme](imgs/sequenceToSequence.png)
+![Sequence-to-sequence scheme](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/sequenceToSequence.png)
 
 ### Gated networks
 
