@@ -199,17 +199,33 @@ f(a,b=1;c=1) = a+10b+100c  # `a` and `b` are positional arguments (`b` with a de
 f(2)
 f(2,c=3)
 
-foo(a, args...;c=1) = a + length(args) + sum(args) + c
+# We can use the splat operator (`...`) to specific a _variable_ number of arguments.
+# Here an example for variable positional arguments...
+foo(a, args...;c=1) = a + length(args) + sum(args) + c  
 foo(1,2,3,c=4)
+# ...and here for variable keyword arguments:
+foo2(;a=1,b=10) = a+b
+function foo(x;y="aaa",kwargs...)
+      println("y is $y")
+      for (k,v) in kwargs
+            println(k,"  ",v) # note there is no `y`
+      end
+      foo2(;kwargs...)
+end
+foo(10,a=10,b=20,y="bbb")
 
+# Note that while normally using the semicolon instead of the colon for separating keyword arguments in function calls is optional, when we "forward" variable keyword arguments to a inner function we MUST use the semicolon in the call too. 
+# Variable positional arguments can be constrained in the type and size, eventually parametrically, using `foo(a,x::Vararg{Float64,2}) = ...` (note that then the splat operator is not needed).
+ 
 # Rules for positional and keyword arguments:
 # - keyword arguments follow a semicolon `;` in the parameters list of the function definition 
 # - a positional argument without a default can not follow a positional argument with a default provided
-# - the splat operator to define variable number of arguments must be the last positional argument 
+# - the splat operator to define variable number of (positional|keyword) arguments must be the last (positional|keyword) argument 
 # - the function call must use positional arguments by position and keyword arguments by name
 
 
 ## foo(a::String="aaa",b::Int64) = "$a "+string(b) # error! Optional positional argument before a mandatory positional one  
+
 
 # ### Argument types and multiple dispatch
 
