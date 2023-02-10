@@ -325,6 +325,20 @@ v3 = [i[1] for i in t]
 v4 = collect(t)
 v == v2 == v3 == v4
 
+# ### Tuples with a variable number of same-type elements
+
+# While the tuple type normally include informations of the types of each elements, one by one, we may want to have a way to "summarise" this information by specifying that a certain number of elements, all of this type, are repeated. This is the task of the `Vararg{T}` and `Vararg{T,N}` arguments that must be specified as the last parameters of a `Tuple` type. The former one allows for a _variable_ number of elements, and the latter one specific an exact number of elements:  
+
+typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int}}  
+typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int,2}}  
+typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int,3}} 
+
+# !!! tip 
+#     `NTuple{N,T}`` is an alias for `Tuple{Vararg{T,N}}`
+
+typeof((1,10)) <: NTuple{2,Int} 
+
+
 # ## Named tuples - `NamedTuple{T1,T2,...}`
 
 # As the name suggests, named tuples are collection similar to ordinary tuples, but whose indexing can accept also a name:

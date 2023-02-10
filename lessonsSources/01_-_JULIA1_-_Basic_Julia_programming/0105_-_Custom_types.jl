@@ -88,7 +88,49 @@ Foo2(1,2,"aaa")
 
 ## Foo2(1,"aaa") # Error, no default constructor !
 
+# You can also use a macro (requires Julia 1.1) to automatically define an (outer) keyword_based constructor with support for optional arguments:
+
+Base.@kwdef struct Kfoo
+   x::Int64 = 1
+   y = 2
+   z
+end
+Kfoo(z=3)
+
+# Note that, at time of writing, `@kwdef` is not exported by Julia base, meaning that while widely used, it is considered still "experimental" and its usage may change in future Julia minor versions.
+
+
+
+# ## Custom pretty-printing 
+
+
+# We can customise the way our custom type is rendered by overriding the `Base.show` function for our specific type.
+
+# We first need to import `Base.show`
+import Base.show
+
+mutable struct Foo
+    x::Int64
+    y::Int64
+end
+
+function show(io::IO, ::MIME"text/plain", x::Foo)
+    ## if get(io, :compact, true) ... # we can query the characteristics of the output
+    print(io,"A Foo struct")
+end
+function show(io::IO, x::Foo) # overridden by print
+    print(io, "Foo x is $(x.x) and y is $(x.y) \nThat's all!")
+end
+
+foo=Foo(1,2)
+display(foo)
+show(foo)
+print(foo)
+println(foo)
+
+
 # ## Parametric types
+
 
 struct Point{T<:Number} # T must be a child of type "Number"
    x::T

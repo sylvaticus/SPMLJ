@@ -83,7 +83,7 @@ g = 2
 include("010401-varScopeExample.jl.txt")            # gives a warning !
 
 
-# ## Repeated iterations: `for` and `while` loops, List Comprehension, Maps
+# ## Repeated iterations: `for` and `while` loops, Array Comprehension, Maps
 
 for i in 1:2, j in 3:4             # j is the inner loop
     println("i: $i, j: $j")
@@ -100,7 +100,7 @@ while true             # or condition, e.g. while a == 10
     println("This is never printed")
 end
 
-# ### List Comprehension
+# ### Array Comprehension
 [ i+j for i in 1:2, j in 3:4 if j >= 4]
 
 # ### Maps

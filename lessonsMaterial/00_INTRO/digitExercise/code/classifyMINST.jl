@@ -1,6 +1,9 @@
 using Pkg
 cd(@__DIR__)
 Pkg.activate(".")
+Pkg.upgrade_manifest()
+Pkg.resolve()
+
 #Pkg.add("Flux")
 #Pkg.add("MLDatasets")
 #Pkg.add("BetaML")
@@ -98,7 +101,7 @@ model = Chain(
     Conv((3, 3), 32=>32, pad=1, stride=2, relu),
     # Average pooling on each width x height feature map
     GlobalMeanPool(),
-    flatten,
+    Flux.flatten,
     Dense(32, 10),
     softmax
 )
