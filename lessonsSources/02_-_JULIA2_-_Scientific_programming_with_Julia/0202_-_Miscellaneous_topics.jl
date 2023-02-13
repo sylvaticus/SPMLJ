@@ -34,7 +34,7 @@ using StatsPlots # no need to `using Plots` as `Plots` elements are reexported b
 
 # ### Plotting functions
 
-# Let's start plotting a function. The FIRST TIME you invoke `plot` will take a while. This is the famous "time to first plot" problem due to the JIT compilation, but it refer only to the first plotting in a working session 
+# Let's start plotting a function. The FIRST TIME you invoke `plot` will take a while. This is the famous "time to first plot" problem due to the JIT compilation, but it will materialize only on the first plotting in a working session 
 plot(cos) # default [-5,+5] range
 savefig("currentPlot1.svg"); #src
 # ![](currentPlot.svg)

@@ -43,7 +43,7 @@ Start by setting the working directory to the directory of this file and activat
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.8 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 # Pkg.resolve()   
 Pkg.instantiate() 
 using Random
@@ -61,7 +61,8 @@ Load the packages Statistics, DelimitedFiles, LinearAlgebra, Pipe, HTTP, StatsPl
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-using Statistics, DelimitedFiles, LinearAlgebra, Pipe, HTTP, StatsPlots, BetaML
+using Statistics, DelimitedFiles, LinearAlgebra, HTTP, StatsPlots, BetaML
+import Pipe:@pipe
 ```
 ```@raw html
 </details>
@@ -118,7 +119,7 @@ scatter(X[:,1],X[:,2], colour=colors, title="Classified tumors",xlabel="Tumor Ra
 function plot2DClassifierWithData(X,y,θ;d1=1,d2=2,origin=false,xlabel="Dimx: $(d1)",ylabel="Dimy: $(d2)")
     nR    = size(X,1)
     X     = hcat(ones(nR),X)
-    X     = scale(X) # for visualisation
+    X     = fit!(Scaler(),X) # for visualisation
     d1    += 1
     d2    += 1
     colors = [y == 1 ? "red" : "green" for y in y]
@@ -308,7 +309,7 @@ for e in epochsSet, s in shuffleSet
     global bestE, bestShuffle, bestAcc, accuraciesNonShuffle, accuraciesShuffle
     local acc
     local ops  = PerceptronTrainingOptions(#=...=#)
-    (acc,_)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
+    (acc,_)    = cross_validation([xtrain,ytrain],sampler) do trainData,valData,rng
                     (xtrain,ytrain) = trainData; (xval,yval) = valData
                     m               = Perceptron(zeros(size(xtrain,2)+1))
                     train!(#=...=#)
@@ -333,9 +334,9 @@ end
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-sampler = KFold(nSplits=10)
+sampler = KFold(nsplits=10)
 local ops  = PerceptronTrainingOptions(epochs=e,shuffle=s)
-(acc,_)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
+(acc,_)    = cross_validation([xtrain,ytrain],sampler) do trainData,valData,rng
                 (xtrain,ytrain) = trainData; (xval,yval) = valData
                 m               = Perceptron(zeros(size(xtrain,2)+1))
                 train!(m,xtrain,ytrain,ops)
@@ -406,8 +407,7 @@ accNShuffleSc  = Float64[]
 accShuffleNSc  = Float64[]
 accShuffleSc   = Float64[]
 
-
-scfactors = getScaleFactors(xtrain)
+xtrainsc = fit!(Scaler(),xtrain)
 
 for e in epochsSet, s in shuffleSet, sc in scalingSet
     global bestE, bestShuffle, bestAcc, accNShuffleNSc, accNShuffleSc, accShuffleNSc, accShuffleSc
@@ -415,9 +415,11 @@ for e in epochsSet, s in shuffleSet, sc in scalingSet
     local ops  = PerceptronTrainingOptions(#=...=#)
     xtrainsc= copy(xtrain)
     if(sc)
-        xtrainsc =scale(xtrain,scfactors)
+        xtraintouse = fit!(Scaler(),xtrain)
+    else
+        xtraintouse = copy(xtrain)
     end
-    (acc,_)    = crossValidation([xtrainsc,ytrain],sampler) do trainData,valData,rng
+    (acc,_)    = cross_validation([xtraintouse,ytrain],sampler) do trainData,valData,rng
                     #...
                     return valAccuracy
                 end
@@ -446,7 +448,7 @@ end
 ```
 ```julia
 local ops  = PerceptronTrainingOptions(epochs=e,shuffle=s)
-(acc,_)    = crossValidation([xtrainsc,ytrain],sampler) do trainData,valData,rng
+(acc,_)    = cross_validation([xtrainsc,ytrain],sampler) do trainData,valData,rng
                 (xtrain,ytrain) = trainData; (xval,yval) = valData
                 m               = Perceptron(zeros(size(xtrain,2)+1))
                 train!(m,xtrain,ytrain,ops)
@@ -473,8 +475,8 @@ plot!(epochsSet,accNShuffleNSc,label="Val accuracy NON shuffling NON scaling", l
 ops = PerceptronTrainingOptions(#=...=#)
 m   = Perceptron(#=...=#)
 if bestScaling
-    train!(m,scale(xtrain),ytrain,ops)
-    ŷtest  = predict(m,scale(xtest))
+    train!(m,fit!(Scaler()xtrain),ytrain,ops)
+    ŷtest  = predict(m,fit!(Scaler,xtest))
 else
     train!(m,xtrain,ytrain,ops)
     ŷtest  = predict(m,xtest)

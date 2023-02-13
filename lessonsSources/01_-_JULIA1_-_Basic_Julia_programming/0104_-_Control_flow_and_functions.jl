@@ -83,7 +83,7 @@ g = 2
 include("010401-varScopeExample.jl.txt")            # gives a warning !
 
 
-# ## Repeated iterations: `for` and `while` loops, Array Comprehension, Maps
+# ## [Repeated iterations: `for` and `while` loops, Array Comprehension, Maps](@id control_flow)
 
 for i in 1:2, j in 3:4             # j is the inner loop
     println("i: $i, j: $j")

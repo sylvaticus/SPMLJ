@@ -109,24 +109,24 @@ Kfoo(z=3)
 # We first need to import `Base.show`
 import Base.show
 
-mutable struct Foo
+mutable struct FooPoint
     x::Int64
     y::Int64
 end
 
-function show(io::IO, ::MIME"text/plain", x::Foo)
+function show(io::IO, ::MIME"text/plain", x::FooPoint)
     ## if get(io, :compact, true) ... # we can query the characteristics of the output
-    print(io,"A Foo struct")
+    print(io,"A FooPoint struct")
 end
-function show(io::IO, x::Foo) # overridden by print
-    print(io, "Foo x is $(x.x) and y is $(x.y) \nThat's all!")
+function show(io::IO, x::FooPoint) # overridden by print
+    print(io, "FooPoint x is $(x.x) and y is $(x.y) \nThat's all!")
 end
 
-foo=Foo(1,2)
-display(foo)
-show(foo)
-print(foo)
-println(foo)
+foo_obj=FooPoint(1,2)
+display(foo_obj)
+show(foo_obj)
+print(foo_obj)
+println(foo_obj)
 
 
 # ## Parametric types

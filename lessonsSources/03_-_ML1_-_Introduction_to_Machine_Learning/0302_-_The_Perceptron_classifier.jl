@@ -15,7 +15,7 @@
 cd(@__DIR__)    
 using Pkg      
 Pkg.activate(".")  
-## If using a Julia version different than 1.7 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
+## If using a Julia version different than 1.8 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
 ## Pkg.resolve()     
 Pkg.instantiate()
 using Random
@@ -139,7 +139,7 @@ idx = shuffle(1:nR)
 perceptronData = perceptronData[idx,:]
 X                = copy(perceptronData[:,[2,3]])
 y                = convert(Array{Int64,1},copy(perceptronData[:,1]))
-θopt             = perceptronOrigin(X,y,verbose=true)
+θopt             = perceptronOrigin(X,y,1,verbose=true)
 
 plot2DClassifierWithData(X,y,θopt, origin=true,pid=20)
 # ![](currentPlot20.svg)
@@ -253,18 +253,21 @@ ŷtest         = predict(m,xtest)
 testAccuracy  = accuracy(ŷtest,ytest)
 plot2DClassifierWithData(xtest,ytest,m.θ,pid=12)
 # ![](currentPlot12.svg)
-cfOut = ConfusionMatrix(ŷtest,ytest)
+cfOut = ConfusionMatrix()
+fit!(cfOut,ŷtest,ytest)
 print(cfOut)
+res = info(cfOut)
+heatmap(string.(res["categories"]),string.(res["categories"]),res["normalised_scores"],seriescolor=cgrad([:white,:blue]),xlabel="Predicted",ylabel="Actual", title="Confusion Matrix (normalised scores)")
 
 # Lets use CrossValidation 
 ((xtrain,xvalidation,xtest),(ytrain,yvalidation,ytest)) = partition([X,y],[0.6,0.2,0.2])
 ## Very few records..... let's go back to using only two subsets but with CrossValidation 
 ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.6,0.4])
 
-sampler    = KFold(nSplits=10)
+sampler    = KFold(nsplits=10)
 
 ops     = PerceptronTrainingOptions(epochs=10,shuffle=true)
-(acc,σ) = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
+(acc,σ) = cross_validation([xtrain,ytrain],sampler) do trainData,valData,rng
                 (xtrain,ytrain) = trainData; (xval,yval) = valData
                 m               = Perceptron(zeros(size(xtrain,2)+1))
                 train!(m,xtrain,ytrain,ops)
@@ -285,7 +288,7 @@ for e in epochsSet, s in shuffleSet
     global bestE, bestShuffle, bestAcc
     local acc
     local ops  = PerceptronTrainingOptions(epochs=e,shuffle=s)
-    (acc,_)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
+    (acc,_)    = cross_validation([xtrain,ytrain],sampler) do trainData,valData,rng
                     (xtrain,ytrain) = trainData; (xval,yval) = valData
                     m               = Perceptron(zeros(size(xtrain,2)+1))
                     train!(m,xtrain,ytrain,ops)

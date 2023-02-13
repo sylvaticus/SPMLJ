@@ -478,7 +478,7 @@ using BenchmarkTools
 @code_warntype f1(0) # Body::Any 
 @code_warntype f2(0) # Body::Int64 
 
-# While in general is NOT important to annotate function parameters for performance, it is important to annotate struct fields with concrete types 
+# While in general it is NOT important to annotate function parameters for performance, it is important to annotate struct fields with concrete types 
 abstract type Goo end
 struct Foo <: Goo
     x::Number
@@ -704,6 +704,7 @@ methods(foo)
 @which foo(2)          # which method am I using when I call foo with an integer?
 typeof(a)
 eltype(a)
+isa(1.2, Number)
 fieldnames(Foo)
 dump(fobj)
 names(Main, all=false) # available (e.g. exported) identifiers of a given module

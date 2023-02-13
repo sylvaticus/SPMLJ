@@ -15,8 +15,8 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
-## Pkg.resolve()   
+## If using a Julia version different than 1.8 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+#Pkg.resolve()   
 Pkg.instantiate()
 using Random
 Random.seed!(123)
@@ -67,8 +67,8 @@ sheetNames = XLSX.sheetnames(XLSX.readxlsx("data.xlsx"))
 data = XLSX.readxlsx("data.xlsx")["Sheet1"]["A1:D9"]
 data = XLSX.readxlsx("data.xlsx")["Sheet1"][:]
 data = XLSX.readdata("data.xlsx", "Sheet1", "A1:D9")
-XLSX.readtable("data.xlsx", "Sheet1") # tuple vector of (data) vectors, vector of symbols, usable as DF constructor
-data = DataFrame(XLSX.readtable("data.xlsx", "Sheet1")...) 
+XLSX.readtable("data.xlsx", "Sheet1") # a specific XLSX data structure usable as DF constructor
+data = DataFrame(XLSX.readtable("data.xlsx", "Sheet1")) 
 
 # ### OdsIO.jl: ods -> {Matrix, DataFrame}
 using OdsIO
@@ -76,9 +76,9 @@ ods_read("data.ods";sheetName="Sheet1",retType="DataFrame")
 ods_read("data.ods";sheetName="Sheet1",retType="Matrix",range=[(2,3),(9,4)]) # [(tlr,tlc),(brr,brc)]
 
 # ### HTTP.jl: from internet
-import HTTP
-using Pipe, ZipFile, Tar
-urlData = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/raw/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/data.csv"
+import HTTP, Pipe.@pipe
+using ZipFile, Tar
+urlData  = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/raw/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/data.csv"
 urlDataZ = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/raw/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/data.zip"
 
 
@@ -216,7 +216,7 @@ end
 # ### Managing missing values
 
 # !!! tip
-#     See also the section [`Missingness implementations`](@ref) for a general discussion on missing values
+#     See also the section [`Missingness implementations`](@ref) for a general discussion on missing values. [BetaML](https://github.com/sylvaticus/BetaML.jl) has now several algorithms for missing imputation.
 
 df = copy(data)
 ## df[3,"forarea"]  = missing # Error, type is Flat64, not Union{Float64,Missing}

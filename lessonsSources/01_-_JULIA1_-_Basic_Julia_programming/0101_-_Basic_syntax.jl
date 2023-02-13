@@ -18,7 +18,7 @@ using Pkg
 Pkg.activate(".")   
 ENV["PYTHON"] = ""  # This will be needed in a further segment  
 ENV["R_HOME"] = "*" # This wil lbe needed in a further segment
-## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## If using a Julia version different than 1.8 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 ## Pkg.resolve()   
 Pkg.instantiate()
 using Random
@@ -26,6 +26,9 @@ Random.seed!(123)
 
 
 # ## Comments
+
+# Similar to many other languages, everything that folows a hash symbol (`#`), up to the end of the line, is considered by Julia as a comment.
+# Julia supports also multi-line, middle-of-the-line and nested comments using the `#= ...comment... =#` syntax: 
 
 ## This is a comment
 a = 1 # also this one
@@ -38,14 +41,20 @@ one
 
 # ## Code organisation
 
+# Delimiting the end of a programming statement with a semi-colon, is optional, and has the effect to block the normal display on the terminal of the output of that statement.
+
 ## Semicolon:
 a = 1
 a = 1;
+
+# All code blocks (like the foor loop that we'll study in detail in the [Control flow and functions](@ref control_flow) segment) ends with the `end` keyword, like in the example below:
 for i in 1:3
    println("i is $i")
 end # Keyword `end` to finish a block
+
+# Function calls require to specify the name of the funtion to call followed straigth away (without spaces) with the function arguments inside round brackets:
 println("Hello world!")
-## println("This would error!")
+##println ("This would error!")
 
 
 # ## Unicode support
@@ -62,7 +71,7 @@ vàlidVarNαme! = 2
 
 # ## Broadcasting
 
-# _Broadcasting_ refers to the capacity to dispatch a function that accept a scalar as argument to any collection for that argument.
+# _Broadcasting_ refers to the capacity to dispatch a function that accepts a scalar argument to a whole collection. Broadcasting will then call the function with each individual element of the collection.
 # It is implemented by postfixing a function name (or prefixing an operator) with a single dot at call time:
 
 10 .+ [1,2,3] 

@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1
         with:
-          version: '1.7'
+          version: '1.8'
       - run: |
           julia -t 4 --project=. -e 'using Pkg; Pkg.instantiate()'
       - run: julia -t 4 --project=. makedoc.jl
