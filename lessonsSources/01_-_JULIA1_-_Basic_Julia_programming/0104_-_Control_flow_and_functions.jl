@@ -204,13 +204,14 @@ f(2,c=3)
 foo(a, args...;c=1) = a + length(args) + sum(args) + c  
 foo(1,2,3,c=4)
 # ...and here for variable keyword arguments:
-foo2(;a=1,b=10) = a+b
+
+fooinner(;a=1,b=10) = a+b
 function foo(x;y="aaa",kwargs...)
       println("y is $y")
       for (k,v) in kwargs
             println(k,"  ",v) # note there is no `y`
       end
-      foo2(;kwargs...)
+      fooinner(;kwargs...)
 end
 foo(10,a=10,b=20,y="bbb")
 
