@@ -28,6 +28,9 @@ The following videos (14h:52':22'') are available. All except the introduction f
 
 Videos are hosted on YouTube.
 
+!!! tip
+    Note that the links below will bring you directly to YouTube. [Click here to start the course on this site](@ref introduction_julia) (with the YouTube videos embedded in the page) or use the menu to jump to the desired content.
+
 ### 00 KOM: Kick-off meeting (2h:34:46)
 
 Note that this introduction has been partially recorded before the rest of the course has been implemented, so that the organisation of the course, and the way it is delivered, are not exactly as described in the videos below.

@@ -1,5 +1,4 @@
-# Introduction to Julia, git and the Julia package manager
-
+# [Introduction to Julia, git and the Julia package manager](@id introduction_julia)
 
 ## An introduction to the Julia Programming Language
 
