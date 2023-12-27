@@ -1,8 +1,9 @@
 using Pkg
 cd(@__DIR__)
 Pkg.activate(".")
-Pkg.upgrade_manifest()
+#Pkg.upgrade_manifest()
 Pkg.resolve()
+Pkg.instantiate()
 
 #Pkg.add("Flux")
 #Pkg.add("MLDatasets")
@@ -20,7 +21,6 @@ using Statistics
 using Flux
 using Flux: Data.DataLoader
 using Flux: onehotbatch, onecold, crossentropy
-using Flux: @epochs
 using MLDatasets # For loading the training data
 using Images, FileIO, ImageTransformations # For loading the actual images
 
@@ -50,15 +50,14 @@ function cleanImg!(img,threshold=0.3,radius=0)
     return img
 end
 
-accuracy(ŷ, y) =  (mean(onecold(ŷ) .== onecold(y)))
+accuracy(y,ŷ) =  (mean(onecold(ŷ) .== onecold(y)))
 loss(x, y)     = Flux.crossentropy(model(x), y)
 
 ################################################################################
 # Definition and training of the model
 # (including extra images to MNIST db)
-x_train, y_train = MLDatasets.MNIST.traindata()
+x_train, y_train = MLDatasets.MNIST(split=:train)[:]
 x_train          = permutedims(x_train,(2,1,3)) # For correct img axis
-x_train          = convert(Array{Float32,3},x_train)
 y_train_add      = convert(Array{Int64,1},dropdims(readdlm("./data/additionalTestingImgs/img_labels.txt"),dims=2))
 x_train_add_path = ["./data/additionalTestingImgs/test$(i).png" for i in 1:64]
 x_train_add_imgs = load.(x_train_add_path)
@@ -83,9 +82,8 @@ x_train          = reshape(x_train,(28,28,1,60000+64*resample))
 
 y_train          = onehotbatch(y_train, 0:9)
 train_data       = DataLoader((x_train, y_train), batchsize=128)
-x_test, y_test   = MLDatasets.MNIST.testdata()
+x_test, y_test   = MLDatasets.MNIST(split=:test)[:]
 x_test           = permutedims(x_test,(2,1,3)) # For correct img axis
-x_test           = convert(Array{Float32,3},x_test)
 x_test           = reshape(x_test,(28,28,1,10000))
 y_test           = onehotbatch(y_test, 0:9)
 #train_data       = DataLoader((x_test, y_test), batchsize=128)
@@ -121,10 +119,11 @@ alt_model = Chain(
 opt = Flux.ADAM()
 ps  = Flux.params(model)
 number_epochs = 5
-@epochs number_epochs Flux.train!(loss, ps, train_data, opt)
 
-accuracy(model(x_train), y_train) # 0.95
-accuracy(model(x_test), y_test) # 0.95
+[(println(e); Flux.train!(loss, ps, train_data, opt)) for e in 1:number_epochs]
+
+accuracy(y_train,model(x_train)) # 0.95
+accuracy(y_test, model(x_test) ) # 0.95
 
 ################################################################################
 # Loading imgs
@@ -148,8 +147,6 @@ imgs = reshape(imgs,(28,28,1,size(imgs,3)))
 imgs_est = model(imgs)
 imgs_ŷ = onecold(imgs_est, 0:9)
 probs = maximum(imgs_est,dims=1)
-
-
 
 nImgs = length(imgs_y)
 println("*** Classification report")

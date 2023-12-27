@@ -34,33 +34,33 @@ dataURL="https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.dat
 # 4) Now create the X matrix of features using the second to final columns of the data you loaded above and the Y vector by taking the 1st column. Transform the Y vector to a vector of integers using the `Int()` function (broadcasted). Make shure you have a 178×13 matrix and a 178 elements vector
 
 
-# 5) Partition the data in (xtrain,xval) and (ytrain,yval) keeping 80% of the data for training and reserving 35% for testing. Keep the default option to shuffle the data, as the input data isn't.
+# 5) Partition the data in (`xtrain`,`xtest`) and (`ytrain`,`ytest`) keeping 80% of the data for training and reserving 20% for testing. Keep the default option to shuffle the data, as the input data isn't.
 
 
-# 6) As the output is multinomial we need to encode ytrain. We use the `oneHotEncoder()` function to make `ytrain_oh`
+# 6) As the output is multinomial we need to encode `ytrain`. We use the `OneHotEncoder()` model to make `ytrain_oh`
 
 
-# 7) Define a Neural Network model with the following characteristics:
+# 7) Define a `NeuralNetworkEstimator` model with the following characteristics:
 #   - 3 dense layers with respectively 13, 20 and 3 nodes and activation function relu
 #   - a `VectorFunctionLayer` with 3 nodes and `softmax` as activation function
-#   - `crossEntropy` as the neural network cost function
+#   - `crossentropy` as the neural network cost function
+#   - training options: 100 epochs and 6 records to be used on each batch
 
 
-# 8) Train your model using `ytrain` and a scaled version of `xtrain`` (where all columns have zero mean and 1 standard deviaiton) for 100 epochs and use a batch size of 6 records.
-# Save the output of your training function to `trainingLogs`
+# 8) Train your model using `ytrain` and a scaled version of `xtrain` (where all columns have zero mean and 1 standard deviaiton) 
 
 
-# 9) Predict the training labels ŷtrain and the validation labels ŷval. Recall you did the training on the scaled features!
+# 9) Predict the training labels `ŷtrain` and the test labels `ŷtest`. Recall you did the training on the scaled features!
 
 
 # 10) Compute the train and test accuracies using the function `accuracy`
 
 
-# 11) Compute and print a ConfutionMatrix of the validation data true vs. predicted
+# 11) Compute and print a Confusion Matrix of the test data true vs. predicted
 
 
 # 12) Run the following commands to plots the average loss per epoch 
-plot(trainingLogs.ϵ_epochs)
+plot(info(mynn)["loss_per_epoch"])
 
 
-# 13) (Optional) Run the same workflow without scaling the data or using `squaredCost` as cost function. How this affect the quality of your predictions ? 
+# 13) (Optional) Run the same workflow without scaling the data or using `squared_cost` as cost function. How this affect the quality of your predictions ? 

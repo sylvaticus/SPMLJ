@@ -15,7 +15,7 @@
 cd(@__DIR__)    
 using Pkg      
 Pkg.activate(".")  
-## If using a Julia version different than 1.8 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
 ## Pkg.resolve()     
 Pkg.instantiate()
 using Random
@@ -102,9 +102,10 @@ plot2DClassifierWithData(X,y,θ, origin=true,pid=6)
 plot2DClassifierWithData(X,y,θ,origin=true,pid=7)
 # ![](currentPlot7.svg)
 
-
-
 # ## The complete algorithm
+
+# !!! tip
+#     The algorithm implemented from scratch in this page form the core of the [`PerceptronClassifier`](https://sylvaticus.github.io/BetaML.jl/stable/Perceptron.html#BetaML.Perceptron.PerceptronClassifier) model in `BetaML`, a multiclass linear classifier.
 
 function perceptronOrigin(X,y,epochs=1;verbose=false)
     (nR,nD) = size(X)
@@ -128,6 +129,7 @@ end
 plot2DClassifierWithData(X,y,θopt, origin=true,pid=8)
 # ![](currentPlot8.svg)
 
+# ## Loading binary supervised data
 
 using BetaML, DelimitedFiles
 baseDir          = joinpath(dirname(pathof(BetaML)),"..","test","data")
@@ -139,10 +141,6 @@ idx = shuffle(1:nR)
 perceptronData = perceptronData[idx,:]
 X                = copy(perceptronData[:,[2,3]])
 y                = convert(Array{Int64,1},copy(perceptronData[:,1]))
-θopt             = perceptronOrigin(X,y,1,verbose=true)
-
-plot2DClassifierWithData(X,y,θopt, origin=true,pid=20)
-# ![](currentPlot20.svg)
 
 # ## A better organisation
 

@@ -18,7 +18,7 @@ using Pkg
 Pkg.activate(".")   
 ENV["PYTHON"] = ""  # This will be needed in a further segment  
 ENV["R_HOME"] = "*" # This wil lbe needed in a further segment
-## If using a Julia version different than 1.8 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 ## Pkg.resolve()   
 Pkg.instantiate()
 using Random

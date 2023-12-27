@@ -15,7 +15,7 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 ## Pkg.resolve()   
 ## Pkg.instantiate() # run this if you didn't in Segment 02.01
 using Random
@@ -124,6 +124,8 @@ savefig("currentPlot10.svg"); #src
 # ![](currentPlot10.svg)
 fit(Normal, sample) # using MLE 
 
+# For a quick overview on the various distributions available, the main methods that apply to them and a comparision with equivvalent R and Python libraries, you can see this cheatsheet: https://github.com/sylvaticus/commonDistributionsInJuliaPythonR
+
 # ## Curve fitting
 
 # `LsqFit` is a very flexible data fitting package for linear and nonlinear arbitrary functions (using least squares).
@@ -228,6 +230,9 @@ cost = Dict( (r[:prod],r[:orig],d) => r[Symbol(d)] for r in eachrow(costtable), 
 
 trmodel = Model(GLPK.Optimizer)
 set_optimizer_attribute(trmodel, "msg_lev", GLPK.GLP_MSG_ON)
+
+# !!! tip "..."
+#     Alternativelly, you can use `HiGHS` as another popular choice for linear solver engine
 
 # #### Model's endogenous variables definition
 

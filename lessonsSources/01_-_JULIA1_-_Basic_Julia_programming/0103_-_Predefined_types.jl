@@ -15,7 +15,7 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 ## Pkg.resolve()   
 ## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random

@@ -65,7 +65,7 @@ Start by setting the working directory to the directory of this file and activat
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 # Pkg.resolve()   
 Pkg.instantiate() 
 using Random
@@ -112,13 +112,13 @@ data    = @pipe HTTP.get(dataURL).body |> CSV.File(_, delim=' ', header=false, i
 
 --------------------------------------------------------------------------------
 ### 4) Implement one-hot encoding of categorical variables
-The 4th column is a dummy related to the information if the suburb bounds a certain Boston river. Use the BetaML function `oneHotEncoder` to encode this dummy into two separate vectors, one for each possible value. Note that you will need to transform the range {0,1} into {1,2} before running the oneHotEncoder function (this can be done by simply uinsg `data[:,4] .+1`)
+The 4th column is a dummy related to the information if the suburb bounds a certain Boston river. Use the BetaML model `OneHotEncoder` to encode this dummy into two separate vectors, one for each possible value.
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-riverDummy = oneHotEncoder(data[:,4] .+1)
+riverDummy = fit!(OneHotEncoder(),data[:,4])
 ```
 ```@raw html
 </details>
@@ -154,13 +154,13 @@ Y = data[:,14]
 
 --------------------------------------------------------------------------------
 ### 7) Partition the data
-Partition the data in (`xtrain`,`xval`) and (`ytrain`,`yval`) keeping 80% of the data for training and reserving 20% for testing. Keep the default option to shuffle the data, as the input data isn't.
+Partition the data in (`xtrain`,`xtest`) and (`ytrain`,`ytest`) keeping 80% of the data for training and reserving 20% for testing. Keep the default option to shuffle the data, as the input data isn't.
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-((xtrain,xval),(ytrain,yval)) = partition([X,Y],[0.8,0.2])
+((xtrain,xtest),(ytrain,ytest)) = partition([X,Y],[0.8,0.2])
 ```
 ```@raw html
 </details>
@@ -168,9 +168,10 @@ Partition the data in (`xtrain`,`xval`) and (`ytrain`,`yval`) keeping 80% of the
 
 --------------------------------------------------------------------------------
 ### 8) Define the neural network architecture
-Define a Neural Network model with the following characteristics:
-  - 3 dense layers with respectively 14, 20 and 1 nodes and activation function `relu`
-  - cost function `squaredCost` 
+Define a `NeuralNetworkEstimator` model with the following characteristics:
+  - 3 dense layers with respectively 14, 20 and 1 nodes and activation function relu
+  - cost function `squared_cost` 
+  - training options: 400 epochs and 6 records to be used on each batch
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
@@ -179,7 +180,7 @@ Define a Neural Network model with the following characteristics:
 l1 = DenseLayer(14,20,f=relu)
 l2 = DenseLayer(20,20,f=relu)
 l3 = DenseLayer(20,1,f=relu)
-mynn = buildNetwork([l1,l2,l3],squaredCost)
+mynn= NeuralNetworkEstimator(layers=[l1,l2,l3],loss=squared_cost,batch_size=6,epochs=400)
 ```
 ```@raw html
 </details>
@@ -187,14 +188,13 @@ mynn = buildNetwork([l1,l2,l3],squaredCost)
 
 --------------------------------------------------------------------------------
 ### 9) Train the model
-Train the model using `ytrain` and a scaled version of `xtrain` (where all columns have zero mean and 1 standard deviaiton) for 400 epochs and use a batch size of 6 records.
-Save the output of your training function to `trainingLogs`
+Train the model using `ytrain` and a scaled version of `xtrain` (where all columns have zero mean and 1 standard deviation).
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-trainingLogs = train!(mynn,scale(xtrain),ytrain,batchSize=6,epochs=400)
+fit!(mynn,fit!(Scaler(),xtrain),ytrain)
 ```
 ```@raw html
 </details>
@@ -202,14 +202,14 @@ trainingLogs = train!(mynn,scale(xtrain),ytrain,batchSize=6,epochs=400)
 
 --------------------------------------------------------------------------------
 ### 10) Predict the labels
-Predict the training labels `ŷtrain` and the validation labels `ŷval`. Recall you did the training on the scaled features!
+Predict the training labels `ŷtrain` and the test labels `ŷtest`. Recall you did the training on the scaled features!
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-ŷtrain   = predict(mynn, scale(xtrain)) 
-ŷval     = predict(mynn, scale(xval))  
+ŷtrain   = predict(mynn, fit!(Scaler(),xtrain)) 
+ŷtest    = predict(mynn, fit!(Scaler(),xtest))    
 ```
 ```@raw html
 </details>
@@ -217,14 +217,14 @@ ŷval     = predict(mynn, scale(xval))
 
 --------------------------------------------------------------------------------
 ### 11) Evaluate the model
-Compute the train and test relative mean error using the function `meanRelError` with the parameter `normRec` set to `false`
+Compute the train and test relative mean error using the function `relative_mean_error`
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-trainRME = meanRelError(ŷtrain,ytrain,normRec=false) 
-testRME  = meanRelError(ŷval,yval,normRec=false)
+trainRME = relative_mean_error(ytrain,ŷtrain) 
+testRME  = relative_mean_error(ytest,ŷtest)
 ```
 ```@raw html
 </details>
@@ -232,11 +232,11 @@ testRME  = meanRelError(ŷval,yval,normRec=false)
 
 --------------------------------------------------------------------------------
 ### 12) Plot the errors and the estimated values vs the true ones
-Run the following commands to plots the average loss per epoch and the true vs estimation validation values:
+Run the following commands to plots the average loss per epoch and the true vs estimated test values:
 
 ```julia
-plot(trainingLogs.ϵ_epochs)
-scatter(yval,ŷval,xlabel="true values", ylabel="estimated values", legend=nothing)
+plot(info(mynn)["loss_per_epoch"])
+scatter(ytest,ŷtest,xlabel="true values", ylabel="estimated values", legend=nothing)
 ```
 --------------------------------------------------------------------------------
 ### 13) (Optional) Use unscaled data
@@ -246,19 +246,19 @@ Run the same workflow without scaling the data. How this affect the quality of y
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-Random.seed!(123) # To get the same random numbers as before...
-((xtrain,xval),(ytrain,yval)) = partition([X,Y],[0.8,0.2])
+Random.seed!(123)
+((xtrain,xtest),(ytrain,ytest)) = partition([X,Y],[0.8,0.2])
 l1 = DenseLayer(14,20,f=relu)
 l2 = DenseLayer(20,20,f=relu)
 l3 = DenseLayer(20,1,f=relu)
-mynn = buildNetwork([l1,l2,l3],squaredCost)
-trainingLogs = train!(mynn,xtrain,ytrain,batchSize=6,epochs=400)
+mynn= NeuralNetworkEstimator(layers=[l1,l2,l3],loss=squared_cost,batch_size=6,epochs=400)
+fit!(mynn,xtrain,ytrain)
 ŷtrain   = predict(mynn, xtrain) 
-ŷval     = predict(mynn, xval)
-trainRME = meanRelError(ŷtrain,ytrain,normRec=false) 
-testRME  = meanRelError(ŷval,yval,normRec=false)
-plot(trainingLogs.ϵ_epochs)
-scatter(yval,ŷval,xlabel="true values", ylabel="estimated values", legend=nothing)
+ŷtest    = predict(mynn, xtest)
+trainRME = relative_mean_error(ytrain,ŷtrain) 
+testRME  = relative_mean_error(ytest,ŷtest)
+plot(info(mynn)["loss_per_epoch"])
+scatter(ytest,ŷtest,xlabel="true values", ylabel="estimated values", legend=nothing)
 ```
 ```@raw html
 </details>

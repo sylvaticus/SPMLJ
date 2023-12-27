@@ -10,7 +10,7 @@ Concerning the practical implementation in Julia, we'll not implement a complete
 ## Motivations and types
 
 When we studied the Perceptron algorithm, we noted how we can transform the original feature vector $\mathbf{x}$ to a feature representation  $\phi(\mathbf{x})$ that includes non-linear transformations, to still use linear classifiers for non-linearly separable datasets (we studied classification tasks but the same is true for regression ones).
-The "problem" is that this feature transformation is not learned from the data but is applied a priori, before using the actual machine learning (linear) algorithm.
+The "problem" is that this feature transformation is not learned from the data but it is applied a priori, before using the actual machine learning (linear) algorithm.
 With neural networks instead, the feature transformation is endogenous to the learning (training) step.
 
 We will see three kinds of neural networks:
@@ -64,7 +64,7 @@ Let's specific a bit of terminology concerning Neural Networks:
 
 - The individual computation units of a layer are known as **nodes** or **neurons**.
 - **Width_l** (_of the layer_) is the number of units in that specific layer $l$
-- **Depth** (_of the architecture_) is number of layers of the overall transformation before arriving to the final output
+- **Depth** (_of the architecture_) is the number of layers of the overall transformation before arriving to the final output
 - The **weights** are denoted with $w$ and are what we want the algorithm to learn.
 - Each node's **aggregated input** is given by $z = \sum_{i=1}^d x_i w_i + w_0$ (or, in vector form, $z = \mathbf{x} \cdot \mathbf{w} + w_0$, with $z \in \mathbb{R}, \mathbf{x} \in \mathbb{R}^d, \mathbf{w} \in \mathbb{R}^d$) and $d$ is the width of the previous layer (or the input layer)
 - The output of the neuron is the result of a non-linear transformation of the aggregated input called **activation function** $f = f(z)$
@@ -83,17 +83,17 @@ While the weights will be learned, the width of each layer, the number of layers
 
 Let's now make an example of a single layer, single neuron with a 2D input `x=[2,4]`, weights `w=[2,1]`, `w₀ = 2` and activation function `f(x)=sin(x)`.
 
-In such a case, the output of our network is `sin(2+2*2+4*1)`, i.e. -0.54. Note that with many neurons and many layers this becomes essentially (computationally) a problem of matrix multiplications, but matrix multiplication is easily parallelisable by the underlying BLAS/LAPACK libraries or, even better, by using GPU or TPU hardware, and running neural networks (and computing their gradients) is at the core of the demand for GPU computation.  
+In such a case, the output of our network is `sin(2+2*2+4*1)`, i.e. -0.54. Note that with many neurons and many layers this becomes essentially (computationally) a problem of matrix multiplications, but matrix multiplication is easily parallelisable by the underlying BLAS/LAPACK libraries or, even better, by using GPU or TPU hardware, and running neural networks (and computing their gradients) is the main reason behind the explosion in the demand of GPU computation.  
 
 Let's now assume that the true label that we know to be associated with our $x$ is `y=-0.6`.
 
 Out (basic) network did pretty well, but still did an _error_: -0.6 is not -0.54. The last element of a neural network is indeed to define an error metric (the **loss function**) between the output computed by the neural network and the true label. Commonly used loss functions are the squared l-2 norm (i.e. $\epsilon = \mid \mid \hat y - y \mid\mid ^2$) for regression tasks and cross-entropy (i.e. $\epsilon = - \sum_d p_d  * log(\hat p_d)$) for classification jobs.
 
-Before moving to the next section, where we will study how to put everything together and learn how to train the neural network in order to reduce this error, let's first observe that neural networks are powerful tools that can work on many sorts of data, but they require however the input to be encoded in a numerical form, as the computation is strictly numerical. If I have a categorical variable, for example, I'll need to encode it expanding it to a set of dimensions where each dimension represent a single class and I encode with an indicator function if my record is that particular class or not. This is the most simple form of encoding and takes the name of _one hot encoding_:
+Before moving to the next section, where we will study how to put everything together and learn how to train the neural network in order to reduce this error, let's first observe that neural networks are powerful tools that can work on many sorts of data, but they require however the input to be encoded in a numerical form, as the computation is strictly numerical. If I have a categorical variable, for example, I'll need to encode it expanding it to a set of dimensions where each dimension represents a single class and I encode with an indicator function if my record is that particular class or not. This is the simplest form of encoding and takes the name of _one hot encoding_:
 
 ![One-hot encoding](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/onehotencoding.png)
 
-Note in the figure that using all the three columns leads to linearly dependency, and while, yes, we could save some resources by using only two columns instead of three, this is not a fundamental problem like it would be in statistical analysis. 
+Note in the figure that using all the three columns leads to linearly dependency, and while we could save some resources by using only two columns instead of three, this is not a fundamental problem like it would be in statistical analysis. 
 
 ### Training of a feed-forward neural network
 
@@ -101,10 +101,10 @@ Note in the figure that using all the three columns leads to linearly dependency
 
 We now need a way to _learn_ the parameters from the data, and a common way is to try to reduce the contribution of the individual parameter to the error made by the network. We need first to find the link between the individual parameter and the output of the loss function, that is how the error change when we change the parameter. But this is nothing else than the derivative of the loss function with respect to the parameter. In our simple one-neuron example above we have the parameters directly appearing in the loss function. Considering the squared error as lost we have $\epsilon = (y - sin(w_0 + w_1 x_1 + w_2 x_2))^2$. If we are interested in the $w_1$ parameter we can compute the derivate of the error with respect to it using the chain rule as $\frac{\partial\epsilon}{\partial w_1} = 2*(y - sin(w_0 + w_1 x_1 + w_2 x_2)) * - cos(w_0 + w_1 x_1 + w_2 x_2) * x_1$.
 
-Numerically, we have: $\frac{\partial\epsilon}{\partial w_1} = 2(-0.6-sin(2+4+4)) * -cos(2+4+4) * 2 = -0.188$ If I increase $w_1$ of 0.01, I should have my error moving of $-0.01*0.188 = -0.0018$. Indeed, if I compute the original error I have $\epsilon^{t=0} = 0.00313$, but after having moved $w_1$ to 2.01, the output of the neural network chain would now be $\hat y^{t=1} = 0.561$ and its error lowered to $\epsilon^{t=1} =  0.00154$. The difference is $0.00159$, slighly lower in absolute terms than what we computed with the derivate, $0.0018$. The reason, of course, is that the derivative is a concept at the margin, when the step tends to zero.
+Numerically, we have: $\frac{\partial\epsilon}{\partial w_1} = 2(-0.6-sin(2+4+4)) * -cos(2+4+4) * 2 = -0.188$ If I increase $w_1$ of 0.01, I should have my error moving of $-0.01*0.188 = -0.0018$. Indeed, if I compute the original error I have $\epsilon^{t=0} = 0.00313$, but after having moved $w_1$ to 2.01, the output of the neural network chain would now be $\hat y^{t=1} = 0.561$ and its error lowered to $\epsilon^{t=1} =  0.00154$. The difference is $0.00159$, slightly lower in absolute terms than what we computed with the derivate, $0.0018$. The reason, of course, is that the derivative is a concept at the margin, when the step tends to zero.
 
 We should note a few things:
-- the derivate depends on the level of $w_1$. "zero" is almost always a bad starting point (as the derivatives of previous layers will be zero). Various initialisation strategies are used, but all involve sampling randomly the initial parameters under a certain range
+- the derivate depends on the level of $w_1$. "zero" is almost always a bad starting point (as the derivatives of previous layers will be zero). Various initialization strategies are used, but all involve sampling randomly the initial parameters under a certain range
 - the derivate depends also on the data on which we are currently operating, $x$ and $y$. If we consider different data we will obtain different derivates
 - while extending our simple example to even a few more layers would seem to make the above exercise extremely complex, it remains just an application of the chain rule, and we can compute the derivatives efficiently by making firstly a _forward passage_, computing (and storing) the values of the chain at each layer, and then making a _backward passage_ by computing (and storing) the derivatives with the chain rule backwards from the last to the first layer
 - the fact that the computation of the derivates for a layer includes the _multiplication_ of the derivates for all the other layers means that if these are very small (big) the overall derivate may vanish (explode). This is a serious problem with neural networks and one of the main reasons why simple activation functions such as the `relu` are preferred.
@@ -134,7 +134,7 @@ When we sample the records (individually or in batch) before running the optimis
 ### Motivations 
 
 Despite typically classified separately, convolutional neural networks are essentially feed-forward neural networks with the only specification that one or more layers are convolutional.
-These layers are very good in recognising patterns within data with many dimensions, like spatial data or images, where each pixel can be thought a dimension of a single record.
+These layers are very good at recognising patterns within data with many dimensions, like spatial data or images, where each pixel can be thought a dimension of a single record.
 In both cases, we could use "normal" feed-forward neural networks, but convolutional layers offer two big advantages:
 
 1. _They require much fewer parameters_.
@@ -200,7 +200,7 @@ final = reshape(u, xr-wr+1, xc-wc+1)
 ```
 
 
-You can notice that by applying the filter we obtain a dimensionality reduction. This reduction depends on both the dimension of the filter and the stride (sliding step). In order to avoid this, padding of one or more rows/columns can be applied to the image to preserve in the output the same dimension of the input (in the above example padding of one row and one column on both sides would suffice). Typically the padded cells are given a value of zero so not to contribute anything when they are included in the dot product computed by the filter.
+You can notice that by applying the filter we obtain a dimensionality reduction. This reduction depends on both the dimension of the filter and the stride (sliding step). In order to avoid this, padding of one or more rows/columns can be applied to the image to preserve in the output the same dimension of the input (in the above example padding of one row and one column on both sides would suffice). Typically, the padded cells are given a value of zero so not to contribute anything when they are included in the dot product computed by the filter.
 
 To determine the spatial size in the output of a filter ($O$), given the input size ($I$), the filter size ($F$), the stride ($S$) and the eventual padding ($P$) we can use the following simple formula:
 
@@ -213,7 +213,7 @@ Where the $d$ index accounts for the (extremely unusual) case where one of the p
 
 Because the weights of the filters are the same, it doesn't really matter where the object is learned, in which part of the image. With convolutional layers, we have _translational invariance_ as the same filter is passed over the entire image. Therefore, it will detect the patterns regardless of their location.
 
-Still, it is often convenient to operate some **data augmentation** to the training set, that is to add slightly modified images (rotated, mirrored..) in order to improve this translational invariance.
+Still, it is often convenient to operate some **data augmentation** to the training set, that is to add slightly modified images (rotated, mirrored...) in order to improve this translational invariance.
 
 ### Considering multiple filters per layer
 
@@ -264,7 +264,7 @@ Note that we can train these networks exactly like for feedforward NN, defining 
 
 Recurrent neural networks are used to learn _sequences_ of data.
 A "sequence" is characterised by the fact that each element may depend not only on the features in place at time $t$, but also from lagged features or lagged values of the sequence (we use here the time dimension just for simplicity. Of course, a sequence can be defined on any dimension).
-And here comes the problem: we could always consider lagged features or sequence values as further dimensions at time $t$ and use a "standard" feed-forward network. For example we could consider values at time $t-1$, those at time $t-2$ and those at time $t-3$.
+And here comes the problem: we could always consider lagged features or sequence values as further dimensions at time $t$ and use a "standard" feed-forward network. For example, we could consider values at time $t-1$, those at time $t-2$ and those at time $t-3$.
 But, again, we would be doing "manual" feature engineering, similar to the way we can introduce non-linear feature transformation and use linear classifiers.
 But we want this to be learned by the algorithm. We want the model to learn how much of the history retain to predict the next element of the sequence, and which elements "deserve" to be kept in memory (to be used for predictions) even if far away in the sequence steps.
 

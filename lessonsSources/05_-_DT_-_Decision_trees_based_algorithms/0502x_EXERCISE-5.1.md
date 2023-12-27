@@ -64,7 +64,7 @@ Start by setting the working directory to the directory of this file and activat
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 # Pkg.resolve()   
 Pkg.instantiate() 
 using Random
@@ -125,7 +125,7 @@ _[...] write your code here..._
 describe(data)
 data = data[shuffle(1:nR),:]
 X    = Matrix(data[:,1:end-1])
-Y    = collect(data[:,end])
+Y    = convert(Vector{String},collect(data[:,end]))
 ```
 ```@raw html
 </details>
@@ -154,7 +154,7 @@ _[...] write your code here..._
 ### 6) (optional but suggested) Tune the hyper-parameters
 Find the best hyper-parameters for the model, i.e. the ones that lead to the highest accuracy under the records not used for training.
 
-We can use the [`crossValidation`](https://sylvaticus.github.io/BetaML.jl/dev/Utils.html#BetaML.Utils.crossValidation) function here.
+We can use the [`cross_validation`](https://sylvaticus.github.io/BetaML.jl/stable/Utils.html#BetaML.Utils.cross_validation) function here.
 
 The idea is that for each hyper-parameter we have a range of possible values, and for each hyper-parameter, we first set `bestAcc=0.0` and then loop on each possible value, we run `crossValidation` with that particular value to compute the average training accuracy with that specific value under different data samples, and if it is better than the current `bestAcc`, we save it as the new `bestAcc` and the parameter value as the best value for that specific hyper-parameter.
 After we have found the best hyper-parameter value for one specific hyper-parameter, we can switch to the second hyper-parameter repeating the procedure but using the best value for the first hyper-parameter that we have found earlier, and we continue with the other hyper-parameters.
@@ -177,19 +177,22 @@ To train a Random Forest in BetaML use:
 And then to predict and compute the accuracy use:
 
 ```julia
-ŷtrain=predict(myforest,xtrain)
-trainAccuracy = accuracy(ŷtrain,ytrain)
+ŷtrain        = predict(myForest,xtrain)
+trainAccuracy = accuracy(ytrain,ŷtrain)
 ```
 
-This activity is "semi-optional", becauses Random Forests have already very good default values, so the gain we will likely obtain with tuning the various hyper-parameters is not expected to be very high. But it is a good exercise to arrive at this result by yourself !
+This activity is "semi-optional", because Random Forests have already very good default values, so the gain we will likely obtain with tuning the various hyper-parameters is not expected to be very high. But it is a good exercise to arrive at this result by yourself !
+
+Alternatively, since BetaML v0.8, the best model hyperparameters can be automatically selected using the model option `autotune`, where the hyperparapeters ranges to test can be specified in `tunemethod`.
+
 
 _[...] write your code here..._
 
 ```@raw html
-<details><summary>ONE POSSIBLE SOLUTION</summary>
+<details><summary>ONE POSSIBLE SOLUTION (MANUAL)</summary>
 ```
 ```julia
-sampler = KFold(nSplits=10,nRepeats=2)
+sampler = KFold(nsplits=10,nrepeats=2)
 
 nTrees_best             = 20
 splittingCriterion_best = "gini"
@@ -207,11 +210,12 @@ for nt in nTrees_range
     global nTrees_best, bestAcc, accuracies
     local acc
     print("Accuracy for $nt nTrees: ")
-    (acc,σ)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData, rng
+    (acc,σ)    = cross_validation([xtrain,ytrain],sampler) do trainData,valData, rng
                     (xtrain,ytrain) = trainData; (xval,yval) = valData
-                    forest          = buildForest(xtrain, ytrain, nt)
+                    forest          = RandomForestEstimator(n_trees=nt)
+                    fit!(forest,xtrain,ytrain)
                     ŷval            = predict(forest,xval)
-                    valAccuracy     = accuracy(ŷval,collect(yval))
+                    valAccuracy     = accuracy(collect(yval),ŷval)
                     return valAccuracy
                 end
     if acc > bestAcc
@@ -223,6 +227,7 @@ for nt in nTrees_range
 end
 plot(nTrees_range,accuracies,legend=nothing,ylabel="accuracy",xlabel="nTrees")
 
+
 # #### Splitting criterion
 bestAcc = 0.0
 accuracies = []
@@ -230,11 +235,12 @@ for sc in splittingCriterion_range
     global splittingCriterion_best, bestAcc, accuracies
     local acc
     print("Accuracy for $sc splittingCriterion: ")
-    (acc,σ)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData, rng
+    (acc,σ)    = cross_validation([xtrain,ytrain],sampler) do trainData,valData, rng
                     (xtrain,ytrain) = trainData; (xval,yval) = valData
-                    forest          = buildForest(xtrain, ytrain, nTrees_best, splittingCriterion=sc)
+                    forest          = RandomForestEstimator(splitting_criterion=sc)
+                    fit!(forest,xtrain,ytrain)
                     ŷval            = predict(forest,xval)
-                    valAccuracy     = accuracy(ŷval,collect(yval))
+                    valAccuracy     = accuracy(yval,ŷval)
                     return valAccuracy
                 end
     if acc > bestAcc
@@ -253,11 +259,12 @@ for md in maxDepth_range
     global maxDepth_best, bestAcc, accuracies
     local acc
     print("Accuracy for $md maxDepth: ")
-    (acc,σ)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData, rng
+    (acc,σ)    = cross_validation([xtrain,ytrain],sampler) do trainData,valData, rng
                     (xtrain,ytrain) = trainData; (xval,yval) = valData
-                    forest          = buildForest(xtrain, ytrain, nTrees_best, splittingCriterion=splittingCriterion_best, maxDepth=md)
+                    forest          = RandomForestEstimator(max_depth=md)
+                    fit!(forest,xtrain,ytrain)
                     ŷval            = predict(forest,xval)
-                    valAccuracy     = accuracy(ŷval,collect(yval))
+                    valAccuracy     = accuracy(collect(yval),ŷval)
                     return valAccuracy
                 end
     if acc > bestAcc
@@ -278,11 +285,12 @@ for mr in minRecords_range
     global minRecords_best, bestAcc, accuracies
     local acc
     print("Accuracy for $mr minRecords: ")
-    (acc,σ)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData, rng
+    (acc,σ)    = cross_validation([xtrain,ytrain],sampler) do trainData,valData, rng
                     (xtrain,ytrain) = trainData; (xval,yval) = valData
-                    forest          = buildForest(xtrain, ytrain, nTrees_best, splittingCriterion=splittingCriterion_best, maxDepth=maxDepth_best, minRecords=mr)
+                    forest          = RandomForestEstimator(min_records=mr)
+                    fit!(forest,xtrain,ytrain)
                     ŷval            = predict(forest,xval)
-                    valAccuracy     = accuracy(ŷval,collect(yval))
+                    valAccuracy     = accuracy(collect(yval),ŷval)
                     return valAccuracy
                 end
     if acc > bestAcc
@@ -301,11 +309,12 @@ for mf in maxFeatures_range
     global mmaxFeatures_best, bestAcc, accuracies
     local acc
     print("Accuracy for $mf maxFeatures: ")
-    (acc,σ)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData, rng
+    (acc,σ)    = cross_validation([xtrain,ytrain],sampler) do trainData,valData, rng
                     (xtrain,ytrain) = trainData; (xval,yval) = valData
-                    forest          = buildForest(xtrain, ytrain, nTrees_best, splittingCriterion=splittingCriterion_best, maxDepth=maxDepth_best, maxFeatures=mf)
+                    forest          = RandomForestEstimator(max_features=mf)
+                    fit!(forest,xtrain,ytrain)
                     ŷval            = predict(forest,xval)
-                    valAccuracy     = accuracy(ŷval,collect(yval))
+                    valAccuracy     = accuracy(collect(yval),ŷval)
                     return valAccuracy
                 end
     if acc > bestAcc
@@ -324,11 +333,12 @@ for b in β_range
     global β_best, bestAcc, accuracies
     local acc
     print("Accuracy for $b β: ")
-    (acc,σ)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData, rng
+    (acc,σ)    = cross_validation([xtrain,ytrain],sampler) do trainData,valData, rng
                     (xtrain,ytrain) = trainData; (xval,yval) = valData
-                    forest          = buildForest(xtrain, ytrain, nTrees_best, splittingCriterion=splittingCriterion_best, maxDepth=maxDepth_best, maxFeatures=maxFeatures_best, β=b)
+                    forest          = RandomForestEstimator(beta=b)
+                    fit!(forest,xtrain,ytrain)
                     ŷval            = predict(forest,xval)
-                    valAccuracy     = accuracy(ŷval,collect(yval))
+                    valAccuracy     = accuracy(collect(yval),ŷval)
                     return valAccuracy
                 end
     if acc > bestAcc
@@ -344,6 +354,30 @@ plot(β_range,accuracies,legend=nothing,ylabel="accuracy",xlabel="β")
 </details>
 ```
 
+```@raw html
+<details><summary>ONE POSSIBLE SOLUTION (AUTO-TUNE)</summary>
+```
+```julia
+forest = RandomForestEstimator(autotune=true,tunemethod=SuccessiveHalvingSearch(
+    hpranges=Dict(
+      "n_trees"             => collect(nTrees_range),
+      "splitting_criterion" => collect(splittingCriterion_range),
+      "max_depth"           => maxDepth_range,
+      "min_records"         => minRecords_range,
+      "max_features"        => maxFeatures_range,
+      "beta"                => β_range   
+    )))
+```
+
+!!! warning
+    Training with the above autotune may take a few hours on a pc
+
+```julia
+fit!(forest,xtrain,ytrain)
+```
+```@raw html
+</details>
+```
 --------------------------------------------------------------------------------
 ### 7) Train and evaluate the final model
 Perform the final training with the best hyperparameters and compute the accuracy on the test set
@@ -355,27 +389,36 @@ _[...] write your code here..._
 <details><summary>ONE POSSIBLE SOLUTION</summary>
 ```
 ```julia
-forest = buildForest(xtrain, ytrain, nTrees_best, splittingCriterion=splittingCriterion_best, maxDepth=maxDepth_best, maxFeatures=maxFeatures_best)
-ŷtrain = predict(forest,xtrain)
-ŷtest  = predict(forest,xtest)
-trainAccuracy = accuracy(ŷtrain,ytrain)
-testAccuracy  = accuracy(ŷtest,ytest)
+forest = RandomForestEstimator(
+      n_trees             = nTrees_best,
+      splitting_criterion = splittingCriterion_best,
+      max_depth           = maxDepth_best,
+      min_records         = minRecords_best,
+      max_features        = maxFeatures_best,
+      beta                = β_best) # skip if autotune has been used
+fit!(forest,xtrain,ytrain)          # skip if autotune has been used
+ŷtrain        = predict(forest,xtrain)
+ŷtest         = predict(forest,xtest)
+trainAccuracy = accuracy(ytrain,ŷtrain)
+testAccuracy  = accuracy(ytest,ŷtest)
 
 # To compare, using the default values and a single Decision Tree:
 
 # default values..
-forest = buildForest(xtrain, ytrain)
-ŷtrain = predict(forest,xtrain)
-ŷtest  = predict(forest,xtest)
-trainAccuracy = accuracy(ŷtrain,ytrain)
-testAccuracy  = accuracy(ŷtest,ytest)
+forest        = RandomForestEstimator()
+fit!(forest,xtrain, ytrain)
+ŷtrain        = predict(forest,xtrain)
+ŷtest         = predict(forest,xtest)
+trainAccuracy = accuracy(ytrain,ŷtrain)
+testAccuracy  = accuracy(ytest,ŷtest)
 
 # single decision tree..
-tree = buildTree(xtrain, ytrain)
-ŷtrain = predict(tree,xtrain)
-ŷtest  = predict(tree,xtest)
-trainAccuracy = accuracy(ŷtrain,ytrain)
-testAccuracy  = accuracy(ŷtest,ytest)
+tree          = DecisionTreeEstimator()
+fit!(tree,xtrain, ytrain)
+ŷtrain        = predict(tree,xtrain)
+ŷtest         = predict(tree,xtest)
+trainAccuracy = accuracy(ytrain,ŷtrain)
+testAccuracy  = accuracy(ytest,ŷtest)
 ```
 ```@raw html
 </details>

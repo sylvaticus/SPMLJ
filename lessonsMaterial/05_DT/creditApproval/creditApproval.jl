@@ -37,7 +37,7 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 # Pkg.resolve()   
 Pkg.instantiate()
 using Random
@@ -73,7 +73,7 @@ dataURL = "https://archive.ics.uci.edu/ml/machine-learning-databases/credit-scre
 
 # ------------------------------------------------------------------------------
 # ### 6) (optional but suggested) Find the best hyper-parameters for your model, i.e. the ones that lead to the highest accuracy under the records not used for training.
-# You can use the [`crossValidation`](https://sylvaticus.github.io/BetaML.jl/dev/Utils.html#BetaML.Utils.crossValidation) function here.
+# You can use the [`cross_validation`](https://sylvaticus.github.io/BetaML.jl/stable/Utils.html#BetaML.Utils.cross_validation) function here.
 # The idea is that for each hyper-parameter you have a range of possible values, and for each hyper-parameter, you first set `bestAcc=0.0` and then loop on each possible value, you run crossValidation with that particular value to compute the average training accuracy with that specific value under different data samples, and if it is better than the current `bestAcc` you save it as the new `bestAcc` and the parameter value as the best value for that specific hyper-parameter.
 # After you have found the best hyper-parameter value for one specific hyper-parameter, you can switch to the second hyper-parameter repeating the procedure but using the best value for the first hyper-parameter that you found earlier, and you continue with the other hyper-parameters.
 # Note that if you limit the hyper-parameter space sufficiently you could also directly loop over all the possible combinations of hyper-parameters.
@@ -88,18 +88,36 @@ maxFeatures_range        = [2,3,4,5,6]
 β_range                  = [0.0,0.5,1,2,5,10,20,50,100]
 
 # To train a Random Forest in BetaML use:
-# `myForest = buildForest(xtrain,ytrain, nTrees; <other hyper-parameters>)`
+# `myForest = RandomForestEstimator([hyper-parameters])
+# `fit!(myForest,xtrain,ytrain)`
 # And then to predict and compute the accuracy use:
 # ```julia
-# ŷtrain=predict(myforest,xtrain)
-# trainAccuracy = accuracy(ŷtrain,ytrain)
+# ŷtrain        = predict(myForest,xtrain)
+# trainAccuracy = accuracy(ytrain,ŷtrain)
 # ```
+
 # This activity is "semi-optional" as Random Forests have very good default values, so the gain you will likely obtain with tuning the various hyper-parameters is not expected to be very high.  But it is a good exercise to arrive at this result by yourself !
+
+# Alternatively, since BetaML v0.8, the best model hyperparameters can be automatically selected using the model option `autotune`, where the hyperparapeters ranges to test can be specified in `tunemethod` :
+
+forest = RandomForestEstimator(autotune=true,tunemethod=SuccessiveHalvingSearch(
+    hpranges=Dict(
+      "n_trees"             => collect(nTrees_range),
+      "splitting_criterion" => collect(splittingCriterion_range),
+      "max_depth"           => maxDepth_range,
+      "min_records"         => minRecords_range,
+      "max_features"        => maxFeatures_range,
+      "beta"                => β_range   
+    )))
+
+# !!! warning
+#     Training with the above autotune may take a few hours on a pc
+fit!(forest,xtrain,ytrain)
 
 # [...] write your code here...
 
 # ------------------------------------------------------------------------------
 # ### 7) Perform the final training with the best hyperparameters and compute the accuracy on the test set
-# If you have chosen good hyperparameters, your accuracy should be in the 98%-99% range for training and 81%-89% range for testing 
+# If you have chosen good hyperparameters, your accuracy should be in the 98%-99% range for training and 81%-89% range for testing (and up to 91% if you used autotune)
 
 # [...] write your code here...
