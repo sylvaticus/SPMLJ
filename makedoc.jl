@@ -30,7 +30,8 @@ Pkg.activate(".")
 Pkg.instantiate()
 #Pkg.add(["Documenter", "Literate", "Glob", "DataFrames", "OdsIO"])
 
-using Test, Documenter, Literate, DocumenterMarkdown, Glob, DataFrames, OdsIO
+using Test, DataStructures, Documenter, Literate, Glob, DataFrames, OdsIO
+#using DocumenterMarkdown # non supported, it block Documenter to older versions 
 
 
 const LESSONS_ROOTDIR = joinpath(@__DIR__, "lessonsSources")
@@ -41,7 +42,7 @@ const LESSONS_ROOTDIR_TMP = joinpath(@__DIR__, "lessonsSources_tmp")
 
 MAKE_PDF = false
 
-LESSONS_SUBDIR = Dict(
+LESSONS_SUBDIR = OrderedDict(
   "INTRO - Introduction to the course, Julia and ML"  => "00_-_INTRO_-_Introduction_julia_ml",
   "JULIA1 - Basic Julia programming"              => "01_-_JULIA1_-_Basic_Julia_programming",
   "JULIA2 - Scientific programming with Julia"    => "02_-_JULIA2_-_Scientific_programming_with_Julia",
@@ -257,6 +258,7 @@ println("Starting literating tutorials (.jl --> .md)...")
 literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR ,lsubdir),values(LESSONS_SUBDIR)))
 
 if MAKE_PDF
+    @error "MD->PDF generation is disabled because DocumenterMarkdown is not maintained and it blocks Documenter to older versions"
     println("Starting making PDF...")
     makedocs(sitename="SPMLJ - Introduction to Scientific Programming and Machine Learning with Julia",
             authors = "Antonello Lobianco",
