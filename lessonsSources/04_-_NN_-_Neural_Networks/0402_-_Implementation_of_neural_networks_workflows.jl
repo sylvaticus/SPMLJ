@@ -56,20 +56,21 @@ testAccuracy   = accuracy(ytest,ŷtest)
 # #### Specifying all options
 
 # Creating a custim callback function to receive info during training...
-function myOwnTrainingInfo(nn,x,y;n,n_batches,epochs,verbosity,n_epoch,n_batch)
+function myOwnTrainingInfo(nn,xbatch,ybatch,x,y;n,n_batches,epochs,epochs_ran,verbosity,n_epoch,n_batch)
     if verbosity == NONE
         return false # doesn't stop the training
     end
+
     nMsgDict = Dict(LOW => 0, STD => 10,HIGH => 100, FULL => n)
     nMsgs = nMsgDict[verbosity]
-    batchSize = size(x,1)
+
     if verbosity == FULL || ( n_batch == n_batches && ( n_epoch == 1  || n_epoch % ceil(epochs/nMsgs) == 0))
- 
-       ϵ = BetaML.Nn.loss(nn,x,y)
-       println("MY Training.. \t avg ϵ on (Epoch $n_epoch Batch $n_batch): \t $(ϵ)")
+
+        ϵ = BetaML.Nn.loss(nn,x,y)
+        println("Training.. \t avg loss on epoch $n_epoch ($(n_epoch+epochs_ran)): \t $(ϵ)")
     end
     return false
- end
+end
 
 # Model definition...
 l1   = DenseLayer(2,5,f=tanh, df= dtanh,rng=copy(FIXEDRNG))

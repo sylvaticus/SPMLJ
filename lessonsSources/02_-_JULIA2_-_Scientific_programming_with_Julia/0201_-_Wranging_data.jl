@@ -379,13 +379,14 @@ using DataStructures
 nT = NamedTuple(OrderedDict([Symbol(c) => data[:,c]  for c in names(data)])) # order preserved
 
 # ### Saving as CSV file
-
+rm("outdata.csv", force=true)
 CSV.write("outdata.csv",data) # see options at the beginning of segment in the import section and `? CSV.write` for specific export options
 
 # ### Saving as OpenDocument spreadsheet
-
+rm("outdata.ods", force=true)
 ods_write("outdata.ods",Dict(("myData",3,2) => data)) # exported starting on cell B3 of sheet "myData"
 
 # ### Saving as Excel spreadsheet
+rm("outdata.xlsx", force=true)
 XLSX.writetable("outdata.xlsx",myData = (collect(eachcol(data)),names(data)))
 
