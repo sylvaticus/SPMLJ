@@ -261,3 +261,147 @@ You can try to implement variations of this model. Some ideas:
 - run Monte-Carlo simulations with respect to the tolerance threshold, with it being a property of the agent rather than of the group, perhaps with the group having a certain distribution of it and each agent of that group sampling from it;
 - implement two thresholds, with one to define happiness and one to define the actual decision to move (to consider costs associated with relocation);
 - ....
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0105x_EXERCISE-1.1.md",
+"title" : "0105x_EXERCISE-1.1.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0105x_EXERCISE-1.1.md",
+"title" : "0105x_EXERCISE-1.1.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0105x_EXERCISE-1.1.md",
+"title" : "0105x_EXERCISE-1.1.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/01_-_JULIA1_-_Basic_Julia_programming/0105x_EXERCISE-1.1.md",
+"title" : "0105x_EXERCISE-1.1.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```

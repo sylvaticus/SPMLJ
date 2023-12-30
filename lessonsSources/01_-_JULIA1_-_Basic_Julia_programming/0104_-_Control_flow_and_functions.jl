@@ -1,11 +1,11 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 # ## 0104 Control Flow and Functions
 
@@ -226,7 +226,7 @@ foo(10,a=10,b=20,y="bbb")
 
 
 ## foo(a::String="aaa",b::Int64) = "$a "+string(b) # error! Optional positional argument before a mandatory positional one  
-
+foo(b::Int64,a::String="aaa")  = "$a "+string(b) # fine!
 
 # ### Argument types and multiple dispatch
 

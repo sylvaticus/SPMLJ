@@ -1,3 +1,173 @@
+```@raw html
+<div id="ytb-videos">
+<span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
+<details open><summary>03 ML1  - 1A:  Introduction, perceptron overall idea (11:23)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JuqCxqLik0s" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1B:  Hyperparameters and cross-validation (15:18)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/agi2dKxClec" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1C:  The perceptron algorithm (9:53)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/2otq8KEMp8Y" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1D:  SVM and non-linear classification with linear classifiers (8:9)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/KsOubVwDcjY" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+</div>
+```
+------
+```@raw html
+<div id="ytb-videos">
+<span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
+<details open><summary>03 ML1  - 1A:  Introduction, perceptron overall idea (11:23)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JuqCxqLik0s" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1B:  Hyperparameters and cross-validation (15:18)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/agi2dKxClec" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1C:  The perceptron algorithm (9:53)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/2otq8KEMp8Y" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1D:  SVM and non-linear classification with linear classifiers (8:9)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/KsOubVwDcjY" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+</div>
+```
+------
+```@raw html
+<div id="ytb-videos">
+<span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
+<details open><summary>03 ML1  - 1A:  Introduction, perceptron overall idea (11:23)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JuqCxqLik0s" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1B:  Hyperparameters and cross-validation (15:18)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/agi2dKxClec" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1C:  The perceptron algorithm (9:53)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/2otq8KEMp8Y" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1D:  SVM and non-linear classification with linear classifiers (8:9)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/KsOubVwDcjY" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+</div>
+```
+------
+```@raw html
+<div id="ytb-videos">
+<span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
+<details open><summary>03 ML1  - 1A:  Introduction, perceptron overall idea (11:23)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JuqCxqLik0s" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1B:  Hyperparameters and cross-validation (15:18)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/agi2dKxClec" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1C:  The perceptron algorithm (9:53)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/2otq8KEMp8Y" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1D:  SVM and non-linear classification with linear classifiers (8:9)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/KsOubVwDcjY" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+</div>
+```
+------
+```@raw html
+<div id="ytb-videos">
+<span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
+<details open><summary>03 ML1  - 1A:  Introduction, perceptron overall idea (11:23)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JuqCxqLik0s" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1B:  Hyperparameters and cross-validation (15:18)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/agi2dKxClec" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1C:  The perceptron algorithm (9:53)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/2otq8KEMp8Y" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 1D:  SVM and non-linear classification with linear classifiers (8:9)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/KsOubVwDcjY" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+</div>
+```
+------
 # 0301 - Machine Learning -  main concepts
 
 We start our journey on Machine Learning from the perceptron algorithm. This is a linear classifier that historically has been a bit a pioneer in ML algorithms. We start from it due to its simplicity, and it will be the only algorithm that we will study in detail.
@@ -140,3 +310,183 @@ This is the main difference between linear algorithms used together with feature
 
 
 
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/0301_-_Machine_learning_main_concepts.md",
+"title" : "0301_-_Machine_learning_main_concepts.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/0301_-_Machine_learning_main_concepts.md",
+"title" : "0301_-_Machine_learning_main_concepts.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/0301_-_Machine_learning_main_concepts.md",
+"title" : "0301_-_Machine_learning_main_concepts.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/0301_-_Machine_learning_main_concepts.md",
+"title" : "0301_-_Machine_learning_main_concepts.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/0301_-_Machine_learning_main_concepts.md",
+"title" : "0301_-_Machine_learning_main_concepts.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```

@@ -1,14 +1,13 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 # # 0106 Further Topics
-
 
 # ## Some stuff to set-up the environment..
 
@@ -203,6 +202,7 @@ b = ccall((:mySum,myclib), Float64, (Float32,Float32), 2.5, 1.5)
 
 # The "default" way to use Python code in Julia is trough the [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) package. It automatically take care of convert between Python types (including numpy arrays) and Julia types (types that can not be converted automatically are converted to the generic `PyObject` type).
 ENV["PYTHON"] = "" # will force PyCall to download and use a "private to Julia" (conda based) version of Python. use "/path/to/python" if you want to reuse a version already installed on your system
+
 ## using Pkg
 ## Pkg.add("PyCall")
 ## Pkg.build("PyCall")
@@ -316,6 +316,7 @@ destDoc.save()
 
 # To use R from within Julia we use the [RCall](https://github.com/JuliaInterop/RCall.jl) package. 
 ENV["R_HOME"] = "*" #  # will force RCall to download and use a "private to Julia" (conda based) version of R. use "/path/to/R/directory" (e.g. `/usr/lib/R`) if you want to reuse a version already installed on your system
+
 ## using Pkg
 ## Pkg.add("RCall")
 ## Pkg.build("RCall")
@@ -712,6 +713,7 @@ sizeof(2)              # bytes
 typemin(Int64)
 typemax(Int64)
 bitstring(2)
+
 # Various low-level interpretation of an expression
 @code_native foo(3)
 @code_llvm foo(3)

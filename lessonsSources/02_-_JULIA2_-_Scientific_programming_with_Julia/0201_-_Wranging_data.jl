@@ -1,11 +1,11 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 
 # # 0201 - Data Wrangling 

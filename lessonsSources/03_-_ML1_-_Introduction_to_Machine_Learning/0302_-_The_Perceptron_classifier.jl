@@ -1,11 +1,11 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+# ################################################################################
+# ###  Introduction to Scientific Programming and Machine Learning with Julia  ###
+# ###                                                                          ###
+# ### Run each script on a new clean Julia session                             ###
+# ### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
+# ### Licence (apply to all material of the course: scripts, videos, quizes,..)###
+# ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
+# ################################################################################
 
 
 # # 0302 - The Perceptron algorithm for linear classification 
@@ -257,7 +257,7 @@ print(cfOut)
 res = info(cfOut)
 heatmap(string.(res["categories"]),string.(res["categories"]),res["normalised_scores"],seriescolor=cgrad([:white,:blue]),xlabel="Predicted",ylabel="Actual", title="Confusion Matrix (normalised scores)")
 
-# Lets use CrossValidation 
+# Let's use CrossValidation 
 ((xtrain,xvalidation,xtest),(ytrain,yvalidation,ytest)) = partition([X,y],[0.6,0.2,0.2])
 ## Very few records..... let's go back to using only two subsets but with CrossValidation 
 ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.6,0.4])

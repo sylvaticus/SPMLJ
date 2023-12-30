@@ -1,14 +1,13 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 # # 0105 Custom Types
-
 
 # ## Some stuff to set-up the environment..
 
@@ -81,11 +80,11 @@ mutable struct Foo2
         return new(f1+f2,f3)
     end
 end
-Foo2(1,2,"aaa")
 
 # !!! tip
 #     If any inner constructor method is defined, no default constructor method is provided.
 
+Foo2(1,2,"aaa")
 ## Foo2(1,"aaa") # Error, no default constructor !
 
 # You can also use a macro (requires Julia 1.1) to automatically define an (outer) keyword_based constructor with support for optional arguments:
@@ -99,10 +98,7 @@ Kfoo(z=3)
 
 # Note that, at time of writing, `@kwdef` is not exported by Julia base, meaning that while widely used, it is considered still "experimental" and its usage may change in future Julia minor versions.
 
-
-
 # ## Custom pretty-printing 
-
 
 # We can customise the way our custom type is rendered by overriding the `Base.show` function for our specific type.
 
@@ -175,7 +171,6 @@ end
 getPlane(intMatrixInside,1,2)
 
 # A package where non-type parameters are emploied to boost speed is [StaticArray.jl](https://github.com/JuliaArrays/StaticArrays.jl) where one parameter is the _size_ of the array that hence become known at compile time
-
 
 # ## Inheritance
 

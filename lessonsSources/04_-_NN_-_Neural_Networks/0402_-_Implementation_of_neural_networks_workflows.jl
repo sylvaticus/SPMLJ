@@ -1,11 +1,11 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 
 # # 0402 - Implementation of Neural network workflows
@@ -55,7 +55,7 @@ testAccuracy   = accuracy(ytest,ŷtest)
 
 # #### Specifying all options
 
-# Creating a custim callback function to receive info during training...
+# Creating a custom callback function to receive info during training...
 function myOwnTrainingInfo(nn,xbatch,ybatch,x,y;n,n_batches,epochs,epochs_ran,verbosity,n_epoch,n_batch)
     if verbosity == NONE
         return false # doesn't stop the training
@@ -92,7 +92,6 @@ testAccuracy   = accuracy(ŷtest,ytest)
 iris     = readdlm(joinpath(dirname(Base.find_package("BetaML")),"..","test","data","iris.csv"),',',skipstart=1)
 iris     = iris[shuffle(axes(iris, 1)), :] # Shuffle the records, as they aren't by default
 x        = convert(Array{Float64,2}, iris[:,1:4])
-#y       = map(x->Dict("setosa" => 1, "versicolor" => 2, "virginica" =>3)[x],iris[:, 5]) # Convert the target column to numbers
 ystring  = String.(iris[:, 5])
 iemod  = OrdinalEncoder() 
 y      = fit!(iemod,ystring) 

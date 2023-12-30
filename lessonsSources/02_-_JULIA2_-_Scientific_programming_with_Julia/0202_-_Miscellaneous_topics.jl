@@ -1,11 +1,11 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 
 # # 0202 - Miscellaneous topics
@@ -327,9 +327,7 @@ y   = Dict( "Chêne pédonculé" => 1.83933333333333,
 # for each element of an array
 σ = Dict((i,j) => σtable[i_ix,j_ix] for (i_ix,i) in enumerate(species), (j_ix,j) in enumerate(species))
 
-################################################################################
-###### Showing the possible mean/variance of the portfolio by simulation #######
-################################################################################
+# #### Showing the possible mean/variance of the portfolio by simulation
 
 nSamples = 1000
 shares   = rand(nSamples,nSpecies);
@@ -349,9 +347,7 @@ scatter(pScores[:,1],pScores[:,2],colour=:blue)
 savefig("currentPlot13.svg"); #src
 # ![](currentPlot13.svg)
 
-################################################################################
-### Finding (one) optimal portfolio ############################################
-################################################################################
+# #### Finding (one) optimal portfolio
 
 # Risk aversion coefficient
 α = 0.1
@@ -367,12 +363,6 @@ end
 
 # We declare the constraint shat the sum of shares must be equal to 1
 @constraint(port, c_share, sum(x[i] for i in species) == 1)
-
-#=
-@objective port Min begin
-  α *  sum(x[i] * x[j] * σ[i,j] for i in species for j in species) - sum(x[i] * y[i] for i in species)
-end
-=#
 
 @NLobjective port Min α *  sum(x[i] * x[j] * σ[i,j] for i in species for j in species) - sum(x[i] * y[i] for i in species)
 

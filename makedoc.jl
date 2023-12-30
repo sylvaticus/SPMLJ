@@ -290,6 +290,7 @@ makedocs(sitename="SPMLJ",
              assets = ["assets/custom.css"],
              ),
          #strict = true,
+         warnonly = true,
          #doctest = false
          source  = "lessonsSources", # Attention here !!!!!!!!!!!
          build   = "buildedDoc",

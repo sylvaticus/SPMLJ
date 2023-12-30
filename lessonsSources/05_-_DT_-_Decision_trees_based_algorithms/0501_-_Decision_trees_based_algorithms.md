@@ -35,3 +35,398 @@ While RF generalise well, still a few hyperparameters are provided in order to i
 - `min_records`:  The minimum number of records a node must holds to consider for a partition of it [def: `2`]
 - `max_features`: The maximum number of (random) features to consider at each partitioning [def: `√D`,]
 - `splitting_criterion`: Either `gini`, `entropy` or `variance`
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.md",
+"title" : "0501_-_Decision_trees_based_algorithms.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.md",
+"title" : "0501_-_Decision_trees_based_algorithms.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.md",
+"title" : "0501_-_Decision_trees_based_algorithms.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.md",
+"title" : "0501_-_Decision_trees_based_algorithms.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.md",
+"title" : "0501_-_Decision_trees_based_algorithms.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.md",
+"title" : "0501_-_Decision_trees_based_algorithms.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.md",
+"title" : "0501_-_Decision_trees_based_algorithms.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.md",
+"title" : "0501_-_Decision_trees_based_algorithms.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.md",
+"title" : "0501_-_Decision_trees_based_algorithms.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.md",
+"title" : "0501_-_Decision_trees_based_algorithms.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.md",
+"title" : "0501_-_Decision_trees_based_algorithms.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```

@@ -1,15 +1,13 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 # # 0102 Types and objects
-
-
 
 # ## Some stuff to set-up the environment..
 
@@ -70,14 +68,14 @@ typeof(b)
 #   - ...
 # Complete Number hierarchy: [https://upload.wikimedia.org/wikipedia/commons/d/d9/Julia-number-type-hierarchy.svg](https://upload.wikimedia.org/wikipedia/commons/d/d9/Julia-number-type-hierarchy.svg)
 
-## Everythong is an object, i.e. of some "type"
+# Everythong is an object, i.e. of some "type":
 c = typeof(a)
 typeof(c)
 d = sin
 typeof(d) <: Function
 typeof(+) <: Function
 
-## Operators are just functions:
+# Operators are just functions:
 1 + 2
 +(1,2) # this call the function "+"
 import Base.+
@@ -103,7 +101,7 @@ m === k    # are the two identifiers binding the same identical object in memory
 
 
 # ## Mutability property of Julia objects
-
+# Mutable objects are stored in memory "directly", while for mutable objects it is its memory address to be stored:
 k = 10
 v = [1,2]
 p = 'z'
@@ -112,8 +110,6 @@ ismutable(k)
 ismutable(v)
 ismutable(p)
 ismutable(g)
-## mutable objects are stored in memory "directly", while for mutable objects it is its memory address to be stored
-
 
 # ## Three different ways to "copy" objects...
 
