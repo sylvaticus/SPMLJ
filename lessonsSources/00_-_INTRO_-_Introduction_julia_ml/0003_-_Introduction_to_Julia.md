@@ -134,6 +134,40 @@
 </div>
 ```
 ------
+```@raw html
+<div id="ytb-videos">
+<span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
+<details open><summary>00 INTRO - 3A: Julia overview (36:25)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/uW8iyTjSaJk" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>00 INTRO - 3B: How to install Julia and git #1 (20:15)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/kT9Vm8Ov6qo" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>00 INTRO - 3C: How to install Julia and git #2 (21:54)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/51AwIJzxtgw" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>00 INTRO - 3D: Modules, packages and environments (20:56)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_qTLSrk1ICA" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+</div>
+```
+------
 # [Introduction to Julia, git and the Julia package manager](@id introduction_julia)
 
 ## An introduction to the Julia Programming Language
@@ -491,6 +525,42 @@ The first line sets the _current directory_ to those of the *.jl file in which t
 
 !!! tip
     Attention to this difference: the **current directory** is the path that serves as a reference when you interact with the operating system for files input/output, for example, to read a Comma Separated File or to save a plot image. The **environment** is the directory where the associated `Metadata.toml` and `Project.toml` files listing all the dependencies reside. The two directories can be the same but also be different. 
+
+---------
+```@raw html
+<div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/00_-_INTRO_-_Introduction_julia_ml/0003_-_Introduction_to_Julia.md",
+"title" : "0003_-_Introduction_to_Julia.md",
+"permalink" : pageURL
+};
+</script>
+```
+```@raw html
+<div class="addthis_inline_share_toolbox"></div>
+```
+
+---------
+```@raw html
+<script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+```
+```@raw html
+<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+```
+```@raw html
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+```
 
 ---------
 ```@raw html

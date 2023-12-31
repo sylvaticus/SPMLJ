@@ -216,7 +216,7 @@ end
 # ### Managing missing values
 
 # !!! tip
-#     See also the section [`Missingness implementations`](@ref) for a general discussion on missing values. [BetaML](https://github.com/sylvaticus/BetaML.jl) has now several algorithms for missing imputation.
+#     See also the section [`Missingness implementations`](@ref missingness_implementations) for a general discussion on missing values. [BetaML](https://github.com/sylvaticus/BetaML.jl) has now several algorithms for missing imputation.
 
 df = copy(data)
 ## df[3,"forarea"]  = missing # Error, type is Flat64, not Union{Float64,Missing}

@@ -36,11 +36,11 @@ using StatsPlots # no need to `using Plots` as `Plots` elements are reexported b
 
 # Let's start plotting a function. The FIRST TIME you invoke `plot` will take a while. This is the famous "time to first plot" problem due to the JIT compilation, but it will materialize only on the first plotting in a working session 
 plot(cos) # default [-5,+5] range
-savefig("currentPlot1.svg"); #src
+savefig("currentPlot.svg"); #src
 # ![](currentPlot.svg)
 plot!(x->x^2, -2,2 ) # more explicit, with ranges
 savefig("currentPlot1.svg"); #src
-# ![](currentPlot.svg)
+# ![](currentPlot1.svg)
 plot!(x->max(x,2), label="max function", linestyle=:dot, color=:black, title="Chart title", xlabel= "X axis", ylabel="Y axis", legend=:topleft) # a bit of design
 savefig("currentPlot2.svg"); #src
 # ![](currentPlot2.svg)

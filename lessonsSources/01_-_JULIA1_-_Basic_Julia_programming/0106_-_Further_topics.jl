@@ -850,7 +850,9 @@ Threads.threadid()
 
 # The macro `@everywhere` make available the given function (or functions with `@everywhere begin [shared function definitions] end` or `@everywhere include("sharedCode.jl")`) to all the current workers.
 
-## result  = map(fib,a)
+# ```julia
+# result  = map(fib,a)
+# ```
 
 # The pmap function ("parallel" map) automatically pick up the free processes, assign them the job prom the "input" array and merge the results in the returned array. Note that the order is preserved:
 
