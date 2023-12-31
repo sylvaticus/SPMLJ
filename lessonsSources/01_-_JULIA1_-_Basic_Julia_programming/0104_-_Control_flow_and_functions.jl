@@ -225,8 +225,8 @@ foo(10,a=10,b=20,y="bbb")
 # - the function call must use positional arguments by position and keyword arguments by name
 
 
-## foo(a::String="aaa",b::Int64) = "$a "+string(b) # error! Optional positional argument before a mandatory positional one  
-foo(b::Int64,a::String="aaa")  = "$a "+string(b) # fine!
+## foo0(a::String="aaa",b::Int64) = "$a "+string(b) # error! Optional positional argument before a mandatory positional one  
+foo0(b::Int64,a::String="aaa")  = "$a "+string(b) # fine!
 
 # ### Argument types and multiple dispatch
 
@@ -263,7 +263,7 @@ foo4(a::Int64,b::Array{T} where T <: Number) = a .+ fill(T,b,2)      # wil lerro
 #   - mutable objects: if the argument is rebinded to an other object, no effects on the caller object. If the object is modified, the caller object (being the same object) is also modified
 
 x = 10
-foo(y) = y = 1
+foo(y) = (y = 1)
 foo(x)
 x
 foo(x) = x[1] = 10
