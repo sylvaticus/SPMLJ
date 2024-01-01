@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>0302 - The Perceptron classifier · SPMLJ</title><meta name="title" content="0302 - The Perceptron classifier · SPMLJ"/><meta property="og:title" content="0302 - The Perceptron classifier · SPMLJ"/><meta property="twitter:title" content="0302 - The Perceptron classifier · SPMLJ"/><meta name="description" content="Documentation for SPMLJ."/><meta property="og:description" content="Documentation for SPMLJ."/><meta property="twitter:description" content="Documentation for SPMLJ."/><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q39LHCRBB6"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q39LHCRBB6', {'page_path': location.pathname + location.search + location.hash});
+</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/custom.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">SPMLJ</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">INTRO - Introduction to the course, Julia and ML</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html">0001 - Course presentation</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0002_-_Program.html">0002 - Program</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003_-_Introduction_to_Julia.html">0003 - Introduction to Julia</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003q_-_QUIZ_0.1.html">0003q - QUIZ 0.1</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004_-_Introduction_to_ML.html">0004 - Introduction to ML</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004q_-_QUIZ_0.2.html">0004q - QUIZ 0.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-2" type="checkbox"/><label class="tocitem" for="menuitem-2-2"><span class="docs-label">JULIA1 - Basic Julia programming</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101_-_Basic_syntax.html">0101 - Basic syntax</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101q_-_QUIZ_1.1.html">0101q - QUIZ 1.1</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101q_-_QUIZ_1.2.html">0101q - QUIZ 1.2</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0102_-_Types_and_objects.html">0102 - Types and objects</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0102q_-_QUIZ_1.3.html">0102q - QUIZ 1.3</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103_-_Predefined_types.html">0103 - Predefined types</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.4.html">0103q - QUIZ 1.4</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.5.html">0103q - QUIZ 1.5</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.6.html">0103q - QUIZ 1.6</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104_-_Control_flow_and_functions.html">0104 - Control flow and functions</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104q_-_QUIZ_1.7.html">0104q - QUIZ 1.7</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104q_-_QUIZ_1.8.html">0104q - QUIZ 1.8</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105_-_Custom_types.html">0105 - Custom types</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105q_-_QUIZ_1.10.html">0105q - QUIZ 1.10</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105q_-_QUIZ_1.9.html">0105q - QUIZ 1.9</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105x_EXERCISE-1.1.html">0105x EXERCISE-1.1</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106_-_Further_topics.html">0106 - Further topics</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.11.html">0106q - QUIZ 1.11</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.12.html">0106q - QUIZ 1.12</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.13.html">0106q - QUIZ 1.13</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-3" type="checkbox"/><label class="tocitem" for="menuitem-2-3"><span class="docs-label">JULIA2 - Scientific programming with Julia</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201_-_Wranging_data.html">0201 - Wranging data</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202_-_Miscellaneous_topics.html">0202 - Miscellaneous topics</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.1.html">0202x EXERCISE-2.1</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.2.html">0202x EXERCISE-2.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-4" type="checkbox" checked/><label class="tocitem" for="menuitem-2-4"><span class="docs-label">ML1 - Introduction to Machine Learning</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="0301_-_Machine_learning_main_concepts.html">0301 - Machine learning main concepts</a></li><li class="is-active"><a class="tocitem" href="0302_-_The_Perceptron_classifier.html">0302 - The Perceptron classifier</a><ul class="internal"><li><a class="tocitem" href="#Some-stuff-to-set-up-the-environment.."><span>Some stuff to set-up the environment..</span></a></li><li><a class="tocitem" href="#Perceptron-elementary-operations"><span>Perceptron elementary operations</span></a></li><li><a class="tocitem" href="#The-complete-algorithm"><span>The complete algorithm</span></a></li><li><a class="tocitem" href="#Loading-binary-supervised-data"><span>Loading binary supervised data</span></a></li><li><a class="tocitem" href="#A-better-organisation"><span>A better organisation</span></a></li><li><a class="tocitem" href="#Testing-the-Perceptron-algorithm"><span>Testing the Perceptron algorithm</span></a></li><li><a class="tocitem" href="#Cross-validation-and-hyperparameters-optimisation"><span>Cross-validation and hyperparameters optimisation</span></a></li></ul></li><li><a class="tocitem" href="0302x_EXERCISE-3.1.html">0302x EXERCISE-3.1</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-5" type="checkbox"/><label class="tocitem" for="menuitem-2-5"><span class="docs-label">NN - Neural Networks</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0401_-_Neural_network_architectures.html">0401 - Neural network architectures</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402_-_Implementation_of_neural_networks_workflows.html">0402 - Implementation of neural networks workflows</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402x_EXERCISE-4.1.html">0402x EXERCISE-4.1</a></li><li><a class="tocitem" href="../04_-_NN_-_Neural_Networks/0402x_EXERCISE-4.2.html">0402x EXERCISE-4.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-6" type="checkbox"/><label class="tocitem" for="menuitem-2-6"><span class="docs-label">DT - Decision trees based algorithms [DRAFT]</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.html">0501 - Decision trees based algorithms</a></li><li><a class="tocitem" href="../05_-_DT_-_Decision_trees_based_algorithms/0502x_EXERCISE-5.1.html">0502x EXERCISE-5.1</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Lessons</a></li><li><a class="is-disabled">ML1 - Introduction to Machine Learning</a></li><li class="is-active"><a href="0302_-_The_Perceptron_classifier.html">0302 - The Perceptron classifier</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0302_-_The_Perceptron_classifier.html">0302 - The Perceptron classifier</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/sylvaticus/SPMLJ" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/0302_-_The_Perceptron_classifier.jl" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><div id="ytb-videos">
+<span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
+<details open><summary>03 ML1  - 2A:  A first version (13:22)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/kOGSvdgd_3Y" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 2B:  A better version (10:28)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/g0yz7La53Vc" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>03 ML1  - 2C:  Cross-validation implementation (21:7)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ieIZFF6RYQo" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+</div><hr/><p>################################################################################</p><h3 id="Introduction-to-Scientific-Programming-and-Machine-Learning-with-Julia"><a class="docs-heading-anchor" href="#Introduction-to-Scientific-Programming-and-Machine-Learning-with-Julia">Introduction to Scientific Programming and Machine Learning with Julia</a><a id="Introduction-to-Scientific-Programming-and-Machine-Learning-with-Julia-1"></a><a class="docs-heading-anchor-permalink" href="#Introduction-to-Scientific-Programming-and-Machine-Learning-with-Julia" title="Permalink"></a></h3><h3 id><a class="docs-heading-anchor" href="####">###</a><a id="-1"></a><a class="docs-heading-anchor-permalink" href="####" title="Permalink"></a></h3><h3 id="Run-each-script-on-a-new-clean-Julia-session"><a class="docs-heading-anchor" href="#Run-each-script-on-a-new-clean-Julia-session">Run each script on a new clean Julia session</a><a id="Run-each-script-on-a-new-clean-Julia-session-1"></a><a class="docs-heading-anchor-permalink" href="#Run-each-script-on-a-new-clean-Julia-session" title="Permalink"></a></h3><h3 id="GitHub:-https://github.com/sylvaticus/IntroSPMLJuliaCourse"><a class="docs-heading-anchor" href="#GitHub:-https://github.com/sylvaticus/IntroSPMLJuliaCourse">GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse</a><a id="GitHub:-https://github.com/sylvaticus/IntroSPMLJuliaCourse-1"></a><a class="docs-heading-anchor-permalink" href="#GitHub:-https://github.com/sylvaticus/IntroSPMLJuliaCourse" title="Permalink"></a></h3><h3 id="Licence-(apply-to-all-material-of-the-course:-scripts,-videos,-quizes,..)###"><a class="docs-heading-anchor" href="#Licence-(apply-to-all-material-of-the-course:-scripts,-videos,-quizes,..)###">Licence (apply to all material of the course: scripts, videos, quizes,..)###</a><a id="Licence-(apply-to-all-material-of-the-course:-scripts,-videos,-quizes,..)###-1"></a><a class="docs-heading-anchor-permalink" href="#Licence-(apply-to-all-material-of-the-course:-scripts,-videos,-quizes,..)###" title="Permalink"></a></h3><h3 id="Creative-Commons-By-Attribution-(CC-BY-4.0),-Antonello-Lobianco"><a class="docs-heading-anchor" href="#Creative-Commons-By-Attribution-(CC-BY-4.0),-Antonello-Lobianco">Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco</a><a id="Creative-Commons-By-Attribution-(CC-BY-4.0),-Antonello-Lobianco-1"></a><a class="docs-heading-anchor-permalink" href="#Creative-Commons-By-Attribution-(CC-BY-4.0),-Antonello-Lobianco" title="Permalink"></a></h3><p>################################################################################</p><h1 id="0302-The-Perceptron-algorithm-for-linear-classification"><a class="docs-heading-anchor" href="#0302-The-Perceptron-algorithm-for-linear-classification">0302 - The Perceptron algorithm for linear classification</a><a id="0302-The-Perceptron-algorithm-for-linear-classification-1"></a><a class="docs-heading-anchor-permalink" href="#0302-The-Perceptron-algorithm-for-linear-classification" title="Permalink"></a></h1><h2 id="Some-stuff-to-set-up-the-environment.."><a class="docs-heading-anchor" href="#Some-stuff-to-set-up-the-environment..">Some stuff to set-up the environment..</a><a id="Some-stuff-to-set-up-the-environment..-1"></a><a class="docs-heading-anchor-permalink" href="#Some-stuff-to-set-up-the-environment.." title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; cd(@__DIR__)</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pkg</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.activate(&quot;.&quot;)
+       # If using a Julia version different than 1.10 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
+       # Pkg.resolve()</code><code class="nohighlight hljs ansi" style="display:block;">  Activating project at `~/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning`</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.instantiate()</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Random</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Random.seed!(123)</code><code class="nohighlight hljs ansi" style="display:block;">Random.TaskLocalRNG()</code></pre><h2 id="Perceptron-elementary-operations"><a class="docs-heading-anchor" href="#Perceptron-elementary-operations">Perceptron elementary operations</a><a id="Perceptron-elementary-operations-1"></a><a class="docs-heading-anchor-permalink" href="#Perceptron-elementary-operations" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using StatsPlots</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function plot2DClassifierWithData(X,y,θ;d1=1,d2=2,origin=false,pid=1)
+           colors = [y == -1 ? &quot;red&quot; : &quot;green&quot; for y in y]
+           labels = [y == -1 ? &quot;-1&quot; : &quot;+1&quot; for y in y]
+           minD1,maxD1 = extrema(X[:,d1])
+           minD2,maxD2 = extrema(X[:,d2])
+           myplot = scatter(X[:,d1],X[:,d2], colour=colors, title=&quot;Linear classifier in 2D&quot;,xlabel=&quot;Dimx: $d1&quot;, ylabel=&quot;Dimy: $d2&quot;, group=labels)
+           constTerm = 0.0
+           if !origin
+               d1 += 1
+               d2 += 1
+               constTerm = -θ[1]/θ[d2]
+           end
+           d2Class(x) = constTerm -x * θ[d1]/θ[d2]
+           if θ[d2] == 0
+               vline!([0], color= &quot;blue&quot;,label=&quot;&quot;,linewidth=5)
+           else
+               plot!(d2Class,min(θ[d1],minD1),max(maxD1,θ[d1]), color= &quot;blue&quot;,label=&quot;&quot;,linewidth=5)
+           end
+           plot!([0,θ[d1]],[0,θ[d2]],arrow=true,color=:black,linewidth=2,label=&quot;&quot;)
+           display(myplot)
+           savefig(&quot;currentPlot$(pid).svg&quot;);
+       end</code><code class="nohighlight hljs ansi" style="display:block;">plot2DClassifierWithData (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; isClassificationError(θ,y,x) =  y * (θ&#39; * x) &lt;= eps()</code><code class="nohighlight hljs ansi" style="display:block;">isClassificationError (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; perceptronUpdate(θ,y,x)      = return θ .+ y .* x</code><code class="nohighlight hljs ansi" style="display:block;">perceptronUpdate (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X = [ 2 4
+            -6 1]</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Int64}:
+  2  4
+ -6  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y = [-1,-1]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -1
+ -1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ₀ = [0,0]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = θ₀</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -2
+ -4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ,origin=true,pid=1)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot1.svg&quot;</code></pre><p><img src="currentPlot1.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+  4
+ -5</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ,origin=true,pid=2)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot2.svg&quot;</code></pre><p><img src="currentPlot2.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X = [ 2 4
+            1 -2]</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Int64}:
+ 2   4
+ 1  -2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = θ₀</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -2
+ -4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ, origin=true,pid=3)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot3.svg&quot;</code></pre><p><img src="currentPlot3.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -3
+ -2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ, origin=true,pid=4)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot4.svg&quot;</code></pre><p><img src="currentPlot4.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -4
+  0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ,origin=true,pid=5)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot5.svg&quot;</code></pre><p><img src="currentPlot5.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -4
+  0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X = [ 2 4
+            -2 2]</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Int64}:
+  2  4
+ -2  2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y = [-1,1]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -1
+  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = θ₀</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[1],X[1,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -2
+ -4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ, origin=true,pid=6)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot6.svg&quot;</code></pre><p><img src="currentPlot6.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ϵ = isClassificationError(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θ = perceptronUpdate(θ,y[2],X[2,:])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Int64}:
+ -4
+ -2</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θ,origin=true,pid=7)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot7.svg&quot;</code></pre><p><img src="currentPlot7.svg" alt/></p><h2 id="The-complete-algorithm"><a class="docs-heading-anchor" href="#The-complete-algorithm">The complete algorithm</a><a id="The-complete-algorithm-1"></a><a class="docs-heading-anchor-permalink" href="#The-complete-algorithm" title="Permalink"></a></h2><div class="admonition is-success"><header class="admonition-header">Tip</header><div class="admonition-body"><p>The algorithm implemented from scratch in this page form the core of the <a href="https://sylvaticus.github.io/BetaML.jl/stable/Perceptron.html#BetaML.Perceptron.PerceptronClassifier"><code>PerceptronClassifier</code></a> model in <code>BetaML</code>, a multiclass linear classifier.</p></div></div><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; function perceptronOrigin(X,y,epochs=1;verbose=false)
+           (nR,nD) = size(X)
+           local θ = zeros(nD)
+           for t in 1:epochs
+               for n in 1:nR
+                   if verbose
+                       println(&quot;$n: X[n,:] \t θ: $θ&quot;)
+                   end
+                   if isClassificationError(θ,y[n],X[n,:])
+                       θ = perceptronUpdate(θ,y[n],X[n,:])
+                       if verbose
+                           println(&quot;**update! New theta: $θ&quot;)
+                       end
+                   end
+               end
+           end
+           return θ
+       end</code><code class="nohighlight hljs ansi" style="display:block;">perceptronOrigin (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θopt =  perceptronOrigin(X,y,verbose=true)</code><code class="nohighlight hljs ansi" style="display:block;">1: X[n,:] 	 θ: [0.0, 0.0]
+**update! New theta: [-2.0, -4.0]
+2: X[n,:] 	 θ: [-2.0, -4.0]
+**update! New theta: [-4.0, -2.0]
+2-element Vector{Float64}:
+ -4.0
+ -2.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,θopt, origin=true,pid=8)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot8.svg&quot;</code></pre><p><img src="currentPlot8.svg" alt/></p><h2 id="Loading-binary-supervised-data"><a class="docs-heading-anchor" href="#Loading-binary-supervised-data">Loading binary supervised data</a><a id="Loading-binary-supervised-data-1"></a><a class="docs-heading-anchor-permalink" href="#Loading-binary-supervised-data" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using BetaML, DelimitedFiles</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; baseDir          = joinpath(dirname(pathof(BetaML)),&quot;..&quot;,&quot;test&quot;,&quot;data&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/.julia/packages/BetaML/IyufA/src/../test/data&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; perceptronData   = readdlm(joinpath(dirname(pathof(BetaML)),&quot;..&quot;,&quot;test&quot;,&quot;data&quot;,&quot;binary2DData.csv&quot;),&#39;\t&#39;)</code><code class="nohighlight hljs ansi" style="display:block;">200×3 Matrix{Float64}:
+ -1.0   1.76    0.4
+ -1.0   0.979   2.24
+ -1.0   1.87   -0.977
+ -1.0   0.95   -0.151
+ -1.0  -0.103   0.411
+ -1.0   0.144   1.45
+ -1.0   0.761   0.122
+ -1.0   0.444   0.334
+ -1.0   1.49   -0.205
+ -1.0   0.313  -0.854
+  ⋮
+  1.0  -0.256   0.977
+  1.0   2.04    0.343
+  1.0   1.01    0.528
+  1.0   3.65    2.16
+  1.0   2.57    1.78
+  1.0   1.65    0.384
+  1.0   1.71    1.24
+  1.0   2.86    3.14
+  1.0   3.47    2.85</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nR = size(perceptronData,1)</code><code class="nohighlight hljs ansi" style="display:block;">200</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; idx = shuffle(1:nR)</code><code class="nohighlight hljs ansi" style="display:block;">200-element Vector{Int64}:
+ 123
+ 131
+  74
+  23
+  19
+  78
+  43
+ 130
+  83
+ 186
+   ⋮
+ 137
+ 175
+ 182
+  37
+  71
+  89
+ 142
+  82
+ 170</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; perceptronData = perceptronData[idx,:]</code><code class="nohighlight hljs ansi" style="display:block;">200×3 Matrix{Float64}:
+  1.0   1.69     0.324
+  1.0   0.811    1.49
+ -1.0  -0.913    1.12
+ -1.0  -0.5097  -0.4381
+ -1.0   1.23     1.2
+ -1.0  -0.0985  -0.6635
+ -1.0   1.49     1.9
+  1.0   0.417    2.61
+ -1.0  -1.23     0.844
+  1.0   2.28     1.01
+  ⋮
+  1.0   3.96     2.39
+  1.0   2.58     2.35
+  1.0   2.93     2.34
+ -1.0   1.14    -1.23
+ -1.0  -1.49     0.439
+ -1.0  -0.8034  -0.6895
+  1.0   1.31     3.54
+ -1.0   0.949    0.0876
+  1.0   1.32     3.66</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X                = copy(perceptronData[:,[2,3]])</code><code class="nohighlight hljs ansi" style="display:block;">200×2 Matrix{Float64}:
+  1.69     0.324
+  0.811    1.49
+ -0.913    1.12
+ -0.5097  -0.4381
+  1.23     1.2
+ -0.0985  -0.6635
+  1.49     1.9
+  0.417    2.61
+ -1.23     0.844
+  2.28     1.01
+  ⋮
+  3.96     2.39
+  2.58     2.35
+  2.93     2.34
+  1.14    -1.23
+ -1.49     0.439
+ -0.8034  -0.6895
+  1.31     3.54
+  0.949    0.0876
+  1.32     3.66</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y                = convert(Array{Int64,1},copy(perceptronData[:,1]))</code><code class="nohighlight hljs ansi" style="display:block;">200-element Vector{Int64}:
+  1
+  1
+ -1
+ -1
+ -1
+ -1
+ -1
+  1
+ -1
+  1
+  ⋮
+  1
+  1
+  1
+ -1
+ -1
+ -1
+  1
+ -1
+  1</code></pre><h2 id="A-better-organisation"><a class="docs-heading-anchor" href="#A-better-organisation">A better organisation</a><a id="A-better-organisation-1"></a><a class="docs-heading-anchor-permalink" href="#A-better-organisation" title="Permalink"></a></h2><p>Now we rewrite the perceptron algorithm setting all the parameters in a structure and using what could be a generic interface for any supervised model. This is the approach used by most ML libraries. We will see how to measure the classification error and as we are here we add the constant term with the constant addition to the data trick (note that editing every time the feature matrix is <em>NOT</em> efficient and we do it here only for simplicity. A better way is to explicitly model the perceptron model with a constant parameter.)</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; abstract type SupervisedModel end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; abstract type TrainingOptions end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mutable struct Perceptron &lt;: SupervisedModel
+           θ::Vector{Float64}
+       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mutable struct PerceptronTrainingOptions &lt;: TrainingOptions
+           epochs::Int64
+           verbose::Bool
+           shuffle::Bool
+           function PerceptronTrainingOptions(;epochs=1,verbose=false,shuffle=false)
+               return new(epochs,verbose,shuffle)
+           end
+       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function predict(model::Perceptron,x::AbstractVector)
+           x = vcat(1.0,x)
+           x&#39; * model.θ &gt; eps() ? (return 1) : (return -1)
+       end</code><code class="nohighlight hljs ansi" style="display:block;">predict (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function predict(model::Perceptron,X::AbstractMatrix)
+           return [predict(model,r) for r in eachrow(X)]
+       end</code><code class="nohighlight hljs ansi" style="display:block;">predict (generic function with 2 methods)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function update!(model::Perceptron,X::Vector,y)
+           X       = vcat(1.0,X)
+           model.θ = model.θ .+ y .* X
+           return model.θ
+       end</code><code class="nohighlight hljs ansi" style="display:block;">update! (generic function with 1 method)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; function train!(model::Perceptron,X,y,ops=PerceptronTrainingOptions()::TrainingOptions)
+           epochs  = ops.epochs
+           verbose = ops.verbose
+           (nR,nD) = size(X)
+           nD += 1
+           for t in 1:epochs
+               errors = 0
+               if ops.shuffle   # more efficient !
+                 idx = shuffle(1:nR)
+                 X = X[idx,:]
+                 y = y[idx]
+               end
+               for n in 1:nR
+                   if verbose
+                       println(&quot;$n: X[n,:] \t θ: $(model.θ)&quot;)
+                   end
+                   if  predict(model,X[n,:]) != y[n]
+                       errors += 1
+                       θ = update!(model,X[n,:],y[n])
+                       if verbose
+                           println(&quot;**update! New theta: $(model.θ)&quot;)
+                       end
+                   end
+               end
+               if verbose
+                   println(&quot;Epoch $t errors: $errors&quot;)
+               end
+           end
+           return model.θ
+       end</code><code class="nohighlight hljs ansi" style="display:block;">train! (generic function with 2 methods)</code></pre><h2 id="Testing-the-Perceptron-algorithm"><a class="docs-heading-anchor" href="#Testing-the-Perceptron-algorithm">Testing the Perceptron algorithm</a><a id="Testing-the-Perceptron-algorithm-1"></a><a class="docs-heading-anchor-permalink" href="#Testing-the-Perceptron-algorithm" title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; m   = Perceptron(zeros(size(X,2)+1))</code><code class="nohighlight hljs ansi" style="display:block;">Main.var&quot;Main&quot;.Perceptron([0.0, 0.0, 0.0])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ops = PerceptronTrainingOptions()</code><code class="nohighlight hljs ansi" style="display:block;">Main.var&quot;Main&quot;.PerceptronTrainingOptions(1, false, false)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; train!(m,X,y,ops)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ -5.0
+  1.7424999999999995
+  2.6404999999999994</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,m.θ,pid=9)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot9.svg&quot;</code></pre><p><img src="currentPlot9.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷ = predict(m,X)</code><code class="nohighlight hljs ansi" style="display:block;">200-element Vector{Int64}:
+ -1
+  1
+ -1
+ -1
+  1
+ -1
+  1
+  1
+ -1
+  1
+  ⋮
+  1
+  1
+  1
+ -1
+ -1
+ -1
+  1
+ -1
+  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; inSampleAccuracy = sum(y .== ŷ)/length(y)</code><code class="nohighlight hljs ansi" style="display:block;">0.89</code></pre><p>Let&#39;s see if shuffling and increasing epochs we improve the accuracy....</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ops = PerceptronTrainingOptions(verbose=false,epochs=5,shuffle=true)</code><code class="nohighlight hljs ansi" style="display:block;">Main.var&quot;Main&quot;.PerceptronTrainingOptions(5, false, true)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; m   = Perceptron(zeros(size(X,2)+1))</code><code class="nohighlight hljs ansi" style="display:block;">Main.var&quot;Main&quot;.Perceptron([0.0, 0.0, 0.0])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; train!(m,X,y,ops)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ -6.0
+  3.2406999999999955
+  3.5374000000000034</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(X,y,m.θ,pid=10)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot10.svg&quot;</code></pre><p><img src="currentPlot10.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷ = predict(m,X)</code><code class="nohighlight hljs ansi" style="display:block;">200-element Vector{Int64}:
+  1
+  1
+ -1
+ -1
+  1
+ -1
+  1
+  1
+ -1
+  1
+  ⋮
+  1
+  1
+  1
+ -1
+ -1
+ -1
+  1
+ -1
+  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; inSampleAccuracy = sum(y .== ŷ)/length(y)</code><code class="nohighlight hljs ansi" style="display:block;">0.92</code></pre><h2 id="Cross-validation-and-hyperparameters-optimisation"><a class="docs-heading-anchor" href="#Cross-validation-and-hyperparameters-optimisation">Cross-validation and hyperparameters optimisation</a><a id="Cross-validation-and-hyperparameters-optimisation-1"></a><a class="docs-heading-anchor-permalink" href="#Cross-validation-and-hyperparameters-optimisation" title="Permalink"></a></h2><p>Let&#39;s see now using separate training/validation We use the BetaML <code>partition()</code> function</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.6,0.4])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector}:
+ AbstractMatrix{Float64}[[-0.861 1.91; 1.35 1.48; … ; 0.0637 2.19; 0.396 -1.09], [1.37 1.52; 1.18 -0.18; … ; 1.98 2.38; -1.49 0.439]]
+ AbstractVector{Int64}[[-1, 1, 1, -1, 1, -1, -1, 1, -1, -1  …  1, 1, 1, 1, 1, 1, -1, -1, 1, -1], [1, -1, 1, -1, 1, -1, -1, -1, -1, -1  …  1, -1, -1, 1, 1, 1, 1, -1, 1, -1]]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; m             = Perceptron(zeros(size(X,2)+1))</code><code class="nohighlight hljs ansi" style="display:block;">Main.var&quot;Main&quot;.Perceptron([0.0, 0.0, 0.0])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ops           = PerceptronTrainingOptions(epochs=5,shuffle=true)</code><code class="nohighlight hljs ansi" style="display:block;">Main.var&quot;Main&quot;.PerceptronTrainingOptions(5, false, true)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; train!(m,xtrain,ytrain,ops)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ -4.0
+  3.7297999999999973
+  1.829999999999997</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(xtrain,ytrain,m.θ,pid=11)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot11.svg&quot;</code></pre><p><img src="currentPlot11.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtrain = predict(m,xtrain)</code><code class="nohighlight hljs ansi" style="display:block;">120-element Vector{Int64}:
+ -1
+  1
+  1
+ -1
+  1
+ -1
+  1
+  1
+ -1
+ -1
+  ⋮
+  1
+  1
+  1
+  1
+  1
+  1
+ -1
+  1
+ -1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; trainAccuracy = accuracy(ŷtrain,ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">0.9166666666666666</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sum(ytrain  .== ŷtrain)/length(ytrain)
+       # @edit accuracy(ŷtrain,ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">0.9166666666666666</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtest         = predict(m,xtest)</code><code class="nohighlight hljs ansi" style="display:block;">80-element Vector{Int64}:
+  1
+  1
+  1
+  1
+  1
+ -1
+ -1
+  1
+ -1
+ -1
+  ⋮
+ -1
+  1
+  1
+  1
+  1
+  1
+ -1
+  1
+ -1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; testAccuracy  = accuracy(ŷtest,ytest)</code><code class="nohighlight hljs ansi" style="display:block;">0.8625</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(xtest,ytest,m.θ,pid=12)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot12.svg&quot;</code></pre><p><img src="currentPlot12.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; cfOut = ConfusionMatrix()</code><code class="nohighlight hljs ansi" style="display:block;">A BetaML.Utils.ConfusionMatrix BetaMLModel (unfitted)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fit!(cfOut,ŷtest,ytest)</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Float64}:
+ 0.804878   0.195122
+ 0.0769231  0.923077</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; print(cfOut)</code><code class="nohighlight hljs ansi" style="display:block;">A BetaML.Utils.ConfusionMatrix BetaMLModel (fitted)
+
+-----------------------------------------------------------------
+
+*** CONFUSION MATRIX ***
+
+Scores actual (rows) vs predicted (columns):
+
+3×3 Matrix{Any}:
+ &quot;Labels&quot;    &quot;1&quot;    &quot;-1&quot;
+ &quot;1&quot;       33      8
+ &quot;-1&quot;       3     36
+Normalised scores actual (rows) vs predicted (columns):
+
+3×3 Matrix{Any}:
+ &quot;Labels&quot;   &quot;1&quot;        &quot;-1&quot;
+ &quot;1&quot;       0.804878   0.195122
+ &quot;-1&quot;      0.0769231  0.923077
+
+ *** CONFUSION REPORT ***
+
+- Accuracy:               0.8625
+- Misclassification rate: 0.13749999999999996
+- Number of classes:      2
+
+  N Class   precision   recall  specificity  f1score  actual_count  predicted_count
+                          TPR       TNR                 support                  
+
+  1 1           0.917    0.805        0.923    0.857           41              36
+  2 -1          0.818    0.923        0.805    0.867           39              44
+
+- Simple   avg.    0.867    0.864        0.864    0.862
+- Weigthed avg.    0.869    0.863        0.865    0.862
+
+-----------------------------------------------------------------
+Output of `info(cm)`:
+- mean_precision:	(0.8674242424242424, 0.8686553030303029)
+- fitted_records:	80
+- specificity:	[0.9230769230769231, 0.8048780487804879]
+- precision:	[0.9166666666666666, 0.8181818181818182]
+- misclassification:	0.13749999999999996
+- mean_recall:	(0.8639774859287055, 0.8625)
+- n_categories:	2
+- normalised_scores:	[0.8048780487804879 0.1951219512195122; 0.07692307692307693 0.9230769230769231]
+- tn:	[36, 33]
+- mean_f1score:	(0.8623063683304647, 0.8621772805507746)
+- actual_count:	[41, 39]
+- accuracy:	0.8625
+- recall:	[0.8048780487804879, 0.9230769230769231]
+- f1score:	[0.8571428571428571, 0.8674698795180723]
+- mean_specificity:	(0.8639774859287055, 0.8654549718574109)
+- predicted_count:	[36, 44]
+- scores:	[33 8; 3 36]
+- tp:	[33, 36]
+- fn:	[8, 3]
+- categories:	[1, -1]
+- fp:	[3, 8]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; res = info(cfOut)</code><code class="nohighlight hljs ansi" style="display:block;">Dict{String, Any} with 21 entries:
+  &quot;mean_precision&quot;    =&gt; (0.867424, 0.868655)
+  &quot;fitted_records&quot;    =&gt; 80
+  &quot;specificity&quot;       =&gt; [0.923077, 0.804878]
+  &quot;precision&quot;         =&gt; [0.916667, 0.818182]
+  &quot;misclassification&quot; =&gt; 0.1375
+  &quot;mean_recall&quot;       =&gt; (0.863977, 0.8625)
+  &quot;n_categories&quot;      =&gt; 2
+  &quot;normalised_scores&quot; =&gt; [0.804878 0.195122; 0.0769231 0.923077]
+  &quot;tn&quot;                =&gt; [36, 33]
+  &quot;mean_f1score&quot;      =&gt; (0.862306, 0.862177)
+  &quot;actual_count&quot;      =&gt; [41, 39]
+  &quot;accuracy&quot;          =&gt; 0.8625
+  &quot;recall&quot;            =&gt; [0.804878, 0.923077]
+  &quot;f1score&quot;           =&gt; [0.857143, 0.86747]
+  &quot;mean_specificity&quot;  =&gt; (0.863977, 0.865455)
+  &quot;predicted_count&quot;   =&gt; [36, 44]
+  &quot;scores&quot;            =&gt; [33 8; 3 36]
+  &quot;tp&quot;                =&gt; [33, 36]
+  &quot;fn&quot;                =&gt; [8, 3]
+  ⋮                   =&gt; ⋮</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; heatmap(string.(res[&quot;categories&quot;]),string.(res[&quot;categories&quot;]),res[&quot;normalised_scores&quot;],seriescolor=cgrad([:white,:blue]),xlabel=&quot;Predicted&quot;,ylabel=&quot;Actual&quot;, title=&quot;Confusion Matrix (normalised scores)&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code></pre><p>Let&#39;s use CrossValidation</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ((xtrain,xvalidation,xtest),(ytrain,yvalidation,ytest)) = partition([X,y],[0.6,0.2,0.2])
+       # Very few records..... let&#39;s go back to using only two subsets but with CrossValidation</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector}:
+ AbstractMatrix{Float64}[[0.947 -0.155; -0.77 0.539; … ; 1.32 3.66; 1.86 3.14], [-1.1475 -0.4378; 1.31 0.786; … ; 0.577 -0.208; -0.4136 -0.7475], [1.14 -1.23; 1.24 0.562; … ; 0.873 1.27; 2.1 2.58]]
+ AbstractVector{Int64}[[-1, -1, 1, 1, -1, -1, -1, 1, 1, 1  …  -1, 1, 1, 1, -1, -1, -1, 1, 1, 1], [-1, 1, -1, 1, -1, 1, 1, -1, 1, 1  …  -1, -1, -1, 1, -1, -1, -1, -1, -1, -1], [-1, 1, 1, 1, -1, -1, -1, 1, -1, 1  …  1, -1, -1, -1, -1, -1, 1, 1, 1, 1]]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.6,0.4])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector}:
+ AbstractMatrix{Float64}[[1.52 2.62; -0.74 1.54; … ; 2.84 1.75; 1.94 1.89], [-0.659 2.61; 0.844 2.78; … ; -1.1 0.0522; 2.75 0.811]]
+ AbstractVector{Int64}[[1, -1, 1, -1, 1, -1, 1, 1, -1, -1  …  1, 1, 1, -1, 1, -1, -1, 1, 1, 1], [1, 1, 1, 1, 1, -1, -1, -1, -1, -1  …  -1, 1, 1, -1, -1, -1, 1, -1, -1, 1]]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sampler    = KFold(nsplits=10)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Utils.KFold(10, 1, true, Random._GLOBAL_RNG())</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ops     = PerceptronTrainingOptions(epochs=10,shuffle=true)</code><code class="nohighlight hljs ansi" style="display:block;">Main.var&quot;Main&quot;.PerceptronTrainingOptions(10, false, true)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; (acc,σ) = cross_validation([xtrain,ytrain],sampler) do trainData,valData,rng
+                       (xtrain,ytrain) = trainData; (xval,yval) = valData
+                       m               = Perceptron(zeros(size(xtrain,2)+1))
+                       train!(m,xtrain,ytrain,ops)
+                       ŷval         = predict(m,xval)
+                       valAccuracy  = accuracy(ŷval,yval)
+                       return valAccuracy
+                   end</code><code class="nohighlight hljs ansi" style="display:block;">(0.8583333333333334, 0.08827915878928168)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; epochsSet  = 1:10:301</code><code class="nohighlight hljs ansi" style="display:block;">1:10:301</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; shuffleSet = [false,true]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Bool}:
+ 0
+ 1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bestE       = 0</code><code class="nohighlight hljs ansi" style="display:block;">0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bestShuffle = false</code><code class="nohighlight hljs ansi" style="display:block;">false</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bestAcc     = 0.0</code><code class="nohighlight hljs ansi" style="display:block;">0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; for e in epochsSet, s in shuffleSet
+           global bestE, bestShuffle, bestAcc
+           local acc
+           local ops  = PerceptronTrainingOptions(epochs=e,shuffle=s)
+           (acc,_)    = cross_validation([xtrain,ytrain],sampler) do trainData,valData,rng
+                           (xtrain,ytrain) = trainData; (xval,yval) = valData
+                           m               = Perceptron(zeros(size(xtrain,2)+1))
+                           train!(m,xtrain,ytrain,ops)
+                           ŷval            = predict(m,xval)
+                           valAccuracy     = accuracy(ŷval,yval)
+                           return valAccuracy
+                       end
+           if acc &gt; bestAcc
+               bestAcc     = acc
+               bestE       = e
+               bestShuffle = s
+           end
+       end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bestAcc</code><code class="nohighlight hljs ansi" style="display:block;">0.925</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bestE</code><code class="nohighlight hljs ansi" style="display:block;">161</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; bestShuffle</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ops = PerceptronTrainingOptions(epochs=bestE,shuffle=bestShuffle)</code><code class="nohighlight hljs ansi" style="display:block;">Main.var&quot;Main&quot;.PerceptronTrainingOptions(161, false, true)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; m   = Perceptron(zeros(size(xtest,2)+1))</code><code class="nohighlight hljs ansi" style="display:block;">Main.var&quot;Main&quot;.Perceptron([0.0, 0.0, 0.0])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; train!(m,xtrain,ytrain,ops)</code><code class="nohighlight hljs ansi" style="display:block;">3-element Vector{Float64}:
+ -5.0
+  2.5832999999999586
+  4.0829999999999735</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtest           = predict(m,xtest)</code><code class="nohighlight hljs ansi" style="display:block;">80-element Vector{Int64}:
+  1
+  1
+  1
+  1
+  1
+ -1
+ -1
+  1
+ -1
+ -1
+  ⋮
+  1
+  1
+ -1
+ -1
+ -1
+  1
+ -1
+ -1
+  1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; testAccuracy    = accuracy(ŷtest,ytest)</code><code class="nohighlight hljs ansi" style="display:block;">0.875</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot2DClassifierWithData(xtest,ytest,m.θ,pid=13)</code><code class="nohighlight hljs ansi" style="display:block;">&quot;/home/runner/work/SPMLJ/SPMLJ/buildedDoc/03_-_ML1_-_Introduction_to_Machine_Learning/currentPlot13.svg&quot;</code></pre><p><img src="currentPlot13.svg" alt/></p><p><a href="0302_-_The_Perceptron_classifier.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p><hr/><div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/runner/work/SPMLJ/SPMLJ/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/0302_-_The_Perceptron_classifier.md",
+"title" : "0302_-_The_Perceptron_classifier.md",
+"permalink" : pageURL
+};
+</script><div class="addthis_inline_share_toolbox"></div><hr/><script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script><script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script><!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0301_-_Machine_learning_main_concepts.html">« 0301 - Machine learning main concepts</a><a class="docs-footer-nextpage" href="0302x_EXERCISE-3.1.html">0302x EXERCISE-3.1 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.2.1 on <span class="colophon-date" title="Monday 1 January 2024 22:59">Monday 1 January 2024</span>. Using Julia version 1.10.0.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
