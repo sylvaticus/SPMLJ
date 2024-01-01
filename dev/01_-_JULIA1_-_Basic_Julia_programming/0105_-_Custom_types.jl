@@ -1,21 +1,20 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 # # 0105 Custom Types
-
 
 # ## Some stuff to set-up the environment..
 
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will however be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will however be lost)
 ## Pkg.resolve()   
 ## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
@@ -81,14 +80,53 @@ mutable struct Foo2
         return new(f1+f2,f3)
     end
 end
-Foo2(1,2,"aaa")
 
 # !!! tip
 #     If any inner constructor method is defined, no default constructor method is provided.
 
+Foo2(1,2,"aaa")
 ## Foo2(1,"aaa") # Error, no default constructor !
 
+# You can also use a macro (requires Julia 1.1) to automatically define an (outer) keyword_based constructor with support for optional arguments:
+
+Base.@kwdef struct Kfoo
+   x::Int64 = 1
+   y = 2
+   z
+end
+Kfoo(z=3)
+
+# Note that, at time of writing, `@kwdef` is not exported by Julia base, meaning that while widely used, it is considered still "experimental" and its usage may change in future Julia minor versions.
+
+# ## Custom pretty-printing 
+
+# We can customise the way our custom type is rendered by overriding the `Base.show` function for our specific type.
+
+# We first need to import `Base.show`
+import Base.show
+
+mutable struct FooPoint
+    x::Int64
+    y::Int64
+end
+
+function show(io::IO, ::MIME"text/plain", x::FooPoint)
+    ## if get(io, :compact, true) ... # we can query the characteristics of the output
+    print(io,"A FooPoint struct")
+end
+function show(io::IO, x::FooPoint) # overridden by print
+    print(io, "FooPoint x is $(x.x) and y is $(x.y) \nThat's all!")
+end
+
+foo_obj=FooPoint(1,2)
+display(foo_obj)
+show(foo_obj)
+print(foo_obj)
+println(foo_obj)
+
+
 # ## Parametric types
+
 
 struct Point{T<:Number} # T must be a child of type "Number"
    x::T
@@ -133,7 +171,6 @@ end
 getPlane(intMatrixInside,1,2)
 
 # A package where non-type parameters are emploied to boost speed is [StaticArray.jl](https://github.com/JuliaArrays/StaticArrays.jl) where one parameter is the _size_ of the array that hence become known at compile time
-
 
 # ## Inheritance
 

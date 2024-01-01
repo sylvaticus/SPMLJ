@@ -1,11 +1,11 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 
 # # 0202 - Miscellaneous topics
@@ -15,7 +15,7 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 ## Pkg.resolve()   
 ## Pkg.instantiate() # run this if you didn't in Segment 02.01
 using Random
@@ -34,13 +34,13 @@ using StatsPlots # no need to `using Plots` as `Plots` elements are reexported b
 
 # ### Plotting functions
 
-# Let's start plotting a function. The FIRST TIME you invoke `plot` will take a while. This is the famous "time to first plot" problem due to the JIT compilation, but it refer only to the first plotting in a working session 
+# Let's start plotting a function. The FIRST TIME you invoke `plot` will take a while. This is the famous "time to first plot" problem due to the JIT compilation, but it will materialize only on the first plotting in a working session 
 plot(cos) # default [-5,+5] range
-savefig("currentPlot1.svg"); #src
+savefig("currentPlot.svg"); #src
 # ![](currentPlot.svg)
 plot!(x->x^2, -2,2 ) # more explicit, with ranges
 savefig("currentPlot1.svg"); #src
-# ![](currentPlot.svg)
+# ![](currentPlot1.svg)
 plot!(x->max(x,2), label="max function", linestyle=:dot, color=:black, title="Chart title", xlabel= "X axis", ylabel="Y axis", legend=:topleft) # a bit of design
 savefig("currentPlot2.svg"); #src
 # ![](currentPlot2.svg)
@@ -123,6 +123,8 @@ plot!(d)
 savefig("currentPlot10.svg"); #src
 # ![](currentPlot10.svg)
 fit(Normal, sample) # using MLE 
+
+# For a quick overview on the various distributions available, the main methods that apply to them and a comparision with equivvalent R and Python libraries, you can see this cheatsheet: https://github.com/sylvaticus/commonDistributionsInJuliaPythonR
 
 # ## Curve fitting
 
@@ -229,6 +231,9 @@ cost = Dict( (r[:prod],r[:orig],d) => r[Symbol(d)] for r in eachrow(costtable), 
 trmodel = Model(GLPK.Optimizer)
 set_optimizer_attribute(trmodel, "msg_lev", GLPK.GLP_MSG_ON)
 
+# !!! tip "..."
+#     Alternativelly, you can use `HiGHS` as another popular choice for linear solver engine
+
 # #### Model's endogenous variables definition
 
 @variables trmodel begin
@@ -322,9 +327,7 @@ y   = Dict( "Chêne pédonculé" => 1.83933333333333,
 # for each element of an array
 σ = Dict((i,j) => σtable[i_ix,j_ix] for (i_ix,i) in enumerate(species), (j_ix,j) in enumerate(species))
 
-################################################################################
-###### Showing the possible mean/variance of the portfolio by simulation #######
-################################################################################
+# #### Showing the possible mean/variance of the portfolio by simulation
 
 nSamples = 1000
 shares   = rand(nSamples,nSpecies);
@@ -344,9 +347,7 @@ scatter(pScores[:,1],pScores[:,2],colour=:blue)
 savefig("currentPlot13.svg"); #src
 # ![](currentPlot13.svg)
 
-################################################################################
-### Finding (one) optimal portfolio ############################################
-################################################################################
+# #### Finding (one) optimal portfolio
 
 # Risk aversion coefficient
 α = 0.1
@@ -362,12 +363,6 @@ end
 
 # We declare the constraint shat the sum of shares must be equal to 1
 @constraint(port, c_share, sum(x[i] for i in species) == 1)
-
-#=
-@objective port Min begin
-  α *  sum(x[i] * x[j] * σ[i,j] for i in species for j in species) - sum(x[i] * y[i] for i in species)
-end
-=#
 
 @NLobjective port Min α *  sum(x[i] * x[j] * σ[i,j] for i in species for j in species) - sum(x[i] * y[i] for i in species)
 

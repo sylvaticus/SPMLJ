@@ -1,11 +1,11 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+# ################################################################################
+# ###  Introduction to Scientific Programming and Machine Learning with Julia  ###
+# ###                                                                          ###
+# ### Run each script on a new clean Julia session                             ###
+# ### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
+# ### Licence (apply to all material of the course: scripts, videos, quizes,..)###
+# ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
+# ################################################################################
 
 
 # # 0302 - The Perceptron algorithm for linear classification 
@@ -15,7 +15,7 @@
 cd(@__DIR__)    
 using Pkg      
 Pkg.activate(".")  
-## If using a Julia version different than 1.7 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
 ## Pkg.resolve()     
 Pkg.instantiate()
 using Random
@@ -102,9 +102,10 @@ plot2DClassifierWithData(X,y,θ, origin=true,pid=6)
 plot2DClassifierWithData(X,y,θ,origin=true,pid=7)
 # ![](currentPlot7.svg)
 
-
-
 # ## The complete algorithm
+
+# !!! tip
+#     The algorithm implemented from scratch in this page form the core of the [`PerceptronClassifier`](https://sylvaticus.github.io/BetaML.jl/stable/Perceptron.html#BetaML.Perceptron.PerceptronClassifier) model in `BetaML`, a multiclass linear classifier.
 
 function perceptronOrigin(X,y,epochs=1;verbose=false)
     (nR,nD) = size(X)
@@ -128,6 +129,7 @@ end
 plot2DClassifierWithData(X,y,θopt, origin=true,pid=8)
 # ![](currentPlot8.svg)
 
+# ## Loading binary supervised data
 
 using BetaML, DelimitedFiles
 baseDir          = joinpath(dirname(pathof(BetaML)),"..","test","data")
@@ -139,10 +141,6 @@ idx = shuffle(1:nR)
 perceptronData = perceptronData[idx,:]
 X                = copy(perceptronData[:,[2,3]])
 y                = convert(Array{Int64,1},copy(perceptronData[:,1]))
-θopt             = perceptronOrigin(X,y,verbose=true)
-
-plot2DClassifierWithData(X,y,θopt, origin=true,pid=20)
-# ![](currentPlot20.svg)
 
 # ## A better organisation
 
@@ -253,18 +251,21 @@ ŷtest         = predict(m,xtest)
 testAccuracy  = accuracy(ŷtest,ytest)
 plot2DClassifierWithData(xtest,ytest,m.θ,pid=12)
 # ![](currentPlot12.svg)
-cfOut = ConfusionMatrix(ŷtest,ytest)
+cfOut = ConfusionMatrix()
+fit!(cfOut,ŷtest,ytest)
 print(cfOut)
+res = info(cfOut)
+heatmap(string.(res["categories"]),string.(res["categories"]),res["normalised_scores"],seriescolor=cgrad([:white,:blue]),xlabel="Predicted",ylabel="Actual", title="Confusion Matrix (normalised scores)")
 
-# Lets use CrossValidation 
+# Let's use CrossValidation 
 ((xtrain,xvalidation,xtest),(ytrain,yvalidation,ytest)) = partition([X,y],[0.6,0.2,0.2])
 ## Very few records..... let's go back to using only two subsets but with CrossValidation 
 ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.6,0.4])
 
-sampler    = KFold(nSplits=10)
+sampler    = KFold(nsplits=10)
 
 ops     = PerceptronTrainingOptions(epochs=10,shuffle=true)
-(acc,σ) = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
+(acc,σ) = cross_validation([xtrain,ytrain],sampler) do trainData,valData,rng
                 (xtrain,ytrain) = trainData; (xval,yval) = valData
                 m               = Perceptron(zeros(size(xtrain,2)+1))
                 train!(m,xtrain,ytrain,ops)
@@ -285,7 +286,7 @@ for e in epochsSet, s in shuffleSet
     global bestE, bestShuffle, bestAcc
     local acc
     local ops  = PerceptronTrainingOptions(epochs=e,shuffle=s)
-    (acc,_)    = crossValidation([xtrain,ytrain],sampler) do trainData,valData,rng
+    (acc,_)    = cross_validation([xtrain,ytrain],sampler) do trainData,valData,rng
                     (xtrain,ytrain) = trainData; (xval,yval) = valData
                     m               = Perceptron(zeros(size(xtrain,2)+1))
                     train!(m,xtrain,ytrain,ops)

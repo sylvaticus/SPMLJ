@@ -1,21 +1,20 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 # # 0106 Further Topics
-
 
 # ## Some stuff to set-up the environment..
 
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will however be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will however be lost)
 ## Pkg.resolve()   
 ## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
@@ -203,6 +202,7 @@ b = ccall((:mySum,myclib), Float64, (Float32,Float32), 2.5, 1.5)
 
 # The "default" way to use Python code in Julia is trough the [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) package. It automatically take care of convert between Python types (including numpy arrays) and Julia types (types that can not be converted automatically are converted to the generic `PyObject` type).
 ENV["PYTHON"] = "" # will force PyCall to download and use a "private to Julia" (conda based) version of Python. use "/path/to/python" if you want to reuse a version already installed on your system
+
 ## using Pkg
 ## Pkg.add("PyCall")
 ## Pkg.build("PyCall")
@@ -316,6 +316,7 @@ destDoc.save()
 
 # To use R from within Julia we use the [RCall](https://github.com/JuliaInterop/RCall.jl) package. 
 ENV["R_HOME"] = "*" #  # will force RCall to download and use a "private to Julia" (conda based) version of R. use "/path/to/R/directory" (e.g. `/usr/lib/R`) if you want to reuse a version already installed on your system
+
 ## using Pkg
 ## Pkg.add("RCall")
 ## Pkg.build("RCall")
@@ -478,7 +479,7 @@ using BenchmarkTools
 @code_warntype f1(0) # Body::Any 
 @code_warntype f2(0) # Body::Int64 
 
-# While in general is NOT important to annotate function parameters for performance, it is important to annotate struct fields with concrete types 
+# While in general it is NOT important to annotate function parameters for performance, it is important to annotate struct fields with concrete types 
 abstract type Goo end
 struct Foo <: Goo
     x::Number
@@ -704,6 +705,7 @@ methods(foo)
 @which foo(2)          # which method am I using when I call foo with an integer?
 typeof(a)
 eltype(a)
+isa(1.2, Number)
 fieldnames(Foo)
 dump(fobj)
 names(Main, all=false) # available (e.g. exported) identifiers of a given module
@@ -711,6 +713,7 @@ sizeof(2)              # bytes
 typemin(Int64)
 typemax(Int64)
 bitstring(2)
+
 # Various low-level interpretation of an expression
 @code_native foo(3)
 @code_llvm foo(3)
@@ -847,7 +850,9 @@ Threads.threadid()
 
 # The macro `@everywhere` make available the given function (or functions with `@everywhere begin [shared function definitions] end` or `@everywhere include("sharedCode.jl")`) to all the current workers.
 
-## result  = map(fib,a)
+# ```julia
+# result  = map(fib,a)
+# ```
 
 # The pmap function ("parallel" map) automatically pick up the free processes, assign them the job prom the "input" array and merge the results in the returned array. Note that the order is preserved:
 

@@ -1,11 +1,11 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 # ## 0104 Control Flow and Functions
 
@@ -13,7 +13,7 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 ## Pkg.resolve()   
 ## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
@@ -83,7 +83,7 @@ g = 2
 include("010401-varScopeExample.jl.txt")            # gives a warning !
 
 
-# ## Repeated iterations: `for` and `while` loops, List Comprehension, Maps
+# ## [Repeated iterations: `for` and `while` loops, Array Comprehension, Maps](@id control_flow)
 
 for i in 1:2, j in 3:4             # j is the inner loop
     println("i: $i, j: $j")
@@ -100,7 +100,7 @@ while true             # or condition, e.g. while a == 10
     println("This is never printed")
 end
 
-# ### List Comprehension
+# ### Array Comprehension
 [ i+j for i in 1:2, j in 3:4 if j >= 4]
 
 # ### Maps
@@ -199,17 +199,34 @@ f(a,b=1;c=1) = a+10b+100c  # `a` and `b` are positional arguments (`b` with a de
 f(2)
 f(2,c=3)
 
-foo(a, args...;c=1) = a + length(args) + sum(args) + c
+# We can use the splat operator (`...`) to specific a _variable_ number of arguments.
+# Here an example for variable positional arguments...
+foo(a, args...;c=1) = a + length(args) + sum(args) + c  
 foo(1,2,3,c=4)
+# ...and here for variable keyword arguments:
 
+fooinner(;a=1,b=10) = a+b
+function foo(x;y="aaa",kwargs...)
+      println("y is $y")
+      for (k,v) in kwargs
+            println(k,"  ",v) # note there is no `y`
+      end
+      fooinner(;kwargs...)
+end
+foo(10,a=10,b=20,y="bbb")
+
+# Note that while normally using the semicolon instead of the colon for separating keyword arguments in function calls is optional, when we "forward" variable keyword arguments to a inner function we MUST use the semicolon in the call too. 
+# Variable positional arguments can be constrained in the type and size, eventually parametrically, using `foo(a,x::Vararg{Float64,2}) = ...` (note that then the splat operator is not needed).
+ 
 # Rules for positional and keyword arguments:
 # - keyword arguments follow a semicolon `;` in the parameters list of the function definition 
 # - a positional argument without a default can not follow a positional argument with a default provided
-# - the splat operator to define variable number of arguments must be the last positional argument 
+# - the splat operator to define variable number of (positional|keyword) arguments must be the last (positional|keyword) argument 
 # - the function call must use positional arguments by position and keyword arguments by name
 
 
-## foo(a::String="aaa",b::Int64) = "$a "+string(b) # error! Optional positional argument before a mandatory positional one  
+## foo0(a::String="aaa",b::Int64) = "$a "+string(b) # error! Optional positional argument before a mandatory positional one  
+foo0(b::Int64,a::String="aaa")  = "$a "+string(b) # fine!
 
 # ### Argument types and multiple dispatch
 
@@ -246,7 +263,7 @@ foo4(a::Int64,b::Array{T} where T <: Number) = a .+ fill(T,b,2)      # wil lerro
 #   - mutable objects: if the argument is rebinded to an other object, no effects on the caller object. If the object is modified, the caller object (being the same object) is also modified
 
 x = 10
-foo(y) = y = 1
+foo(y) = (y = 1)
 foo(x)
 x
 foo(x) = x[1] = 10

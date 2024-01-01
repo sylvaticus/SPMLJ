@@ -1,11 +1,11 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 # # 0103 Predefined types
 
@@ -15,7 +15,7 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
 ## Pkg.resolve()   
 ## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
@@ -34,9 +34,9 @@ b = a[2]
 typeof(b)
 b = a[3:end]
 typeof(b)
-#a[2] = 'E' # error !
+## a[2] = 'E' # error !
 
-## info...
+# Information...
 ismutable(a) # long story.... https://github.com/JuliaLang/julia/issues/30210
 length(a)
 findfirst(isequal('o'), a)
@@ -49,14 +49,14 @@ endswith(a,"ld ")
 startswith(a,"Mooo")
 occursin(r"H*.d ", a)
 
-## modifications..
+# Modifications..
 lowercase(a)
 lowercasefirst(a)
 split(a, " ")
 replace(a,"World" => "Universe")
 strip(a)
 
-## concatenation..
+# Concatenation..
 a = "Hello"; b= "World"
 c = join([a,b]," ")
 c = a*" "*b
@@ -70,9 +70,9 @@ b = string(2019)
 # !!! warning
 #     Attention not to confuse the `string` function with the `String` type and the `String()` constructor!
 
-## to know more...
+# to know more...
 methodswith(String,supertypes=true); # where any argument is a String or any parent type (such e.g. AbstractString)
-## See also https://docs.julialang.org/en/v1/manual/strings/
+# See also https://docs.julialang.org/en/v1/manual/strings/
 
 # ## Arrays - `Array{T,N}`
 
@@ -175,7 +175,7 @@ findall(x -> myComparitionWith1(x), [2,1,3,1])
 filter(i -> i > 2, [1,2,3,4])
 
 
-## delete [7,2,5] from an 1:10 array:
+# Delete `[7,2,5] from an `1:10` array:
 data     = [1:10;]
 toDelete = [7,5,2]
 deleteat!(data, findall(x -> x in toDelete, data))
@@ -200,7 +200,7 @@ a = [1 4; 2 5; 3 6]   # By row, i.e. elements of the first row, elements of the 
 
 ## Empty (zero-elements) arrays:
 a = Array{Float64}(undef, 0, 0, 0) # using explicitly the constructor and explicitly giving zero for each wanted dimension 
-## n-elements initialisation:
+# n-elements initialisation:
 (T,n,m,g,j) = (Int64,1,2,3,'a')
 a = zeros(n,m,g)            # n,m,g-elements zeros array
 a = ones(n,m,g)             # n,m,g-elements ones array
@@ -324,6 +324,20 @@ v2 = [t...]
 v3 = [i[1] for i in t]
 v4 = collect(t)
 v == v2 == v3 == v4
+
+# ### Tuples with a variable number of same-type elements
+
+# While the tuple type normally include informations of the types of each elements, one by one, we may want to have a way to "summarise" this information by specifying that a certain number of elements, all of this type, are repeated. This is the task of the `Vararg{T}` and `Vararg{T,N}` arguments that must be specified as the last parameters of a `Tuple` type. The former one allows for a _variable_ number of elements, and the latter one specific an exact number of elements:  
+
+typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int}}  
+typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int,2}}  
+typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int,3}} 
+
+# !!! tip 
+#     `NTuple{N,T}`` is an alias for `Tuple{Vararg{T,N}}`
+
+typeof((1,10)) <: NTuple{2,Int} 
+
 
 # ## Named tuples - `NamedTuple{T1,T2,...}`
 
@@ -470,7 +484,8 @@ Dates.format(newYearDay, "dd/m/yy")
 Dates.format(christmasLunch, "dd/mm/yy H:M:SS")
 
 # Other...
-## Date and DateTime...
+
+# - Date and DateTime...
 year(christmasDay)
 isleapyear(christmasDay)
 month(christmasLunch)
@@ -481,7 +496,7 @@ dayname(christmasDay)
 daysofweekinmonth(christmasDay) # there are 4 Wednesdays in December 2030
 dayofweekofmonth(christmasDay)  # and the 25th is the 4th of them
 
-## Only datetime..
+# - Only datetime..
 hour(christmasLunch)
 minute(christmasLunch)
 second(christmasLunch)
@@ -491,7 +506,7 @@ second(christmasLunch)
 hollidayPeriod = newYearDay - christmasDay  # between dates is in days
 longPeriod = Date(2035,6,1) - christmasDay
 mealPeriod = DateTime(2030,12,31,23,30) - newYearEvenDinner # between datetime is in milliseconds
-#newYearDay - newYearEvenDinner # error! no mixed
+## newYearDay - newYearEvenDinner # error! no mixed
 convert(DateTime,newYearDay)
 convert(Date,newYearEvenDinner) # possible information loss
 mealPeriod = convert(DateTime,newYearDay) - newYearEvenDinner
@@ -514,7 +529,7 @@ typeof(mealPeriod)
 #     - `Nanosecond`
 
 
-#convert(Dates.Year,longPeriod)      # going up: error or inexacterror
+## convert(Dates.Year,longPeriod)      # going up: error or inexacterror
 convert(Dates.Millisecond,longPeriod) # going down:  fine
 convert(Dates.Millisecond,mealPeriod)
 

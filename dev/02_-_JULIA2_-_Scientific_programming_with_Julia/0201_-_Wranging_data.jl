@@ -1,11 +1,11 @@
-################################################################################
-###  Introduction to Scientific Programming and Machine Learning with Julia  ###
-###                                                                          ###
-### Run each script on a new clean Julia session                             ###
-### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-### Licence (apply to all material of the course: scripts, videos, quizes,..)###
-### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
-################################################################################
+################################################################################ #src
+###  Introduction to Scientific Programming and Machine Learning with Julia  ### #src
+###                                                                          ### #src
+### Run each script on a new clean Julia session                             ### #src
+### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
+### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
+################################################################################ #src
 
 
 # # 0201 - Data Wrangling 
@@ -15,8 +15,8 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-## If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
-## Pkg.resolve()   
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+#Pkg.resolve()   
 Pkg.instantiate()
 using Random
 Random.seed!(123)
@@ -30,7 +30,7 @@ Random.seed!(123)
 #     DataFrames are popular format for **in-memory tabular data**. Their main advantages over Arrays are that they can efficiently store different types of data on each column (indeed each column is a wrapper over an `Array{T,1}` where `T` is specific to each column) and, thanks also to their named columns, provide convenient API for data operations, like indexing, querying , joining, split-apply-combine, etc. 
 
 # !!! info
-#     In most circunstances we can refer to dataframe columns either by using their name as a string, e.g. `"Region"`, or as symbol, e.g. `:Region`. In the rest of the segment we will use the strings approach.
+#     In most circunstances we can refer to dataframe columns either by using their name as a string, e.g. `"Region"`, or as symbol, e.g. `:Region`. In the rest of the segment we will use the string approach.
 
 
 # ## Data import
@@ -67,8 +67,8 @@ sheetNames = XLSX.sheetnames(XLSX.readxlsx("data.xlsx"))
 data = XLSX.readxlsx("data.xlsx")["Sheet1"]["A1:D9"]
 data = XLSX.readxlsx("data.xlsx")["Sheet1"][:]
 data = XLSX.readdata("data.xlsx", "Sheet1", "A1:D9")
-XLSX.readtable("data.xlsx", "Sheet1") # tuple vector of (data) vectors, vector of symbols, usable as DF constructor
-data = DataFrame(XLSX.readtable("data.xlsx", "Sheet1")...) 
+XLSX.readtable("data.xlsx", "Sheet1") # a specific XLSX data structure usable as DF constructor
+data = DataFrame(XLSX.readtable("data.xlsx", "Sheet1")) 
 
 # ### OdsIO.jl: ods -> {Matrix, DataFrame}
 using OdsIO
@@ -76,9 +76,9 @@ ods_read("data.ods";sheetName="Sheet1",retType="DataFrame")
 ods_read("data.ods";sheetName="Sheet1",retType="Matrix",range=[(2,3),(9,4)]) # [(tlr,tlc),(brr,brc)]
 
 # ### HTTP.jl: from internet
-import HTTP
-using Pipe, ZipFile, Tar
-urlData = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/raw/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/data.csv"
+import HTTP, Pipe.@pipe
+using ZipFile, Tar
+urlData  = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/raw/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/data.csv"
 urlDataZ = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/raw/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/data.zip"
 
 
@@ -216,7 +216,7 @@ end
 # ### Managing missing values
 
 # !!! tip
-#     See also the section [`Missingness implementations`](@ref) for a general discussion on missing values
+#     See also the section [`Missingness implementations`](@ref missingness_implementations) for a general discussion on missing values. [BetaML](https://github.com/sylvaticus/BetaML.jl) has now several algorithms for missing imputation.
 
 df = copy(data)
 ## df[3,"forarea"]  = missing # Error, type is Flat64, not Union{Float64,Missing}
@@ -379,13 +379,14 @@ using DataStructures
 nT = NamedTuple(OrderedDict([Symbol(c) => data[:,c]  for c in names(data)])) # order preserved
 
 # ### Saving as CSV file
-
+rm("outdata.csv", force=true)
 CSV.write("outdata.csv",data) # see options at the beginning of segment in the import section and `? CSV.write` for specific export options
 
 # ### Saving as OpenDocument spreadsheet
-
+rm("outdata.ods", force=true)
 ods_write("outdata.ods",Dict(("myData",3,2) => data)) # exported starting on cell B3 of sheet "myData"
 
 # ### Saving as Excel spreadsheet
+rm("outdata.xlsx", force=true)
 XLSX.writetable("outdata.xlsx",myData = (collect(eachcol(data)),names(data)))
 
