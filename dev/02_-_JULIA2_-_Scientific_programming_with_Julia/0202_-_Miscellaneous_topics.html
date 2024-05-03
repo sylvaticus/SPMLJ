@@ -318,20 +318,7 @@ Subject to
  c_total_shipment[Grenoble,Marseille] : x[Fuelwood,Grenoble,Marseille] + x[Sawnwood,Grenoble,Marseille] + x[Pannels,Grenoble,Marseille] ≤ 625
  c_total_shipment[Epinal,Strasbourg] : x[Fuelwood,Epinal,Strasbourg] + x[Sawnwood,Epinal,Strasbourg] + x[Pannels,Epinal,Strasbourg] ≤ 625
  c_total_shipment[Bordeaux,Strasbourg] : x[Fuelwood,Bordeaux,Strasbourg] + x[Sawnwood,Bordeaux,Strasbourg] + x[Pannels,Bordeaux,Strasbourg] ≤ 625
- c_total_shipment[Grenoble,Strasbourg] : x[Fuelwood,Grenoble,Strasbourg] + x[Sawnwood,Grenoble,Strasbourg] + x[Pannels,Grenoble,Strasbourg] ≤ 625
- x[Fuelwood,Epinal,Paris] ≥ 0
- x[Sawnwood,Epinal,Paris] ≥ 0
- x[Pannels,Epinal,Paris] ≥ 0
- x[Fuelwood,Bordeaux,Paris] ≥ 0
- x[Sawnwood,Bordeaux,Paris] ≥ 0
- x[Pannels,Bordeaux,Paris] ≥ 0
- x[Fuelwood,Grenoble,Paris] ≥ 0
- x[Sawnwood,Grenoble,Paris] ≥ 0
- x[Pannels,Grenoble,Paris] ≥ 0
- x[Fuelwood,Epinal,Lyon] ≥ 0
- x[Sawnwood,Epinal,Lyon] ≥ 0
- x[Pannels,Epinal,Lyon] ≥ 0
- x[Fuelwood,Bordeaux,Lyon] ≥ 0
+[[...14 constraints skipped...]]
  x[Sawnwood,Bordeaux,Lyon] ≥ 0
  x[Pannels,Bordeaux,Lyon] ≥ 0
  x[Fuelwood,Grenoble,Lyon] ≥ 0
@@ -591,7 +578,7 @@ Subject to
  x[Chêne pédonculé] ≥ 0
  x[Chêne sessile] ≥ 0
  x[Hêtre] ≥ 0
- x[Pin sylvestre] ≥ 0</code></pre><p>Solve the model and return the solving status:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; optimize!(port)</code><code class="nohighlight hljs ansi" style="display:block;">This is Ipopt version 3.14.13, running with linear solver MUMPS 5.6.1.
+ x[Pin sylvestre] ≥ 0</code></pre><p>Solve the model and return the solving status:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; optimize!(port)</code><code class="nohighlight hljs ansi" style="display:block;">This is Ipopt version 3.14.14, running with linear solver MUMPS 5.6.2.
 
 Number of nonzeros in equality constraint Jacobian...:        4
 Number of nonzeros in inequality constraint Jacobian.:        0
@@ -636,7 +623,7 @@ Number of inequality constraint evaluations          = 0
 Number of equality constraint Jacobian evaluations   = 1
 Number of inequality constraint Jacobian evaluations = 0
 Number of Lagrangian Hessian evaluations             = 8
-Total seconds in IPOPT                               = 1.481
+Total seconds in IPOPT                               = 1.463
 
 EXIT: Optimal Solution Found.</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; status = termination_status(port)</code><code class="nohighlight hljs ansi" style="display:block;">LOCALLY_SOLVED::TerminationStatusCode = 4</code></pre><p>Return the objective:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; println(&quot;Objective value: &quot;, objective_value(port))</code><code class="nohighlight hljs ansi" style="display:block;">Objective value: -3.2986575928648394</code></pre><p>Return the value of the decision variable:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; optShares = value.(x)</code><code class="nohighlight hljs ansi" style="display:block;">1-dimensional DenseAxisArray{Float64,1,...} with index sets:
     Dimension 1, [&quot;Chêne pédonculé&quot;, &quot;Chêne sessile&quot;, &quot;Hêtre&quot;, &quot;Pin sylvestre&quot;]
@@ -706,4 +693,4 @@ PDRTJS_settings_8962705 = {
         crossorigin="anonymous"
         async>
 </script><script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script><!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0201_-_Wranging_data.html">« 0201 - Wranging data</a><a class="docs-footer-nextpage" href="0202x_EXERCISE-2.1.html">0202x EXERCISE-2.1 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.2.1 on <span class="colophon-date" title="Monday 1 January 2024 22:57">Monday 1 January 2024</span>. Using Julia version 1.10.0.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0201_-_Wranging_data.html">« 0201 - Wranging data</a><a class="docs-footer-nextpage" href="0202x_EXERCISE-2.1.html">0202x EXERCISE-2.1 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.4.1 on <span class="colophon-date" title="Friday 3 May 2024 08:09">Friday 3 May 2024</span>. Using Julia version 1.10.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

@@ -8,7 +8,7 @@ b = fill(3,2)
 c = a .* b</code></pre><p>and knowing that <code>c[1][1]</code> is equal to <code>3&#39;,</code>c[1][2]<code>is equal to</code>6<code>and</code>c[2]<code>is equal to</code>9<code>(i.e.</code>c = [[3,6],9]<code>), which is the value of</code>a<code>, i.e.</code>XXX` in the script ?</p><p><em>(your answer should start and end with a square bracket and include no spaces)</em></p><script>
 var ID = "WatBWO2v"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='WatBWO2v' data-controltype=''>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='WatBWO2v' data-controltype='' onSubmit='return false;'>
   <div class='form-group '>
     <div class='controls'>
       <div class="form" id="controls_WatBWO2v" correct='-1' attempts='0'>
@@ -36,7 +36,7 @@ document.getElementById('controls_WatBWO2v').addEventListener("quizquestion_answ
 
 <script text='text/javascript'>
 document.getElementById("WatBWO2v").addEventListener("change", function() {
-  var correct = RegExp('[[1,2],3]').test(this.value);
+  var correct = RegExp('[[1,2],3]').test(this.value.replaceAll(RegExp('', 'g'), ''));
   var msgBox = document.getElementById('WatBWO2v_message');
   
   if(correct) {
@@ -67,7 +67,7 @@ document.getElementById("WatBWO2v").addEventListener("change", function() {
 <details><summary>RESOLUTION</summary><p><code>c</code> is made by multiplicating each element of <code>a</code> with the vector <code>[3,3]</code>. From the question we know that the first element is a vector itself of two integers, <code>3</code> and <code>6</code>, and the second element is an integer, <code>9</code> (hence a scalar). So <code>a</code> is just a vector with the same structure but the individual elements divided by <code>3</code>.</p><p>The correct answer is: &quot;[[1,2],3]&quot;</p></details><hr/><h3 id="Q2:-Array-theory"><a class="docs-heading-anchor" href="#Q2:-Array-theory">Q2: Array theory</a><a id="Q2:-Array-theory-1"></a><a class="docs-heading-anchor-permalink" href="#Q2:-Array-theory" title="Permalink"></a></h3><p>Which of the following sentences are correct?</p><script>
 var ID = "iZfIHysE"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='iZfIHysE' data-controltype=''>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='iZfIHysE' data-controltype='' onSubmit='return false;'>
   <div class='form-group '>
     <div class='controls'>
       <div class="form" id="controls_iZfIHysE" correct='-1' attempts='0'>
@@ -203,7 +203,7 @@ rb.addEventListener("change", function() {
 <details><summary>RESOLUTION</summary><p>A few notes concerning the wrong sentences: Linear albebra functionality is included directly in the standard library, no need for a third party package at all; The size on different dimensions can be different (e.g. <code>rand(2,3,4)</code> produces a 3-dimensional array whose size is <code>(2,3,4)</code>); Arrays can contain heterogeneous elements (at the cost of reduced performances); Being &quot;column mayor&quot; means that arrays are &quot;physically&quot; stored in memory by columns. Accessing one of this elements consequentiality, one after the other, is cheap. This means that it is cheaper to loop over the various rows of the same columns than looping over the various column of the same row and hence better to keep the loop over the rows as the inner loop; The <code>transpose</code> function works only with numerical matrices. Use <code>permutedims</code> instead for non-numerical matrices.</p><p>The correct answers are:</p><ul><li>&quot;For multidimensional arrays the number of elements on any given dimension must be the same&quot;</li><li>&quot;When the algorithm allows to know the number of elements in an array, it is often more efficient to first create and allocate memory for the array and then modify each individual element compared to start with an empty array and then add the individual elements&quot;</li></ul></details><hr/><h3 id="Q3:-Initialisation-of-arrays"><a class="docs-heading-anchor" href="#Q3:-Initialisation-of-arrays">Q3: Initialisation of arrays</a><a id="Q3:-Initialisation-of-arrays-1"></a><a class="docs-heading-anchor-permalink" href="#Q3:-Initialisation-of-arrays" title="Permalink"></a></h3><p>Which of the following are valid methods to create a 2 columns, 3 rows matrix ?</p><script>
 var ID = "N85JSiC5"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='N85JSiC5' data-controltype=''>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='N85JSiC5' data-controltype='' onSubmit='return false;'>
   <div class='form-group '>
     <div class='controls'>
       <div class="form" id="controls_N85JSiC5" correct='-1' attempts='0'>
@@ -370,7 +370,7 @@ rb.addEventListener("change", function() {
 b = a[:,2]&#39; * a[?₁,?₂:3]</code></pre><p>and knowing that (1)  <code>b</code> is equal to <code>19</code> and (2) <code>?₁</code> and <code>?₂</code> are two numbers, which is the sum of <code>?₁ + ?₂</code> ?</p><script>
 var ID = "aJ7CN14u"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='aJ7CN14u' data-controltype=''>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='aJ7CN14u' data-controltype='' onSubmit='return false;'>
   <div class='form-group '>
     <div class='controls'>
       <div class="form" id="controls_aJ7CN14u" correct='-1' attempts='0'>
@@ -528,4 +528,4 @@ PDRTJS_settings_8962705 = {
         crossorigin="anonymous"
         async>
 </script><script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script><!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0103q_-_QUIZ_1.4.html">« 0103q - QUIZ 1.4</a><a class="docs-footer-nextpage" href="0103q_-_QUIZ_1.6.html">0103q - QUIZ 1.6 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.2.1 on <span class="colophon-date" title="Monday 1 January 2024 22:57">Monday 1 January 2024</span>. Using Julia version 1.10.0.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0103q_-_QUIZ_1.4.html">« 0103q - QUIZ 1.4</a><a class="docs-footer-nextpage" href="0103q_-_QUIZ_1.6.html">0103q - QUIZ 1.6 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.4.1 on <span class="colophon-date" title="Friday 3 May 2024 08:09">Friday 3 May 2024</span>. Using Julia version 1.10.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

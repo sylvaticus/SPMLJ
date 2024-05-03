@@ -10,7 +10,7 @@ end
 x</code></pre><p>Which of the following sentences are true (assume a Julia version &gt;= 1.5) ?</p><script>
 var ID = "WatBWO2v"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='WatBWO2v' data-controltype=''>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='WatBWO2v' data-controltype='' onSubmit='return false;'>
   <div class='form-group '>
     <div class='controls'>
       <div class="form" id="controls_WatBWO2v" correct='-1' attempts='0'>
@@ -171,7 +171,7 @@ rb.addEventListener("change", function() {
 end</code></pre><p>prints the sequence <code>4,3,2,4,3,4</code>, what is <code>XXX</code> in the code ?</p><script>
 var ID = "ZKWp2SM6"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='ZKWp2SM6' data-controltype=''>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='ZKWp2SM6' data-controltype='' onSubmit='return false;'>
   <div class='form-group '>
     <div class='controls'>
       <div class="form" id="controls_ZKWp2SM6" correct='-1' attempts='0'>
@@ -199,7 +199,7 @@ document.getElementById('controls_ZKWp2SM6').addEventListener("quizquestion_answ
 
 <script text='text/javascript'>
 document.getElementById("ZKWp2SM6").addEventListener("change", function() {
-  var correct = RegExp('i').test(this.value);
+  var correct = RegExp('i').test(this.value.replaceAll(RegExp('', 'g'), ''));
   var msgBox = document.getElementById('ZKWp2SM6_message');
   
   if(correct) {
@@ -230,7 +230,7 @@ document.getElementById("ZKWp2SM6").addEventListener("change", function() {
 <details><summary>RESOLUTION</summary><p>The inner loop starts at <code>4</code> and then continues in reverse order until it reaches the value of the outer loop, first <code>2</code>, then <code>3</code> and finally <code>4</code>. For <code>i</code>s over <code>4</code>, the inner loop is never executed. Remember that in a range, in Julia, both the extremes are included.</p><p>The correct answer is: <code>i</code></p></details><hr/><h3 id="Q3:-Conditional-statements"><a class="docs-heading-anchor" href="#Q3:-Conditional-statements">Q3: Conditional statements</a><a id="Q3:-Conditional-statements-1"></a><a class="docs-heading-anchor-permalink" href="#Q3:-Conditional-statements" title="Permalink"></a></h3><p>Given that <code>c=10</code>, which of the following statements, taken individually, would lead to <code>v</code> being equal to <code>100</code> ?</p><script>
 var ID = "iZfIHysE"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='iZfIHysE' data-controltype=''>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='iZfIHysE' data-controltype='' onSubmit='return false;'>
   <div class='form-group '>
     <div class='controls'>
       <div class="form" id="controls_iZfIHysE" correct='-1' attempts='0'>
@@ -465,4 +465,4 @@ PDRTJS_settings_8962705 = {
         crossorigin="anonymous"
         async>
 </script><script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script><!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0104_-_Control_flow_and_functions.html">« 0104 - Control flow and functions</a><a class="docs-footer-nextpage" href="0104q_-_QUIZ_1.8.html">0104q - QUIZ 1.8 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.2.1 on <span class="colophon-date" title="Monday 1 January 2024 22:57">Monday 1 January 2024</span>. Using Julia version 1.10.0.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0104_-_Control_flow_and_functions.html">« 0104 - Control flow and functions</a><a class="docs-footer-nextpage" href="0104q_-_QUIZ_1.8.html">0104q - QUIZ 1.8 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.4.1 on <span class="colophon-date" title="Friday 3 May 2024 08:09">Friday 3 May 2024</span>. Using Julia version 1.10.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

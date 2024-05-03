@@ -31,7 +31,7 @@ function foo2(x)
 end</code></pre><p>Which of the following sentences are correct ?</p><script>
 var ID = "WatBWO2v"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='WatBWO2v' data-controltype=''>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='WatBWO2v' data-controltype='' onSubmit='return false;'>
   <div class='form-group '>
     <div class='controls'>
       <div class="form" id="controls_WatBWO2v" correct='-1' attempts='0'>
@@ -159,7 +159,7 @@ rb.addEventListener("change", function() {
 end</code></pre><p>To what <code>XXXX</code> should be replaced to make the function more efficient?</p><script>
 var ID = "ZKWp2SM6"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='ZKWp2SM6' data-controltype=''>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='ZKWp2SM6' data-controltype='' onSubmit='return false;'>
   <div class='form-group '>
     <div class='controls'>
       <div class="form" id="controls_ZKWp2SM6" correct='-1' attempts='0'>
@@ -187,7 +187,7 @@ document.getElementById('controls_ZKWp2SM6').addEventListener("quizquestion_answ
 
 <script text='text/javascript'>
 document.getElementById("ZKWp2SM6").addEventListener("change", function() {
-  var correct = RegExp('Int64').test(this.value);
+  var correct = RegExp('Int64').test(this.value.replaceAll(RegExp('', 'g'), ''));
   var msgBox = document.getElementById('ZKWp2SM6_message');
   
   if(correct) {
@@ -231,7 +231,7 @@ document.getElementById("ZKWp2SM6").addEventListener("change", function() {
 end</code></pre><p>To what <code>XXXX</code> should be replaced to make the function more efficient?</p><script>
 var ID = "iZfIHysE"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='iZfIHysE' data-controltype=''>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='iZfIHysE' data-controltype='' onSubmit='return false;'>
   <div class='form-group '>
     <div class='controls'>
       <div class="form" id="controls_iZfIHysE" correct='-1' attempts='0'>
@@ -259,7 +259,7 @@ document.getElementById('controls_iZfIHysE').addEventListener("quizquestion_answ
 
 <script text='text/javascript'>
 document.getElementById("iZfIHysE").addEventListener("change", function() {
-  var correct = RegExp('break').test(this.value);
+  var correct = RegExp('break').test(this.value.replaceAll(RegExp('', 'g'), ''));
   var msgBox = document.getElementById('iZfIHysE_message');
   
   if(correct) {
@@ -295,7 +295,7 @@ end
 foo(a)</code></pre><p>Which of the following sentences are correct ?</p><script>
 var ID = "N85JSiC5"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='N85JSiC5' data-controltype=''>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='N85JSiC5' data-controltype='' onSubmit='return false;'>
   <div class='form-group '>
     <div class='controls'>
       <div class="form" id="controls_N85JSiC5" correct='-1' attempts='0'>
@@ -436,7 +436,7 @@ end
 foo(a)</code></pre><p>Which of the following sentences are true ?</p><script>
 var ID = "aJ7CN14u"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='aJ7CN14u' data-controltype=''>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='aJ7CN14u' data-controltype='' onSubmit='return false;'>
   <div class='form-group '>
     <div class='controls'>
       <div class="form" id="controls_aJ7CN14u" correct='-1' attempts='0'>
@@ -661,4 +661,4 @@ PDRTJS_settings_8962705 = {
         crossorigin="anonymous"
         async>
 </script><script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script><!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0104q_-_QUIZ_1.7.html">« 0104q - QUIZ 1.7</a><a class="docs-footer-nextpage" href="0105_-_Custom_types.html">0105 - Custom types »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.2.1 on <span class="colophon-date" title="Monday 1 January 2024 22:57">Monday 1 January 2024</span>. Using Julia version 1.10.0.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0104q_-_QUIZ_1.7.html">« 0104q - QUIZ 1.7</a><a class="docs-footer-nextpage" href="0105_-_Custom_types.html">0105 - Custom types »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.4.1 on <span class="colophon-date" title="Friday 3 May 2024 08:09">Friday 3 May 2024</span>. Using Julia version 1.10.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

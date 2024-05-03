@@ -1,6 +1,6 @@
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.10.0"
+julia_version = "1.10.3"
 manifest_format = "2.0"
 project_hash = "e743da94b7209b9fae4c55fb8fade73743acac82"
 
@@ -13,12 +13,12 @@ uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
-version = "1.0.5+1"
+version = "1.1.1+0"
 
 [[deps.DataAPI]]
-git-tree-sha1 = "8da84edb865b0b5b0100c0666a9bc9a0b71c553c"
+git-tree-sha1 = "abe83f3a2f1b857aac70ef8b269080af17764bbe"
 uuid = "9a962f9c-6df0-11e9-0e5d-c546b8b5ee8a"
-version = "1.15.0"
+version = "1.16.0"
 
 [[deps.DataValueInterfaces]]
 git-tree-sha1 = "bfc1187b79289637fa0ef6d4436ebdfe6905cbd6"
@@ -50,7 +50,7 @@ version = "1.0.19"
 [[deps.OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
 uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
-version = "0.3.23+2"
+version = "0.3.23+4"
 
 [[deps.OrderedCollections]]
 git-tree-sha1 = "dfdf5519f235516220579f949664f1bf44e741c5"
@@ -63,9 +63,9 @@ uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
 [[deps.QuizQuestions]]
 deps = ["Base64", "Markdown", "Mustache", "Random"]
-git-tree-sha1 = "abe7fe1e2e2c3ac1d432eeb81334cc460d2eccdc"
+git-tree-sha1 = "6b0963a6bc20ba9c7806d4e7e5ff6cd3b406ba62"
 uuid = "612c44de-1021-4a21-84fb-7261cf5eb2d4"
-version = "0.3.21"
+version = "0.3.23"
 
 [[deps.Random]]
 deps = ["SHA"]
