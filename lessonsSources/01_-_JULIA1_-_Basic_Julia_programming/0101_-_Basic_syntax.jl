@@ -17,8 +17,8 @@ cd(@__DIR__)
 using Pkg             
 Pkg.activate(".")   
 ENV["PYTHON"] = ""  # This will be needed in a further segment  
-ENV["R_HOME"] = "*" # This wil lbe needed in a further segment
-## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+ENV["R_HOME"] = "*" # This will be needed in a further segment
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 ## Pkg.resolve()   
 Pkg.instantiate()
 using Random
@@ -52,7 +52,7 @@ for i in 1:3
    println("i is $i")
 end # Keyword `end` to finish a block
 
-# Function calls require to specify the name of the funtion to call followed straigth away (without spaces) with the function arguments inside round brackets:
+# Function calls require to specify the name of the function to call followed straight away (without spaces) with the function arguments inside round brackets:
 println("Hello world!")
 ##println ("This would error!")
 
@@ -85,7 +85,7 @@ add2.(Set([1,2,3,2])) # and here a Set
 ## .+([1,2,3],[10,20]) # DimensionMismatch error: the input of the the broadcasted arguments must have the same size or be a scalar
 
 # To "protect" one specific argument to be broadcasted, use `Ref(arg)`:
-foo(x,y::AbstractArray) = [yi+x for yi in y] # a function that wants the first arguent as scalar and the second as vector
+foo(x,y::AbstractArray) = [yi+x for yi in y] # a function that wants the first argument as scalar and the second as vector
 foo(1,[10,20])
 ## foo.([1,2],[10,20])  # error, as we try to broadcast also the seond element, but we can't call `foo` with two integers
 foo.([1,2],Ref([10,20])) # now it is fine, we broadcast only the first argument
@@ -151,7 +151,7 @@ c2 = mean([1,c,3])
 b3 = mean(skipmissing([1,b,3]))
 b == missing # propagate
 ismissing(b)
-isequal(b,2)  # exception to the propagation rule, it allows comparations when one of the item may be missing
+isequal(b,2)  # exception to the propagation rule, it allows a comparison when one of the item may be missing
 isequal(b,missing)
 b4 = [1,missing,3]
 typeof(b4)
