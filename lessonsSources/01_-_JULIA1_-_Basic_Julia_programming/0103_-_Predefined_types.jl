@@ -12,11 +12,11 @@
 
 # ## Some stuff to set-up the environment..
 
-cd(@__DIR__)         
-using Pkg             
-Pkg.activate(".")     
-## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
-## Pkg.resolve()   
+cd(@__DIR__)
+using Pkg
+Pkg.activate(".")
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
+## Pkg.resolve()
 ## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
 Random.seed!(123)
@@ -44,7 +44,7 @@ findnext(isequal('o'), a, 6)
 occursin("world",a)
 occursin(lowercase("world"),lowercase(a))
 using Unicode
-occursin(Unicode.normalize("world", casefold=true),Unicode.normalize(a, casefold=true)) 
+occursin(Unicode.normalize("world", casefold=true),Unicode.normalize(a, casefold=true))
 endswith(a,"ld ")
 startswith(a,"Mooo")
 occursin(r"H*.d ", a)
@@ -79,7 +79,7 @@ methodswith(String,supertypes=true); # where any argument is a String or any par
 # `Array{T,NDims}` A _parameteric_ type where the type of the content and the number of dimensions define the specific type
 
 # !!! tip
-#     `Vector{T}` is an alias for `Array{T,1}` and `Matrix{T}` is an alias for `Array{T,2}`, but there isn't anything "special" for 1 or 2 dimensions compared to more dimensions 
+#     `Vector{T}` is an alias for `Array{T,1}` and `Matrix{T}` is an alias for `Array{T,2}`, but there isn't anything "special" for 1 or 2 dimensions compared to more dimensions
 
 # ### Vectors - `Array{T,1}`
 
@@ -91,9 +91,9 @@ b = [1 ; 2 ; 3 ;;] # This syntax requires Julia >= 1.7
 a == b
 
 # #### Initialisation
-a = [1,2,3]; #= or =# a = [1;2;3] 
+a = [1,2,3]; #= or =# a = [1;2;3]
 a = [1; 6:-2:2; 10] # notes: (a) the semicolon, (b) the range includes BOTH the extremes
-a = [[1,2],[3,4]]   # nested vectors. Each elements can have a different lenght, but rules of linear algebra doesn't apply
+a = [[1,2],[3,4]]   # nested vectors. Each elements can have a different length, but rules of linear algebra doesn't apply
 # !!! danger
 #     Don't confuse nested vectors with multi-dimensional arrays!
 
@@ -117,10 +117,10 @@ Array{T,1}(undef,n) # garbage
 fill(2,3)
 
 # #### Accessing Vectors
-a = [10,20,30,40,50,60,70,80,90] 
+a = [10,20,30,40,50,60,70,80,90]
 a[1]
 a[end]
-a[[1; 6:-2:2; 8]] # indicised by a vector of positions 
+a[[1; 6:-2:2; 8]] # indicised by a vector of positions
 
 
 # #### Collecting iterators into vectors
@@ -136,10 +136,10 @@ reverse(a), a[end:-1:1] # Other way to revert an array
 vcat([1,2,3],[4,5],6)
 
 push!(a,4)  # add as individual elements
-append!(a,5) # add as many new elements 
+append!(a,5) # add as many new elements
 
 # !!! tip "Functions with exclamation marks"
-#     By **convention** functions that modify one of their parameters (and usually this is the first one) are named with an exclamation mark at the end. Remember (most) unicode characters are valid in functions or variable names.
+#     By **convention** functions that modify one of their parameters (and usually this is the first one) are named with an exclamation mark at the end. Remember (most) Unicode characters are valid in functions or variable names.
 
 push!([[1,2],[3,4,5]],[6,7])
 append!([1,2,3,4,5],[6,7])
@@ -168,7 +168,7 @@ empty!(a) # only for Vectors
 using Random
 shuffle([1,2,3]) # also shuffle!([1,2,3])
 isempty(a)
-findall(x -> x == 1, [2,1,3,1]) # anonymous function returning an array of bools, findall then return the indexes
+findall(x -> x == 1, [2,1,3,1]) # anonymous function returning an array of booleans, findall then return the indexes
 findfirst(x -> x == 1, [2,1,3,1])
 myComparitionWith1(i) = i==1
 findall(x -> myComparitionWith1(x), [2,1,3,1])
@@ -196,18 +196,18 @@ end
 
 # #### Initialisation
 a = [[1,2,3] [4,5,6]] # By column, i.e. elements of the first column, elements of the second column, ...
-a = [1 4; 2 5; 3 6]   # By row, i.e. elements of the first row, elements of the second row, ... 
+a = [1 4; 2 5; 3 6]   # By row, i.e. elements of the first row, elements of the second row, ...
 
 ## Empty (zero-elements) arrays:
-a = Array{Float64}(undef, 0, 0, 0) # using explicitly the constructor and explicitly giving zero for each wanted dimension 
+a = Array{Float64}(undef, 0, 0, 0) # using explicitly the constructor and explicitly giving zero for each wanted dimension
 # n-elements initialisation:
 (T,n,m,g,j) = (Int64,1,2,3,'a')
 a = zeros(n,m,g)            # n,m,g-elements zeros array
 a = ones(n,m,g)             # n,m,g-elements ones array
 a = Array{T,3}(undef,n,m,g) # n,m,g-elements array whose content is garbage
 a = fill(j,n,m,g)           # n,m,g-elements array of identical j elements
-a = rand(n,m,g)             # n,m,g-elements array of of random numbers 
-a = [3x + 2y + z for x in 1:2, y in 2:3, z in 1:2] # from using list comprehension 
+a = rand(n,m,g)             # n,m,g-elements array of of random numbers
+a = [3x + 2y + z for x in 1:2, y in 2:3, z in 1:2] # from using list comprehension
 
 # #### Accessing n-dimensional arrays
 # Access by indicating position
@@ -224,11 +224,11 @@ a[2,:]     # with a full range (all values) in the second dimension, i.e. all co
 b = [true false true false; true true true false; true false true false]
 a[b] # always flatted array returned (need eventually reshaping, see later)
 
-# #### Funcionality related to dimensions
+# #### Functionality related to dimensions
 
 size(a)              # returns a tuple (i.e. an immutable list) with the sizes of the n dimensions
 ndims(a)             # return the number of dimensions of the array (e.g. `2` for a matrix)
-reshape(a, 2,3,2) 
+reshape(a, 2,3,2)
 2*3*2 == length(a)
 b = rand(2,1,3)
 dropdims(b,dims=(2)) # remove the specified dimensions, provided that the specified dimension have only a single element
@@ -260,8 +260,8 @@ cat(a,a,a,dims=3)
 
 # Sort by column (field)
 a = [[3,2,1] [20,30,20] [1000,3000,2000] [300,100,200]]
-idx = sortperm(a[:,3], rev=true) # return the positions that sort the 3rd column 
-sortedMatrix = a[idx,:] # selected by using the sorted positions array on the row dimension 
+idx = sortperm(a[:,3], rev=true) # return the positions that sort the 3rd column
+sortedMatrix = a[idx,:] # selected by using the sorted positions array on the row dimension
 sortslices(a, dims=2)   # by cols, using the first row to sort
 sortslices(a, dims=1)   # by rows, using the first column to sort
 sortslices(a, dims=1, by = x -> (x[2],x[4])) # by rows, using second and fourth columns
@@ -290,7 +290,7 @@ det(A) # determinant
 transpose(A)
 A'
 # !!! warning
-#     Be aware that `transpose` works only for numerical types. When the matrix contains other types (e.g. strings), use `permutedims` 
+#     Be aware that `transpose` works only for numerical types. When the matrix contains other types (e.g. strings), use `permutedims`
 
 diag(A)
 I # operator that automatically scale to the context without actually building the matrix
@@ -305,8 +305,8 @@ B = [1 2; 3 4]; B*I
 # - Can efficiently host heterogeneous types, as type information is stored for each individual element
 # - Linear algebra doesn't apply (use StaticArray.jl package for that)
 
-# Can be tought as anonymous (immutable) structures
-# Used to unpack multiple values, e.g. to store on inddividual variables the output of functions with multiple return value 
+# Can be taught as anonymous (immutable) structures
+# Used to unpack multiple values, e.g. to store on inddividual variables the output of functions with multiple return value
 
 # ### Initialisation
 
@@ -327,16 +327,16 @@ v == v2 == v3 == v4
 
 # ### Tuples with a variable number of same-type elements
 
-# While the tuple type normally include informations of the types of each elements, one by one, we may want to have a way to "summarise" this information by specifying that a certain number of elements, all of this type, are repeated. This is the task of the `Vararg{T}` and `Vararg{T,N}` arguments that must be specified as the last parameters of a `Tuple` type. The former one allows for a _variable_ number of elements, and the latter one specific an exact number of elements:  
+# While the tuple type usually includes information about each type of element,  we may want to have a way to "summarise" this information by specifying that a certain number of elements all have the same type.This is the task of the `Vararg` argument that must be specified as the last parameters of a `Tuple` declaration. `Vararg{T}` allows for a _variable_ number of elements, and `Vararg{T,N}` specifies an exact number of elements:
 
-typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int}}  
-typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int,2}}  
-typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int,3}} 
+typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int}}
+typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int,2}}
+typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int,3}}
 
-# !!! tip 
+# !!! tip
 #     `NTuple{N,T}`` is an alias for `Tuple{Vararg{T,N}}`
 
-typeof((1,10)) <: NTuple{2,Int} 
+typeof((1,10)) <: NTuple{2,Int}
 
 
 # ## Named tuples - `NamedTuple{T1,T2,...}`
@@ -371,9 +371,9 @@ v == v2 == v3 == v4
 # ## Dictionaries - `Dict{Tkey,TValue}`
 
 # Dictionary are mutable, key-referenced containers:
-# 
+#
 # |               | Mutable      | Immutable    |
-# | ------------- | ------------ | ------------ | 
+# | ------------- | ------------ | ------------ |
 # | Use position  | Arrays       | Tuples       |
 # | Use keys      | Dictionaries | Named tuples |
 
@@ -408,7 +408,7 @@ v = [1,2,3]
 mydict = Dict([k=>v for (k,v) in zip(k,v)])
 # Dictionary -> Arrays
 collect(keys(mydict)) # keys or values alore return an iterator
-collect(values(mydict)) 
+collect(values(mydict))
 
 # ### Iteration
 for (k,v) in mydict
@@ -441,10 +441,10 @@ todayDate = today()
 nowTime = now()
 typeof(todayDate)
 
-typeof(nowTime) 
+typeof(nowTime)
 Date     <: Dates.AbstractTime
 DateTime <: Dates.AbstractTime
-nowTimeUnix = time()  # The so-called "Unix time, a 64bit integer counting the number of seconds since the beginning of the year 1970 
+nowTimeUnix = time()  # The so-called "Unix time, a 64bit integer counting the number of seconds since the beginning of the year 1970
 nowTime = Dates.unix2datetime(nowTimeUnix) # attention this is not local but UTC (Coordinated Universal Time - the Greenwitch time )!
 nowTime = Dates.now(Dates.UTC) # an other way to have UTC time
 
@@ -475,11 +475,11 @@ newYearEvenDinner = DateTime("Sat, 30 Dec 2030 21:30:00", RFC1123Format) # an ot
 
 # From a tuple of integers: y, m, d, H, M, S, s ...
 d  = Date(2030, 12)  # no need to give it all
-dt = DateTime(2030, 12, 31, 9, 30, 0, 0) 
+dt = DateTime(2030, 12, 31, 9, 30, 0, 0)
 
 # ### Date/Time extraction of information ("output")...
 
-# To String represerntation...
+# To String representation...
 Dates.format(newYearDay, "dd/m/yy")
 Dates.format(christmasLunch, "dd/mm/yy H:M:SS")
 
@@ -534,7 +534,7 @@ convert(Dates.Millisecond,longPeriod) # going down:  fine
 convert(Dates.Millisecond,mealPeriod)
 
 canLongPeriod = Dates.canonicalize(longPeriod)
-typeof(canLongPeriod) 
+typeof(canLongPeriod)
 
 # That the best we can get. We can't "easily" decompose a "period" in  years or months... how many days in a month ?
 # 31 or 30 ? And in an year ? A `Period` doesn't store information on when it starts.
@@ -550,7 +550,7 @@ collect(semesters)
 
 # ### Adjustments
 
-# Iterate the past/future days of a date untill some condition is true
+# Iterate the past/future days of a date until some condition is true
 sundayBefChristmas = toprev(d -> Dates.dayname(d) == "Sunday", christmasDay)
 lastDayOfThisMonth = tonext(d -> Dates.day(d+Day(1)) == 1, today())
 
