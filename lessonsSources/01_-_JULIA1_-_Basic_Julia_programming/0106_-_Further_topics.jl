@@ -11,11 +11,11 @@
 
 # ## Some stuff to set-up the environment..
 
-cd(@__DIR__)         
-using Pkg             
-Pkg.activate(".")     
-## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will however be lost)
-## Pkg.resolve()   
+cd(@__DIR__)
+using Pkg
+Pkg.activate(".")
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
+## Pkg.resolve()
 ## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
 Random.seed!(123)
@@ -24,14 +24,14 @@ using InteractiveUtils # loaded automatically when working... interactively
 # ## Metaprogramming and macros
 
 # "running" some code include the following passages (roughly):
-# - parsing of the text defining the code and its translation in hierarchical expressions to the Abstract syntax Tree (AST) (syntax errors are caugth at this time)
+# - parsing of the text defining the code and its translation in hierarchical expressions to the Abstract syntax Tree (AST) (syntax errors are caught at this time)
 # - on the first instance required ("just in time") compilation of the AST expressions into object code (using the LLVM compiler)
 # - execution of the compiled object code
 
-# "Macros" in many other language (e.g. C or C++) refer to the possibility to "pre-process" the textual representation of the code statements before it is parsed. In julia instead it refers to the possibility to alter the expression once has already being parsed in the AST, allowing a greater expressivity as we are no longer limited by the parsing syntax
+# "Macros" in many other language (e.g. C or C++) refer to the possibility to "pre-process" the textual representation of the code statements before it is parsed. In Julia instead it refers to the possibility to alter the expression once has already being parsed in the AST, allowing a greater expressivity as we are no longer limited by the parsing syntax
 
 # The AST is organised in a hierarchical tree of _expressions_ where each element (including the operators) is a _symbol_
-# For variables, you can use symbols to refer to the actual identifiers instad to the variable's value
+# For variables, you can use symbols to refer to the actual identifiers instead to the variable's value
 
 # Expressions themselves are objects representing unevaluated computer expressions
 
@@ -42,7 +42,7 @@ typeof(expr1) # expressions are first class objects
 expr2 = :(a = b + 1)
 expr3 = quote a = b + 1 end
 expr3
-dump(expr1)   # The AST ! Note this is already a nested statement, an assignment of the result of an expression (the sum call between the symbol `:b` and 1) to the symbol `a`  
+dump(expr1)   # The AST ! Note this is already a nested statement, an assignment of the result of an expression (the sum call between the symbol `:b` and 1) to the symbol `a`
 expr4 = Expr(:(=),:a,Expr(:call,:+,:b,1)) # The AST using the "Expr" constructor
 
 symbol1   = :(a)               # as for expressions
@@ -60,7 +60,7 @@ eval(expr1)
 a # here now is defined and it has an object associated... 4!
 
 # !!! danger
-#     The capability to evaluate expressions is very powerfull but due to obvious secutiry implications never evaluate expressions you aren't sure of their provenience. For example if you develop a Julia web app (e.g. using [Genie.jl](https://github.com/GenieFramework/Genie.jl)) never evaluate user provided expressions.
+#     The capability to evaluate expressions is very powerful but due to obvious security implications never evaluate expressions you aren't sure of their provenience. For example if you develop a Julia web app (e.g. using [Genie.jl](https://github.com/GenieFramework/Genie.jl)) never evaluate user provided expressions.
 
 # Note that evaluation of expressions happens always at global scope, even if it done inside a function:
 function foo()
@@ -68,7 +68,7 @@ function foo()
     expr = :(locVar + 1)
     return eval(expr)
 end
-## a = foo() # error locVar not defined 
+## a = foo() # error locVar not defined
 
 # To refer to the _value_ of a variable rather than the identifier itself within an expression, interpolate the variable using the dollar sign:
 
@@ -91,14 +91,14 @@ eval(expr) # here it change, as it is at eval time that the identifier `b` is "r
 # [Pipe.jl:](https://github.com/oxinabox/Pipe.jl)
 # - from: `@pipe  10 |> foo(_,a) |> foo2(b,_,c) |> foo3(_)`
 # - to:   `foo3(foo2(b,foo(10,a),c))`
-# Brodcasting (Base):
+# Broadcasting (Base):
 # - from: `@. a + b * D^2`
 # - to:   `a .+ b .* D.^2`
 
 # Defining a macro...
 
 # Like functions, but both the arguments and the returned output are expressions
-macro customLoop(controlExpr,workExpr) 
+macro customLoop(controlExpr,workExpr)
     return quote
       for i in $controlExpr
         $workExpr
@@ -118,7 +118,7 @@ a = 5
 
 # String macros (aka "non-standard string literals")
 # Invoked with the syntax `xxx" ...text..."` or `xxx""" ...multi-line text..."""` where `xxx` is the name of the macro and the macro must be defined as `macro  xxx_str`.
-# Used to perform textual modification o nthe given text, for example this print the given text on a 8 characters  
+# Used to perform textual modification on the given text, for example this print the given text on a 8 characters
 
 macro print8_str(mystr)                                 # input here is a string, not an expression
     limits = collect(1:8:length(mystr))
@@ -130,11 +130,11 @@ macro print8_str(mystr)                                 # input here is a string
 end
 
 print8"123456789012345678"
-print8"""This is a text that once printed in 8 columns with terminal will be several lines. Ok, no rammar rules relating to carriage returns are emploied here..."""
+print8"""This is a text that once printed in 8 columns with terminal will be several lines. Ok, no grammar rules relating to carriage returns are employied here..."""
 
 # While normally used to modify text, string macros are "true" macros:
 
-macro customLoop_str(str) 
+macro customLoop_str(str)
     exprs = Meta.parse(str)
     controlExpr,workExpr = exprs.args[1],exprs.args[2]
     return quote
@@ -155,7 +155,7 @@ customLoop"""1:4; println(i)"""
 
 # ### Using C libraries
 
-# Let's start by seing how to use a C library. For this example to work you will need to have the GCC compiler installed on your machine
+# Let's start by seeing how to use a C library. For this example to work you will need to have the GCC compiler installed on your machine
 # First let's write the header and source C files and write them to the disk:
 
 cheader = """
@@ -173,7 +173,7 @@ double mySum(float x, float y){
 """
 
 open(f->write(f,cheader),"myclib.h","w")  # We open a stream to file with the "w" parameter as for "writing", and we pass the stream to the anonymous function to actually write to the stream. If this funcitons is many lines of code, consider rewriting the `open` statement using a `do` block
-open(f->write(f,csource),"myclib.c","w") 
+open(f->write(f,csource),"myclib.c","w")
 
 # Now let's run the command to compile the C code we saved as shared library using gcc, a C compiler.
 # The following example assume that GCC is installed in the machine where this example is run and available as `gcc`.
@@ -186,19 +186,19 @@ run(compilationCommand2)
 # This should have created the C library `libmyclib.so` on disk. Let's gonna use it:
 const myclib = joinpath(@__DIR__, "libmyclib.so")  # we need the full path
 # ccall arguments:
-# 1. A tuple with the funcion name to call and the library path. For both, if embedded in a variable, the variable must be set constant.  
+# 1. A tuple with the funcion name to call and the library path. For both, if embedded in a variable, the variable must be set constant.
 # 2. The Julia type that map to the C type returned by the function.
-#    - `int` → `Int32` or `Int64` (or the easy-to remmeber `Cint` alias)
+#    - `int` → `Int32` or `Int64` (or the easy-to rememeber `Cint` alias)
 #    - `float` → `Float32` (or the `Cfloat` alias)
 #    - `double` → `Float64` (or the `Cdouble` alias)
 # 3. A tuple with the Julia types of the parameters passed to the C function
 # 4. Any other argument are the values of the parameter passed
-a = ccall((:get5,myclib), Int32, ())       
+a = ccall((:get5,myclib), Int32, ())
 b = ccall((:mySum,myclib), Float64, (Float32,Float32), 2.5, 1.5)
 
-# More details on calling C or Fortran code can be obtained [in the official Julia documentation](https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/).  
+# More details on calling C or Fortran code can be obtained [in the official Julia documentation](https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/).
 
-# ### Using Python in Julia 
+# ### Using Python in Julia
 
 # The "default" way to use Python code in Julia is trough the [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) package. It automatically take care of convert between Python types (including numpy arrays) and Julia types (types that can not be converted automatically are converted to the generic `PyObject` type).
 ENV["PYTHON"] = "" # will force PyCall to download and use a "private to Julia" (conda based) version of Python. use "/path/to/python" if you want to reuse a version already installed on your system
@@ -229,7 +229,7 @@ open(f->write(f,pythonCode),"pythonScript.py","w")
 a = py"sumMyArgs"(3,4,5)
 
 # !!! tip
-#     Note thaat the 3 arguments definition of `sumMyArgs` has _replaced_ the 3-arguments one. This would now error `py"sumMyArgs"(3,4)` 
+#     Note thaat the 3 arguments definition of `sumMyArgs` has _replaced_ the 3-arguments one. This would now error `py"sumMyArgs"(3,4)`
 
 
 # #### Use Python libraries
@@ -255,18 +255,18 @@ destDoc.save()
 
 # [PyJulia](https://github.com/JuliaPy/pyjulia) can be installed using `pip`, taking note that its name using `pip` is `julia` not `PyJulia`:
 # ```$ python3 -m pip install --user julia```
- 
+
 # We can now open a Python terminal and initialise PyJulia to work with our Julia version:
 # ```python
 # >>> import julia
 # >>> julia.install() # Only once to set-up in julia the julia packages required by PyJulia
 # ```
- 
+
 # If we have multiple Julia versions, we can specify the one to use in Python passing julia="/path/to/julia/binary/executable" (e.g. julia = "/home/myUser/lib/julia-1.1.0/bin/julia") to the install() function.
 
 # #### Running Julia libraries and code in Python
 
-# On each Python session we need to run the following code: 
+# On each Python session we need to run the following code:
 # ```python
 # from julia import Julia
 # Julia(compiled_modules=False)
@@ -274,7 +274,7 @@ destDoc.save()
 
 # This is a workaround to the common situation when the Python interpreter is statically linked to libpython, but it will slow down the interactive experience, as it will disable Julia packages pre-compilation, and every time we will use a module for the first time, this will need to be compiled first. Other, more efficient but also more complicate, workarounds are given in the package documentation, under the [Troubleshooting section](https://pyjulia.readthedocs.io/en/stable/troubleshooting.html).
 
-# We can now direcltly load a Julia module, including `Main`, the global namespace of Julia’s interpreter, with `from julia import ModuleToLoad` and access the module objects directly or using the `Module.evel()` interface.
+# We can now directly load a Julia module, including `Main`, the global namespace of Julia’s interpreter, with `from Julia import ModuleToLoad` and access the module objects directly or using the `Module.evel()` interface.
 
 # ##### Add a Julia package...
 # ```python
@@ -294,7 +294,7 @@ destDoc.save()
 # ```
 
 # ##### Access using the `eval()` interface...
-# If we are using the jl.eval() interface, the objects we use must be already known to julia. To pass objects from Python to Julia, we can import the julia Main module (the root module in julia) and assign the needed variables, e.g.
+# If we are using the jl.eval() interface, the objects we use must be already known to Julia. To pass objects from Python to Julia, we can import the Julia Main module (the root module in Julia) and assign the needed variables, e.g.
 
 # ```python
 # >>> X_python = [1,2,3,2,4]
@@ -312,9 +312,9 @@ destDoc.save()
 # ```
 # For large scripts instead of using `eval()` we can equivalently use `Main.include("aJuliaScript.jl")`
 
-# ### Using R in Julia 
+# ### Using R in Julia
 
-# To use R from within Julia we use the [RCall](https://github.com/JuliaInterop/RCall.jl) package. 
+# To use R from within Julia we use the [RCall](https://github.com/JuliaInterop/RCall.jl) package.
 ENV["R_HOME"] = "*" #  # will force RCall to download and use a "private to Julia" (conda based) version of R. use "/path/to/R/directory" (e.g. `/usr/lib/R`) if you want to reuse a version already installed on your system
 
 ## using Pkg
@@ -332,7 +332,7 @@ getNthElement <- function(vec,n) {
 a = rcopy(R"sumMyArgs"(3,4))             # 7 - here we call the R object (a function) with Julia parameters
 b = rcopy(R"getNthElement"([1,2,3],1))   # 1 - no differences in array indexing here
 d = rcopy(R"as.integer(getNthElement(c(1,$a,3),2))")  # 7 - here we interpolate the R call
-d = convert(Int64,R"getNthElement(c(1,$a,3),2)")  
+d = convert(Int64,R"getNthElement(c(1,$a,3),2)")
 
 # While we don't have here the problem of different array indexing convention (both Julia and R start indexing arrays at 1), we have the "problem" that the output returned by using `R"..."` is not yet an exploitable Julia object but it remains as an `RObject` that we can convert with `rcopy()` or explicitly with `convert(T,obj)`. Also, R elements are all floats by default, so if we need an integer in Julia we need to explicitly convert it, either in R or in Julia.
 
@@ -398,7 +398,7 @@ a = rcopy(R"sumMyArgs"(3,4,5))  # 12
 
 # ##### Calling of Julia functions with `julia_call`...
 
-# With `JuliaCall`, differently than `PyJulia`, we can't call direclty the julia functions but we need to employ the R function `julia_call("juliaFunction",args)`:
+# With `JuliaCall`, differently than `PyJulia`, we can't call directly the julia functions but we need to employ the R function `julia_call("juliaFunction",args)`:
 
 # ```{r}
 # > julia_eval("using BetaML")
@@ -476,10 +476,10 @@ using BenchmarkTools
 @btime f1(0) # 661 ns 6 allocations
 @btime f2(0) #  55 ns 1 allocations
 
-@code_warntype f1(0) # Body::Any 
-@code_warntype f2(0) # Body::Int64 
+@code_warntype f1(0) # Body::Any
+@code_warntype f2(0) # Body::Int64
 
-# While in general it is NOT important to annotate function parameters for performance, it is important to annotate struct fields with concrete types 
+# While in general it is NOT important to annotate function parameters for performance, it is important to annotate struct fields with concrete types
 abstract type Goo end
 struct Foo <: Goo
     x::Number
@@ -499,19 +499,19 @@ bobj = Boo(1)
 
 # Here the same function under some argument types is type stable, under other argument types is not
 @code_warntype f1(fobj)
-@code_warntype f1(bobj) 
+@code_warntype f1(bobj)
 
 # #### Avoid (non-constant) global variables
 
 g        = 2
-const cg = 1   # we can't change the _type_ of the object binded to a constant variable 
+const cg = 1   # we can't change the _type_ of the object binded to a constant variable
 cg       = 2   # we can rebind to an other object of the same type, but we get a warning
 ## cg    = 2.5 # this would error !
 f1(x,y) = x+y
 f2(x)   = x + g
 f3(x)   = x + cg
 
-@btime f1(3,2)  
+@btime f1(3,2)
 @btime f2(3)    # 22 times slower !!!
 @btime f3(3)    # as f1
 
@@ -548,7 +548,7 @@ end
 function f1(x)
     s = 0.0
     for i in 1:length(x)
-        s += i * x[i] 
+        s += i * x[i]
     end
     return s
 end
@@ -563,8 +563,8 @@ end
 
 function f3(x)
     s = 0.0
-    @simd for i in 1:length(x) # tell compiler it is allowed to run the loop in whatever order, allowing in-thread paralllelism of modern CPUs
-        s += i * x[i] 
+    @simd for i in 1:length(x) # tell compiler it is allowed to run the loop in whatever order, allowing in-thread parallelism of modern CPUs
+        s += i * x[i]
     end
     return s
 end
@@ -585,7 +585,7 @@ end
 function f2(x)
     s = 0.0
     @views for i in 1:size(x,1)
-        s += sum(x[i,:])   # the slice operator copy the data.. the views macro force to have instead to have a view (reference) 
+        s += sum(x[i,:])   # the slice operator copy the data.. the views macro force to have instead to have a view (reference)
     end
     return s
 end
@@ -594,7 +594,7 @@ end
 @btime f2($X)
 
 # !!! warning
-#     Attention that while the `@views` macro "save time" by not copying the data, the resulting array has a pretty messy layout. If you need to use it for many subsequent operations it may be more efficient to "pay" the copy cost once and then have an array with a nicelly continuous block of memory..
+#     Attention that while the `@views` macro "save time" by not copying the data, the resulting array has a pretty messy layout. If you need to use it for many subsequent operations it may be more efficient to "pay" the copy cost once and then have an array with a nicely continuous block of memory..
 
 
 function f1(x,y)
@@ -621,7 +621,7 @@ function f3(y)
     end
     return s
  end
- 
+
 function f4(y)
     s = 0.0
     for i in 2:y
@@ -630,7 +630,7 @@ function f4(y)
     end
     return s
 end
- 
+
 x = 1000
 @btime f3($x)
 @btime f4($x)
@@ -643,7 +643,7 @@ function f3(y)
     end
     return s
  end
- 
+
 function f4(y)
     s = 0.0
     for i in 2:y
@@ -658,7 +658,7 @@ x = 1000
 
 # Note that the Julia compiles already inline small functions automatically when it thinks it will improve performances
 
-# ## Profiling the code to discover bootlenecks
+# ## Profiling the code to discover bottlenecks
 
 # We already see `@btime` and `@benchmark` from the package [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl)
 # Remember to quote the global variables used as parameter of your function with the dollar sign to have accurate benchmarking of the function execution.
@@ -726,14 +726,14 @@ bitstring(2)
 
 # ## Runtime exceptions
 
-# As many (all?) languages, Julia when "finds" an error issues an exception, that if it is not caugth at higher level in the call stack (i.e. recognised and handled) lead to an error and return to the prompt or termination of the script (and rarely with the Julia process crashing altogether).
+# As many (all?) languages, Julia when "finds" an error issues an exception, that if it is not caught at higher level in the call stack (i.e. recognised and handled) lead to an error and return to the prompt or termination of the script (and rarely with the Julia process crashing altogether).
 
 # The idea is that we _try_ some potentially dangerous code and if some error is raised in this code we _catch_ it and handle it.
 
 function customIndex(vect,idx;toReturn=0)
     try
         vect[idx]
-    catch e  
+    catch e
         if isa(e,BoundsError)
             return toReturn
         end
@@ -749,10 +749,10 @@ customIndex(a,4)
 
 # ## [Parallel computation](@id parallel_computation)
 
-# Finally one note on parallel computation. We see only some basic usage of multithreading and multiprocesses in this course, but with Julia it is relativelly easy to parallelise the code either using multiple threads or multiple processes. What's the difference ?
+# Finally one note on parallel computation. We see only some basic usage of multithreading and multiprocesses in this course, but with Julia it is relatively easy to parallelize the code either using multiple threads or multiple processes. What's the difference ?
 # - **multithread**
 #   - advantages: computationally "cheap" to create (the memory is shared)
-#   - disadvantages: limited to the number of cores within a CPU, require attention in not overwriting the same memory or doing it at the intended order ("data race"), we can't add threads dynamically (within a script) 
+#   - disadvantages: limited to the number of cores within a CPU, require attention in not overwriting the same memory or doing it at the intended order ("data race"), we can't add threads dynamically (within a script)
 # - **multiprocesses**
 #   - advantages: unlimited number, can be run in different CPUs of the same machine or differnet nodes of a cluster, even using SSH on different networks, we can add processes from within our code with `addprocs(nToAdd)`
 #   - disadvantages: the memory being copied (each process will have its own memory) are computationally expensive (you need to have a gain higher than the cost on setting a new process) and require attention to select which memory a given process will need to "bring with it" for its functionality
@@ -762,7 +762,7 @@ customIndex(a,4)
 # ### Multithreading
 
 # !!! warning
-#     It is not possible to add threads dinamically, either we have to start Julia with the parameter `-t` (e.g. `-t 8` or `-t auto`) in the command line or use the VSCode Julia externsion setting `Julia: Num Threads`
+#     It is not possible to add threads dynamically, either we have to start Julia with the parameter `-t` (e.g. `-t 8` or `-t auto`) in the command line or use the VSCode Julia extension setting `Julia: Num Threads`
 
 function inner(x)
     s = 0.0
@@ -800,13 +800,13 @@ x = 100
 y = 20
 
 str = parentSingleThread(x,y)
-mtr = parentThreaded(x,y)   
+mtr = parentThreaded(x,y)
 
 str == mtr # true
-Threads.nthreads() # 4 in my case 
+Threads.nthreads() # 4 in my case
 Threads.threadid()
 @btime parentSingleThread(100,20) # 140 μs on my machine
-@btime parentThreaded(100,20)     #  47 μs 
+@btime parentThreaded(100,20)     #  47 μs
 
 # ### Multiprocessing
 
@@ -819,7 +819,7 @@ Threads.threadid()
 # ```
 # The first process is considered a sort of "master" process, the other one are the "workers"
 # We can add processes on other machines by providing the SSH connection details directly in the `addprocs()` call (Julia must be installed on that machines as well)
-# We can alternativly start Julia directly with _n_ worker processes using the armument `-p n` in the command line.
+# We can alternatively start Julia directly with _n_ worker processes using the arguments `-p n` in the command line.
 
 # ```julia
 # println("Worker pids: ")
@@ -828,7 +828,7 @@ Threads.threadid()
 # end
 # rmprocs(workers()[1])    #  remove process pid 2
 # println("Worker pids: ")
-# for pid in workers() 
+# for pid in workers()
 #     println(pid) # 3,4 are left
 # end
 # @everywhere begin using Distributed end # this is needed only in GitHub action
@@ -860,12 +860,12 @@ Threads.threadid()
 # result2 = pmap(fib,a)
 # result == result2
 # @btime map(fib,$a)  # serialised:   median time: 514 ms    1 allocations
-# @btime pmap(fib,$a) # parallelised: median time: 265 ms 4220 allocations # the memory of `a` need to be copied to all processes
+# @btime pmap(fib,$a) # parallelized: median time: 265 ms 4220 allocations # the memory of `a` need to be copied to all processes
 # ```
 
 # #### Divide and Conquer
 
-# Rather than having a "heavy operation" and being interested in the individual results, here we have a "light" operation and we want to aggregate the results of the various computations using some aggreagation function.
+# Rather than having a "heavy operation" and being interested in the individual results, here we have a "light" operation and we want to aggregate the results of the various computations using some aggregations function.
 # We can then use `@distributed (aggregationfunction) for [forConditions]` macro:
 
 # ```julia
@@ -889,4 +889,4 @@ Threads.threadid()
 
 # Note that also in this case the improvement is less than proportional with the number of processes we add
 
-# Details on parallel comutation can be found [on the official documentation](https://docs.julialang.org/en/v1/manual/parallel-computing/), including information to run nativelly Julia on GPUs or TPUs.
+# Details on parallel computation can be found [in the official documentation](https://docs.julialang.org/en/v1/manual/parallel-computing/), including information to run natively Julia on GPUs or TPUs.
