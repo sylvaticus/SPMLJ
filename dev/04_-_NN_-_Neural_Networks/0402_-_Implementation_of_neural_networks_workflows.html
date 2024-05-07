@@ -140,7 +140,7 @@
  AbstractVector{Int64}[[0, 1, 0, 0, 0, 0, 1, 1, 1, 1  …  1, 1, 1, 0, 0, 0, 0, 1, 1, 0], [0, 0, 0, 1, 0, 1, 1, 1, 1, 1  …  0, 1, 1, 0, 0, 0, 1, 1, 0, 0]]</code></pre><h4 id="Using-defaults-hidding-complexity"><a class="docs-heading-anchor" href="#Using-defaults-hidding-complexity">Using defaults - hidding complexity</a><a id="Using-defaults-hidding-complexity-1"></a><a class="docs-heading-anchor-permalink" href="#Using-defaults-hidding-complexity" title="Permalink"></a></h4><p>Model definition...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; mynn = NeuralNetworkEstimator()</code><code class="nohighlight hljs ansi" style="display:block;">NeuralNetworkEstimator - A Feed-forward neural network (unfitted)</code></pre><p>Training...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; fit!(mynn,xtrain,ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">***
 *** Training  for 200 epochs with algorithm BetaML.Nn.ADAM.
 Training.. 	 avg loss on epoch 1 (1): 	 0.18656267056947534
-Training the Neural Network...   1%|▎                    |  ETA: 0:02:30Training.. 	 avg loss on epoch 20 (20): 	 0.058163963177969666
+Training the Neural Network...   1%|▎                    |  ETA: 0:02:33Training.. 	 avg loss on epoch 20 (20): 	 0.058163963177969666
 Training.. 	 avg loss on epoch 40 (40): 	 0.04339082068941012
 Training.. 	 avg loss on epoch 60 (60): 	 0.04180323331121692
 Training.. 	 avg loss on epoch 80 (80): 	 0.04089541120675939
@@ -234,7 +234,7 @@ Training.. 	 avg loss on epoch 60 (60): 	 0.03836146288656553
 Training.. 	 avg loss on epoch 90 (90): 	 0.032823057625818476
 Training.. 	 avg loss on epoch 120 (120): 	 0.031828414210249366
 Training.. 	 avg loss on epoch 150 (150): 	 0.031356983882135134
-Training the Neural Network...  57%|████████████         |  ETA: 0:00:01Training.. 	 avg loss on epoch 180 (180): 	 0.031114984044989264
+Training the Neural Network...  58%|████████████▏        |  ETA: 0:00:01Training.. 	 avg loss on epoch 180 (180): 	 0.031114984044989264
 Training.. 	 avg loss on epoch 210 (210): 	 0.0309532077728682
 Training.. 	 avg loss on epoch 240 (240): 	 0.030839304285758238
 Training.. 	 avg loss on epoch 270 (270): 	 0.03075214660471059
@@ -666,14 +666,14 @@ Output of `info(cm)`:
 Training.. 	 avg loss on epoch 1 (1): 	 13242.153668056468
 Training.. 	 avg loss on epoch 60 (60): 	 1181.6928466321906
 Training the Neural Network...  11%|██▎                  |  ETA: 0:00:08Training.. 	 avg loss on epoch 120 (120): 	 1088.3494941178744
-Training the Neural Network...  21%|████▌                |  ETA: 0:00:08Training.. 	 avg loss on epoch 180 (180): 	 1013.3049635384855
-Training the Neural Network...  32%|██████▊              |  ETA: 0:00:06Training.. 	 avg loss on epoch 240 (240): 	 951.36866067092
-Training the Neural Network...  43%|█████████▏           |  ETA: 0:00:05Training.. 	 avg loss on epoch 300 (300): 	 896.3859468269706
-Training the Neural Network...  54%|███████████▍         |  ETA: 0:00:04Training.. 	 avg loss on epoch 360 (360): 	 848.1831730368817
-Training the Neural Network...  65%|█████████████▋       |  ETA: 0:00:03Training.. 	 avg loss on epoch 420 (420): 	 803.0116879738476
-Training the Neural Network...  76%|████████████████     |  ETA: 0:00:02Training.. 	 avg loss on epoch 480 (480): 	 758.826111015261
-Training the Neural Network...  87%|██████████████████▍  |  ETA: 0:00:01Training.. 	 avg loss on epoch 540 (540): 	 715.0438800829186
-Training the Neural Network...  98%|████████████████████▋|  ETA: 0:00:00Training.. 	 avg loss on epoch 600 (600): 	 670.2162748919543
+Training the Neural Network...  22%|████▋                |  ETA: 0:00:07Training.. 	 avg loss on epoch 180 (180): 	 1013.3049635384855
+Training the Neural Network...  33%|███████              |  ETA: 0:00:06Training.. 	 avg loss on epoch 240 (240): 	 951.36866067092
+Training the Neural Network...  44%|█████████▎           |  ETA: 0:00:05Training.. 	 avg loss on epoch 300 (300): 	 896.3859468269706
+Training the Neural Network...  56%|███████████▋         |  ETA: 0:00:04Training.. 	 avg loss on epoch 360 (360): 	 848.1831730368817
+Training the Neural Network...  67%|██████████████       |  ETA: 0:00:03Training.. 	 avg loss on epoch 420 (420): 	 803.0116879738476
+Training the Neural Network...  78%|████████████████▍    |  ETA: 0:00:02Training.. 	 avg loss on epoch 480 (480): 	 758.826111015261
+Training the Neural Network...  89%|██████████████████▊  |  ETA: 0:00:01Training.. 	 avg loss on epoch 540 (540): 	 715.0438800829186
+Training.. 	 avg loss on epoch 600 (600): 	 670.2162748919543
 Training the Neural Network... 100%|█████████████████████| Time: 0:00:09
 Training of 600 epoch completed. Final epoch error: 670.2162748919543.
 354-element Vector{Float64}:
@@ -939,4 +939,4 @@ PDRTJS_settings_8962705 = {
         crossorigin="anonymous"
         async>
 </script><script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script><!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0401_-_Neural_network_architectures.html">« 0401 - Neural network architectures</a><a class="docs-footer-nextpage" href="0402x_EXERCISE-4.1.html">0402x EXERCISE-4.1 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.4.1 on <span class="colophon-date" title="Tuesday 7 May 2024 14:41">Tuesday 7 May 2024</span>. Using Julia version 1.10.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0401_-_Neural_network_architectures.html">« 0401 - Neural network architectures</a><a class="docs-footer-nextpage" href="0402x_EXERCISE-4.1.html">0402x EXERCISE-4.1 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.4.1 on <span class="colophon-date" title="Tuesday 7 May 2024 14:42">Tuesday 7 May 2024</span>. Using Julia version 1.10.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
