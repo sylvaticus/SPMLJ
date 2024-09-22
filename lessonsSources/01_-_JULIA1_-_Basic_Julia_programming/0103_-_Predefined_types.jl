@@ -467,6 +467,7 @@ newYearEvenDinner = DateTime("Sat, 30 Dec 2030 21:30:00", RFC1123Format) # an ot
 # - `E`  Day of week long (eg "Tuesday")
 # - `d`  Day of month (eg d => 3, dd => 03)
 # - `H`  Hour digit (eg H => 8, HH => 08)
+# - `p`  AM/PM specifier (eg "AM") (since Julia v1.3)
 # - `M`  Minute digit (eg M => 0, MM => 00)
 # - `S`  Second digit (eg S => 0, SS => 00)
 # - `s`  Millisecond digit (eg .000, fixed 3 digits)
