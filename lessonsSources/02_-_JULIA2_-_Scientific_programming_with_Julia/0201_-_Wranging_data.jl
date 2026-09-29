@@ -57,7 +57,7 @@ Germany	2020	11.419	3663
 France	2020	17.253	3055.83
 Italy	2020	9.56613	1424.4
 Sweden	2020	27.98	3653.91
-"""), DataFrame, copycols=true)
+"""), DataFrame)
 
 # Some common CSV.jl options: `delim` (use `'\t'` for tab delimited files), `quotechar`, `openquotechar`, `closequotechar`, `escapechar`, `missingstring`, `dateformat`, `append`, `writeheader`, `header`, `newline`, `quotestrings`, `decimal`, `header`, `normalizenames`, `datarow`, `skipto`, `footerskip`, `limit`, `transpose`, `comment`, `use_mmap`, `type`, `types` (e.g. `types=Dict("fieldFoo" => Union{Missing,Int64})`), `typemap`, `pool`, `categorical`, `strict`, `silencewarnings`, `ignorerepeated`
 

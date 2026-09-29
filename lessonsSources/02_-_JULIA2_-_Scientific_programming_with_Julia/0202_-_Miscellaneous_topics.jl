@@ -193,7 +193,7 @@ prod     Epinal Bordeaux Grenoble
 Fuelwood 400    700      800
 Sawnwood 800    1600     1800
 Pannels  200    300      300
-"""), DataFrame, delim=" ", ignorerepeated=true,copycols=true)
+"""), DataFrame, delim=" ", ignorerepeated=true)
 supply = Dict( (r[:prod],o) => r[Symbol(o)] for r in eachrow(supplytable), o in orig)
 
 # demand(prod, dest) amounts required at destinations
@@ -202,7 +202,7 @@ prod      Paris Lyon Nantes Tulouse Lille Marseille Strasbourg
 Fuelwood  300   300  100    75      650   225       250
 Sawnwood  500   750  400    250     950   850       500
 Pannels   100   100  0      50      200   100       250
-"""), DataFrame, delim=" ", ignorerepeated=true,copycols=true)
+"""), DataFrame, delim=" ", ignorerepeated=true)
 demand = Dict( (r[:prod],d) => r[Symbol(d)] for r in eachrow(demandtable), d in dest)
 
 # limit(orig, dest) of total units from any origin to destination
@@ -223,7 +223,7 @@ Sawnwood Grenoble 24    14   17     13      28    99        20
 Pannels  Epinal   41    15   12     16      17    86        8
 Pannels  Bordeaux 29    9    13     9       28    99        18
 Pannels  Grenoble 26    14   17     13      31    104       20
-"""), DataFrame, delim=" ", ignorerepeated=true,copycols=true)
+"""), DataFrame, delim=" ", ignorerepeated=true)
 cost = Dict( (r[:prod],r[:orig],d) => r[Symbol(d)] for r in eachrow(costtable), d in dest)
 
 # #### Optimisation model definition

@@ -16,7 +16,7 @@ cd(@__DIR__)
 using Pkg      
 Pkg.activate(".")  
 ## If using a Julia version different than 1.10 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
-## Pkg.resolve()   
+Pkg.resolve()   
 Pkg.instantiate()
 using Random, Plots
 Random.seed!(123)
@@ -164,7 +164,12 @@ savefig("obs_vs_est.svg");
 
 # ## Convolutional neural networks
 
-using LinearAlgebra, Statistics,Flux, MLDatasets, Plots
+# TODO: several issues with MLDatasets and Flux.Data.DataLoader
+#=
+using LinearAlgebra, Statistics, Flux, Plots
+ENV["PYTHON"] = ""
+#using Pkg; Pkg.build("PyCall")
+using MLDatasets
 
 x_train, y_train = MLDatasets.MNIST(split=:train)[:]
 x_train          = permutedims(x_train,(2,1,3)); # For correct img axis
@@ -220,3 +225,5 @@ heatmap(string.(res["categories"]),string.(res["categories"]),res["normalised_sc
 
 savefig("cm_digits.svg")
 # ![](cm_digits.svg)
+
+=#

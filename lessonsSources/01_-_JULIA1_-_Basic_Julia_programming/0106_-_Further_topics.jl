@@ -11,7 +11,7 @@
 
 # ## Some stuff to set-up the environment..
 
-cd(@__DIR__)         
+cd(@__DIR__)  
 using Pkg             
 Pkg.activate(".")     
 ## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will however be lost)
@@ -200,79 +200,99 @@ b = ccall((:mySum,myclib), Float64, (Float32,Float32), 2.5, 1.5)
 
 # ### Using Python in Julia 
 
-# The "default" way to use Python code in Julia is trough the [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) package. It automatically take care of convert between Python types (including numpy arrays) and Julia types (types that can not be converted automatically are converted to the generic `PyObject` type).
-ENV["PYTHON"] = "" # will force PyCall to download and use a "private to Julia" (conda based) version of Python. use "/path/to/python" if you want to reuse a version already installed on your system
+# The "default" way to use Python code in Julia is trough the [PythonCall.jl](https://github.com/JuliaPy/PythonCall.jl) package. It automatically take care of convert between Python types (including numpy arrays) and Julia types (types that can not be converted automatically are converted to the generic `PyObject` type).
+# By default PythonCall will download and use a "private to Julia" (conda based) version of Python. Use the (session specific) environmental variables `ENV["JULIA_CONDAPKG_BACKEND"] = "Null"` and `ENV["JULIA_PYTHONCALL_EXE"] = "/path/to//your/python"` if you want to reuse a version already installed on your system.
+# Python packages can be installed and managed in this private environment with the help of the [`CondaPkg.jl`](https://github.com/JuliaPy/CondaPkg.jl) package.
 
 ## using Pkg
-## Pkg.add("PyCall")
-## Pkg.build("PyCall")
-using PyCall
+## Pkg.add("PythonCall")
+## Pkg.build("PythonCall")
+using PythonCall, CondaPkg, Pipe
 
 # #### Embed short python snippets in Julia
-py"""
-def sumMyArgs (i, j):
-  return i+j
-def getNthElement (vec,n):
-  return vec[n]
-"""
-a = py"sumMyArgs"(3,4)             # 7 - here we call the Python object (a function) with Julia parameters
-b = py"getNthElement"([1,2,3],1)   # 2 - attention to the diffferent convention for starting arrays!. Note the Julia Array ahas been converted automatically to a Python list
-d = py"getNthElement([1,$a,3],1)"  # 7 - here we interpolate the Python call
+# Use `@pyexec` for defining functions and running multi-line blocks, and `@pyeval` for evaluating expressions and calling functions.
 
-# Alternativly, use `@pyinclude("pythonScript.py")`
+@pyexec """
+def python_sum(i, j):
+    return i+j
+""" => python_sum
+@pyexec """
+def get_ith_element(n):
+    a = [0,1,2,3,4,5,6,7,8,9]
+    return a[n]
+""" => get_ith_element
+
+@pyexec """
+def get_nth_element(vec,n):
+    return vec[n]
+""" => get_nth_element
+
+
+# You can now call these functions:
+c = @pipe python_sum(3,4)         |> pyconvert(Int64,_)         # 7
+d = @pipe python_sum([3,4],[5,6]) |> pyconvert(Vector{Int64},_) # [8,10]
+e = @pipe get_ith_element(3)      |> pyconvert(Int64,_)         # 3 attention to the diffferent convention for starting arrays!
+
+# Note that while the input is automatically converted, the output (Python to Julia) still require a manual conversion.
+
+
+# Alternativly, you can read a python script:
+
 pythonCode = """
-def sumMyArgs (i, j, z):
-  return i+j+z
+def sum_my_args (i, j):
+  return i+j
 """
-open(f->write(f,pythonCode),"pythonScript.py","w")
-@pyinclude("pythonScript.py")
-a = py"sumMyArgs"(3,4,5)
+open(f->write(f,pythonCode),"python_script.py","w")
 
-# !!! tip
-#     Note thaat the 3 arguments definition of `sumMyArgs` has _replaced_ the 3-arguments one. This would now error `py"sumMyArgs"(3,4)` 
+## pyexec(read("python_script.py", String),Main)        # this works, but it is commented because the compilation of this document evaluates the code in a separate, different module
+## @pyexec (i=3, j=4) => "f = sum_my_args(i,j)" => (f::Int64)
+
+# or: 
+sys = pyimport("sys"); sys.path.insert(0, pwd())
+ps = pyimport("python_script")
+@pipe ps.sum_my_args(3, 4) |> pyconvert(Int64,_)  
 
 
 # #### Use Python libraries
 
+# TODO: again, somethign that workk but it doesn't work in our build system because of a separate module
+#=
 # Add a package to the local Python installation using Conda:
-pyimport_conda("ezodf", "ezodf", "conda-forge") # pyimport_conda(module, package, channel)
+CondaPkg.add("pandas")             # run this only once, it creates a CondaPkg.toml configuration file
+         
+const pd = pyimport("pandas")     # Equiv. of Python `import pandas as pd`
 
-const ez = pyimport("ezodf")  # Equiv. of Python `import ezodf as ez`
-destDoc  = ez.newdoc(doctype="ods", filename="anOdsSheet.ods")
-# Both `ez` and `destDoc` are `PyObjects` for which we can access attributes and call the methods using the usual `obj.method()` syntax as we would do in Python
-sheet    = ez.Sheet("Sheet1", size=(10, 10))
-destDoc.sheets.append(sheet)
-## dcell1 = sheet[(2,3)] # This would error because the index is a tuple. Let's use directly the `get(obj,key)` function instead:
-dcell1   = get(sheet,(2,3)) # Equiv. of Python `dcell1 = sheet[(2,3)]`. Attention again to Python indexing from zero: this is cell "D3", not "B3" !
-dcell1.set_value("Hello")
-get(sheet,"A9").set_value(10.5) # Equiv. of Python `sheet['A9'].set_value(10.5)`
-destDoc.backup = false
-destDoc.save()
+# Build a DataFrame from a Python dict of Python lists
+people_names = ["Alice", "Bob", "Carol"]
+people_ages  = [30,25,35]
+df = pd.DataFrame(pydict(name = people_names,age  = people_ages))
+
+df.loc[1, "age"]    = 26                 # row label 1 is "Bob", not "Alice" (0-based default index)
+df["age_next_year"] = df["age"] + 1   
+mean_age = @pipe df["age"].mean() |> pyconvert(Float64,_)   
+
+df.to_csv("people.csv", index = false)   # Julia keyword args and `false` map to Python kwargs and `False`
+df2 = pd.read_csv("people.csv")
+println(df2)
+=#
+
 
 # ### Using Julia in Python
 
-# #### Installation of the Python package `PyJulia`
+# #### Installation of the Python package `JuliaCall`
 
-# [PyJulia](https://github.com/JuliaPy/pyjulia) can be installed using `pip`, taking note that its name using `pip` is `julia` not `PyJulia`:
-# ```$ python3 -m pip install --user julia```
+# [JuliaCall](https://github.com/JuliaPy/PythonCall.jl) can be installed using `pip`:
+# ```$ python3 -m pip install --user juliacall```
  
-# We can now open a Python terminal and initialise PyJulia to work with our Julia version:
-# ```python
-# >>> import julia
-# >>> julia.install() # Only once to set-up in julia the julia packages required by PyJulia
-# ```
- 
-# If we have multiple Julia versions, we can specify the one to use in Python passing julia="/path/to/julia/binary/executable" (e.g. julia = "/home/myUser/lib/julia-1.1.0/bin/julia") to the install() function.
 
 # #### Running Julia libraries and code in Python
 
-# On each Python session we need to run the following code: 
-# ```python
-# from julia import Julia
-# Julia(compiled_modules=False)
-# ```
+# TODO: update this section to JuliaCall. The following is the old PyJulia approach
 
-# This is a workaround to the common situation when the Python interpreter is statically linked to libpython, but it will slow down the interactive experience, as it will disable Julia packages pre-compilation, and every time we will use a module for the first time, this will need to be compiled first. Other, more efficient but also more complicate, workarounds are given in the package documentation, under the [Troubleshooting section](https://pyjulia.readthedocs.io/en/stable/troubleshooting.html).
+# We can now open a Python terminal and import JuliaCall to work with our Julia version:
+# ```python
+# >>> from juliacall import Main as jl
+# ```
 
 # We can now direcltly load a Julia module, including `Main`, the global namespace of Julia’s interpreter, with `from julia import ModuleToLoad` and access the module objects directly or using the `Module.evel()` interface.
 
@@ -436,6 +456,8 @@ a = rcopy(R"sumMyArgs"(3,4,5))  # 12
 
 # ## Some performance tips
 
+# TODO: check this section, as with Julia evolution some issues reported here are no longer true (thanks to better compiler heuristics)
+
 # ### Type stability
 
 # "Type stable" functions guarantee to the compiler that given a certain method (i.e. with the arguments being of a given type) the object returned by the function is also of a certain fixed type. Type stability is fundamental to allow type inference continue across the function call stack.
@@ -505,7 +527,9 @@ bobj = Boo(1)
 
 g        = 2
 const cg = 1   # we can't change the _type_ of the object binded to a constant variable 
-cg       = 2   # we can rebind to an other object of the same type, but we get a warning
+const cg = 2   # we can rebind to an other object but we need to still use the const keyword - attention that this may force recompiling of all code depending on cg !
+const cg = 2.5
+## cg    = 2 # this would error !
 ## cg    = 2.5 # this would error !
 f1(x,y) = x+y
 f2(x)   = x + g
@@ -540,8 +564,8 @@ function f2(x)
     end
     return cum
 end
-@btime f1($a) # 2.3 ms 0 allocations
-@btime f2($a) # 1.3 ms 0 allocations
+@btime f1($a) # 469.631 μs 0 allocations
+@btime f2($a) # 400.739 μs 0 allocations
 
 # #### Use low-level optimisation when possible
 

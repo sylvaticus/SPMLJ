@@ -1,10 +1,10 @@
 
 # To build the documentation:
 #    - julia --project="." make.jl
-#    - empty!(ARGS); include("make.jl")
+#    - empty!(ARGS); include("makedoc.jl")
 # To build the documentation without running the tests:
 #    - julia --project="." make.jl preview
-#    - push!(ARGS,"preview"); include("make.jl")
+#    - push!(ARGS,"preview"); include("makedoc.jl")
 
 # !!! note "An optional title"
 #    4 spaces idented
@@ -160,6 +160,7 @@ function preprocess(rootDir)
     #rootDir = LESSONS_ROOTDIR 
     files  = rdir(rootDir,"*.md")
     videos = ods_read(joinpath(@__DIR__,"videosList.ods");sheetName="videos",retType="DataFrame")
+    dropmissing!(videos,"host_filename")
     for file in files
         #file = files[4]
         origContent = read(file,String)
@@ -252,10 +253,12 @@ end #end preprocess function
 
 # ------------------------------------------------------------------------------
 # Saving the unmodified source to a temp directory
+rm(LESSONS_ROOTDIR_TMP, recursive=true, force=true)
+mkdir(LESSONS_ROOTDIR_TMP)
 cp(LESSONS_ROOTDIR, LESSONS_ROOTDIR_TMP; force=true)
 
 println("Starting literating tutorials (.jl --> .md)...")
-literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR ,lsubdir),values(LESSONS_SUBDIR)))
+literate_directory.(map(lsubdir->joinpath(LESSONS_ROOTDIR_TMP ,lsubdir),values(LESSONS_SUBDIR)))
 
 if MAKE_PDF
     @error "MD->PDF generation is disabled because DocumenterMarkdown is not maintained and it blocks Documenter to older versions"
@@ -264,7 +267,7 @@ if MAKE_PDF
             authors = "Antonello Lobianco",
             pages = [
                 "Index" => "index.md",
-                "Lessons" => makeList(LESSONS_ROOTDIR,LESSONS_SUBDIR),
+                "Lessons" => makeList(LESSONS_ROOTDIR_TMP,LESSONS_SUBDIR),
             ],
             format = Markdown(),
             source  = "lessonsSources", # Attention here !!!!!!!!!!!
@@ -275,7 +278,110 @@ end
 
 
 println("Starting preprocessing markdown pages...")
-preprocess(LESSONS_ROOTDIR)
+preprocess(LESSONS_ROOTDIR_TMP)
+
+
+# >>>>
+rootDir = LESSONS_ROOTDIR_TMP
+cd(@__DIR__)
+Pkg.activate(".")
+#rootDir = LESSONS_ROOTDIR 
+files  = rdir(rootDir,"*.md")
+videos = ods_read(joinpath(@__DIR__,"videosList.ods");sheetName="videos",retType="DataFrame")
+dropmissing!(videos,"host_filename")
+#for (i,file) in enumerate(files)
+file = files[1]
+origContent = read(file,String)
+outContent = ""
+filename = splitdir(file)[2]
+println(i)
+segmentVideos = videos[videos.host_filename .== filename,:]
+#openVideosFlag = filename == "0001_-_Course_presentation.md" ? "open" : ""
+
+if size(segmentVideos,1) > 0
+    outContent *= """
+                ```@raw html
+                <div id="ytb-videos">
+                <span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
+                """
+    for (i, video) in enumerate(eachrow(segmentVideos))
+        #video = segmentVideos[1,:]
+        openVideosFlag = (i == 1) ? "open" : ""
+        outContent *= """
+            <details $(openVideosFlag)><summary>$(video.lesson_short_name) - $(video.segment_id)$(video.part_id): $(video.part_name) ($(video.minutes):$(video.seconds))</summary>
+            <div class="container ytb-container">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/$(video.vid)" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+                </div>
+            </div>
+            </details>
+            """
+    end # end of each video
+    outContent *= """
+        </div>
+        ```
+        ------
+        """
+end # end of if there are videos
+outContent *= origContent
+if (filename != "index.md")
+    commentCode = """
+        ```@raw html
+        <script src="https://utteranc.es/client.js"
+                repo="sylvaticus/SPMLJ"
+                issue-term="title"
+                label="💬 website_comment"
+                theme="github-dark"
+                crossorigin="anonymous"
+                async>
+        </script>
+        ```
+        """
+    addThisCode1 = """
+        ```@raw html
+        <div class="addthis_inline_share_toolbox"></div>
+        ```
+        """
+    addThisCode2 = """
+        ```@raw html
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
+        ```
+        """
+    # https://crowdsignal.com/support/rating-widget/
+    ratingCode1 = """
+        ```@raw html
+        <div id="pd_rating_holder_8962705"></div>
+        <script type="text/javascript">
+        const pageURL = window.location.href;
+        PDRTJS_settings_8962705 = {
+        "id" : "8962705",
+        "unique_id" : "$(file)",
+        "title" : "$(filename)",
+        "permalink" : pageURL
+        };
+        </script>
+        ```
+        """
+    ratingCode2 = """
+        ```@raw html
+        <script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
+        ```
+        """
+    outContent *= "\n---------\n"
+    outContent *= ratingCode1
+    outContent *= addThisCode1
+    outContent *= "\n---------\n"
+    outContent *= commentCode
+    outContent *= ratingCode2
+    outContent *= addThisCode2
+end
+write(file,outContent)
+
+
+
+
+# <<<<
 
 println("Starting making the documentation...")
 makedocs(sitename="SPMLJ",
