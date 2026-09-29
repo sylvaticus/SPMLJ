@@ -14,7 +14,7 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 ## Pkg.resolve()   
 ## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
@@ -68,7 +68,7 @@ typeof(b)
 #   - ...
 # Complete Number hierarchy: [https://upload.wikimedia.org/wikipedia/commons/d/d9/Julia-number-type-hierarchy.svg](https://upload.wikimedia.org/wikipedia/commons/d/d9/Julia-number-type-hierarchy.svg)
 
-# Everythong is an object, i.e. of some "type":
+# Everything is an object, i.e. of some "type":
 c = typeof(a)
 typeof(c)
 d = sin
@@ -139,4 +139,4 @@ b
 c
 d
 # !!! note
-#     Consider these memory isues when we'll discuss calling a function by reference/value !
+#     Consider these memory issues when we'll discuss calling a function by reference/value !

@@ -13,7 +13,7 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 ## Pkg.resolve()   
 ## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
@@ -23,7 +23,7 @@ using InteractiveUtils # loaded automatically when working... interactively
 # ## Variables scope
 
 # The scope of a variable is the region of code where the variable can be accessed directly (without using prefixes).
-# Modules, functions, `for` and other blocks (but notably not "if" blocks) introduce an inner scope that hinerit from the scope where the block or function is defined (but not, for function, from the caller's scope).
+# Modules, functions, `for` and other blocks (but notably not "if" blocks) introduce an inner scope that inherit from the scope where the block or function is defined (but not, for function, from the caller's scope).
 # Variables that are defined outside any block or function are _global_ for the module where they are defined (the `Main` module if outside any other module, e.g. on the REPL), the others being _local_.
 # Variables defined in a `for` block that already exists as global behave differently depending if we are working interactively or not:
 
@@ -109,7 +109,7 @@ end
 
 map((name,year) -> println("$name is $year year old"), ["Marc","Anna"], [25,22])
 
-# !!! warninng
+# !!! warning
 #     Don't confuse the single-line arrows used in anonymous functions (`->`) with the double-line arrow used to define a Pair (`=>`)
 
 # We can use maps to substitute values of an array based on a dictionary:
@@ -239,10 +239,10 @@ methods(foo3)
 
 # Multiple dispatch allows to compile a _specialised_ version JIT at run time, on the first call with the given parameters type
 # We will see it again when dealing with type inheritance
-# In general, unless we need to write specialised methods, no need to specify the type of the parameters. No influence on performances, this is automatically inferred (and the funciton compiled) based on the run-time type of the argument
+# In general, unless we need to write specialised methods, no need to specify the type of the parameters. No influence on performances, this is automatically inferred (and the function compiled) based on the run-time type of the argument
 
 # !!! tip Functions performances tip
-#     The most important things for performances are (1) that the function is _type stable_, that is, that conditional to a specific combination of the types of the parameters the function returns the same type. This is a condition necessary to have a working chain of type inference across function calls; (2) that no (non constant) global constants are used in the function and indeed all the required information for the functio ndoing its work is embedded in the function parameters
+#     The most important things for performances are (1) that the function is _type stable_, that is, that conditional to a specific combination of the types of the parameters the function returns the same type. This is a condition necessary to have a working chain of type inference across function calls; (2) all information the function needs is provided by values passed through it's parameters or be a global constant.
 
 
 # ### Function templates
