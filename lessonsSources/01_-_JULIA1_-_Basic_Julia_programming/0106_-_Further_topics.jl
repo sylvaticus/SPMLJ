@@ -527,8 +527,8 @@ bobj = Boo(1)
 
 g        = 2
 const cg = 1   # we can't change the _type_ of the object binded to a constant variable 
-const cg = 2   # we can rebind to an other object but we need to still use the const keyword - attention that this may force recompiling of all code depending on cg !
-const cg = 2.5
+const cg = 2   # we can rebind to an other object but we need to still use the const keyword - attention that this may force recompiling of all code depending on cg ! 
+const cg = 2.5 # this would error in Julia < 1.12
 ## cg    = 2 # this would error !
 ## cg    = 2.5 # this would error !
 f1(x,y) = x+y
