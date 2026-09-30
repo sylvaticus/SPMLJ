@@ -10,7 +10,7 @@
 <p>&nbsp;</p>
 ```
 
-In this exercise you will implement the [Shelling Segregation Model](https://en.wikipedia.org/wiki/Schelling%27s_model_of_segregation), a classical agent-based model in the social sciences, introducing the concepts of emerging macro behaviours and tipping points, leading to its author (Thomas Schelling) receiving the Nobel prize in Economics in 2005.
+In this exercise you will implement the [Schelling Segregation Model](https://en.wikipedia.org/wiki/Schelling%27s_model_of_segregation), a classical agent-based model in the social sciences, introducing the concepts of emerging macro behaviours and tipping points, leading to its author (Thomas Schelling) receiving the Nobel prize in Economics in 2005.
 
 It has been one of the very first results obtained from running simulations, especially in the social sciences.
 The World is modelled as a gridded space inhabited by two groups (in that period racial and segregation questions concerning the cohabitation of "blacks" and "whites" were topical).
@@ -22,7 +22,7 @@ For each step, look at each agent, check if it is "happy" with its current locat
 
 There are various ways of "generality" vs "specificity" to code the algorithm above. On one end you could hard-code the two agent types, e.g. as `1` and `2`, on the other you could be very generic and create an abstract type `Agent` and a concrete class for each agent type.
 
-The skeleton below proposes an intermediate approach with only one `Agent` class and the kind of agent encoded as an integer, with 0 representing an empty cell. Fill free to use it or to develop your own algorithm from scratch!
+The skeleton below proposes an intermediate approach with only one `Agent` class and the kind of agent encoded as an integer, with 0 representing an empty cell. Feel free to use it or to develop your own algorithm from scratch!
 
 Source: Thomas C. Schelling (1971) Dynamic models of segregation, The Journal of Mathematical Sociology, 1:2, 143-186, DOI: [10.1080/0022250X.1971.9989794](https://doi.org/10.1080/0022250X.1971.9989794) 
 
@@ -39,7 +39,7 @@ Source: Thomas C. Schelling (1971) Dynamic models of segregation, The Journal of
 If you have already cloned or downloaded the whole [course repository](https://github.com/sylvaticus/SPMLJ/) the folder with the exercise is on `[REPOSITORY_ROOT]/lessonsMaterial/01_JULIA1/shellingSegregationModel`.
 Otherwise download a zip of just that folder [here](https://downgit.github.io/#/home?url=https://github.com/sylvaticus/SPMLJ/tree/main/lessonsMaterial/01_JULIA1/shellingSegregationModel).
 
-In the folder you will find the file `shellingSegreGationModel.jl` containing the julia file that **you will have to complete to implement and run the model** (follow the instructions on that file). 
+In the folder you will find the file `shellingSegreGationModel.jl` containing the Julia file that **you will have to complete to implement and run the model** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
 If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
 Good luck! 
@@ -54,7 +54,7 @@ Click "ONE POSSIBLE SOLUTION" to get access to (one possible) solution for each 
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.7 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.7 please uncomment and run the following line (reproducibility guarantee will however be lost)
 # Pkg.resolve()   
 Pkg.instantiate()
 using Random
@@ -72,9 +72,9 @@ end
 mutable struct Env
     nR::Int64                       # number of rows
     nC::Int64                       # number of columns
-    similarityThreeshold::Float64   # threeshold for agents to be "happy" with their location
+    similarityThreeshold::Float64   # threshold for agents to be "happy" with their location
     neighborhood::Int64             # how far looking for "similar" agents
-    nSteps::Int64                   # number of iteractive steps to employ
+    nSteps::Int64                   # number of iterative steps to employ
     cells::Vector{Agent}            # total cells in the environment
     gids::Vector{Int64}             # ids of the agents types (or "groups")
     grsizes::Vector{Int64}          # number of agents per group

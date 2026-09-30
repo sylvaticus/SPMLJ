@@ -10,12 +10,12 @@ In particular, by attending this course you will receive :
 2. An exposure to several specific but commonly used tools in multiple scientific areas (data wrangling and visualisation, constrained optimisation, ...)
 3. An overview of modern tools for scientific collaboration and software quality, such as version control systems and best practices to obtain replicable results.
 4. An introduction to machine learning approaches: scopes, terminology, typologies, workflow organisation
-5. An in-deep introduction to some specific machine learning algorithms for classification and regression (perceptron, neural networks, random forests..)
+5. An in-depth introduction to some specific machine learning algorithms for classification and regression (perceptron, neural networks, random forests..)
 6. Experience in employing Machine Learning workflows to specific cases on multiple domains
 
 ## How to attend the course
 
-The course is multi-channel, with these pages complemented with youtube videos (see [Program](@ref course_program)), quizzes and exercises. Thanks to projects such as [Literate.jl](https://github.com/fredrikekre/Literate.jl) and [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) the source of most of these pages are runnable valid Julia files.
+The course is multi-channel, with these pages complemented with youtube videos (see [Program](@ref course_program)), quizzes and exercises. Thanks to projects such as [Literate.jl](https://github.com/fredrikekre/Literate.jl) and [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) the source of most of these pages is runnable valid Julia files.
 
 **To fully master the subject, nothing is better than cloning [the repository on GitHub](https://github.com/sylvaticus/SPMLJ) and running these pages by yourself!**
 To execute yourself the code discussed in the videos, run the code in the `lessonsSource` folder.
@@ -34,13 +34,13 @@ Anyhow, the course is organised in units/lessons (e.g. `JULIA1`). Each unit/less
 ```@raw html
  <p style ="font-weigth: bold;"><img src="assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="100" style="float: left; margin-right: 15px;"> 
  Antonello Lobianco</p>
- <p> <a href="https://orcid.org/0000-0002-1534-8697">OrcID</a> - <a href="https://scholar.google.com/citations?user=8DSfpVUAAAAJ">Google Schoolar</a> - <a href="https://github.com/sylvaticus/">GitHub</a> - <a href="https://lobianco.org/antonello">Personal site</a>
+ <p> <a href="https://orcid.org/0000-0002-1534-8697">OrcID</a> - <a href="https://scholar.google.com/citations?user=8DSfpVUAAAAJ">Google Scholar</a> - <a href="https://github.com/sylvaticus/">GitHub</a> - <a href="https://lobianco.org/antonello">Personal site</a>
  </p>
  <p style="clear:both;">
 ```
 
 
-I am a Forest and Natural Resources Economist @ AgroParisTech, a French _Grand Ecole_ (polytechnic university) in the life science domain and affiliated to BETA, the _Bureau d'Économie Théorique et Appliquée_, which brings together most of the economists located in the _Grand-Est_ region of France.
+I am a Forest and Natural Resources Economist @ AgroParisTech, a French _Grande Ecole_ (polytechnic university) in the life science domain and affiliated to BETA, the _Bureau d'Économie Théorique et Appliquée_, which brings together most of the economists located in the _Grand-Est_ region of France.
 My main interest is in exploring the interplay between the biophysical layers in the forest sector (climate change, forest dynamics) and the socio-economic ones (individual forest owners' behaviours, timber markets "behaviours") in order to better understand the space of actions that society has to maximise social benefits in a sustainable way. For that, I design, develop and use bio-economic simulation models of the forest sector.
 I started moving my research models to Julia in 2017 and in 2019 I wrote the book "[Julia Quick Syntax Reference: A Pocket Guide for Data Science Programming](https://doi.org/10.1007/978-1-4842-5190-4)" (Apress, 2019)
 

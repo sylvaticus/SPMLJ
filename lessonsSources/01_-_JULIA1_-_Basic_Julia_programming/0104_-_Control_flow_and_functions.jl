@@ -3,7 +3,7 @@
 ###                                                                          ### #src
 ### Run each script on a new clean Julia session                             ### #src
 ### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
-### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Licence (apply to all material of the course: scripts, videos, quizzes,..)### #src
 ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
 ################################################################################ #src
 
@@ -23,9 +23,9 @@ using InteractiveUtils # loaded automatically when working... interactively
 # ## Variables scope
 
 # The scope of a variable is the region of code where the variable can be accessed directly (without using prefixes).
-# Modules, functions, `for` and other blocks (but notably not "if" blocks) introduce an inner scope that inherit from the scope where the block or function is defined (but not, for function, from the caller's scope).
+# Modules, functions, `for` and other blocks (but notably not "if" blocks) introduce an inner scope that inherits from the scope where the block or function is defined (but not, for function, from the caller's scope).
 # Variables that are defined outside any block or function are _global_ for the module where they are defined (the `Main` module if outside any other module, e.g. on the REPL), the others being _local_.
-# Variables defined in a `for` block that already exists as global behave differently depending if we are working interactively or not:
+# Variables defined in a `for` block that already exist as global behave differently depending if we are working interactively or not:
 
 g  = 2
 g2 = 20
@@ -105,9 +105,9 @@ end
 
 # ### Maps
 
-# Apply a (possible anonymous) function to a list of arguments:
+# Apply a (possibly anonymous) function to a list of arguments:
 
-map((name,year) -> println("$name is $year year old"), ["Marc","Anna"], [25,22])
+map((name,year) -> println("$name is $year years old"), ["Marc","Anna"], [25,22])
 
 # !!! warning
 #     Don't confuse the single-line arrows used in anonymous functions (`->`) with the double-line arrow used to define a Pair (`=>`)
@@ -199,7 +199,7 @@ f(a,b=1;c=1) = a+10b+100c  # `a` and `b` are positional arguments (`b` with a de
 f(2)
 f(2,c=3)
 
-# We can use the splat operator (`...`) to specific a _variable_ number of arguments.
+# We can use the splat operator (`...`) to specify a _variable_ number of arguments.
 # Here an example for variable positional arguments...
 foo(a, args...;c=1) = a + length(args) + sum(args) + c  
 foo(1,2,3,c=4)
@@ -215,7 +215,7 @@ function foo(x;y="aaa",kwargs...)
 end
 foo(10,a=10,b=20,y="bbb")
 
-# Note that while normally using the semicolon instead of the colon for separating keyword arguments in function calls is optional, when we "forward" variable keyword arguments to a inner function we MUST use the semicolon in the call too. 
+# Note that while normally using the semicolon instead of the comma for separating keyword arguments in function calls is optional, when we "forward" variable keyword arguments to an inner function we MUST use the semicolon in the call too. 
 # Variable positional arguments can be constrained in the type and size, eventually parametrically, using `foo(a,x::Vararg{Float64,2}) = ...` (note that then the splat operator is not needed).
  
 # Rules for positional and keyword arguments:
@@ -242,15 +242,15 @@ methods(foo3)
 # In general, unless we need to write specialised methods, no need to specify the type of the parameters. No influence on performances, this is automatically inferred (and the function compiled) based on the run-time type of the argument
 
 # !!! tip Functions performances tip
-#     The most important things for performances are (1) that the function is _type stable_, that is, that conditional to a specific combination of the types of the parameters the function returns the same type. This is a condition necessary to have a working chain of type inference across function calls; (2) all information the function needs is provided by values passed through it's parameters or be a global constant.
+#     The most important things for performances are (1) that the function is _type stable_, that is, that conditional to a specific combination of the types of the parameters the function returns the same type. This is a condition necessary to have a working chain of type inference across function calls; (2) all information the function needs is provided by values passed through its parameters or be a global constant.
 
 
 # ### Function templates
 foo3(a::T,b::String) where {T<: Number} = a + parse(T,b)             # can use T in the function body
 foo3(2,"1")
 foo3(1.5,"1.5")
-foo4(a::Int64,b::T where T <: Number) = a + b                        # ok not used in functio nbody
-foo4(a::Int64,b::Array{T} where T <: Number) = a .+ fill(T,b,2)      # wil lerror, can't use T in the function body
+foo4(a::Int64,b::T where T <: Number) = a + b                        # ok not used in function body
+foo4(a::Int64,b::Array{T} where T <: Number) = a .+ fill(T,b,2)      # will error, can't use T in the function body
 ## foo4(2,[1,2])                                                     # run time error, T not defined 
 
 # ### Call by reference vs. call by value 
@@ -258,9 +258,9 @@ foo4(a::Int64,b::Array{T} where T <: Number) = a .+ fill(T,b,2)      # wil lerro
 # How the variable used as function argument within the function body relates to the variable used in calling the function ?
 # - **call by value**: the value of the argument is copied and the function body works on a copy of the value
 # - **call by reference**: the function works on the same object being referenced by the caller variable and the function argument
-# - **call by sharing** (Julia): the arguments are just new local variables that bind the same object. The effects of "modifications" on the local variable on the caller's one depends on the mutability property of the object as we saw in the _Types and objects_ segment:
+# - **call by sharing** (Julia): the arguments are just new local variables that bind the same object. The effects of "modifications" on the local variable on the caller's one depend on the mutability property of the object as we saw in the _Types and objects_ segment:
 #   - immutable objects: we can only have that the argument is rebinded to other objects. No effects on the original caller object
-#   - mutable objects: if the argument is rebinded to an other object, no effects on the caller object. If the object is modified, the caller object (being the same object) is also modified
+#   - mutable objects: if the argument is rebinded to another object, no effects on the caller object. If the object is modified, the caller object (being the same object) is also modified
 
 x = 10
 foo(y) = (y = 1)
@@ -283,7 +283,7 @@ foo!(x) = x[1] = 10 # to follow the convention
 
 # ## `do` blocks
 
-# Functions that accept an other function as their first parameter can be rewritten with the function itself defined in a `do` block:
+# Functions that accept another function as their first parameter can be rewritten with the function itself defined in a `do` block:
 using Statistics
 pool(f,x,poolSize=3) = [f(x[i:i+poolSize-1]) for i in 1:length(x)-poolSize+1] # a real case, used in neural networks as pooling layer
 pool(mean,[1,2,3,4,5,6])

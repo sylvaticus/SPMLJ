@@ -41,7 +41,7 @@ Our prediction concerns the quality class of the wine (1, 2 or 3) that is given 
 If you have already cloned or downloaded the whole [course repository](https://github.com/sylvaticus/SPMLJ/) the folder with the exercise is on `[REPOSITORY_ROOT]/lessonsMaterial/04_NN/wineClass`.
 Otherwise download a zip of just that folder [here](https://downgit.github.io/#/home?url=https://github.com/sylvaticus/SPMLJ/tree/main/lessonsMaterial/04_NN/wineClass).
 
-In the folder you will find the file `WineClass.jl` containing the julia file that **you will have to complete to implement the missing parts and run the file** (follow the instructions on that file). 
+In the folder you will find the file `WineClass.jl` containing the Julia file that **you will have to complete to implement the missing parts and run the file** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
 If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
 Good luck! 
@@ -61,7 +61,7 @@ Start by setting the working directory to the directory of this file and activat
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 # Pkg.resolve()   
 Pkg.instantiate() 
 using Random
@@ -90,7 +90,7 @@ using DelimitedFiles, Pipe, HTTP, Plots, BetaML
 ### 3) Load the data
 
 Load from internet or from local file the input data as a Matrix.
-You can use `readdlm`` using the comma as field separator.
+You can use `readdlm` using the comma as field separator.
 
 ```julia
 dataURL="https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data"
@@ -233,7 +233,7 @@ println(cm)
 
 --------------------------------------------------------------------------------
 ### 12) Plot the errors
-Run the following commands to plots the average loss per epoch 
+Run the following commands to plot the average loss per epoch 
 
 ```julia
 plot(info(mynn)["loss_per_epoch"])
@@ -241,7 +241,7 @@ plot(info(mynn)["loss_per_epoch"])
 
 --------------------------------------------------------------------------------
 ### 13) (Optional) Use unscaled data
-Run the same workflow without scaling the data or using `squared_cost` as cost function. How this affect the quality of your predictions ? 
+Run the same workflow without scaling the data or using `squared_cost` as cost function. How does this affect the quality of your predictions ? 
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>

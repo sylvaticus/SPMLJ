@@ -17,7 +17,7 @@ All points in the direction of the arrow are "positive", all points in the oppos
 From the figure we can deduce a few things in that example:
 - the current classifier (as drawn) is NOT classifying all points correctly, ie it makes "errors"
 - the points are however linearly separable
-- it would be enough to "rotate" a bit the classifier clockward to get the classifier making no more errors
+- it would be enough to "rotate" a bit the classifier clockwise to get the classifier making no more errors
 
 The perceptron algorithm is indeed an online algorithm (that is, that is updated as data is processed..) to "rotate" the classifier until it minimises the classification errors. For simplicity, we will work with classifiers passing through the origin, but we don't lose in generality as we can always think of the constant term as another dimension where the feature data is all filled with ones.
 
@@ -44,7 +44,7 @@ On the opposite, if our model is too simple or receives too little training, we 
 How can we choose the hyperparameters that minimise the bias-variance trade-off ? We put no assumptions on the data except that they all come from the same population.
 And the idea is to use the data itself to "evaluate" the generality of our model.
 We randomly split our dataset into three subsets:
-- The **training set** is the one used to actually "train" the algorithm to learn the relation between the given X and the given y, provided a certain set of hyperparameters, that is to find the parameters than minimise the error made by the algorithm
+- The **training set** is the one used to actually "train" the algorithm to learn the relation between the given X and the given y, provided a certain set of hyperparameters, that is to find the parameters that minimise the error made by the algorithm
 - the **validation set** is used to evaluate the results of our trained algorithm on data that has not been used by the algorithm to train the parameters, that is to find the hyperparameters that allow for the best generalisation
 - finally the **test set** is used to judge the overall performances of the algorithm when it is used with the "best" hyperparameter (we can't use the validation set for this, as the hyperparameters are "fitted" based on it).
 
@@ -61,7 +61,7 @@ Indeed a common technique is the so-called **K-folds cross-validation**:
 ![5-folds CrossValidation](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/5FoldsCrossValidation.png)
 
 Here we first randomly divide our whole dataset in a train/validation set and in the test set.
-For each possible hyperparameter set, we randomly partition the train/validation test in K sets. We use K-1 of them for training and the remaining one for computing the out-of-sample score of the model. We do that (keeping the same hyperparameters and the same partition) for all the different K subsets and we average the performances of the model with that given hyperparameters.
+For each possible hyperparameter set, we randomly partition the train/validation set in K sets. We use K-1 of them for training and the remaining one for computing the out-of-sample score of the model. We do that (keeping the same hyperparameters and the same partition) for all the different K subsets and we average the performances of the model with that given hyperparameters.
 We then select the "best" hyperparameters and we run the final training on the train/validation set and evaluation on the test set.
 
 ## The perceptron algorithm
@@ -74,12 +74,12 @@ We can now start our analysis of the Perceptron algorithm.
 
 As we start with $\theta^0 = \begin{bmatrix}0\\0\\...\end{bmatrix}$, the first attempt will always lead to an error and to a first "update" that will be $\theta^{1} = \begin{bmatrix}0\\0\\...\end{bmatrix} + y^1 * \begin{bmatrix}x^1_{d1}\\x^1_{d2}\\...\end{bmatrix}$.
 
-Let's make an exaple in 2 dimensions, with two points $x^1 = \begin{bmatrix}2\\4\end{bmatrix}$ and $x^2 = \begin{bmatrix}-6\\1\end{bmatrix}$, both with negative labels.
+Let's make an example in 2 dimensions, with two points $x^1 = \begin{bmatrix}2\\4\end{bmatrix}$ and $x^2 = \begin{bmatrix}-6\\1\end{bmatrix}$, both with negative labels.
 
-After being confronted with the first point, the classifier $\theta^0$ undergos its first update to become $\theta^1 = \begin{bmatrix}0\\0\end{bmatrix} + -1 * \begin{bmatrix}2\\4\end{bmatrix} = \begin{bmatrix}-2\\-4\end{bmatrix}$.
+After being confronted with the first point, the classifier $\theta^0$ undergoes its first update to become $\theta^1 = \begin{bmatrix}0\\0\end{bmatrix} + -1 * \begin{bmatrix}2\\4\end{bmatrix} = \begin{bmatrix}-2\\-4\end{bmatrix}$.
 Let's continue with the second point, $x^{(2)} = \begin{bmatrix}-6\\1\end{bmatrix}$. Does $\theta^1$ make an error in classifying $x^{2}$ ? We have:  $y^{(2)} * \theta^1 \cdot x^{(2)} = -1 * \begin{bmatrix}-2\\-4\end{bmatrix} \begin{bmatrix}-6\\1\end{bmatrix} = -8$, so yes, we have another classification error.
 We hence run a second update to obtain  $\theta^2 = \begin{bmatrix}-2\\-4\end{bmatrix} + -1 * \begin{bmatrix}-6\\1\end{bmatrix} = \begin{bmatrix}4\\-5\end{bmatrix}$.
-I let you see geometrically that this classifier correctly classify the two points:
+I let you see geometrically that this classifier correctly classifies the two points:
 
 
 ![Perceptron example over 2 points](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/03_-_ML1_-_Introduction_to_Machine_Learning/imgs/perceptron2PointsExample.png)
@@ -92,7 +92,7 @@ However, since the different training examples might update the parameters in di
 In other words, there may be cases where the perceptron algorithm needs to go over the training set multiple times before a separable solution is found (I let you try as exercise what would happen if the second point is $[+1,-2]$ instead of $[-6,+1]$, still with negative label).
 
 So we have to go through the training set here multiple times. In the jargon of machine learning, we call _epoch_ each time an algorithm goes through the whole training set, either in order or selecting at random.
-On each record, we look at whether the current classify makes a mistake and eventually perform a simple update.
+On each record, we look at whether the current classifier makes a mistake and eventually perform a simple update.
 
 * function perceptron $\displaystyle \left(\big \{ (x^{(n)}, y^{(n)}), n=1,...,N\big \} , epochs \right)$:
   * initialize $\theta =0$ (vector);

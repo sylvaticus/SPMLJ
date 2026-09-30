@@ -3,7 +3,7 @@
 ###                                                                          ### #src
 ### Run each script on a new clean Julia session                             ### #src
 ### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
-### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Licence (apply to all material of the course: scripts, videos, quizzes,..)### #src
 ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
 ################################################################################ #src
 
@@ -27,7 +27,7 @@ Random.seed!(123)
 
 # ## Comments
 
-# Similar to many other languages, everything that folows a hash symbol (`#`), up to the end of the line, is considered by Julia as a comment.
+# Similar to many other languages, everything that follows a hash symbol (`#`), up to the end of the line, is considered by Julia as a comment.
 # Julia supports also multi-line, middle-of-the-line and nested comments using the `#= ...comment... =#` syntax: 
 
 ## This is a comment
@@ -47,7 +47,7 @@ one
 a = 1
 a = 1;
 
-# All code blocks (like the foor loop that we'll study in detail in the [Control flow and functions](@ref control_flow) segment) ends with the `end` keyword, like in the example below:
+# All code blocks (like the for loop that we'll study in detail in the [Control flow and functions](@ref control_flow) segment) end with the `end` keyword, like in the example below:
 for i in 1:3
    println("i is $i")
 end # Keyword `end` to finish a block
@@ -59,7 +59,7 @@ println("Hello world!")
 
 # ## Unicode support
 
-# We can can use any fancy Unicode symbol, including modifiers, in the names of variables, types, functions..
+# We can use any fancy Unicode symbol, including modifiers, in the names of variables, types, functions..
 using Statistics # for the `mean` function, in the Standard Library
 σ²(x) = sum( (x .- mean(x)).^2 )/length(x) # The superscript `²` is just another character, it has no syntactic value.
 σ²([1,2,3])
@@ -82,12 +82,12 @@ add2.([1,2,3])  # any, including user defined functions, can be broadcasted. No 
 add2.((1,2,3)) # not only for arrays, here is a Tuple
 add2.(Set([1,2,3,2])) # and here a Set
 .+([1,2,3],[10,20,30]) # fine here
-## .+([1,2,3],[10,20]) # DimensionMismatch error: the input of the the broadcasted arguments must have the same size or be a scalar
+## .+([1,2,3],[10,20]) # DimensionMismatch error: the input of the broadcasted arguments must have the same size or be a scalar
 
 # To "protect" one specific argument to be broadcasted, use `Ref(arg)`:
 foo(x,y::AbstractArray) = [yi+x for yi in y] # a function that wants the first argument as scalar and the second as vector
 foo(1,[10,20])
-## foo.([1,2],[10,20])  # error, as we try to broadcast also the seond element, but we can't call `foo` with two integers
+## foo.([1,2],[10,20])  # error, as we try to broadcast also the second element, but we can't call `foo` with two integers
 foo.([1,2],Ref([10,20])) # now it is fine, we broadcast only the first argument
 
 # ## 1 based arrays
@@ -104,12 +104,12 @@ collect(1:3) # in ranges, both extremes are included
 
 # All standard mathematical arithmetic operators (`+`,`-`,`*`,`/`) are supported in the obvious way:
 
-a = 2^4         # rise to power
+a = 2^4         # raise to power
 b = ℯ^2; #= or =# b = exp(2) # Exponential with base ℯ 
 d = log(7.3890) # base ℯ
 e = log(10,100) # custom base
 f = 5 ÷ 2       # integer division
-e = 5 % 2       # reminder (modulo operator)
+e = 5 % 2       # remainder (modulo operator)
 a = 2//3 + 1//3     # rational numbers
 typeof(a)
 π == pi         # some irrational constants
@@ -151,7 +151,7 @@ c2 = mean([1,c,3])
 b3 = mean(skipmissing([1,b,3]))
 b == missing # propagate
 ismissing(b)
-isequal(b,2)  # exception to the propagation rule, it allows a comparison when one of the item may be missing
+isequal(b,2)  # exception to the propagation rule, it allows a comparison when one of the items may be missing
 isequal(b,missing)
 b4 = [1,missing,3]
 typeof(b4)

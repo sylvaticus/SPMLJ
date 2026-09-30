@@ -3,7 +3,7 @@
 ###                                                                          ### #src
 ### Run each script on a new clean Julia session                             ### #src
 ### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
-### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Licence (apply to all material of the course: scripts, videos, quizzes,..)### #src
 ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
 ################################################################################ #src
 
@@ -15,7 +15,7 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 ## Pkg.resolve()   
 ## Pkg.instantiate() # run this if you didn't in Segment 02.01
 using Random
@@ -25,12 +25,12 @@ Random.seed!(123)
 # ## Plotting
 
 # Within the many possible packages to plot in Julia we use here the `Plots` package that allows at run time to choose the plot's backend.
-# The defauld backend is `gr` (that, if you want to go back to it after you choosen another backend, you can activate with `gr()`). Other common backends are the Python MatplotLib (`pyplot()`, requiring package `PyPlot`) and Plotly (`plotlyjs()` from package `PlotlyJS`).
+# The default backend is `gr` (that, if you want to go back to it after you chose another backend, you can activate with `gr()`). Other common backends are the Python MatplotLib (`pyplot()`, requiring package `PyPlot`) and Plotly (`plotlyjs()` from package `PlotlyJS`).
 # Actually we use `StatsPlots` that just adds a set of convenient functionalities (in `plots` terminology called "_recipes_") on top of `Plots`.
 
 using StatsPlots # no need to `using Plots` as `Plots` elements are reexported by StatsPlots
 
-# The basic idea is that we can draw different "graphical elements" in a Plot figure. The `plot(.)` function will first create a new figure, while `plot!(.)` will modify an existing plot (by drawing new elements on it, such as a new serie) taking the "current" plot as default if no plot object is passed as first argument.
+# The basic idea is that we can draw different "graphical elements" in a Plot figure. The `plot(.)` function will first create a new figure, while `plot!(.)` will modify an existing plot (by drawing new elements on it, such as a new series) taking the "current" plot as default if no plot object is passed as first argument.
 
 # ### Plotting functions
 
@@ -124,7 +124,7 @@ savefig("currentPlot10.svg"); #src
 # ![](currentPlot10.svg)
 fit(Normal, sample) # using MLE 
 
-# For a quick overview on the various distributions available, the main methods that apply to them and a comparision with equivvalent R and Python libraries, you can see this cheatsheet: https://github.com/sylvaticus/commonDistributionsInJuliaPythonR
+# For a quick overview on the various distributions available, the main methods that apply to them and a comparison with equivalent R and Python libraries, you can see this cheatsheet: https://github.com/sylvaticus/commonDistributionsInJuliaPythonR
 
 # ## Curve fitting
 
@@ -164,13 +164,13 @@ savefig("currentPlot12.svg"); #src
 
 # `JuMP` is the leading library to express complex optimisation problems in a clear, mathematical friendly syntax, compute the information required by the solver engines to solve the optimisation problem, pass the problem to the aforementioned solver engines and retrieve the solutions.
 
-# JuMP has the same flexibility and expressivity of dedicated _algeabric modelling languages_ as `GAMS` or `AMPL` but with the advantage of being a library within a much more general programming language, with larger community, development tools, language constructs and possibility to interface the specific "optimisation component" of a model with the rest of the model.
+# JuMP has the same flexibility and expressivity of dedicated _algebraic modelling languages_ as `GAMS` or `AMPL` but with the advantage of being a library within a much more general programming language, with larger community, development tools, language constructs and possibility to interface the specific "optimisation component" of a model with the rest of the model.
 
 # We will see how to specify the variables, the constraints and the objective function of an optimisation model, how to "solve" it and how to retrieve the optimal values
 
 # ### A linear example: the classical "transport" problem
 
-# Obj: minimise transport costs $c$ from several plants $p$ to several markets $m$ under the contraint to satisfy the demand $d_m$ at each market while respecting the production capacity $c_p$ of each plant:
+# Obj: minimise transport costs $c$ from several plants $p$ to several markets $m$ under the constraint to satisfy the demand $d_m$ at each market while respecting the production capacity $c_p$ of each plant:
 # $min_{x_{p,m}} \sum_p \sum_m c_{p,m} * x_{p,m}$
 # subject to:
 # $\sum_m x_{p,m} \leq d_m$
@@ -232,7 +232,7 @@ trmodel = Model(GLPK.Optimizer)
 set_optimizer_attribute(trmodel, "msg_lev", GLPK.GLP_MSG_ON)
 
 # !!! tip "..."
-#     Alternativelly, you can use `HiGHS` as another popular choice for linear solver engine
+#     Alternatively, you can use `HiGHS` as another popular choice for linear solver engine
 
 # #### Model's endogenous variables definition
 
@@ -266,7 +266,7 @@ status = termination_status(trmodel)
 
 # #### Post-resolution information retrieval 
 
-# Here, after the model has been "solved", we can retrieve information as the optimal level of the endogenous variables, the value of the opjective function at these optimal levels and the shadow costs of the contraints.
+# Here, after the model has been "solved", we can retrieve information as the optimal level of the endogenous variables, the value of the objective function at these optimal levels and the shadow costs of the constraints.
 
 if (status == MOI.OPTIMAL || status == MOI.LOCALLY_SOLVED || status == MOI.TIME_LIMIT) && has_values(trmodel)
     println("#################################################################")
@@ -296,8 +296,8 @@ end
 
 # The problem objective is to choose the shares of different assets in the portfolio (here forest species, but the example is exactly the same considering other assets, for example financial investments) that maximise the portfolio expected returns while minimising its expected variance under the portfolio owner risk aversion risk.
 # Here the "returns" are based on the timber production and the covariance between individual species of the portfolio is based on the observed volume growth covariances.
-# The idea is that within the infinite possible allocations, the locus of those allocations for which is not possible to increase the portfolio profitability without increasing also its variance and the converse whose variance can not be lowered without at the same time lower its expected profitability are efficient in the Pareto meaning and form an "efficient frontier". Within this frontier the problem is to find the unique point that maximise the utility of the portfolio's owner given its risk aversion characteristic.
-# Graphically the problem is depicted i nthe following picture:
+# The idea is that within the infinite possible allocations, the locus of those allocations for which is not possible to increase the portfolio profitability without increasing also its variance and the converse whose variance can not be lowered without at the same time lower its expected profitability are efficient in the Pareto meaning and form an "efficient frontier". Within this frontier the problem is to find the unique point that maximises the utility of the portfolio's owner given its risk aversion characteristic.
+# Graphically the problem is depicted in the following picture:
 
 # ![The efficient frontier and the owner utility curves](https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/graph_eff_frontier_v2.png)
 
@@ -310,7 +310,7 @@ using JuMP, Ipopt, StatsPlots
 # Forest species names
 species   = ["Chêne pédonculé", "Chêne sessile", "Hêtre", "Pin sylvestre"]
 nSpecies  = length(species)
-# Average productiities by specie
+# Average productivities by species
 # This is implemented in a dictionary: key->value
 y   = Dict( "Chêne pédonculé" => 1.83933333333333,
             "Chêne sessile"   => 2.198,
@@ -356,12 +356,12 @@ savefig("currentPlot13.svg"); #src
 # suitable solver within the one installed:
 port = Model(Ipopt.Optimizer)
 
-# We declare a set of variables, indicized by the species name:
+# We declare a set of variables, indexed by the species name:
 @variables port begin
     x[i in species] >= 0
 end
 
-# We declare the constraint shat the sum of shares must be equal to 1
+# We declare the constraint that the sum of shares must be equal to 1
 @constraint(port, c_share, sum(x[i] for i in species) == 1)
 
 @NLobjective port Min α *  sum(x[i] * x[j] * σ[i,j] for i in species for j in species) - sum(x[i] * y[i] for i in species)

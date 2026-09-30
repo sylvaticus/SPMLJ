@@ -43,7 +43,7 @@ Start by setting the working directory to the directory of this file and activat
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 # Pkg.resolve()   
 Pkg.instantiate() 
 using Random
@@ -70,7 +70,7 @@ import Pipe:@pipe
 
 --------------------------------------------------------------------------------
 ### 3) Load the data
-Load from internet or from localfile the input data and shuffle its rows (records):
+Load from internet or from local file the input data and shuffle its rows (records):
 
 ```julia
 dataURL = "https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsMaterial/03_ML1/BreastCancerDiagnosisWithPerceptron/data/wdbc.data.csv"
@@ -92,7 +92,7 @@ data    = data[shuffle(1:nR),:]
 
 --------------------------------------------------------------------------------
 ### 4) Map the data to (X,y)
-The data you have loaded contains the actual diagnosis for the cancer in the second column, coded with a string "B" for "Benign" and "M" for "Malign", and the characteristics of the cancer foir the next 30 columns.
+The data you have loaded contains the actual diagnosis for the cancer in the second column, coded with a string "B" for "Benign" and "M" for "Malign", and the characteristics of the cancer for the next 30 columns.
 Save the diagnosis to the vector `y`, coding malign cancers with `1` and benign cancers with `-1`
 Save the characteristics to the feature matrix `X` (and be sure it is made of Float64)
 
@@ -247,7 +247,7 @@ end
 
 --------------------------------------------------------------------------------
 ### 9) Train, predict and evaluate the model
-Instanziate a `Perceptron` object with a parameter vector of nD+1 zeros and a `PerceptronTrainingOption` object with 5 epochs and shuffling, use the options to train the model on the whole dataset, compute the model predictions and the accuracy relative to the whole sample.
+Instantiate a `Perceptron` object with a parameter vector of nD+1 zeros and a `PerceptronTrainingOption` object with 5 epochs and shuffling, use the options to train the model on the whole dataset, compute the model predictions and the accuracy relative to the whole sample.
 
 ```julia
 m   = Perceptron(zeros(size(X,2)+1))
@@ -360,7 +360,7 @@ plot!(epochsSet,accuraciesShuffle, label="Val accuracy with shuffling")
 
 --------------------------------------------------------------------------------
 ### 12) Train, predict and evaluate the "optimal" model
-Using the "best" hyperparameters found in the previous step, instantiate a new model and options, train the model using `(xtrain,ytrain)`, make your predicitons for the testing features (`xtest`) and compute your output accuracy compared with those of the true `ytest` (use the BetaML function `accuracy`).
+Using the "best" hyperparameters found in the previous step, instantiate a new model and options, train the model using `(xtrain,ytrain)`, make your predictions for the testing features (`xtest`) and compute your output accuracy compared with those of the true `ytest` (use the BetaML function `accuracy`).
 
 ```julia
 ops = PerceptronTrainingOptions(#=...=#)

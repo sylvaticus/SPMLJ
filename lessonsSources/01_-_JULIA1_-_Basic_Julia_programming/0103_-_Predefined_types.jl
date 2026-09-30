@@ -3,7 +3,7 @@
 ###                                                                          ### #src
 ### Run each script on a new clean Julia session                             ### #src
 ### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
-### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Licence (apply to all material of the course: scripts, videos, quizzes,..)### #src
 ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
 ################################################################################ #src
 
@@ -76,14 +76,14 @@ methodswith(String,supertypes=true); # where any argument is a String or any par
 
 # ## Arrays - `Array{T,N}`
 
-# `Array{T,NDims}` A _parameteric_ type where the type of the content and the number of dimensions define the specific type
+# `Array{T,NDims}` A _parametric_ type where the type of the content and the number of dimensions define the specific type
 
 # !!! tip
 #     `Vector{T}` is an alias for `Array{T,1}` and `Matrix{T}` is an alias for `Array{T,2}`, but there isn't anything "special" for 1 or 2 dimensions compared to more dimensions
 
 # ### Vectors - `Array{T,1}`
 
-# One-dimensions arrays in julia are treated as column vector, and, depending on the inner type, they can be stored efficiently contiguously in memory. However they are NOT the same of a single column of a two dimensions array.
+# One-dimensional arrays in julia are treated as column vector, and, depending on the inner type, they can be stored efficiently contiguously in memory. However they are NOT the same of a single column of a two dimensions array.
 # A row vector is necessarily instead a single row of a 2 dimensions array.
 
 a = [1,2,3]
@@ -93,7 +93,7 @@ a == b
 # #### Initialisation
 a = [1,2,3]; #= or =# a = [1;2;3]
 a = [1; 6:-2:2; 10] # notes: (a) the semicolon, (b) the range includes BOTH the extremes
-a = [[1,2],[3,4]]   # nested vectors. Each elements can have a different length, but rules of linear algebra doesn't apply
+a = [[1,2],[3,4]]   # nested vectors. Each element can have a different length, but rules of linear algebra don't apply
 # !!! danger
 #     Don't confuse nested vectors with multi-dimensional arrays!
 
@@ -168,7 +168,7 @@ empty!(a) # only for Vectors
 using Random
 shuffle([1,2,3]) # also shuffle!([1,2,3])
 isempty(a)
-findall(x -> x == 1, [2,1,3,1]) # anonymous function returning an array of booleans, findall then return the indexes
+findall(x -> x == 1, [2,1,3,1]) # anonymous function returning an array of booleans, findall then returns the indexes
 findfirst(x -> x == 1, [2,1,3,1])
 myComparitionWith1(i) = i==1
 findall(x -> myComparitionWith1(x), [2,1,3,1])
@@ -206,7 +206,7 @@ a = zeros(n,m,g)            # n,m,g-elements zeros array
 a = ones(n,m,g)             # n,m,g-elements ones array
 a = Array{T,3}(undef,n,m,g) # n,m,g-elements array whose content is garbage
 a = fill(j,n,m,g)           # n,m,g-elements array of identical j elements
-a = rand(n,m,g)             # n,m,g-elements array of of random numbers
+a = rand(n,m,g)             # n,m,g-elements array of random numbers
 a = [3x + 2y + z for x in 1:2, y in 2:3, z in 1:2] # from using list comprehension
 
 # #### Accessing n-dimensional arrays
@@ -219,10 +219,10 @@ a[1,2:3]   # with a range on the second dimension
 a[[1,3],1] # with a vector of positions in the first dimension
 a[2,:]     # with a full range (all values) in the second dimension, i.e. all columns value for row 2
 # !!! warning
-#     Note that when the data as only one element on a given dimension, julia reduces the dimensions automatically: the result of `a[2,:]` is NOT a row vector (that is a one-row matrix) but a one dimensional array
+#     Note that when the data has only one element on a given dimension, julia reduces the dimensions automatically: the result of `a[2,:]` is NOT a row vector (that is a one-row matrix) but a one dimensional array
 # Access by a mask (boolean selection)
 b = [true false true false; true true true false; true false true false]
-a[b] # always flatted array returned (need eventually reshaping, see later)
+a[b] # always flattened array returned (need eventually reshaping, see later)
 
 # #### Functionality related to dimensions
 
@@ -233,7 +233,7 @@ reshape(a, 2,3,2)
 b = rand(2,1,3)
 dropdims(b,dims=(2)) # remove the specified dimensions, provided that the specified dimension have only a single element
 permutedims(a)  # "swap" the dimensions
-reshape(a,4,3)  # keep the column mayor order
+reshape(a,4,3)  # keep the column major order
 for slice in eachslice(a,dims=1)
     println(slice)
 end
@@ -293,7 +293,7 @@ A'
 #     Be aware that `transpose` works only for numerical types. When the matrix contains other types (e.g. strings), use `permutedims`
 
 diag(A)
-I # operator that automatically scale to the context without actually building the matrix
+I # operator that automatically scales to the context without actually building the matrix
 A*I
 B = [1 2; 3 4]; B*I
 (evalues, evectors) = eigen(A)
@@ -305,8 +305,8 @@ B = [1 2; 3 4]; B*I
 # - Can efficiently host heterogeneous types, as type information is stored for each individual element
 # - Linear algebra doesn't apply (use StaticArray.jl package for that)
 
-# Can be taught as anonymous (immutable) structures
-# Used to unpack multiple values, e.g. to store on inddividual variables the output of functions with multiple return value
+# Can be thought as anonymous (immutable) structures
+# Used to unpack multiple values, e.g. to store on individual variables the output of functions with multiple return value
 
 # ### Initialisation
 
@@ -327,21 +327,21 @@ v == v2 == v3 == v4
 
 # ### Tuples with a variable number of same-type elements
 
-# While the tuple type usually includes information about each type of element,  we may want to have a way to "summarise" this information by specifying that a certain number of elements all have the same type.This is the task of the `Vararg` argument that must be specified as the last parameters of a `Tuple` declaration. `Vararg{T}` allows for a _variable_ number of elements, and `Vararg{T,N}` specifies an exact number of elements:
+# While the tuple type usually includes information about each type of element,  we may want to have a way to "summarise" this information by specifying that a certain number of elements all have the same type. This is the task of the `Vararg` argument that must be specified as the last parameter of a `Tuple` declaration. `Vararg{T}` allows for a _variable_ number of elements, and `Vararg{T,N}` specifies an exact number of elements:
 
 typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int}}
 typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int,2}}
 typeof(("aaa",1,10)) <: Tuple{String,Vararg{Int,3}}
 
 # !!! tip
-#     `NTuple{N,T}`` is an alias for `Tuple{Vararg{T,N}}`
+#     `NTuple{N,T}` is an alias for `Tuple{Vararg{T,N}}`
 
 typeof((1,10)) <: NTuple{2,Int}
 
 
 # ## Named tuples - `NamedTuple{T1,T2,...}`
 
-# As the name suggests, named tuples are collection similar to ordinary tuples, but whose indexing can accept also a name:
+# As the name suggests, named tuples are collections similar to ordinary tuples, but whose indexing can accept also a name:
 
 nt = (a=1, b=2.5)
 #nt = ("a"=1, "b"=2.5)    # Error !
@@ -370,7 +370,7 @@ v == v2 == v3 == v4
 
 # ## Dictionaries - `Dict{Tkey,TValue}`
 
-# Dictionary are mutable, key-referenced containers:
+# Dictionaries are mutable, key-referenced containers:
 #
 # |               | Mutable      | Immutable    |
 # | ------------- | ------------ | ------------ |
@@ -389,7 +389,7 @@ mydict = Dict('a'=>1, 'b'=>2, 'c'=>3)
 # ### Indexing
 mydict['a']
 #mydict['d']     # error!
-get(mydict,'d',0) # specific a default if key not found
+get(mydict,'d',0) # specify a default if key not found
 
 # ### Adding/deleting/checking
 mydict['d'] = 4
@@ -407,7 +407,7 @@ k = [:a,:b,:c]
 v = [1,2,3]
 mydict = Dict([k=>v for (k,v) in zip(k,v)])
 # Dictionary -> Arrays
-collect(keys(mydict)) # keys or values alore return an iterator
+collect(keys(mydict)) # keys or values alone return an iterator
 collect(values(mydict))
 
 # ### Iteration
@@ -445,7 +445,7 @@ typeof(nowTime)
 Date     <: Dates.AbstractTime
 DateTime <: Dates.AbstractTime
 nowTimeUnix = time()  # The so-called "Unix time, a 64bit integer counting the number of seconds since the beginning of the year 1970
-nowTime = Dates.unix2datetime(nowTimeUnix) # attention this is not local but UTC (Coordinated Universal Time - the Greenwitch time )!
+nowTime = Dates.unix2datetime(nowTimeUnix) # attention this is not local but UTC (Coordinated Universal Time - the Greenwich time )!
 nowTime = Dates.now(Dates.UTC) # an other way to have UTC time
 
 # !!! tip
@@ -456,10 +456,10 @@ nowTime = Dates.now(Dates.UTC) # an other way to have UTC time
 christmasDay      = Date("25 Dec 2030", "d u yyyy")
 newYearDay        = Date("2031/01/01", "yyyy/m/d")
 christmasLunch    = DateTime("2030-12-25T12:30:00", ISODateTimeFormat)   # well known string datetime ISO8601 Format
-newYearEvenDinner = DateTime("Sat, 30 Dec 2030 21:30:00", RFC1123Format) # an othe well known format
+newYearEvenDinner = DateTime("Sat, 30 Dec 2030 21:30:00", RFC1123Format) # an other well known format
 
 # Date and time formatters:
-# - `y`  Year digit (ef yyyy => 2030, yy => 30)
+# - `y`  Year digit (eg yyyy => 2030, yy => 30)
 # - `m`  Month digit (eg m => 3, mm => 03)
 # - `u`  Month name (eg "Jan")
 # - `U`  Month name long (eg "January")
@@ -537,8 +537,8 @@ convert(Dates.Millisecond,mealPeriod)
 canLongPeriod = Dates.canonicalize(longPeriod)
 typeof(canLongPeriod)
 
-# That the best we can get. We can't "easily" decompose a "period" in  years or months... how many days in a month ?
-# 31 or 30 ? And in an year ? A `Period` doesn't store information on when it starts.
+# That's the best we can get. We can't "easily" decompose a "period" in  years or months... how many days in a month ?
+# 31 or 30 ? And in a year ? A `Period` doesn't store information on when it starts.
 # However we can make math with periods based on a specific date/time:
 
 nextChristmas                = christmasDay + Year(1) # We can use the constructors of the various periods

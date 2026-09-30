@@ -37,7 +37,7 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 # Pkg.resolve()   
 Pkg.instantiate()
 using Random
@@ -98,7 +98,7 @@ maxFeatures_range        = [2,3,4,5,6]
 
 # This activity is "semi-optional" as Random Forests have very good default values, so the gain you will likely obtain with tuning the various hyper-parameters is not expected to be very high.  But it is a good exercise to arrive at this result by yourself !
 
-# Alternatively, since BetaML v0.8, the best model hyperparameters can be automatically selected using the model option `autotune`, where the hyperparapeters ranges to test can be specified in `tunemethod` :
+# Alternatively, since BetaML v0.8, the best model hyperparameters can be automatically selected using the model option `autotune`, where the hyperparameters ranges to test can be specified in `tunemethod` :
 
 forest = RandomForestEstimator(autotune=true,tunemethod=SuccessiveHalvingSearch(
     hpranges=Dict(

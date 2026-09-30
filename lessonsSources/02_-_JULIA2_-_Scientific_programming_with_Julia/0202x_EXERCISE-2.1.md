@@ -22,7 +22,7 @@ Surely forests provide multiple ecosystem services, but in this (simplified) exe
 If you have already cloned or downloaded the whole [course repository](https://github.com/sylvaticus/SPMLJ/) the folder with the exercise is on `[REPOSITORY_ROOT]/lessonsMaterial/02_JULIA2/forestExercise`.
 Otherwise download a zip of just that folder [here](https://downgit.github.io/#/home?url=https://github.com/sylvaticus/SPMLJ/tree/main/lessonsMaterial/02_JULIA2/forestExercise).
 
-In the folder you will find the file `forestExercise.jl` containing the julia file that **you will have to complete to implement and run the model** (follow the instructions on that file). 
+In the folder you will find the file `forestExercise.jl` containing the Julia file that **you will have to complete to implement and run the model** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
 If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
 Good luck! 
@@ -42,7 +42,7 @@ Start by setting the working directory to the directory of this file and activat
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 # Pkg.resolve()   
 Pkg.instantiate() 
 using Random
@@ -79,7 +79,7 @@ pointsURL = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lesson
 docURL    = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsMaterial/02_JULIA2/forestExercise/data/documentation_2012.csv?raw=true" # optional, needed for the species label
 ```
 
-If you have choosen to download the data from internet, you can make for each of the dataset a `@pipe` macro starting with `HTTP.get(URL).body`, continuing the pipe with `CSV.File(_)` and end the pipe with a DataFrame object.
+If you have chosen to download the data from internet, you can make for each of the dataset a `@pipe` macro starting with `HTTP.get(URL).body`, continuing the pipe with `CSV.File(_)` and end the pipe with a DataFrame object.
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
@@ -102,8 +102,8 @@ doc    = CSV.read("data/documentation_2012.csv",DataFrame)
 
 --------------------------------------------------------------------------------
 ### 4) Filter out unused information 
-These datasets have many variable we are not using in this exercise.
-Out of all the variables, select only for the `lt` and `dt` dataframes the columns `idp` (pixel id), `c13` (circumference at 1.30 meters) and `v` (tree's volume). Then vertical concatenate the two dataset in an overall `trees` dataset.
+These datasets have many variables we are not using in this exercise.
+Out of all the variables, select only for the `lt` and `dt` dataframes the columns `idp` (pixel id), `c13` (circumference at 1.30 meters) and `v` (tree's volume). Then vertical concatenate the two datasets in an overall `trees` dataset.
 For the `points` dataset, select only the variables `idp` (pixel id), `esspre` (code of the main forest species in the stand) and `cac` (age class).
 
 ```@raw html
@@ -121,7 +121,7 @@ points = points[:,["idp","esspre","cac"]]
 
 --------------------------------------------------------------------------------
 ### 5) Compute the timber volumes per hectare
-As the French inventory system is based on a concentric sample method (small trees are sampled on a small area (6 metres radius), intermediate trees on a concentric area of 9 metres and only large trees (with a circonference larger than 117.5 cm) are sampled on a concentric area of 15 metres of radius), define the following function to compute the contribution of each tree to the volume per hectare:
+As the French inventory system is based on a concentric sample method (small trees are sampled on a small area (6 metres radius), intermediate trees on a concentric area of 9 metres and only large trees (with a circumference larger than 117.5 cm) are sampled on a concentric area of 15 metres of radius), define the following function to compute the contribution of each tree to the volume per hectare:
 
 ```julia
 """
@@ -230,7 +230,7 @@ logisticModelVec(age,parameters) = logisticModel.(age,Ref(parameters))
 
 --------------------------------------------------------------------------------
 ### 11) Set the initial values for the parameters to fit
-Set `initialParameters` to 1000,0.05 and 50 respectivelly.
+Set `initialParameters` to 1000,0.05 and 50 respectively.
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
@@ -302,7 +302,7 @@ plot!(points.cac, points.vHa, seriestype=:scatter, label = "Obs vHa")
 ```
 
 --------------------------------------------------------------------------------
-### 16) [OPTIONAL] Differentiate the model per tree specie 
+### 16) [OPTIONAL] Differentiate the model per tree species 
 Look at the growth curves of individual species. Try to perform the above analysis for individual species, for example plot the fitted curves for the 5 most common species
 
 ```@raw html

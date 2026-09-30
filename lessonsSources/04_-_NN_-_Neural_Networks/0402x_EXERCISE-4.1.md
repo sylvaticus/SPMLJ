@@ -30,7 +30,7 @@ The detailed attributes of the dataset are:
 
 Further information concerning this dataset can be found on [this file](https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.names)
 
-Our prediction concern the median value (column 14 of the dataset)
+Our prediction concerns the median value (column 14 of the dataset)
 
 
 **Skills employed:**
@@ -44,7 +44,7 @@ Our prediction concern the median value (column 14 of the dataset)
 If you have already cloned or downloaded the whole [course repository](https://github.com/sylvaticus/SPMLJ/) the folder with the exercise is on `[REPOSITORY_ROOT]/lessonsMaterial/04_NN/bostonHousing`.
 Otherwise download a zip of just that folder [here](https://downgit.github.io/#/home?url=https://github.com/sylvaticus/SPMLJ/tree/main/lessonsMaterial/04_NN/bostonHousing).
 
-In the folder you will find the file `BostonHousingValue.jl` containing the julia file that **you will have to complete to implement the missing parts and run the file** (follow the instructions on that file). 
+In the folder you will find the file `BostonHousingValue.jl` containing the Julia file that **you will have to complete to implement the missing parts and run the file** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
 If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
 Good luck! 
@@ -65,7 +65,7 @@ Start by setting the working directory to the directory of this file and activat
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 # Pkg.resolve()   
 Pkg.instantiate() 
 using Random
@@ -126,7 +126,7 @@ riverDummy = fit!(OneHotEncoder(),data[:,4])
 
 --------------------------------------------------------------------------------
 ### 5) Put together the feature matrix
-Now create the X matrix of features concatenating horizzontaly the 1st to 3rd column of `data`, the 5th to 13th columns and the two columns you created with the one hot encoding. Make sure you have a 506×14 matrix.
+Now create the X matrix of features concatenating horizontally the 1st to 3rd column of `data`, the 5th to 13th columns and the two columns you created with the one hot encoding. Make sure you have a 506×14 matrix.
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
@@ -232,7 +232,7 @@ testRME  = relative_mean_error(ytest,ŷtest)
 
 --------------------------------------------------------------------------------
 ### 12) Plot the errors and the estimated values vs the true ones
-Run the following commands to plots the average loss per epoch and the true vs estimated test values:
+Run the following commands to plot the average loss per epoch and the true vs estimated test values:
 
 ```julia
 plot(info(mynn)["loss_per_epoch"])
@@ -240,7 +240,7 @@ scatter(ytest,ŷtest,xlabel="true values", ylabel="estimated values", legend=no
 ```
 --------------------------------------------------------------------------------
 ### 13) (Optional) Use unscaled data
-Run the same workflow without scaling the data. How this affect the quality of your predictions ? 
+Run the same workflow without scaling the data. How does this affect the quality of your predictions ? 
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>

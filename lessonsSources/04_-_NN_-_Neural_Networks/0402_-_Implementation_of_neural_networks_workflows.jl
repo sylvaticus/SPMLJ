@@ -3,7 +3,7 @@
 ###                                                                          ### #src
 ### Run each script on a new clean Julia session                             ### #src
 ### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
-### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Licence (apply to all material of the course: scripts, videos, quizzes,..)### #src
 ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
 ################################################################################ #src
 
@@ -40,7 +40,7 @@ X    = copy(data[:,[2,3]])
 y    = max.(0,convert(Array{Int64,1},copy(data[:,1]))) # Converting labels from {-1,1} to {0,1}
 ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.7,0.3])
 
-# #### Using defaults - hidding complexity
+# #### Using defaults - hiding complexity
 
 # Model definition...
 mynn = NeuralNetworkEstimator()
@@ -88,7 +88,7 @@ testAccuracy   = accuracy(ŷtest,ytest)
 
 # ### Multinomial classification
 
-# We want to determine the plant specie given some bothanic measures of the flower
+# We want to determine the plant species given some botanic measures of the flower
 iris     = readdlm(joinpath(dirname(Base.find_package("BetaML")),"..","test","data","iris.csv"),',',skipstart=1)
 iris     = iris[shuffle(axes(iris, 1)), :] # Shuffle the records, as they aren't by default
 x        = convert(Array{Float64,2}, iris[:,1:4])

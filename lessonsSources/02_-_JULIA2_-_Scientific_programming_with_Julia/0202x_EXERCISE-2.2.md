@@ -19,7 +19,7 @@ The problem is the same as those in the SpreadSheet file "Optimal production mix
 
 **Skills employed:**
 - download and import data from internet
-- define, solve and retriever optimal values of an optimisation problem using the [JuMP](https://jump.dev/) [algebraic modelling language](https://en.wikipedia.org/wiki/Algebraic_modeling_language)
+- define, solve and retrieve optimal values of an optimisation problem using the [JuMP](https://jump.dev/) [algebraic modelling language](https://en.wikipedia.org/wiki/Algebraic_modeling_language)
 
 
 ## Instructions
@@ -27,7 +27,7 @@ The problem is the same as those in the SpreadSheet file "Optimal production mix
 If you have already cloned or downloaded the whole [course repository](https://github.com/sylvaticus/SPMLJ/) the folder with the exercise is on `[REPOSITORY_ROOT]/lessonsMaterial/02_JULIA2/loggingOptimisation`.
 Otherwise download a zip of just that folder [here](https://downgit.github.io/#/home?url=https://github.com/sylvaticus/SPMLJ/tree/main/lessonsMaterial/02_JULIA2/loggingOptimisation).
 
-In the folder you will find the file `loggingOptimisation.jl` containing the julia file that **you will have to complete to implement and run the model** (follow the instructions on that file). 
+In the folder you will find the file `loggingOptimisation.jl` containing the Julia file that **you will have to complete to implement and run the model** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
 If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
 Good luck! 
@@ -47,7 +47,7 @@ Start by setting the working directory to the directory of this file and activat
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 # Pkg.resolve()   
 Pkg.instantiate() 
 using Random
@@ -160,8 +160,8 @@ end
 ```
 
 ### 8) Define the integer constraints
-Set the variables for which the corresponding `integer` column in the `activity` dataframe is equal to 1 as a integer variable.
-To set the specific vaciable `x[a]` as integer use  `set_integer(x[a])`
+Set the variables for which the corresponding `integer` column in the `activity` dataframe is equal to 1 as an integer variable.
+To set the specific variable `x[a]` as integer use  `set_integer(x[a])`
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>
@@ -178,7 +178,7 @@ end
 ```
 
 ### 9) Define the other model constraints
-Define the `resLimit[r in 1:nR]` family of contraints, such that when you sum `coef[r,a]*x[a]` for all the `1:nA` activities you must have a value not greater than `resources.initial[r]`
+Define the `resLimit[r in 1:nR]` family of constraints, such that when you sum `coef[r,a]*x[a]` for all the `1:nA` activities you must have a value not greater than `resources.initial[r]`
 
 ```@raw html
 <details><summary>ONE POSSIBLE SOLUTION</summary>

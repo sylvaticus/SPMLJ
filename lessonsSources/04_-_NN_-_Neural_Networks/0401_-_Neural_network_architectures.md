@@ -35,7 +35,7 @@ More in detail, considering a single _dense_ neuron (in the sense that is connec
 where:
 
 - _x_ is a two-dimensional input, with $x_1$ and $x_2$ being the two dimensions of our input data (they could equivalently be the outputs of a previous 2 neurons layers)
-- _w_ are the _weigths_ that are applied to $x$ plus a constant term ($w_0$). **These are the parameter we will want to learn with our algorithm**. $f$ is a function (often non-linear) that is applied to $w_0 + x_1w_1 + x_2w_2$ to define the output of the neuron
+- _w_ are the _weights_ that are applied to $x$ plus a constant term ($w_0$). **These are the parameters we will want to learn with our algorithm**. $f$ is a function (often non-linear) that is applied to $w_0 + x_1w_1 + x_2w_2$ to define the output of the neuron
 
 The output of the neuron can be the output of our neural network or it can be the input of a further layer.
 
@@ -45,7 +45,7 @@ In Julia we can implement a layer of neurons and its predictions very easily (al
 using LinearAlgebra
 mutable struct DenseLayer
     wb::Array{Float64,1} # weights with reference to the bias (will be learned from data)
-    wi::Array{Float64,2} # weigths with reference to the input (will be learned from data)
+    wi::Array{Float64,2} # weights with reference to the input (will be learned from data)
     f::Function          # the activation function of each neuron (chosen from the modeller)
 end
 
@@ -60,7 +60,7 @@ x = zeros(nI)
 y = forward(layer,x)
 ```
 
-Let's specific a bit of terminology concerning Neural Networks:
+Let's specify a bit of terminology concerning Neural Networks:
 
 - The individual computation units of a layer are known as **nodes** or **neurons**.
 - **Width_l** (_of the layer_) is the number of units in that specific layer $l$
@@ -70,7 +70,7 @@ Let's specific a bit of terminology concerning Neural Networks:
 - The output of the neuron is the result of a non-linear transformation of the aggregated input called **activation function** $f = f(z)$
 - A **neural network unit** is a primitive neural network that consists of only the “input layer", and an output layer with only one output.
 - **hidden layers** are the layers that are not dealing directly with the input nor the output layers 
-- **Deep neural networks** are neural network with at least one hidden layer
+- **Deep neural networks** are neural networks with at least one hidden layer
 
 While the weights will be learned, the width of each layer, the number of layers and the activation functions are all elements that can be tuned as hyperparameters of the model, although there are some more or less formal "rules":
 
@@ -87,29 +87,29 @@ In such a case, the output of our network is `sin(2+2*2+4*1)`, i.e. -0.54. Note 
 
 Let's now assume that the true label that we know to be associated with our $x$ is `y=-0.6`.
 
-Out (basic) network did pretty well, but still did an _error_: -0.6 is not -0.54. The last element of a neural network is indeed to define an error metric (the **loss function**) between the output computed by the neural network and the true label. Commonly used loss functions are the squared l-2 norm (i.e. $\epsilon = \mid \mid \hat y - y \mid\mid ^2$) for regression tasks and cross-entropy (i.e. $\epsilon = - \sum_d p_d  * log(\hat p_d)$) for classification jobs.
+Our (basic) network did pretty well, but still did an _error_: -0.6 is not -0.54. The last element of a neural network is indeed to define an error metric (the **loss function**) between the output computed by the neural network and the true label. Commonly used loss functions are the squared l-2 norm (i.e. $\epsilon = \mid \mid \hat y - y \mid\mid ^2$) for regression tasks and cross-entropy (i.e. $\epsilon = - \sum_d p_d  * log(\hat p_d)$) for classification jobs.
 
 Before moving to the next section, where we will study how to put everything together and learn how to train the neural network in order to reduce this error, let's first observe that neural networks are powerful tools that can work on many sorts of data, but they require however the input to be encoded in a numerical form, as the computation is strictly numerical. If I have a categorical variable, for example, I'll need to encode it expanding it to a set of dimensions where each dimension represents a single class and I encode with an indicator function if my record is that particular class or not. This is the simplest form of encoding and takes the name of _one hot encoding_:
 
 ![One-hot encoding](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/onehotencoding.png)
 
-Note in the figure that using all the three columns leads to linearly dependency, and while we could save some resources by using only two columns instead of three, this is not a fundamental problem like it would be in statistical analysis. 
+Note in the figure that using all the three columns leads to linear dependency, and while we could save some resources by using only two columns instead of three, this is not a fundamental problem like it would be in statistical analysis. 
 
 ### Training of a feed-forward neural network
 
 #### Gradient and learning rate
 
-We now need a way to _learn_ the parameters from the data, and a common way is to try to reduce the contribution of the individual parameter to the error made by the network. We need first to find the link between the individual parameter and the output of the loss function, that is how the error change when we change the parameter. But this is nothing else than the derivative of the loss function with respect to the parameter. In our simple one-neuron example above we have the parameters directly appearing in the loss function. Considering the squared error as lost we have $\epsilon = (y - sin(w_0 + w_1 x_1 + w_2 x_2))^2$. If we are interested in the $w_1$ parameter we can compute the derivate of the error with respect to it using the chain rule as $\frac{\partial\epsilon}{\partial w_1} = 2*(y - sin(w_0 + w_1 x_1 + w_2 x_2)) * - cos(w_0 + w_1 x_1 + w_2 x_2) * x_1$.
+We now need a way to _learn_ the parameters from the data, and a common way is to try to reduce the contribution of the individual parameter to the error made by the network. We need first to find the link between the individual parameter and the output of the loss function, that is how the error changes when we change the parameter. But this is nothing else than the derivative of the loss function with respect to the parameter. In our simple one-neuron example above we have the parameters directly appearing in the loss function. Considering the squared error as loss we have $\epsilon = (y - sin(w_0 + w_1 x_1 + w_2 x_2))^2$. If we are interested in the $w_1$ parameter we can compute the derivative of the error with respect to it using the chain rule as $\frac{\partial\epsilon}{\partial w_1} = 2*(y - sin(w_0 + w_1 x_1 + w_2 x_2)) * - cos(w_0 + w_1 x_1 + w_2 x_2) * x_1$.
 
-Numerically, we have: $\frac{\partial\epsilon}{\partial w_1} = 2(-0.6-sin(2+4+4)) * -cos(2+4+4) * 2 = -0.188$ If I increase $w_1$ of 0.01, I should have my error moving of $-0.01*0.188 = -0.0018$. Indeed, if I compute the original error I have $\epsilon^{t=0} = 0.00313$, but after having moved $w_1$ to 2.01, the output of the neural network chain would now be $\hat y^{t=1} = 0.561$ and its error lowered to $\epsilon^{t=1} =  0.00154$. The difference is $0.00159$, slightly lower in absolute terms than what we computed with the derivate, $0.0018$. The reason, of course, is that the derivative is a concept at the margin, when the step tends to zero.
+Numerically, we have: $\frac{\partial\epsilon}{\partial w_1} = 2(-0.6-sin(2+4+4)) * -cos(2+4+4) * 2 = -0.188$ If I increase $w_1$ of 0.01, I should have my error moving of $-0.01*0.188 = -0.0018$. Indeed, if I compute the original error I have $\epsilon^{t=0} = 0.00313$, but after having moved $w_1$ to 2.01, the output of the neural network chain would now be $\hat y^{t=1} = 0.561$ and its error lowered to $\epsilon^{t=1} =  0.00154$. The difference is $0.00159$, slightly lower in absolute terms than what we computed with the derivative, $0.0018$. The reason, of course, is that the derivative is a concept at the margin, when the step tends to zero.
 
 We should note a few things:
-- the derivate depends on the level of $w_1$. "zero" is almost always a bad starting point (as the derivatives of previous layers will be zero). Various initialization strategies are used, but all involve sampling randomly the initial parameters under a certain range
-- the derivate depends also on the data on which we are currently operating, $x$ and $y$. If we consider different data we will obtain different derivates
+- the derivative depends on the level of $w_1$. "zero" is almost always a bad starting point (as the derivatives of previous layers will be zero). Various initialization strategies are used, but all involve sampling randomly the initial parameters under a certain range
+- the derivative depends also on the data on which we are currently operating, $x$ and $y$. If we consider different data we will obtain different derivatives
 - while extending our simple example to even a few more layers would seem to make the above exercise extremely complex, it remains just an application of the chain rule, and we can compute the derivatives efficiently by making firstly a _forward passage_, computing (and storing) the values of the chain at each layer, and then making a _backward passage_ by computing (and storing) the derivatives with the chain rule backwards from the last to the first layer
-- the fact that the computation of the derivates for a layer includes the _multiplication_ of the derivates for all the other layers means that if these are very small (big) the overall derivate may vanish (explode). This is a serious problem with neural networks and one of the main reasons why simple activation functions such as the `relu` are preferred.
+- the fact that the computation of the derivatives for a layer includes the _multiplication_ of the derivatives for all the other layers means that if these are very small (big) the overall derivative may vanish (explode). This is a serious problem with neural networks and one of the main reasons why simple activation functions such as the `relu` are preferred.
 
-The derivate(s) of the error with respect to the various parameters is called the _gradient_.
+The derivative(s) of the error with respect to the various parameters is called the _gradient_.
 
 If the gradient with respect to a parameter is negative, like in our example, it means that if we slightly _increase_ the parameter we will obtain a lower error. On the opposite, if it is positive, if we slightly _reduce_ the parameter we should find a lower error.
 
@@ -119,11 +119,11 @@ Note in the example above that if instead of moving the parameter $w_1$ of $0.01
 
 ![Learning rate effect](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/learningRateEffect.png)
 
-So, the learning rate is also a hyper-parameter to calibrate, although some modern gradient descent variations, like the ADAptive Moment estimation (ADAM) optimisation algorithm, tend to self_tune themselves and we rarely need to calibrate the default values.
+So, the learning rate is also a hyper-parameter to calibrate, although some modern gradient descent variations, like the ADAptive Moment estimation (ADAM) optimisation algorithm, tend to self-tune themselves and we rarely need to calibrate the default values.
 
 #### Batches and Stochastic gradient descent
 
-We already note that the computation of the gradient depends on the data levels. We can then move between two extremes: on one extreme we compute the gradient as the average of those computed on all data points and we apply the optimisation algorithm to this average. On the other extreme, we sample randomly record by record and, at each record, we move the parameter.
+We already noted that the computation of the gradient depends on the data levels. We can then move between two extremes: on one extreme we compute the gradient as the average of those computed on all data points and we apply the optimisation algorithm to this average. On the other extreme, we sample randomly record by record and, at each record, we move the parameter.
 The compromise is to partition the data in a set of _batches_, compute the average gradient of each batch and at each time update the parameter with the optimisation algorithm.
 The "one record at the time" is the slowest approach, but also is very sensitive to the presence of outliers. The "take the average of all the data" approach is faster in running a certain epoch, but it takes longer to converge (i.e. it requires more epochs, the number of times we pass through the whole training data). It also requires more memory, as we need to store the gradients with respect to all records.
 So, the "batch" approach is a good compromise, and we normally set the batch number to a multiplier of the number of threads in the machine performing the training, as this step is often parallelised, and it represents a further parameter that we can cross-validate.
@@ -217,7 +217,7 @@ Still, it is often convenient to operate some **data augmentation** to the train
 
 ### Considering multiple filters per layer
 
-Typically, one single layer is formed by applying multiple filters, not just one. This is because we want to learn different kinds of features. For example in an image one filter will specialize to catch vertical lines, the other obliques ones, and maybe another filter different colours.
+Typically, one single layer is formed by applying multiple filters, not just one. This is because we want to learn different kinds of features. For example in an image one filter will specialize to catch vertical lines, the other oblique ones, and maybe another filter different colours.
 
 ![Set of different convolutional filters outputs](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/convolutionalLayerOutputs.png)
 
@@ -254,9 +254,9 @@ In a typical CNN, these convolutional and pooling layers are repeated several ti
 
 These layers are finally followed by some "normal", "fully connected" layers (like in "normal" feed-forward neural networks) and a final `softmax` layer indicating the probability that each image represents one of the possible categories (there could be thousands of them).
 
-The best network implementations are tested in so-called "competitions", like the yearly ImageNet context.
+The best network implementations are tested in so-called "competitions", like the yearly ImageNet contest.
 
-Note that we can train these networks exactly like for feedforward NN, defining a loss function and finding the weights that minimise the loss function. In particular, we can apply the stochastic gradient descendent algorithm (with a few tricks based on getting pairs of image and the corresponding label), where the gradient with respect to the various parameters (weights) is obtained by backpropagation.
+Note that we can train these networks exactly like for feedforward NN, defining a loss function and finding the weights that minimise the loss function. In particular, we can apply the stochastic gradient descent algorithm (with a few tricks based on getting pairs of image and the corresponding label), where the gradient with respect to the various parameters (weights) is obtained by backpropagation.
 
 ## Recurrent Neural Networks (RNNs)
 
@@ -276,15 +276,15 @@ There are a few differences with feed-forward neural networks:
 - these weights are shared for the various RNN layers across the sequence
 
 Note that you can interpret a recurrent network equivalently like being formed by different layers on each element of the sequence (but with shared weights) or like a single, evolving, layer that calls itself recursively.
-Note also the similarities with convolutional networks: there we have a filter than convolves along the image, keeping the weigths constant across the convolution, here we have a recurrent network that also "filter" the whole sequence and learn some shared weigths.  
+Note also the similarities with convolutional networks: there we have a filter that convolves along the image, keeping the weights constant across the convolution, here we have a recurrent network that also "filters" the whole sequence and learns some shared weights.  
 
 To implement a recurrent neural network we can adapt our code above to include the state: 
 
 ```@repl 0401_NeuralNetworksTheory.jl
 mutable struct RNNLayer
     wb::Array{Float64,1} # weights with reference to the bias
-    wi::Array{Float64,2} # weigths with reference to the input
-    ws::Array{Float64,2} # weigths with reference to the state
+    wi::Array{Float64,2} # weights with reference to the input
+    ws::Array{Float64,2} # weights with reference to the state
     f::Function
 end
 
@@ -296,7 +296,7 @@ function forward(m,x,s)
 end
 x,s = zeros(nI),zeros(nO)
 s = forward(rnnLayer,x,s)
-s = forward(rnnLayer,x,s)  # The state change even if x remains constant
+s = forward(rnnLayer,x,s)  # The state changes even if x remains constant
 ```
 
 The code above is the simplest implementation of a Recurrent Neural Network (or at least of its forward passage).
@@ -307,7 +307,7 @@ In practice, the state is often memorised as part of the layer structure so its 
 
 RNNs can be used to characterise a sequence, like in sentiment analysis to predict the overall attitude (positive or negative) of a text or the language in which the text is written.
 In these cases, the RNN task is to _encode_ the sequence in a vector format (the final state) and this is fed to a further part of the chain whose task is to _decode_ according to the task required. Note that the parameters for both tasks are learned jointly.
-The scheme is as follow:
+The scheme is as follows:
 
 ![Sequence-to-one scheme](https://raw.githubusercontent.com/sylvaticus/SPMLJ/main/lessonsSources/04_-_NN_-_Neural_Networks/imgs/sequenceToOne.png)
 
@@ -329,7 +329,7 @@ The decoding part happens hence at each step of the sequence and the resulting $
 
 ### Gated networks
 
-While theoretically RNN can "learn" the importance of features across indeterminately long sequence steps, in practice the fact of continuing multiplicating the status across the varius elements of the sequence makes the problem of vanishing gradient even stronger for them.
+While theoretically RNN can "learn" the importance of features across indeterminately long sequence steps, in practice the fact of continuing multiplying the status across the various elements of the sequence makes the problem of vanishing gradient even stronger for them.
 New contributions have hence been proposed with a "gating" system that "learns" what to store in memory (in the sequence state) and what to "forget". At the time of writing the most used approach is the _Long short-term memory (LSTM)_. While internally more complex due to the presence of the gates and of several different states (_hidden_ and _visible_ in LSTM), LSTM networks are operationally used exactly in the same ways as the RNN networks described above.
 
 ---------

@@ -27,11 +27,11 @@
 
 
 # 3) Load from internet or from local file the input data as a Matrix.
-# You can use `readdlm`` using the comma as field separator.
+# You can use `readdlm` using the comma as field separator.
 dataURL="https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data"
 
 
-# 4) Now create the X matrix of features using the second to final columns of the data you loaded above and the Y vector by taking the 1st column. Transform the Y vector to a vector of integers using the `Int()` function (broadcasted). Make shure you have a 178×13 matrix and a 178 elements vector
+# 4) Now create the X matrix of features using the second to final columns of the data you loaded above and the Y vector by taking the 1st column. Transform the Y vector to a vector of integers using the `Int()` function (broadcasted). Make sure you have a 178×13 matrix and a 178 elements vector
 
 
 # 5) Partition the data in (`xtrain`,`xtest`) and (`ytrain`,`ytest`) keeping 80% of the data for training and reserving 20% for testing. Keep the default option to shuffle the data, as the input data isn't.
@@ -47,7 +47,7 @@ dataURL="https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.dat
 #   - training options: 100 epochs and 6 records to be used on each batch
 
 
-# 8) Train your model using `ytrain` and a scaled version of `xtrain` (where all columns have zero mean and 1 standard deviaiton) 
+# 8) Train your model using `ytrain` and a scaled version of `xtrain` (where all columns have zero mean and 1 standard deviation) 
 
 
 # 9) Predict the training labels `ŷtrain` and the test labels `ŷtest`. Recall you did the training on the scaled features!
@@ -59,8 +59,8 @@ dataURL="https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.dat
 # 11) Compute and print a Confusion Matrix of the test data true vs. predicted
 
 
-# 12) Run the following commands to plots the average loss per epoch 
+# 12) Run the following commands to plot the average loss per epoch 
 plot(info(mynn)["loss_per_epoch"])
 
 
-# 13) (Optional) Run the same workflow without scaling the data or using `squared_cost` as cost function. How this affect the quality of your predictions ? 
+# 13) (Optional) Run the same workflow without scaling the data or using `squared_cost` as cost function. How does this affect the quality of your predictions ? 

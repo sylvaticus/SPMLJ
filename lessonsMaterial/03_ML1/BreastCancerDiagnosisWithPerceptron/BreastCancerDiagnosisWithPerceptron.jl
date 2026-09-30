@@ -15,7 +15,7 @@
 
 
 
-# 3) Load from internet or from localfile the input data and shuffle its rows (records)
+# 3) Load from internet or from local file the input data and shuffle its rows (records)
 
 dataURL = "https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/main/lessonsMaterial/03_ML1/BreastCancerDiagnosisWithPerceptron/data/wdbc.data.csv"
 
@@ -23,7 +23,7 @@ dataURL = "https://raw.githubusercontent.com/sylvaticus/IntroSPMLJuliaCourse/mai
 
 
 # 4) Map the data to (X,y)
-# The data you have loaded contains the actual diagnosis for the cancer in the second column, coded with a string "B" for "Benign" and "M" for "Malign", and the characteristics of the cancer foir the next 30 columns.
+# The data you have loaded contains the actual diagnosis for the cancer in the second column, coded with a string "B" for "Benign" and "M" for "Malign", and the characteristics of the cancer for the next 30 columns.
 # Save the diagnosis to the vector `y`, coding malign cancers with `1` and benign cancers with `-1`
 # Save the characteristics to the feature matrix `X` (and be sure it is made of Float64)
 
@@ -106,7 +106,7 @@ function train!(model::Perceptron,X,y,ops=PerceptronTrainingOptions()::TrainingO
     return model.θ
 end
 
-# 9) Instanziate a `Perceptron` object with a parameter vector of nD+1 zeros and a `PerceptronTrainingOption` object with 5 epochs and shuffling, use the options to train the model on the whole dataset, compute the model predictions and the accuracy relative to the whole sample.
+# 9) Instantiate a `Perceptron` object with a parameter vector of nD+1 zeros and a `PerceptronTrainingOption` object with 5 epochs and shuffling, use the options to train the model on the whole dataset, compute the model predictions and the accuracy relative to the whole sample.
 
 m   = Perceptron(zeros(size(X,2)+1))
 ops = #...
@@ -164,7 +164,7 @@ bestShuffle
 plot(epochsSet,accuraciesNonShuffle,label="Val accuracy without shuffling", legend=:bottomright)
 plot!(epochsSet,accuraciesShuffle, label="Val accuracy with shuffling")
 
-# 12) Using the "best" hyperparameters found in the previous step, instantiate a new model and options, train the model using `(xtrain,ytrain)`, make your predicitons for the testing features (`xtest`) and compute your output accuracy compared with those of the true `ytest` (use the BetaML function `accuracy`)
+# 12) Using the "best" hyperparameters found in the previous step, instantiate a new model and options, train the model using `(xtrain,ytrain)`, make your predictions for the testing features (`xtest`) and compute your output accuracy compared with those of the true `ytest` (use the BetaML function `accuracy`)
 
 ops = PerceptronTrainingOptions(#=...=#)
 m   = Perceptron(zeros(size(xtest,2)+1))

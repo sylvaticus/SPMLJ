@@ -41,12 +41,12 @@ coef  = @pipe HTTP.get(urlCoefficients).body |> readdlm(_,';')
 
 # 7) Define the non-negative model `x` variable, indexed by the positions between 1 and `nA` (i.e. `x[1:nA] >= 0`) (you could use the @variables macro). Don't set the `x` variable to be integer at this step, as some variables are continuous, just set them to be non-negative.
 
-# 8) Set the variables for which the corresponding `integer` column in the `activity` dataframe is equal to 1 as a integer variable.
-# To set the specific vaciable `x[i]` as integer use  `set_integer(x[i])`
+# 8) Set the variables for which the corresponding `integer` column in the `activity` dataframe is equal to 1 as an integer variable.
+# To set the specific variable `x[i]` as integer use  `set_integer(x[i])`
 
 # ### Model's constraint definition
 
-# 9) Define the `resLimit[r in 1:nR]` family of contraints, such that when you sum `coef[r,a]*x[a]` for all the `1:nA` activities you must have a value not greater than `resources.initial[r]`
+# 9) Define the `resLimit[r in 1:nR]` family of constraints, such that when you sum `coef[r,a]*x[a]` for all the `1:nA` activities you must have a value not greater than `resources.initial[r]`
 
 # ### Objective definition
 

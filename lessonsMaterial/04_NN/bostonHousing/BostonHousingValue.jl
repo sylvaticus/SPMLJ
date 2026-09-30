@@ -18,7 +18,7 @@
 
 # Further information concerning this dataset can be found on [this file](https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.names)
 
-# Our prediction concern the median value (column 14 of the dataset)
+# Our prediction concerns the median value (column 14 of the dataset)
 
 # 1) Start by setting the working directory to the directory of this file and activate it. If you have the provided `Manifest.toml` file in the directory, just run `Pkg.instantiate()`, otherwise manually add the packages Pipe, HTTP, CSV, DataFrames, Plots and BetaML.
 # Also, seed the random seed with the integer `123`.
@@ -28,14 +28,14 @@
 
 
 # 3) Load from internet or from local file the input data into a DataFrame or a Matrix.
-# You will need the CSV options `header=false` and `ignorerepeated=true``
+# You will need the CSV options `header=false` and `ignorerepeated=true`
 dataURL="https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data"
 
 
 # 4) The 4th column is a dummy related to the information if the suburb bounds a certain Boston river. Use the BetaML model `OneHotEncoder` to encode this dummy into two separate vectors, one for each possible value.
 
 
-# 5) Now create the X matrix of features concatenating horizzontaly the 1st to 3rd column of `data`, the 5th to 13th columns and the two columns you created with the one hot encoding. Make sure you have a 506×14 matrix.
+# 5) Now create the X matrix of features concatenating horizontally the 1st to 3rd column of `data`, the 5th to 13th columns and the two columns you created with the one hot encoding. Make sure you have a 506×14 matrix.
 
 
 # 6) Similarly define Y to be the 14th column of data
@@ -60,9 +60,9 @@ dataURL="https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housi
 # 11) Compute the train and test relative mean error using the function `relative_mean_error`
 
 
-# 12) Run the following commands to plots the average loss per epoch and the true vs estimated test values 
+# 12) Run the following commands to plot the average loss per epoch and the true vs estimated test values 
 plot(trainingLogs.ϵ_epochs)
 scatter(yval,ŷval,xlabel="true values", ylabel="estimated values", legend=nothing)
 
 
-# 13) (Optional) Run the same workflow without scaling the data. How this affect the quality of your predictions ? 
+# 13) (Optional) Run the same workflow without scaling the data. How does this affect the quality of your predictions ? 

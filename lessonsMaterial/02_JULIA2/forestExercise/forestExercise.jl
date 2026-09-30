@@ -18,14 +18,14 @@ dtURL     = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lesson
 pointsURL = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsMaterial/02_JULIA2/forestExercise/data/placettes_foret_2012.csv?raw=true" # plot level data
 docURL    = "https://github.com/sylvaticus/IntroSPMLJuliaCourse/blob/main/lessonsMaterial/02_JULIA2/forestExercise/data/documentation_2012.csv?raw=true" # optional, needed for the species label
 
-# If you choosen to download the data from internet, you can make for each of the dataset a `@pipe` macro starting with `HTTP.get(URL).body`, continuing the pipe with `CSV.File(_)` and end the pipe with a DataFrame object.
+# If you chose to download the data from internet, you can make for each of the dataset a `@pipe` macro starting with `HTTP.get(URL).body`, continuing the pipe with `CSV.File(_)` and end the pipe with a DataFrame object.
 
-# 4) These datasets have many variable we are not using in this exercise.
-# Out of all the variables, select only for the `lt` and `dt` dataframes the columns "idp" (pixel id), "c13" (circumference at 1.30 meters) and "v" (tree's volume). Then vertical concatenate the two dataset in an overall `trees` dataset.
+# 4) These datasets have many variables we are not using in this exercise.
+# Out of all the variables, select only for the `lt` and `dt` dataframes the columns "idp" (pixel id), "c13" (circumference at 1.30 meters) and "v" (tree's volume). Then vertical concatenate the two datasets in an overall `trees` dataset.
 # For the `points` dataset, select only the variables "idp" (pixel id), "esspre" (code of the main forest species in the stand) and "cac" (age class).
 
 
-# 5) As the French inventory system is based on a concentric sample method (small trees are sampled on a small area (6 metres radius), intermediate trees on a concentric area of 9 metres and only large trees (with a circonference larger than 117.5 cm) are sampled on a concentric area of 15 metres of radius), define the following function to compute the contribution of each tree to the volume per hectare:
+# 5) As the French inventory system is based on a concentric sample method (small trees are sampled on a small area (6 metres radius), intermediate trees on a concentric area of 9 metres and only large trees (with a circumference larger than 117.5 cm) are sampled on a concentric area of 15 metres of radius), define the following function to compute the contribution of each tree to the volume per hectare:
 
 """
     vHaContribution(volume,circonference)
@@ -66,9 +66,9 @@ points.cac              = (parse.(Int64,points.cac) .- 1 ) .* 5 .+ 2.5
 logisticModel(age,parameters) = parameters[1]/(1+exp(-parameters[2] * (age-parameters[3]) ))
 logisticModelVec(age,parameters) = # .... complete
 
-# 11) Set `initialParameters` to 1000,0.05 and 50 respectivelly
+# 11) Set `initialParameters` to 1000,0.05 and 50 respectively
 
-# 12) Perform the fittin of the model using the function `curve_fit(model,X,Y,initial parameters)` and obtain the fitted parameter fitobject.param
+# 12) Perform the fitting of the model using the function `curve_fit(model,X,Y,initial parameters)` and obtain the fitted parameter fitobject.param
 
 # 13) Compute the standard error for each estimated parameter and the confidence interval at 10% significance level
 

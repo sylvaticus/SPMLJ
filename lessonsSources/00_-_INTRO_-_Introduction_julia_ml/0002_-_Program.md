@@ -12,7 +12,7 @@
 
 - **3ʳᵈ thematic unit `ML1`**:  (a) intuitions of machine learning concepts (supervised learning, cross-validation and regularisation); (b) implementation of the perceptron linear classifier;
 
-- **4ᵗʰ thematic unit `NN`**:  (a) neural network models: how they work, what they are good for and how to train them; (b) specific neural network architectures: convolutional neural networks and recurrent neural networks; (c) implementation of neural network workflos using Julia packages.
+- **4ᵗʰ thematic unit `NN`**:  (a) neural network models: how they work, what they are good for and how to train them; (b) specific neural network architectures: convolutional neural networks and recurrent neural networks; (c) implementation of neural network workflows using Julia packages.
 
 ## Course organisation:
 

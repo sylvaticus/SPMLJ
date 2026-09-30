@@ -64,7 +64,7 @@ Start by setting the working directory to the directory of this file and activat
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 # Pkg.resolve()   
 Pkg.instantiate() 
 using Random
@@ -110,7 +110,7 @@ data    = @pipe HTTP.get(dataURL).body |> CSV.File(_,missingstring="?") |> DataF
 ```
 
 --------------------------------------------------------------------------------
-### 4) Write the feature matrix and the the label vector
+### 4) Write the feature matrix and the label vector
 Create the `X` matrix of features using the first to the second-to-last column of the data you loaded above and the `Y` vector by taking the last column.
 If you use the random forests algorithm suggested above, the only data preprocessing you need to do is to convert the X from a `DataFrame` to a `Matrix` and to `collect` the `Y` to a vector. Otherwise be sure to encode the categorical data, skip or impute the missing data and scale the feature matrix as required by the algorithm you employ.
 
@@ -183,7 +183,7 @@ trainAccuracy = accuracy(ytrain,ŷtrain)
 
 This activity is "semi-optional", because Random Forests have already very good default values, so the gain we will likely obtain with tuning the various hyper-parameters is not expected to be very high. But it is a good exercise to arrive at this result by yourself !
 
-Alternatively, since BetaML v0.8, the best model hyperparameters can be automatically selected using the model option `autotune`, where the hyperparapeters ranges to test can be specified in `tunemethod`.
+Alternatively, since BetaML v0.8, the best model hyperparameters can be automatically selected using the model option `autotune`, where the hyperparameters ranges to test can be specified in `tunemethod`.
 
 
 _[...] write your code here..._
@@ -326,7 +326,7 @@ for mf in maxFeatures_range
 end
 plot(maxFeatures_range,accuracies,legend=nothing,ylabel="accuracy",xlabel="maxFeatures")
 
-# #### Weigth for best trees representation
+# #### Weight for best trees representation
 bestAcc = 0.0
 accuracies = []
 for b in β_range

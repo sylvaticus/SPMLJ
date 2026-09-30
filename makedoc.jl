@@ -7,7 +7,7 @@
 #    - push!(ARGS,"preview"); include("makedoc.jl")
 
 # !!! note "An optional title"
-#    4 spaces idented
+#    4 spaces indented
 # note, tip, warning, danger, compat
 
 
@@ -31,7 +31,7 @@ Pkg.instantiate()
 #Pkg.add(["Documenter", "Literate", "Glob", "DataFrames", "OdsIO"])
 
 using Test, DataStructures, Documenter, Literate, Glob, DataFrames, OdsIO
-#using DocumenterMarkdown # non supported, it block Documenter to older versions 
+#using DocumenterMarkdown # non supported, it blocks Documenter to older versions 
 
 
 const LESSONS_ROOTDIR = joinpath(@__DIR__, "lessonsSources")
@@ -96,7 +96,7 @@ end
 """
     rdir(string,match)
 
-Return a vector of all files (full paths) of a given directory recursivelly taht matches `match`, recursivelly.
+Return a vector of all files (full paths) of a given directory recursively that matches `match`, recursively.
 
 # example
 filenames = getindex.(splitdir.(rdir(LESSONS_ROOTDIR,"*.jl")),2) #get all md filenames
@@ -120,7 +120,7 @@ function literate_directory(dir)
     for filename in filter(file -> endswith(file, ".jl"), readdir(dir))
         filenameNoPath = filename
         filename = joinpath(dir,filename)
-        # if the md file exist, let's delete it first...
+        # if the md file exists, let's delete it first...
         filenameMD = replace(filename,".jl" => ".md")
         if isfile(filenameMD)
             rm(filenameMD)

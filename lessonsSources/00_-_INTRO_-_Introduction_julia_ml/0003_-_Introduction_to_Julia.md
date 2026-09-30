@@ -106,10 +106,10 @@ There is no global interpreter lock in Julia and the programmer is free to use d
 
 ### Macro and meta-programming
 
-Julia is reflective and allows meta-programming and macros at the level of the Abstract Syntax Tree (AST), that is, when the expressions are already been parsed from the raw source code text.
+Julia is reflective and allows meta-programming and macros at the level of the Abstract Syntax Tree (AST), that is, when the expressions have already been parsed from the raw source code text.
 This is more powerful than C-like text-based preprocessing macros as it allows the programmer to _hack_ directly into the AST to change it according to its needs.
-Perhaps the single more important benefit of this kind of meta-programming is that it brings flexibility in allowing to write very concise library APIs. Let's take the example of Algebraic modelling languages (AML), 
-high-level but specialised computer programming languages for the description and solution of large scale mathematical optimization problems (AMPLL, GAMS,..). Being _specialised_ languages, their syntax is very similar to the mathematical notation of optimization problems, and this allows for a very concise and readable definition of problems in their specific domain (optimization), which is supported by certain language elements. Now, a recent trend is to replace these specialised languages with AML libraries to be used within a more general-purpose language. In languages without meta-programming (like the Pyomo library for Python) this comes at the cost to be forced to use the host language syntax and having to employ a much more verbose syntax.
+Perhaps the single most important benefit of this kind of meta-programming is that it brings flexibility in allowing to write very concise library APIs. Let's take the example of Algebraic modelling languages (AML), 
+high-level but specialised computer programming languages for the description and solution of large scale mathematical optimization problems (AMPL, GAMS,..). Being _specialised_ languages, their syntax is very similar to the mathematical notation of optimization problems, and this allows for a very concise and readable definition of problems in their specific domain (optimization), which is supported by certain language elements. Now, a recent trend is to replace these specialised languages with AML libraries to be used within a more general-purpose language. In languages without meta-programming (like the Pyomo library for Python) this comes at the cost to be forced to use the host language syntax and having to employ a much more verbose syntax.
 With metaprogramming instead we can allow the library user to write its statements still using a concise, domain-specific way, and it is the macro that will expand this syntax to the one suitable for processing by the hosting language (this is the case of JuMP for Julia)
 
 ### Other important Julia characteristics
@@ -161,7 +161,7 @@ Note that "Visual Studio" is another product than "Visual Studio Code".
 From within Visual Studio code, search the extensions: "Julia" (not "Julia insider")
 Eventually, if for some reason you didn't set up the Julia interpreter in your OS Path, you can set its path in the extension settings.
 
-After installing the Julia extension you can try it by selecting `File` →  `New file` →  `Select a language` →  `Julia` →  type `println("Hello World!")` followed by `SHIFT+ENTER`. This should evaluate the command and print `"Hello World!"` both in the terminal at the bottom and as a hoover on the side of the command.
+After installing the Julia extension you can try it by selecting `File` →  `New file` →  `Select a language` →  `Julia` →  type `println("Hello World!")` followed by `SHIFT+ENTER`. This should evaluate the command and print `"Hello World!"` both in the terminal at the bottom and as a hover on the side of the command.
 
 #### Git client
 
@@ -175,7 +175,7 @@ We will now go through an exercise to start a new git project on GitHub, "clone"
 
 But before let's note a list of essential git commands:
 
-- `git clone [url]`:  "Clone" an existing repository locally, that it transfers the project files of the current and all previous versions (i.e. the full history of the project)
+- `git clone [url]`:  "Clone" an existing repository locally, that is, it transfers the project files of the current and all previous versions (i.e. the full history of the project)
 -  `git init` (inside a given directory): Tell git to treat the current directory as a (new) git project
 - `git add [file]`: Add a file to the git project (the project must already exist either because we ran `git init` or we cloned it from a remote repository)
 - `git commit -a -m “[message]”`:  Commit your work, i.e. save as a specific version in the project. This "version" will have an id, will appear in the git logs and can be "tagged" to be easily retrieved
@@ -196,7 +196,7 @@ But before let's note a list of essential git commands:
     - `git diff:` See diff with HEAD
     - `git diff [commithash1] [commithash2]` See diff between any arbitrary commit(s)
 
-Further information specific on Git can fe found on:
+Further information specific on Git can be found on:
 - Git tutorials (shorts):
   - https://git-scm.com/docs/gittutorial
   - https://thenewstack.io/tutorial-git-for-absolutely-everyone  
@@ -210,7 +210,7 @@ Again, if you are lost following the text, watch the video above for a visual gu
 First register or sign in on [github.com](https://www.github.com) and add a new repository, for example, "testGit". Attention to the capital letters, they matter, and don't use spaces in the project name.
 In the project creation form, select the options to add a `readme` file, a `gitignore` (for Julia) and a licence of your choice.
 
-We are now ready to clone the repository locally using Visual Code Studio, either using an automatic way or a more "manual" approach.
+We are now ready to clone the repository locally using Visual Studio Code, either using an automatic way or a more "manual" approach.
 In the first case:
 1. From within Visual Studio Code, type `CTRL+SHIFT+P` to open the command palette and search for `git:clone`
 2. Select "Clone from GitHub"
@@ -280,7 +280,7 @@ export myObjects # functions, structs, and other objects that will be directly a
 end
 ```
 
-Module names are customary starting with a capital letter and the module content is usually not indented. Modules can be entered in the REPL as normal Julia code or in a script that is imported with `include("file.jl")`.
+Module names are customarily starting with a capital letter and the module content is usually not indented. Modules can be entered in the REPL as normal Julia code or in a script that is imported with `include("file.jl")`.
 
 `include` causes the included code to be evaluated at the **global** scope of the module where the include call occurs. 
 
@@ -301,12 +301,12 @@ import pkg # `import module` would be useless
 import pkgOrModule: X,Y,Z 
 ```
 
-The first command above brings into scope only the module or package objects explicitly named in `export`, the second, while loading the package into memory it doesn't bring any objects into scope (we need then to refer to any module's object as `module.object`), finally with the third command we chose the objects to bring into scope at import time rather than when we wrote the module or package.
+The first command above brings into scope only the module or package objects explicitly named in `export`, the second, while loading the package into memory it doesn't bring any objects into scope (we need then to refer to any module's object as `module.object`), finally with the third command we choose the objects to bring into scope at import time rather than when we wrote the module or package.
 
 !!! warning
     `using` and `import`, when they are followed with either `Main.x` or `.x`, look for a _module_ already loaded and bring it and its exported objects into scope (for `import` only those explicitly specified). Otherwise, they do a completely different job: they expect a _package_, and the package system lookups for the correct version of the module `x` embedded inside package `x`, it loads it, and it brings it and its exported objects into scope (again, for `import x` only those explicitly specified).
 
-While modules can have submodules (childs), this is rarely employed in Julia. In such cases use a chained dot syntax to refer to them, e.g. `module1.childb.subchild3`.
+While modules can have submodules (children), this is rarely employed in Julia. In such cases use a chained dot syntax to refer to them, e.g. `module1.childb.subchild3`.
 
 ### Package manager
 
@@ -351,7 +351,7 @@ Pkg.activate(".")
 Pkg.instantiate()
 ```
 
-The first line sets the _current directory_ to those of the *.jl file in which the command is present, the third line activates the environment at the current directory and the fourth line reads the content of the `Manifest.toml` file in the environment directory and take care to download and reinstall all the packages at the exactly given versions.
+The first line sets the _current directory_ to those of the *.jl file in which the command is present, the third line activates the environment at the current directory and the fourth line reads the content of the `Manifest.toml` file in the environment directory and takes care to download and reinstall all the packages at the exactly given versions.
 
 !!! tip
     Attention to this difference: the **current directory** is the path that serves as a reference when you interact with the operating system for files input/output, for example, to read a Comma Separated File or to save a plot image. The **environment** is the directory where the associated `Metadata.toml` and `Project.toml` files listing all the dependencies reside. The two directories can be the same but also be different. 

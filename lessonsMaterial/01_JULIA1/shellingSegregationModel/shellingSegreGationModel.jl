@@ -1,10 +1,10 @@
-# Shelling Segregation model
+# Schelling Segregation model
 
 ## Instructions 
 
 # Source: Thomas C. Schelling (1971) Dynamic models of segregation, The Journal of Mathematical Sociology, 1:2, 143-186, DOI: [10.1080/0022250X.1971.9989794](https://doi.org/10.1080/0022250X.1971.9989794) 
 
-# Your job is implementing the Shelling Segregation Model, a classical agent-based model in the social sciences, introducing the concepts of emerging macro behaviours and tipping points, leading to its author (Thomas Schelling) receiving the Nobel prize in Economics in 2005.
+# Your job is implementing the Schelling Segregation Model, a classical agent-based model in the social sciences, introducing the concepts of emerging macro behaviours and tipping points, leading to its author (Thomas Schelling) receiving the Nobel prize in Economics in 2005.
 # One of the very first results obtained from running simulations, especially in the social sciences.
 # The world is modelled as a gridded space inhabited by two groups (in that period racial and segregation questions concerning the cohabitation of "blacks" and "whites" were topical).
 # Each group has a preference to live in a neighbourhood inhabited by agents of their own type, with a certain "tolerance". When the share of agents of its own type in the neighbourhood falls below this "tolerance" level, the agent tries to relocate somewhere with a higher share of its own type of agents.
@@ -13,14 +13,14 @@
 # For each step, look at each agent, check if it is "happy" with its current location (looking at the share of own types in the neighbourhood), and, if not, relocate the agent to a position where it would be (setting its past location as empty).
 
 # There are various ways of "generality" vs "specificity" to code the algorithm above. On one end you could hard-code the two agent types, e.g. as `1` and `2`, on the other you could be very generic and create an abstract type `Agent` and a concrete class for each agent type.
-# The skeleton below proposes an intermediate approach with only one `Agent` class and the kind of agent encoded as an integer, with 0 representing an empty cell. Fill free to use it or to develop your own algorithm from scratch!
+# The skeleton below proposes an intermediate approach with only one `Agent` class and the kind of agent encoded as an integer, with 0 representing an empty cell. Feel free to use it or to develop your own algorithm from scratch!
 
 # ------------------------------------------------------------------------------
 # ## 1) Setting the environment...
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-# If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+# If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 # Pkg.resolve()   
 Pkg.instantiate()
 using Random
@@ -35,9 +35,9 @@ end
 mutable struct Env
     nR::Int64                       # number of rows
     nC::Int64                       # number of columns
-    similarityThreeshold::Float64   # threeshold for agents to be "happy" with their location
+    similarityThreeshold::Float64   # threshold for agents to be "happy" with their location
     neighborhood::Int64             # how far looking for "similar" agents
-    nSteps::Int64                   # number of iteractive steps to employ
+    nSteps::Int64                   # number of iterative steps to employ
     cells::Vector{Agent}            # total cells in the environment
     gids::Vector{Int64}             # ids of the agents types (or "groups")
     grsizes::Vector{Int64}          # number of agents per group
@@ -76,7 +76,7 @@ end
 """
    reallocatePoints!(env)
 
-Loop over all the cells and if an agent on that location is unhappy, it moves it to a location where it is happy and set the departing cell as empty (i.e. occupied by an agent whose gid is zero).
+Loop over all the cells and if an agent on that location is unhappy, it moves it to a location where it is happy and sets the departing cell as empty (i.e. occupied by an agent whose gid is zero).
 It returns the share of agents that were happy before the move.
 """
 function reallocatePoints!(env)
