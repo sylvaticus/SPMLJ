@@ -40,6 +40,12 @@ const LESSONS_ROOTDIR = joinpath(@__DIR__, "lessonsSources")
 const LESSONS_ROOTDIR_TMP = joinpath(@__DIR__, "lessonsSources_tmp")
 # Where to save the lessons before they are preprocessed
 
+const BUILDED_DOC_HTML =  joinpath(@__DIR__, "buildedDoc")
+const BUILDED_DOC_PDF  =  joinpath(@__DIR__, "buildedDoc_PDF")
+
+lessons_rootdir_basename     = splitpath(LESSONS_ROOTDIR)[end]
+lessons_rootdir_tmp_basename = splitpath(LESSONS_ROOTDIR_TMP)[end]
+
 MAKE_PDF = false
 
 LESSONS_SUBDIR = OrderedDict(
@@ -270,8 +276,8 @@ if MAKE_PDF
                 "Lessons" => makeList(LESSONS_ROOTDIR_TMP,LESSONS_SUBDIR),
             ],
             format = Markdown(),
-            source  = "lessonsSources", # Attention here !!!!!!!!!!!
-            build   = "buildedDoc_PDF",
+            source  = lessons_rootdir_tmp_basename, # Attention here !!!!!!!!!!!
+            build   = BUILDED_DOC_PDF,
     )
 end
 
@@ -280,135 +286,43 @@ end
 println("Starting preprocessing markdown pages...")
 preprocess(LESSONS_ROOTDIR_TMP)
 
-
-# >>>>
-rootDir = LESSONS_ROOTDIR_TMP
-cd(@__DIR__)
-Pkg.activate(".")
-#rootDir = LESSONS_ROOTDIR 
-files  = rdir(rootDir,"*.md")
-videos = ods_read(joinpath(@__DIR__,"videosList.ods");sheetName="videos",retType="DataFrame")
-dropmissing!(videos,"host_filename")
-#for (i,file) in enumerate(files)
-file = files[1]
-origContent = read(file,String)
-outContent = ""
-filename = splitdir(file)[2]
-println(i)
-segmentVideos = videos[videos.host_filename .== filename,:]
-#openVideosFlag = filename == "0001_-_Course_presentation.md" ? "open" : ""
-
-if size(segmentVideos,1) > 0
-    outContent *= """
-                ```@raw html
-                <div id="ytb-videos">
-                <span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
-                """
-    for (i, video) in enumerate(eachrow(segmentVideos))
-        #video = segmentVideos[1,:]
-        openVideosFlag = (i == 1) ? "open" : ""
-        outContent *= """
-            <details $(openVideosFlag)><summary>$(video.lesson_short_name) - $(video.segment_id)$(video.part_id): $(video.part_name) ($(video.minutes):$(video.seconds))</summary>
-            <div class="container ytb-container">
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/$(video.vid)" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
-                </div>
-            </div>
-            </details>
-            """
-    end # end of each video
-    outContent *= """
-        </div>
-        ```
-        ------
-        """
-end # end of if there are videos
-outContent *= origContent
-if (filename != "index.md")
-    commentCode = """
-        ```@raw html
-        <script src="https://utteranc.es/client.js"
-                repo="sylvaticus/SPMLJ"
-                issue-term="title"
-                label="💬 website_comment"
-                theme="github-dark"
-                crossorigin="anonymous"
-                async>
-        </script>
-        ```
-        """
-    addThisCode1 = """
-        ```@raw html
-        <div class="addthis_inline_share_toolbox"></div>
-        ```
-        """
-    addThisCode2 = """
-        ```@raw html
-        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
-        ```
-        """
-    # https://crowdsignal.com/support/rating-widget/
-    ratingCode1 = """
-        ```@raw html
-        <div id="pd_rating_holder_8962705"></div>
-        <script type="text/javascript">
-        const pageURL = window.location.href;
-        PDRTJS_settings_8962705 = {
-        "id" : "8962705",
-        "unique_id" : "$(file)",
-        "title" : "$(filename)",
-        "permalink" : pageURL
-        };
-        </script>
-        ```
-        """
-    ratingCode2 = """
-        ```@raw html
-        <script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
-        ```
-        """
-    outContent *= "\n---------\n"
-    outContent *= ratingCode1
-    outContent *= addThisCode1
-    outContent *= "\n---------\n"
-    outContent *= commentCode
-    outContent *= ratingCode2
-    outContent *= addThisCode2
-end
-write(file,outContent)
-
-
-
-
-# <<<<
-
 println("Starting making the documentation...")
+# MD -> HTML
 makedocs(sitename="SPMLJ",
          authors = "Antonello Lobianco",
          pages = [
             "Index" => "index.md",
-            "Lessons" => makeList(LESSONS_ROOTDIR,LESSONS_SUBDIR),
+            "Lessons" => makeList(LESSONS_ROOTDIR_TMP,LESSONS_SUBDIR),
          ],
          format = Documenter.HTML(
              prettyurls = false,
              analytics = "G-Q39LHCRBB6",
              assets = ["assets/custom.css"],
+             size_threshold      = 500 * 2^10,   # hard limit: build fails above this (bytes, so 2^10 is 1024 bytes, i.e. 1 KB)
+             size_threshold_warn = 250 * 2^10,   # warning above this (bytes)
              ),
          #strict = true,
          warnonly = true,
          #doctest = false
-         source  = "lessonsSources", # Attention here !!!!!!!!!!!
-         build   = "buildedDoc",
+         source  = lessons_rootdir_tmp_basename, # Attention here !!!!!!!!!!!
+         build   = BUILDED_DOC_HTML,
+
          #preprocess = preprocess
 )
 
+println("Etiting the links back to the correct source pages")
 
+# The "edit this link" now refers to the file on the tmp folder, changing them to point to the original folder
+for (root, dirs, files) in walkdir(BUILDED_DOC_HTML)
+    for f in files
+        endswith(f, ".html") || continue
+        path = joinpath(root, f)
+        content = read(path, String)
+        newcontent = replace(content, lessons_rootdir_tmp_basename => lessons_rootdir_basename)
+        newcontent == content || write(path, newcontent)  # rewrite only if changed
+    end
+end
 
-
-
-# Copying back the unmodified source
-cp(LESSONS_ROOTDIR_TMP, LESSONS_ROOTDIR; force=true)
 
 println("Starting deploying the documentation...")
 deploydocs(
