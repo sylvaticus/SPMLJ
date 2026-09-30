@@ -47,7 +47,7 @@ It follows that machine learning algorithms should be generic. They shouldn't be
 
 [^1]: This is a remarkable and pretty desirable property to have: you will be surprised by how few algorithms can be applied to so many different contexts.
 
-For example, for the digit recognition exercise that we will see in unit `NN`, we could have created a computer program that works with the following set of instructions: (1) identify the lines by checking for the variation in pixel darkness in a certain direction and when it is higher than a specific threshold, consider it as a line: (2) assign the label "1" if you can find a vertical bar in the centre of the image without any other lines in the middle (where I would have to define the tolerance for both "vertical" and "centre"), and so on…
+For example, for a digit recognition exercise, we could have created a computer program that works with the following set of instructions: (1) identify the lines by checking for the variation in pixel darkness in a certain direction and when it is higher than a specific threshold, consider it as a line: (2) assign the label "1" if you can find a vertical bar in the centre of the image without any other lines in the middle (where I would have to define the tolerance for both "vertical" and "centre"), and so on…
 You can see that it is going to be complex. This is clearly not machine learning. Instead, machine learning should "learn" all these tasks from the data itself.
 
 We can think of machine learning as a sub-field of artificial intelligence, and indeed it is hard to find success stories of AI that are not ML.
@@ -92,7 +92,7 @@ After the model has been estimated, the modeller needs to provide the decision-m
 
 If we go instead for a machine learning approach, we would use instead a "generic" regression algorithm (for example a decision tree) and the goodness of the predicted output would be obtained by comparing the ML predictions with the true values for a set of records that have not been used to train the model (we'll see this important concept in detail in the `ML1` unit).
 While ML predictions are likely to be more accurate compared to those obtained by an out-of-sample interpolation of the statistical model, there is still a glitch.
-Now we don't have any more a _compact_ representation of our model, so we can provide the company with just an equation and its parameters.
+Now we don't have any more a _compact_ representation of our model, so we can't provide the company with just an equation and its parameters.
 For the decision-maker to be able to make predictions, we need now to provide it with the whole "trained" algorithm, so that it can be run by the decision-maker whenever it needs to make predictions.
 
 ## Type of Machine Learning areas
@@ -117,8 +117,8 @@ In supervised learning the algorithm is provided with a set of examples of both 
 The step where the algorithm learns the relation from the provided couples is called _training_ and it is often very computationally intensive.
 Once the algorithm is trained, it can be used to make _predictions_ of the unknown `Y` based on some new `X`.
 
-On `ML1` we'll have an exercise on digit recognition: we draw a digit, we scan the image and we let the computer guess which digit is represented in the image.
-This "simple" task is indeed very hard for a computer and only recently, thanks to ML, has been largely solved. As we discussed earlier, it would be really complex to instruct an algorithm to recognize a digit based on "classical" engineering procedures. You write the number "7" with two lines, I add another horizontal line in the middle, you type it perfectly vertical, I give it a bit of a slant.. you close perfectly the "zero", while I leave a small gap… For this kind of digit recognition task it is much simpler to just teach the classification with examples, and let the algorithm find which are the characteristics that make it more likely a digit to be a "9" rather than an "8" for example. 
+A classical example is the task of digit recognition: we draw the digit, scan the image, and let the computer guess which digit is represented in the image.
+This "simple" task is indeed very hard for a computer and only recently, thanks to ML, has it been largely solved. As we discussed earlier, it would be very complex to instruct an algorithm to recognize a digit using classical engineering methods. You write the number "7" with two lines, I add another horizontal line in the middle, you type it perfectly vertical, I give it a bit of a slant.. you close perfectly the "zero", while I leave a small gap… For this kind of digit recognition task it is much simpler to just teach the classification with examples, and let the algorithm find which are the characteristics that make it more likely a digit to be a "9" rather than an "8" for example. 
 
 
 ## Unsupervised learning
@@ -177,7 +177,9 @@ But the key to "learning", at least for intelligent agents, is the capacity to g
 For example, the basic law of physics that a kid learns using her building blocks toys can be used later on in life during adulthood.
 
 We close here this long "introductory" lesson and we'll start in the next lesson to dig a bit more in-depth the topics that we introduced today.
+
 ---------
+
 ```@raw html
 <div id="pd_rating_holder_8962705"></div>
 <script type="text/javascript">

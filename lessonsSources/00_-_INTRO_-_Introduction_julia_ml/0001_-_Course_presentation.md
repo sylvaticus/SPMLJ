@@ -18,7 +18,7 @@ In particular, by attending this course you will receive :
 The course is multi-channel, with these pages complemented with youtube videos (see [Program](@ref course_program)), quizzes and exercises. Thanks to projects such as [Literate.jl](https://github.com/fredrikekre/Literate.jl) and [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) the source of most of these pages is runnable valid Julia files.
 
 **To fully master the subject, nothing is better than cloning [the repository on GitHub](https://github.com/sylvaticus/SPMLJ) and running these pages by yourself!**
-To execute yourself the code discussed in the videos, run the code in the `lessonsSource` folder.
+To execute yourself the code discussed in the videos, run the code in the `lessonsSources` folder.
 Other resources used in the course (in particular the examples of the introduction and the exercises) are located under the `lessonsMaterial` folder.
 
 While the content of this course may also be used in specific academic courses with a fixed calendar, you are free to complete the course at your pace. You don't even need to log in. This however means that there is no way to track your progress or the outcomes of the quizzes.
@@ -32,7 +32,7 @@ Anyhow, the course is organised in units/lessons (e.g. `JULIA1`). Each unit/less
 -----
 
 ```@raw html
- <p style ="font-weigth: bold;"><img src="assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="100" style="float: left; margin-right: 15px;"> 
+ <p style ="font-weight: bold;"><img src="assets/imgs/photo_antonello_lobianco.png" alt="Antonello Lobianco" width="100" style="float: left; margin-right: 15px;"> 
  Antonello Lobianco</p>
  <p> <a href="https://orcid.org/0000-0002-1534-8697">OrcID</a> - <a href="https://scholar.google.com/citations?user=8DSfpVUAAAAJ">Google Scholar</a> - <a href="https://github.com/sylvaticus/">GitHub</a> - <a href="https://lobianco.org/antonello">Personal site</a>
  </p>

@@ -1,0 +1,3 @@
+g++ agent.h agent.cpp env.h env.cpp main.cpp -c
+g++ agent.o env.o main.o -o ShellingSegregationModel
+./ShellingSegregationModel

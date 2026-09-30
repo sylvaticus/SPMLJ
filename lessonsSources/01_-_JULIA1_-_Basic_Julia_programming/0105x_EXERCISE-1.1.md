@@ -41,7 +41,7 @@ Otherwise download a zip of just that folder [here](https://downgit.github.io/#/
 
 In the folder you will find the file `shellingSegreGationModel.jl` containing the Julia file that **you will have to complete to implement and run the model** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
-If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
+If you are stuck and you don't want to lookup to the resolution below you can also ask for help in the forum at the bottom of this page.
 Good luck! 
 
 ## Resolution

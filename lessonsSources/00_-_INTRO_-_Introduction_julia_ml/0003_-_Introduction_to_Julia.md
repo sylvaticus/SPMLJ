@@ -235,7 +235,7 @@ We can now do some basic work locally and push it back on GitHub:
 7. If you never used git on this pc, type this (this is needed only once to tell git who you are):
   - git config --global user.email "your@email.com"
   - git config --global user.name "Your Name"
-8. Type in the terminal `git commit -a`, add a message for the log, press `CTR+X` and `Y` to confirm: you created a new commit, a permanent "version" of your project to which you can always "go back" whenever needed
+8. Type in the terminal `git commit -a`, add a message for the log, press `CTRL+X` and `Y` to confirm: you created a new commit, a permanent "version" of your project to which you can always "go back" whenever needed
 9. Type `git push` and follow the online instruction to authorise: the commit, that up to now was still only on your local machine, is "transferred" to the remote node, GitHub in this case
 
 If you go or refresh your browser on https://github.com/[YOUR GITHUB USERNAME]/testGit.git you should now visualise the modifications you made to the repository.
@@ -267,7 +267,7 @@ As anticipated, we start our study of Julia from its modules, packages and envir
 # Modules and packages
 
 Modules are some logical grouping of program functionalities. Functions, custom-defined types, constants and other objects can be grouped in modules. 
-Modules help in keeping the "namespace", the set of the names from which the various objects of the program can be accessed, "clean", so that we can refer to `molule1.foo` and `module2.foo` objects separately.
+Modules help in keeping the "namespace", the set of the names from which the various objects of the program can be accessed, "clean", so that we can refer to `module1.foo` and `module2.foo` objects separately.
 
 Packages are just modules, a single module with the same name of the package, plus some "metadata" that facilitates its discovery and interplay with other packages – where I find it, which version I am using, which other packages – and versions – this module depends from, etc.
 
@@ -354,7 +354,7 @@ Pkg.instantiate()
 The first line sets the _current directory_ to those of the *.jl file in which the command is present, the third line activates the environment at the current directory and the fourth line reads the content of the `Manifest.toml` file in the environment directory and takes care to download and reinstall all the packages at the exactly given versions.
 
 !!! tip
-    Attention to this difference: the **current directory** is the path that serves as a reference when you interact with the operating system for files input/output, for example, to read a Comma Separated File or to save a plot image. The **environment** is the directory where the associated `Metadata.toml` and `Project.toml` files listing all the dependencies reside. The two directories can be the same but also be different. 
+    Attention to this difference: the **current directory** is the path that serves as a reference when you interact with the operating system for files input/output, for example, to read a Comma Separated File or to save a plot image. The **environment** is the directory where the associated `Manifest.toml` and `Project.toml` files listing all the dependencies reside. The two directories can be the same but also be different. 
 
 ---------
 ```@raw html

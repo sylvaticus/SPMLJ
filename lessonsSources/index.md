@@ -5,7 +5,7 @@ There is no registration required. Please use the menu to access a particular se
 
 ```@raw html
 <img src="assets/imgs/SPMLJ_white.png" width=200px style="display: block;   margin-left: auto;  margin-right: auto; margin-top:30px; margin-bottom:30px;">
-<p style="text-align: center; font-weigth:bold; font-size:1.2em">
+<p style="text-align: center; font-weight:bold; font-size:1.2em">
 <a href="https://github.com/sylvaticus/SPMLJ">GitHub repository</a> - <a href="00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html">Course Introduction</a>  - <a href="00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html#contribution_guidelines">Contribution guidelines</a>
 </p>
 ```

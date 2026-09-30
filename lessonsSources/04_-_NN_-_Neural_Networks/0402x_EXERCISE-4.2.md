@@ -3,8 +3,8 @@
 ```@raw html
 <p>&nbsp;</p>
 <img src="imgs/errorPerEpoch.png" alt="Error per epoch" style="height:170px;"> 
-<img src="imgs/errorPerEpoch_unscaled.png" alt="Error per epoch (uscaled)" style="height:170px;"> 
-<img src="imgs/errorPerEpoch_squaredCost.png" alt="Error per epoch (squaredCost" style="height:170px;"> 
+<img src="imgs/errorPerEpoch_unscaled.png" alt="Error per epoch (unscaled)" style="height:170px;"> 
+<img src="imgs/errorPerEpoch_squaredCost.png" alt="Error per epoch (squaredCost)" style="height:170px;"> 
 <p>&nbsp;</p>
 ```
 
@@ -43,7 +43,7 @@ Otherwise download a zip of just that folder [here](https://downgit.github.io/#/
 
 In the folder you will find the file `WineClass.jl` containing the Julia file that **you will have to complete to implement the missing parts and run the file** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
-If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
+If you are stuck and you don't want to lookup to the resolution below you can also ask for help in the forum at the bottom of this page.
 Good luck! 
 
 ## Resolution

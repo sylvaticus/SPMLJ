@@ -36,7 +36,7 @@ Our prediction concerns the median value (column 14 of the dataset)
 **Skills employed:**
 - download and import data from internet
 - design and train a Neural Network for regression tasks using `BetaML`
-- use the additional `BetaML` functions `partition`, `oneHotEncoder`, `scale`, `meanRelError`
+- use the additional `BetaML` functions `partition`, `OneHotEncoder`, `Scaler`, `relative_mean_error`
 
 
 ## Instructions
@@ -46,7 +46,7 @@ Otherwise download a zip of just that folder [here](https://downgit.github.io/#/
 
 In the folder you will find the file `BostonHousingValue.jl` containing the Julia file that **you will have to complete to implement the missing parts and run the file** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
-If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
+If you are stuck and you don't want to lookup to the resolution below you can also ask for help in the forum at the bottom of this page.
 Good luck! 
 
 ## Resolution

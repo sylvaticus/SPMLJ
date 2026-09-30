@@ -46,7 +46,7 @@ Otherwise download a zip of just that folder [here](https://downgit.github.io/#/
 
 In the folder you will find the file `creditApproval.jl` containing the Julia file that **you will have to complete to implement the missing parts and run the file** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
-If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
+If you are stuck and you don't want to lookup to the resolution below you can also ask for help in the forum at the bottom of this page.
 Good luck! 
 
 ## Resolution
@@ -172,7 +172,7 @@ maxFeatures_range        = [2,3,4,5,6]
 ```
 
 To train a Random Forest in BetaML use:
-`myForest = buildForest(xtrain,ytrain, nTrees; <other hyper-parameters>)`.
+`myForest = fit!(RandomForestEstimator(nTrees; <other hyper-parameters>),xtrain,ytrain)`
 
 And then to predict and compute the accuracy use:
 
@@ -250,7 +250,7 @@ for sc in splittingCriterion_range
     push!(accuracies,acc)
     println("$acc (σ: $σ)")
 end
-bar(string.(splittingCriterion_range),accuracies,legend=nothing,ylabel="accuracy",xlabel="splititngCriterion")
+bar(string.(splittingCriterion_range),accuracies,legend=nothing,ylabel="accuracy",xlabel="splittingCriterion")
 
 # #### Max (tree) depth
 bestAcc = 0.0
@@ -306,7 +306,7 @@ plot(minRecords_range,accuracies,legend=nothing,ylabel="accuracy",xlabel="minRec
 bestAcc = 0.0
 accuracies = []
 for mf in maxFeatures_range
-    global mmaxFeatures_best, bestAcc, accuracies
+    global maxFeatures_best, bestAcc, accuracies
     local acc
     print("Accuracy for $mf maxFeatures: ")
     (acc,σ)    = cross_validation([xtrain,ytrain],sampler) do trainData,valData, rng

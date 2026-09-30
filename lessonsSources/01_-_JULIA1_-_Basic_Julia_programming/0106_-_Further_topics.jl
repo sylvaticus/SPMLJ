@@ -294,7 +294,7 @@ println(df2)
 # >>> from juliacall import Main as jl
 # ```
 
-# We can now directly load a Julia module, including `Main`, the global namespace of Julia’s interpreter, with `from Julia import ModuleToLoad` and access the module objects directly or using the `Module.evel()` interface.
+# We can now directly load a Julia module, including `Main`, the global namespace of Julia’s interpreter, with `from julia import ModuleToLoad` and access the module objects directly or using the `Module.eval()` interface.
 
 # ##### Add a Julia package...
 # ```python
@@ -307,7 +307,8 @@ println(df2)
 # ```python
 # >>> from julia import BetaML
 # >>> import numpy as np
-# >>> model = BetaML.buildForest([[1,10],[2,12],[12,1]],["a","a","b"])
+# >>> model = BetaML.RandomForestEstimator()
+# >>> fit!(model,[[1,10],[2,12],[12,1]],["a","a","b"])
 # >>> predictions = BetaML.predict(model,np.array([[2,9],[13,0]]))
 # >>> predictions
 # [{'b': 0.36666666666666664, 'a': 0.6333333333333333}, {'b': 0.7333333333333333, 'a': 0.26666666666666666}]
@@ -398,7 +399,7 @@ a = rcopy(R"sumMyArgs"(3,4,5))  # 12
 # julia_setup() # If we have already downloaded a private version of Julia for R it will be retrieved automatically
 # ```
 
-# We can now load a Julia module and access the module objects directly or using the `Module.evel()` interface.
+# We can now load a Julia module and access the module objects directly or using the `Module.eval()` interface.
 
 # ##### Add a Julia package...
 

@@ -197,7 +197,7 @@ Matrix(data)[mask]
 data[data.Year .>= 2020,:]
 data[[i in ["France", "Italy"] for i in data.Country] .&& (data.Year .== 2000),:] # note the parenthesis
 
-# ### Filtering using the @subset macro from the `DataFramesMacro` package
+# ### Filtering using the @subset macro from the `DataFramesMeta` package
 using DataFramesMeta
 @subset(data, :Year .> 2010 )
 colToFilter = :Country
@@ -284,7 +284,7 @@ push!(df1,["US",2020,5.0,1000.0])
 push!(df2,["China",2020,50.0,1000.0])
 rename!(df2,"Year"=>"year")
 innerjoin(df1,df2,on=["Country","Year"=>"year"],makeunique=true) # common records only 
-# Also available: `leftjoin` (all records on left df), `rightjoin` (all on right df), `outerjoin`(all records returned), `semijoin` (like inner join but only with columns from the right df), `antijoin` (left not on right df) and `crossjoin` (like the cartesian product, each on the right by each on the left)
+# Also available: `leftjoin` (all records on left df), `rightjoin` (all on right df), `outerjoin`(all records returned), `semijoin` (like inner join but only with columns from the left df), `antijoin` (left not on right df) and `crossjoin` (like the cartesian product, each on the right by each on the left)
 
 # ## Pivoting data
 
@@ -340,7 +340,7 @@ end
 
 # Note in these examples that while in the aggregation we were returning a _single record_ for each subgroup (hence we did some dimensionality reduction) in the cumulative computation we still output the whole subgroup, so the combined dataframe in output has the same number of rows as the original dataframe.
 
-# An alternative approach is to use the `@linq` macro from the `DatAFrameMEta` package that provides a R's `dplyr`-like query language using piped data: 
+# An alternative approach is to use the `@linq` macro from the `DataFramesMeta` package that provides a R's `dplyr`-like query language using piped data: 
 using DataFramesMeta
 dfCum = @linq data |>
             groupby([:Year]) |>

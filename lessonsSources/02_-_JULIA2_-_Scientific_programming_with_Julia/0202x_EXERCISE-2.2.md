@@ -29,7 +29,7 @@ Otherwise download a zip of just that folder [here](https://downgit.github.io/#/
 
 In the folder you will find the file `loggingOptimisation.jl` containing the Julia file that **you will have to complete to implement and run the model** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
-If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
+If you are stuck and you don't want to lookup to the resolution below you can also ask for help in the forum at the bottom of this page.
 Good luck! 
 
 ## Resolution
@@ -257,7 +257,7 @@ if (status == MOI.OPTIMAL || status == MOI.LOCALLY_SOLVED || status == MOI.TIME_
     else
         println("** Problem returned a (possibly suboptimal) solution **")
     end
-    println("- Objective value (total costs): ", objective_value(profitModel))
+    println("- Objective value (profit): ", objective_value(profitModel))
     println("- Optimal Activities:\n")
     optValues = value.(x)
     for a in 1:nA
@@ -315,186 +315,6 @@ end
 ```@raw html
 </details>
 ```
----------
-```@raw html
-<div id="pd_rating_holder_8962705"></div>
-<script type="text/javascript">
-const pageURL = window.location.href;
-PDRTJS_settings_8962705 = {
-"id" : "8962705",
-"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.2.md",
-"title" : "0202x_EXERCISE-2.2.md",
-"permalink" : pageURL
-};
-</script>
-```
-```@raw html
-<div class="addthis_inline_share_toolbox"></div>
-```
-
----------
-```@raw html
-<script src="https://utteranc.es/client.js"
-        repo="sylvaticus/SPMLJ"
-        issue-term="title"
-        label="💬 website_comment"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-</script>
-```
-```@raw html
-<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
-```
-```@raw html
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
-```
-
----------
-```@raw html
-<div id="pd_rating_holder_8962705"></div>
-<script type="text/javascript">
-const pageURL = window.location.href;
-PDRTJS_settings_8962705 = {
-"id" : "8962705",
-"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.2.md",
-"title" : "0202x_EXERCISE-2.2.md",
-"permalink" : pageURL
-};
-</script>
-```
-```@raw html
-<div class="addthis_inline_share_toolbox"></div>
-```
-
----------
-```@raw html
-<script src="https://utteranc.es/client.js"
-        repo="sylvaticus/SPMLJ"
-        issue-term="title"
-        label="💬 website_comment"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-</script>
-```
-```@raw html
-<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
-```
-```@raw html
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
-```
-
----------
-```@raw html
-<div id="pd_rating_holder_8962705"></div>
-<script type="text/javascript">
-const pageURL = window.location.href;
-PDRTJS_settings_8962705 = {
-"id" : "8962705",
-"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.2.md",
-"title" : "0202x_EXERCISE-2.2.md",
-"permalink" : pageURL
-};
-</script>
-```
-```@raw html
-<div class="addthis_inline_share_toolbox"></div>
-```
-
----------
-```@raw html
-<script src="https://utteranc.es/client.js"
-        repo="sylvaticus/SPMLJ"
-        issue-term="title"
-        label="💬 website_comment"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-</script>
-```
-```@raw html
-<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
-```
-```@raw html
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
-```
-
----------
-```@raw html
-<div id="pd_rating_holder_8962705"></div>
-<script type="text/javascript">
-const pageURL = window.location.href;
-PDRTJS_settings_8962705 = {
-"id" : "8962705",
-"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.2.md",
-"title" : "0202x_EXERCISE-2.2.md",
-"permalink" : pageURL
-};
-</script>
-```
-```@raw html
-<div class="addthis_inline_share_toolbox"></div>
-```
-
----------
-```@raw html
-<script src="https://utteranc.es/client.js"
-        repo="sylvaticus/SPMLJ"
-        issue-term="title"
-        label="💬 website_comment"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-</script>
-```
-```@raw html
-<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
-```
-```@raw html
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
-```
-
----------
-```@raw html
-<div id="pd_rating_holder_8962705"></div>
-<script type="text/javascript">
-const pageURL = window.location.href;
-PDRTJS_settings_8962705 = {
-"id" : "8962705",
-"unique_id" : "/home/lobianco/CloudFiles/lef-nancy-sync/Documents/Teaching/2021-2022/Introduction to Scientific Programming and Machine Learning with Julia/SPMLJ/lessonsSources/02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.2.md",
-"title" : "0202x_EXERCISE-2.2.md",
-"permalink" : pageURL
-};
-</script>
-```
-```@raw html
-<div class="addthis_inline_share_toolbox"></div>
-```
-
----------
-```@raw html
-<script src="https://utteranc.es/client.js"
-        repo="sylvaticus/SPMLJ"
-        issue-term="title"
-        label="💬 website_comment"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-</script>
-```
-```@raw html
-<script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script>
-```
-```@raw html
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script>
-```
-
 ---------
 ```@raw html
 <div id="pd_rating_holder_8962705"></div>

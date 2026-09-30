@@ -3,8 +3,8 @@
 
 ```@raw html
 <p>&nbsp;</p>
-<img src="imgs/breastCancerClassified.png" alt="Forest Growth" style="height:250px;"> 
-<img src="imgs/breastCancerClassificationAccuracies.png" alt="Forest Growth curves" style="height:250px;"> 
+<img src="imgs/breastCancerClassified.png" style="height:250px;"> 
+<img src="imgs/breastCancerClassificationAccuracies.png" style="height:250px;"> 
 <p>&nbsp;</p>
 ```
 
@@ -14,7 +14,7 @@ Our task is to build a linear classifier using the perceptron algorithm that we 
 **Skills employed:**
 - download and import data from internet
 - implement the training function of a perceptron algorithm
-- use the BetaML `partition`, `crossValidation` and `accuracy` functions
+- use the BetaML `partition`, `cross_validation` and `accuracy` functions
 
 
 
@@ -25,7 +25,7 @@ Otherwise download a zip of just that folder [here](https://downgit.github.io/#/
 
 In the folder you will find the file `BreastCancerDiagnosisWithPerceptron.jl` containing the Julia file that **you will have to complete in order to implement and run it** (follow the instructions on that file). 
 In that folder you will also find the `Manifest.toml` file. The proposal of resolution below has been tested with the environment defined by that file.  
-If you are stuck and you don't want to lookup to the resolution above you can also ask for help in the forum at the bottom of this page.
+If you are stuck and you don't want to lookup to the resolution below you can also ask for help in the forum at the bottom of this page.
 Good luck! 
 
 ## Resolution

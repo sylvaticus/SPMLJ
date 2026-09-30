@@ -106,7 +106,7 @@ The slides used in the videos below are available [here](https://github.com/sylv
   - [Part B - A better version](https://www.youtube.com/watch?v=g0yz7La53Vc&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=6) (10:28)
   - [Part C - Cross-validation implementation](https://www.youtube.com/watch?v=ieIZFF6RYQo&list=PLDIpPSqVuMmL9JsL_hDdciDvreAOtQg3v&index=7) (21:7)
 
-### 03 NN: Neural Networks (2h:15:36)
+### 04 NN: Neural Networks (2h:15:36)
 - Introduction to Neural Networks (1h:25:17)
   - [Part A - Introduction and motivations](https://www.youtube.com/watch?v=4m_BzDV15XQ&list=PLDIpPSqVuMmIvTA3w7ATUKHzq82uey8pP&index=1) (5:32)
   - [Part B - Feed-forward neural networks](https://www.youtube.com/watch?v=MMrM5X4gxqY&list=PLDIpPSqVuMmIvTA3w7ATUKHzq82uey8pP&index=2) (18:57)

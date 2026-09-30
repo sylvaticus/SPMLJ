@@ -24,7 +24,7 @@ using InteractiveUtils # loaded automatically when working... interactively
 
 # ## Primitive types
 
-# Primitive types have a fixed number of bits associated to them. Examples of them are `Int64`, `Float64`, `Char`, `UInt64`, `UFloat64`, `Int32`, `Float32`,...
+# Primitive types have a fixed number of bits associated to them. Examples of them are `Int64`, `Float64`, `Char`, `UInt64`, `Int32`, `Float32`,...
 # Even primitive types can be custom defined. See the "custom types" segment !
 
 # ### Char and Strings - `Char`, `String`

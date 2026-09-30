@@ -173,8 +173,8 @@ savefig("currentPlot12.svg"); #src
 # Obj: minimise transport costs $c$ from several plants $p$ to several markets $m$ under the constraint to satisfy the demand $d_m$ at each market while respecting the production capacity $c_p$ of each plant:
 # $min_{x_{p,m}} \sum_p \sum_m c_{p,m} * x_{p,m}$
 # subject to:
-# $\sum_m x_{p,m} \leq d_m$
-# $\sum_p x_{p,m} \geq c_m$
+# $\sum_m x_{p,m} \geq d_m$
+# $\sum_p x_{p,m} \leq c_m$
 
 using  JuMP, GLPK, DataFrames, CSV
 
