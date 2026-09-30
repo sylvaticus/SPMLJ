@@ -3,7 +3,7 @@
 ###                                                                          ### #src
 ### Run each script on a new clean Julia session                             ### #src
 ### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
-### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Licence (apply to all material of the course: scripts, videos, quizzes,..)### #src
 ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
 ################################################################################ #src
 
@@ -15,7 +15,7 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")   
-## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will hower be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 #Pkg.resolve()   
 Pkg.instantiate()
 using Random
@@ -30,13 +30,13 @@ Random.seed!(123)
 #     DataFrames are popular format for **in-memory tabular data**. Their main advantages over Arrays are that they can efficiently store different types of data on each column (indeed each column is a wrapper over an `Array{T,1}` where `T` is specific to each column) and, thanks also to their named columns, provide convenient API for data operations, like indexing, querying , joining, split-apply-combine, etc. 
 
 # !!! info
-#     In most circunstances we can refer to dataframe columns either by using their name as a string, e.g. `"Region"`, or as symbol, e.g. `:Region`. In the rest of the segment we will use the string approach.
+#     In most circumstances we can refer to dataframe columns either by using their name as a string, e.g. `"Region"`, or as symbol, e.g. `:Region`. In the rest of the segment we will use the string approach.
 
 
 # ## Data import
 
 # Our example: Forest volumes and area by country and year
-# Source: Eurostat; units: forarea: Milion hectars, forvol: Milion cubic metres
+# Source: Eurostat; units: forarea: Million hectares, forvol: Million cubic metres
 
 # ### Built-in solution: CSV --> Matrix
 using DelimitedFiles  # in the stdlib
@@ -57,7 +57,7 @@ Germany	2020	11.419	3663
 France	2020	17.253	3055.83
 Italy	2020	9.56613	1424.4
 Sweden	2020	27.98	3653.91
-"""), DataFrame, copycols=true)
+"""), DataFrame)
 
 # Some common CSV.jl options: `delim` (use `'\t'` for tab delimited files), `quotechar`, `openquotechar`, `closequotechar`, `escapechar`, `missingstring`, `dateformat`, `append`, `writeheader`, `header`, `newline`, `quotestrings`, `decimal`, `header`, `normalizenames`, `datarow`, `skipto`, `footerskip`, `limit`, `transpose`, `comment`, `use_mmap`, `type`, `types` (e.g. `types=Dict("fieldFoo" => Union{Missing,Int64})`), `typemap`, `pool`, `categorical`, `strict`, `silencewarnings`, `ignorerepeated`
 
@@ -136,7 +136,7 @@ M = ["Country"	"Year"	"forarea" "forvol"
      "France"	2020	17.253	  3055.83
      "Italy"	2020	9.56613	  1424.4
      "Sweden"	2020	27.98	  3653.91]
-data = DataFrame([[M[2:end,i]...] for i in 1:size(M,2)], Symbol.(M[1,:])) # note the autorecognision of col types
+data = DataFrame([[M[2:end,i]...] for i in 1:size(M,2)], Symbol.(M[1,:])) # note the autorecognition of col types
 
 
 # ## Getting insights on the data
@@ -150,7 +150,7 @@ describe(data)
 nR,nC = size(data)
 names(data)
 for r in eachrow(data)
-    println(r) # note is it a "DataFrameRow"
+    println(r) # note it is a "DataFrameRow"
 end
 for c in eachcol(data)
     println(c) # an array
@@ -170,7 +170,7 @@ data[:,Not(["Year"])]
 # ### Row(s) selection
 data[1,:]    # DataFrameRow
 data[1:3,:]  # DataFrame
-# Note rows have no title names as colums do.
+# Note rows have no title names as columns do.
 
 # ### Cell(s) selection
 data[2,[2,4]]
@@ -180,10 +180,10 @@ data[2,"forarea"]
 # * an `Array{T,1}` if it is a single column;
 # * a `DataFrameRow` (similar in behaviour to a `DataFrame`) if a single row;
 # * `T` if a single cell;
-# * an other `DataFrame` otherwise.
+# * another `DataFrame` otherwise.
 
 # ### Boolean selection
-# Both rows and column of a DataFrame (but also of an Matrix) can be selected by passing an array of booleans as column or row mask (and, only for Matrices, also a matrix of booleans)
+# Both rows and column of a DataFrame (but also of a Matrix) can be selected by passing an array of booleans as column or row mask (and, only for Matrices, also a matrix of booleans)
 
 mask = [false, false, false, false, true, true, true, true]
 data[mask,:]
@@ -195,13 +195,13 @@ Matrix(data)[mask]
 
 # Boolean selection can be used to filter on conditions, e.g.:
 data[data.Year .>= 2020,:]
-data[[i in ["France", "Italy"] for i in data.Country] .&& (data.Year .== 2000),:] # note the parhenthesis
+data[[i in ["France", "Italy"] for i in data.Country] .&& (data.Year .== 2000),:] # note the parenthesis
 
-# ### Filtering using the @subset macro from the `DataFramesMacro` package
+# ### Filtering using the @subset macro from the `DataFramesMeta` package
 using DataFramesMeta
 @subset(data, :Year .> 2010 )
 colToFilter = :Country
-@subset(data, :Year .> 2010, cols(colToFilter) .== "France" ) # Conditions are "end" by default. If the column name is embedded in a varaible we eed to use `cols(varname)`
+@subset(data, :Year .> 2010, cols(colToFilter) .== "France" ) # Conditions are "and" by default. If the column name is embedded in a variable we need to use `cols(varname)`
 
 # ### Filtering using the `Query` package
 using Query 
@@ -219,7 +219,7 @@ end
 #     See also the section [`Missingness implementations`](@ref missingness_implementations) for a general discussion on missing values. [BetaML](https://github.com/sylvaticus/BetaML.jl) has now several algorithms for missing imputation.
 
 df = copy(data)
-## df[3,"forarea"]  = missing # Error, type is Flat64, not Union{Float64,Missing}
+## df[3,"forarea"]  = missing # Error, type is Float64, not Union{Float64,Missing}
 df.forarea = allowmissing(df.forarea) # also disallowmissing
 allowmissing!(df)
 df[3,"forarea"]  = missing
@@ -242,7 +242,7 @@ df[[2,4],"forarea"] .= 10
 df
 push!(df,["UK",2020,5.0,800.0]) # add row
 sort!(df,["Country","Year"], rev=false)
-df2 = similar(df) # rubish inside
+df2 = similar(df) # rubbish inside
 df = similar(df,0) # empty a dataframe. The second parameter is the number of rows desired
 
 # ## Work on dataframe structure
@@ -273,7 +273,7 @@ transform!(df, names(df, AbstractString) .=> categorical, renamecols=false) # tr
 #     Attention that while the memory to store the data decreases, and grouping is way more efficient, filtering with categorical values is not necessarily quicker (indeed it can be a bit slower)
 
 levels(df.Year2)
-levels!(df.Country,["Sweden","Germany","France","Italy"]) # Let you define a personalised order, useful for ordered data
+levels!(df.Country,["Sweden","Germany","France","Italy"]) # Lets you define a personalised order, useful for ordered data
 sort(df.Country)
 sort!(df,"Country")
 df.Years2 = unwrap.(df.Year2) # convert a categorical array into a normal one.
@@ -284,13 +284,13 @@ push!(df1,["US",2020,5.0,1000.0])
 push!(df2,["China",2020,50.0,1000.0])
 rename!(df2,"Year"=>"year")
 innerjoin(df1,df2,on=["Country","Year"=>"year"],makeunique=true) # common records only 
-# Also available: `leftjoin` (all records on left df), `rightjoin` (all on right df), `outerjoin`(all records returned), `semijoin` (like inner join by only with columns from the right df), `antijoin` (left not on right df) and `crossjoin` (like the cartesian product, each on the right by each on the left)
+# Also available: `leftjoin` (all records on left df), `rightjoin` (all on right df), `outerjoin`(all records returned), `semijoin` (like inner join but only with columns from the left df), `antijoin` (left not on right df) and `crossjoin` (like the cartesian product, each on the right by each on the left)
 
 # ## Pivoting data
 
-# _long_ and _wide_ are two kind of layout for equivalent representation of tabled data.
-# In a _long_ layout we have each row being an observation of a single variable, and each record is represented as dim1, dim2, ..., value. As the name implies, "long" layouts tend to be relativelly long and hard to analyse by an human, but are very easity to handle.
-# At the opposite, A _wide_ layout represents multiple observations on the same row, eventually using multiple horizontal axis as in the next figure (but Julia dataframes handle only a single horizzontal axis):
+# _long_ and _wide_ are two kinds of layout for equivalent representation of tabled data.
+# In a _long_ layout we have each row being an observation of a single variable, and each record is represented as dim1, dim2, ..., value. As the name implies, "long" layouts tend to be relatively long and hard to analyse by a human, but are very easy to handle.
+# At the opposite, a _wide_ layout represents multiple observations on the same row, eventually using multiple horizontal axis as in the next figure (but Julia dataframes handle only a single horizontal axis):
 
 # |          |              |       |                  |      |
 # | -------- | ------------ | ----- | ---------------- | ---- |
@@ -299,18 +299,18 @@ innerjoin(df1,df2,on=["Country","Year"=>"year"],makeunique=true) # common record
 # | Germany  | 11.35        | 11.42 | 3381             | 3663 |
 # | France   | 15.29        | 17.25 | 2254             | 3056 |
 
-# _wide layout is easier to visually analise for a human mind but much more hard to analyse in a sistermatic way. We will learn now how to move from one type of layout to the other.
+# _wide_ layout is easier to visually analyse for a human mind but much more hard to analyse in a systematic way. We will learn now how to move from one type of layout to the other.
 
 # ### Stacking columns: from _wide_ to _long_
 longDf  = stack(data,["forarea","forvol"])    # we specify the variable to stack (the "measured" variables)
 longDf2 = stack(data,Not(["Country","Year"])) # we specify the variables _not_ to stack (the id variables)
 longDf3 = stack(data)                         # automatically stack all numerical variables
 longDf == longDf2 == longDf3
-# Note how the columns `variable` and `value` have been added automatically to host the stachked data
+# Note how the columns `variable` and `value` have been added automatically to host the stacked data
 
-# ### Unstacking columns: from _wide_ to _long_
-wideDf = unstack(longDf,["Country","Year"],"variable","value") # args: df, [cols to remains cols also in the wide layout], column with the ids to expand horizontally and column with the relative values
-wideDf2 = unstack(longDf,"variable","value") # cols to remains cols also in the wide layout omitted: all cols not to expand and relative value col remains as col
+# ### Unstacking columns: from _long_ to _wide_
+wideDf = unstack(longDf,["Country","Year"],"variable","value") # args: df, [cols to remain cols also in the wide layout], column with the ids to expand horizontally and column with the relative values
+wideDf2 = unstack(longDf,"variable","value") # cols to remain cols also in the wide layout omitted: all cols not to expand and relative value col remains as col
 wideDf == wideDf2 == data
 
 # While the DataFrames package doesn't support multiple axis we can still arrive to the table below with a little bit of work by unstacking different columns in separate wide dataframes and then joining or horizontally concatenating them:
@@ -322,7 +322,7 @@ wideWideDf = outerjoin(wideArea,wideVols,on="Country")
 
 # ## The Split-Apply-Combine strategy
 
-# Aka "divide and conquer". Rather than try to modify the dataset direclty, we first split it in subparts, we work on each subpart and then we recombine them in a target dataset
+# Aka "divide and conquer". Rather than try to modify the dataset directly, we first split it in subparts, we work on each subpart and then we recombine them in a target dataset
 
 using Statistics # for `mean`
 groupby(data,["Country","Year"]) # The "split" part
@@ -338,9 +338,9 @@ a = combine(groupby(data,["Year"])) do subdf # slower
     (country = subdf.Country, area = subdf.forarea, cumArea = cumsum(subdf.forarea))
 end
 
-# Note in these examples that while in the aggregation we was returning a _single record_ for each subgroup (hence we did some dimensionality reduction) in the cumulative compuation we still output the whole subgroup, so the combined dataframe in output has the same number of rows as the original dataframe.
+# Note in these examples that while in the aggregation we were returning a _single record_ for each subgroup (hence we did some dimensionality reduction) in the cumulative computation we still output the whole subgroup, so the combined dataframe in output has the same number of rows as the original dataframe.
 
-# An alternative approach is to use the `@linq` macro from the `DatAFrameMEta` package that provide a R's `dplyr`-like query language using piped data: 
+# An alternative approach is to use the `@linq` macro from the `DataFramesMeta` package that provides a R's `dplyr`-like query language using piped data: 
 using DataFramesMeta
 dfCum = @linq data |>
             groupby([:Year]) |>

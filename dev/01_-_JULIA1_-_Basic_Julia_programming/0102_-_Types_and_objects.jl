@@ -3,7 +3,7 @@
 ###                                                                          ### #src
 ### Run each script on a new clean Julia session                             ### #src
 ### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
-### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Licence (apply to all material of the course: scripts, videos, quizzes,..)### #src
 ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
 ################################################################################ #src
 
@@ -23,7 +23,7 @@ Random.seed!(123)
 
 # ## Types
 
-## 1 in not 1.0:
+## 1 is not 1.0:
 a = 1
 b = 1.0
 typeof(a) # type is inferred !
@@ -77,15 +77,15 @@ typeof(+) <: Function
 
 # Operators are just functions:
 1 + 2
-+(1,2) # this call the function "+"
++(1,2) # this calls the function "+"
 import Base.+
 ## +(a,b,c) = a*b*c  # Defining my new crazy addition operation with 3 arguments
-10+20+30            # This call it
+10+20+30            # This calls it
 10+20               # The addition with two parameters remains the same
 10+20+30+40         # Also this one remains with the standard addition..
 
 # !!! warning
-#     After you tested this singular interpretation of the summation function, please restart Julia or few things will continue to work: with great power comes great responsability, and if we change the meaning of such a inner feature of the language, repercussions will be deep.
+#     After you tested this singular interpretation of the summation function, please restart Julia or few things will continue to work: with great power comes great responsibility, and if we change the meaning of such an inner feature of the language, repercussions will be deep.
 
 
 # ## Objects and variables
@@ -101,7 +101,7 @@ m === k    # are the two identifiers binding the same identical object in memory
 
 
 # ## Mutability property of Julia objects
-# Mutable objects are stored in memory "directly", while for mutable objects it is its memory address to be stored:
+# Immutable objects are stored in memory "directly", while for mutable objects it is its memory address to be stored:
 k = 10
 v = [1,2]
 p = 'z'
@@ -122,7 +122,7 @@ d = deepcopy(a)  # copy all the references recursively and assign this new objec
 
 c == a           # are the two objects equal ?
 c === a          # are the two identifiers binding the same identical object in memory ?
-a[2] = 40        # rebinds a[2] to an other objects and at the same time mutates object a:
+a[2] = 40        # rebinds a[2] to an other object and at the same time mutates object a:
 b
 c
 d

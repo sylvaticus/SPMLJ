@@ -3,7 +3,7 @@
 ###                                                                          ### #src
 ### Run each script on a new clean Julia session                             ### #src
 ### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
-### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Licence (apply to all material of the course: scripts, videos, quizzes,..)### #src
 ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
 ################################################################################ #src
 
@@ -14,7 +14,7 @@
 cd(@__DIR__)         
 using Pkg             
 Pkg.activate(".")     
-## If using a Julia version different than 1.10 please uncomment and run the following line (reproductibility guarantee will however be lost)
+## If using a Julia version different than 1.10 please uncomment and run the following line (reproducibility guarantee will however be lost)
 ## Pkg.resolve()   
 ## Pkg.instantiate() # run this if you didn't in Segment 01.01
 using Random
@@ -29,7 +29,7 @@ primitive type APrimitiveType 819200 end # name and size in bit - multiple of 8 
 primitive type APrimitiveType2 819200 end
 819200/(8*1024)
 struct ACompositeType end                # fields, constructors.. we'll see this later in details
-abstract type AnAbstractType end         # no objects, no instantialisation of objects
+abstract type AnAbstractType end         # no objects, no instantiation of objects
 
 
 # ## Composite types
@@ -87,7 +87,7 @@ end
 Foo2(1,2,"aaa")
 ## Foo2(1,"aaa") # Error, no default constructor !
 
-# You can also use a macro (requires Julia 1.1) to automatically define an (outer) keyword_based constructor with support for optional arguments:
+# You can also use a macro (requires Julia 1.1) to automatically define an (outer) keyword-based constructor with support for optional arguments:
 
 Base.@kwdef struct Kfoo
    x::Int64 = 1
@@ -149,7 +149,7 @@ a = Array{Int64,2}(undef,2,2) # Array is nothing else than a parametric type wit
 typeof(a)
 eltype(a)
 
-# As we see for arrays, parameters doesn't need to be _types_, but can be any value of a bits type (in practice an integer value) :
+# As we see for arrays, parameters don't need to be _types_, but can be any value of a bits type (in practice an integer value) :
 
 struct MyType{T,N}
   data::Array{T,N}
@@ -163,14 +163,14 @@ sizes = size(o.data)
 if length(sizes) > N
   error("Dim over the dimensions of the data")
 elseif sizes[dim] < pos
-  error("Non enought elements in dimension $dim to cut at $pos")
+  error("Not enough elements in dimension $dim to cut at $pos")
 end
 return selectdim(o.data,dim,pos)
 end
 
 getPlane(intMatrixInside,1,2)
 
-# A package where non-type parameters are emploied to boost speed is [StaticArray.jl](https://github.com/JuliaArrays/StaticArrays.jl) where one parameter is the _size_ of the array that hence become known at compile time
+# A package where non-type parameters are employed to boost speed is [StaticArray.jl](https://github.com/JuliaArrays/StaticArrays.jl) where one parameter is the _size_ of the array that hence becomes known at compile time
 
 # ## Inheritance
 
@@ -211,9 +211,9 @@ foo(oA) # A more specialised implementation: 8
 foo(oB) # A more specialised implementation: 6.0
 foo(oZ) # Default implementation: aa                             # doesn't match the specialisation, default to foo(a :: MyOwnGenericAbstractType)
 function foo(a :: AConcreteTypeA)
-     println("A even more specialised implementation: $(a.f1 + a.f2)")
+     println("An even more specialised implementation: $(a.f1 + a.f2)")
 end
-foo(oA) # A even more specialised implementation: 12
+foo(oA) # An even more specialised implementation: 12
 foo(oB) # A more specialised implementation: 6.0
 foo(oZ) # Default implementation: aa
 
@@ -239,7 +239,7 @@ struct Person
   age::Int64
 end
 struct Student
-   p::Person        # by referencing a `Person`` object, we do not need to repeat its fields
+   p::Person        # by referencing a `Person` object, we do not need to repeat its fields
    school::String
    shoes::Shoes     # same for `shoes`
 end
@@ -262,6 +262,6 @@ function printMyActivity(self::Employee)
 end
 
 printMyActivity(Marc)     # Hi! I am Marc, ...
-printMyActivity(MrBrown)  # Good day. My name is MrBrown, ...
+printMyActivity(MrBrown)  # Good day. My name is Brown, ...
 
-# OO models based on Specialisation (Person → Student) or Weack Relation (Person → Shoes) instead of Composition (Person → Arm) can be implemented using third party packages, like e.g. [SimpleTraits.jl](https://github.com/mauro3/SimpleTraits.jl) or [OOPMacro.jl](https://github.com/ipod825/OOPMacro.jl)
+# OO models based on Specialisation (Person → Student) or Weak Relation (Person → Shoes) instead of Composition (Person → Arm) can be implemented using third party packages, like e.g. [SimpleTraits.jl](https://github.com/mauro3/SimpleTraits.jl) or [OOPMacro.jl](https://github.com/ipod825/OOPMacro.jl)

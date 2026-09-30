@@ -3,7 +3,7 @@
 ###                                                                          ### #src
 ### Run each script on a new clean Julia session                             ### #src
 ### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ### #src
-### Licence (apply to all material of the course: scripts, videos, quizes,..)### #src
+### Licence (apply to all material of the course: scripts, videos, quizzes,..)### #src
 ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ### #src
 ################################################################################ #src
 
@@ -16,7 +16,7 @@ cd(@__DIR__)
 using Pkg      
 Pkg.activate(".")  
 ## If using a Julia version different than 1.10 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
-## Pkg.resolve()   
+Pkg.resolve()   
 Pkg.instantiate()
 using Random, Plots
 Random.seed!(123)
@@ -40,7 +40,7 @@ X    = copy(data[:,[2,3]])
 y    = max.(0,convert(Array{Int64,1},copy(data[:,1]))) # Converting labels from {-1,1} to {0,1}
 ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.7,0.3])
 
-# #### Using defaults - hidding complexity
+# #### Using defaults - hiding complexity
 
 # Model definition...
 mynn = NeuralNetworkEstimator()
@@ -88,7 +88,7 @@ testAccuracy   = accuracy(ŷtest,ytest)
 
 # ### Multinomial classification
 
-# We want to determine the plant specie given some bothanic measures of the flower
+# We want to determine the plant species given some botanic measures of the flower
 iris     = readdlm(joinpath(dirname(Base.find_package("BetaML")),"..","test","data","iris.csv"),',',skipstart=1)
 iris     = iris[shuffle(axes(iris, 1)), :] # Shuffle the records, as they aren't by default
 x        = convert(Array{Float64,2}, iris[:,1:4])
@@ -105,7 +105,7 @@ ytrain_oh = fit!(ohmod,ytrain) # Convert to One-hot representation (e.g. 2 => [0
 l1   = DenseLayer(4,10,f=relu) # Activation function is ReLU
 l2   = DenseLayer(10,3)        # Activation function is identity by default
 l3   = VectorFunctionLayer(3,f=softmax) # Add a (parameterless) layer whose activation function (softMax in this case) is defined to all its nodes at once
-mynn = NeuralNetworkEstimator(layers=[l1,l2,l3],loss=crossentropy,batch_size=6,descr="Multinomial logistic regression Model Sepal") # Build the NN and use the squared cost (aka MSE) as error function (crossEntropy could also be used)
+mynn = NeuralNetworkEstimator(layers=[l1,l2,l3],loss=crossentropy,batch_size=6,descr="Multinomial logistic regression Model Sepal") # Build the NN and use crossEntropy as error function (the squared cost - aka MSE - could also be used)
 
 # Training it (default to ADAM)
 fit!(mynn,fit!(Scaler(),xtrain),ytrain_oh) # Use optAlg=SGD() to use Stochastic Gradient Descent instead
@@ -164,7 +164,13 @@ savefig("obs_vs_est.svg");
 
 # ## Convolutional neural networks
 
-using LinearAlgebra, Statistics,Flux, MLDatasets, Plots
+# TODO: several issues with MLDatasets and Flux.Data.DataLoader
+
+#=
+using LinearAlgebra, Statistics, Flux, Plots
+ENV["PYTHON"] = ""
+#using Pkg; Pkg.build("PyCall")
+using MLDatasets
 
 x_train, y_train = MLDatasets.MNIST(split=:train)[:]
 x_train          = permutedims(x_train,(2,1,3)); # For correct img axis
@@ -220,3 +226,5 @@ heatmap(string.(res["categories"]),string.(res["categories"]),res["normalised_sc
 
 savefig("cm_digits.svg")
 # ![](cm_digits.svg)
+
+=#

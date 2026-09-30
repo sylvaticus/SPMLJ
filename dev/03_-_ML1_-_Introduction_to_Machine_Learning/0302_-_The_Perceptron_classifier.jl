@@ -3,7 +3,7 @@
 # ###                                                                          ###
 # ### Run each script on a new clean Julia session                             ###
 # ### GitHub: https://github.com/sylvaticus/IntroSPMLJuliaCourse               ###
-# ### Licence (apply to all material of the course: scripts, videos, quizes,..)###
+# ### Licence (apply to all material of the course: scripts, videos, quizzes,..)###
 # ### Creative Commons By Attribution (CC BY 4.0), Antonello Lobianco          ###
 # ################################################################################
 
@@ -105,7 +105,7 @@ plot2DClassifierWithData(X,y,θ,origin=true,pid=7)
 # ## The complete algorithm
 
 # !!! tip
-#     The algorithm implemented from scratch in this page form the core of the [`PerceptronClassifier`](https://sylvaticus.github.io/BetaML.jl/stable/Perceptron.html#BetaML.Perceptron.PerceptronClassifier) model in `BetaML`, a multiclass linear classifier.
+#     The algorithm implemented from scratch in this page forms the core of the [`PerceptronClassifier`](https://sylvaticus.github.io/BetaML.jl/stable/Perceptron.html#BetaML.Perceptron.PerceptronClassifier) model in `BetaML`, a multiclass linear classifier.
 
 function perceptronOrigin(X,y,epochs=1;verbose=false)
     (nR,nD) = size(X)
