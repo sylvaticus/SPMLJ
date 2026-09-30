@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>0402 - Implementation of neural networks workflows · SPMLJ</title><meta name="title" content="0402 - Implementation of neural networks workflows · SPMLJ"/><meta property="og:title" content="0402 - Implementation of neural networks workflows · SPMLJ"/><meta property="twitter:title" content="0402 - Implementation of neural networks workflows · SPMLJ"/><meta name="description" content="Documentation for SPMLJ."/><meta property="og:description" content="Documentation for SPMLJ."/><meta property="twitter:description" content="Documentation for SPMLJ."/><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q39LHCRBB6"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q39LHCRBB6', {'page_path': location.pathname + location.search + location.hash});
+</script><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.63.2/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/custom.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../index.html">SPMLJ</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../index.html">Index</a></li><li><span class="tocitem">Lessons</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">INTRO - Introduction to the course, Julia and ML</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0001_-_Course_presentation.html">0001 - Course presentation</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0002_-_Program.html">0002 - Program</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003_-_Introduction_to_Julia.html">0003 - Introduction to Julia</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0003q_-_QUIZ_0.1.html">0003q - QUIZ 0.1</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004_-_Introduction_to_ML.html">0004 - Introduction to ML</a></li><li><a class="tocitem" href="../00_-_INTRO_-_Introduction_julia_ml/0004q_-_QUIZ_0.2.html">0004q - QUIZ 0.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-2" type="checkbox"/><label class="tocitem" for="menuitem-2-2"><span class="docs-label">JULIA1 - Basic Julia programming</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101_-_Basic_syntax.html">0101 - Basic syntax</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101q_-_QUIZ_1.1.html">0101q - QUIZ 1.1</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0101q_-_QUIZ_1.2.html">0101q - QUIZ 1.2</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0102_-_Types_and_objects.html">0102 - Types and objects</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0102q_-_QUIZ_1.3.html">0102q - QUIZ 1.3</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103_-_Predefined_types.html">0103 - Predefined types</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.4.html">0103q - QUIZ 1.4</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.5.html">0103q - QUIZ 1.5</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0103q_-_QUIZ_1.6.html">0103q - QUIZ 1.6</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104_-_Control_flow_and_functions.html">0104 - Control flow and functions</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104q_-_QUIZ_1.7.html">0104q - QUIZ 1.7</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0104q_-_QUIZ_1.8.html">0104q - QUIZ 1.8</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105_-_Custom_types.html">0105 - Custom types</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105q_-_QUIZ_1.10.html">0105q - QUIZ 1.10</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105q_-_QUIZ_1.9.html">0105q - QUIZ 1.9</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0105x_EXERCISE-1.1.html">0105x EXERCISE-1.1</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106_-_Further_topics.html">0106 - Further topics</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.11.html">0106q - QUIZ 1.11</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.12.html">0106q - QUIZ 1.12</a></li><li><a class="tocitem" href="../01_-_JULIA1_-_Basic_Julia_programming/0106q_-_QUIZ_1.13.html">0106q - QUIZ 1.13</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-3" type="checkbox"/><label class="tocitem" for="menuitem-2-3"><span class="docs-label">JULIA2 - Scientific programming with Julia</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0201_-_Wranging_data.html">0201 - Wranging data</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202_-_Miscellaneous_topics.html">0202 - Miscellaneous topics</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.1.html">0202x EXERCISE-2.1</a></li><li><a class="tocitem" href="../02_-_JULIA2_-_Scientific_programming_with_Julia/0202x_EXERCISE-2.2.html">0202x EXERCISE-2.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-4" type="checkbox"/><label class="tocitem" for="menuitem-2-4"><span class="docs-label">ML1 - Introduction to Machine Learning</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0301_-_Machine_learning_main_concepts.html">0301 - Machine learning main concepts</a></li><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0302_-_The_Perceptron_classifier.html">0302 - The Perceptron classifier</a></li><li><a class="tocitem" href="../03_-_ML1_-_Introduction_to_Machine_Learning/0302x_EXERCISE-3.1.html">0302x EXERCISE-3.1</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-5" type="checkbox" checked/><label class="tocitem" for="menuitem-2-5"><span class="docs-label">NN - Neural Networks</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="0401_-_Neural_network_architectures.html">0401 - Neural network architectures</a></li><li class="is-active"><a class="tocitem" href="0402_-_Implementation_of_neural_networks_workflows.html">0402 - Implementation of neural networks workflows</a><ul class="internal"><li><a class="tocitem" href="#Some-stuff-to-set-up-the-environment.."><span>Some stuff to set-up the environment..</span></a></li><li><a class="tocitem" href="#Feed-forward-neural-networks"><span>Feed-forward neural networks</span></a></li><li><a class="tocitem" href="#Convolutional-neural-networks"><span>Convolutional neural networks</span></a></li><li class="toplevel"><a class="tocitem" href="#![](cm_digits.svg)"><span><img src="cm_digits.svg" alt/></span></a></li></ul></li><li><a class="tocitem" href="0402x_EXERCISE-4.1.html">0402x EXERCISE-4.1</a></li><li><a class="tocitem" href="0402x_EXERCISE-4.2.html">0402x EXERCISE-4.2</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-2-6" type="checkbox"/><label class="tocitem" for="menuitem-2-6"><span class="docs-label">DT - Decision trees based algorithms [DRAFT]</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../05_-_DT_-_Decision_trees_based_algorithms/0501_-_Decision_trees_based_algorithms.html">0501 - Decision trees based algorithms</a></li><li><a class="tocitem" href="../05_-_DT_-_Decision_trees_based_algorithms/0502x_EXERCISE-5.1.html">0502x EXERCISE-5.1</a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Lessons</a></li><li><a class="is-disabled">NN - Neural Networks</a></li><li class="is-active"><a href="0402_-_Implementation_of_neural_networks_workflows.html">0402 - Implementation of neural networks workflows</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="0402_-_Implementation_of_neural_networks_workflows.html">0402 - Implementation of neural networks workflows</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/sylvaticus/SPMLJ" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/sylvaticus/SPMLJ/blob/main/lessonsSources/04_-_NN_-_Neural_Networks/0402_-_Implementation_of_neural_networks_workflows.jl" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><div id="ytb-videos">
+<span style=font-weight:bold;>Videos related to this segment (click the title to watch)</span>
+<details open><summary>04 NN  - 2A:  Binary classification (15.0:54.0)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IFVz0jsy5AQ" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>04 NN  - 2B:  Multinomial classification (15.0:1.0)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fqROq7B6nyY" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>04 NN  - 2C:  Regression (6.0:3.0)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/jO-mfgzo7VY" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+<details ><summary>04 NN  - 2D:  Convolutional neural networks (13.0:19.0)</summary>
+<div class="container ytb-container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mSUdLu9HAd4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+</div>
+</details>
+</div><hr/><h1 id="0402-Implementation-of-Neural-network-workflows"><a class="docs-heading-anchor" href="#0402-Implementation-of-Neural-network-workflows">0402 - Implementation of Neural network workflows</a><a id="0402-Implementation-of-Neural-network-workflows-1"></a><a class="docs-heading-anchor-permalink" href="#0402-Implementation-of-Neural-network-workflows" title="Permalink"></a></h1><h2 id="Some-stuff-to-set-up-the-environment.."><a class="docs-heading-anchor" href="#Some-stuff-to-set-up-the-environment..">Some stuff to set-up the environment..</a><a id="Some-stuff-to-set-up-the-environment..-1"></a><a class="docs-heading-anchor-permalink" href="#Some-stuff-to-set-up-the-environment.." title="Permalink"></a></h2><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; cd(@__DIR__)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pkg</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.activate(&quot;.&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">  Activating project at `~/work/SPMLJ/SPMLJ/buildedDoc/04_-_NN_-_Neural_Networks`</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # If using a Julia version different than 1.10 please uncomment and run the following line (the guarantee of reproducibility will however be lost)
+       Pkg.resolve()</code><code class="nohighlight hljs ansi" style="display:block;">     Project No packages added to or removed from `~/work/SPMLJ/SPMLJ/buildedDoc/04_-_NN_-_Neural_Networks/Project.toml`
+    Manifest No packages added to or removed from `~/work/SPMLJ/SPMLJ/buildedDoc/04_-_NN_-_Neural_Networks/Manifest.toml`</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.instantiate()</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Random, Plots</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Random.seed!(123)</code><code class="nohighlight hljs ansi" style="display:block;">Random.TaskLocalRNG()</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ENV[&quot;DATADEPS_ALWAYS_ACCEPT&quot;] = &quot;true&quot;</code><code class="nohighlight hljs ansi" style="display:block;">&quot;true&quot;</code></pre><p>We will <em>not</em> run cross validation here to find the optimal hyper-parameters. The process will not be different than those we saw in the lesson on the Perceptron. Instead we focus on creating neural network models, train them based on data and evaluating their predictions. For feed-forward neural networks (both for classification and regression) we will use <a href="https://github.com/sylvaticus/BetaML.jl">BetaML</a>, while for Convolutional Neural Networks example we will use the <a href="https://github.com/FluxML/Flux.jl">Flux.jl</a> package.</p><h2 id="Feed-forward-neural-networks"><a class="docs-heading-anchor" href="#Feed-forward-neural-networks">Feed-forward neural networks</a><a id="Feed-forward-neural-networks-1"></a><a class="docs-heading-anchor-permalink" href="#Feed-forward-neural-networks" title="Permalink"></a></h2><h3 id="Binary-classification"><a class="docs-heading-anchor" href="#Binary-classification">Binary classification</a><a id="Binary-classification-1"></a><a class="docs-heading-anchor-permalink" href="#Binary-classification" title="Permalink"></a></h3><p>Data loading...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using BetaML, DelimitedFiles</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; data  = readdlm(joinpath(dirname(pathof(BetaML)),&quot;..&quot;,&quot;test&quot;,&quot;data&quot;,&quot;binary2DData.csv&quot;),&#39;\t&#39;)</code><code class="nohighlight hljs ansi" style="display:block;">200×3 Matrix{Float64}:
+ -1.0   1.76    0.4
+ -1.0   0.979   2.24
+ -1.0   1.87   -0.977
+ -1.0   0.95   -0.151
+ -1.0  -0.103   0.411
+ -1.0   0.144   1.45
+ -1.0   0.761   0.122
+ -1.0   0.444   0.334
+ -1.0   1.49   -0.205
+ -1.0   0.313  -0.854
+  ⋮
+  1.0  -0.256   0.977
+  1.0   2.04    0.343
+  1.0   1.01    0.528
+  1.0   3.65    2.16
+  1.0   2.57    1.78
+  1.0   1.65    0.384
+  1.0   1.71    1.24
+  1.0   2.86    3.14
+  1.0   3.47    2.85</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; nR   = size(data,1)</code><code class="nohighlight hljs ansi" style="display:block;">200</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; idx  = shuffle(1:nR)</code><code class="nohighlight hljs ansi" style="display:block;">200-element Vector{Int64}:
+  36
+  68
+ 167
+   3
+ 116
+ 192
+   8
+  24
+ 129
+  63
+   ⋮
+ 142
+ 161
+  33
+ 140
+ 195
+ 106
+  98
+ 181
+  15</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; data = data[idx,:]</code><code class="nohighlight hljs ansi" style="display:block;">200×3 Matrix{Float64}:
+ -1.0   0.729    0.129
+ -1.0  -0.636    0.676
+  1.0   2.77     0.816
+ -1.0   1.87    -0.977
+  1.0   0.576    1.51
+  1.0  -0.256    0.977
+ -1.0   0.444    0.334
+ -1.0  -1.25     0.777
+  1.0   1.27     0.617
+ -1.0  -0.6946  -0.1496
+  ⋮
+  1.0   1.31     3.54
+  1.0   1.28     1.19
+ -1.0   0.177   -0.402
+  1.0  -0.0307   4.06
+  1.0   3.65     2.16
+  1.0   2.91     2.32
+ -1.0   0.523   -0.172
+  1.0   2.7      2.0
+ -1.0   1.53     1.47</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X    = copy(data[:,[2,3]])</code><code class="nohighlight hljs ansi" style="display:block;">200×2 Matrix{Float64}:
+  0.729    0.129
+ -0.636    0.676
+  2.77     0.816
+  1.87    -0.977
+  0.576    1.51
+ -0.256    0.977
+  0.444    0.334
+ -1.25     0.777
+  1.27     0.617
+ -0.6946  -0.1496
+  ⋮
+  1.31     3.54
+  1.28     1.19
+  0.177   -0.402
+ -0.0307   4.06
+  3.65     2.16
+  2.91     2.32
+  0.523   -0.172
+  2.7      2.0
+  1.53     1.47</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y    = max.(0,convert(Array{Int64,1},copy(data[:,1]))) # Converting labels from {-1,1} to {0,1}</code><code class="nohighlight hljs ansi" style="display:block;">200-element Vector{Int64}:
+ 0
+ 0
+ 1
+ 0
+ 1
+ 1
+ 0
+ 0
+ 1
+ 0
+ ⋮
+ 1
+ 1
+ 0
+ 1
+ 1
+ 1
+ 0
+ 1
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ((xtrain,xtest),(ytrain,ytest)) = partition([X,y],[0.7,0.3])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector}:
+ AbstractMatrix{Float64}[[3.47 2.85; -0.4136 -0.7475; … ; -1.25 0.777; -0.0682 1.71], [1.88 -1.35; 2.38 0.944; … ; 1.87 1.7; 0.0458 -0.187]]
+ AbstractVector{Int64}[[1, 0, 1, 1, 1, 1, 1, 1, 0, 1  …  0, 0, 0, 0, 1, 1, 1, 0, 0, 0], [0, 0, 0, 1, 1, 0, 0, 1, 1, 1  …  0, 0, 1, 0, 1, 1, 1, 1, 1, 0]]</code></pre><h4 id="Using-defaults-hiding-complexity"><a class="docs-heading-anchor" href="#Using-defaults-hiding-complexity">Using defaults - hiding complexity</a><a id="Using-defaults-hiding-complexity-1"></a><a class="docs-heading-anchor-permalink" href="#Using-defaults-hiding-complexity" title="Permalink"></a></h4><p>Model definition...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; mynn = NeuralNetworkEstimator()</code><code class="nohighlight hljs ansi" style="display:block;">NeuralNetworkEstimator - A Feed-forward neural network (unfitted)</code></pre><p>Training...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; fit!(mynn,xtrain,ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">***
+*** Training  for 200 epochs with algorithm BetaML.Nn.ADAM.
+Training.. 	 avg loss on epoch 1 (1): 	 0.26090982433926657
+[ Info: Fitting the model on the data failed. Loss is not decreasing. Trying again (unless this is the last attempt).
+[ Info: Training attempt failed, resetting the model and trying again
+***
+*** Training  for 200 epochs with algorithm BetaML.Nn.ADAM.
+Training.. 	 avg loss on epoch 1 (1): 	 0.26071428571428573
+[ Info: Fitting the model on the data failed. Loss is not decreasing. Trying again (unless this is the last attempt).
+[ Info: Training attempt failed, resetting the model and trying again
+***
+*** Training  for 200 epochs with algorithm BetaML.Nn.ADAM.
+Training.. 	 avg loss on epoch 1 (1): 	 0.26071428571428573
+[ Info: Fitting the model on the data failed. Loss is not decreasing. Trying again (unless this is the last attempt).
+[ Info: Training attempt failed, resetting the model and trying again
+***
+*** Training  for 200 epochs with algorithm BetaML.Nn.ADAM.
+Training.. 	 avg loss on epoch 1 (1): 	 1.3939309526964028
+Training.. 	 avg loss on epoch 20 (20): 	 0.23446291196486121
+Training.. 	 avg loss on epoch 40 (40): 	 0.06924254383095022
+Training.. 	 avg loss on epoch 60 (60): 	 0.05145570593779608
+Training.. 	 avg loss on epoch 80 (80): 	 0.04516465131529135
+Training.. 	 avg loss on epoch 100 (100): 	 0.04243914920353442
+Training the Neural Network...  57%|████████████         |  ETA: 0:00:01Training.. 	 avg loss on epoch 120 (120): 	 0.040134579564991855
+Training.. 	 avg loss on epoch 140 (140): 	 0.037519469308851236
+Training.. 	 avg loss on epoch 160 (160): 	 0.0357620244230761
+Training.. 	 avg loss on epoch 180 (180): 	 0.034149730865420044
+Training.. 	 avg loss on epoch 200 (200): 	 0.03391567033887058
+Training the Neural Network... 100%|█████████████████████| Time: 0:00:01
+Training of 200 epoch completed. Final epoch error: 0.03391567033887058.
+140-element Vector{Float64}:
+ 1.1582582961799681
+ 0.0
+ 1.1363831395768225
+ 0.9703691057502191
+ 0.2176807777409212
+ 0.8998833681152743
+ 1.044426770873908
+ 1.1488577402757822
+ 0.0
+ 0.7549621576197574
+ ⋮
+ 0.06372953964010941
+ 0.0
+ 0.0
+ 0.9230017089645656
+ 1.0077951106897112
+ 0.7485906459915448
+ 0.0
+ 0.0
+ 0.46596804626983535</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtrain         = predict(mynn, xtrain) |&gt; makecolvector .|&gt; round .|&gt; Int</code><code class="nohighlight hljs ansi" style="display:block;">140-element Vector{Int64}:
+ 1
+ 0
+ 1
+ 1
+ 0
+ 1
+ 1
+ 1
+ 0
+ 1
+ ⋮
+ 0
+ 0
+ 0
+ 1
+ 1
+ 1
+ 0
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtest          = predict(mynn, xtest)  |&gt; makecolvector .|&gt; round .|&gt; Int</code><code class="nohighlight hljs ansi" style="display:block;">60-element Vector{Int64}:
+ 0
+ 1
+ 1
+ 1
+ 1
+ 0
+ 0
+ 1
+ 1
+ 1
+ ⋮
+ 0
+ 1
+ 0
+ 1
+ 1
+ 1
+ 1
+ 1
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; trainAccuracy  = accuracy(ytrain,ŷtrain)</code><code class="nohighlight hljs ansi" style="display:block;">0.9285714285714286</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; testAccuracy   = accuracy(ytest,ŷtest)</code><code class="nohighlight hljs ansi" style="display:block;">0.8666666666666667</code></pre><h4 id="Specifying-all-options"><a class="docs-heading-anchor" href="#Specifying-all-options">Specifying all options</a><a id="Specifying-all-options-1"></a><a class="docs-heading-anchor-permalink" href="#Specifying-all-options" title="Permalink"></a></h4><p>Creating a custom callback function to receive info during training...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; function myOwnTrainingInfo(nn,xbatch,ybatch,x,y;n,n_batches,epochs,epochs_ran,verbosity,n_epoch,n_batch)
+           if verbosity == NONE
+               return false # doesn&#39;t stop the training
+           end
+       
+           nMsgDict = Dict(LOW =&gt; 0, STD =&gt; 10,HIGH =&gt; 100, FULL =&gt; n)
+           nMsgs = nMsgDict[verbosity]
+       
+           if verbosity == FULL || ( n_batch == n_batches &amp;&amp; ( n_epoch == 1  || n_epoch % ceil(epochs/nMsgs) == 0))
+       
+               ϵ = BetaML.Nn.loss(nn,x,y)
+               println(&quot;Training.. \t avg loss on epoch $n_epoch ($(n_epoch+epochs_ran)): \t $(ϵ)&quot;)
+           end
+           return false
+       end</code><code class="nohighlight hljs ansi" style="display:block;">myOwnTrainingInfo (generic function with 1 method)</code></pre><p>Model definition...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; l1   = DenseLayer(2,5,f=tanh, df= dtanh,rng=copy(FIXEDRNG))</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer{typeof(tanh), typeof(BetaML.Utils.dtanh), Float64}([-0.5906259287724187 -0.030940667488043583; -0.24536094247801754 0.48878436852866713; … ; -0.8466984663657858 0.027858152254290336; -0.11481842953412624 -0.009180955255778445], [0.37280922460295074, 0.35842073435858446, 0.696721837875378, 0.8225343299333828, 0.44293565195483586], tanh, BetaML.Utils.dtanh)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l2   = DenseLayer(5,5,f=relu,df=drelu,rng=copy(FIXEDRNG))</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer{typeof(BetaML.Utils.relu), typeof(BetaML.Utils.drelu), Float64}([-0.49415310523844497 -0.025886819681528617 … 0.09224620317870791 -0.2298725180847525; -0.20528369264408397 0.40894634274263597 … 0.01065168104625569 0.04243100148415224; … ; -0.7083987613359595 0.023307802404264888 … -0.3619336136169306 -0.4825559053138102; -0.09606399030062296 -0.0076813382679077336 … -0.3824319138128976 0.21378287379211514], [-0.11178452751598777, -0.2115472973462721, 0.12029035453379433, -0.06939594013486328, -0.5177091839997635], BetaML.Utils.relu, BetaML.Utils.drelu)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l3   = DenseLayer(5,1,f=sigmoid,df=dsigmoid,rng=copy(FIXEDRNG))</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer{typeof(BetaML.Utils.sigmoid), typeof(BetaML.Utils.dsigmoid), Float64}([-0.6379489156883928 -0.2650201076194998 … -0.9145388683760447 -0.12401807820151456], [-0.033419740504278206], BetaML.Utils.sigmoid, BetaML.Utils.dsigmoid)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mynn = NeuralNetworkEstimator(layers=[l1,l2,l3],loss=squared_cost,dloss=dsquared_cost,descr=&quot;A classification task&quot;, cb=myOwnTrainingInfo,epochs=300,batch_size=6,opt_alg=ADAM(η=t -&gt; 0.001, λ=1.0, β₁=0.9, β₂=0.999, ϵ=1e-8),rng=copy(FIXEDRNG),verbosity=STD)</code><code class="nohighlight hljs ansi" style="display:block;">NeuralNetworkEstimator - A Feed-forward neural network (unfitted)</code></pre><p>Training...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; fit!(mynn,xtrain,ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">***
+*** Training A classification task for 300 epochs with algorithm BetaML.Nn.ADAM.
+Training.. 	 avg loss on epoch 1 (1): 	 0.19401305963101903
+Training.. 	 avg loss on epoch 30 (30): 	 0.08139115804459299
+Training the Neural Network...  14%|███                  |  ETA: 0:00:06Training.. 	 avg loss on epoch 60 (60): 	 0.03648311743226808
+Training the Neural Network...  29%|██████▏              |  ETA: 0:00:05Training.. 	 avg loss on epoch 90 (90): 	 0.03123366353097806
+Training.. 	 avg loss on epoch 120 (120): 	 0.030181859010414622
+Training the Neural Network...  44%|█████████▎           |  ETA: 0:00:04Training.. 	 avg loss on epoch 150 (150): 	 0.029730544377672353
+Training the Neural Network...  59%|████████████▌        |  ETA: 0:00:03Training.. 	 avg loss on epoch 180 (180): 	 0.029513236986826966
+Training.. 	 avg loss on epoch 210 (210): 	 0.029364276253059193
+Training the Neural Network...  75%|███████████████▋     |  ETA: 0:00:02Training.. 	 avg loss on epoch 240 (240): 	 0.029244402332445026
+Training the Neural Network...  90%|██████████████████▉  |  ETA: 0:00:01Training.. 	 avg loss on epoch 270 (270): 	 0.029151062734420627
+Training.. 	 avg loss on epoch 300 (300): 	 0.02907635334510089
+Training the Neural Network... 100%|█████████████████████| Time: 0:00:06
+Training of 300 epoch completed. Final epoch error: 0.02907635334510089.
+140-element Vector{Float64}:
+ 0.9597788104343852
+ 0.0009782390799910115
+ 0.958526684996657
+ 0.953378317512109
+ 0.014249438933336843
+ 0.9466003605865941
+ 0.9569430254945526
+ 0.959504426057866
+ 0.004054598381147219
+ 0.8983050347238137
+ ⋮
+ 0.011608956587669672
+ 0.07805292987885305
+ 0.002032014732880313
+ 0.9473647126280018
+ 0.9551745193919742
+ 0.8858158349187117
+ 0.0014352760715813466
+ 0.0016241889154051694
+ 0.4362203074128321</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtrain         = predict(mynn, xtrain) |&gt; makecolvector .|&gt; round .|&gt; Int</code><code class="nohighlight hljs ansi" style="display:block;">140-element Vector{Int64}:
+ 1
+ 0
+ 1
+ 1
+ 0
+ 1
+ 1
+ 1
+ 0
+ 1
+ ⋮
+ 0
+ 0
+ 0
+ 1
+ 1
+ 1
+ 0
+ 0
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtest          = predict(mynn, xtest)  |&gt; makecolvector .|&gt; round .|&gt; Int</code><code class="nohighlight hljs ansi" style="display:block;">60-element Vector{Int64}:
+ 0
+ 1
+ 1
+ 1
+ 1
+ 0
+ 0
+ 1
+ 1
+ 1
+ ⋮
+ 0
+ 1
+ 0
+ 1
+ 1
+ 1
+ 1
+ 1
+ 0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; trainAccuracy  = accuracy(ŷtrain,ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">0.9357142857142857</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; testAccuracy   = accuracy(ŷtest,ytest)</code><code class="nohighlight hljs ansi" style="display:block;">0.9333333333333333</code></pre><h3 id="Multinomial-classification"><a class="docs-heading-anchor" href="#Multinomial-classification">Multinomial classification</a><a id="Multinomial-classification-1"></a><a class="docs-heading-anchor-permalink" href="#Multinomial-classification" title="Permalink"></a></h3><p>We want to determine the plant species given some botanic measures of the flower</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; iris     = readdlm(joinpath(dirname(Base.find_package(&quot;BetaML&quot;)),&quot;..&quot;,&quot;test&quot;,&quot;data&quot;,&quot;iris.csv&quot;),&#39;,&#39;,skipstart=1)</code><code class="nohighlight hljs ansi" style="display:block;">150×5 Matrix{Any}:
+ 5.1  3.5  1.4  0.2  &quot;setosa&quot;
+ 4.9  3.0  1.4  0.2  &quot;setosa&quot;
+ 4.7  3.2  1.3  0.2  &quot;setosa&quot;
+ 4.6  3.1  1.5  0.2  &quot;setosa&quot;
+ 5.0  3.6  1.4  0.2  &quot;setosa&quot;
+ 5.4  3.9  1.7  0.4  &quot;setosa&quot;
+ 4.6  3.4  1.4  0.3  &quot;setosa&quot;
+ 5.0  3.4  1.5  0.2  &quot;setosa&quot;
+ 4.4  2.9  1.4  0.2  &quot;setosa&quot;
+ 4.9  3.1  1.5  0.1  &quot;setosa&quot;
+ ⋮
+ 6.9  3.1  5.1  2.3  &quot;virginica&quot;
+ 5.8  2.7  5.1  1.9  &quot;virginica&quot;
+ 6.8  3.2  5.9  2.3  &quot;virginica&quot;
+ 6.7  3.3  5.7  2.5  &quot;virginica&quot;
+ 6.7  3.0  5.2  2.3  &quot;virginica&quot;
+ 6.3  2.5  5.0  1.9  &quot;virginica&quot;
+ 6.5  3.0  5.2  2.0  &quot;virginica&quot;
+ 6.2  3.4  5.4  2.3  &quot;virginica&quot;
+ 5.9  3.0  5.1  1.8  &quot;virginica&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; iris     = iris[shuffle(axes(iris, 1)), :] # Shuffle the records, as they aren&#39;t by default</code><code class="nohighlight hljs ansi" style="display:block;">150×5 Matrix{Any}:
+ 6.1  2.6  5.6  1.4  &quot;virginica&quot;
+ 6.0  3.0  4.8  1.8  &quot;virginica&quot;
+ 7.7  2.6  6.9  2.3  &quot;virginica&quot;
+ 6.0  3.4  4.5  1.6  &quot;versicolor&quot;
+ 6.1  2.8  4.7  1.2  &quot;versicolor&quot;
+ 5.0  2.0  3.5  1.0  &quot;versicolor&quot;
+ 4.4  3.2  1.3  0.2  &quot;setosa&quot;
+ 4.6  3.4  1.4  0.3  &quot;setosa&quot;
+ 5.9  3.0  5.1  1.8  &quot;virginica&quot;
+ 7.7  3.8  6.7  2.2  &quot;virginica&quot;
+ ⋮
+ 5.8  2.7  5.1  1.9  &quot;virginica&quot;
+ 7.4  2.8  6.1  1.9  &quot;virginica&quot;
+ 5.7  3.8  1.7  0.3  &quot;setosa&quot;
+ 5.1  3.5  1.4  0.3  &quot;setosa&quot;
+ 5.7  2.5  5.0  2.0  &quot;virginica&quot;
+ 4.8  3.1  1.6  0.2  &quot;setosa&quot;
+ 6.4  2.8  5.6  2.1  &quot;virginica&quot;
+ 5.4  3.0  4.5  1.5  &quot;versicolor&quot;
+ 4.8  3.0  1.4  0.1  &quot;setosa&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; x        = convert(Array{Float64,2}, iris[:,1:4])</code><code class="nohighlight hljs ansi" style="display:block;">150×4 Matrix{Float64}:
+ 6.1  2.6  5.6  1.4
+ 6.0  3.0  4.8  1.8
+ 7.7  2.6  6.9  2.3
+ 6.0  3.4  4.5  1.6
+ 6.1  2.8  4.7  1.2
+ 5.0  2.0  3.5  1.0
+ 4.4  3.2  1.3  0.2
+ 4.6  3.4  1.4  0.3
+ 5.9  3.0  5.1  1.8
+ 7.7  3.8  6.7  2.2
+ ⋮
+ 5.8  2.7  5.1  1.9
+ 7.4  2.8  6.1  1.9
+ 5.7  3.8  1.7  0.3
+ 5.1  3.5  1.4  0.3
+ 5.7  2.5  5.0  2.0
+ 4.8  3.1  1.6  0.2
+ 6.4  2.8  5.6  2.1
+ 5.4  3.0  4.5  1.5
+ 4.8  3.0  1.4  0.1</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ystring  = String.(iris[:, 5])</code><code class="nohighlight hljs ansi" style="display:block;">150-element Vector{String}:
+ &quot;virginica&quot;
+ &quot;virginica&quot;
+ &quot;virginica&quot;
+ &quot;versicolor&quot;
+ &quot;versicolor&quot;
+ &quot;versicolor&quot;
+ &quot;setosa&quot;
+ &quot;setosa&quot;
+ &quot;virginica&quot;
+ &quot;virginica&quot;
+ ⋮
+ &quot;virginica&quot;
+ &quot;virginica&quot;
+ &quot;setosa&quot;
+ &quot;setosa&quot;
+ &quot;virginica&quot;
+ &quot;setosa&quot;
+ &quot;virginica&quot;
+ &quot;versicolor&quot;
+ &quot;setosa&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; iemod  = OrdinalEncoder()</code><code class="nohighlight hljs ansi" style="display:block;">A BetaML.Utils.OrdinalEncoder BetaMLModel (unfitted)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y      = fit!(iemod,ystring)</code><code class="nohighlight hljs ansi" style="display:block;">150-element Vector{Int64}:
+ 1
+ 1
+ 1
+ 2
+ 2
+ 2
+ 3
+ 3
+ 1
+ 1
+ ⋮
+ 1
+ 1
+ 3
+ 3
+ 1
+ 3
+ 1
+ 2
+ 3</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ((xtrain,xtest),(ytrain,ytest)) = partition([x,y],[0.8,0.2],shuffle=false)</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector}:
+ AbstractMatrix{Float64}[[6.1 2.6 5.6 1.4; 6.0 3.0 4.8 1.8; … ; 6.6 3.0 4.4 1.4; 6.1 2.9 4.7 1.4], [5.4 3.4 1.5 0.4; 6.8 3.0 5.5 2.1; … ; 5.4 3.0 4.5 1.5; 4.8 3.0 1.4 0.1]]
+ AbstractVector{Int64}[[1, 1, 1, 2, 2, 2, 3, 3, 1, 1  …  2, 1, 1, 1, 1, 1, 2, 2, 2, 2], [3, 1, 1, 1, 3, 2, 3, 2, 1, 1  …  3, 1, 1, 3, 3, 1, 3, 1, 2, 3]]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ohmod = OneHotEncoder()</code><code class="nohighlight hljs ansi" style="display:block;">A BetaML.Utils.OneHotEncoder BetaMLModel (unfitted)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ytrain_oh = fit!(ohmod,ytrain) # Convert to One-hot representation (e.g. 2 =&gt; [0 1 0], 3 =&gt; [0 0 1])</code><code class="nohighlight hljs ansi" style="display:block;">120×3 Matrix{Bool}:
+ 1  0  0
+ 1  0  0
+ 1  0  0
+ 0  1  0
+ 0  1  0
+ 0  1  0
+ 0  0  1
+ 0  0  1
+ 1  0  0
+ 1  0  0
+ ⋮
+ 1  0  0
+ 1  0  0
+ 1  0  0
+ 1  0  0
+ 1  0  0
+ 0  1  0
+ 0  1  0
+ 0  1  0
+ 0  1  0</code></pre><p>Define the Artificial Neural Network model</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; l1   = DenseLayer(4,10,f=relu) # Activation function is ReLU</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer{typeof(BetaML.Utils.relu), typeof(BetaML.Utils.drelu), Float64}([-0.48315159611711644 -0.4712760252371029 -0.6030979667080739 -0.5431592153802487; 0.4006918742299843 0.44309796809673685 -0.5434273985913811 -0.4890580824279859; … ; -0.16697455240892617 0.21750066773574073 -0.3962388191099082 0.46298640285891457; -0.31973687949284646 -0.05211867111600332 -0.47473882845055687 -0.07465891614699849], [0.50526352775803, -0.3939283682185577, 0.5296519646291429, -0.09251385016341696, 0.2443719840169981, 0.653577403487275, -0.6219350219932457, 0.3511513531390318, 0.449096543669512, -0.3469213120356638], BetaML.Utils.relu, BetaML.Utils.drelu)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l2   = DenseLayer(10,3)        # Activation function is identity by default</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer{typeof(identity), typeof(BetaML.Utils.didentity), Float64}([0.6580743715587076 -0.5197940791447346 … 0.08607325634837593 -0.1838615070444949; 0.6086754044016875 -0.16623339943045967 … 0.038757467149408975 -0.46500054406677493; 0.26325474298674856 -0.2908284120802163 … 0.6723956479774753 0.28025717300607245], [-0.4765054770619609, 0.5915417241562542, 0.013832809569276683], identity, BetaML.Utils.didentity)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l3   = VectorFunctionLayer(3,f=softmax) # Add a (parameterless) layer whose activation function (softMax in this case) is defined to all its nodes at once</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.VectorFunctionLayer{0, typeof(BetaML.Utils.softmax), typeof(BetaML.Utils.dsoftmax), Nothing, Float64}(fill(NaN), 3, 3, BetaML.Utils.softmax, BetaML.Utils.dsoftmax, nothing)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mynn = NeuralNetworkEstimator(layers=[l1,l2,l3],loss=crossentropy,batch_size=6,descr=&quot;Multinomial logistic regression Model Sepal&quot;) # Build the NN and use crossEntropy as error function (the squared cost - aka MSE - could also be used)</code><code class="nohighlight hljs ansi" style="display:block;">NeuralNetworkEstimator - A Feed-forward neural network (unfitted)</code></pre><p>Training it (default to ADAM)</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; fit!(mynn,fit!(Scaler(),xtrain),ytrain_oh) # Use optAlg=SGD() to use Stochastic Gradient Descent instead</code><code class="nohighlight hljs ansi" style="display:block;">***
+*** Training Multinomial logistic regression Model Sepal for 200 epochs with algorithm BetaML.Nn.ADAM.
+Training.. 	 avg loss on epoch 1 (1): 	 1.4673634490782557
+Training.. 	 avg loss on epoch 20 (20): 	 0.474744098368001
+Training.. 	 avg loss on epoch 40 (40): 	 0.28008278901537825
+Training.. 	 avg loss on epoch 60 (60): 	 0.20711373940999528
+Training.. 	 avg loss on epoch 80 (80): 	 0.15731375273053266
+Training.. 	 avg loss on epoch 100 (100): 	 0.1217994138288231
+Training.. 	 avg loss on epoch 120 (120): 	 0.09809925566858414
+Training.. 	 avg loss on epoch 140 (140): 	 0.0824569344070612
+Training.. 	 avg loss on epoch 160 (160): 	 0.07205346768439005
+Training.. 	 avg loss on epoch 180 (180): 	 0.0647603046343692
+Training.. 	 avg loss on epoch 200 (200): 	 0.059464701718757916
+Training of 200 epoch completed. Final epoch error: 0.059464701718757916.
+120×3 Matrix{Float64}:
+ 0.659812     0.33961      0.000578032
+ 0.766489     0.23191      0.00160068
+ 0.999867     0.000133116  1.48662e-7
+ 0.0829845    0.909547     0.00746882
+ 0.0150461    0.983412     0.00154206
+ 0.000672974  0.998514     0.000812609
+ 4.61952e-10  5.40619e-5   0.999946
+ 6.63823e-10  5.36191e-5   0.999946
+ 0.906652     0.0925918    0.00075569
+ 0.994828     0.00515299   1.86132e-5
+ ⋮
+ 0.925954     0.0736178    0.000427955
+ 0.982097     0.0178723    3.03917e-5
+ 0.970004     0.0298354    0.000160458
+ 0.998922     0.00107546   2.84621e-6
+ 0.975764     0.0241374    9.86232e-5
+ 0.000620261  0.998085     0.00129442
+ 0.00201295   0.996445     0.00154173
+ 0.0137256    0.984137     0.0021377
+ 0.0740966    0.92326      0.00264305</code></pre><p>Test it</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtrain        = predict(mynn,fit!(Scaler(),xtrain))   # Note the scaling model</code><code class="nohighlight hljs ansi" style="display:block;">120×3 Matrix{Float64}:
+ 0.659812     0.33961      0.000578032
+ 0.766489     0.23191      0.00160068
+ 0.999867     0.000133116  1.48662e-7
+ 0.0829845    0.909547     0.00746882
+ 0.0150461    0.983412     0.00154206
+ 0.000672974  0.998514     0.000812609
+ 4.61952e-10  5.40619e-5   0.999946
+ 6.63823e-10  5.36191e-5   0.999946
+ 0.906652     0.0925918    0.00075569
+ 0.994828     0.00515299   1.86132e-5
+ ⋮
+ 0.925954     0.0736178    0.000427955
+ 0.982097     0.0178723    3.03917e-5
+ 0.970004     0.0298354    0.000160458
+ 0.998922     0.00107546   2.84621e-6
+ 0.975764     0.0241374    9.86232e-5
+ 0.000620261  0.998085     0.00129442
+ 0.00201295   0.996445     0.00154173
+ 0.0137256    0.984137     0.0021377
+ 0.0740966    0.92326      0.00264305</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtest         = predict(mynn,fit!(Scaler(),xtest))</code><code class="nohighlight hljs ansi" style="display:block;">30×3 Matrix{Float64}:
+ 1.28141e-7  0.0171193    0.982881
+ 0.998129    0.00186163   9.55199e-6
+ 0.999511    0.000488277  7.78586e-7
+ 0.955707    0.0439998    0.000293729
+ 6.44847e-8  0.0106424    0.989358
+ 0.00248345  0.996747     0.000769172
+ 1.20574e-7  0.0138696    0.98613
+ 0.233735    0.762402     0.00386244
+ 0.902366    0.0973297    0.000304371
+ 0.996423    0.00356858   8.66661e-6
+ ⋮
+ 0.991144    0.00881333   4.27692e-5
+ 0.997508    0.00248698   5.34793e-6
+ 3.2895e-8   0.00617107   0.993829
+ 1.89534e-8  0.00205338   0.997947
+ 0.993936    0.00604591   1.80155e-5
+ 7.7089e-8   0.00915631   0.990844
+ 0.998739    0.00125543   5.2789e-6
+ 0.562025    0.434684     0.00329068
+ 3.27148e-8  0.00883218   0.991168</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; trainAccuracy = accuracy(ytrain,ŷtrain)</code><code class="nohighlight hljs ansi" style="display:block;">0.9833333333333333</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; testAccuracy  = accuracy(ytest,ŷtest,tol=1,ignorelabels=false)</code><code class="nohighlight hljs ansi" style="display:block;">0.9333333333333333</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; cm = ConfusionMatrix()</code><code class="nohighlight hljs ansi" style="display:block;">A BetaML.Utils.ConfusionMatrix BetaMLModel (unfitted)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; fit!(cm,inverse_predict(iemod,ytrain),inverse_predict(iemod,mode(ŷtrain)))</code><code class="nohighlight hljs ansi" style="display:block;">3×3 Matrix{Float64}:
+ 0.974359   0.025641  0.0
+ 0.0227273  0.977273  0.0
+ 0.0        0.0       1.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; println(cm)</code><code class="nohighlight hljs ansi" style="display:block;">A BetaML.Utils.ConfusionMatrix BetaMLModel (fitted)
+
+-----------------------------------------------------------------
+
+*** CONFUSION MATRIX ***
+
+Scores actual (rows) vs predicted (columns):
+
+4×4 Matrix{Any}:
+ &quot;Labels&quot;        &quot;virginica&quot;    &quot;versicolor&quot;    &quot;setosa&quot;
+ &quot;virginica&quot;   38              1               0
+ &quot;versicolor&quot;   1             43               0
+ &quot;setosa&quot;       0              0              37
+Normalised scores actual (rows) vs predicted (columns):
+
+4×4 Matrix{Any}:
+ &quot;Labels&quot;       &quot;virginica&quot;   &quot;versicolor&quot;   &quot;setosa&quot;
+ &quot;virginica&quot;   0.974359      0.025641       0.0
+ &quot;versicolor&quot;  0.0227273     0.977273       0.0
+ &quot;setosa&quot;      0.0           0.0            1.0
+
+ *** CONFUSION REPORT ***
+
+- Accuracy:               0.9833333333333333
+- Misclassification rate: 0.01666666666666672
+- Number of classes:      3
+
+  N Class      precision   recall  specificity  f1score  actual_count  predicted_count
+                             TPR       TNR                 support                  
+
+  1 virginica      0.974    0.974        0.988    0.974           39              39
+  2 versicolor     0.977    0.977        0.987    0.977           44              44
+  3 setosa         1.000    1.000        1.000    1.000           37              37
+
+- Simple   avg.    0.984    0.984        0.991    0.984
+- Weighted avg.    0.983    0.983        0.991    0.983
+
+-----------------------------------------------------------------
+Output of `info(cm)`:
+- mean_precision:	(0.9838772338772338, 0.9833333333333333)
+- fitted_records:	120
+- specificity:	[0.9876543209876543, 0.9868421052631579, 1.0]
+- precision:	[0.9743589743589743, 0.9772727272727273, 1.0]
+- misclassification:	0.01666666666666672
+- mean_recall:	(0.9838772338772338, 0.9833333333333333)
+- n_categories:	3
+- normalised_scores:	[0.9743589743589743 0.02564102564102564 0.0; 0.022727272727272728 0.9772727272727273 0.0; 0.0 0.0 1.0]
+- tn:	[80, 75, 83]
+- mean_f1score:	(0.9838772338772338, 0.9833333333333333)
+- actual_count:	[39, 44, 37]
+- accuracy:	0.9833333333333333
+- recall:	[0.9743589743589743, 0.9772727272727273, 1.0]
+- f1score:	[0.9743589743589743, 0.9772727272727273, 1.0]
+- mean_specificity:	(0.9914988087502707, 0.9911630929174788)
+- predicted_count:	[39, 44, 37]
+- scores:	[38 1 0; 1 43 0; 0 0 37]
+- tp:	[38, 43, 37]
+- fn:	[1, 1, 0]
+- categories:	[&quot;virginica&quot;, &quot;versicolor&quot;, &quot;setosa&quot;]
+- fp:	[1, 1, 0]</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; res = info(cm)</code><code class="nohighlight hljs ansi" style="display:block;">Dict{String, Any} with 21 entries:
+  &quot;mean_precision&quot;    =&gt; (0.983877, 0.983333)
+  &quot;fitted_records&quot;    =&gt; 120
+  &quot;specificity&quot;       =&gt; [0.987654, 0.986842, 1.0]
+  &quot;precision&quot;         =&gt; [0.974359, 0.977273, 1.0]
+  &quot;misclassification&quot; =&gt; 0.0166667
+  &quot;mean_recall&quot;       =&gt; (0.983877, 0.983333)
+  &quot;n_categories&quot;      =&gt; 3
+  &quot;normalised_scores&quot; =&gt; [0.974359 0.025641 0.0; 0.0227273 0.977273 0.0; 0.0 0.…
+  &quot;tn&quot;                =&gt; [80, 75, 83]
+  &quot;mean_f1score&quot;      =&gt; (0.983877, 0.983333)
+  &quot;actual_count&quot;      =&gt; [39, 44, 37]
+  &quot;accuracy&quot;          =&gt; 0.983333
+  &quot;recall&quot;            =&gt; [0.974359, 0.977273, 1.0]
+  &quot;f1score&quot;           =&gt; [0.974359, 0.977273, 1.0]
+  &quot;mean_specificity&quot;  =&gt; (0.991499, 0.991163)
+  &quot;predicted_count&quot;   =&gt; [39, 44, 37]
+  &quot;scores&quot;            =&gt; [38 1 0; 1 43 0; 0 0 37]
+  &quot;tp&quot;                =&gt; [38, 43, 37]
+  &quot;fn&quot;                =&gt; [1, 1, 0]
+  ⋮                   =&gt; ⋮</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; heatmap(string.(res[&quot;categories&quot;]),string.(res[&quot;categories&quot;]),res[&quot;normalised_scores&quot;],seriescolor=cgrad([:white,:blue]),xlabel=&quot;Predicted&quot;,ylabel=&quot;Actual&quot;, title=&quot;Confusion Matrix (normalised scores)&quot;)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; savefig(&quot;cm_iris.svg&quot;);</code></pre><p><img src="cm_iris.svg" alt/></p><h3 id="Regression"><a class="docs-heading-anchor" href="#Regression">Regression</a><a id="Regression-1"></a><a class="docs-heading-anchor-permalink" href="#Regression" title="Permalink"></a></h3><p>Data Loading and processing..</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pipe, HTTP, CSV, DataFrames</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; urlData = &quot;https://www4.stat.ncsu.edu/~boos/var.select/diabetes.tab.txt&quot;</code><code class="nohighlight hljs ansi" style="display:block;">&quot;https://www4.stat.ncsu.edu/~boos/var.select/diabetes.tab.txt&quot;</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; data = @pipe HTTP.get(urlData).body |&gt; CSV.File(_, delim=&#39;\t&#39;) |&gt; DataFrame</code><code class="nohighlight hljs ansi" style="display:block;"><span class="sgr1">442×11 DataFrame</span>
+<span class="sgr1"> Row </span>│<span class="sgr1"> AGE    SEX    BMI      BP       S1     S2       S3       S4       S5   </span> ⋯
+<span class="sgr1">     </span>│<span class="sgr90"> Int64  Int64  Float64  Float64  Int64  Float64  Float64  Float64  Float</span> ⋯
+─────┼──────────────────────────────────────────────────────────────────────────
+   1 │    59      2     32.1   101.0     157     93.2     38.0     4.0    4.85 ⋯
+   2 │    48      1     21.6    87.0     183    103.2     70.0     3.0    3.89
+   3 │    72      2     30.5    93.0     156     93.6     41.0     4.0    4.67
+   4 │    24      1     25.3    84.0     198    131.4     40.0     5.0    4.89
+   5 │    50      1     23.0   101.0     192    125.4     52.0     4.0    4.29 ⋯
+   6 │    23      1     22.6    89.0     139     64.8     61.0     2.0    4.18
+   7 │    36      2     22.0    90.0     160     99.6     50.0     3.0    3.95
+   8 │    66      2     26.2   114.0     255    185.0     56.0     4.55   4.24
+  ⋮  │   ⋮      ⋮       ⋮        ⋮       ⋮       ⋮        ⋮        ⋮        ⋮  ⋱
+ 436 │    45      1     24.2    83.0     177    118.4     45.0     4.0    4.21 ⋯
+ 437 │    33      1     19.5    80.0     171     85.4     75.0     2.0    3.97
+ 438 │    60      2     28.2   112.0     185    113.8     42.0     4.0    4.98
+ 439 │    47      2     24.9    75.0     225    166.0     42.0     5.0    4.44
+ 440 │    60      2     24.9    99.67    162    106.6     43.0     3.77   4.12 ⋯
+ 441 │    36      1     30.0    95.0     201    125.2     42.0     4.79   5.12
+ 442 │    36      1     19.6    71.0     250    133.2     97.0     3.0    4.59
+<span class="sgr36">                                                  3 columns and 427 rows omitted</span></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ohmod = OneHotEncoder()</code><code class="nohighlight hljs ansi" style="display:block;">A BetaML.Utils.OneHotEncoder BetaMLModel (unfitted)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sex_oh = fit!(ohmod,data.SEX)</code><code class="nohighlight hljs ansi" style="display:block;">442×2 Matrix{Bool}:
+ 0  1
+ 1  0
+ 0  1
+ 1  0
+ 1  0
+ 1  0
+ 0  1
+ 0  1
+ 0  1
+ 1  0
+ ⋮
+ 1  0
+ 1  0
+ 1  0
+ 1  0
+ 0  1
+ 0  1
+ 0  1
+ 1  0
+ 1  0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; X = hcat(data.AGE, Matrix(data[:,3:10]),sex_oh)</code><code class="nohighlight hljs ansi" style="display:block;">442×11 Matrix{Float64}:
+ 59.0  32.1  101.0   157.0   93.2  38.0  4.0   4.8598   87.0  0.0  1.0
+ 48.0  21.6   87.0   183.0  103.2  70.0  3.0   3.8918   69.0  1.0  0.0
+ 72.0  30.5   93.0   156.0   93.6  41.0  4.0   4.6728   85.0  0.0  1.0
+ 24.0  25.3   84.0   198.0  131.4  40.0  5.0   4.8903   89.0  1.0  0.0
+ 50.0  23.0  101.0   192.0  125.4  52.0  4.0   4.2905   80.0  1.0  0.0
+ 23.0  22.6   89.0   139.0   64.8  61.0  2.0   4.1897   68.0  1.0  0.0
+ 36.0  22.0   90.0   160.0   99.6  50.0  3.0   3.9512   82.0  0.0  1.0
+ 66.0  26.2  114.0   255.0  185.0  56.0  4.55  4.2485   92.0  0.0  1.0
+ 60.0  32.1   83.0   179.0  119.4  42.0  4.0   4.4773   94.0  0.0  1.0
+ 29.0  30.0   85.0   180.0   93.4  43.0  4.0   5.3845   88.0  1.0  0.0
+  ⋮                                 ⋮                              ⋮
+ 41.0  20.8   86.0   223.0  128.2  83.0  3.0   4.0775   89.0  1.0  0.0
+ 53.0  26.5   97.0   193.0  122.4  58.0  3.0   4.1431   99.0  1.0  0.0
+ 45.0  24.2   83.0   177.0  118.4  45.0  4.0   4.2195   82.0  1.0  0.0
+ 33.0  19.5   80.0   171.0   85.4  75.0  2.0   3.9703   80.0  1.0  0.0
+ 60.0  28.2  112.0   185.0  113.8  42.0  4.0   4.9836   93.0  0.0  1.0
+ 47.0  24.9   75.0   225.0  166.0  42.0  5.0   4.4427  102.0  0.0  1.0
+ 60.0  24.9   99.67  162.0  106.6  43.0  3.77  4.1271   95.0  0.0  1.0
+ 36.0  30.0   95.0   201.0  125.2  42.0  4.79  5.1299   85.0  1.0  0.0
+ 36.0  19.6   71.0   250.0  133.2  97.0  3.0   4.5951   92.0  1.0  0.0</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y = data.Y</code><code class="nohighlight hljs ansi" style="display:block;">442-element Vector{Int64}:
+ 151
+  75
+ 141
+ 206
+ 135
+  97
+ 138
+  63
+ 110
+ 310
+   ⋮
+  72
+  49
+  64
+  48
+ 178
+ 104
+ 132
+ 220
+  57</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; (xtrain,xval),(ytrain,yval) = partition([X,y],[0.8,0.2])</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Vector}:
+ AbstractMatrix{Float64}[[52.0 24.0 … 1.0 0.0; 53.0 24.4 … 0.0 1.0; … ; 46.0 23.8 … 0.0 1.0; 54.0 21.0 … 1.0 0.0], [67.0 31.6 … 1.0 0.0; 57.0 31.9 … 0.0 1.0; … ; 33.0 35.0 … 1.0 0.0; 42.0 31.9 … 1.0 0.0]]
+ AbstractVector{Int64}[[98, 107, 96, 214, 190, 296, 121, 61, 72, 52  …  107, 115, 308, 306, 53, 72, 74, 116, 209, 63], [303, 263, 104, 252, 37, 90, 109, 248, 51, 47  …  248, 31, 48, 55, 170, 177, 68, 104, 128, 85]]</code></pre><p>Model definition...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; l1   = DenseLayer(11,20,f=relu)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer{typeof(BetaML.Utils.relu), typeof(BetaML.Utils.drelu), Float64}([-0.3697597737138711 -0.4230684696456193 … 0.28229077995943613 -0.3936303400468712; 0.1313301252415176 -0.1779995213118945 … 0.17630671738836895 0.002660321174489999; … ; 0.3021997976858893 0.18608898451149464 … 0.3869849606534626 0.06373806862464731; 0.40268686474146537 -0.27550321146151235 … -0.13618416890468105 0.3250210212699352], [0.3349901729307034, 0.3412392093624634, -0.3819541768634581, -0.1540226571821086, 0.040336291624714415, 0.0340955862755144, -0.31112279340526106, -0.12250195394568586, -0.16796643288808755, -0.4174208740072129, -0.0021885703327518824, 0.22311385582227922, -0.19087494684186201, 0.1429574740286595, -0.22563898886989123, -0.3602817340004708, 0.3412235188582841, 0.2593613698803641, -0.11105218874508394, 0.04030760506595954], BetaML.Utils.relu, BetaML.Utils.drelu)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l2   = DenseLayer(20,20,f=relu)</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer{typeof(BetaML.Utils.relu), typeof(BetaML.Utils.drelu), Float64}([-0.15119746014060612 -0.05111639146106606 … 0.29140497635507384 0.2028306640636633; 0.17102817685487776 -0.2542181060606826 … -0.1319952687457558 -0.0872386735415609; … ; 0.23781766792711806 -0.22873604602625044 … -0.35853688500393943 -0.12936877066338714; -0.16924782792384055 0.09429115301545399 … 0.37393730102825845 0.2209239696310738], [-0.361640879291872, 0.32331371446745777, -0.03825901690412531, -0.15347511599252225, 0.26973920761583486, 0.22515816884528944, 0.38494270025682337, 0.24481952674926882, 0.2564020065590448, -0.05879299482993011, 0.17062696069696587, -0.10583686884980498, 0.2538253481443071, -0.3556988449910183, 0.1567891283140756, -0.2872715486442417, -0.23497144133023445, -0.3689878004428162, 0.3575760635765088, 0.2821895404861278], BetaML.Utils.relu, BetaML.Utils.drelu)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; l3   = DenseLayer(20,1,f=relu) # y is positive</code><code class="nohighlight hljs ansi" style="display:block;">BetaML.Nn.DenseLayer{typeof(BetaML.Utils.relu), typeof(BetaML.Utils.drelu), Float64}([0.42285394515502306 0.17475434705316184 … 0.15192163282174276 -0.3524880536631956], [0.5326138529833364], BetaML.Utils.relu, BetaML.Utils.drelu)</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mynn = NeuralNetworkEstimator(layers=[l1,l2,l3],loss=squared_cost, batch_size=6,epochs=600)</code><code class="nohighlight hljs ansi" style="display:block;">NeuralNetworkEstimator - A Feed-forward neural network (unfitted)</code></pre><p>Training...</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; fit!(mynn,fit!(Scaler(),xtrain),ytrain)</code><code class="nohighlight hljs ansi" style="display:block;">***
+*** Training  for 600 epochs with algorithm BetaML.Nn.ADAM.
+Training.. 	 avg loss on epoch 1 (1): 	 14084.085244711765
+Training the Neural Network...   3%|▋                    |  ETA: 0:00:36Training the Neural Network...   6%|█▎                   |  ETA: 0:00:34Training the Neural Network...   8%|█▊                   |  ETA: 0:00:33Training.. 	 avg loss on epoch 60 (60): 	 1298.584492612036
+Training the Neural Network...  11%|██▍                  |  ETA: 0:00:32Training the Neural Network...  14%|███                  |  ETA: 0:00:31Training the Neural Network...  17%|███▋                 |  ETA: 0:00:30Training the Neural Network...  20%|████▏                |  ETA: 0:00:29Training.. 	 avg loss on epoch 120 (120): 	 1206.2534373195647
+Training the Neural Network...  23%|████▊                |  ETA: 0:00:28Training the Neural Network...  26%|█████▍               |  ETA: 0:00:27Training the Neural Network...  28%|██████               |  ETA: 0:00:26Training.. 	 avg loss on epoch 180 (180): 	 1135.9483642782611
+Training the Neural Network...  31%|██████▌              |  ETA: 0:00:25Training the Neural Network...  34%|███████▏             |  ETA: 0:00:24Training the Neural Network...  37%|███████▊             |  ETA: 0:00:23Training the Neural Network...  40%|████████▍            |  ETA: 0:00:22Training.. 	 avg loss on epoch 240 (240): 	 1065.2191519376793
+Training the Neural Network...  42%|████████▉            |  ETA: 0:00:21Training the Neural Network...  45%|█████████▌           |  ETA: 0:00:20Training the Neural Network...  48%|██████████▏          |  ETA: 0:00:19Training.. 	 avg loss on epoch 300 (300): 	 995.4253373639865
+Training the Neural Network...  51%|██████████▊          |  ETA: 0:00:18Training the Neural Network...  54%|███████████▎         |  ETA: 0:00:17Training the Neural Network...  57%|███████████▉         |  ETA: 0:00:16Training the Neural Network...  60%|████████████▌        |  ETA: 0:00:15Training.. 	 avg loss on epoch 360 (360): 	 931.64869025382
+Training the Neural Network...  62%|█████████████▏       |  ETA: 0:00:14Training the Neural Network...  65%|█████████████▋       |  ETA: 0:00:13Training the Neural Network...  68%|██████████████▎      |  ETA: 0:00:12Training.. 	 avg loss on epoch 420 (420): 	 872.4982286670404
+Training the Neural Network...  71%|██████████████▉      |  ETA: 0:00:10Training the Neural Network...  74%|███████████████▌     |  ETA: 0:00:09Training the Neural Network...  76%|████████████████▏    |  ETA: 0:00:08Training the Neural Network...  79%|████████████████▋    |  ETA: 0:00:07Training.. 	 avg loss on epoch 480 (480): 	 811.3236053101703
+Training the Neural Network...  82%|█████████████████▎   |  ETA: 0:00:06Training the Neural Network...  85%|█████████████████▉   |  ETA: 0:00:05Training the Neural Network...  88%|██████████████████▌  |  ETA: 0:00:04Training.. 	 avg loss on epoch 540 (540): 	 753.1239333759275
+Training the Neural Network...  91%|███████████████████  |  ETA: 0:00:03Training the Neural Network...  94%|███████████████████▋ |  ETA: 0:00:02Training the Neural Network...  96%|████████████████████▎|  ETA: 0:00:01Training the Neural Network...  99%|████████████████████▉|  ETA: 0:00:00Training.. 	 avg loss on epoch 600 (600): 	 696.8470763902963
+Training the Neural Network... 100%|█████████████████████| Time: 0:00:35
+Training of 600 epoch completed. Final epoch error: 696.8470763902963.
+354-element Vector{Float64}:
+  62.71721334929079
+ 113.81040481173945
+  83.2502909772133
+ 160.74234168277178
+ 180.65345993961927
+ 247.13179611797543
+ 127.76262184542301
+  77.15506066324325
+  81.22076913802647
+ 207.2550669921639
+   ⋮
+ 105.08237111765179
+ 291.8815418087875
+ 264.4561617650957
+  55.24391198406323
+  79.3591657192495
+  86.3629208285108
+ 140.77227058059975
+ 165.49523848286594
+  89.13764317455586</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷtrain   = predict(mynn, fit!(Scaler(),xtrain))</code><code class="nohighlight hljs ansi" style="display:block;">354-element Vector{Float64}:
+  62.71721334929079
+ 113.81040481173945
+  83.2502909772133
+ 160.74234168277178
+ 180.65345993961927
+ 247.13179611797543
+ 127.76262184542301
+  77.15506066324325
+  81.22076913802647
+ 207.2550669921639
+   ⋮
+ 105.08237111765179
+ 291.8815418087875
+ 264.4561617650957
+  55.24391198406323
+  79.3591657192495
+  86.3629208285108
+ 140.77227058059975
+ 165.49523848286594
+  89.13764317455586</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ŷval     = predict(mynn, fit!(Scaler(),xval))</code><code class="nohighlight hljs ansi" style="display:block;">88-element Vector{Float64}:
+ 245.94014977776033
+ 205.00746077182916
+ 150.72951002024314
+ 259.1779579491891
+ 109.13974123135677
+ 157.79196916424087
+ 146.849806214019
+ 245.0187291586054
+ 100.60323984666982
+  68.0786878878568
+   ⋮
+ 102.01953772638647
+ 100.57780233161805
+ 206.53901781686122
+ 147.8823374570415
+ 115.42095975278254
+ 161.30695629350396
+ 129.80976334867486
+ 283.9311339675836
+ 198.3710877662691</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; trainRME = relative_mean_error(ytrain,ŷtrain)</code><code class="nohighlight hljs ansi" style="display:block;">0.1868901012448193</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; testRME  = relative_mean_error(yval,ŷval)</code><code class="nohighlight hljs ansi" style="display:block;">0.32314161517365275</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; plot(info(mynn)[&quot;loss_per_epoch&quot;][10:end])</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; savefig(&quot;loss_per_epoch.svg&quot;);</code></pre><p><img src="loss_per_epoch.svg" alt/></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; scatter(yval,ŷval,xlabel=&quot;obs&quot;,ylabel=&quot;est&quot;,legend=nothing)</code><code class="nohighlight hljs ansi" style="display:block;">Plot{Plots.GRBackend() n=1}</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; savefig(&quot;obs_vs_est.svg&quot;);</code></pre><p><img src="obs_vs_est.svg" alt/></p><h2 id="Convolutional-neural-networks"><a class="docs-heading-anchor" href="#Convolutional-neural-networks">Convolutional neural networks</a><a id="Convolutional-neural-networks-1"></a><a class="docs-heading-anchor-permalink" href="#Convolutional-neural-networks" title="Permalink"></a></h2><p>TODO: several issues with MLDatasets and Flux.Data.DataLoader</p><p>using LinearAlgebra, Statistics, Flux, Plots ENV[&quot;PYTHON&quot;] = &quot;&quot; #using Pkg; Pkg.build(&quot;PyCall&quot;) using MLDatasets</p><p>x<em>train, y</em>train = MLDatasets.MNIST(split=:train)[:] x<em>train          = permutedims(x</em>train,(2,1,3)); # For correct img axis #x<em>train          = convert(Array{Float32,3},x</em>train); x<em>train          = reshape(x</em>train,(28,28,1,60000)); y<em>train          = Flux.onehotbatch(y</em>train, 0:9) train<em>data       = Flux.Data.DataLoader((x</em>train, y<em>train), batchsize=128) #x</em>test, y<em>test   = MLDatasets.MNIST.testdata(dir = &quot;data/MNIST&quot;) x</em>test, y<em>test   = MLDatasets.MNIST(split=:test)[:] x</em>test           = permutedims(x<em>test,(2,1,3)); # For correct img axis #x</em>test           = convert(Array{Float32,3},x<em>test); x</em>test           = reshape(x<em>test,(28,28,1,10000)); y</em>test           = Flux.onehotbatch(y_test, 0:9)</p><p>model = Chain(     ## 28x28 =&gt; 14x14     Conv((5, 5), 1=&gt;8, pad=2, stride=2, relu),     ## 14x14 =&gt; 7x7     Conv((3, 3), 8=&gt;16, pad=1, stride=2, relu),     ## 7x7 =&gt; 4x4     Conv((3, 3), 16=&gt;32, pad=1, stride=2, relu),     ## 4x4 =&gt; 2x2     Conv((3, 3), 32=&gt;32, pad=1, stride=2, relu),     ## Average pooling on each width x height feature map     GlobalMeanPool(),     Flux.flatten,     Dense(32, 10),     Flux.softmax )</p><p>myaccuracy(y,ŷ) = (mean(Flux.onecold(ŷ) .== Flux.onecold(y))) myloss(x, y)     = Flux.crossentropy(model(x), y)</p><p>opt = Flux.ADAM() ps  = Flux.params(model) number_epochs = 4</p><p>[(println(e); Flux.train!(myloss, ps, train<em>data, opt)) for e in 1:number</em>epochs]</p><p>ŷtrain =   model(x<em>train) ŷtest  =   model(x</em>test) myaccuracy(y<em>train,ŷtrain) myaccuracy(y</em>test,ŷtest)</p><p>plot(Gray.(x_train[:,:,1,2]))</p><p>cm = ConfusionMatrix() fit!(cm,Flux.onecold(y_test) .-1, Flux.onecold(ŷtest) .-1 ) println(cm)</p><p>res = info(cm) heatmap(string.(res[&quot;categories&quot;]),string.(res[&quot;categories&quot;]),res[&quot;normalised_scores&quot;],seriescolor=cgrad([:white,:blue]),xlabel=&quot;Predicted&quot;,ylabel=&quot;Actual&quot;, title=&quot;Confusion Matrix (normalised scores)&quot;)</p><p>savefig(&quot;cm_digits.svg&quot;)</p><h1 id="![](cm_digits.svg)"><a class="docs-heading-anchor" href="#![](cm_digits.svg)"><img src="cm_digits.svg" alt/></a><a id="![](cm_digits.svg)-1"></a><a class="docs-heading-anchor-permalink" href="#![](cm_digits.svg)" title="Permalink"></a></h1><p><a href="0402_-_Implementation_of_neural_networks_workflows.jl">View this file on Github</a>.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p><hr/><div id="pd_rating_holder_8962705"></div>
+<script type="text/javascript">
+const pageURL = window.location.href;
+PDRTJS_settings_8962705 = {
+"id" : "8962705",
+"unique_id" : "/home/runner/work/SPMLJ/SPMLJ/lessonsSources/04_-_NN_-_Neural_Networks/0402_-_Implementation_of_neural_networks_workflows.md",
+"title" : "0402_-_Implementation_of_neural_networks_workflows.md",
+"permalink" : pageURL
+};
+</script><div class="addthis_inline_share_toolbox"></div><hr/><script src="https://utteranc.es/client.js"
+        repo="sylvaticus/SPMLJ"
+        issue-term="title"
+        label="💬 website_comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script><script type="text/javascript" charset="utf-8" src="https://polldaddy.com/js/rating/rating.js"></script><!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6256c971c4f745bc"></script></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="0401_-_Neural_network_architectures.html">« 0401 - Neural network architectures</a><a class="docs-footer-nextpage" href="0402x_EXERCISE-4.1.html">0402x EXERCISE-4.1 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.19.0 on <span class="colophon-date" title="Wednesday 30 September 2026 17:41">Wednesday 30 September 2026</span>. Using Julia version 1.12.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

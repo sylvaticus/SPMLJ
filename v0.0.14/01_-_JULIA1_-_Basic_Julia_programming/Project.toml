@@ -1,0 +1,8 @@
+[deps]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
+CondaPkg = "992eb4ea-22a4-4c89-a5bb-47a3300528ab"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+Pipe = "b98c9c47-44ae-5843-9183-064241ee97a0"
+PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
+QuizQuestions = "612c44de-1021-4a21-84fb-7261cf5eb2d4"
+RCall = "6f49c342-dc21-5d91-9882-a32aef131414"
